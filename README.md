@@ -1,1 +1,1 @@
-# basic_stats_R
+# Practical Statistics in Medicine with R
