@@ -1,0 +1,882 @@
+# Descriptive statistics {#sec-descriptive}
+
+**Descriptive statistics** are used to describe and organize the **basic characteristics** of the data in a study. The classical descriptive statistics allow us to have a quick glance of the central tendency and the extent of dispersion of values. They are useful in understanding the **data distributions** and comparing them.
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Summarize categorical data
+-   Visualize frequency distributions for categorical variables
+-   Summarize numerical data
+-   Visualize distributions for numeric variables
+:::
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(rstatix)
+library(EnvStats)
+library(modeest)
+library(scales)
+library(questionr)
+library(MESS)
+library(ggsci)
+library(ggdist)
+library(ggrain)
+library(patchwork)
+library(here)
+library(tidyverse)
+```
+
+## Importing the data
+
+We will use the dataset named `arrhythmia` which is a `.xlsx` file. It is supposed that we work with RStudio Projects and the dataset is stored in the subfolder with the name "*data*" inside the RStudio Project folder. If this is the case, we can read the data using a *relative path* with the following code:
+
+::: column-margin
+**NOTE:** The path of a file/directory is its location/address in the file system. There are two kinds of paths: absolute path such as "`C:/My_name/../my_project/data/arrhythmia.xlsx`" and relative path such as "`data/arrhythmia.xlsx`".
+
+ 
+
+The function `here()` allows us to navigate throughout each of the subfolders and files within a given RStudio Project using *relative paths* .
+:::
+
+```{r}
+#| message: false
+#| warning: false
+
+library(readxl)
+arrhythmia <- read_excel(here("data", "arrhythmia.xlsx"))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| label: fig-arrhythmia
+#| fig-cap: Table with raw data of arrhythmia data set.
+
+DT::datatable(
+  arrhythmia, extensions = 'Buttons', options = list(
+    dom = 'tip'
+  )
+)
+
+```
+
+We take a look at the data:
+
+```{r}
+glimpse(arrhythmia)
+```
+
+Additionally, we can get some basic summary measures for each variable:
+
+```{r}
+summary(arrhythmia)
+```
+
+The data set *arrhythmia* has 428 patients (rows) and includes 8 variables (columns) as follows:
+
+1.  age: age (yrs)
+2.  sex: sex (male, female)
+3.  height: height (cm)
+4.  weight: weight (kg)
+5.  QRS: mean duration of QRS (ms) ![](images/QRS_normal.png){width="86" height="50"}
+6.  HR: heart rate (beats/min)
+7.  bmi
+8.  bmi_cat (4 levels: underweight, normal, overweight, obese)
+
+We might have noticed that the categorical variables `sex` and `bmi_cat` are recognized of character `<chr>` type. We can use the `factor()` function inside the `mutate()` to convert the variables to factors as follows:
+
+```{r}
+arrhythmia <- arrhythmia %>% 
+  mutate(sex = factor(sex),
+         bmi_cat = factor(bmi_cat, levels = c("underweight", "normal",          # <1>
+                                              "overweight", "obese")))          # <1>
+```
+
+1.  `bmi_cat` is an ordered variable so the order of the levels has to be specified explicitly in the `factor()` function.
+
+Let's look at the data again with the `glipmse()` function:
+
+```{r}
+glimpse(arrhythmia)
+```
+
+Now, both variables, `sex` and `bmi_cat`, have become factors with levels.
+
+ 
+
+## Summarizing Categorical Data (Frequency Statistics)
+
+The first step to analyze categorical data is to count the different types of labels and calculate the **frequencies**. The set of frequencies of all the possible categories is called the **frequency distribution** of the variable. Additionally, we can express the frequencies as **proportions** of the total sample size (relative frequencies, %).
+
+We can generate a frequency table for the `sex` variable using the `freq()` function from the {questionr} package:
+
+```{r}
+freq(arrhythmia$sex, cum = T, total = T, valid = F)
+```
+
+The table shows the number of patients (*n*) in each category (absolute frequency), the percentage (*%*) contribution of each category to the total (relative frequency), and the commutative percentage (*%cum*). Of note, the percentages add up to 100%.
+
+Similarly, we can create the frequency table for the `bmi_cat` variable:
+
+```{r}
+freq(arrhythmia$bmi_cat, cum = T, total = T, valid = F)
+```
+
+ 
+
+We can also sort the BMI categories in a decreasing order of frequencies:
+
+```{r}
+freq(arrhythmia$bmi_cat, cum = T, total = T, valid = F, sort = "dec")
+```
+
+In the above table we observe that a large proportion of patients are overweight (167 out of 428, 39.0%).
+
+ 
+
+In addition to tabulating each variable separately, we might be interested in whether the distribution of patients across each sex is different for each BMI category.
+
+```{r}
+tab <- table(arrhythmia$sex, arrhythmia$bmi_cat)
+rprop(tab, percent = T, total = F, n = T)
+```
+
+We can see that the percentage of overweight male patients (47.6%) is higher than overweight female patients (32.1%). In contrast, the percentage of obese male patients (9.9%) is lower than obese female patients (16.5%).
+
+ 
+
+## Displaying Categorical Data
+
+While frequency tables are extremely useful, the best way to investigate a dataset is to plot it. For categorical variables, such as `sex` and `bmi_cat`, it is straightforward to present the number in each category, usually indicating the frequency and percentage of the total number of patients. When shown graphically this is called a **bar plot**.
+
+**A. Simple Bar Plot**
+
+A simple bar plot is an easy way to make comparisons across categories. @fig-simplebar shows the BMI categories for 428 patients. Along the horizontal axis (*x-axis*) are the different BMI categories whilst on the vertical axis (y-axis) is the percentage (%). The height of each bar represents the percentage of the total patients in that category. For example, it can be seen that the percentage of overweight participants is 39% (167/428).
+
+```{r}
+#| label: fig-simplebar
+#| fig-cap: Bar plot showing the BMI category distribution for 428 patients.
+#| fig-width: 6
+
+# create a data frame with ordered BMI categories and their counts
+dat1 <- arrhythmia %>%
+  count(bmi_cat) %>% 
+  mutate(pct = round_percent(n, 1))
+
+# plot the data
+ggplot(dat1, aes(x = bmi_cat, y = pct)) +
+  geom_col(width=0.65, fill = "steelblue4") +
+  geom_text(aes(label=paste0(pct, "%")),
+            vjust=1.6, color = "white", size = 3) +
+  labs(x = "BMI category", y = "Percent",
+       caption = "Number of patients: 428") +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  theme_minimal(base_size = 12)
+```
+
+::: {.callout-tip icon="false"}
+## Basic Properties of a Simple Bar plot
+
+-   All bars should have equal width and should have equal space between them.
+-   The height of bar is equivalent to the data they represent.
+-   The bars must be plotted against a common zero-valued baseline.
+:::
+
+ 
+
+**B. Side-by-side and Grouped Bar Plots**
+
+If the data are further classified into whether the patient was male or female then it becomes impossible to present this information to a single bar plot. In this case, we can present the data as a side-by-side bar plot (@fig-sidebar1) or, even better, as a grouped bar plot to make the visual comparisons easier (@fig-sidebar2).
+
+```{r}
+#| label: fig-sidebar1
+#| fig-cap: Side-by-side bar plot showing by BMI category and sex.
+#| fig-width: 9.5
+#| fig-height: 5
+
+# create a data frame with ordered BMI categories and their counts by sex
+dat2 <- arrhythmia %>%
+  count(bmi_cat, sex) %>% 
+  group_by(sex) %>% 
+  mutate(pct = round_percent(n, 1)) %>% 
+  ungroup()
+
+ggplot(dat2) + 
+  geom_col(aes(bmi_cat, pct, fill = sex), width=0.7, position = "dodge") +
+  geom_text(aes(bmi_cat, pct, label = paste0(pct, "%"), 
+                group = sex), color = "white", size = 3,vjust=1.2,
+            position = position_dodge(width = .9)) +
+  labs(x = "BMI category", y = "Percent",
+       caption = "female: n=237, male: n=191") +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  scale_fill_jco() +
+  theme_minimal(base_size = 12) +
+  theme(legend.position="none",
+        axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(~sex, ncol = 2)
+
+```
+
+```{r}
+#| label: fig-sidebar2
+#| fig-cap: Grouped bar plot showing 428 patients by BMI category and sex.
+#| fig-width: 9
+#| fig-height: 5
+
+ggplot(dat2) + 
+  geom_col(aes(bmi_cat, pct, fill = sex), width = 0.8, position = "dodge") +
+  geom_text(aes(bmi_cat, pct, label = paste0(pct, "%"), 
+                group = sex), color = "white", size = 3,vjust=1.2,
+            position = position_dodge(width = .9)) +
+  labs(x = "BMI category", y = "Percent",
+       caption = "female: n=237, male: n=191") +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  scale_fill_jco() +
+  theme_minimal(base_size = 12)
+```
+
+ 
+
+**C. Stacked Bar Plot**
+
+Unlike side-by-side or grouped bar plots, **stacked bar plots** segment their bars. A **100% Stack Bar Plot** shows the percentage-of-the-whole of each group. This makes it easier to see if relative differences exist between quantities in each group (@fig-stacked).
+
+```{r}
+#| warning: false
+#| label: fig-stacked
+#| fig-cap: A horizontal 100% stacked bar plot showing the distribution of BMI stratified by sex.
+#| fig-width: 8
+#| fig-height: 2.2
+
+# create a data frame with ordered BMI categories and their counts by sex
+dat3 <- arrhythmia %>% 
+  group_by(sex) %>% 
+  count(bmi_cat) %>% 
+  mutate(pct = round_percent(n, 2)) %>% 
+  ungroup()
+
+ggplot(dat3, aes(x = sex, y = pct, fill = forcats::fct_rev(bmi_cat)))+
+  geom_bar(stat = "identity", width = 0.8)+
+  geom_text(aes(label = paste0(round(pct, 1), "%"), y = pct), 
+            position = position_stack(vjust = 0.5)) +
+  coord_flip()+
+  scale_fill_simpsons() +
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  labs(x = "Sex", y = "Percent", fill = "BMI category") +
+  theme_minimal(base_size = 12)
+```
+
+::: callout-important
+## Stacked bar plots tend to become confusing when the variable has many levels
+
+One issue to consider when using stacked bar plots is the number of variable levels: when dealing with many categories, stacked bar plots tend to become rather confusing.
+:::
+
+ 
+
+## Summarizing Numerical Data
+
+Summary measures are **single numerical values** that summarize a large number of values. Numeric data are described with two main types of summary measures (@tbl-measures):
+
+1.  measures of **central location** (where the center of the distribution of the values in a variable is located)
+
+2.  measures of **dispersion** (how widely the values are spread above and below the central value)
+
++------------------------------+-------------------------------------------------+
+| Measures of central location | Measures of dispersion                          |
++==============================+=================================================+
+| -   mean                     | -   variance                                    |
+|                              |                                                 |
+| -   median                   | -   standard deviation                          |
+|                              |                                                 |
+| -   mode                     | -   range (minimum, maximum)                    |
+|                              |                                                 |
+|                              | -   interquartile range (1st and 3rd quartiles) |
++------------------------------+-------------------------------------------------+
+
+: Common summary measures of central location and dispersion {#tbl-measures}
+
+ 
+
+## Summary statistics
+
+### Measures of central location
+
+**A. Sample Mean or Average**
+
+::: column-margin
+**Advantages of mean**
+
+-   It uses all the data values in the calculation.
+-   It is algebraically defined and thus mathematically manageable.
+
+**Disadvantages of mean**
+
+-   It is highly affected by the presence of a few abnormally high or abnormally low values (outliers), so it is not an appropriate average for highly skewed (asymmetrical) distributions.
+-   It can not be determined easily by inspection of the data.
+:::
+
+Let $x_1, x_2,...,x_{n-1}, x_n$ be a set of *n* measurements. The arithmetic sample mean or average, $\bar{x}$, is the sum of the observations divided by their number *n*, thus:
+
+$$
+\bar{x}= \frac{x_1 + x_2 + ... + x_{n-1} + x_n}{n} = \frac{1}{n}\sum_{i=1}^{n}x_{i}
+$$ where $x_{i}$ represents the individual sample values and ${\sum_{i=1}^{n}x_{i}}$ their sum.
+
+Let's calculate the sample mean of `age` variable in our dataset:
+
+::: {#exercise-joins .callout-tip}
+## Sample mean of age
+
+::: panel-tabset
+## Base R
+
+```{r}
+mean(arrhythmia$age, na.rm = TRUE)                                              # <1>
+```
+
+1.  If some of the values in a vector are missing (`NA`), then the mean of the vector can not be defined. The argument `na.rm = TRUE` removes the missing values and the mean is calculated using the remaining values.
+
+## dplyr
+
+```{r}
+arrhythmia %>% 
+  dplyr::summarise(mean = mean(age, na.rm = TRUE))
+```
+:::
+:::
+
+**B. Median** of the sample
+
+The **sample median**, *md*, is an alternative measure of location, which is less sensitive to outliers. The median is calculated by first sorting the observed values (i.e. arranging them in an ascending/descending order) and selecting the middle one. If the sample size *n* is **odd**, the median is the number at the middle of the ordered observations. If the sample size is **even**, the median is the average of the two middle numbers.
+
+::: column-margin
+**Advantage of sample median**
+
+-   It is not affected by outliers.
+
+**Disadvantage of sample median**
+
+-   It does not take into account the precise value of each observation and hence does not use all the information available in the data.
+:::
+
+Therefore, the sample median, *md*, of *n* observations is:
+
+-   the $\frac{n+1}{2}$th ordered value, $md=x_{\frac{n+1}{2}}$, if *n* is odd.
+
+-   the average of the $\frac{n}{2}$th and $\frac{n+1}{2}$th ordered values, $md=\frac{1}{2}(x_{\frac{n}{2}}+x_{\frac{n+1}{2}})$, if *n* is even.
+
+::: callout-tip
+## Sample median of age
+
+::: panel-tabset
+## Base R
+
+```{r}
+median(arrhythmia$age, na.rm = TRUE)
+```
+
+## dplyr
+
+```{r}
+arrhythmia %>% 
+  dplyr::summarise(median = median(age, na.rm = TRUE))
+```
+:::
+:::
+
+**C. Mode** of the sample
+
+A third measure of location is the **mode**. This is the value that occurs **most frequently** in a set of data values. Note that some dataset do not have a mode because each value occurs only once.
+
+::: column-margin
+**NOTE:** When a distribution has to modes (peaks) is called *Bimodal* distribution. This can be caused by mixing two populations together. For example, height might appear to have a bimodal distribution if men and women are included in the study.
+:::
+
+Base R does not provide a function for calculating the mode of a numeric variable. However, we can download the package called {modeest} and use the `mlv()` function specifying the method as `"mfv"`. This method returns the most frequent value(s):
+
+```{r}
+mlv(arrhythmia$age, method = "mfv", na.rm = TRUE)
+```
+
+### Measures of Dispersion
+
+**A. Sample Variance**
+
+Sample variance, $s^2$, is a measure of spread of the data. It is calculated by taking the sum of the squared deviations from the sample mean and dividing by $n-1$:
+
+$$variance = s^2 = \frac{\sum\limits_{i=1}^n (x -\bar{x})^2}{n-1}$$
+
+::: callout-tip
+## Sample variance of age
+
+::: panel-tabset
+## Base R
+
+```{r}
+var(arrhythmia$age, na.rm = TRUE)
+```
+
+## dplyr
+
+```{r}
+arrhythmia %>% 
+  dplyr::summarise(variance = var(age, na.rm = TRUE))
+```
+:::
+:::
+
+The variance is expressed in square units, so it is not suitable measure for describing variability of data.
+
+**B. Standard deviation of the sample**
+
+Standard deviation (denoted as *sd* or *s*) of a data set is the square root of the sample variance:
+
+$$sd= s = \sqrt{s^2} = \sqrt\frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
+
+::: callout-tip
+## Standard deviation of age
+
+::: panel-tabset
+## Base R
+
+```{r}
+sd(arrhythmia$age, na.rm = TRUE)
+```
+
+## dplyr
+
+```{r}
+arrhythmia %>% 
+  dplyr::summarise(standard_deviation = sd(age, na.rm = TRUE))
+```
+:::
+:::
+
+Standard deviation is expressed in the same units as the original values.
+
+**C. Range** of the sample
+
+The Range is the difference between the minimum (lowest) and maximum (highest) values. In R, the `range()` function returns a vector containing the minimum and maximum values:
+
+::: column-margin
+One disadvantage of using range as a measure of dispersion is its sensitivity to outliers.
+:::
+
+```{r}
+range(arrhythmia$age, na.rm = TRUE)
+```
+
+The difference between the two values, 83 - 18, is:
+
+```{r}
+diff(range(arrhythmia$age, na.rm = TRUE))
+```
+
+**D. Inter-quartile range** of the sample
+
+```{r}
+IQR(arrhythmia$age, na.rm = TRUE)
+```
+
+```{r}
+quantile(arrhythmia$age, prob=c(0.25, 0.75), na.rm = T, type=1)
+```
+
+Let's calculate the summary statistics for the `age` variable in our dataset.
+
+::: callout-tip
+## Summary statistics: Variable age
+
+::: panel-tabset
+## dplyr
+
+```{r}
+arrhythmia %>%
+  dplyr::summarise(
+    n = n(),
+    na = sum(is.na(age)),
+    min = min(age, na.rm = TRUE),
+    q1 = quantile(age, 0.25, na.rm = TRUE),
+    median = quantile(age, 0.5, na.rm = TRUE),
+    q3 = quantile(age, 0.75, na.rm = TRUE),
+    max = max(age, na.rm = TRUE),
+    mean = mean(age, na.rm = TRUE),
+    sd = sd(age, na.rm = TRUE),
+    skewness = EnvStats::skewness(age, na.rm = TRUE),
+    kurtosis= EnvStats::kurtosis(age, na.rm = TRUE)
+  )
+
+```
+
+## dlookr
+
+```{r}
+arrhythmia %>% 
+  dlookr::describe(age) %>% 
+  select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
+```
+
+## psych
+
+```{r}
+psych::describe(arrhythmia$age)
+```
+:::
+:::
+
+::: callout-tip
+## Summary statistics: Variable QRS
+
+::: panel-tabset
+## dplyr
+
+```{r}
+arrhythmia %>%
+  dplyr::summarise(
+    n = n(),
+    na = sum(is.na(QRS)),
+    min = min(QRS, na.rm = TRUE),
+    q1 = quantile(QRS, 0.25, na.rm = TRUE),
+    median = quantile(QRS, 0.5, na.rm = TRUE),
+    q3 = quantile(QRS, 0.75, na.rm = TRUE),
+    max = max(QRS, na.rm = TRUE),
+    mean = mean(QRS, na.rm = TRUE),
+    sd = sd(QRS, na.rm = TRUE),
+    skewness = EnvStats::skewness(QRS, na.rm = TRUE),
+    kurtosis= EnvStats::kurtosis(QRS, na.rm = TRUE)
+  )
+
+```
+
+## dlookr
+
+```{r}
+arrhythmia %>% 
+  dlookr::describe(QRS) %>% 
+  select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
+```
+
+## psych
+
+```{r}
+psych::describe(arrhythmia$QRS)
+```
+:::
+:::
+
+ 
+
+**B. Summary statistics by group**
+
+Next, we are interested in calculating the summary statistics of the `age` variable for males and females, separately.
+
+::: callout-tip
+## Summary statistics: age stratified by sex
+
+::: panel-tabset
+## dplyr
+
+```{r}
+summary_age_sex <- arrhythmia %>%
+  group_by(sex) %>% 
+  dplyr::summarise(
+    n = n(),
+    na = sum(is.na(age)),
+    min = min(age, na.rm = TRUE),
+    q1 = quantile(age, 0.25, na.rm = TRUE),
+    median = quantile(age, 0.5, na.rm = TRUE),
+    q3 = quantile(age, 0.75, na.rm = TRUE),
+    max = max(age, na.rm = TRUE),
+    mean = mean(age, na.rm = TRUE),
+    sd = sd(age, na.rm = TRUE),
+    skewness = EnvStats::skewness(age, na.rm = TRUE),
+    kurtosis= EnvStats::kurtosis(age, na.rm = TRUE)
+  ) %>% 
+  ungroup()
+
+summary_age_sex
+
+```
+
+## dlookr
+
+```{r}
+arrhythmia %>% 
+  group_by(sex) %>% 
+  dlookr::describe(age) %>% 
+  select(described_variables, sex, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
+```
+
+## psych
+
+```{r}
+psych::describeBy(arrhythmia$age, group = arrhythmia$sex)
+```
+:::
+:::
+
+If we want to save our descriptive statistics, calculated in R, we can use the `write_xlsx()` function from {writexl} package. In the example below, we are saving the `summary_age_sex` table to a `.xlsx` file in the *data* folder of our RStudio Project:
+
+```{r}
+#| eval: false
+  
+library(writexl)
+write_xlsx(summary_age_sex, here("data", "summary_age_sex.xlsx"))
+```
+
+ 
+
+::: callout-tip
+## Summary statistics: QRS stratified by sex
+
+::: panel-tabset
+## dplyr
+
+```{r}
+arrhythmia %>%
+  group_by(sex) %>% 
+  dplyr::summarise(
+    n = n(),
+    na = sum(is.na(QRS)),
+    min = min(QRS, na.rm = TRUE),
+    q1 = quantile(QRS, 0.25, na.rm = TRUE),
+    median = quantile(QRS, 0.5, na.rm = TRUE),
+    q3 = quantile(QRS, 0.75, na.rm = TRUE),
+    max = max(QRS, na.rm = TRUE),
+    mean = mean(QRS, na.rm = TRUE),
+    sd = sd(QRS, na.rm = TRUE),
+    skewness = EnvStats::skewness(QRS, na.rm = TRUE),
+    kurtosis= EnvStats::kurtosis(QRS, na.rm = TRUE)
+  ) %>% 
+  ungroup()
+
+```
+
+## dlookr
+
+```{r}
+arrhythmia %>% 
+  group_by(sex) %>% 
+  dlookr::describe(QRS) %>% 
+  select(described_variables, sex, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
+```
+
+## psych
+
+```{r}
+psych::describeBy(arrhythmia$QRS, group = arrhythmia$sex)
+```
+:::
+:::
+
+::: {.callout-tip icon="false"}
+## Reporting summary statistics for numerical data
+
+**A. Mean (sd)** for data with **symmetric** distribution. A distribution, or dataset, is symmetric if its left and right sides are mirror images.
+
+**B. Median (Q1, Q3)** for data with **skewed** (or asymmetrical) distribution.
+:::
+
+ 
+
+## Displaying Numerical Data
+
+**A. Histogram / Density plot**
+
+The most common way of presenting a frequency distribution of a continuous variable is a histogram. Histograms (@fig-histog1) depict the distribution of the data as a series of bars without space between them. Each bar typically covers a range of numeric values called a bin; a bar's height indicates the frequency of observations with a value within the corresponding bin.
+
+```{r}
+#| warning: false
+#| label: fig-histog1
+#| fig-width: 6
+#| fig-cap: Distributions of (a) age and (b) QRS variables.
+#| fig-subcap: 
+#|   - "Histogram of age for the 425 patients."
+#|   - "Histogram of QRS for the 428 patients."
+#| layout-ncol: 1
+
+# Histogram of age
+arrhythmia %>% 
+  ggplot(aes(x = age)) +
+  geom_histogram(binwidth = 8, fill = "steelblue4",        # <1>
+                 color = "#8fb4d9", alpha = 0.6) +  
+  theme_minimal(base_size = 14) +
+  labs(title = "Histogram: age", y = "Frequency")
+
+# Histogram of QRS
+arrhythmia %>% 
+  ggplot(aes(x = QRS)) +
+  geom_histogram(binwidth = 8, fill = "steelblue4",      
+                 color = "#8fb4d9", alpha = 0.6) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Histogram: QRS", y = "Frequency")
+```
+
+1.  The exact visual appearance depends on the choice of the `binwidth` argument. Try different bin widths to verify that the resulting histogram represents the underlying data accurately.
+
+A histogram gives information about:
+
+-   How the data are distributed (symmetrical or asymmetrical) and if there are any outliers.
+-   Where the peak (or peaks) of the distribution is.
+-   The amount of variability in the data.
+
+**Density plot** is also used to present the distribution of a continuous variable and it is considered a variation of the histogram allowing for smoother distributions[^descriptive-1] (@fig-density1). In this case, `geom_density()` function is used for displaying the distribution.
+
+[^descriptive-1]: Density curves are usually scaled such that the area under the curve equals one.
+
+```{r}
+#| warning: false
+#| label: fig-density1
+#| fig-width: 6
+#| fig-cap: Density plot of (a) age and (b) QRS variables.
+#| fig-subcap: 
+#|   - "Density plot of age for the 425 patients."
+#|   - "Density plot of QRS for the 428 patients."
+#| layout-ncol: 1
+
+# density plot of age
+arrhythmia %>% 
+  ggplot(aes(x = age)) +
+  geom_density(fill="steelblue4", color="#8fb4d9", 
+               adjust = 1.5, alpha=0.6) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Density Plot: age", y = "Density")
+
+# density plot of QRS
+arrhythmia %>% 
+  ggplot(aes(x = QRS)) +
+  geom_density(fill="steelblue4", color="#8fb4d9", 
+               adjust = 1.5, alpha=0.6) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Density Plot: QRS", y = "Density")
+```
+
+ 
+
+**B. Box Plot**
+
+Box plots can be used for displaying location and dispersion for continuous data, particularly when comparing distributions between many groups (@fig-boxplot1). This type of graph uses boxes and lines to depict the distributions. Box limits indicate the range of the central **50%** of the data, with a horizontal line in the box corresponding to the **median**. Whiskers extend from each box to capture the **range** of the remaining data. **Data points** that are outside the whiskers are represented as **dots** on the graph and considered potential outliers.[^descriptive-2]
+
+[^descriptive-2]: An outlier is an observation that is significantly distant from the main body the data. We say any value outside of the following interval is an outlier: $$(Q_1 - 1.5 \times IQR, \ Q_3 + 1.5 \times IQR)$$
+
+```{r}
+#| warning: false
+#| label: fig-boxplot1
+#| fig-width: 6
+#| fig-cap: Box plot of (a) age and (b) QRS variables stratified by sex.
+#| fig-subcap: 
+#|   - "Box plot of age stratified by sex (female: 235; male = 190)."
+#|   - "Box plot of QRS stratified by sex (female: 237; male = 191)."
+#| layout-ncol: 1
+
+# box plot of age stratified by sex
+arrhythmia %>% 
+  ggplot(aes(x = sex, y = age, fill = sex)) +
+  geom_boxplot(alpha = 0.6, width = 0.5) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Grouped Box Plot: age by sex") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+
+# box plot of QRS stratified by sex
+arrhythmia %>% 
+  ggplot(aes(x = sex, y = QRS, fill = sex)) +
+  geom_boxplot(alpha = 0.6, width = 0.5) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Grouped Box Plot: QRS by sex") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+```
+
+In @fig-boxplot1 a, box plots of age are approximately symmetric about the median for females and males. On the contrary, in @fig-boxplot1 b, both distributions of QRS data are positively skewed; the box plots show the medians closer to the lower quartiles (q25) and we observe many outliers at the upper range of the data for females and males.
+
+ 
+
+**C. Raincloud Plot**
+
+There are many variations of the box plot. For example, there is a way to combine raw data (dots), probability density, and key summary statistics such as median, and relevant intervals of a range of likely values for the population parameter, in an appealing and flexible format with minimal redundancy, using the raincloud plot (@fig-raincloud):
+
+
+::: panel-tabset
+## ggdist
+
+```{r}
+#| warning: false
+#| label: fig-raincloud
+#| fig-width: 6
+#| fig-cap: Raincloud plot of (a) age and (b) QRS variables stratified by sex.
+#| fig-subcap: 
+#|   - "Raincloud of age stratified by sex (female: 235; male = 190)."
+#|   - "Raincloud of QRS stratified by sex (female: 237; male = 191)."
+#| layout-ncol: 1
+
+# raincloud plot of age stratified by sex
+arrhythmia %>% 
+  ggplot(aes(x = sex, y = age, fill = sex)) +
+  stat_slab(aes(thickness = stat(pdf*n)), 
+                scale = 0.5) +
+  stat_dotsinterval(side = "bottom", 
+                    scale = 0.5, 
+                    slab_size = 0.2) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Grouped Raincloud Plots: age by sex") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+
+# raincloud plot of QRS stratified by sex
+arrhythmia %>% 
+  ggplot(aes(x = sex, y = QRS, fill = sex)) +
+  stat_slab(aes(thickness = stat(pdf*n)), 
+                scale = 0.5) +
+  stat_dotsinterval(side = "bottom", 
+                    scale = 0.5, 
+                    slab_size = 0.2) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Grouped Raincloud Plots: QRS by sex") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+```
+
+
+## ggrain
+
+```{r}
+#| warning: false
+#| label: fig-raincloud2
+#| fig-width: 6
+#| fig-cap: Raincloud plot of (a) age and (b) QRS variables stratified by sex.
+#| fig-subcap: 
+#|   - "Raincloud of age stratified by sex (female: 235; male = 190)."
+#|   - "Raincloud of QRS stratified by sex (female: 237; male = 191)."
+#| layout-ncol: 1
+
+ggplot(arrhythmia, aes(sex, age, fill = sex)) +
+  geom_rain(likert= TRUE,
+            point.args = list(alpha = .3)) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Grouped Raincloud Plots: age by sex") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+
+
+ggplot(arrhythmia, aes(sex, QRS, fill = sex)) +
+  geom_rain(likert= TRUE,
+            point.args = list(alpha = .3)) +
+  theme_minimal(base_size = 14) +
+  labs(title = "Grouped Raincloud Plots: QRS by sex") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+```
+
+:::
+
+

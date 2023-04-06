@@ -1,0 +1,66 @@
+project:
+  type: book
+  output-dir: _book
+book:
+  title: "Practical Statistics in Medicine with R"
+  subtitle: "1st Edition"
+  author: 
+    - name: "Konstantinos I. Bougioukas, PhD"
+      orcid: "0000-0002-6533-1391"
+  date: today
+  cover-image: images/cover.png
+  favicon: images/cover.png
+  repo-url: https://github.com/bougioukas/basic_stats_R
+  chapters:
+    - index.qmd
+    - introduction.qmd
+    - descriptive.qmd
+    - normal.qmd
+    - inference.qmd
+    - student_t_test.qmd
+    - wmw_test.qmd
+    - paired_t_test.qmd
+    - wilcoxon_test.qmd
+    - anova.qmd
+    - kruskal_wallis.qmd
+    - correlation.qmd
+    - chi_square.qmd
+    - fisher_exact.qmd
+    - mcnemar.qmd
+    - roc.qmd
+    - references.qmd
+    
+  page-footer: 
+    left: "Copyright 2023, Konstantinos I. Bougioukas" 
+
+bibliography: references.bib
+reference-location: margin
+
+filters:
+  - social-share
+  - lightbox
+code-annotations: hover
+
+share:
+  permalink: "https://bougioukas-medstats-r.netlify.app/"
+  description: "Practical Statistics in Medicine with R"
+  twitter: true
+  facebook: true
+  linkedin: true
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme-light.scss]
+    grid:
+      sidebar-width: 270px
+      body-width: 810px
+      margin-width: 250px
+    fontsize: 1.2em
+    linestretch: 1.8
+    toc-title: "On this page"
+    link-external-newwindow: true
+    code-link: true
+    number-depth: 2
+    code-overflow: scroll
+editor: visual
