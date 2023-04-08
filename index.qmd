@@ -16,17 +16,6 @@ This textbook assumes that the reader has a basic knowledge of R, tidyverse and 
 
  
 
-### R via RStudio and RStudio Projects
-
-Throughout this textbook we will use **R** via **RStudio**. Both programs can be downloaded from ![](images/posit.png){width="24" height="22"} [posit](https://posit.co/download/rstudio-desktop/). It is also recommended to work with [RStudio Projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects). This enables to organize our files and switch between different projects without getting the data, scripts, or output files all mixed up. Everything gets read in or saved to the right folder/directory.
-
-For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following subfolders (@fig-project).:
-
--   **data:** data files of any kind, such as `.csv`, `.xlsx`, `.txt`, etc.
--   **figures:** plots, diagrams, and other graphs
-
-![The folder structure of a minimal RStudio project.](images/project.png){#fig-project width="40%"}
-
 ### Reproducibility and License
 
 All sections of this textbook are reproducible as they were made using ![](images/quarto.png){width="24" height="22"} [Quarto](https://quarto.org/)^®^ which is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/).

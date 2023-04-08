@@ -1,4 +1,4 @@
-# Introduction {#sec-introduction}
+# Statistics and data {#sec-introduction}
 
 When we have finished this chapter, we should be able to:
 
@@ -48,9 +48,7 @@ flowchart LR
 
 Biomedical data can be transformed into **information**. This information can become **knowledge** if the researchers and clinicians understand it (@fig-info).
 
-![From data to knowledge.](images/info.png){#fig-info width=80%}
-
-
+![From data to knowledge.](images/info.png){#fig-info width="80%"}
 
 There are three main data structures: structured data, unstructured data, and semi-structured data.
 

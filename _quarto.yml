@@ -10,29 +10,41 @@ book:
   date: today
   cover-image: images/cover.png
   favicon: images/cover.png
-  repo-url: https://github.com/bougioukas/basic_stats_R
+  repo-url: https://github.com/bougioukas/practical_stats_med-r
   chapters:
     - index.qmd
-    - introduction.qmd
-    - descriptive.qmd
-    - normal.qmd
-    - inference.qmd
-    - student_t_test.qmd
-    - wmw_test.qmd
-    - paired_t_test.qmd
-    - wilcoxon_test.qmd
-    - anova.qmd
-    - kruskal_wallis.qmd
-    - correlation.qmd
-    - chi_square.qmd
-    - fisher_exact.qmd
-    - mcnemar.qmd
-    - roc.qmd
+    - part: "R Basics"
+      chapters:
+        - intro_rstudio.qmd
+    - part: "Data transformation with to tidyverse"
+      chapters:
+        - intro_rstudio.qmd 
+    - part: "Graphics with ggplot2"
+      chapters:
+        - intro_rstudio.qmd
+    - part: "Statistics"
+      chapters:
+        - introduction.qmd
+        - descriptive.qmd
+        - normal.qmd
+        - inference.qmd
+        - student_t_test.qmd
+        - wmw_test.qmd
+        - paired_t_test.qmd
+        - wilcoxon_test.qmd
+        - anova.qmd
+        - kruskal_wallis.qmd
+        - correlation.qmd
+        - chi_square.qmd
+        - fisher_exact.qmd
+        - mcnemar.qmd
+        - roc.qmd
     - references.qmd
     
   page-footer: 
     left: "Copyright 2023, Konstantinos I. Bougioukas" 
-
+  back-to-top-navigation: true
+  
 bibliography: references.bib
 reference-location: margin
 
@@ -42,7 +54,7 @@ filters:
 code-annotations: hover
 
 share:
-  permalink: "https://bougioukas-medstats-r.netlify.app/"
+  permalink: "https://practical-stats-med-r.netlify.app/"
   description: "Practical Statistics in Medicine with R"
   twitter: true
   facebook: true
