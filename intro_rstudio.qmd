@@ -25,9 +25,9 @@ Throughout this textbook we will use **R** via **RStudio IDE**. Both programs ca
 
 After the RStudio installation is finished, click the RStudio icon ![](images/r_studio_icon.png){#fig-r_studio_icon width="5%"}
 
-R starts automatically when we open RStudio [@fig-RStudio_panels] and we are greeted by **three panes**:
+R starts automatically when we open RStudio [@fig-RStudio_panes] and we are greeted by **three panes**:
 
-![RStudio Screenshot with Console on the left and Help tab in the bottom right.](images/RStudio_panels.png){#fig-RStudio_panels width="100%"}
+![RStudio Screenshot with three panes.](images/RStudio_panes.png){#fig-RStudio_panes width="100%"}
 
 The three main panes that divide the screen are:
 
@@ -39,7 +39,7 @@ The three main panes that divide the screen are:
 
     -   The **History tab** tracks all of the commands that we have sent to the R console in the session.
 
-3.  the Files/Plots/Packages/Help/Viewer/Presentation pane in the lower right.
+3.  the Output pane in the lower right which includes:
 
     -   The **Files tab** lets us create new folders (directories) on our computer, as well as copy, move, delete, or rename files.
 
@@ -63,15 +63,15 @@ The Console pane starts with information about the version number, license and c
 
  
 
-Let's type `14 + 16` at the R command prompt and press `Enter`:
+Let's type `14 + 16` at the R command prompt and press {{< kbd Enter >}}:
 
 ```{r}
 14 + 16
 ```
 
-So what happened?
 
-Well, R gave us a response (output) to our input (`14 + 16`). That response came after we pressed the {{< kbd Enter >}} from the keyboard. It was `[1] 30`. It's clear that `30` is the answer to the mathematical calculation of `14 + 16`. However, what does the `[1]` mean? At this point we can ignore it, but technically it refers to the **index of the first item on each line**. (Sometimes R prints out many lines as an output. The number inside the brackets helps us figure out where in the sequence we are per line).
+We observe in the console that the output is `[1] 30`. It's clear that `30` is the answer to the mathematical calculation of `14 + 16`. However, what does the `[1]` mean? At this point we can ignore it, but technically it refers to the **index of the first item on each line**. (In some cases R prints out many lines as an output. The number inside the square brackets is an index that helps us find where in the sequence we are per line).
+
 
 ## Open a new R script
 
@@ -81,33 +81,45 @@ In the RStudio menu, we go to:
 
 ```{mermaid}
 flowchart LR
-  A[File] -.-> B(New File) -.-> C(R Script)
+  A(File) -.-> B(New File) -.-> C(R Script)
 ```
 
-Another pane (Q1) is opened on the left above the interactive console [@fig-RStudio_4panels]. This is where we can write a length script with lots of code chunks and save the file for future use.
+Another pane is opened on the left above the interactive console [@fig-RStudio_4panes]. This is where we can write a length script with lots of code chunks and save the file for future use.
 
-![RStudio Screenshot with four panes.](images/RStudio_4panels.png){#fig-RStudio_4panels width="100%"}
+![RStudio Screenshot with four panes.](images/RStudio_4panes.png){#fig-RStudio_4panes width="100%"}
 
 We can change the **shape** of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.
 
-The four panes might be in a different order that those in @fig-RStudio_4panels. If we'd like, we can change the **order** of the panes under RStudio preferences. We select from RStudio menu:
+The four panes might be placed in a different order that those in @fig-RStudio_4panes. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu:
 
 ```{mermaid}
 flowchart LR
-  A[Tools] -.-> B(Global Options) -.-> C(Pane layout)
+  A(Tools) -.-> B(Global Options) -.-> C(Pane layout)
 ```
 
  
 
-Now, let's type `14 + 16` at a new R script and press the ![](images/run.png){width="45" height="20"} button. The result is printed in the console (@fig-script):
+![RStudio Screenshot with Console on the left and Help tab in the bottom right.](images/order_panes.png){#fig-RStudio_panes width="70%"}
 
-[In `.R` script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the text) and pressing the ![](images/run.png){width="45" height="18"} button in the source pane. We can also run our selected code using the keyboard shortcut {{< kbd Ctrl+Enter >}}.]{.aside}
+From here, we can also check which tabs we would like to appear within each pane (@fig-RStudio_panes). 
 
-![The script pane.](images/script.png){#fig-script width="100%"}
+ 
 
-[Keyboard Shortcut for commenting in/out **multiple lines** at a time: {{< kbd Ctrl+Shift+C >}}]{.aside}
+Now, let's type `14 + 16` at a new R script and press the ![](images/run.png){width="43" height="20"} button. The result is printed in the console (@fig-script1):
 
-Comments can also be used to explain R code, and to make it more readable (it can also be used to prevent execution when testing alternative code). **Comments start with the hashtag symbol `#`**. When executing the R-code, R will ignore anything that starts with `#` (@fig-script). It is considered good practice to comment our code when working in an `.R` script.
+[In `.R` script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the text) and pressing the ![](images/run.png){width="45" height="18"} button in the source pane. We can also run our selected code using the keyboard shortcut {{< kbd Ctrl+Enter >}} for Windows and {{< kbd Cmd+Enter >}} for Mac.]{.aside}
+
+![The script pane.](images/script1.png){#fig-script1 width="80%"}
+
+[Keyboard Shortcut for commenting in/out **multiple lines** at a time: {{< kbd Ctrl+Shift+C >}} fro Windows and {{< kbd 	Cmd+Shift+C >}} for Mac.]{.aside}
+
+**Comments** can also be used to explain R code, and to make it more readable. They can also be used to prevent execution when testing alternative code (@fig-script2). 
+
+![The script pane.](images/script2.png){#fig-script2 width="80%"}
+
+
+
+Comments start with the **hashtag symbol `#`**. When executing the R-code, R will ignore anything that starts with `#`. It is considered good practice to comment our code when working in an `.R` script.
 
 ::: callout-tip
 ## Advantages of writing code in a R script file
@@ -120,7 +132,7 @@ Comments can also be used to explain R code, and to make it more readable (it ca
 
 ## Errors, warnings, and messages in R
 
-Let's type the following at the R command prompt and press Enter:
+Let's type the following at the R command prompt and press {{< kbd 	Enter >}}:
 
 ```{r}
 #| error: true
@@ -136,18 +148,23 @@ R will show in the console pane that something unusual is happening in three dif
 
 -   **Errors:** When something is a legitimate error, it will be prefaced with "Error:" and R will try to explain what went wrong. When there's an error, the execution of code will stop.
 
--   **Warnings:** When there is a signal of a warning, it will be prefaced with "Warning:" and R will try to explain why there's a warning. Generally our code will still work, but with some caveats.
+-   **Warnings:** When there is a signal of a warning, it will be prefaced with "Warning:" and R will try to explain why there's a warning. Generally our code will still work, but with some possible problems.
 
--   **Messages:** When the signal is a message, R informs the users that some action has been performed on their behalf.
+-   **Messages:** When the signal is a message, R attaches a message to the output that might be useful information for the user.
+
 
 Now, let's type the following:
 
 ```{r continuation, echo=TRUE, eval=FALSE}
-1 + 2 -
-+
+
+14 + 16 -                                                                       # <1>
++                                                                               # <2>
 ```
 
-If an R command is **not complete** then R will show a plus sign (`+`) prompt on second and subsequent lines until the command syntax is correct (this means that we can type something to finish the command we are trying to execute). We can also press the escape key {{< kbd Esc >}} to cancel whatever command R is waiting for us to finish.
+1. We have not finished the mathematical expression
+2. Here the plus sign (`+`) is a prompt
+
+If an R command is **not complete** then a plus sign (`+`) (prompt) appears on second and subsequent lines until the command syntax is correct. In our example, we can type a number to finish the mathematical expression we are trying to calculate. We can also press the escape key {{< kbd Esc >}} to cancel the command.
 
 ## R Help resources
 
@@ -171,7 +188,7 @@ or
 ?mean
 ```
 
-![R help() function search for specific term such as `mean`](images/mean_help.png){#fig-mean_help width="80%"}
+![R help() function search for specific term such as `mean`](images/mean_help.png){#fig-mean_help width="70%"}
 
 So, R tried to find something called `mean` (@fig-mean_help).
 
@@ -214,38 +231,63 @@ Additionally, there are a lot of **on-line** resources that can help (e.g., [R-b
 
 ## Working with RStudio Projects
 
-When we are working in R, the program needs to know where to find inputs and deliver outputs, and it will look first in what is called a "working directory". Moreover, we want to organize all of the files for a given project in one folder, and that particular folder should be established as our working directory.
+It is recommended to work with [RStudio Projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects):
 
-It is recommended to work with [RStudio Projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects). This enables to organize our files and switch between different projects without getting the data, scripts, or output files all mixed up. Everything gets read in or saved to the right folder/directory.
+-   When we are working in R, the program needs to know where to find inputs (e.g. datasets) and deliver outputs (e.g. figures), and it will search first in what is called a "working directory". When the RStudio session is running through the project file (.Rproj), the current working directory points to the root folder where that .Rproj file is saved.
 
+-   We want to organize all of the files for a given project in one folder, and that particular folder should be established as our working directory. RStudio Projects enables to organize the files and switch between different projects without getting the data, scripts, or output files all mixed up. Everything gets read in or saved to the right folder/directory.
 
-Let's create one to use for the rest of this textbook. From the RStudio menu:
+Let's create our first RStudio Project to use for the rest of this textbook. From the RStudio menu select:
 
 ```{mermaid}
 flowchart LR
-  A[File] -.-> B(New Project)
+  A(File) -.-> B(New Project...)
 ```
 
-The directory name we choose here will be the `project name`. We call it whatever we want (e.g., introR).
+or 
 
-![RStudio projects are associated with R working directories](images/create_project.png){#fig-create_project width="80%"}
+ from the Projects menu on the global toolbar (@fig-project1) select `New Project...`:
 
+![Create an RStudio Project using the RStudio's Project menu](images/project1.png){#fig-project1 width="80%"}
 
-::: callout-important
-## Store the RStudio Project somewhere sensible
+Then, follow the steps in @fig-steps:
 
-We must think carefully in which **sub-directory** we will create the RStudio project. If we don't store it somewhere sensible, it will be hard to find it in the future!
-:::
+```{r}
+#| warning: false
+#| echo: false
+#| out-width: 12cm
+#| label: fig-steps
+#| fig-cap: RStudio projects are associated with R working directories.
+#| fig-subcap: 
+#|   - "Step 1"
+#|   - "Step 2"
+#|   - "Step 3"
+#| layout-ncol: 1
+
+knitr::include_graphics(here::here("images", "step1.png"))
+
+knitr::include_graphics(here::here("images", "step2.png"))
+
+knitr::include_graphics(here::here("images", "step3.png"))
+```
+
+In Step 3 (@fig-steps c) the directory name that we type will be the `project name` . We call it whatever we want (e.g., my_first_project).
+
+Once this process is complete, we'll get a new RStudio Project just for this textbook with the name "*my_first_project*". Check that
+
+:
 
  
 
 **RStudio Project folder structure**
 
-The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer. 
+The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer.
 
-For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following subfolders^[We can create new folders using the ![](images/new_folder.png){width="65" height="18"}] (@fig-project).:
+For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following subfolders[^intro_rstudio-2] (@fig-project2).:
+
+[^intro_rstudio-2]: We can create new folders using the ![](images/new_folder.png){width="65" height="18"}
 
 -   **data:** data files of any kind, such as `.csv`, `.xlsx`, `.txt`, etc.
 -   **figures:** plots, diagrams, and other graphs
 
-![The folder structure of a minimal RStudio project.](images/project.png){#fig-project width="40%"}
+![The folder structure of a minimal RStudio project.](images/project2.png){#fig-project2 width="40%"}
