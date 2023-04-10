@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.313">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Practical Statistics in Medicine with R - 1&nbsp; R via RStudio</title>
+<title>Practical Statistics in Medicine with R - 2&nbsp; Working with R scripts and RStudio Projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,42 +17,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -64,8 +26,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./rstudio_projects.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./introduction.html" rel="next">
+<link href="./intro_rstudio.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,8 +41,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
-<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -98,36 +59,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+}</script><script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
-
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./intro_rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./rstudio_projects.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with R scripts and RStudio Projects</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
         <div class="sidebar-tools-main">
@@ -142,7 +92,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -156,21 +106,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio_projects.html" class="sidebar-item-text sidebar-link">
+  <a href="./rstudio_projects.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with R scripts and RStudio Projects</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -179,15 +129,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -196,15 +146,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -213,8 +163,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
@@ -305,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -313,28 +263,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link active" data-scroll-target="#installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</a></li>
-  <li><a href="#starting-r-rstudio" id="toc-starting-r-rstudio" class="nav-link" data-scroll-target="#starting-r-rstudio"><span class="header-section-number">1.2</span> Starting R &amp; RStudio</a></li>
-  <li><a href="#errors-warnings-and-messages-in-r" id="toc-errors-warnings-and-messages-in-r" class="nav-link" data-scroll-target="#errors-warnings-and-messages-in-r"><span class="header-section-number">1.3</span> Errors, warnings, and messages in R</a></li>
-  <li><a href="#r-help-resources" id="toc-r-help-resources" class="nav-link" data-scroll-target="#r-help-resources"><span class="header-section-number">1.4</span> R Help resources</a></li>
-  </ul>
-</nav>
+<li><a href="#open-a-new-r-script" id="toc-open-a-new-r-script" class="nav-link active" data-scroll-target="#open-a-new-r-script"><span class="header-section-number">2.1</span> Open a new R script</a></li>
+  <li><a href="#working-with-rstudio-projects" id="toc-working-with-rstudio-projects" class="nav-link" data-scroll-target="#working-with-rstudio-projects"><span class="header-section-number">2.2</span> Working with RStudio Projects</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span id="sec-intro_rstudio" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-rstudio_projects" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with R scripts and RStudio Projects</span></span></h1>
 </div>
 
 
@@ -347,9 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header>
-
-<p>When we have finished this Chapter, we should be able to:</p>
+</header><p>When we have finished this Chapter, we should be able to:</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -369,162 +309,156 @@ Learning objectives
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="installing-r-and-rstudio" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</h2>
-<p>R is an open-source free statistical programming language (an implementation of the S programming language) and a powerful graphics engine, which was created by Ross Ihahka and Robert Gentleman at the University of Auckland in 1993.</p>
-<p>RStudio is an integrated development environment (IDE) that was founded by J.J. Allaire in 2009. Today, RStudio is an open source <a href="https://posit.co/">Posit</a> product that provides a friendly interface by adding a plenty of great features, auto-complete functions and a set of useful tools.</p>
-<p>Throughout this textbook we will use <strong>R</strong> via <strong>RStudio IDE</strong>. Both programs can be downloaded from <img src="images/posit.png" width="24" height="22"> <a href="https://posit.co/download/rstudio-desktop/">posit</a>.</p>
-</section>
-<section id="starting-r-rstudio" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="starting-r-rstudio"><span class="header-section-number">1.2</span> Starting R &amp; RStudio</h2>
-<p>After the RStudio installation is finished, click the RStudio icon <img src="images/r_studio_icon.png" id="fig-r_studio_icon" class="img-fluid" style="width:5.0%"></p>
-<p>R starts automatically when we open RStudio <a href="#fig-RStudio_panes">Figure&nbsp;<span>1.1</span></a> and we are greeted by <strong>three panes</strong>:</p>
-<div id="fig-RStudio_panes" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/RStudio_panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: RStudio Screenshot with three panes.</figcaption><p></p>
+<section id="open-a-new-r-script" class="level2 page-columns page-full" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="open-a-new-r-script">
+<span class="header-section-number">2.1</span> Open a new R script</h2>
+<p>Usually, we write our code in R script files. An R script (with the <code>.R</code> extension) is simply a text file in which the R code is saved, and then it can be executed on the R console.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>Advantages of writing code in a R script file</strong></p>
+<ul>
+<li>We can write code chunks instead of typing one line of code at a time</li>
+<li>We can save and reuse our code</li>
+<li>We can document our script (however, we can only include one-line comments and these must be prefixed with the hashtag symbol, #)</li>
+<li>We can share our script with others</li>
+</ul>
+</div></div><p>In the RStudio menu, we go to:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(File) -.-&gt; B(New File) -.-&gt; C(R Script)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>Alternatively, we can use the keyboard shortcut <kbd>Ctrl+Shift+N</kbd> for Windows/Linux (or <kbd>Cmd+Shift+N</kbd> for Mac.</p>
+<p>Another pane is opened on the left above the console pane <a href="#fig-RStudio_4panes">Figure&nbsp;<span>2.1</span></a>. In Source Editor, we can write a length script with lots of code chunks and save the file for future use.</p>
+<div id="fig-RStudio_4panes" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/RStudio_4panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.1: RStudio Screenshot with four panes.</figcaption><p></p>
 </figure>
 </div>
-<p>The three main panes that divide the screen are:</p>
-<ol type="1">
-<li><p>the large <strong>Console pane</strong> on the left runs R code immediately. It is also known as the command line pane.</p></li>
-<li><p>the <strong>Environment pane</strong>, which includes among others the Global Environment (Workspace) and History tabs, in the upper right.</p>
-<ul>
-<li><p>The <strong>Environment tab</strong> keeps track of the objects we create as we work with R (a major part of our tasks involves creating objects).</p></li>
-<li><p>The <strong>History tab</strong> tracks all of the commands that we have sent to the R console in the session.</p></li>
-</ul></li>
-<li><p>the <strong>Output pane</strong> in the lower right which includes:</p>
-<ul>
-<li><p>The <strong>Files tab</strong> allows us create new folders (directories) on our computer, as well as copy, move, delete, or rename files.</p></li>
-<li><p>The <strong>Plots tab</strong> display static graphs which are generated from our data and during the analysis. There are backward and forward arrows for navigating between older and newer plots that have been created. Clicking the broom icon <img src="images/broom.png" width="24" height="22"> will clear all temporary plots from the tab.</p></li>
-<li><p>The <strong>Packages</strong> tab lists of all the R packages installed on our computer and indicates whether or not they are currently loaded. We’ll discuss packages in more detail in .</p></li>
-<li><p>The <strong>Help tab</strong>, displays the results of the search for R documentation.</p></li>
-<li><p>The <strong>Viewer tab</strong> in RStudio allows us to view local web content (e.g., <code>html</code> tables or interactive <code>htmlwidgets</code> like <code>plotly</code> graphs).</p></li>
-<li><p>The <strong>Presentation tab</strong> is used to display HTML slides generated via Quarto’s revealjs format.</p></li>
-</ul></li>
-</ol>
-<p>Throughout this textbook, we’ll come to learn what purpose each of these panes serves.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Command prompt &nbsp;&gt;
+<p>We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.</p>
+<p>The four panes might be placed in a different order that those in <a href="#fig-RStudio_4panes">Figure&nbsp;<span>2.1</span></a>. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(Tools) -.-&gt; B(Global Options) -.-&gt; C(Pane layout)
+</pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>The Console pane starts with information about the version number, license and contributors, and provides some guidance on how to get help. The last line is a <strong>standard command prompt</strong> (the greater than sign &gt; symbol) that indicates R is ready and expecting instructions to do something.</p>
 </div>
 </div>
 <p>&nbsp;</p>
-<p>Let’s type <code>14 + 16</code> at the R command prompt and press <kbd>Enter</kbd>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 30</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/order_panes.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">RStudio Screenshot with Console on the left and Help tab in the bottom right.</figcaption><p></p>
+</figure>
 </div>
+<p>From here, we can also check which tabs we would like to appear within each pane (<a href="intro_rstudio.html#fig-RStudio_panes">Figure&nbsp;<span>1.1</span></a>).</p>
+<p>&nbsp;</p>
+<p>Now, let’s type <code>14 + 16</code> at a new R script and press the <img src="images/run.png" width="40" height="18"> button. The result is printed in the console (<a href="#fig-script1">Figure&nbsp;<span>2.2</span></a>):</p>
+<div id="fig-script1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/script1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.2: The script pane.</figcaption><p></p>
+</figure>
 </div>
-<p>We observe in the console that the output is <code>[1] 30</code>. It’s clear that <code>30</code> is the answer to the mathematical calculation of <code>14 + 16</code>. However, what does the <code>[1]</code> mean? At this point we can ignore it, but technically it refers to the <strong>index of the first item on each line</strong>. (In some cases R prints out many lines as an output. The number inside the square brackets is an index that helps us find where in the sequence we are per line).</p>
-</section>
-<section id="errors-warnings-and-messages-in-r" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="errors-warnings-and-messages-in-r"><span class="header-section-number">1.3</span> Errors, warnings, and messages in R</h2>
-<p>Let’s type the following at the R command prompt in the Console and press <kbd>Enter</kbd>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We get the following error:<br>
-<span style="     color: #8676F8 !important;">Error: object ‘hello’ not found</span></p>
-<p>R will show in the console pane that something unusual is happening in three different situations:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Keyboard Shortcut for commenting in/out <strong>multiple lines</strong> at a time:</p>
 <ul>
-<li><p><strong>Errors:</strong> When something is a legitimate error, it will be prefaced with “Error:” and R will try to explain what went wrong. When there’s an error, the execution of code will stop.</p></li>
-<li><p><strong>Warnings:</strong> When there is a signal of a warning, it will be prefaced with “Warning:” and R will try to explain why there’s a warning. Generally our code will still work, but with some possible problems.</p></li>
-<li><p><strong>Messages:</strong> When the signal is a message, R attaches a message to the output that might be useful information for the user.</p></li>
+<li><p><kbd>Ctrl+Shift+C</kbd> for Windows/Linux</p></li>
+<li><p><kbd>Cmd+Shift+C</kbd> for Mac</p></li>
 </ul>
-<p>Now, let’s type in the Console the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="1">We have not finished the mathematical expression</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-3" data-code-lines="2">Here the plus sign (<code>+</code>) is a prompt</span>
-</dd>
-</dl>
-</div>
-</div>
-<p>If an R command is <strong>not complete</strong> then a plus sign (<code>+</code>) (prompt) appears on second and subsequent lines in the Console until the command syntax is correct. In our example, we can type a number to finish the mathematical expression we are trying to calculate. We can also press the escape key <kbd>Esc</kbd> to cancel the command.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Recall a previously typed command in Console
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In <strong>Console</strong> to go between previously typed commands use the up (<span class="math inline">\(\uparrow\)</span>) and down arrow (<span class="math inline">\(\downarrow\)</span>) keys. To modify or correct a command use the left (<span class="math inline">\(\leftarrow\)</span>) and right arrow (<span class="math inline">\(\rightarrow\)</span>) keys.</p>
-</div>
-</div>
-</section>
-<section id="r-help-resources" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="r-help-resources"><span class="header-section-number">1.4</span> R Help resources</h2>
-<p>Before asking others for help, we should first try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R’s built-in help system.</p>
-<p>First, we can use the <strong><code>?</code></strong> help operator which provides access to the R documentation pages in the standard R distribution. For example, if we want information for the <code>median</code> we will type the following command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help">Figure&nbsp;<span>1.2</span></a>):</p>
-<div id="fig-median_help" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/median_help.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.2: R help() function search for specific term such as <code>median</code></figcaption><p></p>
+</div></div><p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<a href="#fig-script2">Figure&nbsp;<span>2.3</span></a>).</p>
+<div id="fig-script2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/script2.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.3: The script pane.</figcaption><p></p>
 </figure>
 </div>
-<p>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our R library. So for example, let’s say we want to search documentation specifically for the <code>geometric median</code>. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.</p>
+<p>Comments start with the <strong>hashtag symbol <code>#</code></strong>. When executing the R-code, R will ignore anything that starts with <code>#</code>. It is considered good practice to comment our code when working in an <code>.R</code> script.</p>
+</section><section id="working-with-rstudio-projects" class="level2 page-columns page-full" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="working-with-rstudio-projects">
+<span class="header-section-number">2.2</span> Working with RStudio Projects</h2>
+<p>One of the advantages of RStudio IDE is that allows us to work with <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects">RStudio Projects</a>. The RStudio Projects are recommended for the following main reasons:</p>
+<ul>
+<li><p>When we are working in R, the program needs to know where to find inputs (e.g.&nbsp;datasets) and deliver outputs (e.g.&nbsp;results, figures), and it will search first in what is called a “working directory”. When the RStudio session is running through the project file (.Rproj), the current working directory points to the project’s root folder.</p></li>
+<li><p>RStudio Project is a powerful feature that enables to organize all the files and switch between different projects and tasks without getting the datasets, code scripts, or output files all mixed up.</p></li>
+</ul>
+<p>Let’s create our first RStudio Project to use for the rest of this textbook. From the RStudio menu select:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"geometric median"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(File) -.-&gt; B(New Project...)
+</pre>
 </div>
-<div id="fig-help_search" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/help_search.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.3: R help.search() function searches for a phrase such as <code>geometric mean</code></figcaption><p></p>
+</div>
+</div>
+</div>
+<p>Alternatively, we can select <code>New Project...</code> from the Project’s menu on the global toolbar (<a href="#fig-project1">Figure&nbsp;<span>2.4</span></a>):</p>
+<div id="fig-project1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/project1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.4: Create an RStudio Project using the RStudio’s Project menu</figcaption><p></p>
 </figure>
 </div>
-<p>To find all the names containing the pattern we search in the current R session, by partial matching, we can use the <strong><code>apropos()</code></strong> command. For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"med"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "elNamed"        "elNamed&lt;-"      "median"         "median.default"
-[5] "medpolish"      "runmed"        </code></pre>
+<p>Then, follow the steps in <a href="#fig-steps">Figure&nbsp;<span>2.5</span></a>:</p>
+<div id="fig-steps" class="cell quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
+<div id="fig-steps-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/step1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps"></p>
+<p></p><figcaption class="figure-caption">(a) Step 1</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>Use the <strong><code>example()</code></strong> command to run the examples at the end of the help for a function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-median&gt; median(1:4)                # = 2.5 [even number]
-[1] 2.5
-
-median&gt; median(c(1:3, 100, 1000))  # = 3 [odd, robust]
-[1] 3</code></pre>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
+<div id="fig-steps-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/step2.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps"></p>
+<p></p><figcaption class="figure-caption">(b) Step 2</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>Additionally, there are a lot of <strong>on-line resources</strong> that can help (e.g., <a href="https://rseek.org/">RSeek.Org</a>, <a href="https://www.r-bloggers.com/">R-bloggers</a>, <a href="https://stackoverflow.com/">stack Overflow</a>). However, we must understand that blindly copying/pasting code could produce many issues and further it won’t help to the development of our programming skills.</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
+<div id="fig-steps-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/step3.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps"></p>
+<p></p><figcaption class="figure-caption">(c) Step 3</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.5: Steps to create an RStudio Project.</figcaption><p></p>
+</figure>
+</div>
+<p>In Step 3 (<a href="#fig-steps">Figure&nbsp;<span>2.5</span></a> c) the directory name that we type will be the project’s name. We call it whatever we want, for example <code>my_first_project</code>.</p>
+<p>Once this process is complete, we’ll get a new RStudio Project just for this textbook with the name “<em>my_first_project</em>”. Check that</p>
+<p>:</p>
+<p>&nbsp;</p>
+<p><strong>RStudio Project folder structure</strong></p>
+<p>The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer.</p>
+<div class="page-columns page-full"><p>For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following subfolders<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<a href="#fig-project2">Figure&nbsp;<span>2.6</span></a>).:</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;We can create new folders using the <img src="images/new_folder.png" width="65" height="18"></p></li></div></div>
+<ul>
+<li>
+<strong>data:</strong> data files of any kind, such as <code>.csv</code>, <code>.xlsx</code>, <code>.txt</code>, etc.</li>
+<li>
+<strong>figures:</strong> plots, diagrams, and other graphs</li>
+</ul>
+<div id="fig-project2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/project2.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.6: The folder structure of a minimal RStudio project.</figcaption><p></p>
+</figure>
+</div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -835,22 +769,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./intro_rstudio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rstudio_projects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with R scripts and RStudio Projects</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./introduction.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Statistics and data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Copyright 2023, Konstantinos I. Bougioukas</div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -859,8 +790,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer>
-<div class="page-columns page-rows-contents page-layout-article"><div class="social-share"><a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical Statistics in Medicine with R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical Statistics in Medicine with R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a></div></div>
+</footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share">
+<a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a>
+</div></div>
 
 
 

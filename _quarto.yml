@@ -16,6 +16,7 @@ book:
     - part: "R Basics"
       chapters:
         - intro_rstudio.qmd
+        - rstudio_projects.qmd
     - part: "Data transformation with to tidyverse"
       chapters:
         - intro_rstudio.qmd 
