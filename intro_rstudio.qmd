@@ -63,7 +63,7 @@ The Console pane starts with information about the version number, license and c
 
  
 
-Let's type `14 + 16` at the R command prompt and press {{< kbd Enter >}} :
+Let's type `14 + 16` in front of the R command prompt in the Console and press {{< kbd Enter >}} :
 
 ```{r}
 14 + 16
@@ -73,7 +73,7 @@ We observe in the console that the output is `[1] 30`. It's clear that `30` is t
 
 ## Errors, warnings, and messages in R
 
-Let's type the following at the R command prompt in the Console and press {{< kbd Enter >}}:
+Let's type the the word *hello* in the Console and press {{< kbd Enter >}}:
 
 ```{r}
 #| error: true
@@ -85,7 +85,7 @@ hello
 We get the following error:\
 `r kableExtra::text_spec("Error: object ‘hello’ not found", color = "#8676F8")`
 
-R will show in the console pane that something unusual is happening in three different situations:
+R will show in the Console pane that something unusual is happening in three different situations:
 
 -   **Errors:** When something is a legitimate error, it will be prefaced with "Error:" and R will try to explain what went wrong. When there's an error, the execution of code will stop.
 
@@ -114,7 +114,7 @@ In **Console** to go between previously typed commands use the up ($\uparrow$) a
 
 ## R Help resources
 
-Before asking others for help, we should  try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R's built-in help system.
+Before asking others for help, we should try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R's built-in help system.
 
 First, we can use the `help()` command or the **`?`** help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the `median` we will type the following command:
 
@@ -138,7 +138,7 @@ help.search("geometric median")
 ??"geometric median"
 ```
 
-![The `help.search()` command searches for a phrase such as "geometric mean" in our R library. ](images/help_search.png){#fig-help_search width="70%"}
+![The `help.search()` command searches for a phrase such as "geometric mean" in our R library.](images/help_search.png){#fig-help_search width="70%"}
 
 To find all the names containing the pattern we search in the current R session, by partial matching, we can use the **`apropos()`** command. For example:
 

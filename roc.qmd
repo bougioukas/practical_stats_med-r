@@ -104,7 +104,7 @@ roc2 <- roc(dat$diagnosis, dat$COPDPS)
 -   For confirmative diagnosis purposes, for example, when a chemotherapy is to initiated once the diagnosis is established, the cut-off point can be selected to favor a higher specificity. Thus, a positive test result indicates the presence of disease (SpPin; specificity, positive, "rule in" the disease).
 :::
 
-Additionally, for a given diagnostic test, we can consider all cut-off points that give a unique pair of values for sensitivity and specificity. We can plot in a graph, which is known as a **ROC curve**, the sensitivity on the y-axis and 1-specificity (false positives) values on the x-axis for all these possible cut-off points of the diagnostic test. Then, the **area under the ROC curve** (AUC of ROC), also called the c-statistic, can be calculated which is a widely used measure of overall performance.
+Additionally, for a given diagnostic test, we can consider all cut-off points that give a unique pair of values for sensitivity and specificity. We can plot in a graph, which is known as a **ROC curve**, the sensitivity on the y-axis and 1-specificity (false positives) values on the x-axis for all these possible cut-off points of the diagnostic test. Then, the **area under the ROC curve** (AUC of ROC), also called the c-statistic, can be calculated which is widely used as a measure of overall performance.
 
 ### IPAG questionnaire
 

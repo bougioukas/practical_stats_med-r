@@ -56,27 +56,23 @@ From here, we can also check which tabs we would like to appear within each pane
 
  
 
-Now, let's type `14 + 16` at a new R script and press the ![](images/run.png){width="40" height="18"} button. The result is printed in the console (@fig-script1):
+Now, let's type `14 + 16` at a new R script in the Sourse Editor pane and press the ![](images/run.png){width="40" height="18"} button^[In `.R` script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the text) and pressing the **run** button in the Source Editor. We can also run our selected code using the keywboard shortcut {{< kbd Ctrl+Enter >}} for Windows/Linux or {{< kbd Cmd+Enter >}} for Mac.]. The result is printed in the Console (@fig-script1):
 
-
-![The script pane.](images/script1.png){#fig-script1 width="80%"}
-
-
-::: {.column-margin}
-
-Keyboard Shortcut for commenting in/out **multiple lines** at a time: 
-
-- {{< kbd Ctrl+Shift+C >}} for Windows/Linux
-
-- {{< kbd Cmd+Shift+C >}} for Mac
-:::
-
+![We can write our code in the source editor and get the output in the console.](images/script1.png){#fig-script1 width="80%"}
 
 **Comments** can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (@fig-script2).
 
-![The script pane.](images/script2.png){#fig-script2 width="80%"}
+![The script pane with comments.](images/script2.png){#fig-script2 width="80%"}
 
 Comments start with the **hashtag symbol `#`**. When executing the R-code, R will ignore anything that starts with `#`. It is considered good practice to comment our code when working in an `.R` script.
+
+::: column-margin
+Keyboard Shortcut for commenting in/out **multiple lines** at a time:
+
+-   {{< kbd Ctrl+Shift+C >}} for Windows/Linux
+
+-   {{< kbd Cmd+Shift+C >}} for Mac
+:::
 
 ## Working with RStudio Projects
 
@@ -118,11 +114,12 @@ knitr::include_graphics(here::here("images", "step2.png"))
 knitr::include_graphics(here::here("images", "step3.png"))
 ```
 
-In Step 3 (@fig-steps c) the directory name that we type will be the project's name. We call it whatever we want, for example `my_first_project`.
+In Step 3 (@fig-steps c) the directory name that we type will be the project's name. We call it whatever we want, for example "*my_first_project*".
 
-Once this process is complete, we'll get a new RStudio Project just for this textbook with the name "*my_first_project*". Check that
+Once we have completed this process, R session switches to the new RStudio Project with the name "*my_first_project*" (@fig-project_name):
 
-:
+![The new RStudio Project has been created with the name  "*my_first_project*".](images/project_name.png){#fig-project_name width="80%"}
+
 
  
 
