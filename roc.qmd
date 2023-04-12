@@ -21,7 +21,7 @@ We want to compare two screening questionnaires for chronic obstructive pulmonar
 -   *International Primary Care Airways Group (IPAG)* questionnaire (Score: 0-38)
 -   *COPD Population Screener (COPDPS)* questionnaire (Score: 0-10)
 
-The diagnosis of COPD was based on spirometric criterion (FEV 1 /FVC \<0.7 following bronchodilation), clinical status (medical history, symptoms and physical examination), and exclusion of other diseases.
+Each participant received both questionnaires ('fully paired' design). The diagnosis of COPD was based on spirometric criterion (FEV 1 /FVC \<0.7 following bronchodilation), clinical status (medical history, symptoms and physical examination), and exclusion of other diseases.
 
 ## Packages we need
 
@@ -38,9 +38,7 @@ library(here)
 library(tidyverse)
 ```
 
-
->**Other relative packages:** OptimalCutpoints, cutpointr
-
+> **Other relative packages:** OptimalCutpoints, cutpointr
 
 ## Preraring the data
 
@@ -85,7 +83,7 @@ We can evaluate these cut-off values by calculating their associated measures of
 ```{r}
 #| warning: false
 
-dat <- dat %>% 
+dat <- dat |>  
   mutate(IPAG_cat = cut(IPAG, c(0, 17, 38), labels=c("-","+"), 
                         include.lowest = TRUE, right=FALSE),
          COPDPS_cat = cut(COPDPS, c(0, 5, 10), labels=c("-","+"), 
@@ -134,8 +132,7 @@ tb1
 ```
 
 ```{r}
-results_IPAG <- epi.tests(tb1, digits = 3)
-results_IPAG
+epi.tests(tb1, digits = 3)
 ```
 
 The results using the cut-off point of 17 give Se = 0.744 (0.687 - 0.794) and Sp = 0.722 (0.703 - 0.740). We observe that the probability of the absence of COPD given a negative test result is high NPV = 0.960 (95% CI: 0.949, 0.969) in this sample with smokers.
@@ -144,25 +141,20 @@ The results using the cut-off point of 17 give Se = 0.744 (0.687 - 0.794) and Sp
 
 **B. The area under the ROC curve of IPAG questionnaire**
 
-First, let's get sensitivity and specificity if a cutoff point of 17 is used for the IPAG questionnaire and calculate the AUC (95% CI) of ROC. We will use these values to provide additional information about the data being displayed:
+Let's calculate the AUC of ROC for the IPAG questionnaire:
+
+```{r}
+#| warning: false
+auc(roc1)
+```
+
+The 95% confidence interval of this area is:
 
 ```{r}
 #| warning: false
 
-# get the sensitivity
-se_IPAG <- round(results_IPAG$detail$est[3], digits = 3)
-
-# get the specificity
-sp_IPAG <- round(results_IPAG$detail$est[4], digits = 3)
-
-# get AUC IPAG and the 95%CI for this area
-auc_values1 <- round(ci.auc(roc1), 3)
-ci_l1 <- auc_values1[1]
-auc1 <- auc_values1[2]
-ci_u1 <- auc_values1[3]
+ci.auc(roc1)
 ```
-
- 
 
 The ability of the IPAG questionnaire to discriminate between individuals with and without COPD is shown graphically by the ROC curve in (@fig-roc1):
 
@@ -178,31 +170,37 @@ g1 <- ggplot(dat, aes(d = diagnosis, m = IPAG)) +
   geom_roc(n.cuts = 0, color = "#0071BF") +
   theme(text = element_text(size = 14)) +
   geom_abline(intercept = 0, slope = 1, linetype = 'dashed') +
-  geom_point(aes(x = 1-sp_IPAG, y = se_IPAG), color = "black") +
-  scale_x_continuous(expand = c(0, 0)) +
+  scale_x_continuous(expand = c(0, 0.015)) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x = "1 - Specificity", y = "Sensitivity")
 
 # add annotations to the plot
 g1 + annotate("text", x=0.70, y=0.30, 
-           label=paste("AUC IPAG = ", auc1, 
-                       " (95% CI = ", ci_l1, " - ", ci_u1, ")")) +
-  annotate("text", x=0.18, y=0.78, 
-           label=paste("Se =", se_IPAG)) +
-  annotate("text", x=0.18, y=0.74, 
-           label=paste("1-Sp =", 1-sp_IPAG))
+           label=paste("AUC IPAG = ", 0.799, 
+                       "(95% CI = ", 0.769, " - ", 0.829, ")"))
 ```
 
-The AUC of IPAG questionnaire equals to 0.799 (95% CI: 0.769 - 0.829) which indicates a reasonable diagnostic test.
+The AUC of IPAG questionnaire equals to 0.799 (95% CI: 0.769 - 0.829) which indicates a reasonable[^roc-2] diagnostic test.
 
- 
+[^roc-2]: The dashed **diagonal** line connecting (0,0) to (1,1) in the ROC plot corresponds to a test that is completely useless in diagnosis of a disease, AUC = 0.5 (i.e. individuals with and without the disease have equal "chances" of testing positive). A test which is **perfect** at discriminating between those with disease and those without disease has an AUC = 1 (i.e. the ROC curve approaches the upper left-hand corner).
 
-::: callout-important
-## Perfect and useless diagnostic tests
+::: callout-note
+**Youden index** (*J* statistic), which is defined as the sum of sensitivity and specificity minus 1, is often used in conjunction with the ROC curve. The maximum value of the *Youden index* may be used as a criterion for selecting the optimal cut-off point (threshold) for a diagnostic test as follows:
 
-A test which is perfect at discriminating between those with disease and those without disease has an AUC = 1 (i.e. the ROC curve gets to the upper left-hand corner).
+```{r}
+#| warning: false
 
-The dashed diagonal line connecting (0,0) to (1,1) is the ROC curve corresponding to a test that is completely useless in diagnosis of a disease, AUC = 0.5 (i.e. individuals with and without the disease have equal "chances" of testing positive).
+coords(roc1, "best", ret = c("threshold", "sensitivity", "specificity"),
+       best.method="youden")
+```
+
+We observe that the optimal cut-off point (threshold) for this sample equals to 18.5 which is slightly higher than the value of 17 that was obtained from other studies.
+
+We can also easily calculate the maximum value of *Youden index* according to the previous definition of the Youden index:
+
+```{r}
+0.674 + 0.806	- 1
+```
 :::
 
  
@@ -233,8 +231,7 @@ tb2
 ```
 
 ```{r}
-results_COPDPS <- epi.tests(tb2, digits = 3)
-results_COPDPS
+epi.tests(tb2, digits = 3)
 ```
 
 The results using the cut-off point of 5 give Se = 0.577 (0.496 - 0.617) and Sp = 0.903 (0.890 - 0.915).
@@ -243,25 +240,23 @@ The results using the cut-off point of 5 give Se = 0.577 (0.496 - 0.617) and Sp 
 
 **B. The area under the ROC curve of COPDPS questionnaire**
 
-Similarly, let's get sensitivity and specificity if a cutoff point of 5 is used for the COPDPS questionnaire and calculate the AUC (95% CI) of ROC to provide additional information in the plot:
+The AUC of ROC curve of COPDPS questionnaire is:
 
 ```{r}
 #| warning: false
 
-# get the sensitivity
-se_COPDPS <- round(results_COPDPS$detail$est[3], digits = 3)
-
-# get the specificity
-sp_COPDPS <- round(results_COPDPS$detail$est[4], digits = 3)
-
-# get AUC COPDPS and the 95%CI for this area
-auc_values2 <- round(ci.auc(roc2), 3)
-ci_l2 <- auc_values2[1]
-auc2 <- auc_values2[2]
-ci_u2 <- auc_values2[3]
+auc(roc2)
 ```
 
-The ROC curve of IPAG questionnaire (@fig-roc2) follows:
+The 95% confidence interval of this area is:
+
+```{r}
+#| warning: false
+
+ci.auc(roc2)
+```
+
+The ROC curve of COPDPS questionnaire (@fig-roc2) follows:
 
 ```{r}
 #| warning: false
@@ -275,23 +270,36 @@ g2 <- ggplot(dat, aes(d = diagnosis, m = COPDPS)) +
   geom_roc(n.cuts = 0, color = "#EFC000") +
   theme(text = element_text(size = 14)) +
   geom_abline(intercept = 0, slope = 1, linetype = 'dashed') +
-  geom_point(aes(x = 1-sp_COPDPS, y = se_COPDPS), color = "black") +
-  scale_x_continuous(expand = c(0, 0)) +
+  scale_x_continuous(expand = c(0, 0.015)) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x = "1 - Specificity", y = "Sensitivity")
 
 # add annotations to the plot
 g2 + annotate("text", x=0.70, y=0.25, 
-           label= paste("AUC COPDPS = ", auc2, 
-                        " (95% CI = ", ci_l2, " - ", ci_u2, ")")) +
-  annotate("text", x=0.19, y=0.56, 
-           label=paste("Se =", se_COPDPS)) +
-  annotate("text", x=0.19, y=0.52, 
-           label=paste("1-Sp =", 1-sp_COPDPS))
-
+           label= paste("AUC COPDPS = ", 0.791, 
+                        "(95% CI = ", 0.760, " - ", 0.821, ")"))
 ```
 
 The AUC of COPDPS questionnaire equals to 0.791 (95% CI: 0.760 - 0.821) which is close to the value 0.799 of AUC of IPAG questionnaire.
+
+::: callout-note
+The optimal cut-off point using the *Youden Index* as best method is:
+
+```{r}
+#| warning: false
+
+coords(roc2, "best", ret = c("threshold", "sensitivity", "specificity"),
+       best.method="youden")
+```
+
+We observe that the optimal cut-off point (threshold) for this sample equals to 4.5 which is close to the value of 5 that was obtained from other studies.
+
+We can also calculate the maximum value of the *Youden index*:
+
+```{r}
+0.557 + 0.903	- 1
+```
+:::
 
 ## Comparing ROC Curves
 
@@ -307,7 +315,6 @@ We can plot the ROC curves for both questionnaires in the same graph and compare
 
 # prepare the data
 longdata <- melt_roc(dat, "diagnosis", c("IPAG", "COPDPS"))
-longdata$name = factor(longdata$name, levels = c("IPAG", "COPDPS"))
 
 # create the plot
 g <- ggplot(longdata, aes(d = D, m = M, color = name)) + 
@@ -315,18 +322,18 @@ g <- ggplot(longdata, aes(d = D, m = M, color = name)) +
   theme(text = element_text(size = 14),
         legend.position="top") +
   geom_abline(intercept = 0, slope = 1, linetype = 'dashed') +
-  scale_x_continuous(expand = c(0, 0)) +
+  scale_x_continuous(expand = c(0, 0.015)) +
   scale_y_continuous(expand = c(0, 0)) +
   scale_color_jco() +
   labs(x = "1 - Specificity", y = "Sensitivity", colour="Questionnaire")
 
 # add annotations to the plot
 g + annotate("text", x=0.70, y=0.35, color = "#0071BF",
-           label=paste("AUC IPAG = ", auc1, 
-                       " (95% CI = ", ci_l1, " - ", ci_u1, ")")) +
+           label=paste("AUC IPAG = ", 0.799, 
+                       " (95% CI = ", 0.769, " - ", 0.829, ")")) +
   annotate("text", x=0.70, y=0.28, color = "#EFC000",
-           label= paste("AUC COPDPS = ", auc2, 
-                        " (95% CI = ", ci_l2, " - ", ci_u2, ")"))
+           label= paste("AUC COPDPS = ", 0.791, 
+                        "(95% CI = ", 0.760, " - ", 0.821, ")"))
 ```
 
 The AUC values obtained from the ROC curve were 0.799 (95% CI: 0.769 - 0.829) for the IPAG questionnaire and 0.791 (95% CI: 0.760 - 0.821) for the COPDPS questionnaire. Therefore, the two questionnaires have similar overall performance in the present sample.

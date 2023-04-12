@@ -371,14 +371,14 @@ Learning objectives
 <p>&nbsp;</p>
 <section id="installing-r-and-rstudio" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</h2>
-<p>R is an open-source free statistical programming language (an implementation of the S programming language) and a powerful graphics engine, which was created by Ross Ihahka and Robert Gentleman at the University of Auckland in 1993.</p>
+<p>R is a free open-source statistical programming language (an implementation of the S programming language) and a powerful graphics engine, which was created by Ross Ihahka and Robert Gentleman at the University of Auckland in 1993.</p>
 <p>RStudio is an integrated development environment (IDE) that was founded by J.J. Allaire in 2009. Today, RStudio is an open source <a href="https://posit.co/">Posit</a> product that provides a friendly interface by adding a plenty of great features, auto-complete functions and a set of useful tools.</p>
-<p>Throughout this textbook we will use <strong>R</strong> via <strong>RStudio IDE</strong>. Both programs can be downloaded from <img src="images/posit.png" width="24" height="22"> <a href="https://posit.co/download/rstudio-desktop/">posit</a>.</p>
+<p>Throughout this textbook we will use <strong>R</strong> via <strong>RStudio IDE</strong>. Both programs can be downloaded from <img src="images/posit.png" width="22" height="20"> <a href="https://posit.co/download/rstudio-desktop/">posit</a>.</p>
 </section>
 <section id="starting-r-rstudio" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="starting-r-rstudio"><span class="header-section-number">1.2</span> Starting R &amp; RStudio</h2>
-<p>After the RStudio installation is finished, click the RStudio icon <img src="images/r_studio_icon.png" id="fig-r_studio_icon" class="img-fluid" style="width:5.0%"></p>
-<p>R starts automatically when we open RStudio <a href="#fig-RStudio_panes">Figure&nbsp;<span>1.1</span></a> and we are greeted by <strong>three panes</strong>:</p>
+<p>After the R and RStudio installation is finished, we click the RStudio icon <img src="images/r_studio_icon.png" id="fig-r_studio_icon" class="img-fluid" style="width:4.0%">.</p>
+<p>R starts automatically when we open RStudio. The first time we initiate an R session we will see <strong>three panes</strong> (<a href="#fig-RStudio_panes">Figure&nbsp;<span>1.1</span></a>):</p>
 <div id="fig-RStudio_panes" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/RStudio_panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -390,13 +390,13 @@ Learning objectives
 <li><p>the large <strong>Console pane</strong> on the left runs R code immediately. It is also known as the command line pane.</p></li>
 <li><p>the <strong>Environment pane</strong>, which includes among others the Global Environment (Workspace) and History tabs, in the upper right.</p>
 <ul>
-<li><p>The <strong>Environment tab</strong> keeps track of the objects we create as we work with R (a major part of our tasks involves creating objects).</p></li>
-<li><p>The <strong>History tab</strong> tracks all of the commands that we have sent to the R console in the session.</p></li>
+<li><p>The <strong>Environment tab</strong> keeps track of the objects we create as we work with R.</p></li>
+<li><p>The <strong>History tab</strong> saves all of the commands that we have sent to the console in the R session.</p></li>
 </ul></li>
 <li><p>the <strong>Output pane</strong> in the lower right which includes:</p>
 <ul>
 <li><p>The <strong>Files tab</strong> allows us create new folders (directories) on our computer, as well as copy, move, delete, or rename files.</p></li>
-<li><p>The <strong>Plots tab</strong> display static graphs which are generated from our data and during the analysis. There are backward and forward arrows for navigating between older and newer plots that have been created. Clicking the broom icon <img src="images/broom.png" width="24" height="22"> will clear all temporary plots from the tab.</p></li>
+<li><p>The <strong>Plots tab</strong> display static graphs which are generated from our data and during the data analysis. There are backward and forward arrows for navigating between previously and currently generated plots. Clicking the broom icon <img src="images/broom.png" width="24" height="22"> will clear all temporary plots from the tab.</p></li>
 <li><p>The <strong>Packages</strong> tab lists of all the R packages installed on our computer and indicates whether or not they are currently loaded. We’ll discuss packages in more detail in .</p></li>
 <li><p>The <strong>Help tab</strong>, displays the results of the search for R documentation.</p></li>
 <li><p>The <strong>Viewer tab</strong> in RStudio allows us to view local web content (e.g., <code>html</code> tables or interactive <code>htmlwidgets</code> like <code>plotly</code> graphs).</p></li>
@@ -418,7 +418,7 @@ Command prompt &nbsp;&gt;
 </div>
 </div>
 <p>&nbsp;</p>
-<p>Let’s type <code>14 + 16</code> at the R command prompt and press <kbd>Enter</kbd>:</p>
+<p>Let’s type <code>14 + 16</code> at the R command prompt and press <kbd>Enter</kbd> :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -438,7 +438,7 @@ Command prompt &nbsp;&gt;
 <p>R will show in the console pane that something unusual is happening in three different situations:</p>
 <ul>
 <li><p><strong>Errors:</strong> When something is a legitimate error, it will be prefaced with “Error:” and R will try to explain what went wrong. When there’s an error, the execution of code will stop.</p></li>
-<li><p><strong>Warnings:</strong> When there is a signal of a warning, it will be prefaced with “Warning:” and R will try to explain why there’s a warning. Generally our code will still work, but with some possible problems.</p></li>
+<li><p><strong>Warnings:</strong> When there is a signal of a warning, it will be prefaced with “Warning:” and R will try to explain why there’s a warning. Generally our code will still work, but with some possible issues.</p></li>
 <li><p><strong>Messages:</strong> When the signal is a message, R attaches a message to the output that might be useful information for the user.</p></li>
 </ul>
 <p>Now, let’s type in the Console the following:</p>
@@ -449,11 +449,11 @@ Command prompt &nbsp;&gt;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="1">We have not finished the mathematical expression</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">We have not finished the mathematical expression.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-3" data-code-lines="2">Here the plus sign (<code>+</code>) is a prompt</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2">Here the plus sign (<code>+</code>) is a prompt.</span>
 </dd>
 </dl>
 </div>
@@ -475,19 +475,20 @@ Recall a previously typed command in Console
 </section>
 <section id="r-help-resources" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="r-help-resources"><span class="header-section-number">1.4</span> R Help resources</h2>
-<p>Before asking others for help, we should first try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R’s built-in help system.</p>
-<p>First, we can use the <strong><code>?</code></strong> help operator which provides access to the R documentation pages in the standard R distribution. For example, if we want information for the <code>median</code> we will type the following command:</p>
+<p>Before asking others for help, we should try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R’s built-in help system.</p>
+<p>First, we can use the <code>help()</code> command or the <strong><code>?</code></strong> help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the <code>median</code> we will type the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help">Figure&nbsp;<span>1.2</span></a>):</p>
 <div id="fig-median_help" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/median_help.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.2: R help() function search for specific term such as <code>median</code></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.2: The <code>help()</code> command searches for specific term such as “median” in the standard R distribution.</figcaption><p></p>
 </figure>
 </div>
-<p>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our R library. So for example, let’s say we want to search documentation specifically for the <code>geometric median</code>. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.</p>
+<p>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our R library and it is a shortcut to <code>help.search()</code> command. So for example, let’s say we want to search documentation specifically for the <code>geometric median</code>. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"geometric median"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -495,7 +496,7 @@ Recall a previously typed command in Console
 <div id="fig-help_search" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/help_search.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.3: R help.search() function searches for a phrase such as <code>geometric mean</code></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.3: The <code>help.search()</code> command searches for a phrase such as “geometric mean” in our R library.</figcaption><p></p>
 </figure>
 </div>
 <p>To find all the names containing the pattern we search in the current R session, by partial matching, we can use the <strong><code>apropos()</code></strong> command. For example:</p>
@@ -506,7 +507,7 @@ Recall a previously typed command in Console
 [5] "medpolish"      "runmed"        </code></pre>
 </div>
 </div>
-<p>Use the <strong><code>example()</code></strong> command to run the examples at the end of the help for a function:</p>
+<p>Use the <strong><code>example()</code></strong> command to run the examples that are provided in the R documentation:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -518,7 +519,7 @@ median&gt; median(c(1:3, 100, 1000))  # = 3 [odd, robust]
 [1] 3</code></pre>
 </div>
 </div>
-<p>Additionally, there are a lot of <strong>on-line resources</strong> that can help (e.g., <a href="https://rseek.org/">RSeek.Org</a>, <a href="https://www.r-bloggers.com/">R-bloggers</a>, <a href="https://stackoverflow.com/">stack Overflow</a>). However, we must understand that blindly copying/pasting code could produce many issues and further it won’t help to the development of our programming skills.</p>
+<p>Additionally, there are a lot of <strong>on-line resources</strong> that can help (e.g., <a href="https://rseek.org/">RSeek.Org</a>, <a href="https://www.r-bloggers.com/">R-bloggers</a>, <a href="https://stackoverflow.com/">Stack Overflow</a>). However, we must understand that blindly copying/pasting code could produce many unexpected code bugs and further it won’t help to the development of our programming skills.</p>
 
 
 </section>

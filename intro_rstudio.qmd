@@ -15,17 +15,17 @@ When we have finished this Chapter, we should be able to:
 
 ## Installing R and RStudio
 
-R is an open-source free statistical programming language (an implementation of the S programming language) and a powerful graphics engine, which was created by Ross Ihahka and Robert Gentleman at the University of Auckland in 1993.
+R is a free open-source statistical programming language (an implementation of the S programming language) and a powerful graphics engine, which was created by Ross Ihahka and Robert Gentleman at the University of Auckland in 1993.
 
 RStudio is an integrated development environment (IDE) that was founded by J.J. Allaire in 2009. Today, RStudio is an open source [Posit](https://posit.co/) product that provides a friendly interface by adding a plenty of great features, auto-complete functions and a set of useful tools.
 
-Throughout this textbook we will use **R** via **RStudio IDE**. Both programs can be downloaded from ![](images/posit.png){width="24" height="22"} [posit](https://posit.co/download/rstudio-desktop/).
+Throughout this textbook we will use **R** via **RStudio IDE**. Both programs can be downloaded from ![](images/posit.png){width="22" height="20"} [posit](https://posit.co/download/rstudio-desktop/).
 
 ## Starting R & RStudio
 
-After the RStudio installation is finished, click the RStudio icon ![](images/r_studio_icon.png){#fig-r_studio_icon width="5%"}
+After the R and RStudio installation is finished, we click the RStudio icon ![](images/r_studio_icon.png){#fig-r_studio_icon width="4%"}.
 
-R starts automatically when we open RStudio [@fig-RStudio_panes] and we are greeted by **three panes**:
+R starts automatically when we open RStudio. The first time we initiate an R session we will see **three panes** ([@fig-RStudio_panes]):
 
 ![RStudio Screenshot with three panes.](images/RStudio_panes.png){#fig-RStudio_panes width="100%"}
 
@@ -35,15 +35,15 @@ The three main panes that divide the screen are:
 
 2.  the **Environment pane**, which includes among others the Global Environment (Workspace) and History tabs, in the upper right.
 
-    -   The **Environment tab** keeps track of the objects we create as we work with R (a major part of our tasks involves creating objects).
+    -   The **Environment tab** keeps track of the objects we create as we work with R.
 
-    -   The **History tab** tracks all of the commands that we have sent to the R console in the session.
+    -   The **History tab** saves all of the commands that we have sent to the console in the R session.
 
 3.  the **Output pane** in the lower right which includes:
 
     -   The **Files tab** allows us create new folders (directories) on our computer, as well as copy, move, delete, or rename files.
 
-    -   The **Plots tab** display static graphs which are generated from our data and during the analysis. There are backward and forward arrows for navigating between older and newer plots that have been created. Clicking the broom icon ![](images/broom.png){width="24" height="22"} will clear all temporary plots from the tab.
+    -   The **Plots tab** display static graphs which are generated from our data and during the data analysis. There are backward and forward arrows for navigating between previously and currently generated plots. Clicking the broom icon ![](images/broom.png){width="24" height="22"} will clear all temporary plots from the tab.
 
     -   The **Packages** tab lists of all the R packages installed on our computer and indicates whether or not they are currently loaded. We'll discuss packages in more detail in .
 
@@ -63,7 +63,7 @@ The Console pane starts with information about the version number, license and c
 
  
 
-Let's type `14 + 16` at the R command prompt and press {{< kbd Enter >}}:
+Let's type `14 + 16` at the R command prompt and press {{< kbd Enter >}} :
 
 ```{r}
 14 + 16
@@ -89,7 +89,7 @@ R will show in the console pane that something unusual is happening in three dif
 
 -   **Errors:** When something is a legitimate error, it will be prefaced with "Error:" and R will try to explain what went wrong. When there's an error, the execution of code will stop.
 
--   **Warnings:** When there is a signal of a warning, it will be prefaced with "Warning:" and R will try to explain why there's a warning. Generally our code will still work, but with some possible problems.
+-   **Warnings:** When there is a signal of a warning, it will be prefaced with "Warning:" and R will try to explain why there's a warning. Generally our code will still work, but with some possible issues.
 
 -   **Messages:** When the signal is a message, R attaches a message to the output that might be useful information for the user.
 
@@ -101,8 +101,8 @@ Now, let's type in the Console the following:
 +                                                                               # <2>
 ```
 
-1.  We have not finished the mathematical expression
-2.  Here the plus sign (`+`) is a prompt
+1.  We have not finished the mathematical expression.
+2.  Here the plus sign (`+`) is a prompt.
 
 If an R command is **not complete** then a plus sign (`+`) (prompt) appears on second and subsequent lines in the Console until the command syntax is correct. In our example, we can type a number to finish the mathematical expression we are trying to calculate. We can also press the escape key {{< kbd Esc >}} to cancel the command.
 
@@ -114,23 +114,22 @@ In **Console** to go between previously typed commands use the up ($\uparrow$) a
 
 ## R Help resources
 
-Before asking others for help, we should first try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R's built-in help system.
+Before asking others for help, we should  try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R's built-in help system.
 
-First, we can use the **`?`** help operator which provides access to the R documentation pages in the standard R distribution. For example, if we want information for the `median` we will type the following command:
-
+First, we can use the `help()` command or the **`?`** help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the `median` we will type the following command:
 
 ```{r}
 #| echo: true
 #| eval: false
-
+help(median)
 ?median
 ```
 
 RStudio also provides a search box in the **"Help"** tab (@fig-median_help):
 
-![R help() function search for specific term such as `median`](images/median_help.png){#fig-median_help width="70%"}
+![The `help()` command searches for specific term such as "median" in the standard R distribution.](images/median_help.png){#fig-median_help width="70%"}
 
-Two question marks (**`??`**) will search the help system for documentation matching a phrase or term in our R library. So for example, let's say we want to search documentation specifically for the `geometric median`. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.
+Two question marks (**`??`**) will search the help system for documentation matching a phrase or term in our R library and it is a shortcut to `help.search()` command. So for example, let's say we want to search documentation specifically for the `geometric median`. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.
 
 ```{r}
 #| echo: true
@@ -139,7 +138,7 @@ help.search("geometric median")
 ??"geometric median"
 ```
 
-![R help.search() function searches for a phrase such as `geometric mean`](images/help_search.png){#fig-help_search width="70%"}
+![The `help.search()` command searches for a phrase such as "geometric mean" in our R library. ](images/help_search.png){#fig-help_search width="70%"}
 
 To find all the names containing the pattern we search in the current R session, by partial matching, we can use the **`apropos()`** command. For example:
 
@@ -147,10 +146,10 @@ To find all the names containing the pattern we search in the current R session,
 apropos("med")
 ```
 
-Use the **`example()`** command to run the examples at the end of the help for a function:
+Use the **`example()`** command to run the examples that are provided in the R documentation:
 
 ```{r}
 example(median)
 ```
 
-Additionally, there are a lot of **on-line resources** that can help  (e.g., [RSeek.Org](https://rseek.org/), [R-bloggers](https://www.r-bloggers.com/), [stack Overflow](https://stackoverflow.com/)). However, we must understand that blindly copying/pasting code could produce many issues and further it won't help to the development of our programming skills.
+Additionally, there are a lot of **on-line resources** that can help (e.g., [RSeek.Org](https://rseek.org/), [R-bloggers](https://www.r-bloggers.com/), [Stack Overflow](https://stackoverflow.com/)). However, we must understand that blindly copying/pasting code could produce many unexpected code bugs and further it won't help to the development of our programming skills.
