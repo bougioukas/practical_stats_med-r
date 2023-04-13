@@ -335,7 +335,7 @@ Learning objectives
 <p></p><figcaption class="figure-caption">Figure&nbsp;2.1: Create an RStudio Project using the RStudio’s menu</figcaption><p></p>
 </figure>
 </div>
-<p>Alternatively, we can use the plus project icon <img src="images/project_icon.png" width="22" height="18"> or we can select <code>New Project...</code> from the Project’s menu on the toolbar (<a href="#fig-project1">Figure&nbsp;<span>2.2</span></a>):</p>
+<p>Alternatively, we can use the plus project icon <img src="images/project_icon.png" width="22" height="18"> or we can select <code>New Project...</code> from the top right Project menu (<a href="#fig-project1">Figure&nbsp;<span>2.2</span></a>):</p>
 <div id="fig-project1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="images/project1.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2.2: Create an RStudio Project using the RStudio’s Project menu</figcaption><p></p>
@@ -374,30 +374,54 @@ Learning objectives
 </figure>
 </div>
 <p>In Step 3 (<a href="#fig-steps">Figure&nbsp;<span>2.3</span></a> c) the directory name that we type will be the project’s name. We call it whatever we want, for example “<em>my_first_project</em>”.</p>
-<p>Once we have completed this process, R session switches to the new RStudio Project with the name “<em>my_first_project</em>” (<a href="#fig-project_name">Figure&nbsp;<span>2.4</span></a>):</p>
-<div id="fig-project_name" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/project_name.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p>Once we have completed this process, R session switches to the new RStudio Project with the name “<em>my_first_project</em>” (<a href="#fig-top_right_project_name">Figure&nbsp;<span>2.4</span></a>):</p>
+<div id="fig-top_right_project_name" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/top_right_project_name.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2.4: The new RStudio Project has been created with the name “<em>my_first_project</em>”.</figcaption><p></p>
 </figure>
 </div>
 <p>&nbsp;</p>
 <p><strong>RStudio Project folder structure</strong></p>
-<p>The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer. We can create new folders (sub-folders) in the main RStudio Project folder using the <img src="images/new_folder.png" width="70" height="20"> (<a href="#fig-folder_data1">Figure&nbsp;<span>2.5</span></a>).</p>
-<div id="fig-folder_data1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/folder_data1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.5: We can use New Folder to add sub-folders in RStudio Project.</figcaption><p></p>
-</figure>
-</div>
-<p>For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following sub-folders (<a href="#fig-project2">Figure&nbsp;<span>2.6</span></a>):</p>
+<p>The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer.</p>
+<p>For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following sub-folders (<a href="#fig-schima_project_str">Figure&nbsp;<span>2.5</span></a>):</p>
 <ul>
 <li>
-<strong>data:</strong> data files of any kind, such as <code>.csv</code>, <code>.xlsx</code>, <code>.txt</code>, etc.</li>
+<strong>data:</strong> we save data files of any kind, such as <code>.csv</code>, <code>.xlsx</code>, <code>.txt</code>, etc.</li>
 <li>
-<strong>figures:</strong> plots, diagrams, and other graphs</li>
+<strong>figures:</strong> we save plots, diagrams, and other graphs</li>
 </ul>
-<div id="fig-project2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/project2.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.6: Schematically presentation of the folder structure of a minimal RStudio project.</figcaption><p></p>
+<div id="fig-schima_project_str" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/schima_project_str.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.5: Schematically presentation of the folder structure of a minimal RStudio project.</figcaption><p></p>
+</figure>
+</div>
+<p>We can create new folders (sub-folders) in the main RStudio Project folder using the <img src="images/new_folder.png" width="70" height="20"> (<a href="#fig-new_folders">Figure&nbsp;<span>2.6</span></a>).</p>
+<div id="fig-new_folders" class="cell quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
+<div id="fig-new_folders-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/folder_data.png" class="img-fluid figure-img" style="width:14cm" data-ref-parent="fig-new_folders"></p>
+<p></p><figcaption class="figure-caption">(a) Create a sub-folder with the name ‘data’</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
+<div id="fig-new_folders-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/folder_figures.png" class="img-fluid figure-img" style="width:14cm" data-ref-parent="fig-new_folders"></p>
+<p></p><figcaption class="figure-caption">(b) Create a sub-folder with the name ‘figures’</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.6: We can use the “New Folder” icon to add sub-folders into RStudio Project.</figcaption><p></p>
+</figure>
+</div>
+<p>Therefore, we end up to the following RStudio Project folder structure:</p>
+<div id="fig-my_project_str" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/my_project_str.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.7: A minimal RStudio Project folder structure.</figcaption><p></p>
 </figure>
 </div>
 </section><section id="open-a-new-r-script" class="level2 page-columns page-full" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="open-a-new-r-script">
@@ -407,10 +431,10 @@ Learning objectives
 <div class="no-row-height column-margin column-container"><div class="">
 <p><strong>Advantages of writing code in a R script file</strong></p>
 <ul>
-<li>We can write code chunks instead of typing one line of code at a time</li>
-<li>We can save and reuse our code</li>
-<li>We can document our script (however, we can only include one-line comments and these must be prefixed with the hashtag symbol, #)</li>
-<li>We can share our script with others</li>
+<li>We can execute code chunks instead of running one line of code at a time.</li>
+<li>We can save our R script and reuse the code.</li>
+<li>We can document our script (we can include one-line comments that are prefixed with the hashtag symbol, #).</li>
+<li>We can share our script with others.</li>
 </ul>
 </div></div><p>In the RStudio menu, we go to:</p>
 <div class="cell">
@@ -426,19 +450,19 @@ Learning objectives
 </div>
 <p><br></p>
 <div id="fig-rscript" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/rscript.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.7: Open a new R script from the Rstudio menu.</figcaption><p></p>
+<figure class="figure"><p><img src="images/open_rscript.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.8: Open a new R script from the Rstudio menu.</figcaption><p></p>
 </figure>
 </div>
-<p>Alternatively, we can use the plus icon <img src="images/plus1.png" width="22" height="18"> from RStudio toolbar or the keyboard shortcut <kbd>Ctrl+Shift+N</kbd> for Windows/Linux (or <kbd>Cmd+Shift+N</kbd> for Mac.</p>
-<p>Another pane is opened on the left above the console pane <a href="#fig-RStudio_4panes">Figure&nbsp;<span>2.8</span></a>. In Source Editor, we can write a length script with lots of code chunks and save the file for future use.</p>
+<p>Alternatively, we can use the plus icon <img src="images/plus1.png" width="22" height="18"> from RStudio toolbar or the keyboard shortcut <kbd>Ctrl+Shift+N</kbd> for Windows/Linux or <kbd>Cmd+Shift+N</kbd> for Mac.</p>
+<p>Another pane, the <em>“Source Editor”</em>, is opened on the left above the Console pane (<a href="#fig-RStudio_4panes">Figure&nbsp;<span>2.9</span></a>). In Source Editor, we can write a length script with lots of code chunks and save the file for future use (at present, the new unsaved R script is named <em>“Untitled 1”</em>).</p>
 <div id="fig-RStudio_4panes" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="images/RStudio_4panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.8: RStudio Screenshot with four panes.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.9: RStudio Screenshot with four panes.</figcaption><p></p>
 </figure>
 </div>
 <p>We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.</p>
-<p>The four panes might be placed in a different order that those in <a href="#fig-RStudio_4panes">Figure&nbsp;<span>2.8</span></a>. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu (<a href="#fig-rtools1">Figure&nbsp;<span>2.9</span></a>):</p>
+<p>The four panes might be placed in a different order that those in <a href="#fig-RStudio_4panes">Figure&nbsp;<span>2.9</span></a>. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu (<a href="#fig-rtools12">Figure&nbsp;<span>2.10</span></a>):</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -451,36 +475,36 @@ Learning objectives
 </div>
 </div>
 <p><br></p>
-<div id="fig-rtools1" class="cell quarto-layout-panel">
+<div id="fig-rtools12" class="cell quarto-layout-panel">
 <figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-rtools1-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/rtools1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools1"></p>
-<p></p><figcaption class="figure-caption">(a) Step 1: We select Tools -&gt;lobal Options.</figcaption><p></p>
+<div id="fig-rtools12-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/rtools1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools12"></p>
+<p></p><figcaption class="figure-caption">(a) Step 1: We select Tools -&gt; Global Options.</figcaption><p></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-rtools1-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/order_panes.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools1"></p>
+<div id="fig-rtools12-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/order_panes.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools12"></p>
 <p></p><figcaption class="figure-caption">(b) Step 2: We can change the order of panes and check which tabs we would like to appear within each pane.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.9: Options for the apperance of RStudio panes.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.10: Options for the apperance of RStudio panes.</figcaption><p></p>
 </figure>
 </div>
-<div class="page-columns page-full"><p>Now, let’s type <code>14 + 16</code> at a new R script in the Source Editor pane and press the <img src="images/run.png" width="40" height="18"> button<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The result is printed in the Console (<a href="#fig-script1">Figure&nbsp;<span>2.10</span></a>):</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;In <code>.R</code> script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the code) and pressing the <strong>run</strong> button in the Source Editor. We can also run our selected code using the keywboard shortcut <kbd>Ctrl+Enter</kbd> for Windows/Linux or <kbd>Cmd+Enter</kbd> for Mac.</p></li></div></div>
-<div id="fig-script1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/script1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.10: We can write our code in the source editor and get the output in the console.</figcaption><p></p>
+<div class="page-columns page-full"><p>Now, let’s type <code>14 + 16</code> at a new R script in the Source Editor pane and press the <img src="images/run.png" width="40" height="18"> button<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The result is printed in the Console (<a href="#fig-rscript1">Figure&nbsp;<span>2.11</span></a>):</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;In <code>.R</code> script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the code) and pressing the <strong>run</strong> button in the Source Editor. We can also run our selected code using the keywboard shortcut <kbd>Ctrl+Enter</kbd> for Windows/Linux or <kbd>Cmd+Enter</kbd> for Mac.</p></li></div></div>
+<div id="fig-rscript1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/rscript1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.11: We can write our code in the source editor and get the output in the console.</figcaption><p></p>
 </figure>
 </div>
-<p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<a href="#fig-script2">Figure&nbsp;<span>2.11</span></a>).</p>
+<p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<span class="quarto-unresolved-ref">?fig-rscript2</span>).</p>
 <div id="fig-script2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/script2.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.11: The script pane with comments.</figcaption><p></p>
+<figure class="figure"><p><img src="images/rscript2.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.12: The script pane with comments.</figcaption><p></p>
 </figure>
 </div>
 <p>Comments start with the <strong>hashtag symbol <code>#</code></strong>. When executing the R-code, R will ignore anything that starts with <code>#</code>. It is considered good practice to comment our code when working in an <code>.R</code> script.</p>
@@ -491,20 +515,20 @@ Learning objectives
 <li><p><kbd>Ctrl+Shift+C</kbd> for Windows/Linux</p></li>
 <li><p><kbd>Cmd+Shift+C</kbd> for Mac</p></li>
 </ul>
-</div></div><p>Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon <img src="images/save_icon.png" width="22" height="24">, give a file name to the script such as <em>“my_script”</em> (<a href="#fig-save1">Figure&nbsp;<span>2.12</span></a>) and then press the “save” button.</p>
-<div id="fig-save1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/save1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.12: Saving our R script in the RStudio Project folder.</figcaption><p></p>
+</div></div><p>Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon <img src="images/save_icon.png" width="22" height="24">, give a file name to the script such as <em>“my_script”</em> and then press the “save” button (<a href="#fig-save_script">Figure&nbsp;<span>2.13</span></a>) to store it in the <em>“my_first_project”</em> folder.</p>
+<div id="fig-save_script" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/save_script.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.13: Saving our R script in the RStudio Project folder.</figcaption><p></p>
 </figure>
 </div>
-<p>The folder structure of our RStudio Project should be like in <a href="#fig-folder_structure">Figure&nbsp;<span>2.13</span></a>:</p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><code>.Rhistory</code>: contains a history of code that has been executed.</span></div></div>
-<div id="fig-folder_structure" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/folder_structure.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.13: Folder structure of our RStudio Project.</figcaption><p></p>
+<p>Now, the folder structure of our RStudio Project should include the following items (<a href="#fig-final_folder_structure">Figure&nbsp;<span>2.14</span></a>):</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> The <code>.Rhistory</code> file contains a history of code that has been executed and has been created automatically by RStudio.</span></div></div>
+<div id="fig-final_folder_structure" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/final_folder_structure.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.14: Folder structure of our RStudio Project with sub-folders and R script.</figcaption><p></p>
 </figure>
 </div>
-<p>Now, if we close the R script, we can re-open it by clicking on the <em>“my_script”</em> file from the “Files” tab.</p>
+<p>Note that if we close the R script, we can re-open it by clicking on the <em>“my_script”</em> file from the “Files” tab.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
