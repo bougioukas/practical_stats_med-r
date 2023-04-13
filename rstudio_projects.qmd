@@ -1,78 +1,17 @@
-# Working with R scripts and RStudio Projects {#sec-rstudio_projects}
+# Working with RStudio Projects and writing R scripts {#sec-rstudio_projects}
 
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
 ## Learning objectives
 
--   Describe the purpose and use of each pane in the RStudio IDE.
--   Understand the differences between errors, warnings, and messages in R.
--   Seek for help.
 -   Work with R projects.
+-   Execute R code directly from the Source Editor.
+-   Document the code using comments.
+-   Save our code in an R script.
 :::
 
  
-
-## Open a new R script
-
-Usually, we write our code in R script files. An R script (with the `.R` extension) is simply a text file in which the R code is saved, and then it can be executed on the R console.
-
-::: column-margin
-**Advantages of writing code in a R script file**
-
--   We can write code chunks instead of typing one line of code at a time
--   We can save and reuse our code
--   We can document our script (however, we can only include one-line comments and these must be prefixed with the hashtag symbol, #)
--   We can share our script with others
-:::
-
-In the RStudio menu, we go to:
-
-```{mermaid}
-flowchart LR
-  A(File) -.-> B(New File) -.-> C(R Script)
-```
-
-Alternatively, we can use the keyboard shortcut {{< kbd Ctrl+Shift+N >}} for Windows/Linux (or {{< kbd Cmd+Shift+N >}} for Mac.
-
-Another pane is opened on the left above the console pane [@fig-RStudio_4panes]. In Source Editor, we can write a length script with lots of code chunks and save the file for future use.
-
-![RStudio Screenshot with four panes.](images/RStudio_4panes.png){#fig-RStudio_4panes width="100%"}
-
-We can change the **size** of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.
-
-The four panes might be placed in a different order that those in @fig-RStudio_4panes. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu:
-
-```{mermaid}
-flowchart LR
-  A(Tools) -.-> B(Global Options) -.-> C(Pane layout)
-```
-
- 
-
-![RStudio Screenshot with Console on the left and Help tab in the bottom right.](images/order_panes.png){width="70%"}
-
-From here, we can also check which tabs we would like to appear within each pane (@fig-RStudio_panes).
-
- 
-
-Now, let's type `14 + 16` at a new R script in the Sourse Editor pane and press the ![](images/run.png){width="40" height="18"} button^[In `.R` script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the text) and pressing the **run** button in the Source Editor. We can also run our selected code using the keywboard shortcut {{< kbd Ctrl+Enter >}} for Windows/Linux or {{< kbd Cmd+Enter >}} for Mac.]. The result is printed in the Console (@fig-script1):
-
-![We can write our code in the source editor and get the output in the console.](images/script1.png){#fig-script1 width="80%"}
-
-**Comments** can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (@fig-script2).
-
-![The script pane with comments.](images/script2.png){#fig-script2 width="80%"}
-
-Comments start with the **hashtag symbol `#`**. When executing the R-code, R will ignore anything that starts with `#`. It is considered good practice to comment our code when working in an `.R` script.
-
-::: column-margin
-Keyboard Shortcut for commenting in/out **multiple lines** at a time:
-
--   {{< kbd Ctrl+Shift+C >}} for Windows/Linux
-
--   {{< kbd Cmd+Shift+C >}} for Mac
-:::
 
 ## Working with RStudio Projects
 
@@ -82,18 +21,24 @@ One of the advantages of RStudio IDE is that allows us to work with [RStudio Pro
 
 -   RStudio Project is a powerful feature that enables to organize all the files and switch between different projects and tasks without getting the datasets, code scripts, or output files all mixed up.
 
-Let's create our first RStudio Project to use for the rest of this textbook. From the RStudio menu select:
+**Create an RStudio Project**
+
+Let's create our first RStudio Project to use for the rest of this textbook. From the RStudio menu select (@fig-project0):
 
 ```{mermaid}
 flowchart LR
   A(File) -.-> B(New Project...)
 ```
 
-Alternatively, we can select `New Project...` from the Project's menu on the global toolbar (@fig-project1):
+ 
+
+![Create an RStudio Project using the RStudio's menu](images/project0.png){#fig-project0 width="60%"}
+
+Alternatively, we can use the plus project icon ![](images/project_icon.png){width="22" height="18"} or we can select `New Project...` from the Project's menu on the toolbar (@fig-project1):
 
 ![Create an RStudio Project using the RStudio's Project menu](images/project1.png){#fig-project1 width="80%"}
 
-Then, follow the steps in @fig-steps:
+Then, we follow the steps in @fig-steps:
 
 ```{r}
 #| warning: false
@@ -118,20 +63,109 @@ In Step 3 (@fig-steps c) the directory name that we type will be the project's n
 
 Once we have completed this process, R session switches to the new RStudio Project with the name "*my_first_project*" (@fig-project_name):
 
-![The new RStudio Project has been created with the name  "*my_first_project*".](images/project_name.png){#fig-project_name width="80%"}
-
+![The new RStudio Project has been created with the name "*my_first_project*".](images/project_name.png){#fig-project_name width="80%"}
 
  
 
 **RStudio Project folder structure**
 
-The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer.
+The files in our computer are organised into folders. RStudio Project folder can be viewed or moved around the same way we normally work with files and folders on our computer. We can create new folders (sub-folders) in the main RStudio Project folder using the ![](images/new_folder.png){width="70" height="20"} (@fig-folder_data1).
 
-For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following subfolders[^rstudio_projects-1] (@fig-project2).:
+![We can use New Folder to add sub-folders in RStudio Project.](images/folder_data1.png){#fig-folder_data1 width="70%"}
 
-[^rstudio_projects-1]: We can create new folders using the ![](images/new_folder.png){width="65" height="18"}
+For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following sub-folders (@fig-project2):
 
 -   **data:** data files of any kind, such as `.csv`, `.xlsx`, `.txt`, etc.
 -   **figures:** plots, diagrams, and other graphs
 
-![The folder structure of a minimal RStudio project.](images/project2.png){#fig-project2 width="40%"}
+![Schematically presentation of the folder structure of a minimal RStudio project.](images/project2.png){#fig-project2 width="40%"}
+
+## Open a new R script
+
+Usually, we write our code in R script files. An R script (with the `.R` extension) is simply a text file in which the R code is saved, and then it can be executed on the R console.
+
+::: column-margin
+**Advantages of writing code in a R script file**
+
+-   We can write code chunks instead of typing one line of code at a time
+-   We can save and reuse our code
+-   We can document our script (however, we can only include one-line comments and these must be prefixed with the hashtag symbol, #)
+-   We can share our script with others
+:::
+
+In the RStudio menu, we go to:
+
+```{mermaid}
+flowchart LR
+  A(File) -.-> B(New File) -.-> C(R Script)
+```
+
+<br>
+
+![Open a new R script from the Rstudio menu.](images/rscript.png){#fig-rscript width="70%"}
+
+Alternatively, we can use the plus icon ![](images/plus1.png){width="22" height="18"} from RStudio toolbar or the keyboard shortcut {{< kbd Ctrl+Shift+N >}} for Windows/Linux (or {{< kbd Cmd+Shift+N >}} for Mac.
+
+Another pane is opened on the left above the console pane [@fig-RStudio_4panes]. In Source Editor, we can write a length script with lots of code chunks and save the file for future use.
+
+![RStudio Screenshot with four panes.](images/RStudio_4panes.png){#fig-RStudio_4panes width="100%"}
+
+We can change the **size** of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.
+
+The four panes might be placed in a different order that those in @fig-RStudio_4panes. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu (@fig-rtools1):
+
+```{mermaid}
+flowchart LR
+  A(Tools) -.-> B(Global Options) -.-> C(Pane layout)
+```
+
+<br>
+
+```{r}
+#| warning: false
+#| echo: false
+#| out-width: 12cm
+#| label: fig-rtools1
+#| fig-cap: Options for the apperance of RStudio panes.
+#| fig-subcap: 
+#|   - "Step 1: We select Tools ->lobal Options."
+#|   - "Step 2: We can change the order of panes and check which tabs we would like to appear within each pane."
+#| layout-ncol: 2
+
+knitr::include_graphics(here::here("images", "rtools1.png"))
+
+knitr::include_graphics(here::here("images", "order_panes.png"))
+```
+
+Now, let's type `14 + 16` at a new R script in the Source Editor pane and press the ![](images/run.png){width="40" height="18"} button[^rstudio_projects-1]. The result is printed in the Console (@fig-script1):
+
+[^rstudio_projects-1]: In `.R` script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the code) and pressing the **run** button in the Source Editor. We can also run our selected code using the keywboard shortcut {{< kbd Ctrl+Enter >}} for Windows/Linux or {{< kbd Cmd+Enter >}} for Mac.
+
+
+![We can write our code in the source editor and get the output in the console.](images/script1.png){#fig-script1 width="80%"}
+
+**Comments** can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (@fig-script2).
+
+![The script pane with comments.](images/script2.png){#fig-script2 width="80%"}
+
+Comments start with the **hashtag symbol `#`**. When executing the R-code, R will ignore anything that starts with `#`. It is considered good practice to comment our code when working in an `.R` script.
+
+::: column-margin
+Keyboard Shortcut for commenting in/out **multiple lines** at a time:
+
+-   {{< kbd Ctrl+Shift+C >}} for Windows/Linux
+
+-   {{< kbd Cmd+Shift+C >}} for Mac
+:::
+
+Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon ![](images/save_icon.png){width="22" height="24"}, give a file name to the script such as *"my_script"* (@fig-save1) and then press the "save" button.
+
+![Saving our R script in the RStudio Project folder.](images/save1.png){#fig-save1 width="80%"}
+
+The folder structure of our RStudio Project should be like in @fig-folder_structure:
+
+[`.Rhistory`: contains a history of code that has been executed.]{.aside}
+
+![Folder structure of our RStudio Project.](images/folder_structure.png){#fig-folder_structure width="60%"}
+
+Now, if we close the R script, we can re-open it by clicking on the *"my_script"* file from the "Files" tab.

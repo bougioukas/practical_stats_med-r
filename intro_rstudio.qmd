@@ -8,7 +8,6 @@ When we have finished this Chapter, we should be able to:
 -   Describe the purpose and use of each pane in the RStudio IDE.
 -   Understand the differences between errors, warnings, and messages in R.
 -   Seek for help.
--   Work with R projects.
 :::
 
  
