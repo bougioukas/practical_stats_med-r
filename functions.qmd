@@ -1,0 +1,159 @@
+# R functions {#sec-functions}
+
+In R programming, functions are sets of commands that are executed every time the function is called in order to perform a specified task. We have already used some R functions searching for help (e.g., `help()`, `example()`).
+
+Most of the computations in R involves using functions. The standard version of R includes a number of built-in functions, and many others can be added or created by the user (user-defined).
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Understand the concept of functions in R.
+-   Know of characteristics of functions.
+-   Be familiar with basic mathematical functions (e.g., logarithmic, trigonometric).
+-   Create our own functions.
+:::
+
+ 
+
+## Characteristics of R Functions
+
+**A. Name and argumnets of a function**
+
+> To **call** a function in R, we simply **type its name**, followed by open and closing parentheses. Anything we pass to the parentheses separated by a comma are the **function's arguments**.
+
+Let's have look at an example:
+
+```{r}
+seq(from = 5, to = 8, by = 0.5)
+```
+
+The function name is `seq` and we pass three named arguments `from = 5`, `to = 8` and `by = 0.5`. The arguments `from = 5` and `to = 8` provide the start and end values of a sequence that we want to create, and `by = 0.5` is the increment of the sequence.
+
+The above result can also be obtained without naming the arguments as follows:
+
+```{r}
+seq(5, 8, 0.5)
+```
+
+::: callout-important
+We don't have to indicate the names of arguments, but only pass the values; R will match the arguments in the order that they appeared (positional matching).
+:::
+
+ 
+
+Moreover, the `seq()` function has other arguments[^functions-1] that we could use and are documented in the help page running `?seq`. For example, we could use the argument `length.out = 26` (instead of `by = 0.5`) to create a sequence of 26 numbers as follows:
+
+[^functions-1]: seq(**from** = 1, **to** = 1, **by** = ((to - from)/(length.out - 1)), **length.out** = NULL, **along.with** = NULL, ...)
+
+[**NOTE:** The numbers inside the brackets, `[1]` and `[16]`, helps us figure out **where in the sequence we are per line**. For example, `[16]` is the id number of the first value (6.80) returned on the second line. Obviously, this number may change depending on the width of the console.]{.aside}
+
+```{r}
+seq(5, 8, length.out = 26)  # 26 numbers in the sequence
+```
+
+ 
+
+**B. Required and optional arguments**
+
+And what about this command?
+
+```{r}
+seq(5, 8)
+```
+
+Here, it is assumed that we want a sequence `from = 5` that goes `to = 8`. Since we don't specify step size, the default value, **by** = ((to - from)/(length.out - 1)) = (8-5)/(4-1) = 1, is passed to the `seq()` function.
+
+> Some arguments in a function are **required** while others may be **optional**.
+
+Now let's have a look at another example. The `log()` is a mathematical function that computes logarithms. We can display the argument names and corresponding default values with the help of the `args()` function:
+
+
+
+
+```{r}
+args(log)
+```
+
+[**NOTE:** $exp(1) = e ≈ 2.718$]{.aside}
+
+
+In the `log()` function `x` is a required argument while `base` is an optional argument and comes with the default value `exp(1)`.
+
+
+**_Required argument:_** Obviously, `x` is a required argument because if we don't provide `x` to the function will fail (i.e. logarithm is not defined) and we get an error:
+
+```{r, error=TRUE, eval= FALSE}
+log(base=10)
+```
+
+`r kableExtra::text_spec("Error: argument x is missing, with no default", color = "#8676F8")`
+
+**_Optional argument:_** If we don't provide a value for `base`, R will use the default value `exp(1)`:
+
+```{r}
+log(15)  # R uses the default value of `exp(1)`
+```
+
+But if we pass the argument `base = 10` to the function, the logarithm base 10 will be calculated:
+
+```{r}
+log(15, base = 10)  # R uses our value 10
+```
+
+::: callout-important
+## Required and optional arguments
+
+For R functions, some arguments must be specified (they are required) and others are optional (because a default value is already given in the definition of the function).
+:::
+
+ 
+
+::: callout-note
+## Playing with the arguments in several different ways
+
+To calculate the **natural logarithm of 3**, any of the following expressions can be used:
+
+```{r}
+#| eval: false
+
+log(3)
+log(x=3)
+log(x=3, base=exp(1))
+log(x=3, exp(1))
+log(3, base=exp(1))
+log(3, exp(1))
+
+log(base=exp(1), 3)
+log(base=exp(1), x=3)
+```
+:::
+
+ 
+
+::: callout-important
+## Caution
+
+Note that calling
+
+```{r}
+#| eval: false
+
+log(exp(1), 3)
+```
+
+calculates the logarithm of exp(1) in base 3.
+:::
+
+ 
+
+Not all functions have (or require) arguments.
+
+For example:
+
+```{r}
+date()
+```
+
+ 

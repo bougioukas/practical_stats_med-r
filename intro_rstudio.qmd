@@ -86,11 +86,11 @@ We get the following error:\
 
 R will show in the Console pane that something unusual is happening in three different situations:
 
--   **Errors:** When something is a legitimate error, it will be prefaced with "Error:" and R will try to explain what went wrong. When there's an error, the execution of code will stop.
+-   **Errors:** When there is an error, the execution of code will stop and some relative information is reported for this failure.
 
--   **Warnings:** When there is a signal of a warning, it will be prefaced with "Warning:" and R will try to explain why there's a warning. Generally our code will still work, but with some possible issues.
+-   **Warnings:** When there is a signal of a warning, the code will still work, but with some possible issues.
 
--   **Messages:** When the signal is a message, R attaches a message to the output that might be useful information for the user.
+-   **Messages:** In many cases, messages are attached to the output after the code execution that might be useful information for the user.
 
 Now, let's type in the Console the following:
 

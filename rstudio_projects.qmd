@@ -102,7 +102,11 @@ knitr::include_graphics(here::here("images", "folder_figures.png"))
 
 Therefore, we end up to the following RStudio Project folder structure:
 
+[**NOTE:** The file named `my_first_project.Rproj`, which has been created by RStudio automatically, contains information of the project and can also be used as a shortcut for opening the project directly from the file system in our computer.]{.aside}
+
+
 ![A minimal RStudio Project folder structure.](images/my_project_str.png){#fig-my_project_str width="70%"}
+
 
 
 
@@ -115,7 +119,7 @@ Usually, we write our code in R script files. An R script (with the `.R` extensi
 
 -   We can execute code chunks instead of running one line of code at a time.
 -   We can save our R script and reuse the code.
--   We can document our script (we can include one-line comments that are prefixed with the hashtag symbol, #).
+-   We can document our script including one-line comments that are prefixed with the hashtag symbol, #.
 -   We can share our script with others.
 :::
 
@@ -172,7 +176,7 @@ Now, let's type `14 + 16` at a new R script in the Source Editor pane and press 
 
 **Comments** can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (@fig-rscript2).
 
-![The script pane with comments.](images/rscript2.png){#fig-script2 width="80%"}
+![The script pane with comments.](images/rscript2.png){#fig-rscript2 width="80%"}
 
 Comments start with the **hashtag symbol `#`**. When executing the R-code, R will ignore anything that starts with `#`. It is considered good practice to comment our code when working in an `.R` script.
 
@@ -184,7 +188,7 @@ Keyboard Shortcut for commenting in/out **multiple lines** at a time:
 -   {{< kbd Cmd+Shift+C >}} for Mac
 :::
 
-Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon ![](images/save_icon.png){width="22" height="24"}, give a file name to the script such as *"my_script"* and then press the "save" button (@fig-save_script) to store it in the *"my_first_project"* folder.
+Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon ![](images/save_icon.png){width="22" height="24"}, give a file name to the script such as *"my_script"* and then press the "save" button  to store it in *"my_first_project"* folder (@fig-save_script).
 
 ![Saving our R script in the RStudio Project folder.](images/save_script.png){#fig-save_script width="80%"}
 

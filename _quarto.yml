@@ -17,6 +17,7 @@ book:
       chapters:
         - intro_rstudio.qmd
         - rstudio_projects.qmd
+        - functions.qmd
     - part: "Data transformation with to tidyverse"
       chapters:
         - intro_rstudio.qmd 
