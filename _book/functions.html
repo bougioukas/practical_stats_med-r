@@ -309,6 +309,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#characteristics-of-r-functions" id="toc-characteristics-of-r-functions" class="nav-link active" data-scroll-target="#characteristics-of-r-functions"><span class="header-section-number">3.1</span> Characteristics of R Functions</a></li>
+  <li>
+<a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="header-section-number">3.2</span> Mathematical functions</a>
+  <ul class="collapse">
+<li><a href="#logarithmic-and-exponential-functions" id="toc-logarithmic-and-exponential-functions" class="nav-link" data-scroll-target="#logarithmic-and-exponential-functions">Logarithmic and Exponential functions</a></li>
+  <li><a href="#trigonometric-functions-angles-in-radians" id="toc-trigonometric-functions-angles-in-radians" class="nav-link" data-scroll-target="#trigonometric-functions-angles-in-radians">Trigonometric functions (angles in radians)</a></li>
+  <li><a href="#other-mathematical-functions" id="toc-other-mathematical-functions" class="nav-link" data-scroll-target="#other-mathematical-functions">Other mathematical functions</a></li>
+  <li><a href="#the-round-function" id="toc-the-round-function" class="nav-link" data-scroll-target="#the-round-function">The <em>round()</em> function</a></li>
+  </ul>
+</li>
+  <li><a href="#the-sessioninfo-and-option-functions" id="toc-the-sessioninfo-and-option-functions" class="nav-link" data-scroll-target="#the-sessioninfo-and-option-functions"><span class="header-section-number">3.3</span> The <em>sessionInfo()</em> and <em>option()</em> functions</a></li>
+  <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">3.4</span> User-Defined Functions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -327,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 </header><p>In R programming, functions are sets of commands that are executed every time the function is called in order to perform a specified task. We have already used some R functions searching for help (e.g., <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code>, <code><a href="https://rdrr.io/r/utils/example.html">example()</a></code>).</p>
-<p>Most of the computations in R involves using functions. The standard version of R includes a number of built-in functions, and many others can be added or created by the user (user-defined).</p>
+<p>Most of the computations in R involves using functions. The standard version of R includes a number of built-in functions, and many others can be added or created by the user (user-defined functions).</p>
 <p>When we have finished this Chapter, we should be able to:</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -405,7 +416,7 @@ Important
 <blockquote class="blockquote">
 <p>Some arguments in a function are <strong>required</strong> while others may be <strong>optional</strong>.</p>
 </blockquote>
-<p>Now let’s have a look at another example. The <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> is a mathematical function that computes logarithms. We can display the argument names and corresponding default values with the help of the <code><a href="https://rdrr.io/r/base/args.html">args()</a></code> function:</p>
+<p>Now let’s have a look at another example. The <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> is a mathematical function that calculates logarithms. We can display the argument names and corresponding default values with the help of the <code><a href="https://rdrr.io/r/base/args.html">args()</a></code> function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -413,9 +424,9 @@ Important
 NULL</code></pre>
 </div>
 </div>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> <span class="math inline">\(exp(1) = e ≈ 2.718\)</span></span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> Euler’s Number <span class="math inline">\(exp(1) ≈ 2.718\)</span></span></div></div>
 <p>In the <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> function <code>x</code> is a required argument while <code>base</code> is an optional argument and comes with the default value <code>exp(1)</code>.</p>
-<p><strong><em>Required argument:</em></strong> Obviously, <code>x</code> is a required argument because if we don’t provide <code>x</code> to the function will fail (i.e.&nbsp;logarithm is not defined) and we get an error:</p>
+<p><strong><em>Required argument:</em></strong> Obviously, <code>x</code> is a required argument because if we don’t provide <code>x</code> to the function the calculation will fail (i.e.&nbsp;logarithm is not defined) and we get an error:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>base<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -427,7 +438,7 @@ NULL</code></pre>
 <pre><code>[1] 2.70805</code></pre>
 </div>
 </div>
-<p>But if we pass the argument <code>base = 10</code> to the function, the logarithm base 10 will be calculated:</p>
+<p>But if we pass the argument <code>base = 10</code> to the function, the base-10 logarithm is calculated:</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">15</span>, base <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>  <span class="co"># R uses our value 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -454,25 +465,31 @@ Required and optional arguments
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Playing with the arguments in several different ways
+We can pass arguments to functions in several ways
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To calculate the <strong>natural logarithm of 3</strong>, any of the following expressions can be used:</p>
+<p>Let’s calculate the <strong>natural logarithm of 3</strong> (base = <span class="math inline">\(e\)</span>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">3</span>, base<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.098612</code></pre>
+</div>
+</div>
+<p>Any of the following expressions is equivalent:</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">3</span>, base<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">3</span>, base<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">3</span>, base<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>base<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>base<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, x<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<p>&nbsp;</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -483,22 +500,292 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that calling</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>calculates the logarithm of exp(1) in base 3.</p>
+<p>Calculates the logarithm of exp(1) in base 3.</p>
 </div>
 </div>
 <p>&nbsp;</p>
-<p>Not all functions have (or require) arguments.</p>
-<p>For example:</p>
+<p>Not all functions have (or require) arguments. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Fri Apr 14 14:26:14 2023"</code></pre>
+<pre><code>[1] "Sat Apr 15 10:45:34 2023"</code></pre>
 </div>
 </div>
+<p>&nbsp;</p>
+</section><section id="mathematical-functions" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="mathematical-functions">
+<span class="header-section-number">3.2</span> Mathematical functions</h2>
+<p>R has many built-in mathematical functions such as the <code>log(x)</code> that we have already seen.</p>
+<section id="logarithmic-and-exponential-functions" class="level3"><h3 class="anchored" data-anchor-id="logarithmic-and-exponential-functions">Logarithmic and Exponential functions</h3>
+<p>&nbsp;</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Logarithms</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Exponents</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>     <span class="co"># natural logarithm (or base-e logarithm)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.60517</code></pre>
+</div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">0.05</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.995732</code></pre>
+</div>
+</div>
+<p>There are even built-in logarithmic functions with different bases:</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log2</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>    <span class="co"># base-2 logarithm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.643856</code></pre>
+</div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>   <span class="co"># base-10 logarithm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>       <span class="co"># exponential exp(1)^5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 148.4132</code></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>     <span class="co"># exponential exp(1)^(1/2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.648721</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="trigonometric-functions-angles-in-radians" class="level3"><h3 class="anchored" data-anchor-id="trigonometric-functions-angles-in-radians">Trigonometric functions (angles in radians)</h3>
+<p>Trigonometric functions define the relationship among the sides and angles of a right angle triangle. They also allow us to use angle measures, in radians or degrees, to find the coordinates of a point on a circle (e.g., unit circle).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">sin()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">cos()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">tan()</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">pi</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>  <span class="co"># pi approximately equals to 3.14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">pi</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">tan</a></span><span class="op">(</span><span class="va">pi</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.732051</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="other-mathematical-functions" class="level3"><h3 class="anchored" data-anchor-id="other-mathematical-functions">Other mathematical functions</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">sqrt()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">abs()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">sign()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">factorial()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">choose()</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>       <span class="co"># returns the squared root of a number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9</span><span class="op">)</span>       <span class="co"># returns absolute value of a number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sign.html">sign</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9</span><span class="op">)</span>      <span class="co"># returns the sign of a number, -1, 0, or 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>  <span class="co"># factorial 3! = 1x2x3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>  <span class="co"># number of combinations without replacement 6!/(6-2)!2!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="the-round-function" class="level3"><h3 class="anchored" data-anchor-id="the-round-function">The <em>round()</em> function</h3>
+<p>The <strong><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></strong> function is often very useful. The round function follows the <strong>rounding principle</strong>. By default, we will get the nearest integer. For example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">7</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span>  <span class="co"># rounding 7/3 (2.333) to the nearest integer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>If we want to control the approximation accuracy, we can add a digits argument to specify how many digits we want after the decimal point. For example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">7</span> <span class="op">/</span> <span class="fl">3</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>  <span class="co"># rounding 7/3 to two decimal places</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.33</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Round rule when the dropped digit is the number 5
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the first digit that is dropped is exactly 5, R uses a rule that’s common in programming languages: Always round to the nearest <strong>even</strong> number. For example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">4.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">5.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>There are a couple of further relative functions that can be useful in rounding numbers:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">ceiling()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">floor()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">trunc()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">signif()</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fl">16.2</span><span class="op">)</span>       <span class="co"># round to the nearest integer above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 17</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fl">16.2</span><span class="op">)</span>         <span class="co"># round to the nearest integer below</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">trunc</a></span><span class="op">(</span><span class="fl">125.2395</span><span class="op">)</span>     <span class="co">#  truncates the values in the decimal places</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 125</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">signif</a></span> <span class="op">(</span><span class="fl">2718214</span>, <span class="fl">3</span><span class="op">)</span>  <span class="co"># round to the specified number of significant digits</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2720000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="the-sessioninfo-and-option-functions" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="the-sessioninfo-and-option-functions">
+<span class="header-section-number">3.3</span> The <em>sessionInfo()</em> and <em>option()</em> functions</h2>
+<p>We can obtain information about R, our operating system and attached or loaded packages in the current session running the following function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Additionally, the <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> function in R can be used to change various default settings. For example, the <em>digits</em> controls the number of significant digits and the <em>scipen</em> enables/disables scientific notation in printing. The current options are returned when <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> is called and the command <code><a href="https://rdrr.io/r/base/options.html">help(options)</a></code> lists all of the global options.</p>
+<div class="cell">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">options</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="user-defined-functions" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="user-defined-functions">
+<span class="header-section-number">3.4</span> User-Defined Functions</h2>
+<p>We can create our own functions, using the <strong><code>function()</code></strong>, which is a very powerful way to extend R.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What do we need to create a function?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>the function’s name</li>
+<li>the arguments of the function</li>
+<li>the code of the function (statements)</li>
+</ol>
+</div>
+</div>
+<p>For example a function that calculate the logarithm of a number to base 7 is:</p>
+<div class="cell">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log7</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">x</span>, base <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span><span class="co"># calculate the logarithm of 5 to base 7</span></span>
+<span><span class="fu">log7</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8270875</code></pre>
+</div>
+</div>
+<p>Here, we defined the function by “assigning” the <code>function(x)</code> to the name <code>log7</code> using the assignment operator <code>&lt;-</code> (see Chapter 5). The <code>x</code> argument in the parenthesis of <code>function()</code> is used as input to the function; the code within the curly braces <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> is the body (statements) of the function.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

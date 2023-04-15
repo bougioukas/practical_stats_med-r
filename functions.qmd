@@ -2,7 +2,7 @@
 
 In R programming, functions are sets of commands that are executed every time the function is called in order to perform a specified task. We have already used some R functions searching for help (e.g., `help()`, `example()`).
 
-Most of the computations in R involves using functions. The standard version of R includes a number of built-in functions, and many others can be added or created by the user (user-defined).
+Most of the computations in R involves using functions. The standard version of R includes a number of built-in functions, and many others can be added or created by the user (user-defined functions).
 
 When we have finished this Chapter, we should be able to:
 
@@ -67,22 +67,17 @@ Here, it is assumed that we want a sequence `from = 5` that goes `to = 8`. Since
 
 > Some arguments in a function are **required** while others may be **optional**.
 
-Now let's have a look at another example. The `log()` is a mathematical function that computes logarithms. We can display the argument names and corresponding default values with the help of the `args()` function:
-
-
-
+Now let's have a look at another example. The `log()` is a mathematical function that calculates logarithms. We can display the argument names and corresponding default values with the help of the `args()` function:
 
 ```{r}
 args(log)
 ```
 
-[**NOTE:** $exp(1) = e ≈ 2.718$]{.aside}
-
+[**NOTE:** Euler's Number $exp(1) ≈ 2.718$]{.aside}
 
 In the `log()` function `x` is a required argument while `base` is an optional argument and comes with the default value `exp(1)`.
 
-
-**_Required argument:_** Obviously, `x` is a required argument because if we don't provide `x` to the function will fail (i.e. logarithm is not defined) and we get an error:
+***Required argument:*** Obviously, `x` is a required argument because if we don't provide `x` to the function the calculation will fail (i.e. logarithm is not defined) and we get an error:
 
 ```{r, error=TRUE, eval= FALSE}
 log(base=10)
@@ -90,13 +85,13 @@ log(base=10)
 
 `r kableExtra::text_spec("Error: argument x is missing, with no default", color = "#8676F8")`
 
-**_Optional argument:_** If we don't provide a value for `base`, R will use the default value `exp(1)`:
+***Optional argument:*** If we don't provide a value for `base`, R will use the default value `exp(1)`:
 
 ```{r}
 log(15)  # R uses the default value of `exp(1)`
 ```
 
-But if we pass the argument `base = 10` to the function, the logarithm base 10 will be calculated:
+But if we pass the argument `base = 10` to the function, the base-10 logarithm is calculated:
 
 ```{r}
 log(15, base = 10)  # R uses our value 10
@@ -111,31 +106,33 @@ For R functions, some arguments must be specified (they are required) and others
  
 
 ::: callout-note
-## Playing with the arguments in several different ways
+## We can pass arguments to functions in several ways
 
-To calculate the **natural logarithm of 3**, any of the following expressions can be used:
+Let's calculate the **natural logarithm of 3** (base = $e$):
+
+```{r}
+log(3)
+```
+
+Any of the following expressions is equivalent:
 
 ```{r}
 #| eval: false
 
-log(3)
 log(x=3)
-log(x=3, base=exp(1))
 log(x=3, exp(1))
-log(3, base=exp(1))
+log(x=3, base=exp(1))
+
 log(3, exp(1))
+log(3, base=exp(1))
 
 log(base=exp(1), 3)
 log(base=exp(1), x=3)
 ```
 :::
 
- 
-
 ::: callout-important
 ## Caution
-
-Note that calling
 
 ```{r}
 #| eval: false
@@ -143,17 +140,217 @@ Note that calling
 log(exp(1), 3)
 ```
 
-calculates the logarithm of exp(1) in base 3.
+Calculates the logarithm of exp(1) in base 3.
 :::
 
  
 
-Not all functions have (or require) arguments.
-
-For example:
+Not all functions have (or require) arguments. For example:
 
 ```{r}
 date()
 ```
 
  
+
+## Mathematical functions
+
+R has many built-in mathematical functions such as the `log(x)` that we have already seen.
+
+### Logarithmic and Exponential functions
+
+ 
+
+::: panel-tabset
+## Logarithms
+
+```{r}
+log(100)     # natural logarithm (or base-e logarithm)
+log(0.05)
+```
+
+There are even built-in logarithmic functions with different bases:
+
+```{r}
+log2(100)    # base-2 logarithm
+log10(100)   # base-10 logarithm
+```
+
+## Exponents
+
+```{r}
+exp(5)       # exponential exp(1)^5
+exp(0.5)     # exponential exp(1)^(1/2)
+```
+:::
+
+ 
+
+### Trigonometric functions (angles in radians)
+
+Trigonometric functions define the relationship among the sides and angles of a right angle triangle. They also allow us to use angle measures, in radians or degrees, to find the coordinates of a point on a circle (e.g., unit circle).
+
+::: panel-tabset
+## sin()
+
+```{r}
+sin(pi/2)  # pi approximately equals to 3.14
+```
+
+## cos()
+
+```{r}
+cos(pi)
+```
+
+## tan()
+
+```{r}
+tan(pi/3)
+```
+:::
+
+ 
+
+### Other mathematical functions
+
+::: panel-tabset
+## sqrt()
+
+```{r}
+sqrt(9)       # returns the squared root of a number
+```
+
+## abs()
+
+```{r}
+abs(-9)       # returns absolute value of a number
+```
+
+## sign()
+
+```{r}
+sign(-9)      # returns the sign of a number, -1, 0, or 1
+```
+
+## factorial()
+
+```{r}
+factorial(3)  # factorial 3! = 1x2x3
+```
+
+## choose()
+
+```{r}
+choose(6, 2)  # number of combinations without replacement 6!/(6-2)!2!
+```
+:::
+
+ 
+
+### The *round()* function
+
+The **`round()`** function is often very useful. The round function follows the **rounding principle**. By default, we will get the nearest integer. For example:
+
+```{r}
+round(7 / 3)  # rounding 7/3 (2.333) to the nearest integer
+```
+
+If we want to control the approximation accuracy, we can add a digits argument to specify how many digits we want after the decimal point. For example:
+
+```{r}
+round(7 / 3, digits = 2)  # rounding 7/3 to two decimal places
+```
+
+ 
+
+::: callout-important
+## Round rule when the dropped digit is the number 5
+
+If the first digit that is dropped is exactly 5, R uses a rule that's common in programming languages: Always round to the nearest **even** number. For example:
+
+```{r}
+round(1.5)
+round(2.5)
+
+round(4.5)
+round(5.5)
+```
+:::
+
+There are a couple of further relative functions that can be useful in rounding numbers:
+
+::: panel-tabset
+## ceiling()
+
+```{r}
+ceiling(16.2)       # round to the nearest integer above
+```
+
+## floor()
+
+```{r}
+floor(16.2)         # round to the nearest integer below
+```
+
+## trunc()
+
+```{r}
+trunc(125.2395)     #  truncates the values in the decimal places
+```
+
+## signif()
+
+```{r}
+signif (2718214, 3)  # round to the specified number of significant digits
+```
+:::
+
+
+## The *sessionInfo()* and *option()* functions
+
+We can obtain information about R, our operating system and attached or loaded packages in the current session running the following function:
+
+```{r}
+#| eval: false
+
+sessionInfo()
+```
+
+
+Additionally, the `options()` function in R can be used to change various default settings. For example, the *digits* controls the number of significant digits and the *scipen* enables/disables scientific notation in printing. The current options are returned when `options()` is called and the command `help(options)` lists all of the global options.
+
+```{r}
+#| eval: false
+
+help(options)
+```
+
+
+## User-Defined Functions
+
+We can create our own functions, using the **`function()`**, which is a very powerful way to extend R.
+
+
+::: callout-tip
+## What do we need to create a function?
+
+1.  the function's name
+2.  the arguments of the function
+3.  the code of the function (statements)
+:::
+
+For example a function that calculate the logarithm of a number to base 7 is:
+
+```{r}
+log7 <- function(x) {
+  log(x, base = 7)
+  }
+
+# calculate the logarithm of 5 to base 7
+log7(5)
+```
+
+Here, we defined the function by "assigning" the `function(x)` to the name `log7` using the assignment operator `<-` (see Chapter 5). The `x` argument in the parenthesis of `function()` is used as input to the function; the code within the curly braces `{}` is the body (statements) of the function.
+
+
