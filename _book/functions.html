@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.324">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 3&nbsp; R functions</title>
+<title>Practical Statistics in Medicine with R - 4&nbsp; R functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,8 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./introduction.html" rel="next">
-<link href="./rstudio_projects.html" rel="prev">
+<link href="./packages.html" rel="next">
+<link href="./calculations.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R functions</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,8 +153,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./calculations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,91 +223,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
       </ul>
@@ -308,9 +326,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#characteristics-of-r-functions" id="toc-characteristics-of-r-functions" class="nav-link active" data-scroll-target="#characteristics-of-r-functions"><span class="header-section-number">3.1</span> Characteristics of R Functions</a></li>
+<li><a href="#characteristics-of-r-functions" id="toc-characteristics-of-r-functions" class="nav-link active" data-scroll-target="#characteristics-of-r-functions"><span class="header-section-number">4.1</span> Characteristics of R Functions</a></li>
   <li>
-<a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="header-section-number">3.2</span> Mathematical functions</a>
+<a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="header-section-number">4.2</span> Mathematical functions</a>
   <ul class="collapse">
 <li><a href="#logarithmic-and-exponential-functions" id="toc-logarithmic-and-exponential-functions" class="nav-link" data-scroll-target="#logarithmic-and-exponential-functions">Logarithmic and Exponential functions</a></li>
   <li><a href="#trigonometric-functions-angles-in-radians" id="toc-trigonometric-functions-angles-in-radians" class="nav-link" data-scroll-target="#trigonometric-functions-angles-in-radians">Trigonometric functions (angles in radians)</a></li>
@@ -318,13 +336,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-round-function" id="toc-the-round-function" class="nav-link" data-scroll-target="#the-round-function">The <em>round()</em> function</a></li>
   </ul>
 </li>
-  <li><a href="#the-sessioninfo-and-option-functions" id="toc-the-sessioninfo-and-option-functions" class="nav-link" data-scroll-target="#the-sessioninfo-and-option-functions"><span class="header-section-number">3.3</span> The <em>sessionInfo()</em> and <em>option()</em> functions</a></li>
-  <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">3.4</span> User-Defined Functions</a></li>
+  <li><a href="#the-sessioninfo-and-option-functions" id="toc-the-sessioninfo-and-option-functions" class="nav-link" data-scroll-target="#the-sessioninfo-and-option-functions"><span class="header-section-number">4.3</span> The <em>sessionInfo()</em> and <em>option()</em> functions</a></li>
+  <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">4.4</span> User-defined functions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R functions</span></span></h1>
+<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span></h1>
 </div>
 
 
@@ -359,8 +377,8 @@ Learning objectives
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="characteristics-of-r-functions" class="level2 page-columns page-full" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="characteristics-of-r-functions">
-<span class="header-section-number">3.1</span> Characteristics of R Functions</h2>
+<section id="characteristics-of-r-functions" class="level2 page-columns page-full" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="characteristics-of-r-functions">
+<span class="header-section-number">4.1</span> Characteristics of R Functions</h2>
 <p><strong>A. Name and argumnets of a function</strong></p>
 <blockquote class="blockquote">
 <p>To <strong>call</strong> a function in R, we simply <strong>type its name</strong>, followed by open and closing parentheses. Anything we pass to the parentheses separated by a comma are the <strong>function’s arguments</strong>.</p>
@@ -511,12 +529,12 @@ Caution
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Sat Apr 15 10:45:34 2023"</code></pre>
+<pre><code>[1] "Sun Apr 16 11:15:40 2023"</code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="mathematical-functions" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="mathematical-functions">
-<span class="header-section-number">3.2</span> Mathematical functions</h2>
+</section><section id="mathematical-functions" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="mathematical-functions">
+<span class="header-section-number">4.2</span> Mathematical functions</h2>
 <p>R has many built-in mathematical functions such as the <code>log(x)</code> that we have already seen.</p>
 <section id="logarithmic-and-exponential-functions" class="level3"><h3 class="anchored" data-anchor-id="logarithmic-and-exponential-functions">Logarithmic and Exponential functions</h3>
 <p>&nbsp;</p>
@@ -743,8 +761,8 @@ Round rule when the dropped digit is the number 5
 </div>
 </div>
 </div>
-</section></section><section id="the-sessioninfo-and-option-functions" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="the-sessioninfo-and-option-functions">
-<span class="header-section-number">3.3</span> The <em>sessionInfo()</em> and <em>option()</em> functions</h2>
+</section></section><section id="the-sessioninfo-and-option-functions" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="the-sessioninfo-and-option-functions">
+<span class="header-section-number">4.3</span> The <em>sessionInfo()</em> and <em>option()</em> functions</h2>
 <p>We can obtain information about R, our operating system and attached or loaded packages in the current session running the following function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -753,8 +771,8 @@ Round rule when the dropped digit is the number 5
 <div class="cell">
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">options</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="user-defined-functions" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="user-defined-functions">
-<span class="header-section-number">3.4</span> User-Defined Functions</h2>
+</section><section id="user-defined-functions" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="user-defined-functions">
+<span class="header-section-number">4.4</span> User-defined functions</h2>
 <p>We can create our own functions, using the <strong><code>function()</code></strong>, which is a very powerful way to extend R.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -773,7 +791,7 @@ What do we need to create a function?
 </ol>
 </div>
 </div>
-<p>For example a function that calculate the logarithm of a number to base 7 is:</p>
+<p>For example, a simple function that calculates the logarithm of a number to base 7 is following:</p>
 <div class="cell">
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log7</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">x</span>, base <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
@@ -1100,13 +1118,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./rstudio_projects.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with RStudio Projects and writing R scripts</span></span>
+      <a href="./calculations.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistics and data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./packages.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

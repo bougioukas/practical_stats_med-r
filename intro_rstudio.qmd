@@ -113,7 +113,7 @@ In **Console** to go between previously typed commands use the up ($\uparrow$) a
 
 ## R Help resources
 
-Before asking others for help, we should try to solve the R programming problem on our own. Therefore, it is recommended to learn how to use R's built-in help system.
+Before asking others for help, we should try to solve the R programming problems on our own. Therefore, it is recommended to learn how to use R's built-in help system.
 
 First, we can use the `help()` command or the **`?`** help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the `median` we will type the following command:
 

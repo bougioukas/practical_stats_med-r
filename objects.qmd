@@ -1,0 +1,223 @@
+# R objects {#sec-objects}
+
+```{r}
+#| include: false
+
+library(kableExtra)
+
+```
+
+When we have finished this chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Understand the concept of objects in R.
+-   Know the types of assignment operators in R.
+-   Set legal names to objects.
+-   Work with assignment operators.
+:::
+
+ 
+
+## What are the objects in R
+
+R works with **objects** (it is an object-oriented programming language). All the things that we manipulate or encounter in R such as numbers, data structures, functions, the results from a function (e.g., graphs) are types of objects. Some objects come with the packages in R. Other objects are user-created. User-created objects have names that are assigned by the user. R has a workspace known as the global environment that can be used to store objects.
+
+Objects in R can have many properties associated with them, called **attributes**. These properties explain what an object represents and how it should be interpreted by R. Two of the most important attributes of an R object are the `class` and the `dimension` of the object.
+
+Attributes of an object (if any) can be accessed using the `attributes()` function. Not all R objects contain attributes, in which case the `attributes()` function returns `NULL`.
+
+For example, the attributes of the famous `iris` data set is a `data.frame` that contains 150 rows and 5 columns:
+
+```{r}
+class(iris); dim(iris)   # Note: R commands can be separated by a semicolon
+attributes(iris)
+```
+
+::: callout-important
+## Avoid to separate R commands with a semicolon
+
+R commands are usually separated by a new line but they can also be separated by a semicolon (**;**). However, this is bad practice and should be avoided wherever possible: it can lead to code that is difficult to follow.
+:::
+
+## Named storage of objects
+
+### Assignment operator (`<-`)
+
+In R we can store things in objects using the leftward assignment operator (`<-`) which is an arrow that points to the left, created with the `less-than (<)` sign and the hyphen (-) sign (keyboard shortcut: **`Alt`** + **`-`** for Windows and **`Option`** + **`-`** for Mac).
+
+For example, suppose we would like to store the number `1/40` for future use. We will assign this value to an object called `x`:
+
+```{r}
+x <- 1/40
+```
+
+Notice that assignment does not print a value. Instead, R stores it for later in the **object** `x`. Call object `x` now and see that it contains the **value** `0.025`:
+
+```{r}
+x
+```
+
+If we look for the `Environment` tab in one of the panes of RStudio, we will see that `x` and its value have appeared.
+
+ 
+
+::: callout-tip
+## How to print the results of assignment immediately
+
+Surrounding the assignment with parentheses results in both assignment and print to screen to happen. For example:
+
+```{r}
+(x <- 1/40)
+```
+:::
+
+ 
+
+Our object `x` can be used in place of a number in any calculation that expects a number. For example:
+
+```{r}
+log(x)
+```
+
+ 
+
+::: callout-tip
+## Use space before and after operators (*Highly Recommended*)
+
+It is important the space before and after comparison operators and assignments. For example, suppose we want to code the expression `x smaller than -1/50` (note that `x` is `1/40`):
+
+-   **With** spaces
+
+```{r}
+x < -1/50    # with spaces 
+```
+
+The result is the logical `FALSE` because the value x (equals to 1/40) is higher than -1/50.
+
+-   **Without** spaces
+
+```{r}
+x<-1/50    # without spaces
+x
+```
+
+If we omit the spaces we end up with the assignment operator and we have `x <- 1/50` which equals to 0.02.
+:::
+
+ 
+
+### Other types of assignment
+
+It is also possible to use the **`=`** or **`->`** rightward operator for assignment (but these are much less common among R users).
+
+For example:
+
+```{r}
+x = 1/40
+x
+```
+
+or
+
+```{r}
+1/40 -> x
+x
+```
+
+It is a good idea to **be consistent** with the operator we use.
+
+ 
+
+## Reassigning an object
+
+Notice also that objects can be **reassigned**. For example, recall the `x` object:
+
+```{r}
+x
+```
+
+then type the following:
+
+```{r}
+x <- 100
+x
+```
+
+`x` used to contain the value 0.025 and now it has the value 100.
+
+Moreover, assignment values can contain the object being assigned to:
+
+```{r}
+
+x <- x + 1 
+x
+```
+
+The right hand side of the assignment can be any valid R expression and it is fully evaluated **before** the assignment takes place.
+
+## Legal object names
+
+Object names must start with a letter and **can** contain letters, numbers, underscores `( _ )` and periods (.). They **cannot** start with a number or underscore, nor contain spaces at all. Moreover, they can not contain [Reserved words.](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
+
+Different people use different conventions for long object names, these include:
+
+-   periods.between.words
+-   underscores_between_words
+-   camelCaseToSeparateWords
+
+What we use is up to us, but we must **be consistent**. We might ask help:
+
+```{r}
+#| eval: false
+
+??make.names
+??clean_names
+```
+
+::: callout-tip
+## R is case-sensitive
+
+R treats capital letters differently from lower-case letters.
+:::
+
+```{r}
+#| error: true
+#| eval: false
+
+Y <- 50
+Y
+```
+
+but...
+
+```{r}
+#| error: true
+#| eval: false
+y
+```
+
+`r text_spec("Error: object 'y' not found", color = "red")`
+
+ 
+
+## We are not limited to store numbers in objects
+
+In objects we can also store other data types. For example, we can store strings of characters:
+
+```{r}
+sentence <- "the cat sat on the mat"
+```
+
+Note that we need to put strings of characters inside **quotes**.
+
+ 
+
+But the type of data that is stored in an object affects what we can do with it:
+
+```{r , error=TRUE, eval=FALSE}
+sentence + 1
+```
+
+`r text_spec("Error in sentence + 1: non-numeric argument to binary operator", color = "red")`

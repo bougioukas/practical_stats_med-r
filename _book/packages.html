@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.324">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Practical Statistics in Medicine with R - 1&nbsp; R via RStudio</title>
+<title>Practical Statistics in Medicine with R - 5&nbsp; R packages</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -64,8 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./rstudio_projects.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./objects.html" rel="next">
+<link href="./functions.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -77,10 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
-<script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
-<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -99,35 +92,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
 </head>
-
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./intro_rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
         <div class="sidebar-tools-main">
@@ -142,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -156,10 +138,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
@@ -183,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></a>
   </div>
 </li>
@@ -194,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -203,15 +185,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -220,15 +202,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -237,8 +219,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
@@ -329,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -337,28 +319,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link active" data-scroll-target="#installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</a></li>
-  <li><a href="#starting-r-rstudio" id="toc-starting-r-rstudio" class="nav-link" data-scroll-target="#starting-r-rstudio"><span class="header-section-number">1.2</span> Starting R &amp; RStudio</a></li>
-  <li><a href="#errors-warnings-and-messages-in-r" id="toc-errors-warnings-and-messages-in-r" class="nav-link" data-scroll-target="#errors-warnings-and-messages-in-r"><span class="header-section-number">1.3</span> Errors, warnings, and messages in R</a></li>
-  <li><a href="#r-help-resources" id="toc-r-help-resources" class="nav-link" data-scroll-target="#r-help-resources"><span class="header-section-number">1.4</span> R Help resources</a></li>
+<li>
+<a href="#what-are-r-packages" id="toc-what-are-r-packages" class="nav-link active" data-scroll-target="#what-are-r-packages"><span class="header-section-number">5.1</span> What are R packages?</a>
+  <ul class="collapse">
+<li><a href="#standard-base-r-packages" id="toc-standard-base-r-packages" class="nav-link" data-scroll-target="#standard-base-r-packages">Standard (base) R packages</a></li>
+  <li><a href="#add-on-packages" id="toc-add-on-packages" class="nav-link" data-scroll-target="#add-on-packages">Add-on packages</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#package-installation" id="toc-package-installation" class="nav-link" data-scroll-target="#package-installation"><span class="header-section-number">5.2</span> Package installation</a></li>
+  <li><a href="#package-loading" id="toc-package-loading" class="nav-link" data-scroll-target="#package-loading"><span class="header-section-number">5.3</span> Package loading</a></li>
+  <li><a href="#the-tidyverse-package" id="toc-the-tidyverse-package" class="nav-link" data-scroll-target="#the-tidyverse-package"><span class="header-section-number">5.4</span> The <code>{tidyverse}</code> package</a></li>
+  <li><a href="#the-here-package" id="toc-the-here-package" class="nav-link" data-scroll-target="#the-here-package"><span class="header-section-number">5.5</span> The <code>{here}</code> package</a></li>
+  <li><a href="#the-reprex-package" id="toc-the-reprex-package" class="nav-link" data-scroll-target="#the-reprex-package"><span class="header-section-number">5.6</span> The <code>{reprex}</code> package</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span id="sec-intro_rstudio" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-packages" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></h1>
 </div>
 
 
@@ -371,9 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header>
-
-<p>When we have finished this Chapter, we should be able to:</p>
+</header><p>When we have finished this chapter, we should be able to:</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -385,170 +367,172 @@ Learning objectives
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Describe the purpose and use of each pane in the RStudio IDE.</li>
-<li>Understand the differences between errors, warnings, and messages in R.</li>
-<li>Seek for help.</li>
+<li>Understand the concept of packages in R.</li>
+<li>Know to install and load a package in R.</li>
+<li>Get familiar with the <code>tidyverse</code> and other packages.</li>
+<li>Create a reproducible example (reprex).</li>
 </ul>
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="installing-r-and-rstudio" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="installing-r-and-rstudio"><span class="header-section-number">1.1</span> Installing R and RStudio</h2>
-<p>R is a free open-source statistical programming language (an implementation of the S programming language) and a powerful graphics engine, which was created by Ross Ihahka and Robert Gentleman at the University of Auckland in 1993.</p>
-<p>RStudio is an integrated development environment (IDE) that was founded by J.J. Allaire in 2009. Today, RStudio is an open source <a href="https://posit.co/">Posit</a> product that provides a friendly interface by adding a plenty of great features, auto-complete functions and a set of useful tools.</p>
-<p>Throughout this textbook we will use <strong>R</strong> via <strong>RStudio IDE</strong>. Both programs can be downloaded from <img src="images/posit.png" width="22" height="20"> <a href="https://posit.co/download/rstudio-desktop/">posit</a>.</p>
-</section>
-<section id="starting-r-rstudio" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="starting-r-rstudio"><span class="header-section-number">1.2</span> Starting R &amp; RStudio</h2>
-<p>After the R and RStudio installation is finished, we click the RStudio icon <img src="images/r_studio_icon.png" id="fig-r_studio_icon" class="img-fluid" style="width:4.0%">.</p>
-<p>R starts automatically when we open RStudio. The first time we initiate an R session we will see <strong>three panes</strong> (<a href="#fig-RStudio_panes">Figure&nbsp;<span>1.1</span></a>):</p>
-<div id="fig-RStudio_panes" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/RStudio_panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: RStudio Screenshot with three panes.</figcaption><p></p>
-</figure>
+<section id="what-are-r-packages" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="what-are-r-packages">
+<span class="header-section-number">5.1</span> What are R packages?</h2>
+<section id="standard-base-r-packages" class="level3"><h3 class="anchored" data-anchor-id="standard-base-r-packages">Standard (base) R packages</h3>
+<p>R installs a set of standard (base) packages during the installation process. <strong>Standard packages</strong> are stored in a <em>library</em> folder of the R program and contain the basic functions that allow R to work as well as a number of statistical and graphical functions that are ready to be used in our data analysis.</p>
+</section><section id="add-on-packages" class="level3"><h3 class="anchored" data-anchor-id="add-on-packages">Add-on packages</h3>
+<p>More packages can be added later in User’s R library from repositories, when they are needed for some specific purpose (add-on R packages). <strong>Add-on R packages</strong> are created by a world-wide active community of developers and R users, covering a wide number of different applications. Most of these packages can be installed for free from many different online sources (repositories).</p>
+<p>A <strong>repository</strong> is a place where packages are located and stored so we can install them from it. Some of the most popular repositories for R packages, are:</p>
+<ul>
+<li><p><strong>CRAN:</strong> Comprehensive R Archive Network(CRAN) is the official R repository.</p></li>
+<li><p><strong>Github:</strong> Github is the most popular repository for open source projects.</p></li>
+<li><p><strong>Bioconductor:</strong> Bioconductor is a topic-specific repository, intended for open source software for bioinformatics.</p></li>
+</ul>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>The three main panes that divide the screen are:</p>
+<div class="callout-title-container flex-fill">
+Add-on R packages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add-on R packages <strong>extend the functionality</strong> of R by providing additional collections of R functions, sample data, and documentation for the included functions in a well-defined format.</p>
+</div>
+</div>
+<p>To <strong>use</strong> an add-on package we need to:</p>
 <ol type="1">
-<li><p>the large <strong>Console pane</strong> on the left runs R code immediately. It is also known as the command line pane.</p></li>
-<li><p>the <strong>Environment pane</strong>, which includes among others the Global Environment (Workspace) and History tabs, in the upper right.</p>
-<ul>
-<li><p>The <strong>Environment tab</strong> keeps track of the objects we create as we work with R.</p></li>
-<li><p>The <strong>History tab</strong> saves all of the commands that we have sent to the console in the R session.</p></li>
-</ul></li>
-<li><p>the <strong>Output pane</strong> in the lower right which includes:</p>
-<ul>
-<li><p>The <strong>Files tab</strong> allows us create new folders (directories) on our computer, as well as copy, move, delete, or rename files.</p></li>
-<li><p>The <strong>Plots tab</strong> display static graphs which are generated from our data and during the data analysis. There are backward and forward arrows for navigating between previously and currently generated plots. Clicking the broom icon <img src="images/broom.png" width="24" height="22"> will clear all temporary plots from the tab.</p></li>
-<li><p>The <strong>Packages</strong> tab lists of all the R packages installed on our computer and indicates whether or not they are currently loaded. We’ll discuss packages in more detail in .</p></li>
-<li><p>The <strong>Help tab</strong>, displays the results of the search for R documentation.</p></li>
-<li><p>The <strong>Viewer tab</strong> in RStudio allows us to view local web content (e.g., <code>html</code> tables or interactive <code>htmlwidgets</code> like <code>plotly</code> graphs).</p></li>
-<li><p>The <strong>Presentation tab</strong> is used to display HTML slides generated via Quarto’s revealjs format.</p></li>
-</ul></li>
+<li><p><strong><em>Install the package from a repository</em></strong>. Once we’ve installed a package, we don’t need to install it again unless we want to update it.</p></li>
+<li><p><strong><em>Load the package in R session</em></strong>. Add-on packages are not loaded by default when we start an R session in RStudio. Each add-on package needs to be loaded explicitly <strong>every time</strong> we start RStudio.</p></li>
 </ol>
-<p>Throughout this textbook, we’ll come to learn what purpose each of these panes serves.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Command prompt &nbsp;&gt;
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The Console pane starts with information about the version number, license and contributors, and provides some guidance on how to get help. The last line is a <strong>standard command prompt</strong> (the greater than sign &gt; symbol) that indicates R is ready and expecting instructions to do something.</p>
-</div>
-</div>
+<p>For example, among the many add-on packages, we will use in this textbook are the <code>dplyr</code> package for data wrangling, the <code>ggplot2</code> package for data visualization and and the <code>rstatix</code> package for statistical tests.</p>
+<p>Let’s now show how to perform these two steps for the `rstatix`` package for data visualization.</p>
 <p>&nbsp;</p>
-<p>Let’s type <code>14 + 16</code> in front of the R command prompt in the Console and press <kbd>Enter</kbd> :</p>
+</section></section><section id="package-installation" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="package-installation">
+<span class="header-section-number">5.2</span> Package installation</h2>
+<p>There are two ways to install an add-on R package as follows:</p>
+<p><strong>A. Installing packages using RStudio interface</strong></p>
+<p>Let’s install the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package as shown in Figure <a href="#fig-installation">Figure&nbsp;<span>5.1</span></a>. In the output pane of RStudio:</p>
+<ol type="a">
+<li>Activate the “Packages” tab.</li>
+<li>Click on “Install”.</li>
+<li>Type the name of the package <code>rstatix</code> in the box under “Packages (separate multiple with space or comma):”.</li>
+<li>Press “Install.”</li>
+</ol>
+<div id="fig-installation" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/installation.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5.1: Installing packages in R using RStudio interface</figcaption><p></p>
+</figure>
+</div>
+<p><strong>B. Installing packages from repositories using command</strong></p>
+<p>For installing the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package from <strong>CRAN</strong> we type the following command in the Console pane of RStudio and press <strong>Enter</strong> on our keyboard:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 30</code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rstatix"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>We observe in the console that the output is <code>[1] 30</code>. It’s clear that <code>30</code> is the answer to the mathematical calculation of <code>14 + 16</code>. However, what does the <code>[1]</code> mean? At this point we can ignore it, but technically it refers to the <strong>index of the first item on each line</strong>. (In some cases R prints out many lines as an output. The number inside the square brackets is an index that helps us find where in the sequence we are per line).</p>
-</section>
-<section id="errors-warnings-and-messages-in-r" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="errors-warnings-and-messages-in-r"><span class="header-section-number">1.3</span> Errors, warnings, and messages in R</h2>
-<p>Let’s type the the word <em>hello</em> in the Console and press <kbd>Enter</kbd>:</p>
+<p>Note we must include the <strong>quotation marks</strong> around the name of the package. In order to install <strong>several</strong> package at once, we just have to use the install.packages()` function as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rstatix"</span>, <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We get the following error:<br>
-<span style="     color: #8676F8 !important;">Error: object ‘hello’ not found</span></p>
-<p>R will show in the Console pane that something unusual is happening in three different situations:</p>
-<ul>
-<li><p><strong>Errors:</strong> When there is an error, the execution of code will stop and some relative information is reported for this failure.</p></li>
-<li><p><strong>Warnings:</strong> When there is a signal of a warning, the code will still work, but with some possible issues.</p></li>
-<li><p><strong>Messages:</strong> In many cases, messages are attached to the output after the code execution that might be useful information for the user.</p></li>
-</ul>
-<p>Now, let’s type in the Console the following:</p>
+<p><strong>We only have to install a package once</strong>. However, if we want to update an installed package to a newer version, we need to re-install it using the previous command.</p>
+<p>Moreover, suppose, for instance, that we want to download the <strong>development</strong> version of the <code>rstatix</code> package from GitHub. The first step is to install and load the <code>devtools</code> package, available on CRAN. On Windows, in case we encounter some error, we might need to install the <strong>Rtools</strong> program. Then we can call the <code>install_github()</code> function to install the R package from GitHub.</p>
+<p>In case we need to install an <strong>older</strong> version of a package the simplest method is to use the provided <code>install_version()</code> function of the devtools package to install the version we need.</p>
+</section><section id="package-loading" class="level2 page-columns page-full" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="package-loading">
+<span class="header-section-number">5.3</span> Package loading</h2>
+<p>After we’ve installed a package, we need to <strong>load it</strong> in the current R session using the <strong><code><a href="https://rdrr.io/r/base/library.html">library()</a></code></strong> command (note that the the quotation marks are not necessary when we are loading a package). For example, to load the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package, we run the following code in the console pane:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="1">We have not finished the mathematical expression.</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-3" data-code-lines="2">Here the plus sign (<code>+</code>) is a prompt.</span>
-</dd>
-</dl>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>If an R command is <strong>not complete</strong> then a plus sign (<code>+</code>) (prompt) appears on second and subsequent lines in the Console until the command syntax is correct. In our example, we can type a number to finish the mathematical expression we are trying to calculate. We can also press the escape key <kbd>Esc</kbd> to cancel the command.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>Packages Vs Libraries:</strong> There is always confusion between a package and a library. The directories in R where the packages are stored are called the libraries.</p>
+</div></div><p>If the cursor is blinking next to the <code>&gt;</code> prompt in Console, the <code>rstatix</code> package was successfully installed and it is ready for use; otherwise, we get the following error:</p>
+<p><span style="     color: #8676F8 !important;">Error in library(rstatix) : there is no package called ‘rstatix’</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Recall a previously typed command in Console
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In <strong>Console</strong> to go between previously typed commands use the up (<span class="math inline">\(\uparrow\)</span>) and down arrow (<span class="math inline">\(\downarrow\)</span>) keys. To modify or correct a command use the left (<span class="math inline">\(\leftarrow\)</span>) and right arrow (<span class="math inline">\(\rightarrow\)</span>) keys.</p>
+<p>If we forget to load <code>rstatix</code> in our R session, when we try to use the functions included in this package such as <code><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test()</a></code>, we will get an error :</p>
+<p><span style="     color: #8676F8 !important;">Error in … : could not find function t_test</span></p>
 </div>
 </div>
-</section>
-<section id="r-help-resources" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="r-help-resources"><span class="header-section-number">1.4</span> R Help resources</h2>
-<p>Before asking others for help, we should try to solve the R programming problems on our own. Therefore, it is recommended to learn how to use R’s built-in help system.</p>
-<p>First, we can use the <code>help()</code> command or the <strong><code>?</code></strong> help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the <code>median</code> we will type the following command:</p>
+<p>There is one way in R that can use a <code>function</code> without using <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. To do this, we can simply use the notation <code>package::function</code> .</p>
+<p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rstatix</span><span class="fu">::</span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help">Figure&nbsp;<span>1.2</span></a>):</p>
-<div id="fig-median_help" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/median_help.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.2: The <code>help()</code> command searches for specific term such as “median” in the standard R distribution.</figcaption><p></p>
-</figure>
-</div>
-<p>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our R library and it is a shortcut to <code>help.search()</code> command. So for example, let’s say we want to search documentation specifically for the <code>geometric median</code>. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.</p>
+<p>The above notation tells R to use the <code>t_test</code> function from <code>rstatix</code> without load the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package.</p>
+</section><section id="the-tidyverse-package" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="the-tidyverse-package">
+<span class="header-section-number">5.4</span> The <code>{tidyverse}</code> package</h2>
+<p>In this textbook we will use the <a href="https://tidyverse.tidyverse.org">tidyverse</a> package. Actually, the tidyverse is a collection of R packages designed for data science that work in harmony.</p>
+<p>The command <code>install.packages("tidyverse")</code> will <strong>install</strong> the complete tidyverse. The <code>tidyverse</code> package provides a shortcut for downloading the following packages:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"geometric median"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="fig-help_search" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/help_search.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.3: The <code>help.search()</code> command searches for a phrase such as “geometric mean” in our R library.</figcaption><p></p>
-</figure>
-</div>
-<p>To find all the names containing the pattern we search in the current R session, by partial matching, we can use the <strong><code>apropos()</code></strong> command. For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"med"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "elNamed"        "elNamed&lt;-"      "median"         "median.default"
-[5] "medpolish"      "runmed"        </code></pre>
+<pre><code> [1] "broom"         "conflicted"    "cli"           "dbplyr"       
+ [5] "dplyr"         "dtplyr"        "forcats"       "ggplot2"      
+ [9] "googledrive"   "googlesheets4" "haven"         "hms"          
+[13] "httr"          "jsonlite"      "lubridate"     "magrittr"     
+[17] "modelr"        "pillar"        "purrr"         "ragg"         
+[21] "readr"         "readxl"        "reprex"        "rlang"        
+[25] "rstudioapi"    "rvest"         "stringr"       "tibble"       
+[29] "tidyr"         "xml2"          "tidyverse"    </code></pre>
 </div>
 </div>
-<p>Use the <strong><code>example()</code></strong> command to run the examples that are provided in the R documentation:</p>
+<p>When we <strong>load</strong> the tidyverse package with the command <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>, R will load the <strong>eight core packages</strong> namely <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>tibble</code>, <code>stringr</code>, and <code>forcats</code> and make them available in our current R session.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Non-core tidyverse packages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The packages out of the core list of <code>tidyverse</code> have more specialized usage and are not loaded automatically with the command <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>. So, we need to load each one explicitly with the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function if we want to use them.</p>
+</div>
+</div>
+</section><section id="the-here-package" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="the-here-package">
+<span class="header-section-number">5.5</span> The <code>{here}</code> package</h2>
+<p>When we work with Projects in RStudio we may find useful the <a href="https://here.r-lib.org/">here</a> package. The main function of the package, <code>here()</code>, builds a path relative to the top level of our RStudio project every time we call it. It allows us to navigate throughout each of the sub-folders and files in our project using <strong>relative</strong> paths.</p>
+<blockquote class="blockquote">
+<p>We can think of the paths as directions to the files. There are two kinds of paths: <strong>absolute paths</strong> and <strong>relative paths</strong>.</p>
+</blockquote>
+<p>For example, suppose that Emily and Paul are working on a project together and want to read in R studio of their computers an excel file named <code>covid19.xlsx</code> that is stored within a “data” folder. They could do this using either an absolute or a relative path as follows:</p>
+<p><strong>A. Reading data using an absolute path</strong></p>
+<p>Emily’s file is stored at <code>C:/emily/project/data/covid19.xlsx</code> and the command in R should be:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-median&gt; median(1:4)                # = 2.5 [even number]
-[1] 2.5
-
-median&gt; median(c(1:3, 100, 1000))  # = 3 [odd, robust]
-[1] 3</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"C:/emily/project/data/covid19.xlsx"</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>while Paul’s file is stored at <code>C:/paul/project/data/covid19.xlsx</code> and the command in R should be:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span> </span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"C:/paul/project/data/covid19.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Additionally, there are a lot of <strong>on-line resources</strong> that can help (e.g., <a href="https://rseek.org/">RSeek.Org</a>, <a href="https://www.r-bloggers.com/">R-bloggers</a>, <a href="https://stackoverflow.com/">Stack Overflow</a>). However, we must understand that blindly copying/pasting code could produce many unexpected code bugs and further it won’t help to the development of our programming skills.</p>
+<p>Even though Emily and Paul stored their files in their “C” disk, the absolute paths are different due to their different usernames. &nbsp;</p>
+<p><strong>B. Reading data using a relative path</strong></p>
+<p>For a relative path the command in R should be:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"covid19.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this case, <code>here()</code> tells R that the folder structure starts at the project-level. The relative path from inside the project folder (<code>data/covid19.xlsx</code>) is the same on both computers; any code that uses relative paths will work on both computers.</p>
+</section><section id="the-reprex-package" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="the-reprex-package">
+<span class="header-section-number">5.6</span> The <code>{reprex}</code> package</h2>
+<p>If we are looking for help with an rstats problem, it is recommend that we:</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp;do <em>not</em> email an individual author or open source software (OSS) maintainer</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; create a minimum reproducible example (a reprex) demonstrating your problem</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; post on a public forum like RStudio Community or Stack Overflow</p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -859,22 +843,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./functions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rstudio_projects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with RStudio Projects and writing R scripts</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./objects.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Copyright 2023, Konstantinos I. Bougioukas</div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -883,8 +864,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer>
-<div class="page-columns page-rows-contents page-layout-article"><div class="social-share"><a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical Statistics in Medicine with R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical Statistics in Medicine with R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a></div></div>
+</footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share">
+<a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a>
+</div></div>
 
 
 

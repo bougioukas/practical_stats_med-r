@@ -327,7 +327,7 @@ help(options)
 ```
 
 
-## User-Defined Functions
+## User-defined functions
 
 We can create our own functions, using the **`function()`**, which is a very powerful way to extend R.
 
@@ -340,7 +340,7 @@ We can create our own functions, using the **`function()`**, which is a very pow
 3.  the code of the function (statements)
 :::
 
-For example a function that calculate the logarithm of a number to base 7 is:
+For example, a simple function that calculates the logarithm of a number to base 7 is following:
 
 ```{r}
 log7 <- function(x) {

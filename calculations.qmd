@@ -1,0 +1,217 @@
+# R as calculator {#sec-calculations}
+
+When we have finished this chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Know the basic arithmetic operators in R.
+-   Use R as a calculator.
+-   Understand the use of relational (or comparison) operators.
+-   Get familiar with scientific notation.
+-   Understand special values (i.e. NA, Inf, NaN, NULL) in R
+:::
+
+ 
+
+## Arithmetic Operators in R
+
+The simplest thing we could do with R is arithmetic operations with numbers. For example:
+
+```{r}
+
+1 + 100 
+```
+
+R printed out the result, with a preceding `[1]`.
+
+ 
+
+In the previous calculation the `+` sign was used to carry out the addition. @tbl-arithmetic_operators presents a list of arithmetic operators available in R.
+
+| Operator | Description                       |
+|----------|-----------------------------------|
+| \+       | addition                          |
+| \-       | subtraction                       |
+| \*       | multiplication                    |
+| /        | division                          |
+| \^       | exponent                          |
+
+: Arithmetic Operators in R {#tbl-arithmetic_operators}
+
+Remember when using R as a calculator, the order of operations is the same as we would have learned back in school.
+
+From highest to lowest precedence:
+
+-   Parentheses: `( )`
+-   Exponents: `^` or `**`
+-   Division: `/`
+-   Multiplication: `*`
+-   Addition: `+`
+-   Subtraction: `-`
+
+Therefore:
+
+```{r}
+3 + 5 * 2
+```
+
+ 
+
+### Parentheses
+
+Use parentheses to group operations in order to force the order of evaluation if it differs from the default, or to make clear what we intend.
+
+```{r}
+(3 + 5) * 2
+```
+
+This can get unwieldy when not needed, but clarifies our intentions. Remember that others may later read our code.
+
+```{r}
+#| eval: false
+
+(3 + (5 * (2 ^ 2))) # hard to read
+3 + 5 * 2 ^ 2       # clear, if we remember the rules
+3 + 5 * (2 ^ 2)     # if we forget some rules, this might help
+```
+
+::: callout-important
+Remember that the text after each line of code is a **comment**. Anything that follows after the hash symbol **`#`** is ignored by R when executes code.
+:::
+
+ 
+
+## Relational Operators in R
+
+**Relational (or comparison) operators** are used to compare between values. Comparisons in R typically evaluate to `TRUE` or `FALSE` (which in certain circumstances we can abbreviate to `T` and `F`). Here is a list of relational operators available in R (@tbl-relational_operators).
+
+| **symbol** | **read as**              |
+|------------|:-------------------------|
+| \<         | less than                |
+| \>         | greater than             |
+| ==         | equal to                 |
+| \<=        | less than or equal to    |
+| \>=        | greater than or equal to |
+| !=         | not equal to             |
+
+: Relational (comparison) operators in R {#tbl-relational_operators}
+
+Some simple comparisons with integer numbers follow:
+
+::: {.callout-note icon="false"}
+## Examples
+
+```{r}
+2 < 1  # less than
+```
+
+```{r}
+1 > 0  # greater than
+```
+
+```{r}
+1 == 1  # equal to (double equal sign for equality)
+```
+
+```{r}
+1 <= 1  # less than or equal to
+```
+
+```{r}
+-9 >= -3 # greater than or equal to
+```
+
+```{r}
+1 != 2  # not equal to (inequality)
+```
+:::
+
+
+ 
+
+## Scientific notation
+
+Scientific notation is a special way of expressing numbers that are too big or too small to be conveniently written in decimal form. Generally, it expresses numbers in forms of $m \times 10^n$ and R uses the **e** notation.
+
+::: {.callout-note icon="false"}
+## Examples
+
+-   0.0055 is written $5.5 \times 10^{-3}$\
+    because 0.0055 = 5.5 × 0.001 = 5.5 × $10^{-3}$ or 5.5e-3
+
+-   0.000000015 is written $1.5 \times 10^{-8}$\
+    because 0.000000015 = 1.5 × 0.00000001 = 1.5 × $10^{-8}$ or 1.5e-8
+
+-   5500 is written $5.5 \times 10^{3}$\
+    because 5500 = 5.5 × 1000 = 5.5 × $10^{3}$ or 5.5e3
+
+-   150000000 is written $1.5 \times 10^{8}$\
+    because 150000000 = 1.5 × 100000000 = 1.5 × $10^{8}$ or 1.5e8
+:::
+
+::: callout-important
+## Scientific notation Vs Euler's number
+
+Note that the *e* notation has nothing to do with the Euler's number *e=2.718* .
+:::
+
+ 
+
+## Special values in R
+
+There are a few special values that are used in R.
+
+### Missing values (NA)
+
+For example, in the real world, missing values may occur when recording sensor information. R uses a special numeric value `NA` standing for "Not available" and represents a missing value. Mathematical functions/operations using `NA` produces `NA`:
+
+```{r}
+cos(NA)
+```
+
+```{r}
+1 + NA
+```
+
+ 
+
+### Infinitive: -Inf or Inf
+
+There is also a special number `Inf` which represents infinity. Fortunately, R has special numbers for this.
+
+This allows us to represent entities like:
+
+```{r}
+1/0
+```
+
+The `Inf` can also be used in ordinary calculations:
+
+```{r}
+exp(-Inf)
+```
+
+ 
+
+### Not A Number (NaN)
+
+The value NaN (stands for "not a number") represents an undefined value and it is usually the product of some arithmetic operations. For example:
+
+```{r}
+Inf/Inf
+```
+
+```{r}
+0/0
+```
+
+```{r}
+cos(Inf)
+```
+
+ 
+
+### NULL
+
+Additionally, there is a null object in R, represented by the symbol NULL. (The symbol NULL always points to the same object.) NULL is often used as an argument in functions to mean that no value was assigned to the argument. Additionally, some functions may return NULL. Note that NULL is not the same as NA, Inf, -Inf, or NaN.
