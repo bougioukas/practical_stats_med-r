@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical Statistics in Medicine with R - 9&nbsp; Statistics and data</title>
+<title>Practical Statistics in Medicine with R - 10&nbsp; Statistics and data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./descriptive.html" rel="next">
-<link href="./objects.html" rel="prev">
+<link href="./ggplot2.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Statistics</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Statistics</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Statistics and data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,12 +158,30 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data transformation with to tidyverse</span></a>
+ <span class="menu-text">Statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -171,126 +189,92 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Graphics with ggplot2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Statistics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
       </ul>
@@ -311,13 +295,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-discipline-of-statistics" id="toc-the-discipline-of-statistics" class="nav-link active" data-scroll-target="#the-discipline-of-statistics"><span class="header-section-number">9.1</span> The discipline of statistics</a></li>
-  <li><a href="#data-and-variables" id="toc-data-and-variables" class="nav-link" data-scroll-target="#data-and-variables"><span class="header-section-number">9.2</span> Data and Variables</a>
+  <li><a href="#the-discipline-of-statistics" id="toc-the-discipline-of-statistics" class="nav-link active" data-scroll-target="#the-discipline-of-statistics"><span class="header-section-number">10.1</span> The discipline of statistics</a></li>
+  <li><a href="#data-and-variables" id="toc-data-and-variables" class="nav-link" data-scroll-target="#data-and-variables"><span class="header-section-number">10.2</span> Data and Variables</a>
   <ul class="collapse">
   <li><a href="#biomedical-data" id="toc-biomedical-data" class="nav-link" data-scroll-target="#biomedical-data">Biomedical Data</a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   </ul></li>
-  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data"><span class="header-section-number">9.3</span> Types of Data</a>
+  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data"><span class="header-section-number">10.3</span> Types of Data</a>
   <ul class="collapse">
   <li><a href="#categorical-data" id="toc-categorical-data" class="nav-link" data-scroll-target="#categorical-data">Categorical Data</a></li>
   <li><a href="#numerical-data" id="toc-numerical-data" class="nav-link" data-scroll-target="#numerical-data">Numerical Data</a></li>
@@ -330,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></h1>
+<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></h1>
 </div>
 
 
@@ -365,10 +349,10 @@ Learning objectives
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="the-discipline-of-statistics" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="the-discipline-of-statistics"><span class="header-section-number">9.1</span> The discipline of statistics</h2>
+<section id="the-discipline-of-statistics" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="the-discipline-of-statistics"><span class="header-section-number">10.1</span> The discipline of statistics</h2>
 <p>Statistics is an empirical or practical method for collecting, organizing, summarizing, and presenting data, and for making inferences about the population from which the data are drawn.</p>
-<p>The discipline of traditional (frequentist) statistics includes two main branches (<a href="#fig-branches">Figure&nbsp;<span>9.1</span></a>):</p>
+<p>The discipline of traditional (frequentist) statistics includes two main branches (<a href="#fig-branches">Figure&nbsp;<span>10.1</span></a>):</p>
 <ul>
 <li><p><strong>descriptive statistics</strong> that includes measures of frequency and measures of location and dispersion. It also includes a description of the general shape of the distribution of the data.</p></li>
 <li><p><strong>inferential statistics</strong> that aims at generalizing conclusions made on a sample to a whole population. It includes estimation and hypothesis testing.</p></li>
@@ -390,22 +374,22 @@ Learning objectives
     
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;9.1: The discipline of statistics and its two branches, descriptive statistics and inferential statistics</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.1: The discipline of statistics and its two branches, descriptive statistics and inferential statistics</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="data-and-variables" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="data-and-variables"><span class="header-section-number">9.2</span> Data and Variables</h2>
+<section id="data-and-variables" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="data-and-variables"><span class="header-section-number">10.2</span> Data and Variables</h2>
 <section id="biomedical-data" class="level3">
 <h3 class="anchored" data-anchor-id="biomedical-data">Biomedical Data</h3>
 <p><strong>Biomedical data</strong> have unique features compared with data in other domains. The data may include administrative health data, biomarker data, biometric data (for example, from wearable technologies) and imaging, and may originate from many different sources, including Electronic Health Records (EHRs), surveillance systems, clinical registries, biobanks, the internet (e.g.&nbsp;social media) and patient self-reports.</p>
-<p>Biomedical data can be transformed into <strong>information</strong>. This information can become <strong>knowledge</strong> if the researchers and clinicians understand it (<a href="#fig-info">Figure&nbsp;<span>9.2</span></a>).</p>
+<p>Biomedical data can be transformed into <strong>information</strong>. This information can become <strong>knowledge</strong> if the researchers and clinicians understand it (<a href="#fig-info">Figure&nbsp;<span>10.2</span></a>).</p>
 <div id="fig-info" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/info.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;9.2: From data to knowledge.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.2: From data to knowledge.</figcaption><p></p>
 </figure>
 </div>
 <p>There are three main data structures: structured data, unstructured data, and semi-structured data.</p>
@@ -436,9 +420,9 @@ Independent Vs Dependent variables
 <p>&nbsp;</p>
 </section>
 </section>
-<section id="types-of-data" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="types-of-data"><span class="header-section-number">9.3</span> Types of Data</h2>
-<p>Data in variables can be either <strong>categorical</strong> or <strong>numerical</strong> (otherwise known as qualitative and quantitative) in nature (<a href="#fig-data_types">Figure&nbsp;<span>9.3</span></a>).</p>
+<section id="types-of-data" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="types-of-data"><span class="header-section-number">10.3</span> Types of Data</h2>
+<p>Data in variables can be either <strong>categorical</strong> or <strong>numerical</strong> (otherwise known as qualitative and quantitative) in nature (<a href="#fig-data_types">Figure&nbsp;<span>10.3</span></a>).</p>
 <div class="cell" data-fig-width="9">
 <div class="cell-output-display">
 <div id="fig-data_types" class="quarto-figure quarto-figure-center anchored">
@@ -458,7 +442,7 @@ Independent Vs Dependent variables
    style H color:#980000, stroke:#333,stroke-width:4px
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;9.3: Broad classification of the different types of data with examples.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.3: Broad classification of the different types of data with examples.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -866,13 +850,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./objects.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span>
+      <a href="./ggplot2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./descriptive.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

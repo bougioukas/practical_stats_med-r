@@ -29,15 +29,15 @@ R printed out the result, with a preceding `[1]`.
 
 In the previous calculation the `+` sign was used to carry out the addition. @tbl-arithmetic_operators presents a list of arithmetic operators available in R.
 
-| Operator | Description                       |
-|----------|-----------------------------------|
-| \+       | addition                          |
-| \-       | subtraction                       |
-| \*       | multiplication                    |
-| /        | division                          |
-| \^       | exponent                          |
+| Operator | Description    |
+|----------|----------------|
+| \+       | addition       |
+| \-       | subtraction    |
+| \*       | multiplication |
+| /        | division       |
+| \^       | exponent       |
 
-: Arithmetic Operators in R {#tbl-arithmetic_operators}
+: Basic arithmetic operators in R {#tbl-arithmetic_operators}
 
 Remember when using R as a calculator, the order of operations is the same as we would have learned back in school.
 
@@ -127,12 +127,11 @@ Some simple comparisons with integer numbers follow:
 ```
 :::
 
-
  
 
 ## Scientific notation
 
-Scientific notation is a special way of expressing numbers that are too big or too small to be conveniently written in decimal form. Generally, it expresses numbers in forms of $m \times 10^n$ and R uses the **e** notation.
+Scientific notation is a special way of expressing numbers that are too big or too small to be conveniently written in decimal form. Generally, it expresses numbers in forms of $m \times 10^n$ and R uses the **e** notation^[**NOTE:** that the *e* notation has nothing to do with the Euler's number *e=2.718*.].
 
 ::: {.callout-note icon="false"}
 ## Examples
@@ -150,11 +149,14 @@ Scientific notation is a special way of expressing numbers that are too big or t
     because 150000000 = 1.5 × 100000000 = 1.5 × $10^{8}$ or 1.5e8
 :::
 
-::: callout-important
-## Scientific notation Vs Euler's number
 
-Note that the *e* notation has nothing to do with the Euler's number *e=2.718* .
-:::
+By default, R will return in the Console the scientific notation if we type a number less than 0.001. For example:
+
+```{r}
+0.05         # the number is greater than 0.001 
+0.0005       # the number is less than 0.001 
+```
+
 
  
 
@@ -164,14 +166,14 @@ There are a few special values that are used in R.
 
 ### Missing values (NA)
 
-For example, in the real world, missing values may occur when recording sensor information. R uses a special numeric value `NA` standing for "Not available" and represents a missing value. Mathematical functions/operations using `NA` produces `NA`:
-
-```{r}
-cos(NA)
-```
+In the real world, missing data may occur when recording medical information (e.g., patients lost to follow-up, incomplete medical records). R uses a special numeric value `NA` standing for "Not Available" and represents a missing value. Arithmetic operations using `NA` produces `NA`:
 
 ```{r}
 1 + NA
+```
+
+```{r}
+(3 + 5) / NA
 ```
 
  
@@ -183,13 +185,13 @@ There is also a special number `Inf` which represents infinity. Fortunately, R h
 This allows us to represent entities like:
 
 ```{r}
-1/0
+1 / 0
 ```
 
-The `Inf` can also be used in ordinary calculations:
+The `Inf` can also be used in arithmetic calculations:
 
 ```{r}
-exp(-Inf)
+Inf + 1000
 ```
 
  
@@ -199,15 +201,15 @@ exp(-Inf)
 The value NaN (stands for "not a number") represents an undefined value and it is usually the product of some arithmetic operations. For example:
 
 ```{r}
-Inf/Inf
+Inf / Inf
 ```
 
 ```{r}
-0/0
+0 / 0
 ```
 
 ```{r}
-cos(Inf)
+-Inf + Inf
 ```
 
  

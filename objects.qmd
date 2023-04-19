@@ -22,11 +22,9 @@ When we have finished this chapter, we should be able to:
 
 ## What are the objects in R
 
-R works with **objects** (it is an object-oriented programming language). All the things that we manipulate or encounter in R such as numbers, data structures, functions, the results from a function (e.g., graphs) are types of objects. Some objects come with the packages in R. Other objects are user-created. User-created objects have names that are assigned by the user. R has a workspace known as the global environment that can be used to store objects.
+R works with **objects** (it is an object-oriented programming language). All the things that we manipulate or encounter in R such as numbers, data structures, functions, the results from a function (e.g., plots) are types of objects. Objects come within the R packages or they are user-created. The latter have names that are assigned by the user. R stores objects in the global environment.
 
-Objects in R can have many properties associated with them, called **attributes**. These properties explain what an object represents and how it should be interpreted by R. Two of the most important attributes of an R object are the `class` and the `dimension` of the object.
-
-Attributes of an object (if any) can be accessed using the `attributes()` function. Not all R objects contain attributes, in which case the `attributes()` function returns `NULL`.
+Objects in R usually have many properties associated with them, called **attributes**. These properties explain what an object represents and how it should be interpreted by R. Two of the most important attributes of an R object are the `class` and the `dimension` of the object. Attributes of an object can be accessed using the `attributes()` function. Not all R objects contain attributes, in which case the `attributes()` function returns `NULL`.
 
 For example, the attributes of the famous `iris` data set is a `data.frame` that contains 150 rows and 5 columns:
 
@@ -38,14 +36,14 @@ attributes(iris)
 ::: callout-important
 ## Avoid to separate R commands with a semicolon
 
-R commands are usually separated by a new line but they can also be separated by a semicolon (**;**). However, this is bad practice and should be avoided wherever possible: it can lead to code that is difficult to follow.
+R commands are usually separated by a new line but they can also be separated by a semicolon (**;**). However, this is not the optimal practice and should be avoided wherever possible.
 :::
 
 ## Named storage of objects
 
 ### Assignment operator (`<-`)
 
-In R we can store things in objects using the leftward assignment operator (`<-`) which is an arrow that points to the left, created with the `less-than (<)` sign and the hyphen (-) sign (keyboard shortcut: **`Alt`** + **`-`** for Windows and **`Option`** + **`-`** for Mac).
+In R we can store things in objects using the leftward assignment operator (`<-`) which is an arrow that points to the left, created with the `less-than (<)` sign and the hyphen (-) sign (keyboard shortcut: {{< kbd Alt >}} + {{< kbd - >}} for Windows/Linux and {{< kbd Option >}} + {{< kbd - >}} for Mac).
 
 For example, suppose we would like to store the number `1/40` for future use. We will assign this value to an object called `x`:
 
@@ -198,7 +196,7 @@ but...
 y
 ```
 
-`r text_spec("Error: object 'y' not found", color = "red")`
+`r text_spec("Error: object 'y' not found", color = "#8676F8")`
 
  
 
@@ -220,4 +218,4 @@ But the type of data that is stored in an object affects what we can do with it:
 sentence + 1
 ```
 
-`r text_spec("Error in sentence + 1: non-numeric argument to binary operator", color = "red")`
+`r text_spec("Error in sentence + 1: non-numeric argument to binary operator", color = "#8676F8")`

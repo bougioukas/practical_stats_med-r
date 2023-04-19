@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./introduction.html" rel="next">
+<link href="./vector.html" rel="next">
 <link href="./packages.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -73,7 +73,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -175,12 +177,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data transformation with to tidyverse</span></a>
+ <span class="menu-text">Statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -188,126 +208,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Graphics with ggplot2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Statistics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
       </ul>
@@ -376,9 +362,8 @@ Learning objectives
 <p>&nbsp;</p>
 <section id="what-are-the-objects-in-r" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-are-the-objects-in-r">
 <span class="header-section-number">6.1</span> What are the objects in R</h2>
-<p>R works with <strong>objects</strong> (it is an object-oriented programming language). All the things that we manipulate or encounter in R such as numbers, data structures, functions, the results from a function (e.g., graphs) are types of objects. Some objects come with the packages in R. Other objects are user-created. User-created objects have names that are assigned by the user. R has a workspace known as the global environment that can be used to store objects.</p>
-<p>Objects in R can have many properties associated with them, called <strong>attributes</strong>. These properties explain what an object represents and how it should be interpreted by R. Two of the most important attributes of an R object are the <code>class</code> and the <code>dimension</code> of the object.</p>
-<p>Attributes of an object (if any) can be accessed using the <code><a href="https://rdrr.io/r/base/attributes.html">attributes()</a></code> function. Not all R objects contain attributes, in which case the <code><a href="https://rdrr.io/r/base/attributes.html">attributes()</a></code> function returns <code>NULL</code>.</p>
+<p>R works with <strong>objects</strong> (it is an object-oriented programming language). All the things that we manipulate or encounter in R such as numbers, data structures, functions, the results from a function (e.g., plots) are types of objects. Objects come within the R packages or they are user-created. The latter have names that are assigned by the user. R stores objects in the global environment.</p>
+<p>Objects in R usually have many properties associated with them, called <strong>attributes</strong>. These properties explain what an object represents and how it should be interpreted by R. Two of the most important attributes of an R object are the <code>class</code> and the <code>dimension</code> of the object. Attributes of an object can be accessed using the <code><a href="https://rdrr.io/r/base/attributes.html">attributes()</a></code> function. Not all R objects contain attributes, in which case the <code><a href="https://rdrr.io/r/base/attributes.html">attributes()</a></code> function returns <code>NULL</code>.</p>
 <p>For example, the attributes of the famous <code>iris</code> data set is a <code>data.frame</code> that contains 150 rows and 5 columns:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>   <span class="co"># Note: R commands can be separated by a semicolon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -418,13 +403,13 @@ Avoid to separate R commands with a semicolon
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>R commands are usually separated by a new line but they can also be separated by a semicolon (<strong>;</strong>). However, this is bad practice and should be avoided wherever possible: it can lead to code that is difficult to follow.</p>
+<p>R commands are usually separated by a new line but they can also be separated by a semicolon (<strong>;</strong>). However, this is not the optimal practice and should be avoided wherever possible.</p>
 </div>
 </div>
 </section><section id="named-storage-of-objects" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="named-storage-of-objects">
 <span class="header-section-number">6.2</span> Named storage of objects</h2>
 <section id="assignment-operator--" class="level3"><h3 class="anchored" data-anchor-id="assignment-operator--">Assignment operator (<code>&lt;-</code>)</h3>
-<p>In R we can store things in objects using the leftward assignment operator (<code>&lt;-</code>) which is an arrow that points to the left, created with the <code>less-than (&lt;)</code> sign and the hyphen (-) sign (keyboard shortcut: <strong><code>Alt</code></strong> + <strong><code>-</code></strong> for Windows and <strong><code>Option</code></strong> + <strong><code>-</code></strong> for Mac).</p>
+<p>In R we can store things in objects using the leftward assignment operator (<code>&lt;-</code>) which is an arrow that points to the left, created with the <code>less-than (&lt;)</code> sign and the hyphen (-) sign (keyboard shortcut: <kbd>Alt</kbd> + <kbd>-</kbd> for Windows/Linux and <kbd>Option</kbd> + <kbd>-</kbd> for Mac).</p>
 <p>For example, suppose we would like to store the number <code>1/40</code> for future use. We will assign this value to an object called <code>x</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -585,7 +570,7 @@ R is case-sensitive
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="     color: red !important;">Error: object ‘y’ not found</span></p>
+<p><span style="     color: #8676F8 !important;">Error: object ‘y’ not found</span></p>
 <p>&nbsp;</p>
 </section><section id="we-are-not-limited-to-store-numbers-in-objects" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="we-are-not-limited-to-store-numbers-in-objects">
 <span class="header-section-number">6.5</span> We are not limited to store numbers in objects</h2>
@@ -599,7 +584,7 @@ R is case-sensitive
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentence</span> <span class="op">+</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="     color: red !important;">Error in sentence + 1: non-numeric argument to binary operator</span></p>
+<p><span style="     color: #8676F8 !important;">Error in sentence + 1: non-numeric argument to binary operator</span></p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -919,8 +904,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./vector.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

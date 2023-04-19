@@ -94,7 +94,9 @@ R will show in the Console pane that something unusual is happening in three dif
 
 Now, let's type in the Console the following:
 
-```{r continuation, echo=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 
 14 + 16 -                                                                       # <1>
 +                                                                               # <2>

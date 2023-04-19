@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Konstantinos I. Bougioukas, PhD">
-<meta name="dcterms.date" content="2023-04-19">
 
-<title>Practical Statistics in Medicine with R</title>
+<title>Practical Statistics in Medicine with R - 8&nbsp; Data transformation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_rstudio.html" rel="next">
+<link href="./ggplot2.html" rel="next">
+<link href="./vector.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -45,7 +44,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
-<script src="site_libs/quarto-contrib/qrcodejs-v1.0.0/qrcode.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -78,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">R Basics</a></li><li class="breadcrumb-item"><a href="./transformation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data transformation</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -165,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transformation.html" class="sidebar-item-text sidebar-link">
+  <a href="./transformation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
   </div>
 </li>
@@ -290,44 +288,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#whom-is-this-textbook-for" id="toc-whom-is-this-textbook-for" class="nav-link" data-scroll-target="#whom-is-this-textbook-for">Whom is this textbook for?</a></li>
-  <li><a href="#reproducibility-and-license" id="toc-reproducibility-and-license" class="nav-link" data-scroll-target="#reproducibility-and-license">Reproducibility and License</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Practical Statistics in Medicine with R</h1>
-<p class="subtitle lead">1st Edition</p>
+<h1 class="title"><span id="sec-transformation" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data transformation</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Konstantinos I. Bougioukas, PhD <a href="https://orcid.org/0000-0002-6533-1391" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 19, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -336,48 +311,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1><p><img src="images/cover.png" title="Practical Statistics in Medicine with R" class="quarto-cover-image img-fluid"></p>
-<p><strong>This is a working draft.</strong></p>
-<section id="whom-is-this-textbook-for" class="level3">
-<h3 class="anchored" data-anchor-id="whom-is-this-textbook-for">Whom is this textbook for?</h3>
-<p>This textbook is based on my notes from a series of lectures and practicals given for a few years at the Aristotle University of Thessaloniki, Greece. The textbook can be used as support material for practical labs on basic statistics in medicine using R. It can also be used as a support for self-teaching for students and researchers in biomedical field. Additionally, it may be useful for (under)graduate students with a science background (engineering, mathematics) who wants to move towards biomedical sciences.</p>
-<p>I have paid particular attention to the form of the book, which I think should aid understanding the most common statistical tests using Base R and pipe-friendly functions, coherent with the <em>“tidyverse”</em> design philosophy. The <code>{dplyr}</code> package for manipulating data and the <code>{ggplot2}</code> package with many extensions for constructing data visualizations are the preferred tools of choice in this textbook, respectively. Statistical functions from Base R and the <code>{rstatix}</code> add-on package are presented in parallel in most examples of the textbook.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This textbook is intended to be self-contained and is not expected any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If you want to learn in more detail this programming language and statistics, we recommend the books below:</p>
-<ul>
-<li><a href="https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731">Using R for Introductory Statistics</a></li>
-<li><a href="https://r4ds.had.co.nz/">R for Data Science</a></li>
-<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a></li>
-<li><a href="https://www.routledge.com/Practical-Statistics-for-Medical-Research/Altman/p/book/9780412276309">Practical Statistics for Medical Research</a></li>
-</ul>
-</div>
-</div>
-<p>&nbsp;</p>
-</section>
-<section id="reproducibility-and-license" class="level3">
-<h3 class="anchored" data-anchor-id="reproducibility-and-license">Reproducibility and License</h3>
-<p>All Chapters of this textbook are reproducible as they were made using <img src="images/quarto.png" width="24" height="22"> <a href="https://quarto.org/">Quarto</a><sup>®</sup> which is an open-source scientific and technical publishing system built on <a href="https://pandoc.org/">Pandoc</a>.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
-<p>The <strong>online version</strong> of the textbook is <strong>free to use</strong>, and is licensed under the <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivs 4.0</a> License. <img src="images/license.png" width="120" height="40"></p>
-<div id="qrcode" class="qrcode"></div>
-<script type="text/javascript">
-var qrcode = new QRCode("qrcode", {"text":"https://bougioukas-medstats-r.netlify.app","colorDark":"#0011bb","width":"100","colorLight":"#ffffff","height":"100"});
-</script>
-    
 
-
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -694,10 +628,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./vector.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_rstudio.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

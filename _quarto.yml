@@ -21,12 +21,9 @@ book:
         - functions.qmd
         - packages.qmd
         - objects.qmd
-    - part: "Data transformation with to tidyverse"
-      chapters:
-        - intro_rstudio.qmd 
-    - part: "Graphics with ggplot2"
-      chapters:
-        - intro_rstudio.qmd
+        - vector.qmd
+        - transformation.qmd 
+        - ggplot2.qmd
     - part: "Statistics"
       chapters:
         - introduction.qmd
