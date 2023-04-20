@@ -1,12 +1,12 @@
-# Preface {.unnumbered}
-
+# Welcome! {.unnumbered}
 
 **This is a working draft.**
 
+This textbook is based on my notes from a series of lectures and practicals given for a few years at the Aristotle University of Thessaloniki, Greece.
 
 ### Whom is this textbook for?
 
-This textbook is based on my notes from a series of lectures and practicals given for a few years at the Aristotle University of Thessaloniki, Greece. The textbook can be used as support material for practical labs on basic statistics in medicine using R. It can also be used as a support for self-teaching for students and researchers in biomedical field. Additionally, it may be useful for (under)graduate students with a science background (engineering, mathematics) who wants to move towards biomedical sciences.
+The textbook can be used as support material for practical labs on basic statistics in medicine using R. It can also be used as a support for self-teaching for students and researchers in biomedical field. Additionally, it may be useful for (under)graduate students with a science background (engineering, mathematics) who wants to move towards biomedical sciences.
 
 I have paid particular attention to the form of the book, which I think should aid understanding the most common statistical tests using Base R and pipe-friendly functions, coherent with the *"tidyverse"* design philosophy. The `{dplyr}` package for manipulating data and the `{ggplot2}` package with many extensions for constructing data visualizations are the preferred tools of choice in this textbook, respectively. Statistical functions from Base R and the `{rstatix}` add-on package are presented in parallel in most examples of the textbook.
 

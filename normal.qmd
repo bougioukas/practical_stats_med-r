@@ -21,6 +21,7 @@ We need to load the following packages:
 
 library(stevemisc)
 library(ggpubr)
+
 library(here)
 library(tidyverse)
 ```
@@ -59,8 +60,6 @@ ggplot(df, aes(x)) +
   theme(text = element_text(size = 16))                                    
 
 ```
-
-
 
 ## The properties of a normal distribution
 
@@ -255,7 +254,6 @@ The **normal Q--Q plot**, or normal quantile-quantile plot, provides an easy way
 [^normal-2]: Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br>**Quartiles**: Three quartiles (Q1, median, Q3) split the data into four parts. <br>**Percentiles**: 99 percentiles split the data into 100 parts.
 
 ```{r}
-#| echo: false
 #| message: false
 #| warning: false
 
@@ -291,8 +289,8 @@ qqline(arrhythmia$age, col = "steelblue", lwd = 2)
 #| fig-align: "center"
 #| fig-cap: Q-Q plot of age.
 
-arrhythmia %>%
-  ggqqplot("age", conf.int = F)
+ggqqplot(arrhythmia, "age", conf.int = F) +
+  stat_qq_line(color="blue")
 ```
 :::
 :::
@@ -325,8 +323,8 @@ qqline(arrhythmia$QRS, col = "steelblue", lwd = 2)
 #| fig-align: "center"
 #| fig-cap: Normal Q-Q plot of QRS.
 
-arrhythmia %>%
-  ggqqplot("QRS", conf.int = F)
+ggqqplot(arrhythmia, "QRS", conf.int = F) +
+  stat_qq_line(color="blue")
 ```
 :::
 :::

@@ -21,16 +21,21 @@ We need to load the following packages:
 #| message: false
 #| warning: false
 
-library(rstatix)
-library(EnvStats)
-library(modeest)
-library(scales)
+# tables and graphs
 library(questionr)
-library(MESS)
 library(ggsci)
 library(ggdist)
 library(ggrain)
+library(scales)
 library(patchwork)
+
+# statistics
+library(rstatix)
+library(EnvStats)
+library(modeest)
+library(MESS)
+
+# data transformation
 library(here)
 library(tidyverse)
 ```
@@ -95,7 +100,7 @@ The data set *arrhythmia* has 428 patients (rows) and includes 8 variables (colu
 We might have noticed that the categorical variables `sex` and `bmi_cat` are recognized of character `<chr>` type. We can use the `factor()` function inside the `mutate()` to convert the variables to factors as follows:
 
 ```{r}
-arrhythmia <- arrhythmia %>% 
+arrhythmia <- arrhythmia |>  
   mutate(sex = factor(sex),
          bmi_cat = factor(bmi_cat, levels = c("underweight", "normal",          # <1>
                                               "overweight", "obese")))          # <1>
@@ -168,8 +173,8 @@ A simple bar plot is an easy way to make comparisons across categories. @fig-sim
 #| fig-width: 6
 
 # create a data frame with ordered BMI categories and their counts
-dat1 <- arrhythmia %>%
-  count(bmi_cat) %>% 
+dat1 <- arrhythmia |> 
+  count(bmi_cat) |> 
   mutate(pct = round_percent(n, 1))
 
 # plot the data
@@ -204,10 +209,10 @@ If the data are further classified into whether the patient was male or female t
 #| fig-height: 5
 
 # create a data frame with ordered BMI categories and their counts by sex
-dat2 <- arrhythmia %>%
-  count(bmi_cat, sex) %>% 
-  group_by(sex) %>% 
-  mutate(pct = round_percent(n, 1)) %>% 
+dat2 <- arrhythmia |> 
+  count(bmi_cat, sex) |>  
+  group_by(sex) |> 
+  mutate(pct = round_percent(n, 1)) |> 
   ungroup()
 
 ggplot(dat2) + 
@@ -258,10 +263,10 @@ Unlike side-by-side or grouped bar plots, **stacked bar plots** segment their ba
 #| fig-height: 2.2
 
 # create a data frame with ordered BMI categories and their counts by sex
-dat3 <- arrhythmia %>% 
-  group_by(sex) %>% 
-  count(bmi_cat) %>% 
-  mutate(pct = round_percent(n, 2)) %>% 
+dat3 <- arrhythmia |> 
+  group_by(sex) |> 
+  count(bmi_cat) |> 
+  mutate(pct = round_percent(n, 2)) |> 
   ungroup()
 
 ggplot(dat3, aes(x = sex, y = pct, fill = forcats::fct_rev(bmi_cat)))+
@@ -348,7 +353,7 @@ mean(arrhythmia$age, na.rm = TRUE)                                              
 ## dplyr
 
 ```{r}
-arrhythmia %>% 
+arrhythmia |>  
   dplyr::summarise(mean = mean(age, na.rm = TRUE))
 ```
 :::
@@ -387,7 +392,7 @@ median(arrhythmia$age, na.rm = TRUE)
 ## dplyr
 
 ```{r}
-arrhythmia %>% 
+arrhythmia |>  
   dplyr::summarise(median = median(age, na.rm = TRUE))
 ```
 :::
@@ -428,7 +433,7 @@ var(arrhythmia$age, na.rm = TRUE)
 ## dplyr
 
 ```{r}
-arrhythmia %>% 
+arrhythmia |>  
   dplyr::summarise(variance = var(age, na.rm = TRUE))
 ```
 :::
@@ -455,7 +460,7 @@ sd(arrhythmia$age, na.rm = TRUE)
 ## dplyr
 
 ```{r}
-arrhythmia %>% 
+arrhythmia |>  
   dplyr::summarise(standard_deviation = sd(age, na.rm = TRUE))
 ```
 :::
@@ -500,7 +505,7 @@ Let's calculate the summary statistics for the `age` variable in our dataset.
 ## dplyr
 
 ```{r}
-arrhythmia %>%
+arrhythmia |> 
   dplyr::summarise(
     n = n(),
     na = sum(is.na(age)),
@@ -520,15 +525,10 @@ arrhythmia %>%
 ## dlookr
 
 ```{r}
-arrhythmia %>% 
-  dlookr::describe(age) %>% 
-  select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
-```
-
-## psych
-
-```{r}
-psych::describe(arrhythmia$age)
+arrhythmia |>  
+  dlookr::describe(age) |>  
+  dplyr::select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)|> 
+  print(width = 100)
 ```
 :::
 :::
@@ -540,7 +540,7 @@ psych::describe(arrhythmia$age)
 ## dplyr
 
 ```{r}
-arrhythmia %>%
+arrhythmia |> 
   dplyr::summarise(
     n = n(),
     na = sum(is.na(QRS)),
@@ -560,15 +560,10 @@ arrhythmia %>%
 ## dlookr
 
 ```{r}
-arrhythmia %>% 
-  dlookr::describe(QRS) %>% 
-  select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
-```
-
-## psych
-
-```{r}
-psych::describe(arrhythmia$QRS)
+arrhythmia |>  
+  dlookr::describe(QRS) |> 
+  dplyr::select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)|> 
+  print(width = 100)
 ```
 :::
 :::
@@ -586,8 +581,8 @@ Next, we are interested in calculating the summary statistics of the `age` varia
 ## dplyr
 
 ```{r}
-summary_age_sex <- arrhythmia %>%
-  group_by(sex) %>% 
+summary_age_sex <- arrhythmia |> 
+  group_by(sex) |> 
   dplyr::summarise(
     n = n(),
     na = sum(is.na(age)),
@@ -600,7 +595,7 @@ summary_age_sex <- arrhythmia %>%
     sd = sd(age, na.rm = TRUE),
     skewness = EnvStats::skewness(age, na.rm = TRUE),
     kurtosis= EnvStats::kurtosis(age, na.rm = TRUE)
-  ) %>% 
+  ) |>  
   ungroup()
 
 summary_age_sex
@@ -610,16 +605,14 @@ summary_age_sex
 ## dlookr
 
 ```{r}
-arrhythmia %>% 
-  group_by(sex) %>% 
-  dlookr::describe(age) %>% 
-  select(described_variables, sex, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
-```
 
-## psych
+arrhythmia |>  
+  group_by(sex) |>  
+  dlookr::describe(age) |>  
+  dplyr::select(described_variables, sex, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) |> 
+  ungroup()|> 
+  print(width = 100)
 
-```{r}
-psych::describeBy(arrhythmia$age, group = arrhythmia$sex)
 ```
 :::
 :::
@@ -642,8 +635,8 @@ write_xlsx(summary_age_sex, here("data", "summary_age_sex.xlsx"))
 ## dplyr
 
 ```{r}
-arrhythmia %>%
-  group_by(sex) %>% 
+arrhythmia |> 
+  group_by(sex) |> 
   dplyr::summarise(
     n = n(),
     na = sum(is.na(QRS)),
@@ -656,7 +649,7 @@ arrhythmia %>%
     sd = sd(QRS, na.rm = TRUE),
     skewness = EnvStats::skewness(QRS, na.rm = TRUE),
     kurtosis= EnvStats::kurtosis(QRS, na.rm = TRUE)
-  ) %>% 
+  ) |>  
   ungroup()
 
 ```
@@ -664,19 +657,16 @@ arrhythmia %>%
 ## dlookr
 
 ```{r}
-arrhythmia %>% 
-  group_by(sex) %>% 
-  dlookr::describe(QRS) %>% 
-  select(described_variables, sex, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)
-```
-
-## psych
-
-```{r}
-psych::describeBy(arrhythmia$QRS, group = arrhythmia$sex)
+arrhythmia |>  
+  group_by(sex) |>  
+  dlookr::describe(QRS) |>  
+  dplyr::select(described_variables, sex, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) |> 
+  ungroup() |> 
+  print(width = 100)
 ```
 :::
 :::
+
 
 ::: {.callout-tip icon="false"}
 ## Reporting summary statistics for numerical data
@@ -705,16 +695,14 @@ The most common way of presenting a frequency distribution of a continuous varia
 #| layout-ncol: 1
 
 # Histogram of age
-arrhythmia %>% 
-  ggplot(aes(x = age)) +
+ggplot(arrhythmia, aes(x = age)) +
   geom_histogram(binwidth = 8, fill = "steelblue4",        # <1>
                  color = "#8fb4d9", alpha = 0.6) +  
   theme_minimal(base_size = 14) +
   labs(title = "Histogram: age", y = "Frequency")
 
 # Histogram of QRS
-arrhythmia %>% 
-  ggplot(aes(x = QRS)) +
+ggplot(arrhythmia, aes(x = QRS)) +
   geom_histogram(binwidth = 8, fill = "steelblue4",      
                  color = "#8fb4d9", alpha = 0.6) +
   theme_minimal(base_size = 14) +
@@ -744,16 +732,14 @@ A histogram gives information about:
 #| layout-ncol: 1
 
 # density plot of age
-arrhythmia %>% 
-  ggplot(aes(x = age)) +
+ggplot(arrhythmia, aes(x = age)) +
   geom_density(fill="steelblue4", color="#8fb4d9", 
                adjust = 1.5, alpha=0.6) +
   theme_minimal(base_size = 14) +
   labs(title = "Density Plot: age", y = "Density")
 
 # density plot of QRS
-arrhythmia %>% 
-  ggplot(aes(x = QRS)) +
+ggplot(arrhythmia, aes(x = QRS)) +
   geom_density(fill="steelblue4", color="#8fb4d9", 
                adjust = 1.5, alpha=0.6) +
   theme_minimal(base_size = 14) +
@@ -779,8 +765,7 @@ Box plots can be used for displaying location and dispersion for continuous data
 #| layout-ncol: 1
 
 # box plot of age stratified by sex
-arrhythmia %>% 
-  ggplot(aes(x = sex, y = age, fill = sex)) +
+ggplot(arrhythmia, aes(x = sex, y = age, fill = sex)) +
   geom_boxplot(alpha = 0.6, width = 0.5) +
   theme_minimal(base_size = 14) +
   labs(title = "Grouped Box Plot: age by sex") +
@@ -788,8 +773,7 @@ arrhythmia %>%
   theme(legend.position = "none")
 
 # box plot of QRS stratified by sex
-arrhythmia %>% 
-  ggplot(aes(x = sex, y = QRS, fill = sex)) +
+ggplot(arrhythmia, aes(x = sex, y = QRS, fill = sex)) +
   geom_boxplot(alpha = 0.6, width = 0.5) +
   theme_minimal(base_size = 14) +
   labs(title = "Grouped Box Plot: QRS by sex") +
@@ -805,7 +789,6 @@ In @fig-boxplot1 a, box plots of age are approximately symmetric about the media
 
 There are many variations of the box plot. For example, there is a way to combine raw data (dots), probability density, and key summary statistics such as median, and relevant intervals of a range of likely values for the population parameter, in an appealing and flexible format with minimal redundancy, using the raincloud plot (@fig-raincloud):
 
-
 ::: panel-tabset
 ## ggdist
 
@@ -820,8 +803,7 @@ There are many variations of the box plot. For example, there is a way to combin
 #| layout-ncol: 1
 
 # raincloud plot of age stratified by sex
-arrhythmia %>% 
-  ggplot(aes(x = sex, y = age, fill = sex)) +
+ggplot(arrhythmia, aes(x = sex, y = age, fill = sex)) +
   stat_slab(aes(thickness = stat(pdf*n)), 
                 scale = 0.5) +
   stat_dotsinterval(side = "bottom", 
@@ -833,8 +815,7 @@ arrhythmia %>%
   theme(legend.position = "none")
 
 # raincloud plot of QRS stratified by sex
-arrhythmia %>% 
-  ggplot(aes(x = sex, y = QRS, fill = sex)) +
+ggplot(arrhythmia, aes(x = sex, y = QRS, fill = sex)) +
   stat_slab(aes(thickness = stat(pdf*n)), 
                 scale = 0.5) +
   stat_dotsinterval(side = "bottom", 
@@ -845,7 +826,6 @@ arrhythmia %>%
   scale_fill_jco() +
   theme(legend.position = "none")
 ```
-
 
 ## ggrain
 
@@ -859,6 +839,7 @@ arrhythmia %>%
 #|   - "Raincloud of QRS stratified by sex (female: 237; male = 191)."
 #| layout-ncol: 1
 
+# raincloud plot of age stratified by sex
 ggplot(arrhythmia, aes(sex, age, fill = sex)) +
   geom_rain(likert= TRUE,
             point.args = list(alpha = .3)) +
@@ -867,7 +848,7 @@ ggplot(arrhythmia, aes(sex, age, fill = sex)) +
   scale_fill_jco() +
   theme(legend.position = "none")
 
-
+# raincloud plot of QRS stratified by sex
 ggplot(arrhythmia, aes(sex, QRS, fill = sex)) +
   geom_rain(likert= TRUE,
             point.args = list(alpha = .3)) +
@@ -876,7 +857,4 @@ ggplot(arrhythmia, aes(sex, QRS, fill = sex)) +
   scale_fill_jco() +
   theme(legend.position = "none")
 ```
-
 :::
-
-

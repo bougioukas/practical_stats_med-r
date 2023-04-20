@@ -13,7 +13,7 @@ book:
   repo-url: https://github.com/bougioukas/practical_stats_med-r
   chapters:
     - index.qmd
-    - part: "R Basics"
+    - part: "Part 1: R Basics"
       chapters:
         - intro_rstudio.qmd
         - rstudio_projects.qmd
@@ -24,10 +24,11 @@ book:
         - vector.qmd
         - transformation.qmd 
         - ggplot2.qmd
-    - part: "Statistics"
+    - part: "Part 2: Statistics"
       chapters:
         - introduction.qmd
         - descriptive.qmd
+        - prob_distributions.qmd
         - normal.qmd
         - inference.qmd
         - student_t_test.qmd
@@ -37,9 +38,13 @@ book:
         - anova.qmd
         - kruskal_wallis.qmd
         - correlation.qmd
+        - simple_regression.qmd        
         - chi_square.qmd
         - fisher_exact.qmd
         - mcnemar.qmd
+        - survival.qmd
+        - measurement_properties.qmd
+        - diagnostic_accuracy.qmd
         - roc.qmd
     - references.qmd
     

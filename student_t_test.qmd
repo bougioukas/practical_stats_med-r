@@ -33,20 +33,20 @@ We need to load the following packages:
 #| message: false
 #| warning: false
 
-# packages for descriptive statistics and graphs
-library(dlookr)
+# packages for graphs
 library(ggrain)
 library(ggsci)
 library(ggpubr)
 
-# packages for reporting the results
-library(gtsummary)
-library(report)
-
-# packages for the analysis
+# packages for data description and analysis
+library(dlookr)
 library(rstatix)
 library(here)
 library(tidyverse)
+
+# packages for reporting the results
+library(gtsummary)
+library(report)
 ```
 
 ## Preraring the data
@@ -148,7 +148,7 @@ The HDRS summary statistics for each group are:
 ## dplyr
 
 ```{r}
-HDRS_summary <- depression |> 
+depression |> 
   group_by(intervention) |> 
   dplyr::summarise(
     n = n(),
@@ -162,11 +162,11 @@ HDRS_summary <- depression |>
     sd = sd(HDRS, na.rm = TRUE),
     skewness = EnvStats::skewness(HDRS, na.rm = TRUE),
     kurtosis= EnvStats::kurtosis(HDRS, na.rm = TRUE)
-  ) %>%
-  ungroup()
-
-HDRS_summary
+  ) |> 
+  ungroup() |> 
+  print(width = 100)
 ```
+
 
 ## dlookr
 
@@ -174,8 +174,10 @@ HDRS_summary
 depression |>  
   group_by(intervention) |>  
   dlookr::describe(HDRS) |>  
-  select(described_variables,  intervention, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) |>  
-  ungroup()
+  dplyr::select(intervention, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) |>  
+  ungroup() |> 
+  print(width = 100)
+
 ```
 :::
 :::
