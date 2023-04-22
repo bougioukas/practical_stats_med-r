@@ -31,7 +31,7 @@ R installs a set of standard (base) packages during the installation process. **
 
 More packages can be added later in User's R library from repositories, when they are needed for some specific purpose (add-on R packages). **Add-on R packages** are created by a world-wide active community of developers and R users, covering a wide number of different applications. Most of these packages can be installed for free from many different online sources (repositories).
 
-A **repository** is a place where packages are located and stored so we can install them from it. Some of the most popular repositories for R packages,  are:
+A **repository** is a place where packages are located and stored so we can install them from it. Some of the most popular repositories for R packages, are:
 
 -   **CRAN:** Comprehensive R Archive Network(CRAN) is the official R repository.
 
@@ -55,7 +55,7 @@ To **use** an add-on package we need to:
 
 For example, among the many add-on packages, we will use in this textbook are the `dplyr` package for data wrangling, the `ggplot2` package for data visualization and and the `rstatix` package for statistical tests.
 
-Let's now show how to perform these two steps for the `rstatix`` package for data visualization.
+Let's now show how to perform these two steps for the \`rstatix\`\` package for data visualization.
 
  
 
@@ -84,7 +84,7 @@ For installing the `{rstatix}` package from **CRAN** we type the following comma
 install.packages("rstatix")
 ```
 
-Note we must include the **quotation marks** around the name of the package. In order to install **several** package at once, we just have to use the install.packages()` function as follows:
+Note we must include the **quotation marks** around the name of the package. In order to install **several** package at once, we just have to use the install.packages()\` function as follows:
 
 ```{r}
 #| eval: false
@@ -108,26 +108,19 @@ After we've installed a package, we need to **load it** in the current R session
 library(rstatix)
 ```
 
-
-::: {.column-margin}
-
+::: column-margin
 **Packages Vs Libraries:** There is always confusion between a package and a library. The directories in R where the packages are stored are called the libraries.
 :::
 
-
-If  the cursor is  blinking next to the `>` prompt in Console, the `rstatix` package was successfully installed and it is ready for use; otherwise, we get the following error: 
+If the cursor is blinking next to the `>` prompt in Console, the `rstatix` package was successfully installed and it is ready for use; otherwise, we get the following error:
 
 `r text_spec("Error in library(rstatix) : there is no package called ‘rstatix’", color = "#8676F8")`
 
-
 ::: callout-important
-
 If we forget to load `rstatix` in our R session, when we try to use the functions included in this package such as `t_test()`, we will get an error :
 
 `r text_spec("Error in ... : could not find function t_test", color = "#8676F8")`
 :::
-
-
 
 There is one way in R that can use a `function` without using `library()`. To do this, we can simply use the notation `package::function` .
 
@@ -141,11 +134,9 @@ rstatix::t_test()
 
 The above notation tells R to use the `t_test` function from `rstatix` without load the `{rstatix}` package.
 
-
-
 ## The `{tidyverse}` package
 
-In this textbook we will use the `{tidyverse}` package. Actually, the tidyverse is a collection of R packages designed for data science that work in harmony. 
+In this textbook we will use the `{tidyverse}` package. Actually, the tidyverse is a collection of R packages designed for data science that work in harmony.
 
 The command `install.packages("tidyverse")` will **install** the complete tidyverse. The `tidyverse` package provides a shortcut for downloading the following packages:
 
@@ -154,15 +145,14 @@ The command `install.packages("tidyverse")` will **install** the complete tidyve
 tidyverse_packages()
 ```
 
-
-When we **load** the tidyverse package with the command `library(tidyverse)`, R will load the **eight core packages** namely `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `stringr`, and `forcats` and make them available in our current R session.
+When we **load** the tidyverse package with the command `library(tidyverse)`, R will load the **nine core packages** namely
+`dplyr`,`forcats`, `ggplot2`, `lubridate`, `purrr`, `readr`, `stringr`, `tibble`, and `tidyr`, and make them available in our current R session.
 
 ::: callout-important
 ## Non-core tidyverse packages
 
-The  packages out of the core list of `tidyverse` have more specialized usage and are not loaded automatically with the command  `library(tidyverse)`. So, we need to load each one explicitly with the `library()` function if we want to use them.
+The packages out of the core list of `tidyverse` have more specialized usage and are not loaded automatically with the command `library(tidyverse)`. So, we need to load each one explicitly with the `library()` function if we want to use them.
 :::
-
 
 ## The `{here}` package
 
@@ -170,7 +160,7 @@ When we work with Projects in RStudio we may find useful the `{here}` package. T
 
 > We can think of the paths as directions to the files. There are two kinds of paths: **absolute paths** and **relative paths**.
 
-For example, suppose that Emily and Paul are working on a project together and want to read in R studio of their computers an excel file named `covid19.xlsx` that is stored within a “data” folder. They could do this using either an absolute or a relative path as follows:
+For example, suppose that Emily and Paul are working on a project together and want to read in R studio of their computers an excel file named `covid19.xlsx` that is stored within a "data" folder. They could do this using either an absolute or a relative path as follows:
 
 **A. Reading data using an absolute path**
 
@@ -183,7 +173,6 @@ library(readxl)
 dat <- read_excel("C:/emily/project/data/covid19.xlsx")  
 ```
 
-
 while Paul's file is stored at `C:/paul/project/data/covid19.xlsx` and the command in R should be:
 
 ```{r}
@@ -193,8 +182,7 @@ library(readxl)
 dat <- read_excel("C:/paul/project/data/covid19.xlsx")
 ```
 
-Even though Emily and Paul stored their files in their "C" disk, the absolute paths are different due to their different usernames.
- 
+Even though Emily and Paul stored their files in their "C" disk, the absolute paths are different due to their different usernames.  
 
 **B. Reading data using a relative path**
 
@@ -218,5 +206,3 @@ If we are looking for help with an rstats problem, it is recommend that we:
 `r fa("arrow-right", fill = "orange")`   create a minimum reproducible example (a reprex) demonstrating your problem
 
 `r fa("arrow-right", fill = "orange")`   post on a public forum like RStudio Community or Stack Overflow
-
-

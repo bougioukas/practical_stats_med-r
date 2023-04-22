@@ -1,0 +1,2 @@
+# Friedman test {#sec-friedman}
+

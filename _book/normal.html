@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.333">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 13&nbsp; Normal distribution</title>
+<title>Practical Statistics in Medicine with R - 15&nbsp; Normal distribution</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./normal.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Normal distribution</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./normal.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,20 +177,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vector.html" class="sidebar-item-text sidebar-link">
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span></a>
   </div>
 </li>
       </ul>
@@ -207,121 +219,145 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability and Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability and Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Repeated Measures ANOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./friedman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cochran.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./measurement_properties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Measurement properties</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Measurement properties</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Measures of diagnostic accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -340,16 +376,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link active" data-scroll-target="#packages-we-need"><span class="header-section-number">13.1</span> Packages we need</a></li>
-  <li><a href="#the-shape-of-a-normal-distribution" id="toc-the-shape-of-a-normal-distribution" class="nav-link" data-scroll-target="#the-shape-of-a-normal-distribution"><span class="header-section-number">13.2</span> The shape of a normal distribution</a></li>
-  <li><a href="#the-properties-of-a-normal-distribution" id="toc-the-properties-of-a-normal-distribution" class="nav-link" data-scroll-target="#the-properties-of-a-normal-distribution"><span class="header-section-number">13.3</span> The properties of a normal distribution</a></li>
-  <li><a href="#shape-statistics-and-normality" id="toc-shape-statistics-and-normality" class="nav-link" data-scroll-target="#shape-statistics-and-normality"><span class="header-section-number">13.4</span> Shape statistics and normality</a></li>
-  <li><a href="#normal-q-q-plots" id="toc-normal-q-q-plots" class="nav-link" data-scroll-target="#normal-q-q-plots"><span class="header-section-number">13.5</span> Normal Q-Q plots</a></li>
+<li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link active" data-scroll-target="#packages-we-need"><span class="header-section-number">15.1</span> Packages we need</a></li>
+  <li><a href="#the-shape-of-a-normal-distribution" id="toc-the-shape-of-a-normal-distribution" class="nav-link" data-scroll-target="#the-shape-of-a-normal-distribution"><span class="header-section-number">15.2</span> The shape of a normal distribution</a></li>
+  <li><a href="#the-properties-of-a-normal-distribution" id="toc-the-properties-of-a-normal-distribution" class="nav-link" data-scroll-target="#the-properties-of-a-normal-distribution"><span class="header-section-number">15.3</span> The properties of a normal distribution</a></li>
+  <li><a href="#shape-statistics-and-normality" id="toc-shape-statistics-and-normality" class="nav-link" data-scroll-target="#shape-statistics-and-normality"><span class="header-section-number">15.4</span> Shape statistics and normality</a></li>
+  <li><a href="#normal-q-q-plots" id="toc-normal-q-q-plots" class="nav-link" data-scroll-target="#normal-q-q-plots"><span class="header-section-number">15.5</span> Normal Q-Q plots</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-normal" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></h1>
+<h1 class="title"><span id="sec-normal" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></h1>
 </div>
 
 
@@ -380,8 +416,8 @@ Learning objectives
 </ul>
 </div>
 </div>
-<section id="packages-we-need" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">13.1</span> Packages we need</h2>
+<section id="packages-we-need" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">15.1</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stevemisc</span><span class="op">)</span></span>
@@ -390,9 +426,9 @@ Learning objectives
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="the-shape-of-a-normal-distribution" class="level2 page-columns page-full" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="the-shape-of-a-normal-distribution">
-<span class="header-section-number">13.2</span> The shape of a normal distribution</h2>
-<p>A normal distribution is a symmetric “bell-shaped” probability distribution where most of the observed data are clustered around a central location. Data farther from the central location occur less frequently (<a href="#fig-normal">Figure&nbsp;<span>13.1</span></a>).</p>
+</section><section id="the-shape-of-a-normal-distribution" class="level2 page-columns page-full" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="the-shape-of-a-normal-distribution">
+<span class="header-section-number">15.2</span> The shape of a normal distribution</h2>
+<p>A normal distribution is a symmetric “bell-shaped” probability distribution where most of the observed data are clustered around a central location. Data farther from the central location occur less frequently (<a href="#fig-normal">Figure&nbsp;<span>15.1</span></a>).</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Normal distribution, technically a probability density function, is a distribution defined by two parameters, mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. The mean, <span class="math inline">\(\mu\)</span>, is a “location parameter”, which defines the central tendency. The variance, <span class="math inline">\(\sigma^2\)</span>, is the “scale parameter”, which defines the width and height of the distribution. It’s formally given as:</p>
@@ -413,12 +449,12 @@ Learning objectives
 <div class="cell-output-display">
 <div id="fig-normal" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="normal_files/figure-html/fig-normal-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.1: The area underneath a Normal Distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;15.1: The area underneath a Normal Distribution</figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="the-properties-of-a-normal-distribution" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="the-properties-of-a-normal-distribution">
-<span class="header-section-number">13.3</span> The properties of a normal distribution</h2>
+</section><section id="the-properties-of-a-normal-distribution" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="the-properties-of-a-normal-distribution">
+<span class="header-section-number">15.3</span> The properties of a normal distribution</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/stevemisc/man/normal_dist.html">normal_dist</a></span><span class="op">(</span><span class="st">"#522d80"</span>,<span class="st">"#00868B"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Probability density"</span>, </span>
@@ -432,7 +468,7 @@ Learning objectives
 <div class="cell-output-display">
 <div id="fig-normal_auc" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="normal_files/figure-html/fig-normal_auc-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.2: The area underneath a Normal Distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;15.2: The area underneath a Normal Distribution</figcaption></figure>
 </div>
 </div>
 </div>
@@ -443,11 +479,11 @@ Learning objectives
 <li><p>Any position along the horizontal axis (x-axis) can be expressed as a number of standard deviations from the mean.</p></li>
 <li><p>All three measures of central location mean, median, and mode are the same.</p></li>
 <li><p><strong>The empirical rule</strong> (also called the “68-95-99 rule”). Much of the area (68%) of the distribution is between -1 <span class="math inline">\(\sigma\)</span> below the mean and +1 <span class="math inline">\(\sigma\)</span> above the mean, the large majority (95%) between -1.96 <span class="math inline">\(\sigma\)</span> below the mean and +1.96 <span class="math inline">\(\sigma\)</span> above the mean (often used as a reference range), and almost all (99%) between -2.58 <span class="math inline">\(\sigma\)</span> below the mean and +2.58 <span class="math inline">\(\sigma\)</span> above the mean. The total area under the curve equals to 1 (or 100%), almost -3 <span class="math inline">\(\sigma\)</span> below the mean and +3 <span class="math inline">\(\sigma\)</span> above the mean.</p></li>
-</ul></section><section id="shape-statistics-and-normality" class="level2 page-columns page-full" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="shape-statistics-and-normality">
-<span class="header-section-number">13.4</span> Shape statistics and normality</h2>
+</ul></section><section id="shape-statistics-and-normality" class="level2 page-columns page-full" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="shape-statistics-and-normality">
+<span class="header-section-number">15.4</span> Shape statistics and normality</h2>
 <p>There are two shape statistics that can indicate deviation from normality: <strong>skewness</strong> and <strong>excess kurtosis</strong>.</p>
 <p><strong>A. Skewness</strong></p>
-<p>Skewness is usually described as a measure of a distribution’s symmetry – or lack of symmetry. Skewness values that are <strong>negative</strong> indicate a tail to the <strong>left</strong> (<a href="#fig-skew2">Figure&nbsp;<span>13.3</span></a> a), <strong>zero</strong> value indicate a <strong>symmetric</strong> distribution (<a href="#fig-skew2">Figure&nbsp;<span>13.3</span></a> b), while values that are <strong>positive</strong> indicate a tail to the <strong>right</strong> (<a href="#fig-skew2">Figure&nbsp;<span>13.3</span></a> c).</p>
+<p>Skewness is usually described as a measure of a distribution’s symmetry – or lack of symmetry. Skewness values that are <strong>negative</strong> indicate a tail to the <strong>left</strong> (<a href="#fig-skew2">Figure&nbsp;<span>15.3</span></a> a), <strong>zero</strong> value indicate a <strong>symmetric</strong> distribution (<a href="#fig-skew2">Figure&nbsp;<span>15.3</span></a> b), while values that are <strong>positive</strong> indicate a tail to the <strong>right</strong> (<a href="#fig-skew2">Figure&nbsp;<span>15.3</span></a> c).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -543,13 +579,13 @@ Normal distribution and skewness
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;13.3: Types of distribution according to the summetry.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;15.3: Types of distribution according to the summetry.</figcaption><p></p>
 </figure>
 </div>
 </div>
 <p><strong>B. Excess kurtosis</strong></p>
 <div class="page-columns page-full"><p>The other way that distributions can deviate from normality is <strong>kurtosis</strong>. The <strong>excess kurtosis</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> parameter is a measure of the combined weight of the tails relative to the rest of the distribution. Kurtosis is associated indirect with the peak of the distribution (if the peak of the distribution is too high/sharp or too low compared to a “normal” distribution).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Excess kurtosis is commonly used because for a normal distribution is equal to zero, while the kurtosis is equal to 3.</p></li></div></div>
-<p>Distributions with <strong>negative</strong> excess kurtosis are called <strong><em>platykurtic</em></strong> (<a href="#fig-kurtosis">Figure&nbsp;<span>13.4</span></a> a). If the measure of excess kurtosis is <strong>zero</strong> the distribution is <strong>mesokurtic</strong> (<a href="#fig-kurtosis">Figure&nbsp;<span>13.4</span></a> b). Finally, distributions with <strong>positive</strong> excess kurtosis are called <strong><em>leptokurtic</em></strong> (<a href="#fig-kurtosis">Figure&nbsp;<span>13.4</span></a> c).</p>
+<p>Distributions with <strong>negative</strong> excess kurtosis are called <strong><em>platykurtic</em></strong> (<a href="#fig-kurtosis">Figure&nbsp;<span>15.4</span></a> a). If the measure of excess kurtosis is <strong>zero</strong> the distribution is <strong>mesokurtic</strong> (<a href="#fig-kurtosis">Figure&nbsp;<span>15.4</span></a> b). Finally, distributions with <strong>positive</strong> excess kurtosis are called <strong><em>leptokurtic</em></strong> (<a href="#fig-kurtosis">Figure&nbsp;<span>15.4</span></a> c).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -623,12 +659,12 @@ Normal distribution and excess kurtosis
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;13.4: Types of distribution according to the summetry.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;15.4: Types of distribution according to the summetry.</figcaption><p></p>
 </figure>
 </div>
 </div>
-</section><section id="normal-q-q-plots" class="level2 page-columns page-full" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="normal-q-q-plots">
-<span class="header-section-number">13.5</span> Normal Q-Q plots</h2>
+</section><section id="normal-q-q-plots" class="level2 page-columns page-full" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="normal-q-q-plots">
+<span class="header-section-number">15.5</span> Normal Q-Q plots</h2>
 <div class="page-columns page-full"><p>The <strong>normal Q–Q plot</strong>, or normal quantile-quantile plot, provides an easy way to visually check whether or not a data set is normally distributed. The values in the plot are the <strong>quantiles</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of the variable distribution (sample quantiles) plotted against the quantiles of a standard normal distribution (theoretical quantiles). If the points fall close to a <strong>straight</strong> line at a 45-degree angle, then the data are normally distributed (although the ends of the Q-Q plot often deviate from the straight line).</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br><strong>Quartiles</strong>: Three quartiles (Q1, median, Q3) split the data into four parts. <br><strong>Percentiles</strong>: 99 percentiles split the data into 100 parts.</p></li></div></div>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
@@ -657,7 +693,7 @@ Normal q-q plot of age
 <div class="cell-output-display">
 <div id="fig-qq_age1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="normal_files/figure-html/fig-qq_age1-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.5: Q-Q plot of age.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;15.5: Q-Q plot of age.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -669,7 +705,7 @@ Normal q-q plot of age
 <div class="cell-output-display">
 <div id="fig-qq_age2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="normal_files/figure-html/fig-qq_age2-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.6: Q-Q plot of age.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;15.6: Q-Q plot of age.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -701,7 +737,7 @@ Normal q-q plot of QRS
 <div class="cell-output-display">
 <div id="fig-qq_QRS1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="normal_files/figure-html/fig-qq_QRS1-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.7: Normal Q-Q plot of QRS.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;15.7: Normal Q-Q plot of QRS.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -713,7 +749,7 @@ Normal q-q plot of QRS
 <div class="cell-output-display">
 <div id="fig-qq_QRS2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="normal_files/figure-html/fig-qq_QRS2-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;13.8: Normal Q-Q plot of QRS.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;15.8: Normal Q-Q plot of QRS.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1037,12 +1073,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./prob_distributions.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability and Distributions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability and Distributions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./inference.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

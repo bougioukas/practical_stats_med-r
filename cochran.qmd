@@ -1,0 +1,1 @@
+# Cochran's Q Test {#sec-cochran}

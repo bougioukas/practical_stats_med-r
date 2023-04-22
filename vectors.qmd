@@ -1,4 +1,4 @@
-# Data structures in R: 1-Dimensional Vectors {#sec-vector}
+# Data structures in R: 1-Dimensional Vectors {#sec-vectors}
 
 When we have finished this chapter, we should be able to:
 
@@ -74,9 +74,9 @@ oev_f <- 100L
 oev_f
 ```
 
-**3. Double one-element vector:** Doubles[^vector-1] can be specified in decimal (e.g., 0.000017) or in scientific (e.g, 1.7e-5) format:
+**3. Double one-element vector:** Doubles[^vectors-1] can be specified in decimal (e.g., 0.000017) or in scientific (e.g, 1.7e-5) format:
 
-[^vector-1]: Double format is a **computer number format**, usually occupying 64 bits in computer memory.
+[^vectors-1]: Double format is a **computer number format**, usually occupying 64 bits in computer memory.
 
 ```{r}
 
@@ -88,9 +88,9 @@ oev_scientific
 
  
 
-**4. Character one-element vector:** One-element vectors can also be characters (also known as `strings`). In R, we denote characters using single `''` or double `""` quotation marks[^vector-2]. Here, we present some examples of character one-element vectors:
+**4. Character one-element vector:** One-element vectors can also be characters (also known as `strings`). In R, we denote characters using single `''` or double `""` quotation marks[^vectors-2]. Here, we present some examples of character one-element vectors:
 
-[^vector-2]: Internally R stores every string within double quotes, even we have created them with single quotation marks.
+[^vectors-2]: Internally R stores every string within double quotes, even we have created them with single quotation marks.
 
 ```{r}
 
@@ -749,11 +749,9 @@ The sum of the two vectors is:
 c(3, 2, 7) + c(6, 4, 0, 5, 8, 6)
 ```
 
-
 So, what happened here?
 
-
-**_Explanation_**
+***Explanation***
 
 If we sum these two vectors then R automatically recycles the shorter vector, by replicating it until it matches the length of the longer vector as follows:
 
@@ -772,14 +770,10 @@ So, the element-wise addition is feasible and equivalent to the following:
 c(3, 2, 7, 3, 2, 7) + c(6, 4, 0, 5, 8, 6) 
 ```
 
-
 ::: callout-important
-
-If the longer vector length isn’t a multiple of the shorter vector length, then R performs the calculation and prints out a pertinent warning message. For example:
+If the longer vector length isn't a multiple of the shorter vector length, then R performs the calculation and prints out a pertinent warning message. For example:
 
 ```{r}
 c(3, 2, 7) + c(6, 4, 0, 5, 8)
 ```
-
 :::
-

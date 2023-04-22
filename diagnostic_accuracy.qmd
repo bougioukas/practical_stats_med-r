@@ -1,2 +1,1 @@
-# Measures of diagnostic accuracy {#sec-diagnostic_accuracy}
-
+# Measures of diagnostic test accuracy {#sec-diagnostic_accuracy}

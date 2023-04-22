@@ -21,7 +21,9 @@ book:
         - functions.qmd
         - packages.qmd
         - objects.qmd
-        - vector.qmd
+        - vectors.qmd
+        - matrices.qmd
+        - lists.qmd
         - transformation.qmd 
         - ggplot2.qmd
     - part: "Part 2: Statistics"
@@ -37,15 +39,19 @@ book:
         - wilcoxon_test.qmd
         - anova.qmd
         - kruskal_wallis.qmd
+        - repeated_anova.qmd
+        - friedman.qmd
         - correlation.qmd
         - simple_regression.qmd        
         - chi_square.qmd
         - fisher_exact.qmd
         - mcnemar.qmd
+        - cochran.qmd
         - survival.qmd
         - measurement_properties.qmd
         - diagnostic_accuracy.qmd
         - roc.qmd
+        - sample_size.qmd
     - references.qmd
     
   page-footer: 
