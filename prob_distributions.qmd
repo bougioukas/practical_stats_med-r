@@ -1,1 +1,321 @@
 # Probability and Distributions {#sec-prob_distributions}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-  hjgkjg
+:::
+
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+
+# dice graphs
+library(tidydice)
+
+# venn's diagrams
+library(eulerr)
+library(ggvenn)
+
+
+library(TeachingDemos)
+
+#library(dice)
+```
+
+
+
+## Sample Space and Random Events
+
+Both deterministic and stochastic phenomena drive the everyday life.
+
+- A **deterministic** phenomenon (process or experiment) always produce the same outcome each time it is repeated under the same conditions.
+
+- A **random** phenomenon (process or experiment) is characterized by conditions under which the result cannot be determined with certainty before it occurs, that is, one of several possible outcomes is observed each time the process or experiment is repeated. For example, when a coin is tossed, the outcome is either heads H or tails T, but unknown before the coin is tossed.
+
+The **sample space Ω** is defined as the set of **all** possible outcomes of a random experiment. For example, if we roll a 6-sided die, the sample space is the set of the six possible outcomes, Ω ={1, 2, 3, 4, 5, 6} (@fig-die_space).
+
+
+```{r}
+#| warning: false
+#| out-width: 7cm
+#| label: fig-die_space
+#| fig-cap: Sample space for rolling a 6-sided die.
+
+force_dice(1:6) |> 
+  plot_dice(detailed = TRUE, fill_success = "white") + 
+  theme(plot.title = element_blank())
+```
+
+Different random experiments have different sample spaces that can be denoted in an equivalent way (flipping a coin: Ω ={H, T}, flipping two coins: Ω ={HH, HT, TH, TT}, testing for possible genotypes of a bi-allelic gene A: Ω ={AA, Aa, aa}).
+
+
+A **random event** is denoted by a capital letter such as A, B, or C and is a sub-set of sample space Ω, including a number of possible outcomes of the experiment. For the example of the rolling die, the event "even number" may be represented by A = {2, 4, 6} which is a sub-set of Ω (A ⊂ Ω), and the event "odd number" by B = {1, 3, 5} which is also a sub-set of Ω (B ⊂ Ω). In the case of flipping two coins, an event could be that exactly one of the coins lands Heads, A = {HT, TH} or the event could be that at least one of the coins lands heads, B = {HH, HT, TH}.
+
+
+::: {.callout-important}
+
+For each experiment, two events always exist:
+
+1. the **sample space**, Ω, which comprises all possible outcomes
+
+2. the **empty set = ∅**, that contains no outcomes and it is called the impossible event.
+:::
+
+ 
+
+## Basic types and operations of events using set theory
+
+If an event consists of a single outcome from the sample space, it is termed a **simple event**. For example, the event of getting the number 1 on rolling a die, denoted as A = {1}. If an event consists of more than a single outcome from the sample space, it is called a **compound event** such as rolling a die and getting an even number, A = {2, 4, 6}.
+
+ 
+
+### Basic operations of events using set theory and venn diagrams
+
+In the experiment of rolling a die, let's consider the events A = "the number rolled is even" and B = "the number rolled is less than three".
+
+
+**Union of Events:** The union of the events A and B, denoted by **A∪B**, is the collection of all outcomes that are in A or in B or in both of them and it is also an event. It will occur if either A or B occurs (the symbol ∪ is equivalent to **OR** operator).
+
+
+::: callout-note
+
+## **_Example: Union of events (A∪B)_**
+
+```{r}
+A <- c(2, 4, 6)      # A = {2, 4, 6}
+B <- c(1, 2)         # B = {1, 2}
+
+union(A, B)          # A∪B = {2, 4, 6, 1} 
+```
+
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 9cm
+#| label: fig-union
+#| fig-cap: The union of the events A and B as represented in a Venn diagram.
+
+# List of items
+x <- list("Set A" = A, "Set B" = B)
+
+plot(venn(x), quantities = list(fontsize = 20), labels = list(fontsize = 18),
+     fills = c(rep("#7F7FFF", 3)))
+```
+
+:::
+
+ 
+
+**Intersection of Events:** The intersection of A and B, denoted by **A∩B**,  consists of all outcomes that are in both A and B (the symbol ∩ is equivalent to **AND** operator). That is, the events A and B must occur simultaneously.
+
+
+
+::: callout-note
+
+## **_Example: Intersection of events (A∩B)_**
+
+```{r}
+intersect(A, B)
+```
+
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 9cm
+#| label: fig-intersection
+#| fig-cap: The union of the events A and B as represented in a Venn diagram.
+
+plot(venn(x), quantities = list(fontsize = 20), labels = list(fontsize = 18),
+     fills = c(rep("white", 2), rep("#7F7FFF", 1)))
+```
+:::
+
+ 
+
+**Complement Events:** The complement of an event such as B, denoted by $B^C$ or $\bar{B}$, is also an event and consists of all outcomes of the sample space Ω that are not in B.
+
+
+::: callout-note
+
+## **_Example: Complement of an event_**
+
+```{r}
+sample_space <- c(1, 2, 3, 4, 5, 6)
+
+setdiff(sample_space, B)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 11cm
+#| label: fig-complement
+#| fig-cap: The complement of the union $B^C$ as represented in a Venn diagram.
+
+ggvenn(x, fill_alpha = 1, show_percentage = F) +
+  labs(title = "Ω") +
+  scale_fill_manual(values = c("#7F7FFF", "white")) +
+  theme(plot.title = element_text(size = 20),
+        plot.background = element_rect(fill = "#7F7FFF"))
+
+```
+
+:::
+
+
+ 
+
+### Mutually Exclusive Events 
+
+Now, let's consider the events D = {2, 4, 6, 9, 10, 12, 15, 20} and E = {1, 3, 5, 7, 8, 11, 13, 16}.
+
+**Mutually exclusive events** (also known as incompatible or disjoint events): If the two events D and E cannot occur simultaneously, that is, the union is the empty set D∩E =∅, then D and E do not share any outcomes.
+
+::: callout-note
+
+## **_Example_**
+
+Venn diagrams allow us to understand compound events:
+
+```{r}
+D <- c(2, 4, 6, 9, 10, 12, 15, 20)      
+E <- c(1, 3, 5, 7, 8, 11, 13, 16)         
+
+intersect(D, E)         
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 10cm
+#| label: fig-exclusive
+#| fig-cap: Venn Diagram of two mutually exclusive events.
+
+# List of items
+x2 <- list("Set D" = D, "Set E" = E)
+
+plot(euler(x2), quantities = list(fontsize = 20), labels = list(fontsize = 18),
+     fills = c(rep("#7F7FFF", 3)))
+```
+
+:::
+
+ 
+
+## Probability
+
+The concept of probability is used in everyday life which stands for the likelihood of occurring or non-occurring of random events.
+The first step towards determining the probability of an event is to establish a number of **basic rules** that capture the meaning of probability. The probability of an event should satisfy three **axioms** defined by **Kolmogorov**:
+
+::: {.callout-tip icon="false"}
+## The Kolmogorov Axioms
+
+1.  The probability of an event A is a non-negative number, **P(A) ≥ 0**
+2.  The probability of all possible outcomes, or sample space Ω, equals to one, **P(Ω) = 1**
+3.  If A and B are two mutually exclusive events, then **P(A ∪ B) = P(A) + P(B)** and **P(A ∩ B) = 0**.
+:::
+
+ 
+
+### Definition of Probability
+
+
+
+**A. Experimental probability (frequentist approach)**
+
+Consider performing an experiment a **large number** of N times, under the same experimental conditions. The occurrence of the event A is indicated as the number N(A). The probability of event A is given by:
+
+$$ P(A) = \lim_{N\to\infty} \frac{N(A)}{N}$$ {#eq-probability}
+
+that is, the probability is the relative frequency of occurrence of a given event from many repetitions of the same experiment.
+
+
+Therefore, we may say that the probability of an event is the **relative frequency** of this set of outcomes over an indefinitely large number of experiments.
+
+
+$$ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of  experiments}}$$ {#eq-probability2}
+
+ 
+
+**B. Theoretical probability (model-based approach)**
+
+Theoretical probability tells us about what should happen in an ideal situation without conducting any experiments. We can list out all the possible outcomes theoretically, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:
+
+$$P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}}$$ {#eq-theoretical_probability}
+
+ 
+
+**Example 1**
+
+What is the probability of rolling the number "5" when we roll a six-sided fair die once?
+
+The theoretical probability is:
+
+$$P(\textrm{rolling 5}) = \frac{\textrm{1 outcome favourable to the event}}{\textrm{6 possible outcomes}} = \frac{1}{6} \approx 0.167$$
+
+
+This is because only one outcome (die showing: {{< fa dice-five size=1x >}}) is favorable out of the six equally likely outcomes (die showing: {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}},
+{{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}},
+{{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}}).
+
+ 
+
+**Example 2**
+
+What is the probability of rolling either a "5" or a "6" when we roll a six-sided fair die once?
+
+
+The theoretical probability is:
+
+$$P(\textrm{rolling 5 OR 6}) = \frac{\textrm{2 outcomes favourable to the event}}{\textrm{6 possible outcomes}} = \frac{2}{6} = \frac{1}{3}\approx 0.33$$
+
+This is because two outcomes (die showing: {{< fa dice-five size=1x >}} or {{< fa dice-six size=1x >}}) is favorable out of the six equally likely outcomes (die showing: {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}},
+{{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}},
+{{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}}).
+
+
+We can also use the probability's axioms. The probability of rolling a 6 is 1/6 and the probability of rolling a 5 is also 1/6. We cannot take a 5 and 6 at the same time (these events are mutually exclusive) so:
+
+$$\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/6 = 1/3}$$
+
+
+
+ 
+
+**C. "Subjective" probability (Bayesian approach)**
+
+The probability assigned to an event represents the **degree of belief** that the event will occur in a given try of the experiment, and it implies an element of subjectivity.
+
+**Example **
+
+In the die roll experiment, the determination of the subjective probability for events {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}} relies on the belief that the die is **unbiased**, and therefore it must be true that P(1) = P(2) = P(3) = P(4) = P(5) = P(6). With this information, we can then simply use the Kolmogorov axioms to state that P(1) + P(2) + P(3) + P(4) + P(5) + P(6) = 1, and therefore obtain the intuitive result that P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6.
+
+
+
+
+
+
+```{r}
+plot.dice(expand.grid(1:6,1:6), layout=c(6,6))
+```
+

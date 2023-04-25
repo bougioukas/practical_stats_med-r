@@ -1,1 +1,65 @@
 # Measures of diagnostic test accuracy {#sec-diagnostic_accuracy}
+
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Evaluate a diagnostic test with dichotomous test result
+-   Interpret the results
+:::
+
+
+
+## Research question
+
+To estimate the diagnostic accuracy of digital mammography (index test) in the detection of breast cancer, using histopathology as a "gold standard" in women aged over 40 years, who are undergoing mammography for the evaluation of different symptoms related to breast diseases.
+
+
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+
+library(epiR)
+
+library(here)
+library(tidyverse)
+```
+
+
+
+
+
+## Contingency 2x2 table
+
+Generally, an individual's disease status is a dichotomous variable; the individual either has the disease ($D_+$) or hasn't the disease ($D_-$) as defined by the reference standard (or "gold" standard). 
+The diagnostic test can be measured with a dichotomous variable (e.g. presence or absence of breast abnormalities using an X-ray) or a continuous variable (e.g. fasting glucose level for diabetes diagnosis), that can be transformed to a dichotomous variable by choosing an optimal cut-off value (threshold) which distinguishes positive ($T_+$) from negative ($T_-$) test results.
+
+If the diagnostic test gives a dichotomous result for each participant in a study the data can be tabulated in a 2 x 2 table of test result ($T_+$, $T_-$) versus true disease status ($D_+$, $D_-$). For example, the result of digital mammography test to diagnose breast cancer compared to the "gold" standard biopsy/surgery and histopathology in 1220 women with suspected breast cancer are following: 
+
+
+```{r}
+tb1 <- as.table(
+  rbind(c(890, 110), c(20, 200))
+  )
+
+dimnames(tb1) <- list(
+  Test = c("T+", "T_"),
+  Disease = c("D+", "D-")
+)
+
+tb1
+```
+
+```{r}
+epi.tests(tb1, digits = 3)
+```
+
+
+
+
