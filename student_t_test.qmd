@@ -38,7 +38,7 @@ library(ggrain)
 library(ggsci)
 library(ggpubr)
 
-# packages for data description and analysis
+# packages for data description, transformation and analysis
 library(dlookr)
 library(rstatix)
 library(here)
@@ -166,7 +166,6 @@ depression |>
   ungroup() |> 
   print(width = 100)
 ```
-
 
 ## dlookr
 

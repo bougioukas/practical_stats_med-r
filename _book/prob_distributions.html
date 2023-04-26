@@ -587,9 +587,9 @@ Important
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sample_space <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(sample_space, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(sample_space, A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3 4 5 6</code></pre>
+<pre><code>[1] 1 3 5</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -672,16 +672,13 @@ The Kolmogorov Axioms
 <section id="definition-of-probability" class="level3">
 <h3 class="anchored" data-anchor-id="definition-of-probability">Definition of Probability</h3>
 <p><strong>A. Experimental probability (frequentist approach)</strong></p>
-<p>Consider performing an experiment a <strong>large number</strong> of N times, under the same experimental conditions. The occurrence of the event A is indicated as the number N(A). The probability of event A is given by:</p>
-<p><span id="eq-probability"><span class="math display">\[ P(A) = \lim_{N\to\infty} \frac{N(A)}{N} \tag{14.1}\]</span></span></p>
-<p>that is, the probability is the relative frequency of occurrence of a given event from many repetitions of the same experiment.</p>
-<p>Therefore, we may say that the probability of an event is the <strong>relative frequency</strong> of this set of outcomes over an indefinitely large number of experiments.</p>
-<p><span id="eq-probability2"><span class="math display">\[ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of  experiments}} \tag{14.2}\]</span></span></p>
+<p>The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the <strong>relative frequency</strong> of occurrence of the event over a total number of experiments:</p>
+<p><span id="eq-probability"><span class="math display">\[ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of  experiments}} \tag{14.1}\]</span></span></p>
 <p>&nbsp;</p>
 <p><strong>B. Theoretical probability (theoretical approach)</strong></p>
 <p>Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the possible outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:</p>
-<p><span id="eq-theoretical_probability"><span class="math display">\[P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}} \tag{14.3}\]</span></span></p>
-<p>Note that the <a href="#eq-theoretical_probability" class="quarto-xref">Equation&nbsp;<span>14.3</span></a> only works for experiments that are considered <strong>“fair”</strong>; this means that there must be no bias involved so that all outcomes are <strong>equally likely</strong> to occur.</p>
+<p><span id="eq-theoretical_probability"><span class="math display">\[P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}} \tag{14.2}\]</span></span></p>
+<p>Note that the <a href="#eq-theoretical_probability" class="quarto-xref">Equation&nbsp;<span>14.2</span></a> only works for experiments that are considered <strong>“fair”</strong>; this means that there must be no bias involved so that all outcomes are <strong>equally likely</strong> to occur.</p>
 <p>&nbsp;</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example 1</em></strong></p>
 <p>What is the probability of rolling the number “5” when we roll a six-sided fair die once?</p>

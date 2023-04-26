@@ -147,7 +147,7 @@ The complement of an event A, denoted by $A^c$ or $\bar{A}$, is also an event an
 ```{r}
 sample_space <- c(1, 2, 3, 4, 5, 6)
 
-setdiff(sample_space, B)
+setdiff(sample_space, A)
 ```
 
 ```{r}
@@ -218,15 +218,10 @@ The concept of probability is used in everyday life which stands for the likelih
 
 **A. Experimental probability (frequentist approach)**
 
-Consider performing an experiment a **large number** of N times, under the same experimental conditions. The occurrence of the event A is indicated as the number N(A). The probability of event A is given by:
+The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the **relative frequency** of occurrence of the event over a total number of experiments:
 
-$$ P(A) = \lim_{N\to\infty} \frac{N(A)}{N}$$ {#eq-probability}
+$$ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of  experiments}}$$ {#eq-probability}
 
-that is, the probability is the relative frequency of occurrence of a given event from many repetitions of the same experiment.
-
-Therefore, we may say that the probability of an event is the **relative frequency** of this set of outcomes over an indefinitely large number of experiments.
-
-$$ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of  experiments}}$$ {#eq-probability2}
 
  
 

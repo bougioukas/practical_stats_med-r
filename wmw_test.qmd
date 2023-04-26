@@ -35,17 +35,21 @@ We need to load the following packages:
 #| message: false
 #| warning: false
 
-library(rstatix)
-library(exactRankTests)
-library(PupillometryR)
-library(gtsummary)
-library(ggpubr)
-library(sjstats)
-library(sjPlot)
+# packages for graphs
+library(ggrain)
 library(ggsci)
-library(report)
+library(ggpubr)
+
+# packages for data description, transformation and analysis
+library(dlookr)
+library(rstatix)
+library(sjstats)
 library(here)
 library(tidyverse)
+
+# packages for reporting the results
+library(gtsummary)
+library(report)
 ```
 
 ## Preraring the data
@@ -102,16 +106,13 @@ We can visualize the distribution of `b_TG` for the two groups:
 #| label: fig-raincloud_tg
 #| fig-cap: Rain cloud plot.
 
-set.seed(123)
-ggplot(tg, aes(x=status, y=b_TG)) + 
-  geom_flat_violin(aes(fill = status), scale = "count") +
-  geom_boxplot(width = 0.14, outlier.shape = NA, alpha = 0.5) +
-  geom_point(position = position_jitter(width = 0.05), 
-             size = 1.2, alpha = 0.6) +
-  ggsci::scale_fill_jco() +
-  theme_classic(base_size = 14) +
-  theme(legend.position="none", 
-        axis.text = element_text(size = 14))
+ggplot(tg, aes(x= status, y = b_TG, fill = status)) +
+  geom_rain(likert= TRUE, seed = 123, point.args = list(alpha = 0.3)) +
+  theme_classic(base_size = 20) +
+  labs(title = "Grouped Raincloud Plot:  Thromboglobulin by status") +
+  scale_fill_jco() +
+  theme(legend.position = "none",
+        axis.text = element_text(size = 20))
 ```
 
 The above figure shows that the data in both groups are positively skewed and they have similar shaped distributions.
@@ -123,9 +124,11 @@ The above figure shows that the data in both groups are positively skewed and th
 
 tg %>%
   ggqqplot("b_TG", color = "status", conf.int = F) +
+  theme_classic(base_size = 20) +
   scale_color_jco() +
   facet_wrap(~ status) + 
-  theme(legend.position = "none")
+  theme(legend.position = "none", 
+        axis.text = element_text(size = 18))
 ```
 
  
@@ -142,7 +145,7 @@ The `b_TG` summary statistics for each group are:
 
 ```{r}
 
-tg_summary <- tg %>%
+tg %>%
   group_by(status) %>%
   dplyr::summarise(
     n = n(),
@@ -157,10 +160,8 @@ tg_summary <- tg %>%
     skewness = EnvStats::skewness(b_TG, na.rm = TRUE),
     kurtosis= EnvStats::kurtosis(b_TG, na.rm = TRUE)
   ) %>%
-  ungroup()
-
-tg_summary
-
+  ungroup() |> 
+  print(width = 100)
 ```
 
 ## dlookr
@@ -170,7 +171,8 @@ tg %>%
   group_by(status) %>% 
   dlookr::describe(b_TG) %>% 
   select(described_variables,  status, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) %>% 
-  ungroup()
+  ungroup() |> 
+  print(width = 100)
 ```
 :::
 :::
@@ -210,19 +212,13 @@ wilcox.test(b_TG ~ status, conf.int = T, data = tg)
 
 **Historical Note:** As you can see, in R the Mann-Whitney test is calculated with the `wilcox.test()` function and it is called Wilcoxon rank-sum test. What is the reason for this? Henry Mann and Donald Whitney (1947) reported in their article that the test was first proposed by Frank Wilcoxon (1945) and they gave their version for the test. So the right would be to call this test Wilcoxon-Mann-Whitney (WMW) test.
 
-## exactRankTests
-
-Although a small number of ties should not have a serious impact on our results, in case of ties we can use the `wilcox.exact()` function from the package {exactRankTests}:
-
-```{r}
-wilcox.exact(b_TG ~ status, conf.int = T, data = tg)
-```
 
 ## rstatix
 
 ```{r}
-tg %>%
-  wilcox_test(b_TG ~ status, detailed = T)
+tg |>
+  wilcox_test(b_TG ~ status, detailed = T) |> 
+  print(width = 100)
 ```
 :::
 :::
