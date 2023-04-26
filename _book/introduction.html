@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.333">
+<meta name="generator" content="quarto-1.4.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -418,7 +418,7 @@ Learning objectives
 <section id="the-discipline-of-statistics" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="the-discipline-of-statistics"><span class="header-section-number">12.1</span> The discipline of statistics</h2>
 <p>Statistics is an empirical or practical method for collecting, organizing, summarizing, and presenting data, and for making inferences about the population from which the data are drawn.</p>
-<p>The discipline of traditional (frequentist) statistics includes two main branches (<a href="#fig-branches">Figure&nbsp;<span>12.1</span></a>):</p>
+<p>The discipline of traditional (frequentist) statistics includes two main branches (<a href="#fig-branches" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>):</p>
 <ul>
 <li><p><strong>descriptive statistics</strong> that includes measures of frequency and measures of location and dispersion. It also includes a description of the general shape of the distribution of the data.</p></li>
 <li><p><strong>inferential statistics</strong> that aims at generalizing conclusions made on a sample to a whole population. It includes estimation and hypothesis testing.</p></li>
@@ -451,7 +451,7 @@ Learning objectives
 <section id="biomedical-data" class="level3">
 <h3 class="anchored" data-anchor-id="biomedical-data">Biomedical Data</h3>
 <p><strong>Biomedical data</strong> have unique features compared with data in other domains. The data may include administrative health data, biomarker data, biometric data (for example, from wearable technologies) and imaging, and may originate from many different sources, including Electronic Health Records (EHRs), surveillance systems, clinical registries, biobanks, the internet (e.g.&nbsp;social media) and patient self-reports.</p>
-<p>Biomedical data can be transformed into <strong>information</strong>. This information can become <strong>knowledge</strong> if the researchers and clinicians understand it (<a href="#fig-info">Figure&nbsp;<span>12.2</span></a>).</p>
+<p>Biomedical data can be transformed into <strong>information</strong>. This information can become <strong>knowledge</strong> if the researchers and clinicians understand it (<a href="#fig-info" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>).</p>
 <div id="fig-info" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/info.png" class="img-fluid figure-img" style="width:80.0%"></p>
@@ -488,7 +488,7 @@ Independent Vs Dependent variables
 </section>
 <section id="types-of-data" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="types-of-data"><span class="header-section-number">12.3</span> Types of Data</h2>
-<p>Data in variables can be either <strong>categorical</strong> or <strong>numerical</strong> (otherwise known as qualitative and quantitative) in nature (<a href="#fig-data_types">Figure&nbsp;<span>12.3</span></a>).</p>
+<p>Data in variables can be either <strong>categorical</strong> or <strong>numerical</strong> (otherwise known as qualitative and quantitative) in nature (<a href="#fig-data_types" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>).</p>
 <div class="cell" data-fig-width="9">
 <div class="cell-output-display">
 <div id="fig-data_types" class="quarto-figure quarto-figure-center anchored">
@@ -708,6 +708,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, function() {
+      let href = xref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children.length > 2) {
+          for (let i = 0; i < 2; i++) {
+            container.appendChild(note.children[i].cloneNode(true));
+          }
+          return container.innerHTML
+        } else {
+          return note.innerHTML;
+        }
+      } else {
+        return note.innerHTML;
+      }
     });
   }
       let selectedAnnoteEl;

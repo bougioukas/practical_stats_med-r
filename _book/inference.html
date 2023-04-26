@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.333">
+<meta name="generator" content="quarto-1.4.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -432,7 +432,7 @@ Steps of Hypothesis Testsing
 <li>If p − value &lt; α, reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 <li>If p − value ≥ α, do not reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 </ul>
-<p>The <a href="#tbl-panel">Table&nbsp;<span>16.1</span></a> demonstrates how to interpret the strength of the evidence. However, always keep in mind the size of the study being considered.</p>
+<p>The <a href="#tbl-panel" class="quarto-xref">Table&nbsp;<span>16.1</span></a> demonstrates how to interpret the strength of the evidence. However, always keep in mind the size of the study being considered.</p>
 <div id="tbl-panel" class="tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
 <p>Table&nbsp;16.1: <strong>?(caption)</strong></p>
@@ -480,7 +480,7 @@ Steps of Hypothesis Testsing
 </section>
 <section id="type-of-errors-in-hypothesis-testing" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="type-of-errors-in-hypothesis-testing"><span class="header-section-number">16.2</span> Type of Errors in Hypothesis Testing</h2>
-<p>In the framework of hypothesis testing there are two types of errors: <strong>Type I error</strong> and <strong>type II error</strong> (<a href="#tbl-type_errors">Table&nbsp;<span>16.2</span></a>).</p>
+<p>In the framework of hypothesis testing there are two types of errors: <strong>Type I error</strong> and <strong>type II error</strong> (<a href="#tbl-type_errors" class="quarto-xref">Table&nbsp;<span>16.2</span></a>).</p>
 <p><strong>Type I error:</strong> we reject the null hypothesis when it is true (false positive), and conclude that there is an effect when, in reality, there is none. The maximum chance (probability) of making a Type I error is denoted by α (alpha). This is the significance level of the test; we reject the null hypothesis if our p-value is less than the significance level, i.e.&nbsp;if p &lt; a.</p>
 <p><strong>Type II error:</strong> we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta); its compliment, (1 - β), is the power of the test.</p>
 <div id="tbl-type_errors" class="anchored">
@@ -523,7 +523,7 @@ Steps of Hypothesis Testsing
 </table>
 </div>
 <p>&nbsp;</p>
-<p>The power (<span class="math inline">\(1 - \beta\)</span>), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e.&nbsp;it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. <a href="#tbl-power">Table&nbsp;<span>16.3</span></a> presents the main factors that can influence the power in a study.</p>
+<p>The power (<span class="math inline">\(1 - \beta\)</span>), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e.&nbsp;it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. <a href="#tbl-power" class="quarto-xref">Table&nbsp;<span>16.3</span></a> presents the main factors that can influence the power in a study.</p>
 <div id="tbl-power" class="anchored">
 <table class="table">
 <caption>Table&nbsp;16.3: Factors Influencing Power.</caption>
@@ -668,6 +668,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, function() {
+      let href = xref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children.length > 2) {
+          for (let i = 0; i < 2; i++) {
+            container.appendChild(note.children[i].cloneNode(true));
+          }
+          return container.innerHTML
+        } else {
+          return note.innerHTML;
+        }
+      } else {
+        return note.innerHTML;
+      }
     });
   }
       let selectedAnnoteEl;

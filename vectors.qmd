@@ -403,30 +403,11 @@ round(sqrt(z_seq), digits = 2)
 
  
 
-## Relational operators applied between a vector and a scalar
-
-For relational operators (\>, \<, ==, \<=, \>=, !=), each element of the vector is compared with a defined value (scalar). The result of comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
-
-**Examples:**
-
-```{r}
-m <- c(4, 2, 3, 8)
-```
-
-```{r}
-m > 3
-m >= 3
-m == 3
-m != 3
-```
-
- 
-
 ## Operators applied between two vectors
 
 ### Arithmetic Operators
 
-The arithmetic operators `(+, -, *, /, ^)` act on each element of the vector.
+The arithmetic operators `(+, -, *, /, ^)` act on each element of the vector in an element-wise way.
 
 [**Note:** R follows the **BODMAS** (Brackets, Orders (powers/roots), Division, Multiplication, Addition, Subtraction) rule for the order in which it will carry out calculations.]{.aside}
 
@@ -448,7 +429,28 @@ t + 3 * v / 2
 
 ### Relational Operators
 
-For relational operators (\>, \<, ==, \<=, \>=, !=), each element of the first vector is compared with the corresponding element of the second vector. The result of comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
+**A. Relational operators applied between a long vector and a scalar (one-element vector)**
+
+For relational operators (\>, \<, ==, \<=, \>=, !=) between a long vector and a scalar, each element of the vector is compared with a defined value (scalar). The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
+
+**Examples:**
+
+```{r}
+m <- c(4, 2, 3, 8)
+```
+
+```{r}
+m > 3
+m >= 3
+m == 3
+m != 3
+```
+
+ 
+
+**B. Relational operators applied between two (long) vectors**
+
+In the case of two long vectors, each element of the first vector is compared with the corresponding element of the second vector (element-wise comparison). The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
 
 Examples:
 
@@ -467,15 +469,15 @@ w != z
 
  
 
-### Logical Operators applied to vectors
+### Logical Operators are applied to vectors
 
 The logical (Boolean) operators are:
 
--   `&` , `&&` (AND)
--   `|` , `||` (OR)
--   `!` (NOT)
+-   `&`, `&`  (AND)
+-   `|`, `||` (OR)
+-   `!`       (NOT)
 
-Logical operators are applicable to vectors of type **logical** or **numeric**. The result of comparison is a **logical (Boolean) value**.
+Logical operators are applicable to **logical** and/or **numeric** vectors and are applied in an element-wise way. The result of each comparison is a **logical (Boolean) value**.
 
 Suppose we have the following vectors:
 
@@ -508,31 +510,63 @@ u
 
 **A. AND Operators (`&`, `&&`)**
 
-The `&` operator combines each element of the first vector with the corresponding element of the second vector and gives an output TRUE if **both** elements are TRUE.
+The `&` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **both** elements are TRUE.
 
 ```{r}
 s & u
 ```
 
-Additionally, the `&&` operator takes the **first** element of both vectors and gives TRUE only if both are TRUE.
+
+The `&&` operator works with one-element vectors and gives an output TRUE if **both** elements are TRUE. For example:
 
 ```{r}
+s[1] && u[1]
+```
+
+::: callout-important
+## NOTE: Operator &&
+
+In R 4.3.0 version and later, calling the && in operations with vectors of length greater than one gives an error. For example:
+
+```{r}
+#| eval: false
+
 s && u
 ```
 
+`r kableExtra::text_spec("Error in s && u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
+:::
+
+
 **B. OR operators (`|`, `||`)**
 
-The `|` operator combines each element of the first vector with the corresponding element of the second vector and gives an output TRUE if **at least one of the elements** is TRUE.
+The `|` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **at least one of the elements** is TRUE.
 
 ```{r}
 s | u
 ```
 
-Additionally, the `||` operator takes the **first** element of both vectors and gives TRUE if one of them is TRUE.
+The `||` operator works with one-element vectors and gives an output TRUE if **at least one of the elements** elements is TRUE. For example:
 
 ```{r}
+s[1] || u[1]
+```
+
+
+::: callout-important
+## NOTE: Operator ||
+
+In R 4.3.0 version and later, calling the || in operations with vectors of length greater than one gives an error. For example:
+
+```{r}
+#| eval: false
+
 s || u
 ```
+
+`r kableExtra::text_spec("Error in s || u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
+:::
+
 
 **C. NOT operator (`!`)**
 

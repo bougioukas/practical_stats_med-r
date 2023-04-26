@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.333">
+<meta name="generator" content="quarto-1.4.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -451,7 +451,7 @@ Learning objectives
 <section id="starting-r-rstudio" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="starting-r-rstudio"><span class="header-section-number">1.2</span> Starting R &amp; RStudio</h2>
 <p>After the R and RStudio installation is finished, we click the RStudio icon <img src="images/r_studio_icon.png" id="fig-r_studio_icon" class="img-fluid" style="width:4.0%">.</p>
-<p>R starts automatically when we open RStudio. The first time we initiate an R session we will see <strong>three panes</strong> (<a href="#fig-RStudio_panes">Figure&nbsp;<span>1.1</span></a>):</p>
+<p>R starts automatically when we open RStudio. The first time we initiate an R session we will see <strong>three panes</strong> (<a href="#fig-RStudio_panes" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>):</p>
 <div id="fig-RStudio_panes" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/RStudio_panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -522,11 +522,11 @@ Command prompt &nbsp;&gt;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="1">We have not finished the mathematical expression.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">We have not finished the mathematical expression.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="2" data-code-lines="2">Here the plus sign (<code>+</code>) is a prompt.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2">Here the plus sign (<code>+</code>) is a prompt.</span>
 </dd>
 </dl>
 </div>
@@ -554,7 +554,7 @@ Recall a previously typed command in Console
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help">Figure&nbsp;<span>1.2</span></a>):</p>
+<p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>):</p>
 <div id="fig-median_help" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/median_help.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -704,6 +704,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, function() {
+      let href = xref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children.length > 2) {
+          for (let i = 0; i < 2; i++) {
+            container.appendChild(note.children[i].cloneNode(true));
+          }
+          return container.innerHTML
+        } else {
+          return note.innerHTML;
+        }
+      } else {
+        return note.innerHTML;
+      }
     });
   }
       let selectedAnnoteEl;

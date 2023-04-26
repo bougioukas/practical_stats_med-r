@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.333">
+<meta name="generator" content="quarto-1.4.6">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Practical Statistics in Medicine with R - 5&nbsp; R packages</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -73,7 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -92,11 +97,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+
+
 </head>
+
 <body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -107,9 +117,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
         <div class="sidebar-tools-main">
@@ -124,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome!</span></a>
@@ -138,8 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
@@ -206,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -215,8 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
@@ -361,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -369,29 +383,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#what-are-r-packages" id="toc-what-are-r-packages" class="nav-link active" data-scroll-target="#what-are-r-packages"><span class="header-section-number">5.1</span> What are R packages?</a>
+  <li><a href="#what-are-r-packages" id="toc-what-are-r-packages" class="nav-link active" data-scroll-target="#what-are-r-packages"><span class="header-section-number">5.1</span> What are R packages?</a>
   <ul class="collapse">
-<li><a href="#standard-base-r-packages" id="toc-standard-base-r-packages" class="nav-link" data-scroll-target="#standard-base-r-packages">Standard (base) R packages</a></li>
+  <li><a href="#standard-base-r-packages" id="toc-standard-base-r-packages" class="nav-link" data-scroll-target="#standard-base-r-packages">Standard (base) R packages</a></li>
   <li><a href="#add-on-packages" id="toc-add-on-packages" class="nav-link" data-scroll-target="#add-on-packages">Add-on packages</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#package-installation" id="toc-package-installation" class="nav-link" data-scroll-target="#package-installation"><span class="header-section-number">5.2</span> Package installation</a></li>
   <li><a href="#package-loading" id="toc-package-loading" class="nav-link" data-scroll-target="#package-loading"><span class="header-section-number">5.3</span> Package loading</a></li>
   <li><a href="#the-tidyverse-package" id="toc-the-tidyverse-package" class="nav-link" data-scroll-target="#the-tidyverse-package"><span class="header-section-number">5.4</span> The <code>{tidyverse}</code> package</a></li>
   <li><a href="#the-here-package" id="toc-the-here-package" class="nav-link" data-scroll-target="#the-here-package"><span class="header-section-number">5.5</span> The <code>{here}</code> package</a></li>
   <li><a href="#the-reprex-package" id="toc-the-reprex-package" class="nav-link" data-scroll-target="#the-reprex-package"><span class="header-section-number">5.6</span> The <code>{reprex}</code> package</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title"><span id="sec-packages" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></h1>
 </div>
 
@@ -405,7 +423,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p>When we have finished this chapter, we should be able to:</p>
+</header>
+
+<p>When we have finished this chapter, we should be able to:</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -425,11 +445,14 @@ Learning objectives
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="what-are-r-packages" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="what-are-r-packages">
-<span class="header-section-number">5.1</span> What are R packages?</h2>
-<section id="standard-base-r-packages" class="level3"><h3 class="anchored" data-anchor-id="standard-base-r-packages">Standard (base) R packages</h3>
+<section id="what-are-r-packages" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="what-are-r-packages"><span class="header-section-number">5.1</span> What are R packages?</h2>
+<section id="standard-base-r-packages" class="level3">
+<h3 class="anchored" data-anchor-id="standard-base-r-packages">Standard (base) R packages</h3>
 <p>R installs a set of standard (base) packages during the installation process. <strong>Standard packages</strong> are stored in a <em>library</em> folder of the R program and contain the basic functions that allow R to work as well as a number of statistical and graphical functions that are ready to be used in our data analysis.</p>
-</section><section id="add-on-packages" class="level3"><h3 class="anchored" data-anchor-id="add-on-packages">Add-on packages</h3>
+</section>
+<section id="add-on-packages" class="level3">
+<h3 class="anchored" data-anchor-id="add-on-packages">Add-on packages</h3>
 <p>More packages can be added later in User’s R library from repositories, when they are needed for some specific purpose (add-on R packages). <strong>Add-on R packages</strong> are created by a world-wide active community of developers and R users, covering a wide number of different applications. Most of these packages can be installed for free from many different online sources (repositories).</p>
 <p>A <strong>repository</strong> is a place where packages are located and stored so we can install them from it. Some of the most popular repositories for R packages, are:</p>
 <ul>
@@ -459,11 +482,13 @@ Add-on R packages
 <p>For example, among the many add-on packages, we will use in this textbook are the <code>dplyr</code> package for data wrangling, the <code>ggplot2</code> package for data visualization and and the <code>rstatix</code> package for statistical tests.</p>
 <p>Let’s now show how to perform these two steps for the `rstatix`` package for data visualization.</p>
 <p>&nbsp;</p>
-</section></section><section id="package-installation" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="package-installation">
-<span class="header-section-number">5.2</span> Package installation</h2>
+</section>
+</section>
+<section id="package-installation" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="package-installation"><span class="header-section-number">5.2</span> Package installation</h2>
 <p>There are two ways to install an add-on R package as follows:</p>
 <p><strong>A. Installing packages using RStudio interface</strong></p>
-<p>Let’s install the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package as shown in Figure <a href="#fig-installation">Figure&nbsp;<span>5.1</span></a>. In the output pane of RStudio:</p>
+<p>Let’s install the <code>{rstatix}</code> package as shown in Figure <a href="#fig-installation" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>. In the output pane of RStudio:</p>
 <ol type="a">
 <li>Activate the “Packages” tab.</li>
 <li>Click on “Install”.</li>
@@ -471,26 +496,29 @@ Add-on R packages
 <li>Press “Install.”</li>
 </ol>
 <div id="fig-installation" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/installation.png" class="img-fluid figure-img" style="width:55.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Installing packages in R using RStudio interface</figcaption></figure>
+<figure class="figure">
+<p><img src="images/installation.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.1: Installing packages in R using RStudio interface</figcaption>
+</figure>
 </div>
 <p><strong>B. Installing packages from repositories using command</strong></p>
-<p>For installing the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package from <strong>CRAN</strong> we type the following command in the Console pane of RStudio and press <strong>Enter</strong> on our keyboard:</p>
+<p>For installing the <code>{rstatix}</code> package from <strong>CRAN</strong> we type the following command in the Console pane of RStudio and press <strong>Enter</strong> on our keyboard:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rstatix"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rstatix"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note we must include the <strong>quotation marks</strong> around the name of the package. In order to install <strong>several</strong> package at once, we just have to use the install.packages()` function as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rstatix"</span>, <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rstatix"</span>, <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>We only have to install a package once</strong>. However, if we want to update an installed package to a newer version, we need to re-install it using the previous command.</p>
 <p>Moreover, suppose, for instance, that we want to download the <strong>development</strong> version of the <code>rstatix</code> package from GitHub. The first step is to install and load the <code>devtools</code> package, available on CRAN. On Windows, in case we encounter some error, we might need to install the <strong>Rtools</strong> program. Then we can call the <code>install_github()</code> function to install the R package from GitHub.</p>
 <p>In case we need to install an <strong>older</strong> version of a package the simplest method is to use the provided <code>install_version()</code> function of the devtools package to install the version we need.</p>
-</section><section id="package-loading" class="level2 page-columns page-full" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="package-loading">
-<span class="header-section-number">5.3</span> Package loading</h2>
-<p>After we’ve installed a package, we need to <strong>load it</strong> in the current R session using the <strong><code><a href="https://rdrr.io/r/base/library.html">library()</a></code></strong> command (note that the the quotation marks are not necessary when we are loading a package). For example, to load the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package, we run the following code in the console pane:</p>
+</section>
+<section id="package-loading" class="level2 page-columns page-full" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="package-loading"><span class="header-section-number">5.3</span> Package loading</h2>
+<p>After we’ve installed a package, we need to <strong>load it</strong> in the current R session using the <strong><code>library()</code></strong> command (note that the the quotation marks are not necessary when we are loading a package). For example, to load the <code>{rstatix}</code> package, we run the following code in the console pane:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -507,19 +535,20 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If we forget to load <code>rstatix</code> in our R session, when we try to use the functions included in this package such as <code><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test()</a></code>, we will get an error :</p>
+<p>If we forget to load <code>rstatix</code> in our R session, when we try to use the functions included in this package such as <code>t_test()</code>, we will get an error :</p>
 <p><span style="     color: #8676F8 !important;">Error in … : could not find function t_test</span></p>
 </div>
 </div>
-<p>There is one way in R that can use a <code>function</code> without using <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. To do this, we can simply use the notation <code>package::function</code> .</p>
+<p>There is one way in R that can use a <code>function</code> without using <code>library()</code>. To do this, we can simply use the notation <code>package::function</code> .</p>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rstatix</span><span class="fu">::</span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">t_test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The above notation tells R to use the <code>t_test</code> function from <code>rstatix</code> without load the <a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a> package.</p>
-</section><section id="the-tidyverse-package" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="the-tidyverse-package">
-<span class="header-section-number">5.4</span> The <code>{tidyverse}</code> package</h2>
-<p>In this textbook we will use the <a href="https://tidyverse.tidyverse.org">tidyverse</a> package. Actually, the tidyverse is a collection of R packages designed for data science that work in harmony.</p>
+<p>The above notation tells R to use the <code>t_test</code> function from <code>rstatix</code> without load the <code>{rstatix}</code> package.</p>
+</section>
+<section id="the-tidyverse-package" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="the-tidyverse-package"><span class="header-section-number">5.4</span> The <code>{tidyverse}</code> package</h2>
+<p>In this textbook we will use the <code>{tidyverse}</code> package. Actually, the tidyverse is a collection of R packages designed for data science that work in harmony.</p>
 <p>The command <code>install.packages("tidyverse")</code> will <strong>install</strong> the complete tidyverse. The <code>tidyverse</code> package provides a shortcut for downloading the following packages:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -533,7 +562,7 @@ Important
 [29] "tidyr"         "xml2"          "tidyverse"    </code></pre>
 </div>
 </div>
-<p>When we <strong>load</strong> the tidyverse package with the command <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>, R will load the <strong>nine core packages</strong> namely <code>dplyr</code>,<code>forcats</code>, <code>ggplot2</code>, <code>lubridate</code>, <code>purrr</code>, <code>readr</code>, <code>stringr</code>, <code>tibble</code>, and <code>tidyr</code>, and make them available in our current R session.</p>
+<p>When we <strong>load</strong> the tidyverse package with the command <code>library(tidyverse)</code>, R will load the <strong>nine core packages</strong> namely <code>dplyr</code>,<code>forcats</code>, <code>ggplot2</code>, <code>lubridate</code>, <code>purrr</code>, <code>readr</code>, <code>stringr</code>, <code>tibble</code>, and <code>tidyr</code>, and make them available in our current R session.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -544,12 +573,13 @@ Non-core tidyverse packages
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The packages out of the core list of <code>tidyverse</code> have more specialized usage and are not loaded automatically with the command <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>. So, we need to load each one explicitly with the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function if we want to use them.</p>
+<p>The packages out of the core list of <code>tidyverse</code> have more specialized usage and are not loaded automatically with the command <code>library(tidyverse)</code>. So, we need to load each one explicitly with the <code>library()</code> function if we want to use them.</p>
 </div>
 </div>
-</section><section id="the-here-package" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="the-here-package">
-<span class="header-section-number">5.5</span> The <code>{here}</code> package</h2>
-<p>When we work with Projects in RStudio we may find useful the <a href="https://here.r-lib.org/">here</a> package. The main function of the package, <code>here()</code>, builds a path relative to the top level of our RStudio project every time we call it. It allows us to navigate throughout each of the sub-folders and files in our project using <strong>relative</strong> paths.</p>
+</section>
+<section id="the-here-package" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="the-here-package"><span class="header-section-number">5.5</span> The <code>{here}</code> package</h2>
+<p>When we work with Projects in RStudio we may find useful the <code>{here}</code> package. The main function of the package, <code>here()</code>, builds a path relative to the top level of our RStudio project every time we call it. It allows us to navigate throughout each of the sub-folders and files in our project using <strong>relative</strong> paths.</p>
 <blockquote class="blockquote">
 <p>We can think of the paths as directions to the files. There are two kinds of paths: <strong>absolute paths</strong> and <strong>relative paths</strong>.</p>
 </blockquote>
@@ -557,31 +587,35 @@ Non-core tidyverse packages
 <p><strong>A. Reading data using an absolute path</strong></p>
 <p>Emily’s file is stored at <code>C:/emily/project/data/covid19.xlsx</code> and the command in R should be:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"C:/emily/project/data/covid19.xlsx"</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/emily/project/data/covid19.xlsx"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>while Paul’s file is stored at <code>C:/paul/project/data/covid19.xlsx</code> and the command in R should be:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span> </span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"C:/paul/project/data/covid19.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/paul/project/data/covid19.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Even though Emily and Paul stored their files in their “C” disk, the absolute paths are different due to their different usernames. &nbsp;</p>
 <p><strong>B. Reading data using a relative path</strong></p>
 <p>For a relative path the command in R should be:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"covid19.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"covid19.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this case, <code>here()</code> tells R that the folder structure starts at the project-level. The relative path from inside the project folder (<code>data/covid19.xlsx</code>) is the same on both computers; any code that uses relative paths will work on both computers.</p>
-</section><section id="the-reprex-package" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="the-reprex-package">
-<span class="header-section-number">5.6</span> The <code>{reprex}</code> package</h2>
+</section>
+<section id="the-reprex-package" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="the-reprex-package"><span class="header-section-number">5.6</span> The <code>{reprex}</code> package</h2>
 <p>If we are looking for help with an rstats problem, it is recommend that we:</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp;do <em>not</em> email an individual author or open source software (OSS) maintainer</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; create a minimum reproducible example (a reprex) demonstrating your problem</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; post on a public forum like RStudio Community or Stack Overflow</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -687,6 +721,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, function() {
+      let href = xref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children.length > 2) {
+          for (let i = 0; i < 2; i++) {
+            container.appendChild(note.children[i].cloneNode(true));
+          }
+          return container.innerHTML
+        } else {
+          return note.innerHTML;
+        }
+      } else {
+        return note.innerHTML;
+      }
     });
   }
       let selectedAnnoteEl;
@@ -892,7 +950,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="./functions.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span>
       </a>          
@@ -904,7 +964,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2023, Konstantinos I. Bougioukas</div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -913,9 +974,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share">
-<a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a>
-</div></div>
+</footer>
+<div class="page-columns page-rows-contents page-layout-article"><div class="social-share"><a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical Statistics in Medicine with R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical Statistics in Medicine with R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a></div></div>
 
 
 
