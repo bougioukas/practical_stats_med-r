@@ -30,6 +30,7 @@ book:
       chapters:
         - introduction.qmd
         - descriptive.qmd
+        - probability.qmd
         - prob_distributions.qmd
         - normal.qmd
         - inference.qmd

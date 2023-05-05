@@ -269,6 +269,8 @@ t.test(HDRS ~ intervention, var.equal = T, data = depression)                   
 depression |> 
   t_test(HDRS ~ intervention, var.equal = T, detailed = T)              
 ```
+
+
 :::
 :::
 

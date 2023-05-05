@@ -695,14 +695,14 @@ The most common way of presenting a frequency distribution of a continuous varia
 ggplot(arrhythmia, aes(x = age)) +
   geom_histogram(binwidth = 8, fill = "steelblue4",        # <1>
                  color = "#8fb4d9", alpha = 0.6) +  
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = 20) +
   labs(title = "Histogram: age", y = "Frequency")
 
 # Histogram of QRS
 ggplot(arrhythmia, aes(x = QRS)) +
   geom_histogram(binwidth = 8, fill = "steelblue4",      
                  color = "#8fb4d9", alpha = 0.6) +
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = 20) +
   labs(title = "Histogram: QRS", y = "Frequency")
 ```
 
@@ -812,4 +812,3 @@ ggplot(arrhythmia, aes(sex, QRS, fill = sex)) +
   scale_fill_jco() +
   theme(legend.position = "none")
 ```
-

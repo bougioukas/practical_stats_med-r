@@ -1,4 +1,4 @@
-# Probability and Distributions {#sec-prob_distributions}
+# Probability Distributions {#sec-prob_distributions}
 
 ```{r}
 #| include: false
@@ -11,7 +11,7 @@ When we have finished this Chapter, we should be able to:
 ::: {.callout-caution icon="false"}
 ## Learning objectives
 
--   hjgkjg
+-   Understand and use the terminology of probability
 :::
 
 ## Packages we need
@@ -21,256 +21,158 @@ We need to load the following packages:
 ```{r}
 #| message: false
 
-# dice graphs
-library(tidydice)
-
-# venn diagrams
-library(ggvenn)
-library(ggVennDiagram)
-
-
-library(TeachingDemos)
-
-#library(dice)
+# graphs
+library(ggplot2)
 ```
 
-## Sample Space and Random Events
 
-Both deterministic and stochastic phenomena drive the everyday life.
+## Random Variables
 
--   A **deterministic** phenomenon (process or experiment) always produce the same outcome each time it is repeated under the same conditions.
+A random variable assigns a numerical quantity to every possible outcome of a random phenomenon and may be:
 
--   A **random** phenomenon (process or experiment) is characterized by conditions under which the result cannot be determined with certainty before it occurs, that is, one of several possible outcomes is observed each time the process or experiment is repeated. For example, when a coin is tossed, the outcome is either heads H or tails T, but unknown before the coin is tossed.
+-   discrete if it takes either a finite number or an infinite sequence of possible values
+-   continuous if it takes any value in some interval on the real numbers
 
-The **sample space Ω** is defined as the set of **all** possible outcomes of a random experiment. For example, if we roll a 6-sided die, the sample space is the set of the six possible outcomes, Ω ={1, 2, 3, 4, 5, 6} (@fig-die_space).
+For example, a random variable representing the ABO blood system (A, B, AB, or O blood type) would be discrete, while a random variable representing the height of a person in centimeters would be continuous.
 
-```{r}
-#| warning: false
-#| out-width: 7cm
-#| label: fig-die_space
-#| fig-cap: Sample space for rolling a 6-sided die.
+`r fa("arrow-right", fill = "orange")`   ***Example***
 
-force_dice(1:6) |> 
-  plot_dice(detailed = TRUE, fill_success = "white") + 
-  theme(plot.title = element_blank())
-```
+Suppose the X random variable for blood type is explicitly defined as follows:
 
-Different random experiments have different sample spaces that can be denoted in an equivalent way (flipping a coin: Ω ={H, T}, flipping two coins: Ω ={HH, HT, TH, TT}, testing for possible genotypes of a bi-allelic gene A: Ω ={AA, Aa, aa}).
+$$X={\begin{cases}1, &for\ blood\ type\ A\\2, &for\ blood\ type\ B\\3, &for\ blood\ type\ AB\\4, &for\ blood\ type\ O\end{cases}}$$
 
-A **random event** (henceforth called event) is denoted by a capital letter such as A, B, or C and is a sub-set of sample space Ω, including a number of possible outcomes of the experiment. For the example of the rolling die, the event "even number" may be represented by A = {2, 4, 6} which is a sub-set of Ω (A ⊂ Ω), and the event "odd number" by B = {1, 3, 5} which is also a sub-set of Ω (B ⊂ Ω). In the case of flipping two coins, an event could be that exactly one of the coins lands Heads, A = {HT, TH} or the event could be that at least one of the coins lands heads, B = {HH, HT, TH}.
+That is, X is the discrete random variable that has four possible outcomes; it takes the value 1 if the person has blood type A, 2 if the person has blood type B, 3 if the person has blood type AB, and 4 if the person has blood type O.
 
-If an event consists of a single outcome from the sample space, it is termed a **simple event**. For example, the event of getting the number 1 on rolling a die, denoted as A = {1}. If an event consists of more than a single outcome from the sample space, it is called a **compound event** such as rolling a die and getting an even number, A = {2, 4, 6}.
+We can also find the **probability distribution** that describes the probability of different possible values of random variable X. Note that the probability axioms and properties that we discussed earlier are also applied to random variables (e.g., the total probability for all possible values of a random variable equals to one).
 
-::: callout-important
-For each experiment, two events always exist:
+Probability distributions are often depicted using probability tables or graphs. For example, assume that the individual probabilities for different blood types in a population are P(A) = 0.41, P(B) = 0.10, P(AB) = 0.04, and P(O) = 0.45 (Note that: P(A) + P(B) + P(AB) + P(O) = 0.41 + 0.10 + 0.04 + 0.45 = 1).
 
-1.  the **sample space**, Ω, which comprises all possible outcomes.
+$$P(X=x)={\begin{cases}0.41,&for\ x=1\\0.10,&for\ x=2\\0.04,&for\ x=3\\0.45,&for\ x=4\end{cases}}$$
 
-2.  the **empty set = ∅**, that contains no outcomes and it is called the impossible event.
+|                |      |      |      |      |
+|----------------|:----:|:----:|:----:|:----:|
+| **Blood type** |  A   |  B   |  AB  |  O   |
+| **X**          |  1   |  2   |  3   |  4   |
+| **P(X)**       | 0.41 | 0.10 | 0.04 | 0.45 |
+
+Here, x denotes a specific value (i.e. 1, 2, 3, or 4) of the random variable X. Then, instead of saying P(A) = 0.41, i.e., the blood type is A with probability 0.41, we can say that P(X = 1) = 0.41, i.e., X is equal to 1 with probability of 0.41.
+
+<br>
+
+We can use the probability distribution to answer probability questions:
+
+**What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?**
+
+We know that individuals with blood type B or O can donate to a person with blood type B. Therefore, we need to find the probability P(blood type B OR blood type O). Since the events blood type B or blood type O are mutually exclusive, we can use the addition rule for mutually exclusive events to get:
+
+$$ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 0.55}$$
+
+Hence, there is a 55% chance that a randomly selected person in our population can donate blood to someone with type B blood.
+
+## Discrete probability distributions
+
+The probability distribution of a discrete random variable X is defined by the **probability mass function** (pmf). Additionally, the **cumulative distribution function** (cdf) gives the probability that the random variable X is less than or equal to x and is usually denoted F(x).
+
+ 
+
+### Bernoulli distribution
+
+A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a Bernoulli trial.
+
+Let X be a binary random variable of a Bernoulli trial which takes the value 1 (success) with probability p and 0 (failure) with probability 1-p. The distribution of the X variable is called Bernoulli distribution with parameter p, denoted as $X ∼ Bernoulli(p)$, where ${0\leq p\leq 1}$.
+
+-   The probability mass function (pmf) of X is given by:
+
+$$P(X=x)={\begin{cases}1-p,&for\ x=0\\p,&for\ x=1\end{cases}}$$ {#eq-bernoulli1}
+
+which can also be written as: $$P(X=x)=p^{x}(1-p)^{1-x}\quad {\text{for }}x\in \{0,1\}$$ {#eq-bernoulli2}
+
+ 
+
+-   The cumulative distribution function (cdf) of X is given by:
+
+$$F(x) = P(X \le x)={\begin{cases}0,&for\ x <0\\1-p,&for\ 0\leq x < 1\\1,&for\ x \geq 1 \end{cases}}$$ {#eq-bernoulli3}
+
+::: callout-note
+The random variable X can take either value 0 or value 1. If $x<0$, then $P(X \le x) = 0$ because X can not take values smaller than 0. If $0\leq x < 1$, then $P(X \le x) = P(X=0) = 1-p$. Finally, if $x \geq 1$, then $P(X \le x) = P(X = 0) + P(X = 1) = (1 - p) + p = 1$.
 :::
 
  
 
-## Operations of events using set theory and Venn diagrams
+-   The mean of random variable, X, with Bernoulli(p) distribution is:
 
-### Union of Events: A∪B
+[**NOTE:** In this case, the mean can be interpreted as the proportion of the population who has the outcome (success).]{.aside}
 
-The union of the events A and B, denoted by **A∪B**, is the collection of all outcomes that are in A or in B or in both of them and it is also an event. It will occur if either A or B occurs (the symbol ∪ is equivalent to **OR** operator).
+$$μ = p$$ {#eq-bernouli4}
+
+and the variance is:
+
+$$ \sigma^2= p(1-p)= μ(μ-1)$$ {#eq-bernouli5}
+
+
+
+
+ 
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-In the experiment of rolling a die, let's consider the events A = "the number rolled is even" and B = "the number rolled is less than three".
+Let X be a random variable of the result of a surgical procedure, where X = 1 if the surgery was successful and X = 0 if it was unsuccessful. Suppose that the probability of success is p = 0.7. Then X has a Bernoulli distribution with parameter p = 0.7 :
+
+$$X ∼ Bernoulli(0.7)$$
+
+-   The pmf for this distribution is:
+
+$$P(X=x)={\begin{cases}0.3,&for\ x=0\\0.7,&for\ x=1\end{cases}}$$
+
+We can plot the pmf for visualizing the distribution of the two outcomes (@fig-bernouli1).
 
 ```{r}
-A <- c(2, 4, 6)      # A = {2, 4, 6}
-B <- c(1, 2)         # B = {1, 2}
-
-union(A, B)          # A∪B = {2, 4, 6, 1} 
-```
-
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 #| warning: false
-#| out-width: 10cm
-#| label: fig-union
-#| fig-cap: The union of the events A and B as represented in a Venn diagram.
+#| label: fig-bernouli1
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-cap: Plot of the pmf for Bernoulli(0.7) distribution.
 
-# List of items
-x <- list(A = A, B = B)
-yes <- "#7F7FFF"
-no  <- "white"
-
-p <- ggVennDiagram(x, label = c("count")) +
-  labs(title = "Ω") +
-  scale_color_manual(values = c("black", "black")) +
-  theme(legend.position = "none",
-        plot.title = element_text(size = 20),
-        plot.background = element_rect(fill = "white"))
-
-p$layers[[1]]$mapping <- aes(fill = name)
-
-p + scale_fill_manual(values = c(A = yes, B = yes, A..B = yes))
+x <- as.factor(c(0, 1))
+y <- c(0.3, 0.7)
+df <- data.frame(x, y)
+ 
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_segment(aes(x = x, xend=x, y=0, yend = y), color = "black") +
+  geom_point(color="deeppink", size = 4) +
+  theme_classic(base_size = 14) +
+  labs(title = "pmf Bernoulli(0.7)",
+       x = "X", y = "Probability") +
+  theme(axis.text = element_text(size = 14))
+  
 ```
 
- 
+<br>
 
-### Intersection of Events: A∩B
+-   The cdf for this distribution is:
 
-The intersection of A and B, denoted by **A∩B**, consists of all outcomes that are in both A and B (the symbol ∩ is equivalent to **AND** operator). That is, the events A and B must occur simultaneously.
-
-`r fa("arrow-right", fill = "orange")`   ***Example***
+$$F(x) = P(X \le x)={\begin{cases}0,&for\ x <0\\0.3,&for\ 0\leq x < 1\\1,&for\ x \geq 1 \end{cases}}$$
 
 ```{r}
-intersect(A, B)
-```
-
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 #| warning: false
-#| out-width: 9cm
-#| label: fig-intersection
-#| fig-cap: The intersection of the events A and B as represented in a Venn diagram.
+#| label: fig-bernouli2
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-cap: Plot of the cmf for Bernoulli(0.7) distribution.
 
-p + scale_fill_manual(values = c(A = no, B = no, A..B = yes))
+ggplot() +
+  geom_segment(aes(x = -2, xend = 0, y = 0, yend = 0)) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 0.3), linetype = "dotted") +
+  geom_segment(aes(x = 0, xend = 1, y = 0.3, yend = 0.3)) +
+  geom_segment(aes(x = 1, xend = 1, y = 0.3, yend = 1), linetype = "dotted") +
+  geom_segment(aes(x = 1, xend = 3, y = 1, yend = 1)) +
+  theme_classic(base_size = 14) +
+  labs(title = "cmf Bernoulli(0.7)", 
+       x = "X", y = "F(x)") +
+  theme(axis.text = element_text(size = 14))
 ```
 
- 
+A new surgery is successful 70% of the time. If the results of 10 such surgeries are randomly sampled, what is the probability that more than 8 of them are successful?
 
-### Complement Events: $A^c$
-
-The complement of an event A, denoted by $A^c$ or $\bar{A}$, is also an event and consists of all outcomes of the sample space Ω that are not in A.
-
-`r fa("arrow-right", fill = "orange")`   ***Example***
-
-```{r}
-sample_space <- c(1, 2, 3, 4, 5, 6)
-
-setdiff(sample_space, A)
-```
-
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
-#| warning: false
-#| out-width: 11cm
-#| label: fig-complement
-#| fig-cap: The complement of the union $B^c$ as represented in a Venn diagram.
-
-p + scale_fill_manual(values = c(A = no, B = yes, A..B = no)) +
-  theme(plot.title = element_text(size = 20),
-        plot.background = element_rect(fill = "#7F7FFF"))
-```
-
- 
-
-### Mutually exclusive events
-
-Let's consider the events A = "the number rolled is even" and C = "the number rolled is odd".
-
-The events A and C are mutually exclusive (also known as incompatible or disjoint) if they **cannot** occur simultaneously. This means that they do not share any outcomes and A∩C =∅.
-
-`r fa("arrow-right", fill = "orange")`   ***Example***
-
-```{r}
-A <- c(2, 4, 6)      
-C <- c(1, 3, 5)         
-
-intersect(A, C)         
-```
-
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
-#| warning: false
-#| out-width: 12cm
-#| label: fig-exclusive
-#| fig-cap: Venn Diagram of two mutually exclusive events.
-
-# List of items
-x2 <- list("A" = A, "C" = C)
-
-ggvenn(x2, fill_alpha = 1, auto_scale = T, show_elements = F, show_percentage = FALSE) +
-  labs(title = "Ω") +
-  scale_fill_manual(values = c("#7F7FFF", "#7F7FFF")) +
-  theme(plot.title = element_text(size = 20),
-        plot.background = element_rect(fill = "white"))
-```
-
- 
-
-## Probability
-
-The concept of probability is used in everyday life which stands for the likelihood of occurring or non-occurring of random events. The first step towards determining the probability of an event is to establish a number of **basic rules** that capture the meaning of probability. The probability of an event should fulfill three **axioms** defined by **Kolmogorov**:
-
-::: {.callout-tip icon="false"}
-## The Kolmogorov Axioms
-
-1.  The probability of an event A is a non-negative number, **P(A) ≥ 0**
-2.  The probability of all possible outcomes, or sample space Ω, equals to one, **P(Ω) = 1**
-3.  If A and B are two mutually exclusive events, then **P(A ∪ B) = P(A) + P(B)** and **P(A ∩ B) = 0**.
-:::
-
- 
-
-### Definition of Probability
-
-**A. Experimental probability (frequentist approach)**
-
-The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the **relative frequency** of occurrence of the event over a total number of experiments:
-
-$$ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of  experiments}}$$ {#eq-probability}
-
-
- 
-
-**B. Theoretical probability (theoretical approach)**
-
-Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the possible outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:
-
-$$P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}}$$ {#eq-theoretical_probability}
-
-Note that the @eq-theoretical_probability only works for experiments that are considered **"fair"**; this means that there must be no bias involved so that all outcomes are **equally likely** to occur.
-
- 
-
-`r fa("arrow-right", fill = "orange")`   ***Example 1***
-
-What is the probability of rolling the number "5" when we roll a six-sided fair die once?
-
-The theoretical probability is:
-
-$$P(\textrm{rolling 5}) = \frac{\textrm{1 outcome favourable to the event}}{\textrm{6 possible outcomes}} = \frac{1}{6} \approx 0.167$$
-
-This is because only one outcome (die showing: {{< fa dice-five size=1x >}}) is favorable out of the six equally likely outcomes (die showing: {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}}).
-
- 
-
-`r fa("arrow-right", fill = "orange")`   ***Example 2***
-
-What is the probability of rolling either a "5" or a "6" when we roll a six-sided fair die once?
-
-The theoretical probability is:
-
-$$P(\textrm{rolling 5 OR 6}) = \frac{\textrm{2 outcomes favourable to the event}}{\textrm{6 possible outcomes}} = \frac{2}{6} = \frac{1}{3}\approx 0.33$$
-
-This is because two outcomes (die showing: {{< fa dice-five size=1x >}} or {{< fa dice-six size=1x >}}) is favorable out of the six equally likely outcomes (die showing: {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}}).
-
-We can also use the probability's axioms. The probability of rolling a 6 is 1/6 and the probability of rolling a 5 is also 1/6. We cannot take a 5 and 6 at the same time (these events are mutually exclusive) so:
-
-$$\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/6 = 1/3}$$
-
- 
-
-**C. "Subjective" probability (Bayesian approach)**
-
-The probability assigned to an event represents the **degree of belief** that the event will occur in a given try of the experiment, and it implies an element of subjectivity.
-
-`r fa("arrow-right", fill = "orange")`   ***Example***
-
-In the die roll experiment, the determination of the subjective probability for events {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}} relies on the belief that the die is **unbiased**, and therefore it must be true that P(1) = P(2) = P(3) = P(4) = P(5) = P(6). With this information, we can then simply use the Kolmogorov axioms to state that P(1) + P(2) + P(3) + P(4) + P(5) + P(6) = 1, and therefore obtain the intuitive result that P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6.
-
-```{r}
-plot.dice(expand.grid(1:6,1:6), layout=c(6,6))
-```
+Binomial Problem with n = 10 and p(success) = 0.7 P(9\<= x \<=10) = 1 - binomcdf(10,0.7,8) = 0.1493

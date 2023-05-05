@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.6">
+<meta name="generator" content="quarto-1.4.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical Statistics in Medicine with R - 28&nbsp; Fisher’s exact test</title>
+<title>Practical Statistics in Medicine with R - 29&nbsp; Fisher’s exact test</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./fisher_exact.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fisher's exact test</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./fisher_exact.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Fisher's exact test</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -263,134 +263,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./prob_distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability and Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./measurement_properties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Measurement properties</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Measurement properties</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -411,13 +417,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">28.1</span> Research question and Hypothesis Testing</a></li>
-  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">28.2</span> Packages we need</a></li>
-  <li><a href="#preraring-the-data" id="toc-preraring-the-data" class="nav-link" data-scroll-target="#preraring-the-data"><span class="header-section-number">28.3</span> Preraring the data</a></li>
-  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">28.4</span> Plot the data</a></li>
-  <li><a href="#contigency-table-and-expected-frequencies" id="toc-contigency-table-and-expected-frequencies" class="nav-link" data-scroll-target="#contigency-table-and-expected-frequencies"><span class="header-section-number">28.5</span> Contigency table and Expected frequencies</a></li>
-  <li><a href="#run-fishers-exact-test" id="toc-run-fishers-exact-test" class="nav-link" data-scroll-target="#run-fishers-exact-test"><span class="header-section-number">28.6</span> Run Fisher’s exact test</a></li>
-  <li><a href="#having-only-the-counts" id="toc-having-only-the-counts" class="nav-link" data-scroll-target="#having-only-the-counts"><span class="header-section-number">28.7</span> Having only the counts</a></li>
+  <li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">29.1</span> Research question and Hypothesis Testing</a></li>
+  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">29.2</span> Packages we need</a></li>
+  <li><a href="#preraring-the-data" id="toc-preraring-the-data" class="nav-link" data-scroll-target="#preraring-the-data"><span class="header-section-number">29.3</span> Preraring the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">29.4</span> Plot the data</a></li>
+  <li><a href="#contigency-table-and-expected-frequencies" id="toc-contigency-table-and-expected-frequencies" class="nav-link" data-scroll-target="#contigency-table-and-expected-frequencies"><span class="header-section-number">29.5</span> Contigency table and Expected frequencies</a></li>
+  <li><a href="#run-fishers-exact-test" id="toc-run-fishers-exact-test" class="nav-link" data-scroll-target="#run-fishers-exact-test"><span class="header-section-number">29.6</span> Run Fisher’s exact test</a></li>
+  <li><a href="#having-only-the-counts" id="toc-having-only-the-counts" class="nav-link" data-scroll-target="#having-only-the-counts"><span class="header-section-number">29.7</span> Having only the counts</a></li>
   </ul>
 </nav>
     </div>
@@ -426,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-fisher_exact" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></h1>
+<h1 class="title"><span id="sec-fisher_exact" class="quarto-section-identifier"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></h1>
 </div>
 
 
@@ -461,8 +467,8 @@ Learning objectives
 </ul>
 </div>
 </div>
-<section id="research-question-and-hypothesis-testing" class="level2" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing"><span class="header-section-number">28.1</span> Research question and Hypothesis Testing</h2>
+<section id="research-question-and-hypothesis-testing" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing"><span class="header-section-number">29.1</span> Research question and Hypothesis Testing</h2>
 <p>We consider the data in <em>hemophilia</em> dataset. In a survey there are two treatment regimens studied for controlling bleeding in 28 patients with hemophilia undergoing surgery. We want to investigate if there is an association between the treatment regimen (treatment A or B) and the bleeding complications (no or yes). The null hypothesis (<span class="math inline">\(H_0\)</span>) is that the bleeding complications are independent from the treatment regimen, while the alternative (<span class="math inline">\(H_1\)</span>) is that are dependent.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -482,8 +488,8 @@ Null hypothesis and alternative hypothesis
 </div>
 <p><strong>NOTE:</strong> In practice, the null hypothesis of independence, for our particular question, is no difference in the proportion of patients with bleeding complications compared with patients with no bleeding complications (<span class="math inline">\(p_{bleeding} = p_{no bleeding}\)</span>).</p>
 </section>
-<section id="packages-we-need" class="level2" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="packages-we-need"><span class="header-section-number">28.2</span> Packages we need</h2>
+<section id="packages-we-need" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="packages-we-need"><span class="header-section-number">29.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
@@ -493,8 +499,8 @@ Null hypothesis and alternative hypothesis
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="preraring-the-data" class="level2" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="preraring-the-data"><span class="header-section-number">28.3</span> Preraring the data</h2>
+<section id="preraring-the-data" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="preraring-the-data"><span class="header-section-number">29.3</span> Preraring the data</h2>
 <p>We import the data <em>meldata</em> in R:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -504,9 +510,9 @@ Null hypothesis and alternative hypothesis
 <div id="fig-meldata" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-28eb81d946b35f7fb98d" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-28eb81d946b35f7fb98d">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["A","A","A","B","A","B","B","A","A","A","B","A","B","B","A","A","B","B","B","A","B","A","A","B","B","A","B","A"],["no","no","no","yes","no","no","no","no","yes","no","no","no","yes","no","no","no","no","no","no","no","no","no","no","yes","no","yes","no","no"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>treatment<\/th>\n      <th>bleeding<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<figcaption class="figure-caption">Figure&nbsp;28.1: Table with data from “meldata” file.</figcaption>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3e20b06e8d308f95e83f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3e20b06e8d308f95e83f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["A","A","A","B","A","B","B","A","A","A","B","A","B","B","A","A","B","B","B","A","B","A","A","B","B","A","B","A"],["no","no","no","yes","no","no","no","no","yes","no","no","no","yes","no","no","no","no","no","no","no","no","no","no","yes","no","yes","no","no"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>treatment<\/th>\n      <th>bleeding<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<figcaption class="figure-caption">Figure&nbsp;29.1: Table with data from “meldata” file.</figcaption>
 </figure>
 </div>
 </div>
@@ -534,8 +540,8 @@ $ bleeding  &lt;fct&gt; no, no, no, yes, no, no, no, no, yes, no, no, no, yes, n
 </div>
 </div>
 </section>
-<section id="plot-the-data" class="level2" data-number="28.4">
-<h2 data-number="28.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">28.4</span> Plot the data</h2>
+<section id="plot-the-data" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">29.4</span> Plot the data</h2>
 <p>We count the number of patients with bleeding in the two regimens. It is useful to plot this as counts but also as percentages and compare them.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> hemophilia <span class="sc">%&gt;%</span></span>
@@ -561,15 +567,15 @@ $ bleeding  &lt;fct&gt; no, no, no, yes, no, no, no, no, yes, no, no, no, yes, n
 <div id="fig-barplot2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fisher_exact_files/figure-html/fig-barplot2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;28.2: Bar plot.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;29.2: Bar plot.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The above bar plots with counts show graphically that the number of patients who had bleeding complications was similar in the two regimens. Note that the number of patients included in the study is small (n=28).</p>
 </section>
-<section id="contigency-table-and-expected-frequencies" class="level2" data-number="28.5">
-<h2 data-number="28.5" class="anchored" data-anchor-id="contigency-table-and-expected-frequencies"><span class="header-section-number">28.5</span> Contigency table and Expected frequencies</h2>
+<section id="contigency-table-and-expected-frequencies" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="contigency-table-and-expected-frequencies"><span class="header-section-number">29.5</span> Contigency table and Expected frequencies</h2>
 <p>First, we will create a contingency <em>2x2</em> table (two categorical variables with exactly two levels each) with the frequencies using the Base R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">table</span>(hemophilia<span class="sc">$</span>treatment, hemophilia<span class="sc">$</span>bleeding)</span>
@@ -725,8 +731,8 @@ Table with row percentages and marginal totals
 </div>
 <p>In the above table there are 2 cells (50%) with expected counts less than 5 (specifically 2.67 and 2.32), so the Chi-square test is not the appropriate one. In this case the Fisher’s exact test should be used instead.</p>
 </section>
-<section id="run-fishers-exact-test" class="level2" data-number="28.6">
-<h2 data-number="28.6" class="anchored" data-anchor-id="run-fishers-exact-test"><span class="header-section-number">28.6</span> Run Fisher’s exact test</h2>
+<section id="run-fishers-exact-test" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="run-fishers-exact-test"><span class="header-section-number">29.6</span> Run Fisher’s exact test</h2>
 <p>Finally, we run the Fisher’s exact test:</p>
 <div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -776,8 +782,8 @@ odds ratio
 </div>
 <p>The p = 0.64 is higher than 0.05. There is absence of evidence for an association between the treatment regimens and bleeding complications (failed to reject <span class="math inline">\(H_0\)</span>).</p>
 </section>
-<section id="having-only-the-counts" class="level2" data-number="28.7">
-<h2 data-number="28.7" class="anchored" data-anchor-id="having-only-the-counts"><span class="header-section-number">28.7</span> Having only the counts</h2>
+<section id="having-only-the-counts" class="level2" data-number="29.7">
+<h2 data-number="29.7" class="anchored" data-anchor-id="having-only-the-counts"><span class="header-section-number">29.7</span> Having only the counts</h2>
 <p>When we read an article which reports a chi-square or a fisher exact analysis we will see only the counts in a table without having the raw data of the categorical variables. In this instance, we can create the table using the <code>matrix()</code> function and run the tests. For our example of hemophilia we have the following table:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
@@ -1133,12 +1139,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./chi_square.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./mcnemar.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

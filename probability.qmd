@@ -1,0 +1,474 @@
+# Probability {#sec-probability}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Understand and use the terminology of probability
+:::
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+
+# dice graphs
+library(tidydice)
+library(ggplot2)
+
+# venn diagrams
+library(ggvenn)
+library(ggVennDiagram)
+
+
+library(TeachingDemos)
+
+#library(dice)
+```
+
+## Sample Space and Random Events
+
+Both deterministic and stochastic phenomena drive the everyday life.
+
+-   A **deterministic** phenomenon (process or experiment) always produce the same outcome each time it is repeated under the same conditions.
+
+-   A **random** phenomenon (process or experiment) is characterized by conditions under which the result cannot be determined with certainty before it occurs, that is, one of several possible outcomes is observed each time the process or experiment is repeated. For example, when a coin is tossed, the outcome is either heads H or tails T, but unknown before the coin is tossed.
+
+The **sample space Ω** is defined as the set of **all** possible outcomes of a random experiment. For example, if we roll a 6-sided die, the sample space is the set of the six possible outcomes, Ω ={1, 2, 3, 4, 5, 6} (@fig-die_space).
+
+```{r}
+#| warning: false
+#| out-width: 7cm
+#| label: fig-die_space
+#| fig-cap: Sample space for rolling a 6-sided die.
+
+force_dice(1:6) |> 
+  plot_dice(detailed = TRUE, fill_success = "white") + 
+  theme(plot.title = element_blank())
+```
+
+Different random experiments have different sample spaces that can be denoted in an equivalent way (flipping a coin: Ω ={H, T}, flipping two coins: Ω ={HH, HT, TH, TT}, testing for possible genotypes of a bi-allelic gene A: Ω ={AA, Aa, aa}).
+
+A **random event** (henceforth called event) is denoted by a capital letter such as A, B, or C and is a sub-set of sample space Ω, including a number of possible outcomes of the experiment. For the example of the rolling die, the event "even number" may be represented by A = {2, 4, 6} which is a sub-set of Ω (A ⊂ Ω), and the event "odd number" by B = {1, 3, 5} which is also a sub-set of Ω (B ⊂ Ω). In the case of flipping two coins, an event could be that exactly one of the coins lands Heads, A = {HT, TH} or the event could be that at least one of the coins lands heads, B = {HH, HT, TH}.
+
+If an event consists of a single outcome from the sample space, it is termed a **simple event**. For example, the event of getting the number 1 on rolling a die, denoted as A = {1}. If an event consists of more than a single outcome from the sample space, it is called a **compound event** such as rolling a die and getting an even number, A = {2, 4, 6}.
+
+::: callout-important
+For each experiment, two events always exist:
+
+1.  the **sample space**, Ω, which comprises all possible outcomes.
+
+2.  the **empty set = ∅**, that contains no outcomes and it is called the impossible event.
+:::
+
+ 
+
+## Operations of events using set theory and Venn diagrams
+
+### Union of Events: A∪B
+
+The union of the events A and B, denoted by **A∪B**, is the collection of all outcomes that are in A or in B or in both of them and it is also an event. It will occur if either A or B occurs (the symbol ∪ is equivalent to **OR** operator).
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+In the experiment of rolling a die, let's consider the events A = "the number rolled is even" and B = "the number rolled is less than three".
+
+```{r}
+A <- c(2, 4, 6)      # A = {2, 4, 6}
+B <- c(1, 2)         # B = {1, 2}
+
+union(A, B)          # A∪B = {2, 4, 6, 1} 
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 10cm
+#| label: fig-union
+#| fig-cap: The union of the events A and B as represented in a Venn diagram.
+
+# List of items
+x <- list(A = A, B = B)
+yes <- "#7F7FFF"
+no  <- "white"
+
+p <- ggVennDiagram(x, label = c("count")) +
+  labs(title = "Ω") +
+  scale_color_manual(values = c("black", "black")) +
+  theme(legend.position = "none",
+        plot.title = element_text(size = 20),
+        plot.background = element_rect(fill = "white"))
+
+p$layers[[1]]$mapping <- aes(fill = name)
+
+p + scale_fill_manual(values = c(A = yes, B = yes, A..B = yes))
+```
+
+ 
+
+### Intersection of Events: A∩B
+
+The intersection of A and B, denoted by **A∩B**, consists of all outcomes that are in both A and B (the symbol ∩ is equivalent to **AND** operator). That is, the events A and B must occur simultaneously.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+intersect(A, B)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 9cm
+#| label: fig-intersection
+#| fig-cap: The intersection of the events A and B as represented in a Venn diagram.
+
+p + scale_fill_manual(values = c(A = no, B = no, A..B = yes))
+```
+
+ 
+
+### Complement Events: $A^c$
+
+The complement of an event A, denoted by $A^c$ (sometimes denoted as $\bar{A}$ or $A'$), is also an event and consists of all outcomes of the sample space Ω that are not in A.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+sample_space <- c(1, 2, 3, 4, 5, 6)
+
+setdiff(sample_space, A)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 11cm
+#| label: fig-complement
+#| fig-cap: The complement of the union $B^c$ as represented in a Venn diagram.
+
+p + scale_fill_manual(values = c(A = no, B = yes, A..B = no)) +
+  theme(plot.title = element_text(size = 20),
+        plot.background = element_rect(fill = "#7F7FFF"))
+```
+
+ 
+
+### Mutually exclusive events
+
+Let's consider the events A = "the number rolled is even" and C = "the number rolled is odd".
+
+The events A and C are mutually exclusive (also known as incompatible or disjoint) if they **cannot** occur simultaneously. This means that they do not share any outcomes and A∩C =∅.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+A <- c(2, 4, 6)      
+C <- c(1, 3, 5)         
+
+intersect(A, C)         
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: 12cm
+#| label: fig-exclusive
+#| fig-cap: Venn Diagram of two mutually exclusive events.
+
+# List of items
+x2 <- list("A" = A, "C" = C)
+
+ggvenn(x2, fill_alpha = 1, auto_scale = T, show_elements = F, show_percentage = FALSE) +
+  labs(title = "Ω") +
+  scale_fill_manual(values = c("#7F7FFF", "#7F7FFF")) +
+  theme(plot.title = element_text(size = 20),
+        plot.background = element_rect(fill = "white"))
+```
+
+ 
+
+## Probability
+
+The concept of probability is used in everyday life which stands for the likelihood of occurring or non-occurring of random events. The first step towards determining the probability of an event is to establish a number of **basic rules** that capture the meaning of probability. The probability of an event should fulfill three **axioms** defined by **Kolmogorov**:
+
+::: {.callout-tip icon="false"}
+## The Kolmogorov Axioms
+
+1.  The probability of an event A is a non-negative number, **P(A) ≥ 0**
+2.  The probability of all possible outcomes, or sample space Ω, equals to one, **P(Ω) = 1**
+3.  If A and B are two mutually exclusive events, then **P(A ∪ B) = P(A) + P(B)** and **P(A ∩ B) = 0**.
+:::
+
+ 
+
+### Definition of Probability
+
+**A. Theoretical probability (theoretical approach)**
+
+Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the possible outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:
+
+$$P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}}$$ {#eq-theoretical_probability}
+
+Note that the @eq-theoretical_probability only works for experiments that are considered **"fair"**; this means that there must be no bias involved so that all outcomes are **equally likely** to occur.
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example 1***
+
+What is the theoretical probability of rolling the number "5" when we roll a six-sided fair die once?
+
+The theoretical probability is:
+
+$$P(\textrm{rolling 5}) = \frac{\textrm{1 outcome favourable to the event}}{\textrm{6 possible outcomes}} = \frac{1}{6} \approx 0.167$$
+
+This is because only one outcome (die showing: {{< fa dice-five size=1x >}}) is favorable out of the six equally likely outcomes (die showing: {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}}).
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example 2***
+
+What is the probability of rolling either a "5" or a "6" when we roll a six-sided fair die once?
+
+The theoretical probability is:
+
+$$P(\textrm{rolling 5 OR 6}) = \frac{\textrm{2 outcomes favourable to the event}}{\textrm{6 possible outcomes}} = \frac{2}{6} = \frac{1}{3}\approx 0.33$$
+
+This is because two outcomes (die showing: {{< fa dice-five size=1x >}} or {{< fa dice-six size=1x >}}) is favorable out of the six equally likely outcomes (die showing: {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}}).
+
+We can also use the probability's axioms. The probability of rolling a 6 is 1/6 and the probability of rolling a 5 is also 1/6. We cannot take a 5 and 6 at the same time (these events are mutually exclusive) so:
+
+$$\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/6 = 1/3}$$
+
+ 
+
+**B. Experimental probability (frequentist approach)**
+
+The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the **relative frequency** of occurrence of the event over a total number of experiments:
+
+$$ P(A) =  \frac{\textrm{number of times A occured}}{\textrm{total number of experiments}}$$ {#eq-probability}
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+We rolled a six-sided die 100 times and we recorded how often each outcome occurred (@fig-die100). What is the experimental probability of getting the number "5"?
+
+```{r}
+#| warning: false
+#| label: fig-die100
+#| fig-width: 7
+#| fig-cap: Bar plot shows the counts for each outcome.
+
+set.seed(348)
+roll_dice(times = 100) |>  
+  ggplot(aes(x = result)) +
+  geom_bar(fill = "#0071BF", width = 0.65) +
+  geom_text(aes(label=after_stat(count)), stat = "count", 
+            vjust = 1.5, colour = "white") +
+  scale_x_continuous(breaks = c(1:6), labels = factor(1:6)) +
+  theme_minimal(base_size = 14)
+```
+
+The experimental probability is:
+
+$$ P(\textrm{rolling a 5}) =\frac{\textrm{20 times the number “5” occured}}{\textrm{ 100 experiments}}=  \frac{20}{100} = 0.20\ or\ 20\%$$ In 20% of the cases we got a {{< fa dice-five size=1x >}} that is greater than the expected value of $100/6 \approx 16.67\%$.
+
+However, if the die is rolled numerous times, for example 10000 times, the experimental probability should approximate the theoretical probability of that outcome (Law of Large Numbers), as shown in @fig-die10000:
+
+```{r}
+#| warning: false
+#| label: fig-die10000
+#| fig-width: 7
+#| fig-cap: Bar plot shows the counts for each outcome.
+
+set.seed(128)
+roll_dice(times = 10000) |>  
+  ggplot(aes(x = result)) +
+  geom_bar(fill = "#0071BF", width = 0.65) +
+  geom_text(aes(label=after_stat(count)), stat = "count", 
+            vjust = 1.5, colour = "white") +
+  scale_x_continuous(breaks = c(1:6), labels = factor(1:6)) +
+  theme_minimal(base_size = 14)
+```
+
+Now, the experimental probability is:
+
+$$ P(\textrm{rolling a 5}) =\frac{\textrm{1684 times the number “5” occured}}{\textrm{ 10000 experiments}}=  \frac{1684}{10000} = 0.1684\ or\ 16.84\%$$
+
+that is very close to the theoretical probability 16.67%.
+
+ 
+
+::: callout-note
+## Law of Large Numbers
+
+The more times the experiment is performed, the closer the experimental probability approaches the theoretical probability.
+:::
+
+ 
+
+**C. "Subjective" probability (Bayesian approach)**
+
+The probability assigned to an event represents the **degree of belief** that the event will occur in a given try of the experiment, and it implies an element of subjectivity.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+In the die roll experiment, the determination of the subjective probability for events {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}} relies on the belief that the die is **unbiased**, and therefore it must be true that P(1) = P(2) = P(3) = P(4) = P(5) = P(6). With this information, we can then simply use the Kolmogorov axioms to state that P(1) + P(2) + P(3) + P(4) + P(5) + P(6) = 1, and therefore obtain the intuitive result that P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6.
+
+ 
+
+The following **properties** are useful to assign and manipulate event probabilities.
+
+::: {.callout-tip icon="false"}
+## Fundamental Properties of Probability
+
+1.  The probability of the null event is zero, **P(∅) = 0**.
+
+2.  The probability of the complement event A satisfies the property:
+
+$$P(A') = 1 − P(A)$$ {#eq-complementary}
+
+3.  The probability of the union of two events satisfies the general property that (**Addition Rule of Probability**) :
+
+$$P(A ∪ B) = P(A) + P(B) − P(A ∩ B)$$ {#eq-union}
+:::
+
+ 
+
+### The Conditional Probability
+
+The conditional probability is indicated as **P(A\|B)** or A **given** B. The following formula defines the conditional probability:
+
+$$P(A ∩ B) = P(A|B) · P(B)$$ {#eq-conditional}
+
+or
+
+$$ P(A|B)=  \frac{P(A ∩ B)}{P(B)}$$ {#eq-conditional2}
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Suppose we roll two fair six-sided dice. What is the probability that the first roll is a 3, given that the sum of two rolls is 8.
+
+The sample space of the experiment consists of all ordered pairs of numbers from 1 to 6. That is, Ω = {(1, 1), (1, 2),... , (1, 6), (2, 1),... , (6, 6)}.
+
+It is useful to define the following two events:
+
+-   **A** = {The first roll shows 3, and the second any number}.
+
+-   **B** = {The sum of two rolls is 8}.
+
+We are interested in finding the conditional probability: $$P(A|B) = \frac{P(A ∩ B)}{P(B)}$$
+
+<br>
+
+-   **Event A** (the first roll shows 3, and the second any number) is given by outcomes A = {(3,1), (3,2), (3,3), (3,4), (3,5), (3, 6)}.
+
+![](images/dice_1.png){fig-align="center" width="60%"}
+
+Therefore, the probability of event A is:
+
+$$P(A) = \frac{\textrm{6}}{\textrm{36}} =\frac{\textrm{1}}{\textrm{6}} $$
+
+-   **Event B** (the sum of two rolls is 8) is given by outcomes B = {(2,6), (3,5), (4,4), (5,3), (6,2)} :
+
+![](images/dice_sum.png){fig-align="center" width="60%"}
+
+Therefore, the probability of event B to occur is:
+
+$$P(B) = \frac{\textrm{5}}{\textrm{36}} $$
+
+<br>
+
+-   Also, the **event A∩B** occurs if the first die shows 3 and the sum is 8, which can clearly occur only if a sequence of **(3,5)** takes place:
+
+![](images/dice_8.png){fig-align="center" width="60%"}
+
+|              |     |                  |     |     |     |
+|--------------|-----|------------------|-----|-----|-----|
+| **1st roll** | 2   | $\color{red}{3}$ | 4   | 5   | 6   |
+| **2nd roll** | 6   | $\color{red}{5}$ | 4   | 3   | 2   |
+| **Sum**      | 8   | $\color{red}{8}$ | 8   | 8   | 8   |
+
+Thus, the probability of intersection of the two events is **P(A∩B) = 1/36**.
+
+<br>
+
+-   Finally, according to the definition of conditional probability @eq-conditional2, the probability of interest is:
+
+$$P(A|B) = \frac{P(A ∩ B)}{P(B)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1}{5}$$
+
+Therefore, the knowledge that the sum of two rolls is 8 has **increased** the probability of A from P(A) = 1/6 = 0.167 to P(A\|B) = 1/5 = 0.2.
+
+ 
+
+### Independence of events
+
+If the knowledge of occurrence of event A does not **influence** the occurrence of another event B, the two events are called independent. Consider, for example, rolling two dice consecutively: the outcome of first die is independent of the outcome of other.
+
+On the other hand, let's say we are interested in the following pair of events: the first is the outcome of the roll of die 1 and the second is the sum of outcomes of rolling die 1 and die 2. In this case, the outcome of the second event---i.e. the sum of both dice---depends on the first roll and the two events are not independent.
+
+Two events A and B are said to be **independent** if:
+
+$$P(A ∩ B) = P(A) · P(B)$$ {#eq-independent}
+
+@eq-independent, known as **Multiplication Rule of Probability**, follows directly from @eq-conditional. In fact, if A and B are statistically independent, then the conditional probability is P(A\|B) = P(A), i.e. the occurrence of B has no influence on the occurrence of A.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Determine the probability of obtaining two 3s when rolling two six-sided fair dice consecutively. This event can be decomposed in two events:
+
+-   **A** = {die 1 shows {{< fa dice-three size=1x >}}, and die 2 shows any number}.
+
+![](images/dice_1.png){fig-align="center" width="60%"}
+
+$$P(A) = \frac{\textrm{6}}{\textrm{36}} = \frac{\textrm{1 }}{\textrm{6}}$$
+
+-   **B** = {die 1 shows any number, and die 2 shows {{< fa dice-three size=1x >}} }.
+
+![](images/dice_2.png){fig-align="center" width="60%"}
+
+$$P(B) = \frac{\textrm{6}}{\textrm{36}} = \frac{\textrm{1}}{\textrm{6}}$$
+
+We can state that the two events A and B are independent by nature, since each event involves a different die, which has no knowledge of the outcome of the other one. The event of interest is A ∩ B, and the definition of probability of two independent events leads to:
+
+$$ {\textrm{P(A ∩ B) = P(A) · P(B) =} \frac{1}{6} · \frac{1}{6} = \frac{1}{36}}$$
+
+This result can be verified by a direct count of all possible outcomes in the roll of two dice, and the fact that there is only one combination out of 36 that gives rise to two consecutive 3s.
+
+![](images/dice_12.png){fig-align="center" width="60%"}
+
+ 
+
+### Bayes' theorem
+
+Bayes' theorem is based on this concept of "revisiting probability" when new information is available
+
+The Bayes' theorem can be written as:
+
+$$P(A|B) = \frac{P(B|A)· P(A)}{P(B)}$$ {#eq-bayes}
+
+where A and B are events and $P(B)\neq 0$.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+We are interested in calculating the probability of developing lung cancer if a person smokes tobacco for a long time, P(Cancer\|Smoker).
+
+Suppose that 8% of the population has lung cancer, P(Cancer) = 0.08, and 30% of the population are chronic smokers, P(Smoker) = 0.30. Also, suppose that we know that 60% of all people who have lung cancer are smokers, P(Smoker\|Cancer) = 0.6.
+
+Using the Bayes' theorem we have:
+
+$$ \textrm{P(Cancer|Smoker) = }\frac{\textrm{P(Smoker|Cancer)· P(Cancer)}}{\textrm{P(Smoker)}} = \frac{0.6 \times 0.08}{0.3}= \frac{0.048}{0.3}= 0.16$$  
