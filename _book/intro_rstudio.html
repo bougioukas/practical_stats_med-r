@@ -76,6 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
@@ -249,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -499,9 +500,9 @@ Command prompt &nbsp;&gt;
 <p>&nbsp;</p>
 <p>Let’s type <code>14 + 16</code> in front of the R command prompt in the Console and press <kbd>Enter</kbd> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 30</code></pre>
+<pre data-code-line-numbers=""><code>[1] 30</code></pre>
 </div>
 </div>
 <p>We observe in the console that the output is <code>[1] 30</code>. It’s clear that <code>30</code> is the answer to the mathematical calculation of <code>14 + 16</code>. However, what does the <code>[1]</code> mean? At this point we can ignore it, but technically it refers to the <strong>index of the first item on each line</strong>. (In some cases R prints out many lines as an output. The number inside the square brackets is an index that helps us find where in the sequence we are per line).</p>
@@ -510,7 +511,7 @@ Command prompt &nbsp;&gt;
 <h2 data-number="1.3" class="anchored" data-anchor-id="errors-warnings-and-messages-in-r"><span class="header-section-number">1.3</span> Errors, warnings, and messages in R</h2>
 <p>Let’s type the the word <em>hello</em> in the Console and press <kbd>Enter</kbd>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We get the following error:<br>
 <span style="     color: #8676F8 !important;">Error: object ‘hello’ not found</span></p>
@@ -522,17 +523,17 @@ Command prompt &nbsp;&gt;
 </ul>
 <p>Now, let’s type in the Console the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="1">We have not finished the mathematical expression.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-3" data-code-annotation="1">We have not finished the mathematical expression.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="2" data-code-lines="2">Here the plus sign (<code>+</code>) is a prompt.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-3" data-code-annotation="2">Here the plus sign (<code>+</code>) is a prompt.</span>
 </dd>
 </dl>
 </div>
@@ -557,7 +558,7 @@ Recall a previously typed command in Console
 <p>Before asking others for help, we should try to solve the R programming problems on our own. Therefore, it is recommended to learn how to use R’s built-in help system.</p>
 <p>First, we can use the <code>help()</code> command or the <strong><code>?</code></strong> help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the <code>median</code> we will type the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
+<div class="sourceCode cell-code" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>):</p>
@@ -569,7 +570,7 @@ Recall a previously typed command in Console
 </div>
 <p>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our R library and it is a shortcut to <code>help.search()</code> command. So for example, let’s say we want to search documentation specifically for the <code>geometric median</code>. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
+<div class="sourceCode cell-code" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"geometric median"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-help_search" class="quarto-figure quarto-figure-center anchored">
@@ -580,17 +581,17 @@ Recall a previously typed command in Console
 </div>
 <p>To find all the names containing the pattern we search in the current R session, by partial matching, we can use the <strong><code>apropos()</code></strong> command. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"med"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"med"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "elNamed"        "elNamed&lt;-"      "median"         "median.default"
+<pre data-code-line-numbers=""><code>[1] "elNamed"        "elNamed&lt;-"      "median"         "median.default"
 [5] "medpolish"      "runmed"        </code></pre>
 </div>
 </div>
 <p>Use the <strong><code>example()</code></strong> command to run the examples that are provided in the R documentation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
+<pre data-code-line-numbers=""><code>
 median&gt; median(1:4)                # = 2.5 [even number]
 [1] 2.5
 
@@ -968,4 +969,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 </body></html>

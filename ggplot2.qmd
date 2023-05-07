@@ -1,1 +1,243 @@
 # Data visualization with ggplot2 {#sec-ggplot2}
+
+In this textbook, the `{ggplot2}` package is the preferred tool for creating plots. With this tool and its extensions, R users can produce elegant, sophisticated, and professional-looking types of graphs that communicate results efficiently to the desired audience.
+
+```{r}
+#| include: false
+
+#library(ggrepel)
+#library(ggsci)
+#library(ggpp)
+#library(ggfx)
+#library(ggtext)
+#library(gghighlight)
+#library(ggforce)
+#library(paletteer)
+#library(patchwork)
+
+#library(fontawesome)
+
+library(tidyverse)
+library(here)
+```
+
+When we have finished this chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Use `ggplot2` to generate publication-ready graphics.
+-   Understand the basic grammar of graphics, including the aesthetics and geometry layers, adding statistics, transforming scales, and coloring by groups.
+-   Understand how to save plots in a variety of formats.
+-   Find extensions for `ggplot2` to produce custom graphics.
+:::
+
+ 
+
+## Introduction to ggplot2
+
+The main idea of ggplot2 is that any plot can be made up of the following principal components:
+
+-   **data** and **coordinate system**
+-   **geometric objects** such as points, bars, lines.
+-   **aesthetic mappings** that describe how variables are mapped to visual properties or aesthetics (e.g., color, size, shape) of the graph.
+-   **themes** that style all the visual elements which are not part of data.
+
+The key to understanding ggplot2 is thinking about a figure in **multiple layers**.
+
+![The ggplot figure is built layer by layer by adding new graphical elements.](images/layers.png){#fig-layers fig-align="center" width="70%"}
+
+## Covid-19 data
+
+In this Chapter, we will explore graphically the association between a country's wealth and COVID-19 cases. However, there more variables that may be associated to both wealth and COVID-19 cases such as testing rate. For example, wealthier countries may have a national program to distribute tests for the virus, provide advice on how to apply a self-test and report the results to a national organization. Without the resources of wealthy countries to buy and distribute tests, a lack of reported cases in developing countries could indicate a scarcity of testing. In this case, using diagrams to depict multivariable associations may be helpful.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(readr)
+covid_data <- read_csv(here("data", "covid_data.csv"))
+```
+
+Let's have a look at the types of variables:
+
+```{r}
+glimpse(covid_data)
+```
+
+The data frame contains `r nrow(covid_data)` rows and `r ncol(covid_data)` variables that are described as follows:
+
+-   **iso3c:** ISO3c country code as defined by ISO 3166-1 alpha-3
+
+-   **country:** Country name
+
+-   **date:** Calendar date
+
+-   **confirmed:** Confirmed Covid-19 cases as reported by JHU CSSE[^ggplot2-1] (accumulated)
+
+-   **deaths:** Covid-19-related deaths as reported by JHU CSSE (accumulated)
+
+-   **total_tests:** Accumulated test counts as reported by Our World in Data
+
+-   **region:** Country region as classified by the World Bank (time-stable): East Asia & Pacific, Europe & Central Asia, Latin America & Caribbean, Middle East & North Africa, North America, South Asia, Sub-Saharan Africa.
+
+-   **income:** Country income group as classified by the World Bank (time-stable)
+
+-   **population:** Country population as reported by the World Bank (original identifier 'SP.POP.TOTL', time-stable)
+
+-   **pop_density:** Country population density as reported by the World Bank (original identifier 'EN.POP.DNST', time-stable)
+
+-   **life_expectancy** Average life expectancy at birth of country citizens in years as reported by the World Bank (original identifier 'SP.DYN.LE00.IN', time-stable)
+
+-   **gdp_capita:** Country gross domestic product (GDP) per capita, measured in 2010 US-$\$$ as reported by the World Bank (original identifier 'NY.GDP.PCAP.KD', time-stable)
+
+[^ggplot2-1]: JHU CSSE: Johns Hopkins Coronavirus Resource Center
+
+### Data preparation for the plots
+
+The data cover a period from `r min(covid_data$date)` to `r max(covid_data$date)`. Suppose we are interested in investigating countries with population more than 1 million up to June, 12 2021 and we want also to calculate the cases per 100000 inhabitants and tests per capita:
+
+```{r}
+dat <- covid_data |> 
+  mutate(date = mdy(date),
+         region = factor(region),
+         income = factor(income),
+         cases_per_100k = round(confirmed / population * 100000, digits = 1),
+         tests_per_capita = round(total_tests / population, digits = 2)) |>
+  filter(date == "2021-06-12", population > 1000000)
+```
+
+## Step-by-step anatomy of a ggplot graph
+
+The `{ggplot2}` is contained within the `{tidyverse}` package, so it is installed automatically when we install the tidyverse "meta" package. Furthermore, it is one of the core packages of the tidyverse that are loaded at R session when we run the command `library(tidyverse)`.
+
+### Step 0: Start with a default blank ggplot object
+
+```{r}
+ggplot()
+```
+
+### Step 1: Start with a default blank ggplot object
+
+The `ggplot()` function has **two basic named arguments**. The first argument, `data`, specifies the dataset that we are going to use for the plot. The second argument, `mapping`, defines which variables are mapped to x and y aesthetics of position.
+
+Let's provide the dataset "dat" to the first argument of `ggplot()` and mapp the variable `gdp_capita` to the x position and the variable `cases_per_100K` to the y position inside the `aes()`:
+
+```{r p1}
+#| label: fig-canvas
+#| fig-cap: A default blank ggplot.
+
+ggplot(data = dat, mapping = aes(x = gdp_capita, y = cases_per_100k))
+```
+
+Note that we don't usually have to spell out the names of the arguments `data` and `mapping`. Therefore, the following command is equivalent:
+
+```{r}
+#| eval: false
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k))
+```
+
+As we can observe, only a grey canvas is created when running the code. This is because we also need to provide a geometry!
+
+### Step 2: Add geometry
+
+Geoms are the geometric objects that make up ggplot2 visualizations. Each geom is called with a function that begins with "**geom\_ **" and ends with the name of the geometric object (e.g., point, bar, line) (@tbl-geometry). 
+
+| geom\_           | Example                                       |
+|------------------|:---------------------------------------------:|
+| geom_point()     | ![](images/geom_point.png){width="15%"}       |
+| geom_line()      | ![](images/geom_line.png){width="15%"}        |
+| geom_text()      | ![](images/geom_text.png){width="15%"}        |
+| geom_label()     | ![](images/geom_label.png){width="15%"}        |
+| geom_histogram() | ![](images/geom_histogram.png){width="15%"}   |
+| geom_density()   | ![](images/geom_density.png){width="15%"}     |
+| geom_bar()       | ![](images/geom_bar.png){width="15%"}         |
+| geom_boxplot()   | ![](images/geom_boxplot.png){width="15%"}     |
+
+: Common geometries used in ggplot graphs. {#tbl-geometry}
+
+
+Let's select which style we want to use. We are interested in exploring the association between two numeric variables with a scatter plot (see also [@sec-correlation]). So, we will add points using a geom layer called `geom_point`. In this case, `geom_point()` will inherit the `x` and `y` aesthetics from the `ggplot()` function:
+
+
+```{r}
+#| source-line-numbers: "2"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point()
+```
+
+
+
+### Step 2: Add aesthtics to geometries
+
+Each geom has a number of aesthetics that define its visual properties. We can map our data to anything that our geom supports. For example, `geom_point()` understands the following aesthetics (required aesthetics are in bold): **x**, **y**, alpha, color, fill, group, shape, size, stroke.
+
+
+So, if we want to add more variables to a plot, we can use aesthetics like color, shape, and size.
+
+**A. `color` aesthetics**
+
+Color is an important characteristic of graphs. If we decide to use color, we should consider which colors to use and where to use them.
+
+Color palettes (or colormaps) are classified into three main categories in `ggplot2`:
+
+1.  **Sequential** (discrete or continuous) palette that is used for **quantitative** data. One variation of a unique color varying from dark to light (@fig-sequential).
+
+```{r}
+#| echo: false
+#| out-width: "70%"
+#| label: fig-sequential
+#| fig-align: center
+#| fig-cap: Example of sequential color scales.
+
+knitr::include_graphics(here("images", "sequential.png"))
+```
+
+
+2.  **Diverging** palette that creates a gradient between three different colors, allowing us to easily identify low, middle, and high values within our data (@fig-gradient).
+
+```{r}
+#| echo: false
+#| out-width: "70%"
+#| label: fig-gradient
+#| fig-align: center
+#| fig-cap: Example diverging color scales.
+
+knitr::include_graphics(here("images", "gradient.png"))
+```
+
+
+3.  **Qualitative** palette that is used mainly for discrete or **categorical** data. This palette is consisted from a discrete set of distinct colors with no implied order (@fig-qualitative).
+
+```{r}
+#| echo: false
+#| out-width: "70%"
+#| label: fig-qualitative
+#| fig-align: center
+#| fig-cap: Example qualitative color scales.
+
+knitr::include_graphics(here("images", "qualitative.png"))
+```
+
+
+Now, suppose we want to group the points according to the categorical variable `region` using different colors, as follows:
+
+```{r}
+#| source-line-numbers: "2"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region))
+```
+
+
+Here, we added inside the `aes()` of `geom_point` the color aesthetic. The data of the categorical variable `region` mapped to color aesthetic of `geom_point`. Obviously, the qualitative palette was applied automatically by `ggplot2`. In addition, ggplot automatically created a legend to show the correspondence between the regions and colors.
+
+
+
+
+
+
+
+

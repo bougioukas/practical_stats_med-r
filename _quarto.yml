@@ -65,6 +65,7 @@ reference-location: margin
 filters:
   - social-share
   - lightbox
+  - line-highlight
 code-annotations: hover
 
 share:
