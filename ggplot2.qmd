@@ -1,12 +1,18 @@
 # Data visualization with ggplot2 {#sec-ggplot2}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
 In this textbook, the `{ggplot2}` package is the preferred tool for creating plots. With this tool and its extensions, R users can produce elegant, sophisticated, and professional-looking types of graphs that communicate results efficiently to the desired audience.
 
 ```{r}
 #| include: false
 
-#library(ggrepel)
-#library(ggsci)
+library(ggrepel)
+library(ggsci)
 #library(ggpp)
 #library(ggfx)
 #library(ggtext)
@@ -107,25 +113,32 @@ dat <- covid_data |>
   filter(date == "2021-06-12", population > 1000000)
 ```
 
-## Step-by-step anatomy of a ggplot graph
+## Basic steps for creating a ggplot graph
 
 The `{ggplot2}` is contained within the `{tidyverse}` package, so it is installed automatically when we install the tidyverse "meta" package. Furthermore, it is one of the core packages of the tidyverse that are loaded at R session when we run the command `library(tidyverse)`.
 
 ### Step 0: Start with a default blank ggplot object
 
 ```{r}
+#| out-width: "80%"
+#| label: fig-blank
+#| fig-align: center
+#| fig-cap: A default blank ggplot object.
+
 ggplot()
 ```
 
-### Step 1: Start with a default blank ggplot object
+### Step 1: Add the dataset and define the x and y
 
 The `ggplot()` function has **two basic named arguments**. The first argument, `data`, specifies the dataset that we are going to use for the plot. The second argument, `mapping`, defines which variables are mapped to x and y aesthetics of position.
 
 Let's provide the dataset "dat" to the first argument of `ggplot()` and mapp the variable `gdp_capita` to the x position and the variable `cases_per_100K` to the y position inside the `aes()`:
 
 ```{r p1}
-#| label: fig-canvas
-#| fig-cap: A default blank ggplot.
+#| out-width: "80%"
+#| label: fig-map_xy
+#| fig-align: center
+#| fig-cap: Variables are mapped to x and y axes on a canvas with grid lines.
 
 ggplot(data = dat, mapping = aes(x = gdp_capita, y = cases_per_100k))
 ```
@@ -142,48 +155,43 @@ As we can observe, only a grey canvas is created when running the code. This is 
 
 ### Step 2: Add geometry
 
-Geoms are the geometric objects that make up ggplot2 visualizations. Each geom is called with a function that begins with "**geom\_ **" and ends with the name of the geometric object (e.g., point, bar, line) (@tbl-geometry). 
+Geoms are the geometric objects that make up ggplot2 visualizations. Each geom is called with a function that begins with "**geom\_**" and ends with the name of the geometric object (e.g., point, bar, line) (@tbl-geometry).
 
-| geom\_           | Example                                       |
-|------------------|:---------------------------------------------:|
-| geom_point()     | ![](images/geom_point.png){width="15%"}       |
-| geom_line()      | ![](images/geom_line.png){width="15%"}        |
-| geom_text()      | ![](images/geom_text.png){width="15%"}        |
-| geom_label()     | ![](images/geom_label.png){width="15%"}        |
-| geom_histogram() | ![](images/geom_histogram.png){width="15%"}   |
-| geom_density()   | ![](images/geom_density.png){width="15%"}     |
-| geom_bar()       | ![](images/geom_bar.png){width="15%"}         |
-| geom_boxplot()   | ![](images/geom_boxplot.png){width="15%"}     |
+| geom\_           |                   Example                   |
+|------------------|:-------------------------------------------:|
+| geom_point()     |   ![](images/geom_point.png){width="20%"}   |
+| geom_line()      |   ![](images/geom_line.png){width="20%"}    |
+| geom_text()      |   ![](images/geom_text.png){width="20%"}    |
+| geom_label()     |   ![](images/geom_label.png){width="20%"}   |
+| geom_histogram() | ![](images/geom_histogram.png){width="20%"} |
+| geom_density()   |  ![](images/geom_density.png){width="20%"}  |
+| geom_bar()       |    ![](images/geom_bar.png){width="20%"}    |
+| geom_boxplot()   |  ![](images/geom_boxplot.png){width="20%"}  |
 
 : Common geometries used in ggplot graphs. {#tbl-geometry}
 
-
 Let's select which style we want to use. We are interested in exploring the association between two numeric variables with a scatter plot (see also [@sec-correlation]). So, we will add points using a geom layer called `geom_point`. In this case, `geom_point()` will inherit the `x` and `y` aesthetics from the `ggplot()` function:
 
-
 ```{r}
+#| message: false
+#| warning: false
 #| source-line-numbers: "2"
 
 ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   geom_point()
 ```
 
+### Step 3: Add aesthetics to geometry
 
-
-### Step 2: Add aesthtics to geometries
-
-Each geom has a number of aesthetics that define its visual properties. We can map our data to anything that our geom supports. For example, `geom_point()` understands the following aesthetics (required aesthetics are in bold): **x**, **y**, alpha, color, fill, group, shape, size, stroke.
-
+Each "geom" has a number of aesthetics that define its visual properties. We can map our data to anything that our "geom" supports. For example, `geom_point()` understands the following aesthetics (required aesthetics are in bold): **x**, **y**, alpha, color, fill, group, shape, size, stroke.
 
 So, if we want to add more variables to a plot, we can use aesthetics like color, shape, and size.
 
 **A. `color` aesthetics**
 
-Color is an important characteristic of graphs. If we decide to use color, we should consider which colors to use and where to use them.
+Color is an important characteristic of graphs. If we decide to use color, we should consider which colors to use and where to use them. Color palettes (or colormaps) are classified into three main categories in `ggplot2`:
 
-Color palettes (or colormaps) are classified into three main categories in `ggplot2`:
-
-1.  **Sequential** (discrete or continuous) palette that is used for **quantitative** data. One variation of a unique color varying from dark to light (@fig-sequential).
+1.  **Sequential** (continuous or discrete) palette that is used for **quantitative** data. One variation of a unique color varying from dark to light (@fig-sequential).
 
 ```{r}
 #| echo: false
@@ -194,7 +202,6 @@ Color palettes (or colormaps) are classified into three main categories in `ggpl
 
 knitr::include_graphics(here("images", "sequential.png"))
 ```
-
 
 2.  **Diverging** palette that creates a gradient between three different colors, allowing us to easily identify low, middle, and high values within our data (@fig-gradient).
 
@@ -208,7 +215,6 @@ knitr::include_graphics(here("images", "sequential.png"))
 knitr::include_graphics(here("images", "gradient.png"))
 ```
 
-
 3.  **Qualitative** palette that is used mainly for discrete or **categorical** data. This palette is consisted from a discrete set of distinct colors with no implied order (@fig-qualitative).
 
 ```{r}
@@ -221,23 +227,377 @@ knitr::include_graphics(here("images", "gradient.png"))
 knitr::include_graphics(here("images", "qualitative.png"))
 ```
 
-
 Now, suppose we want to group the points according to the categorical variable `region` using different colors, as follows:
 
 ```{r}
+#| message: false
+#| warning: false
 #| source-line-numbers: "2"
 
 ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
-  geom_point(aes(color = region))
+  geom_point(aes(color = region))        
 ```
 
+Here, we added inside the `aes()` the color argument. The data of the categorical variable `region` mapped to color aesthetic of `geom_point`. Obviously, the qualitative palette of colors was applied automatically by `ggplot2`. Additionally, ggplot automatically created a legend to show the correspondence between the regions and colors.
 
-Here, we added inside the `aes()` of `geom_point` the color aesthetic. The data of the categorical variable `region` mapped to color aesthetic of `geom_point`. Obviously, the qualitative palette was applied automatically by `ggplot2`. In addition, ggplot automatically created a legend to show the correspondence between the regions and colors.
+It is crucial to understand the difference between including the color[^ggplot2-2] argument **inside** or **outside** of the `aes()` function. For example, let's run the following code:
+
+[^ggplot2-2]: ggplot2 understands both color and colour as well as the short version col.
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "2"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(color = "deeppink")
+```
+
+In this case, we set the color argument to a **fixed value** ("deeppink") in the geom function instead of using `aes()`, so ggplot changed the color of the points "globally".
+
+In R, colors can be specified in quotes either by name (e.g., `"deeppink"`) or as a hexadecimal color (hex code) that starts with a `#` (e.g., `"#FF1493"`). In the following @tbl-colors we present an example of a color palette:
+
+| Name                           | Hex code |
+|:-------------------------------|:---------|
+| $\color{#FF7F50}{coral}$       | #FF7F50  |
+| $\color{#66CDAA}{aquamarine3}$ | #66CDAA  |
+| $\color{#76EE00}{chartreuse2}$ | #76EE00  |
+| $\color{#FFFF00}{yellow}$      | #FFFF00  |
+| $\color{#0000FF}{blue}$        | #0000FF  |
+| $\color{#A52A2A}{brown}$       | #A52A2A  |
+| $\color{#FF1493}{deeppink}$    | #FF1493  |
+| $\color{#000000}{black}$       | #000000  |
+
+: Examples of name and hex color code of different colors. {#tbl-colors}
+
+The main advantage of the Hex color system is that it is very compact and we can pick out any color we desire.
+
+ 
+
+**B. `shape` aesthetics**
+
+Alternatively, we can group the points according to the `region` variable using different point shapes, as follows:
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "2"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(shape = region))
+```
+
+We observe that `ggplot2` by default allows only six different point shapes to be displayed. However, we will see how to change this using appropriate `scales`.
+
+The different points shapes symbols commonly used in R are shown in the @fig-shape_symbols below:
+
+```{r}
+#| echo: false
+#| out-width: "80%"
+#| label: fig-shape_symbols
+#| fig-align: center
+#| fig-cap: Points shapes symbols and their codes commonly used in R.
 
 
+pchShow <- function(cex = 4, col = "black", bg = "gold", 
+                    coltext = "black", cextext = 1.2,
+                    main = paste("plot symbols :  points (...  pch = *, cex =", cex,")"))
+{
 
+  np  <- 26
+  ipch <- 0:(np - 1)
+  k <- floor(sqrt(np))
+  dd <- c(-1,1)/2
+  rx <- dd + range(ix <- ipch %/% k)
+  ry <- dd + range(iy <- 3 + (k - 1) - ipch %% k)
+  pch <- as.list(ipch) # list with integers & strings
+  plot(rx, ry, type ="n", axes = FALSE, xlab = "", ylab = "", 
+       main = main)
+  abline(v = ix, h = iy, col = "lightgray", lty = "dotted")
+  for (i in 1:np) {
+    pc <- pch[[i]]
+    ## 'col' symbols with a 'bg'-colored interior (where available) :
+    points(ix[i], iy[i], pch = pc, col = col, bg = bg, cex = cex, lwd = 2)
+    if (cextext > 0)
+      text(ix[i], iy[i] -0.4, pc, col = coltext, cex = cextext)
+  }
+}
+par(mar = c(0,0,0,0))
+pchShow(main = NULL)
 
+```
 
+::: callout-important
+-   The point shapes from 0 to 14 have an outline (we use `color` to change the color).
+-   The point shapes from 15 to 20 are solid shapes (we use `color` to change color).
+-   Point shapes options from 21 to 25 allow us to use both the outline and the inside color, so they can be controlled separately (we use `color` to change the color of the outline and `fill` to change the inside color).
+:::
 
+The default `geom_point()` uses the shape symbol 19 that is a solid circle. If we decide to use a shape symbol between 21 and 25, we can set `color` and `fill` aesthetics to each point. The following examples help us understand how to set the color and fill arguments for the shape symbol 24 that is a triangle:
 
+::: panel-tabset
+## shape 24
 
+```{r}
+#| message: false
+#| warning: false
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(shape = 24)
+```
+
+## shape 24 + color
+
+```{r}
+#| message: false
+#| warning: false
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(shape = 24, color = "red")
+```
+
+## shape 24 + color + fill
+
+```{r}
+#| message: false
+#| warning: false
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(shape = 24, color = "red", fill = "yellow")
+```
+:::
+
+ 
+
+**C. `size` aesthetics**
+
+Next, we can add a third variable `tests_per_capita` using the size aesthetic:
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "2"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita))
+```
+
+## Add a new geom (text information for each point)
+
+We can add the name of the country for each data point by adding a new geom:
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "3"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita)) +
+  geom_text_repel(aes(label = country), seed = 123)
+```
+
+## Change the default properties of the plot with *scales*
+
+### Change the scale of the y axis
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "4"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita)) +
+  geom_text_repel(aes(label = country), seed = 123) +
+  scale_y_log10()
+```
+
+Continuous variable `tests_per_capital` mapped to size and categorical variable `region` mapped to color.
+
+### Change the default point shapes
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-charts
+#| fig-cap: "Change the default point shapes"
+#| fig-subcap: 
+#|   - "Default"
+#|   - "Modified"
+#| layout-ncol: 1
+#| source-line-numbers: "3,9,12"
+
+# default
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, shape= region)) +
+  geom_text_repel(aes(label = country), seed = 123) +
+  scale_y_log10()
+
+# modified
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, shape= region)) +
+  geom_text_repel(aes(label = country), seed = 123) +
+  scale_y_log10() +
+  scale_shape_manual(values = c(4, 9, 2, 1, 0, 19, 8))
+```
+
+However, when a variable is mapped to size (here, `test_per_capital`), it's a good idea to not map a variable to shape (here, `region`). This is because it is difficult to compare the sizes of different shapes (e.g., a size 4 square with a size 4 triangle).
+
+### Change the default colors
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-charts2
+#| fig-cap: "Change the default colors"
+#| fig-subcap: 
+#|   - "Default"
+#|   - "Modified"
+#| layout-ncol: 1
+#| source-line-numbers: "3,9,12"
+
+# default
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, color = region)) +
+  geom_text_repel(aes(label = country), seed = 123) +
+  scale_y_log10()
+
+# modified
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, color = region)) +
+  geom_text_repel(aes(label = country), seed = 123) +
+  scale_y_log10() +
+  scale_color_jco()
+```
+
+## Modify axis, legend, and plot labels
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "6-13"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, color = region)) +
+  geom_text_repel(aes(label = country), seed = 123) +
+  scale_y_log10() +
+  scale_color_jco() +
+  labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data from {tidycovid19} package",
+       tag = 'A')
+```
+
+## Modify theme elements
+
+We can fine tune the appearance of the graph using themes. Theme functions (which start with `element_`) control background colors, fonts, grid-lines, legend placement, and other non-data related features of the graph.
+
+This function is very complex since it allows you to specify all the different details contributing to the plot appearance as well as generating your own format and style.
+
+### A. element_line()
+
+![Anatomy of Line Elements in ggplot2.](images/element_line.png){#fig-element_line width="100%"}
+
+With `element_line()`, we can customize all the lines of the plot that are not part of data:
+
+**1. The `X` and `Y` axes lines:**
+
+-   both X and Y axes: `axis.line = element_line()`
+-   only X axis:`axis.line.x = element_line()`
+-   only Y axis:`axis.line.y = element_line()`
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "3-4"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point() +
+  theme(axis.line.x = element_line(color = "red", linewidth = 2),
+        axis.line.y = element_line(color = "green", linewidth = 2))
+```
+
+**2. The ticks on `X` and `Y` axes:**
+
+-   both X and Y ticks: `axis.ticks = element_line()`
+-   only X ticks:`axis.ticks.x = element_line()`
+-   only Y ticks:`axis.ticks.y = element_line()`
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "3-4"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point() +
+  theme(axis.ticks.x = element_line(color = "red", linewidth = 2),
+        axis.ticks.y = element_line(color = "green", linewidth = 2))
+```
+
+**3. The major and minor grid lines of the panel:**
+
+**Major grid**
+
+-   major grid lines (vertical and horizontal): `panel.grid.major = element_line()`
+-   major vertical grid lines (cross `X`): `panel.grid.major.x = element_line()`
+-   major horizontal grid lines (cross `Y`): `panel.grid.major.y = element_line()`
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "3-4"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point() +
+  theme(panel.grid.major.x = element_line(color = "red", linewidth = 0.55),
+        panel.grid.major.y = element_line(color = "green", linewidth = 0.55))
+```
+
+**Minor grid**
+
+-   minor grid lines (vertical and horizontal): `panel.grid.minor = element_line()`
+-   minor vertical grid lines (cross `X`): `panel.grid.minor.x = element_line()`
+-   minor horizontal grid lines (cross `Y`): `panel.grid.minor.y = element_line()`
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "3-4"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point() +
+  theme(panel.grid.minor.x = element_line(color = "red", linewidth = 0.35, linetype = 2),
+        panel.grid.minor.y = element_line(color = "green", linewidth = 0.35, linetype = 2))
+```
+
+Combination
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| source-line-numbers: "3-4"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point() +
+  theme(panel.grid.major = element_line(color = "blue", linewidth = 0.55),
+        panel.grid.minor = element_line(color = "deeppink", linewidth = 0.35, linetype = 2))
+```
+
+### B. element_text()
+
+While making a plot with `ggplot2`, it automatically chooses appropriate values for various aspects of **element text**. In total there are 10 different aspects/elements of texts in a plot made with `ggplot2`. The figure below shows the anatomy of text elements and the key word in ggplot2 describing the element.
+
+![Anatomy of Text Elements in ggplot2.](images/element_text.png){#fig-element_text width="100%"}
