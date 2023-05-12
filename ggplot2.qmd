@@ -493,9 +493,37 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 
 ## Modify theme elements
 
-We can fine tune the appearance of the graph using themes. Theme functions (which start with `element_`) control background colors, fonts, grid-lines, legend placement, and other non-data related features of the graph.
+We are able to modify the appearance of theme elements of **plot**, **panel**, **axis**, and **legend** compartments in a simple ggplot graph (@fig-compartments).
 
-This function is very complex since it allows you to specify all the different details contributing to the plot appearance as well as generating your own format and style.
+![Main compartments in a ggplot graph.](images/compartments.png){#fig-compartments width="90%"}
+
+Theme elements are the **non-data** elements of a graph such as:
+
+-   line
+-   text
+-   title, subtitle, caption
+-   grid (major, minor)
+-   background
+-   position
+-   ticks
+
+The theme system enables to specify the display of elements for a particular compartment of the graph. For example, we can specify the title in plot, axis, and legend as follows: `plot.title`, `axis.title`, `legend.title`.
+
+
+
+
+There are four pertinent functions that start with `element_` and specify the non-data related elements:
+
+-   `element_line()`: specifies the display of lines
+-   `element_text()`: specifies the display of text elements
+-   `element_rect()`: specifies the display of borders and backgrounds
+-   `element_blank()`: suppresses the appearance of elements we're not interested in
+
+Therefore, the default theme elements can be override by calling element functions in the `theme()`:
+
+`theme(axis.line.x = element_text(color = "red", linewidth = 2))`
+
+that can be specified in the `theme()` function
 
 ### A. element_line()
 

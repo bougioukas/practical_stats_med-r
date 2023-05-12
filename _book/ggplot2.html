@@ -915,12 +915,40 @@ Important
 </div>
 </section><section id="modify-theme-elements" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="modify-theme-elements">
 <span class="header-section-number">11.7</span> Modify theme elements</h2>
-<p>We can fine tune the appearance of the graph using themes. Theme functions (which start with <code>element_</code>) control background colors, fonts, grid-lines, legend placement, and other non-data related features of the graph.</p>
-<p>This function is very complex since it allows you to specify all the different details contributing to the plot appearance as well as generating your own format and style.</p>
+<p>We are able to modify the appearance of theme elements of <strong>plot</strong>, <strong>panel</strong>, <strong>axis</strong>, and <strong>legend</strong> compartments in a simple ggplot graph (<a href="#fig-compartments" class="quarto-xref">Figure&nbsp;<span>11.10</span></a>).</p>
+<div id="fig-compartments" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/compartments.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;11.10: Main compartments in a ggplot graph.</figcaption></figure>
+</div>
+<p>Theme elements are the <strong>non-data</strong> elements of a graph such as:</p>
+<ul>
+<li>line</li>
+<li>text</li>
+<li>title, subtitle, caption</li>
+<li>grid (major, minor)</li>
+<li>background</li>
+<li>position</li>
+<li>ticks</li>
+</ul>
+<p>The theme system enables to specify the display of elements for a particular compartment of the graph. For example, we can specify the title in plot, axis, and legend as follows: <code>plot.title</code>, <code>axis.title</code>, <code>legend.title</code>.</p>
+<p>There are four pertinent functions that start with <code>element_</code> and specify the non-data related elements:</p>
+<ul>
+<li>
+<code>element_line()</code>: specifies the display of lines</li>
+<li>
+<code>element_text()</code>: specifies the display of text elements</li>
+<li>
+<code>element_rect()</code>: specifies the display of borders and backgrounds</li>
+<li>
+<code>element_blank()</code>: suppresses the appearance of elements we’re not interested in</li>
+</ul>
+<p>Therefore, the default theme elements can be override by calling element functions in the <code>theme()</code>:</p>
+<p><code>theme(axis.line.x = element_text(color = "red", linewidth = 2))</code></p>
+<p>that can be specified in the <code>theme()</code> function</p>
 <section id="a.-element_line" class="level3"><h3 class="anchored" data-anchor-id="a.-element_line">A. element_line()</h3>
 <div id="fig-element_line" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="images/element_line.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.10: Anatomy of Line Elements in ggplot2.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;11.11: Anatomy of Line Elements in ggplot2.</figcaption></figure>
 </div>
 <p>With <code>element_line()</code>, we can customize all the lines of the plot that are not part of data:</p>
 <p><strong>1. The <code>X</code> and <code>Y</code> axes lines:</strong></p>
@@ -1015,7 +1043,7 @@ Important
 <p>While making a plot with <code>ggplot2</code>, it automatically chooses appropriate values for various aspects of <strong>element text</strong>. In total there are 10 different aspects/elements of texts in a plot made with <code>ggplot2</code>. The figure below shows the anatomy of text elements and the key word in ggplot2 describing the element.</p>
 <div id="fig-element_text" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="images/element_text.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.11: Anatomy of Text Elements in ggplot2.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;11.12: Anatomy of Text Elements in ggplot2.</figcaption></figure>
 </div>
 
 
