@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.37">
+<meta name="generator" content="quarto-1.4.58">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -440,45 +440,38 @@ Steps of Hypothesis Testsing
 <li>If p − value ≥ α, do not reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 </ul>
 <p>The <a href="#tbl-panel" class="quarto-xref">Table&nbsp;<span>17.1</span></a> demonstrates how to interpret the strength of the evidence. However, always keep in mind the size of the study being considered.</p>
-<div id="tbl-panel" class="tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;17.1: <strong>?(caption)</strong></p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-panel-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-panel" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-panel" class="anchored">
 <table class="table">
-<caption>(a) Strength of the evidence against <span class="math inline">\(H_{0}\)</span>.</caption>
+<caption>Table&nbsp;17.1: Strength of the evidence against <span class="math inline">\(H_{0}\)</span>.</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">p-value</th>
-<th style="text-align: left;">Interpretation</th>
+<th>p-value</th>
+<th>Interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(p \geq{0.10}\)</span></td>
-<td style="text-align: left;">No evidence to reject <span class="math inline">\(H_{0}\)</span></td>
+<td><span class="math inline">\(p \geq{0.10}\)</span></td>
+<td>No evidence to reject <span class="math inline">\(H_{0}\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(0.05\leq p &lt; 0.10\)</span></td>
-<td style="text-align: left;">Weak evidence to reject <span class="math inline">\(H_{0}\)</span></td>
+<td><span class="math inline">\(0.05\leq p &lt; 0.10\)</span></td>
+<td>Weak evidence to reject <span class="math inline">\(H_{0}\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(0.01\leq p &lt; 0.05\)</span></td>
-<td style="text-align: left;">Evidence to reject <span class="math inline">\(H_{0}\)</span></td>
+<td><span class="math inline">\(0.01\leq p &lt; 0.05\)</span></td>
+<td>Evidence to reject <span class="math inline">\(H_{0}\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(0.001\leq p &lt; 0.01\)</span></td>
-<td style="text-align: left;">Strong evidence to reject <span class="math inline">\(H_{0}\)</span></td>
+<td><span class="math inline">\(0.001\leq p &lt; 0.01\)</span></td>
+<td>Strong evidence to reject <span class="math inline">\(H_{0}\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(p &lt; 0.001\)</span></td>
-<td style="text-align: left;">Very strong evidence to reject <span class="math inline">\(H_{0}\)</span></td>
+<td><span class="math inline">\(p &lt; 0.001\)</span></td>
+<td>Very strong evidence to reject <span class="math inline">\(H_{0}\)</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </div>
 <p><strong>Step 5:</strong> Interpret the results.</p>
 </div>
@@ -675,30 +668,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, function() {
-      let href = xref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children.length > 2) {
-          for (let i = 0; i < 2; i++) {
-            container.appendChild(note.children[i].cloneNode(true));
-          }
-          return container.innerHTML
-        } else {
-          return note.innerHTML;
-        }
-      } else {
-        return note.innerHTML;
-      }
     });
   }
       let selectedAnnoteEl;

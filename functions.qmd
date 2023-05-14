@@ -306,7 +306,6 @@ signif (2718214, 3)  # round to the specified number of significant digits
 ```
 :::
 
-
 ## The *sessionInfo()* and *option()* functions
 
 We can obtain information about R, our operating system and attached or loaded packages in the current session running the following function:
@@ -317,7 +316,6 @@ We can obtain information about R, our operating system and attached or loaded p
 sessionInfo()
 ```
 
-
 Additionally, the `options()` function in R can be used to change various default settings. For example, the *digits* controls the number of significant digits and the *scipen* enables/disables scientific notation in printing. The current options are returned when `options()` is called and the command `help(options)` lists all of the global options.
 
 ```{r}
@@ -326,11 +324,9 @@ Additionally, the `options()` function in R can be used to change various defaul
 help(options)
 ```
 
-
 ## User-defined functions
 
 We can create our own functions, using the **`function()`**, which is a very powerful way to extend R.
-
 
 ::: callout-tip
 ## What do we need to create a function?
@@ -351,6 +347,4 @@ log7 <- function(x) {
 log7(5)
 ```
 
-Here, we defined the function by "assigning" the `function(x)` to the name `log7` using the assignment operator `<-` (see Chapter 5). The `x` argument in the parenthesis of `function()` is used as input to the function; the code within the curly braces `{}` is the body (statements) of the function.
-
-
+Here, we defined the function by "assigning" the `function(x)` to the name `log7` using the assignment operator `<-` (see @sec-objects). The `x` argument in the parenthesis of `function()` is used as input to the function; the code within the curly braces `{}` is the body (statements) of the function.

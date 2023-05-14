@@ -384,7 +384,7 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 
 ## Add a new geom (text information for each point)
 
-We can add the name of the country for each data point by adding a new geom:
+Let's add the name of the country for each data point. The `geom_text_repel()` function from the add-on package `{ggrepel}` allow us to add text labels for each data point that repel away from each other to avoid overlapping of the text.
 
 ```{r}
 #| message: false
@@ -493,10 +493,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 
 ## Modify theme elements
 
-We are able to modify the appearance of theme elements of **plot**, **panel**, **axis**, and **legend** compartments in a simple ggplot graph (@fig-compartments).
-
-![Main compartments in a ggplot graph.](images/compartments.png){#fig-compartments width="90%"}
-
 Theme elements are the **non-data** elements of a graph such as:
 
 -   line
@@ -504,32 +500,51 @@ Theme elements are the **non-data** elements of a graph such as:
 -   title, subtitle, caption
 -   grid (major, minor)
 -   background
--   position
 -   ticks
 
-The theme system enables to specify the display of elements for a particular compartment of the graph. For example, we can specify the title in plot, axis, and legend as follows: `plot.title`, `axis.title`, `legend.title`.
+::: callout-tip
+## Syntax of the `theme()` function
 
+The default display of theme elements can be override by using the `theme()` function which has two parts in structure, an **element name** and an **element function** in a form similar to:
 
+> theme(**element name** = **element_function**(arguments))
 
+***Element name***
 
-There are four pertinent functions that start with `element_` and specify the non-data related elements:
+We are able to modify the appearance of theme elements in **plot**, **panel**, **axis**, and **legend** compartments of a simple ggplot graph (@fig-compartments).
+
+![Main compartments in a ggplot graph.](images/compartments.png){#fig-compartments width="90%"}
+
+The theme system enables us to specify the display of elements for a particular compartment of the graph by creating **element names** in the general form of `compartment.element`. For example, we can specify the title in plot, axis, and legend with the element names `plot.title`, `axis.title`, and `legend.title`, respectfully.
+
+***Element function***
+
+Depending on the type of element that we want to modify, there are three pertinent functions that start with `element_`:
 
 -   `element_line()`: specifies the display of lines
 -   `element_text()`: specifies the display of text elements
 -   `element_rect()`: specifies the display of borders and backgrounds
--   `element_blank()`: suppresses the appearance of elements we're not interested in
 
-Therefore, the default theme elements can be override by calling element functions in the `theme()`:
+**NOTE**: (a) There is also the `element_blank()` that suppresses the appearance of elements we're not interested in. (b) Other features of the graph, such as the position of legend, are not specified within an `element_function`.
 
-`theme(axis.line.x = element_text(color = "red", linewidth = 2))`
+ 
 
-that can be specified in the `theme()` function
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Suppose we want to change the color (from black to red) and the width of the x-axis line of our graph. The syntax would be similar to:
+
+![Main compartments in a ggplot graph.](images/theme_ex.png){#fig-theme_ex width="90%"}
+:::
+
+ 
+
+Next, we present some examples for each element function to help understanding of the previous concepts.
 
 ### A. element_line()
 
-![Anatomy of Line Elements in ggplot2.](images/element_line.png){#fig-element_line width="100%"}
+With `element_line()`, we can customize all the lines of the plot that are not part of data. The @fig-element_line shows the basic line elements (axes, ticks, and grids) that we can control in a simple ggplot graph.
 
-With `element_line()`, we can customize all the lines of the plot that are not part of data:
+![Anatomy of Line Elements in ggplot2.](images/element_line.png){#fig-element_line width="100%"}
 
 **1. The `X` and `Y` axes lines:**
 
@@ -537,18 +552,47 @@ With `element_line()`, we can customize all the lines of the plot that are not p
 -   only X axis:`axis.line.x = element_line()`
 -   only Y axis:`axis.line.y = element_line()`
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| out-width: "50%"
+#| label: fig-linetypes
+#| fig-align: center
+#| fig-cap: dfsfdsfdsf.
+
+tibble(y = 1:6, x = 0, xend = 1) %>%
+  ggplot() +
+  aes(x, y, xend = xend, yend = y, linetype = as.integer(y)) +
+  geom_segment(size = 2) +
+  theme_minimal(18) +
+  scale_y_continuous(breaks = 1:6, trans = "reverse") +
+  theme(
+    plot.title = element_text("mono"),
+    panel.grid = element_blank(), 
+    axis.text.x = element_blank()
+  ) +
+  scale_linetype_identity() +
+  labs(title = "linetype =", y = NULL, x = NULL)
+```
+
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 ```{r}
 #| message: false
 #| warning: false
+#| label: fig-axis1
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
 #| source-line-numbers: "3-4"
 
 ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   geom_point() +
   theme(axis.line.x = element_line(color = "red", linewidth = 2),
-        axis.line.y = element_line(color = "green", linewidth = 2))
+        axis.line.y = element_line(color = "green", linewidth = 2, linetype = 3))
 ```
+
+As we can observe, the default line type is a solid line (red x-axis line; `linetype = 1`). To change the line type, for example from solid to dashed line, we used the `linetype = 3` option (green y-axis line) (@fig-axis1).
 
 **2. The ticks on `X` and `Y` axes:**
 
@@ -609,7 +653,7 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
         panel.grid.minor.y = element_line(color = "green", linewidth = 0.35, linetype = 2))
 ```
 
-Combination
+We can also modify the display of both major and minor grids of the ggplot.
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -626,6 +670,229 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 
 ### B. element_text()
 
-While making a plot with `ggplot2`, it automatically chooses appropriate values for various aspects of **element text**. In total there are 10 different aspects/elements of texts in a plot made with `ggplot2`. The figure below shows the anatomy of text elements and the key word in ggplot2 describing the element.
 
 ![Anatomy of Text Elements in ggplot2.](images/element_text.png){#fig-element_text width="100%"}
+
+
+**1. The title of `X` and `Y` axes:**
+
+-   X axis:`axis.title.x = element_text()`
+-   Y axis:`axis.title.y = element_text()`
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-axis_title
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(axis.title.x = element_text(color = "red", size = 18, angle = 10),
+        axis.title.y = element_text(color = "green", size = 10))
+```
+
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-axis_text
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(axis.text.x = element_text(color = "red", size = 16, face="bold", angle = 90),
+        axis.text.y = element_text(color = "green", size = 10))
+```
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-plot_title
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-14"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(plot.title = element_text(color = "deeppink"),
+        plot.subtitle = element_text(color = "blue"),
+        plot.caption = element_text(color = "orange", size = 8),
+        plot.tag = element_text(color = "green", size = 20))
+```
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-legend_title
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(legend.title = element_text(color = "red", size = 16),
+        legend.text = element_text(color = "green", size = 10))
+```
+
+
+
+
+### C. element_rect()
+
+![Anatomy of Text Elements in ggplot2.](images/element_rect.png){#fig-element_rect width="100%"}
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-plot_background
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(plot.background = element_rect(fill = "deeppink"))
+```
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-panel_background
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(panel.background = element_rect(fill = "deeppink"))
+```
+
+
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-legend_background
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(legend.background = element_rect(fill = "deeppink"))
+```
+
+
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-legend_key
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| source-line-numbers: "11-12"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(color = region)) +
+   labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per \ncapita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data",
+       tag = 'A') +
+  theme(legend.key = element_rect(fill = "deeppink"))
+```
+
+
+
+
