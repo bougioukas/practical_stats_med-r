@@ -13,6 +13,7 @@ In this textbook, the `{ggplot2}` package is the preferred tool for creating plo
 
 library(ggrepel)
 library(ggsci)
+library(ggthemes)
 #library(ggpp)
 #library(ggfx)
 #library(ggtext)
@@ -469,7 +470,7 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   scale_color_jco()
 ```
 
-## Modify axis, legend, and plot labels
+## Modify axis, legend, and plot labels with *labs*
 
 ```{r}
 #| message: false
@@ -491,7 +492,7 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
        tag = 'A')
 ```
 
-## Modify theme elements
+## Modify theme elements with *theme*
 
 Theme elements are the **non-data** elements of a graph such as:
 
@@ -588,8 +589,8 @@ tibble(y = 1:6, x = 0, xend = 1) %>%
 
 ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   geom_point() +
-  theme(axis.line.x = element_line(color = "red", linewidth = 2),
-        axis.line.y = element_line(color = "green", linewidth = 2, linetype = 3))
+  theme(axis.line.x = element_line(color = "red", linewidth = 1),
+        axis.line.y = element_line(color = "green", linewidth = 1, linetype = 5))
 ```
 
 As we can observe, the default line type is a solid line (red x-axis line; `linetype = 1`). To change the line type, for example from solid to dashed line, we used the `linetype = 3` option (green y-axis line) (@fig-axis1).
@@ -609,8 +610,8 @@ As we can observe, the default line type is a solid line (red x-axis line; `line
 
 ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   geom_point() +
-  theme(axis.ticks.x = element_line(color = "red", linewidth = 2),
-        axis.ticks.y = element_line(color = "green", linewidth = 2))
+  theme(axis.ticks.x = element_line(color = "red", linewidth = 5),
+        axis.ticks.y = element_line(color = "green", linewidth = 5))
 ```
 
 **3. The major and minor grid lines of the panel:**
@@ -670,16 +671,12 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 
 ### B. element_text()
 
-
 ![Anatomy of Text Elements in ggplot2.](images/element_text.png){#fig-element_text width="100%"}
-
 
 **1. The title of `X` and `Y` axes:**
 
 -   X axis:`axis.title.x = element_text()`
 -   Y axis:`axis.title.y = element_text()`
-
-
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -704,9 +701,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   theme(axis.title.x = element_text(color = "red", size = 18, angle = 10),
         axis.title.y = element_text(color = "green", size = 10))
 ```
-
-
-
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -758,8 +752,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
         plot.tag = element_text(color = "green", size = 20))
 ```
 
-
-
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 ```{r}
@@ -784,14 +776,9 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
         legend.text = element_text(color = "green", size = 10))
 ```
 
-
-
-
 ### C. element_rect()
 
 ![Anatomy of Text Elements in ggplot2.](images/element_rect.png){#fig-element_rect width="100%"}
-
-
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -816,8 +803,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   theme(plot.background = element_rect(fill = "deeppink"))
 ```
 
-
-
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 ```{r}
@@ -841,10 +826,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   theme(panel.background = element_rect(fill = "deeppink"))
 ```
 
-
-
-
-
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 ```{r}
@@ -867,8 +848,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
        tag = 'A') +
   theme(legend.background = element_rect(fill = "deeppink"))
 ```
-
-
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -894,5 +873,130 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 ```
 
 
+## Themes
+
+### Default ggplot theme
+
+The default theme of ggplot is the `theme_gray`:
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-ggthemes0
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| fig-height: 12
+#| fig-width: 12
 
 
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, color = region)) +
+  geom_text_repel(aes(label = country), 
+                  min.segment.length = 0, seed = 42, 
+                  box.padding = 0.1, color = "black", size = 5) +
+  scale_y_log10() +
+  labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants (log scale)",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per capita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data Jonhs Hopkins University")
+```
+
+
+
+### Predefined theme
+
+We can customize the theme elements of our graph by applying a predefined theme rather than changing everything by hand. There are ready to use themes from the `{ggplot2}` and `{ggthemes}` packages. 
+
+Examples of in-build theme from "ggplot2":
+
+-   **theme_bw()** -- dark on light ggplot2 theme
+-   **theme_dark()** -- lines on a dark background instead of light
+-   **theme_minimal()** -- no background annotations, minimal feel.
+-   **theme_classic()** -- theme with no grid lines.
+-   **theme_void()** -- empty theme with no elements
+
+
+Examples of themes from "ggthemes":
+
+-   **theme_economist()** -- theme approximates the style of "[The Economist](https://www.economist.com/)".
+-   **theme_excel_new()** -- theme based on current Excel plot defaults.
+-   **theme_fivethirtyeight()** -- theme inspired by [FiveThirtyEight](http://fivethirtyeight.com) plots.
+-   **theme_gdocs()** -- theme based on Google Docs Chart defaults.
+-   **theme_hc()** -- theme based on [Highcharts](https://www.highcharts.com/) plots.
+
+
+In our case, we will use the `theme_fivethirtyeight()` from the "ggthemes" to understand how we can handle default themes.
+
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-ggthemes
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| fig-height: 12
+#| fig-width: 12
+#| source-line-numbers: "14"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_point(aes(size = tests_per_capita, color = region)) +
+  geom_text_repel(aes(label = country), 
+                  min.segment.length = 0, seed = 42, 
+                  box.padding = 0.1, color = "black", size = 5) +
+  scale_y_log10() +
+  labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants (log scale)",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per capita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data Jonhs Hopkins University") +
+  theme_fivethirtyeight()
+```
+
+If we take a look at the code for `theme_fivethirtyeight` (we just run `theme_fivethirtyeight` in our console to see the code), we'll observe that `axis.title` is set to `element_blank()`. So this theme has no axis titles by default. We'll need to change this if we want to set X and Y axis titles. You can turn them back on with theme(axis.title = element_text()) you need to change some of the theme settings that are the defaults in theme_fivethirtyeight.
+
+
+
+### Publication Quality Figure
+
+More customization of plot
+
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-ggthemes2
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| fig-height: 12
+#| fig-width: 12
+#| source-line-numbers: "8,16-20"
+
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_smooth(color = "red") +
+  geom_point(aes(size = tests_per_capita, color = region), shape = 1, stroke = 2) +
+  geom_text_repel(aes(label = country), 
+                  min.segment.length = 0, seed = 42, 
+                  box.padding = 0.1, color = "black", size = 5) +
+  scale_y_log10() +
+  scale_color_jco() +
+  labs(x = "GDP per capita ($)",
+       y = "Cases per 100,000 inhabitants (log scale)",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per capita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data Jonhs Hopkins University") +
+  theme_fivethirtyeight(base_size = 16) +
+  theme(plot.title = element_text(size = 17),
+        axis.title = element_text(face = "bold"),
+        legend.title = element_text(face = "bold")) +
+  guides(color = guide_legend(override.aes = list(size = 4)))
+```
+
+## ggplot extensions
