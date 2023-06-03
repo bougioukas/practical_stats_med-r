@@ -1,6 +1,16 @@
 # Survival analysis {#sec-survival}
 
-The primary outcome in many clinical trials is the time from randomization, and start of the intervention to a well-defined critical event such as death, disease recurrence, occurrence of adverse events, or treatment failure. The survival analysis estimated by Kaplan--Meier approach is particularly useful when studying time-to-event data. It is a non-parametric method, which means that it does not make any assumptions about the underlying distribution of the data.
+In health sciences we often have data which represent the **time until some event occurs**. In a clinical trial setting, the primary outcome may be the time from onset of therapy until a well-defined critical event such as death, cancer recurrence, or first occurrence of a particular adverse event. One of the challenges specific to survival data is that the survival times will be unknown for some patients (censored data) for a variety of reasons:
+
+-   lost to follow-up during the study period
+-   withdrawn from the study because of some reason
+-   the event did not occur by the end of the study
+
+Such data could be referred to as **right censored** because, on a timeline, the true lifetimes of the patients are to the right of their observed censor times.
+
+Statistical techniques for survival data have been developed that are be able to account for censored observations. In survival analysis, it is generally assumed that censoring is **non-informative** of survival (being censored or not is not related to the probability of the event occurring).
+
+Survival analysis is a class of statistical methods. One approach to estimate the the survival over time is the **Kaplan-Meier** procedure which is a non-parametric method (i.e. it does not make any assumptions about the underlying distribution of the data).
 
 When we have finished this Chapter, we should be able to:
 
@@ -14,10 +24,7 @@ When we have finished this Chapter, we should be able to:
 
 ## Research question
 
-In a randomized controlled trial of a new therapy A with data patients with leukemia, we want to:
-
--   find the survival time of patients receiving the new therapy A
--   compare the survival curves of the patients receiving the new therapy A and patients receiving the standard therapy B for leukemia.
+In a randomized controlled trial designed to find out the efficacy of a new therapy for leukemia, the patients were randomly assigned into two groups (new therapy versus standard therapy). The researchers want to (i) estimate the survival time of patients receiving the new therapy, and (ii) compare the survival curves of the patients receiving the new therapy and patients receiving the standard therapy.
 
 ## Packages we need
 
@@ -45,7 +52,7 @@ library(tidyverse)
 
 ## Preraring the data
 
-In preparing Kaplan-Meier survival analysis that compares different treatments, three variables should be recorded for each patient: (a) the **time** that is the duration between the beginning of the treatment and the end-point (event of interest or censoring), (b) the **status** at the end of the survival time (event occurrence or censored data), and (c) the **study group** such as treatment versus control intervention.
+In a clinical trial, the patients are monitored for the occurrence of a particular event or outcome. In preparing Kaplan-Meier survival analysis that compares different treatments, three variables should be recorded for each patient: (a) the **time** that is the duration between the beginning of the treatment and the end-point (event of interest or censoring), (b) the **status** at the end of the survival time (event occurrence or censored data), and (c) the **study group** such as treatment versus control intervention.
 
 We import the data *"leukemia"* in R:
 
@@ -75,7 +82,7 @@ The dataset has 42 observations (rows) and includes three variables (columns).
 
 -   **status:** indicator whether or not the patient died (1 indicates death and 0 indicates censored observation)
 
--   **intervention:** randomly assigned therapy group with two levels, A (new therapy) or B (standard therapy).
+-   **intervention:** randomly assigned therapy group with two levels, therapy A (new) or therapy B (standard).
 
 We inspect the data and the type of variables:
 
@@ -83,22 +90,20 @@ We inspect the data and the type of variables:
 glimpse(dat)
 ```
 
-First, we obtain a subset of data with patients receiving the new therapy A.
+First, we obtain a subset of data with patients receiving the new therapy A :
 
 ```{r}
 dat.A <- dat |> 
   filter(intervention == "therapy A (new)")
 ```
 
-Next, we run the **`Surv()`** function that converts the data to a special format which allows to account for censored observations. The arguments we need to define are the *time* and the *health status* of the patients. The times (in months) for the patients receiving the new therapy A follow:
+Next, we run the **`Surv()`** function that converts the data to a special format which allows to account for censored observations (i.e. a compiled version of the survival time and status). The arguments we need to provide are the variables *time* and *status* of the patients. The times (in months) for the patients receiving the new therapy A follow:
 
 ```{r}
 Surv(dat.A$time, dat.A$status)
 ```
 
-**NOTE:** Censoring times are marked with **+** symbol.
-The above data show that patients in the new therapy were censored on months 6+, 9+, 10+, 11+, 17+,  19+, 20+, 32+, 32+, 34+, 35+.
-
+**NOTE:** Censoring times are marked with "**+**" symbol. The above data show that patients in the new therapy were censored on months 6+, 9+, 10+, 11+, 17+, 19+, 20+, 32+, 32+, 34+, 35+.
 
 ## The Kaplan--Meier Product Limit Estimator
 
@@ -120,7 +125,7 @@ $d_j$ the number of events (i.e., deaths) that happened at time $t_j$
 
  
 
-The **Kaplan--Meier estimator** for the survival function is defined as the **cumulative product** of the conditional survival probabilities:
+The **Kaplan--Meier estimator** for the survival function $S(t)$ is defined as the **cumulative product** of the conditional survival probabilities:
 
 $$ S(t) = P(T>t)  =  \prod_{j:t_j≤t}(1-\frac{d_{j}}{r_{j}})$$ {#eq-cum_surv1}
 
@@ -134,9 +139,7 @@ $$ S(t_{j}) =  (1-\frac{d_{j}}{r_{j}}) \times S(t_{j-1}) $$ {#eq-cum_surv3}
 
 ### K-M analysis for the group of patients in new therapy A
 
-The first step in Kaplan-Meier analysis usually involves the construction of a table with pertinent information, so we call the `survfit2()` function that models the survival probability
-
-by fitting the "survival" data of new therapy A to a constant (since there is only one group).
+The first step in Kaplan-Meier analysis usually involves the construction of a table with the Kaplan--Meier estimates, so we call the `survfit2()` function that models the survival probability with the formula `Surv ∼ 1` (we use 1 as we have not any grouping variable):
 
 ```{r}
 #| message: false
@@ -144,10 +147,12 @@ by fitting the "survival" data of new therapy A to a constant (since there is on
 
 # create an object with the K-M estimates for the patients in the new therapy A
 km.A <- survfit2(Surv(time, status) ~ 1, data = dat.A)
+
+# obtain the list of variables included in the Km.A object
 names(km.A)
 ```
 
-The object `km.A` includes the number of participants at risk (`n.risk`), censored (`n.censor`) and having experienced an event (`n.event`) as well as the cumulative probability of surviving over time (`surv`) for the new therapy, among others.
+As we can see, the function `survfit()` returns a list of variables including the number of participants at risk (`n.risk`), censored (`n.censor`) and having experienced an event (`n.event`) as well as the cumulative probability of surviving over time (`surv`) for the new therapy, among others.
 
 Next, we estimate in R the conditional probability of surviving over time using the @eq-cond_prob:
 
@@ -194,43 +199,25 @@ tb.A |>
             locations = cells_body(columns = n.risk, rows = n.risk == 15))
 ```
 
-When there are only censored observations at a particular time such as at month 9, the conditional probability $P(t)$ of surviving equals to 1 and the cumulative probability $S(t)$ does not changed. However, we observe that at the next time t = 10 months, the number of patients "at risk" is reduced by the number of censored data at t = 9 months (16 - 1 = 15).
+When there are only censored observations at a particular time such as at month 9, the conditional probability $P(t)$ of surviving equals to 1 and the cumulative probability $S(t)$ does not changed, $S(9) = S(7) = 0.807$. However, we observe that at the next time t = 10 months, the number of patients "at risk" is reduced by the number of censored data at t = 9 months ($n.risk = 16 - 1 = 15$). The conditional probability for this time point equals to $P(10) = 1-(1/15) = 1-0.067 = 0.933$ because one patient died. Thus, the cumulative probability of surviving beyond 10 months becomes $S(10) = P(10) \times S(9) = 0.933 \times 0.807 = 0.753$.
 
 ::: callout-important
-Censoring removes the subject from the denominator, i.e., patients at risk.
+Only events cause the survival curve to drop. Censoring causes a larger drop for the next event because it reduces the number of patients at risk when that next event occurs. 
 :::
 
-To calculate the conditional survival probability $P(t)$, we consider the numerator as the difference between the number of patients at risk and the number of patients who died and at the denominator the number of patients at risk at the beginning of the period. For the first two periods, we have:
-
-0-6 In this study 21 patients were at risk at therapy A. All patients were alive; the proportion surviving on this day and the cumulative survival (i.e. proportion of all cases that were still alive at this day) were both 1.
-
-We can see that at day 0, there are 61 patients in the combination therapy group at risk and one patient have been censored. If there are not relapses the $S(t_{0}) = S(0) = 1$.
-
-At day 1 there are 60 patients at risk and one patient have been censored. If there are not relapses the $S(t_{0}) = S(0) = 1$.
-
-$S(t_{}) = S(t_{4}) \times P(t_{5}) = 0.916 \times 0.962 = 0.881$
-
-We observe that at day 1, the curve drops 16% of the remaining height (instead of 10% at the start of the study), because less people are at risk:
-
-For example, in the combination therapy group, the cumulative probability of a patient to be relapse-free 5 days $S(t_{5})$, is the cumulative probability of being relapse-free the first 4 days $S(t_{4}) = 0.916$ multiplied by the probability of being relapse-free the interval between 4 and 5 days $P(t_{5}) = 0.962$:
-
-$S(t_{5}) = S(t_{4}) \times P(t_{5}) = 0.916 \times 0.962 = 0.881$
-
-We can see that at day 1, there are 61 patients in the combination therapy group at risk and one patient have been censored. We observe that at day 1, the curve drops 16% of the remaining height (instead of 10% at the start of the study), because less people are at risk:
 
 ### The Kaplan--Meier curve
 
-Kaplan-Meier analysis can be presented as a survival curve in addition to tabular form.
-
-Kaplan--Meier curves are widely used for the visual representation of survival function (estimated by Kaplan--Meier estimator).
-
-The table presents at each time $t_j$ in which an event occurred, the total number of patients at risk ($r_j$) just before the $t_j$, the number of events at that time ($d_j$), the conditional probability and the cumulative probability of surviving with 95% confidence interval (lower 95% CI, upper 95% CI).
+The cumulative survival probability is calculated at each time $t_j$ and represents the proportion of patients who have managed to survive beyond that point in time. The @tbl-tb2 presents at each time $t_j$ in which an event occurred, the total number of patients at risk ($r_j$) just before the $t_j$, the number of events at that time ($d_j$), the conditional probability and the cumulative probability of surviving with the standard error and 95% confidence interval (lower 95% CI, upper 95% CI).
 
 ```{r}
 #| message: false
 #| warning: false
+#| label: tbl-tb2
+#| tbl-cap: "sdf sfsf"
 
-tb.km.A <- data.frame(tb.A, LCL = round(km.A$lower, 3), UCL = round(km.A$upper, 3))
+
+tb.km.A <- data.frame(tb.A, SE = round(km.A$std.err, 3), LCL = round(km.A$lower, 3), UCL = round(km.A$upper, 3))
 
 tb.km.A |> 
   select(-n.censor) |> 
@@ -244,23 +231,16 @@ tb.km.A |>
     n.event = html("No. of deaths, d<sub>j</sup>"),
     prob.A = html("Conditional probability of surviving, P(t<sub>j</sub>)"),
     surv.A = html("Cumulative probability of surviving, S(t<sub>j</sub>)"),
+    SE = html("Standard Error of S(t<sub>j</sub>)"),
     LCL = html("lower 95% CI"),
     UCL = html("upper 95% CI")) |>
   tab_options(column_labels.font.weight = "bold") |> 
   cols_align(align = "center") 
 ```
 
-Survival Probability Calculation: The survival probability is calculated at each time interval. It represents the proportion of subjects who have not experienced the event up to that point in time. The initial survival probability is 1 (i.e., all subjects are event-free at the start).
+From @tbl-tb2 we can see that the standard error of the S(t) increases over time as a result of estimating the survival probability at later times with less individuals.
 
-Cumulative Survival Probability:
-
-the proportion of patients free from tobacco up to $j$ point in time is $S(t_{j-1})$ is multiplied to obtain the cumulative survival probability.
-
-The "survival" probability $S(t_{j})$ at each time interval is multiplied to obtain the
-
-time is plotted on the x-axis and the survival function is plotted on the y-axis.
-
-The K-M plot of the estimated cumulative probability of surviving with 95% confidence interval (lower 95% CI, upper 95% CI) is depicted in @fig-p1.
+Kaplan--Meier analysis is usually presented as a survival curve in addition to tabular form. The K-M curve of the estimated cumulative probability of surviving with 95% confidence interval (lower 95% CI, upper 95% CI) is depicted in @fig-p1.
 
 ```{r}
 #| message: false
@@ -287,47 +267,34 @@ km.A |>
   theme(panel.grid.major.y = element_line(linewidth = 0.02, color = "grey80"))
 ```
 
-In @fig-p1, These intervals are typically represented on the x-axis of the chart.
-
-The lengths of the horizontal lines along the X-axis of serial times represent the survival duration for that interval.
-
-The K-M curve is stepped over time because the estimate changes only at times when an event has occurred. At time $t_{0} = 0$, all patients are at risk and hence, the cumulative probability of surviving is $S(t_{0}) = S(0) = 1$. Note that the survival curve is defined only up to 35 weeks, the largest of the observation times.
-
-Censoring times are marked on the K-M plot as + symbols.
+In @fig-p1, the time post randomization in months is represented on the x-axis and the cumulative survival probability is plotted on the y-axis. The K-M curve is a stepped line, rather than a smooth curve, since it is horizontal when there is no event and drops only at times when a death occurs. Additionally, the shaded region represents the 95% confidence interval of the $S(t_j)$. We observe that the uncertainty of the KM estimate is increased over time which is indicated by the **wider** confidence intervals at later times.
 
 
-In figure 1, the vertical axis runs from 0 to 1 and the horizontal from 0
-to 12 years post randomisation (though this was not the longest follow-
-up available). The Kaplan–Meier estimate for the control arm is
-depicted by a red-dashed line and for the research arm by a solid blue
-line. The ‘curves’ are stepped over time because the estimate changes
-only at times when an event has occurred. These steps become more
-pronounced over time as more participants are censored. Beneath the
-horizontal axis is a table that reports the number of participants still
-‘at-risk’ at specific time points (here 0, 2, 4, 6, 8, 10 and 12 years),
-that is, they are still in follow-up at this time point, not having had an
-event or been censored. In figure 1, after 10 years, there remain 71 and
-99 participants at risk of an event in the control and research arms,
-respectively.
+::: callout-tip
+## Basic characteristics of the Kaplan-Meier graph
+
+- At time $t_{0} = 0$, all patients are at risk and hence, the cumulative probability of surviving is $S(t_{0}) = S(0) = 1$. 
+- The survival curve is defined only up to 35 months, the largest of the observation times.
+- Censoring times are marked on the K-M curve as "＋" symbols.
+:::
 
 
+At the bottom of the graph in @fig-p1 there is a table that presents, the number of participants at risk, the **cumulative** number of censored observations, and the **cumulative** number of patients having experienced an event at specific time points (0, 5, 10, 15, 20, 25, 30 and 35 months).
 
 
+We can also estimate the median survival time -the time point at which half of the patients have survived- graphically. In @fig-p1, from the mid-point of the survival axis (Y = 0.50) move horizontally until the curve is crossed, then drop vertically to the time axis (X-axis) to find the corresponding time. In our example, the median survival is approximately 23 months for the new therapy A. 
 
+::: callout-important
+If the survival curve does not drop to 0.50 or below then the median survival time cannot be computed.
+:::
 
-
-
-
-
-
-
-If we want to find the **median time** of surviving for patients in the new therapy A, we have to call the `km.A` survival object:
+If we want to find in R the **median time** of surviving for patients in the new therapy A, we have to call the `km.A` survival object:
 
 ```{r}
 km.A
 ```
 
-We observe that the median time equals to 23 for this group of patients.
+We observe that the median time equals to **23 months** for the patients receiving the new therapy A.
 
 ## Comparing survival curves
 
@@ -369,6 +336,8 @@ km.AB |>
         legend.position = c(0.85, 0.89))
 ```
 
+We can plot the cumulative risk function (aka "cumulative incidence" or "cumulative events"), $F(t) = 1 - S(t)$, with argument type = "risk".
+
 ```{r}
 #| message: false
 #| warning: false
@@ -390,23 +359,13 @@ km.AB |>
   labs(title = "Kaplan-Meier curves (new therapy A vs standard therapy B)",
        subtitle = glue::glue("Log-rank test {survfit2_p(km.AB)}"),
        x = "Time in months", 
-       y = "Cumulative Survival Probability") +
+       y = "Cumulative Incidence") +
   theme(panel.grid.major.y = element_line(linewidth = 0.02, color = "grey80"),
         legend.position = c(0.85, 0.89))
 ```
 
-Here's how the Kaplan-Meier chart works:
 
-Data Collection: Data is collected for a group of subjects who are followed over a specific time period. For example, in a clinical trial, patients may be monitored for the occurrence of a particular event or outcome.
 
-Time Intervals: The time period is divided into discrete intervals, such as days, months, or years. These intervals are typically represented on the x-axis of the chart.
 
-Event Status: For each subject, their event status is noted at each time interval. The event status can be coded as 1 if the event of interest occurred (e.g., death) or 0 if the event did not occur (e.g., still alive).
 
-We display the results and draw the Kaplan-Meier plot:
 
-On the Kaplan--Meier curve of the small crosses correspond to censored data.
-
-In our case, the time period is divided into discrete intervals, such as days, months, or years. These intervals are typically represented on the x-axis of the chart.
-
-Cumulative Survival Probability: The survival probabilities at each time interval are multiplied to obtain the cumulative survival probability. This cumul

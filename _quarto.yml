@@ -66,6 +66,7 @@ filters:
   - social-share
   - lightbox
   - line-highlight
+
 code-annotations: hover
 
 share:
@@ -90,4 +91,6 @@ format:
     code-link: true
     number-depth: 2
     code-overflow: scroll
+    html-math-method: mathjax
+  
 editor: visual
