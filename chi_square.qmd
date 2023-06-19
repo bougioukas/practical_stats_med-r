@@ -235,4 +235,4 @@ Finnaly, we can also reverse the odds ratio: $$ \frac{1}{OR} = \frac{1}{5.17} = 
 epitools::oddsratio(tb1, method = "wald", rev = "rows")$measure
 ```
 
-The non-ulcerated tumors patients has 0.193 (95% CI: 0.098, 0.378) times the odds (of dying) of the ulcerated tumors. This means that the non-ulcerated tumors patients has (0.193 - 1= -0.807) 80.7% lower odds of dying than ulcerated tumors.
+The non-ulcerated tumors patients have 0.193 (95% CI: 0.098, 0.378) times the odds (of dying) of the ulcerated tumors. This means that the non-ulcerated tumors patients have (0.193 - 1 = -0.807) 80.7% lower odds of dying than ulcerated tumors.

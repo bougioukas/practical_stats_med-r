@@ -202,9 +202,8 @@ tb.A |>
 When there are only censored observations at a particular time such as at month 9, the conditional probability $P(t)$ of surviving equals to 1 and the cumulative probability $S(t)$ does not changed, $S(9) = S(7) = 0.807$. However, we observe that at the next time t = 10 months, the number of patients "at risk" is reduced by the number of censored data at t = 9 months ($n.risk = 16 - 1 = 15$). The conditional probability for this time point equals to $P(10) = 1-(1/15) = 1-0.067 = 0.933$ because one patient died. Thus, the cumulative probability of surviving beyond 10 months becomes $S(10) = P(10) \times S(9) = 0.933 \times 0.807 = 0.753$.
 
 ::: callout-important
-Only events cause the survival curve to drop. Censoring causes a larger drop for the next event because it reduces the number of patients at risk when that next event occurs. 
+Only events cause the survival curve to drop. Censoring causes a larger drop for the next event because it reduces the number of patients at risk when that next event occurs.
 :::
-
 
 ### The Kaplan--Meier curve
 
@@ -269,20 +268,17 @@ km.A |>
 
 In @fig-p1, the time post randomization in months is represented on the x-axis and the cumulative survival probability is plotted on the y-axis. The K-M curve is a stepped line, rather than a smooth curve, since it is horizontal when there is no event and drops only at times when a death occurs. Additionally, the shaded region represents the 95% confidence interval of the $S(t_j)$. We observe that the uncertainty of the KM estimate is increased over time which is indicated by the **wider** confidence intervals at later times.
 
-
 ::: callout-tip
 ## Basic characteristics of the Kaplan-Meier graph
 
-- At time $t_{0} = 0$, all patients are at risk and hence, the cumulative probability of surviving is $S(t_{0}) = S(0) = 1$. 
-- The survival curve is defined only up to 35 months, the largest of the observation times.
-- Censoring times are marked on the K-M curve as "＋" symbols.
+-   At time $t_{0} = 0$, all patients are at risk and hence, the cumulative probability of surviving is $S(t_{0}) = S(0) = 1$.
+-   The survival curve is defined only up to 35 months, the largest of the observation times.
+-   Censoring times are marked on the K-M curve as "＋" symbols.
 :::
-
 
 At the bottom of the graph in @fig-p1 there is a table that presents, the number of participants at risk, the **cumulative** number of censored observations, and the **cumulative** number of patients having experienced an event at specific time points (0, 5, 10, 15, 20, 25, 30 and 35 months).
 
-
-We can also estimate the median survival time -the time point at which half of the patients have survived- graphically. In @fig-p1, from the mid-point of the survival axis (Y = 0.50) move horizontally until the curve is crossed, then drop vertically to the time axis (X-axis) to find the corresponding time. In our example, the median survival is approximately 23 months for the new therapy A. 
+We can also estimate the median survival time -the time point at which half of the patients have survived- graphically. In @fig-p1, from the mid-point of the survival axis (Y = 0.50) move horizontally until the curve is crossed, then drop vertically to the time axis (X-axis) to find the corresponding time. In our example, the median survival is approximately 23 months for the new therapy A.
 
 ::: callout-important
 If the survival curve does not drop to 0.50 or below then the median survival time cannot be computed.
@@ -298,24 +294,27 @@ We observe that the median time equals to **23 months** for the patients receivi
 
 ## Comparing survival curves
 
-```{r}
-###KM curves and log-rank test for Transfusion group
-#plot by Transfusion group
-km.AB <- survfit2(Surv(time, status) ~ intervention, data = dat)
-# to find which month corresponds to median survival run:
-km.AB
-```
+### Graphical comparison
+
+Survival of two or more groups of patients can be compared graphically. In our example, we are interested in comparing the survival curves between the new therapy and the standard therapy.
+
+- First, in `survfit2()` function we need to replace \~1 in the model formula with the `intervention` variable (i.e Surv \~ intervention): 
 
 ```{r}
-#Run log-Rank test to compare the curves for the Transfusion groups
-survdiff(Surv(time, status) ~ intervention, data = dat, rho = 0)
+# KM curves ploted by therapy
+km.AB <- survfit2(Surv(time, status) ~ intervention, data = dat)
 ```
+
+
+- Then, we use the `ggsurvfit()` function to dispaly a Kaplan-Meier curve for each therapy (@fig-p2):
 
 ```{r}
 #| message: false
 #| warning: false
 #| fig-height: 6.5
 #| fig-width: 8
+#| label: fig-p2
+#| fig-cap: sdfsfsf
 
 km.AB |>
   ggsurvfit(linewidth = 1) +
@@ -336,6 +335,18 @@ km.AB |>
         legend.position = c(0.85, 0.89))
 ```
 
+
+K-M plot reveals that patients receiving the new therapy have higher probability of surviving through the whole time period. Particularly, the median survival time for each group can be estimated calling the object `km.AB`:
+
+```{r}
+# call the km.AB object to find which month corresponds to median survival run
+km.AB
+```
+
+The median survival of patients in the new therapy (18 months) is higher than in standard therapy (9 months).
+
+
+
 We can plot the cumulative risk function (aka "cumulative incidence" or "cumulative events"), $F(t) = 1 - S(t)$, with argument type = "risk".
 
 ```{r}
@@ -343,6 +354,9 @@ We can plot the cumulative risk function (aka "cumulative incidence" or "cumulat
 #| warning: false
 #| fig-height: 6.5
 #| fig-width: 8
+#| label: fig-p3
+#| fig-cap: sdfsfsf
+
 
 km.AB |>
   ggsurvfit(type = "risk", linewidth = 1) +
@@ -363,6 +377,35 @@ km.AB |>
   theme(panel.grid.major.y = element_line(linewidth = 0.02, color = "grey80"),
         legend.position = c(0.85, 0.89))
 ```
+
+
+### The log-Rank test
+
+The log-rank test is a non-parametric method for comparing two or more survival curves. It examines the distribution of the entire survival time rather than comparing the survival probability at specific time points.
+
+
+The log-rank test can be used to test the global null hypothesis that the curves are the same.
+
+::: {.callout-note icon="false"}
+## Null hypothesis and alternative hypothesis
+
+-   $H_0$: the survival curves of the two groups of patients are not different
+-   $H_1$: the survival curves are different 
+:::
+
+
+```{r}
+#Run log-Rank test to compare the curves for the Transfusion groups
+survdiff(Surv(time, status) ~ intervention, data = dat, rho = 0)
+```
+
+
+
+
+
+
+
+
 
 
 
