@@ -39,6 +39,8 @@ We need to load the following packages:
 library(rstatix)
 library(PupillometryR)
 library(gtsummary)
+library(dabestr)
+
 library(here)
 library(tidyverse)
 ```
@@ -273,6 +275,21 @@ The output contains the following columns of interest:
 -   estimate: estimate of the difference between means of the two groups
 -   conf.low, conf.high: the lower and the upper end point of the confidence interval at 95% (default)
 -   p.adj: p-value after adjustment for the multiple comparisons.
+
+
+```{r}
+multi.group <- dataDWL %>%
+  dabest(Diet, WeightLoss, 
+         idx = list(c("C", "A", "B", "D")),
+         paired = FALSE
+  )
+
+multi.group.mean_diff <- multi.group %>% mean_diff() 
+
+plot(multi.group.mean_diff)
+```
+
+
 
 ## Bonferroni
 

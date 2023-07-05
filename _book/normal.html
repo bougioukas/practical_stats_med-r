@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.176">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Practical Statistics in Medicine with R - 16&nbsp; Normal distribution</title>
 <style>
@@ -81,6 +81,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -102,9 +107,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./normal.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./normal.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -115,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bougioukas/practical_stats_med-r" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bougioukas/practical_stats_med-r" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -392,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./normal.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-normal" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></h1>
 </div>
 
@@ -592,8 +597,8 @@ Normal distribution and skewness
 </div>
 </div>
 <p><strong>B. Excess kurtosis</strong></p>
-<div class="page-columns page-full"><p>The other way that distributions can deviate from normality is <strong>kurtosis</strong>. The <strong>excess kurtosis</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> parameter is a measure of the combined weight of the tails relative to the rest of the distribution. Kurtosis is associated indirect with the peak of the distribution (if the peak of the distribution is too high/sharp or too low compared to a “normal” distribution).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Excess kurtosis is commonly used because for a normal distribution is equal to zero, while the kurtosis is equal to 3.</p></li></div></div>
-<p>Distributions with <strong>negative</strong> excess kurtosis are called <strong><em>platykurtic</em></strong> (<a href="#fig-kurtosis" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> a). If the measure of excess kurtosis is <strong>zero</strong> the distribution is <strong>mesokurtic</strong> (<a href="#fig-kurtosis" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> b). Finally, distributions with <strong>positive</strong> excess kurtosis are called <strong><em>leptokurtic</em></strong> (<a href="#fig-kurtosis" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> c).</p>
+<p>The other way that distributions can deviate from normality is <strong>kurtosis</strong>. The <strong>excess kurtosis</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> parameter is a measure of the combined weight of the tails relative to the rest of the distribution. Kurtosis is associated indirect with the peak of the distribution (if the peak of the distribution is too high/sharp or too low compared to a “normal” distribution).</p>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Excess kurtosis is commonly used because for a normal distribution is equal to zero, while the kurtosis is equal to 3.</p></li></div><p>Distributions with <strong>negative</strong> excess kurtosis are called <strong><em>platykurtic</em></strong> (<a href="#fig-kurtosis" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> a). If the measure of excess kurtosis is <strong>zero</strong> the distribution is <strong>mesokurtic</strong> (<a href="#fig-kurtosis" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> b). Finally, distributions with <strong>positive</strong> excess kurtosis are called <strong><em>leptokurtic</em></strong> (<a href="#fig-kurtosis" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> c).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -673,8 +678,8 @@ Normal distribution and excess kurtosis
 </div>
 </section><section id="normal-q-q-plots" class="level2 page-columns page-full" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="normal-q-q-plots">
 <span class="header-section-number">16.5</span> Normal Q-Q plots</h2>
-<div class="page-columns page-full"><p>The <strong>normal Q–Q plot</strong>, or normal quantile-quantile plot, provides an easy way to visually check whether or not a data set is normally distributed. The values in the plot are the <strong>quantiles</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of the variable distribution (sample quantiles) plotted against the quantiles of a standard normal distribution (theoretical quantiles). If the points fall close to a <strong>straight</strong> line at a 45-degree angle, then the data are normally distributed (although the ends of the Q-Q plot often deviate from the straight line).</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br><strong>Quartiles</strong>: Three quartiles (Q1, median, Q3) split the data into four parts. <br><strong>Percentiles</strong>: 99 percentiles split the data into 100 parts.</p></li></div></div>
-<div class="cell">
+<p>The <strong>normal Q–Q plot</strong>, or normal quantile-quantile plot, provides an easy way to visually check whether or not a data set is normally distributed. The values in the plot are the <strong>quantiles</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of the variable distribution (sample quantiles) plotted against the quantiles of a standard normal distribution (theoretical quantiles). If the points fall close to a <strong>straight</strong> line at a 45-degree angle, then the data are normally distributed (although the ends of the Q-Q plot often deviate from the straight line).</p>
+<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br><strong>Quartiles</strong>: Three quartiles (Q1, median, Q3) split the data into four parts. <br><strong>Percentiles</strong>: 99 percentiles split the data into 100 parts.</p></li></div><div class="cell">
 <div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="va">arrhythmia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"arrhythmia.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -768,11 +773,7 @@ Normal q-q plot of QRS
 </div>
 
 
-</section><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
-<ol>
-
-
-</ol></aside></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -930,7 +931,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
