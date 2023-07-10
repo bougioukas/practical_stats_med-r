@@ -395,6 +395,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">15.3</span> Discrete probability distributions</a>
   <ul class="collapse">
 <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution">Bernoulli distribution</a></li>
+  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution">Binomial distribution</a></li>
+  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution">Poisson distribution</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -487,7 +489,7 @@ Learning objectives
 <p>The probability distribution of a discrete random variable X is defined by the <strong>probability mass function</strong> (pmf). Additionally, the <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to x and is usually denoted F(x).</p>
 <p>&nbsp;</p>
 <section id="bernoulli-distribution" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="bernoulli-distribution">Bernoulli distribution</h3>
-<p>A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a Bernoulli trial.</p>
+<p>A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a <strong>Bernoulli trial</strong>.</p>
 <p>Let X be a binary random variable of a Bernoulli trial which takes the value 1 (success) with probability p and 0 (failure) with probability 1-p.&nbsp;The distribution of the X variable is called Bernoulli distribution with parameter p, denoted as <span class="math inline">\(X ∼ Bernoulli(p)\)</span>, where <span class="math inline">\({0\leq p\leq 1}\)</span>.</p>
 <ul>
 <li>The probability mass function (pmf) of X is given by:</li>
@@ -518,8 +520,10 @@ Note
 </ul>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> In this case, the mean can be interpreted as the proportion of the population who has the outcome (success).</span></div></div>
 <p><span id="eq-bernouli4"><span class="math display">\[μ = p \tag{15.4}\]</span></span></p>
-<p>and the variance is:</p>
-<p><span id="eq-bernouli5"><span class="math display">\[ \sigma^2= p(1-p)= μ(μ-1) \tag{15.5}\]</span></span></p>
+<p>the variance is:</p>
+<p><span id="eq-bernouli5"><span class="math display">\[ \sigma^2= p(1-p) \tag{15.5}\]</span></span></p>
+<p>and the standard deviation is:</p>
+<p><span id="eq-bernouli6"><span class="math display">\[σ = \sqrt{p(1-p)} \tag{15.6}\]</span></span></p>
 <p>&nbsp;</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let X be a random variable of the result of a surgical procedure, where X = 1 if the surgery was successful and X = 0 if it was unsuccessful. Suppose that the probability of success is p = 0.7. Then X has a Bernoulli distribution with parameter p = 0.7 :</p>
@@ -527,15 +531,29 @@ Note
 <ul>
 <li>The pmf for this distribution is:</li>
 </ul>
-<p><span class="math display">\[P(X=x)={\begin{cases}0.3,&amp;for\ x=0\\0.7,&amp;for\ x=1\end{cases}}\]</span></p>
-<p>We can plot the pmf for visualizing the distribution of the two outcomes (<a href="#fig-bernouli1" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>).</p>
+<p><span id="eq-bernouli7"><span class="math display">\[P(X=x)={\begin{cases}0.3,&amp;for\ x=0\\0.7,&amp;for\ x=1\end{cases}} \tag{15.7}\]</span></span></p>
+<p>According to <a href="#eq-bernouli7" class="quarto-xref">Equation&nbsp;<span>15.7</span></a> we have:</p>
+<table class="table"><tbody>
+<tr class="odd">
+<td><strong>X</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td><strong>P(X)</strong></td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.7</td>
+</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p>We can plot the pmf for visualizing the distribution of the two outcomes (<a href="#fig-bernpdf" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.7</span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
 <span> </span>
 <span><span class="co"># Plot</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, xend<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="fl">0</span>, yend <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"deeppink"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
@@ -543,8 +561,8 @@ Note
 <span>       x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"Probability"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-bernouli1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-bernouli1-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<div id="fig-bernpdf" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-bernpdf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <figcaption class="figure-caption">Figure&nbsp;15.1: Plot of the pmf for Bernoulli(0.7) distribution.</figcaption></figure>
 </div>
 </div>
@@ -566,14 +584,258 @@ Note
 <span>       x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"F(x)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-bernouli2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-bernouli2-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.2: Plot of the cmf for Bernoulli(0.7) distribution.</figcaption></figure>
+<div id="fig-berncdf" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-berncdf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;15.2: Plot of the cdf for Bernoulli(0.7) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>A new surgery is successful 70% of the time. If the results of 10 such surgeries are randomly sampled, what is the probability that more than 8 of them are successful?</p>
-<p>Binomial Problem with n = 10 and p(success) = 0.7 P(9&lt;= x &lt;=10) = 1 - binomcdf(10,0.7,8) = 0.1493</p>
+<p>&nbsp;</p>
+</section><section id="binomial-distribution" class="level3"><h3 class="anchored" data-anchor-id="binomial-distribution">Binomial distribution</h3>
+<p>The binomial probability distribution can be used for modeling the number of times a particular event occurs (successes) in a sequence of <em>n</em> repeated and independent Bernoulli trials.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The binomial setting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>There is a fixed number of <em>n</em> repeated Bernoulli trials.</li>
+<li>The <em>n</em> trials are all independent. That is, knowing the result of one trial does not change the probability we assign to other trials.</li>
+<li>Both probability of success, <em>p</em>, and probability of failure, 1-p, are constant throughtout the trials.</li>
+</ol>
+</div>
+</div>
+<p>Let X be a random variable that indicates the number of successes in n-independent Bernoulli trials. If random variable X satisfies the binomial setting, it follows the binomial distribution with parameters <em>n</em> and <em>p</em>, denoted as <span class="math inline">\(X ∼ Binomial(n, p)\)</span>, where <em>n</em> is the Bernoulli trial parameter (a positive integer) and <em>p</em> the Bernoulli probability parameter (<span class="math inline">\({0\leq p\leq 1}\)</span>).</p>
+<ul>
+<li>The probability mass function (pmf) of X is given by:</li>
+</ul>
+<p><span id="eq-binom0"><span class="math display">\[ P(X=x) = {{n}\choose{x}} \cdot p^x \cdot (1-p)^{n-x} \tag{15.8}\]</span></span></p>
+<p>where x = 0, 1, … , n, <span class="math inline">\(\binom{n}{x} = \frac{n!}{x!(n-x)!}\)</span>, and <span class="math inline">\({0\leq p\leq 1}\)</span>.</p>
+<p>Note that: <span class="math inline">\(n! = 1\cdot 2 \cdot 3\cdot \ldots \cdot (n-2)\cdot (n-1)\cdot n\)</span></p>
+<p>&nbsp;</p>
+<ul>
+<li>The cumulative distribution function (cdf) of X is given by:</li>
+</ul>
+<p><span id="eq-binom0.1"><span class="math display">\[F(x) = P(X \le x)={\begin{cases}0,&amp;for\ x &lt;0\\\sum_{k=0}^{x}{\left( \begin{array}{c} n \\ k \end{array}
+\right) p^{k}(1 - p)^{n-k}},&amp;for\ 0\leq x &lt; n\\1,&amp;for\ x \geq n \end{cases}} \tag{15.9}\]</span></span></p>
+<p>&nbsp;</p>
+<ul>
+<li>The mean of random variable, X, with Binomial(n, p) distribution is:</li>
+</ul>
+<p><span id="eq-binom1"><span class="math display">\[μ = np \tag{15.10}\]</span></span></p>
+<p>the variance is:</p>
+<p><span id="eq-binom2"><span class="math display">\[σ^2 = np(1-p) \tag{15.11}\]</span></span></p>
+<p>and the standard deviation:</p>
+<p><span id="eq-binom3"><span class="math display">\[σ = \sqrt{np(1-p)} \tag{15.12}\]</span></span></p>
+<p>&nbsp;</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>Let the random variable X be the number of successful surgical procedures and suppose that a new surgery is successful 70% of the time (p = 0.7). If the results of 10 surgeries are randomly sampled, the X has a Binomial distribution <span class="math inline">\(X ∼ Binomial(10, 0.7)\)</span>.</p>
+<ul>
+<li>So, the pmf for this distribution is:</li>
+</ul>
+<p><span id="eq-binom4"><span class="math display">\[ P(X=x) = {{10}\choose{x}} \cdot 0.7^x \cdot (1-0.7)^{10-x} \tag{15.13}\]</span></span></p>
+<p>The pmf of Binomial(10, 0.7) distribution specifies the probability of 0 through 10 successful surgical procedures.</p>
+<p>According to <a href="#eq-binom4" class="quarto-xref">Equation&nbsp;<span>15.13</span></a> we have:</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 7%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>X</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td><strong>P(X)</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.0001</td>
+<td style="text-align: center;">0.0014</td>
+<td style="text-align: center;">0.009</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">0.233</td>
+<td style="text-align: center;">0.121</td>
+<td style="text-align: center;">0.028</td>
+</tr>
+</tbody>
+</table>
+<p>We can easily compute the above probabilities using the <code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code> function in R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">binom_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span>
+<span><span class="va">binom_prob</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code> [1] 0.0000059049 0.0001377810 0.0014467005 0.0090016920 0.0367569090
+ [6] 0.1029193452 0.2001209490 0.2668279320 0.2334744405 0.1210608210
+[11] 0.0282475249</code></pre>
+</div>
+</div>
+<p>We can plot the pmf for visualizing the distribution (<a href="#fig-binompmf" class="quarto-xref">Figure&nbsp;<span>15.3</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="va">binom_prob</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, xend<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="fl">0</span>, yend <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"deeppink"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"pmf Binomial(10, 0.7)"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"Probability"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-binompmf" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-binompmf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;15.3: Plot of the pmf for Binomial(10, 0.7) distribution.</figcaption></figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<ul>
+<li>The cdf for this distribution is:</li>
+</ul>
+<p><span id="eq-binom0.2"><span class="math display">\[F(x) = P(X \le x)={\begin{cases}0,&amp;for\ x &lt;0\\\sum_{k=0}^{x}{\left( \begin{array}{c} 10 \\ k \end{array}
+\right) 0.7^{k}(1 - 0.7)^{10-k}},&amp;for\ 0\leq x &lt; 10\\1,&amp;for\ x \geq 10 \end{cases}} \tag{15.14}\]</span></span></p>
+<p>In R, we can calculate the cumulative probabilities for all the possible outcomes using the <code><a href="https://rdrr.io/r/stats/Binomial.html">pbinom()</a></code> as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># find the cumulative probabilities</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code> [1] 0.0000059049 0.0001436859 0.0015903864 0.0105920784 0.0473489874
+ [6] 0.1502683326 0.3503892816 0.6172172136 0.8506916541 0.9717524751
+[11] 1.0000000000</code></pre>
+</div>
+</div>
+<p>The cdf for this distribution is shown below (<a href="#fig-binomcdf1" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>):</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">geom_segment()</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">geo_step()</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details><summary>Show the code</summary><div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, xend <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">0.0000059049</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="fl">0.0000059049</span>, yend <span class="op">=</span> <span class="fl">0.0000059049</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span>, xend <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="fl">0.0000059049</span>, yend <span class="op">=</span> <span class="fl">0.0001436859</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span>, xend <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="fl">0.0001436859</span>, yend <span class="op">=</span> <span class="fl">0.0001436859</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2</span>, xend <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="fl">0.0001436859</span>, yend <span class="op">=</span> <span class="fl">0.0015903864</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2</span>, xend <span class="op">=</span> <span class="fl">3</span>, y <span class="op">=</span> <span class="fl">0.0015903864</span>, yend <span class="op">=</span> <span class="fl">0.0015903864</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">3</span>, xend <span class="op">=</span> <span class="fl">3</span>, y <span class="op">=</span> <span class="fl">0.0015903864</span>, yend <span class="op">=</span> <span class="fl">0.0105920784</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">3</span>, xend <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">0.0105920784</span>, yend <span class="op">=</span> <span class="fl">0.0105920784</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4</span>, xend <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">0.0105920784</span>, yend <span class="op">=</span> <span class="fl">0.0473489874</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4</span>, xend <span class="op">=</span> <span class="fl">5</span>, y <span class="op">=</span> <span class="fl">0.0473489874</span>, yend <span class="op">=</span> <span class="fl">0.0473489874</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span>, xend <span class="op">=</span> <span class="fl">5</span>, y <span class="op">=</span> <span class="fl">0.0473489874</span>, yend <span class="op">=</span> <span class="fl">0.1502683326</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span>, xend <span class="op">=</span> <span class="fl">6</span>, y <span class="op">=</span> <span class="fl">0.1502683326</span>, yend <span class="op">=</span> <span class="fl">0.1502683326</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">6</span>, xend <span class="op">=</span> <span class="fl">6</span>, y <span class="op">=</span> <span class="fl">0.1502683326</span>, yend <span class="op">=</span> <span class="fl">0.3503892816</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">6</span>, xend <span class="op">=</span> <span class="fl">7</span>, y <span class="op">=</span> <span class="fl">0.3503892816</span>, yend <span class="op">=</span> <span class="fl">0.3503892816</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">7</span>, xend <span class="op">=</span> <span class="fl">7</span>, y <span class="op">=</span> <span class="fl">0.3503892816</span>, yend <span class="op">=</span> <span class="fl">0.6172172136</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">7</span>, xend <span class="op">=</span> <span class="fl">8</span>, y <span class="op">=</span> <span class="fl">0.6172172136</span>, yend <span class="op">=</span> <span class="fl">0.6172172136</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">8</span>, xend <span class="op">=</span> <span class="fl">8</span>, y <span class="op">=</span> <span class="fl">0.6172172136</span>, yend <span class="op">=</span> <span class="fl">0.8506916541</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">8</span>, xend <span class="op">=</span> <span class="fl">9</span>, y <span class="op">=</span> <span class="fl">0.8506916541</span>, yend <span class="op">=</span> <span class="fl">0.8506916541</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">9</span>, xend <span class="op">=</span> <span class="fl">9</span>, y <span class="op">=</span> <span class="fl">0.8506916541</span>, yend <span class="op">=</span> <span class="fl">0.9717524751</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">9</span>, xend <span class="op">=</span> <span class="fl">10</span>, y <span class="op">=</span> <span class="fl">0.9717524751</span>, yend <span class="op">=</span> <span class="fl">0.9717524751</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span>, xend <span class="op">=</span> <span class="fl">10</span>, y <span class="op">=</span> <span class="fl">0.9717524751</span>, yend <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span>, xend <span class="op">=</span> <span class="fl">11</span>, y <span class="op">=</span> <span class="fl">1</span>, yend <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">11</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"cdf Binomial(10, 0.7)"</span>, x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"F(x)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-binomcdf1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-binomcdf1-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;15.4: Plot of the cdf for Binomial(10, 0.7) distribution.</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"cdf Binomial(10, 0.7)"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"F(x)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="prob_distributions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>What is the probability that more than 8 of 10 surgical procedures are successful?</strong></p>
+<p>We want to calculate the P(X &gt; 8):</p>
+<p><span class="math display">\[ P(X &gt; 8)= P(X = 9) + P(X = 10) = {{10}\choose{9}} \cdot 0.7^9 \cdot 0.3^1 + {{10}\choose{10}} \cdot 0.7^{10} \cdot 0.3^0 \Rightarrow \]</span></p>
+<p><span class="math display">\[ P(X &gt; 8)= 10 \cdot 0.04035 \cdot 0.3 + 1 \cdot 0.02824 = 0.12105 + 0.02825 = 0.1493\]</span></p>
+<p>&nbsp;</p>
+<p>In R, we can calculate the probabilities P(X = 9) and P(X = 10) by applying the function <code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code> and adding the results:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p9</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">9</span>, size<span class="op">=</span><span class="fl">10</span>, prob<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span>
+<span><span class="va">p9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.1210608</code></pre>
+</div>
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">10</span>, size<span class="op">=</span><span class="fl">10</span>, prob<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span>
+<span><span class="va">p10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.02824752</code></pre>
+</div>
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p9</span> <span class="op">+</span> <span class="va">p10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.1493083</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>Of note, another way to find the above probability is to calculate the 1-P(X ≤ 8):</p>
+<div class="cell">
+<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">8</span>, size<span class="op">=</span><span class="fl">10</span>, prob<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.1493083</code></pre>
+</div>
+</div>
+</section><section id="poisson-distribution" class="level3"><h3 class="anchored" data-anchor-id="poisson-distribution">Poisson distribution</h3>
+<p>While a random variable with a Binomial distribution describes a count variable (e.g., number of successful surgeries), its range is restricted to include integers from 0 to <em>n</em>. For example, the number of successful surgeries in a total of n = 10 surgical procedures cannot exceed 10.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

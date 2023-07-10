@@ -25,7 +25,6 @@ We need to load the following packages:
 library(ggplot2)
 ```
 
-
 ## Random Variables
 
 A random variable assigns a numerical quantity to every possible outcome of a random phenomenon and may be:
@@ -77,7 +76,7 @@ The probability distribution of a discrete random variable X is defined by the *
 
 ### Bernoulli distribution
 
-A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a Bernoulli trial.
+A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a **Bernoulli trial**.
 
 Let X be a binary random variable of a Bernoulli trial which takes the value 1 (success) with probability p and 0 (failure) with probability 1-p. The distribution of the X variable is called Bernoulli distribution with parameter p, denoted as $X ∼ Bernoulli(p)$, where ${0\leq p\leq 1}$.
 
@@ -105,12 +104,13 @@ The random variable X can take either value 0 or value 1. If $x<0$, then $P(X \l
 
 $$μ = p$$ {#eq-bernouli4}
 
-and the variance is:
+the variance is:
 
-$$ \sigma^2= p(1-p)= μ(μ-1)$$ {#eq-bernouli5}
+$$ \sigma^2= p(1-p)$$ {#eq-bernouli5}
 
+and the standard deviation is:
 
-
+$$σ = \sqrt{p(1-p)}$$ {#eq-bernouli6}
 
  
 
@@ -122,23 +122,32 @@ $$X ∼ Bernoulli(0.7)$$
 
 -   The pmf for this distribution is:
 
-$$P(X=x)={\begin{cases}0.3,&for\ x=0\\0.7,&for\ x=1\end{cases}}$$
+$$P(X=x)={\begin{cases}0.3,&for\ x=0\\0.7,&for\ x=1\end{cases}}$$ {#eq-bernouli7}
 
-We can plot the pmf for visualizing the distribution of the two outcomes (@fig-bernouli1).
+According to @eq-bernouli7 we have:
+
+|          |     |     |
+|----------|:---:|:---:|
+| **X**    |  0  |  1  |
+| **P(X)** | 0.3 | 0.7 |
+
+ 
+
+We can plot the pmf for visualizing the distribution of the two outcomes (@fig-bernpdf).
 
 ```{r}
 #| warning: false
-#| label: fig-bernouli1
+#| label: fig-bernpdf
 #| out-width: "80%"
 #| fig-align: "center"
 #| fig-cap: Plot of the pmf for Bernoulli(0.7) distribution.
 
 x <- as.factor(c(0, 1))
 y <- c(0.3, 0.7)
-df <- data.frame(x, y)
+df1 <- data.frame(x, y)
  
 # Plot
-ggplot(df, aes(x = x, y = y)) +
+ggplot(df1, aes(x = x, y = y)) +
   geom_segment(aes(x = x, xend=x, y=0, yend = y), color = "black") +
   geom_point(color="deeppink", size = 4) +
   theme_classic(base_size = 14) +
@@ -156,10 +165,10 @@ $$F(x) = P(X \le x)={\begin{cases}0,&for\ x <0\\0.3,&for\ 0\leq x < 1\\1,&for\ x
 
 ```{r}
 #| warning: false
-#| label: fig-bernouli2
+#| label: fig-berncdf
 #| out-width: "80%"
 #| fig-align: "center"
-#| fig-cap: Plot of the cmf for Bernoulli(0.7) distribution.
+#| fig-cap: Plot of the cdf for Bernoulli(0.7) distribution.
 
 ggplot() +
   geom_segment(aes(x = -2, xend = 0, y = 0, yend = 0)) +
@@ -173,6 +182,230 @@ ggplot() +
   theme(axis.text = element_text(size = 14))
 ```
 
-A new surgery is successful 70% of the time. If the results of 10 such surgeries are randomly sampled, what is the probability that more than 8 of them are successful?
+ 
 
-Binomial Problem with n = 10 and p(success) = 0.7 P(9\<= x \<=10) = 1 - binomcdf(10,0.7,8) = 0.1493
+### Binomial distribution
+
+The binomial probability distribution can be used for modeling the number of times a particular event occurs (successes) in a sequence of *n* repeated and independent Bernoulli trials.
+
+::: callout-note
+# The binomial setting
+
+1.  There is a fixed number of *n* repeated Bernoulli trials.
+2.  The *n* trials are all independent. That is, knowing the result of one trial does not change the probability we assign to other trials.
+3.  Both probability of success, *p*, and probability of failure, 1-p, are constant throughtout the trials.
+:::
+
+Let X be a random variable that indicates the number of successes in n-independent Bernoulli trials. If random variable X satisfies the binomial setting, it follows the binomial distribution with parameters *n* and *p*, denoted as $X ∼ Binomial(n, p)$, where *n* is the Bernoulli trial parameter (a positive integer) and *p* the Bernoulli probability parameter (${0\leq p\leq 1}$).
+
+-   The probability mass function (pmf) of X is given by:
+
+$$ P(X=x) = {{n}\choose{x}} \cdot p^x \cdot (1-p)^{n-x}$$ {#eq-binom0}
+
+where x = 0, 1, ... , n, $\binom{n}{x} = \frac{n!}{x!(n-x)!}$, and ${0\leq p\leq 1}$.
+
+Note that: $n! = 1\cdot 2 \cdot 3\cdot \ldots \cdot (n-2)\cdot (n-1)\cdot n$
+
+ 
+
+-   The cumulative distribution function (cdf) of X is given by:
+
+$$F(x) = P(X \le x)={\begin{cases}0,&for\ x <0\\\sum_{k=0}^{x}{\left( \begin{array}{c} n \\ k \end{array}
+ \right) p^{k}(1 - p)^{n-k}},&for\ 0\leq x < n\\1,&for\ x \geq n \end{cases}}$$ {#eq-binom0.1}
+
+ 
+
+-   The mean of random variable, X, with Binomial(n, p) distribution is:
+
+$$μ = np$$ {#eq-binom1}
+
+the variance is:
+
+$$σ^2 = np(1-p)$$ {#eq-binom2}
+
+and the standard deviation:
+
+$$σ = \sqrt{np(1-p)}$$ {#eq-binom3}
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Let the random variable X be the number of successful surgical procedures and suppose that a new surgery is successful 70% of the time (p = 0.7). If the results of 10 surgeries are randomly sampled, the X has a Binomial distribution $X ∼ Binomial(10, 0.7)$.
+
+-   So, the pmf for this distribution is:
+
+$$ P(X=x) = {{10}\choose{x}} \cdot 0.7^x \cdot (1-0.7)^{10-x}$$ {#eq-binom4}
+
+The pmf of Binomial(10, 0.7) distribution specifies the probability of 0 through 10 successful surgical procedures.
+
+According to @eq-binom4 we have:
+
+|          |     |        |        |       |     |       |       |       |
+|----------|:---:|:------:|:------:|:-----:|:---:|:-----:|:-----:|:-----:|
+| **X**    |  0  |   1    |   2    |   3   | ... |   8   |   9   |  10   |
+| **P(X)** |  0  | 0.0001 | 0.0014 | 0.009 | ... | 0.233 | 0.121 | 0.028 |
+
+We can easily compute the above probabilities using the `dbinom()` function in R:
+
+```{r}
+binom_prob <- dbinom(0:10, size = 10, prob = 0.7)
+binom_prob
+```
+
+We can plot the pmf for visualizing the distribution (@fig-binompmf).
+
+```{r}
+#| warning: false
+#| label: fig-binompmf
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-cap: Plot of the pmf for Binomial(10, 0.7) distribution.
+
+df2 <- data.frame(x = 0:10, y = binom_prob)
+
+# Plot
+ggplot(df2, aes(x = x, y = y)) +
+  geom_segment(aes(x = x, xend=x, y=0, yend = y), color = "black") +
+  geom_point(color="deeppink", size = 4) +
+  theme_classic(base_size = 14) +
+  scale_x_continuous(limits = c(0, 10), breaks = seq(0, 10, 1)) +
+  labs(title = "pmf Binomial(10, 0.7)",
+       x = "X", y = "Probability") +
+  theme(axis.text = element_text(size = 14))
+```
+
+<br>
+
+-   The cdf for this distribution is:
+
+$$F(x) = P(X \le x)={\begin{cases}0,&for\ x <0\\\sum_{k=0}^{x}{\left( \begin{array}{c} 10 \\ k \end{array}
+ \right) 0.7^{k}(1 - 0.7)^{10-k}},&for\ 0\leq x < 10\\1,&for\ x \geq 10 \end{cases}}$$ {#eq-binom0.2}
+
+In R, we can calculate the cumulative probabilities for all the possible outcomes using the `pbinom()` as follows:
+
+```{r}
+# find the cumulative probabilities
+pbinom(0:10, size = 10, prob = 0.7)
+```
+
+The cdf for this distribution is shown below (@fig-binomcdf1):
+
+::: panel-tabset
+## geom_segment()
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| out-width: "80%"
+#| label: fig-binomcdf1
+#| fig-cap: Plot of the cdf for Binomial(10, 0.7) distribution.
+
+
+
+# Plot
+ggplot() +
+  geom_segment(aes(x = -1, xend = 0, y = 0, yend = 0)) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 0.0000059049), linetype = "dotted") +
+  
+  geom_segment(aes(x = 0, xend = 1, y = 0.0000059049, yend = 0.0000059049)) +
+  geom_segment(aes(x = 1, xend = 1, y = 0.0000059049, yend = 0.0001436859), linetype = "dotted") +
+  
+  geom_segment(aes(x = 1, xend = 2, y = 0.0001436859, yend = 0.0001436859)) +
+  geom_segment(aes(x = 2, xend = 2, y = 0.0001436859, yend = 0.0015903864), linetype = "dotted") +
+
+  geom_segment(aes(x = 2, xend = 3, y = 0.0015903864, yend = 0.0015903864)) +
+  geom_segment(aes(x = 3, xend = 3, y = 0.0015903864, yend = 0.0105920784), linetype = "dotted") +
+
+  geom_segment(aes(x = 3, xend = 4, y = 0.0105920784, yend = 0.0105920784)) +
+  geom_segment(aes(x = 4, xend = 4, y = 0.0105920784, yend = 0.0473489874), linetype = "dotted") +
+    
+  geom_segment(aes(x = 4, xend = 5, y = 0.0473489874, yend = 0.0473489874)) +
+  geom_segment(aes(x = 5, xend = 5, y = 0.0473489874, yend = 0.1502683326), linetype = "dotted") +
+  
+  geom_segment(aes(x = 5, xend = 6, y = 0.1502683326, yend = 0.1502683326)) +
+  geom_segment(aes(x = 6, xend = 6, y = 0.1502683326, yend = 0.3503892816), linetype = "dotted") +
+  
+  geom_segment(aes(x = 6, xend = 7, y = 0.3503892816, yend = 0.3503892816)) +
+  geom_segment(aes(x = 7, xend = 7, y = 0.3503892816, yend = 0.6172172136), linetype = "dotted") +
+  
+  geom_segment(aes(x = 7, xend = 8, y = 0.6172172136, yend = 0.6172172136)) +
+  geom_segment(aes(x = 8, xend = 8, y = 0.6172172136, yend = 0.8506916541), linetype = "dotted") +
+  
+  geom_segment(aes(x = 8, xend = 9, y = 0.8506916541, yend = 0.8506916541)) +
+  geom_segment(aes(x = 9, xend = 9, y = 0.8506916541, yend = 0.9717524751), linetype = "dotted") +
+  
+  geom_segment(aes(x = 9, xend = 10, y = 0.9717524751, yend = 0.9717524751)) +
+  geom_segment(aes(x = 10, xend = 10, y = 0.9717524751, yend = 1), linetype = "dotted") +
+
+  geom_segment(aes(x = 10, xend = 11, y = 1, yend = 1)) +
+  theme_classic(base_size = 14) +
+  scale_x_continuous(limits = c(-1, 11), breaks = seq(-1, 11, 1)) +
+  labs(title = "cdf Binomial(10, 0.7)", x = "X", y = "F(x)") +
+  theme(axis.text = element_text(size = 14))
+
+```
+
+## geo_step()
+
+```{r}
+#| warning: false
+#| out-width: "80%"
+#| fig-align: "center"
+
+df3 <- data.frame(x = 0:10, y = pbinom(0:10, size = 10, prob = 0.7))
+
+# Plot
+ggplot(df3, aes(x=x, y=y)) +
+  geom_step() +
+  theme_classic(base_size = 14) +
+  scale_x_continuous(limits = c(0, 10), breaks = seq(0, 10, 1)) +
+  labs(title = "cdf Binomial(10, 0.7)",
+       x = "X", y = "F(x)") +
+  theme(axis.text = element_text(size = 14))
+```
+:::
+
+<br>
+
+**What is the probability that more than 8 of 10 surgical procedures are successful?**
+
+We want to calculate the P(X \> 8):
+
+$$ P(X > 8)= P(X = 9) + P(X = 10) = {{10}\choose{9}} \cdot 0.7^9 \cdot 0.3^1 + {{10}\choose{10}} \cdot 0.7^{10} \cdot 0.3^0 \Rightarrow $$
+
+$$ P(X > 8)= 10 \cdot 0.04035 \cdot 0.3 + 1 \cdot 0.02824 = 0.12105 + 0.02825 = 0.1493$$
+
+ 
+
+In R, we can calculate the probabilities P(X = 9) and P(X = 10) by applying the function `dbinom()` and adding the results:
+
+```{r}
+p9 <- dbinom(9, size=10, prob=0.7)
+p9
+
+p10 <- dbinom(10, size=10, prob=0.7)
+p10
+
+p9 + p10
+```
+
+ 
+
+Of note, another way to find the above probability is to calculate the 1-P(X ≤ 8):
+
+```{r}
+1 - pbinom(8, size=10, prob=0.7)
+```
+
+### Poisson distribution
+
+While a random variable with a Binomial distribution describes a count variable (e.g., number of successful surgeries), its range is restricted to include integers from 0 to *n*. For example, the number of successful surgeries in a total of n = 10 surgical procedures cannot exceed 10.
+
+
+
+
+
+
+

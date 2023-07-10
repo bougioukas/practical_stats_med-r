@@ -298,15 +298,14 @@ We observe that the median time equals to **23 months** for the patients receivi
 
 Survival of two or more groups of patients can be compared graphically. In our example, we are interested in comparing the survival curves between the new therapy and the standard therapy.
 
-- First, in `survfit2()` function we need to replace \~1 in the model formula with the `intervention` variable (i.e Surv \~ intervention): 
+-   First, in `survfit2()` function we need to replace \~1 in the model formula with the `intervention` variable (i.e Surv \~ intervention):
 
 ```{r}
 # KM curves ploted by therapy
 km.AB <- survfit2(Surv(time, status) ~ intervention, data = dat)
 ```
 
-
-- Then, we use the `ggsurvfit()` function to dispaly a Kaplan-Meier curve for each therapy (@fig-p2):
+-   Then, we use the `ggsurvfit()` function to dispaly a Kaplan-Meier curve for each therapy (@fig-p2):
 
 ```{r}
 #| message: false
@@ -335,7 +334,6 @@ km.AB |>
         legend.position = c(0.85, 0.89))
 ```
 
-
 K-M plot reveals that patients receiving the new therapy have higher probability of surviving through the whole time period. Particularly, the median survival time for each group can be estimated calling the object `km.AB`:
 
 ```{r}
@@ -344,8 +342,6 @@ km.AB
 ```
 
 The median survival of patients in the new therapy (18 months) is higher than in standard therapy (9 months).
-
-
 
 We can plot the cumulative risk function (aka "cumulative incidence" or "cumulative events"), $F(t) = 1 - S(t)$, with argument type = "risk".
 
@@ -378,11 +374,9 @@ km.AB |>
         legend.position = c(0.85, 0.89))
 ```
 
-
 ### The log-Rank test
 
 The log-rank test is a non-parametric method for comparing two or more survival curves. It examines the distribution of the entire survival time rather than comparing the survival probability at specific time points.
-
 
 The log-rank test can be used to test the global null hypothesis that the curves are the same.
 
@@ -390,25 +384,10 @@ The log-rank test can be used to test the global null hypothesis that the curves
 ## Null hypothesis and alternative hypothesis
 
 -   $H_0$: the survival curves of the two groups of patients are not different
--   $H_1$: the survival curves are different 
+-   $H_1$: the survival curves are different
 :::
 
-
 ```{r}
-#Run log-Rank test to compare the curves for the Transfusion groups
+#Run log-Rank test to compare the curves for the intervention groups A Vs B
 survdiff(Surv(time, status) ~ intervention, data = dat, rho = 0)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
