@@ -2,14 +2,15 @@
 
 **This is a working draft.**
 
-This textbook is based on my notes from a series of lectures and practicals given for a few years at the Aristotle University of Thessaloniki, Greece.
+This is the website for the work-in-progress "Practical Statistics in Medicine with R". If you’d like a physical copy of the book or an eBook, you can wait until mid-2024 for the 1st edition; it will be published by **CRC Press/Taylor & Francis Group**. 
 
 ### Whom is this textbook for?
+
+This textbook is based on my notes from a series of lectures and practicals given for a few years at the Aristotle University of Thessaloniki, Greece.
 
 The textbook can be used as support material for practical labs on basic statistics in medicine using R. It can also be used as a support for self-teaching for students and researchers in biomedical field. Additionally, it may be useful for (under)graduate students with a science background (engineering, mathematics) who wants to move towards biomedical sciences.
 
 I have paid particular attention to the form of the textbook which includes two major parts: "Part 1: R basics" and "Part 2: Statistics". **Part 1** provides an overview of base R, commonly used approaches to manipulate data with pipe-friendly functions from `{dplyr}` package, and step-by-step guidance to visualize data using the `{ggplot2}` package and its extensions. **Part 2** covers the most common statistical tests with examples from bio-medical field. Statistical functions from Base R and `{rstatix}` add-on package are presented in parallel in most examples to engage the reader and enrich the coding experience.
-
 
 ::: callout-tip
 This textbook is intended to be self-contained and is not expected any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If you want to learn in more detail this programming language and statistics, we recommend the books below:
@@ -24,10 +25,14 @@ This textbook is intended to be self-contained and is not expected any previous 
 
 ### Reproducibility and License
 
-All Chapters of this textbook are reproducible as they were made using ![](images/quarto.png){width="24" height="22"} [Quarto](https://quarto.org/)^®^ which is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/).
+This textbook was made using ![](images/quarto.png){width="24" height="22"} [Quarto](https://quarto.org/)^®^ which is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/).
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
-The **online version** of the textbook is **free to use**, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. ![](images/license.png){width="120" height="40"}
+The **online version** of the textbook is **free to use** for **non-commercial** purposes, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. ![](images/license.png){width="120" height="40"}
 
 {{< qrcode https://bougioukas-medstats-r.netlify.app width=100 height=100 colorDark='#0011bb' >}}
+
+
+
+

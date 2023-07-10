@@ -10,7 +10,6 @@ book:
   date: today
   cover-image: images/cover.png
   favicon: images/cover.png
-  repo-url: https://github.com/bougioukas/practical_stats_med-r
   chapters:
     - index.qmd
     - part: "Part 1: R Basics"
