@@ -441,7 +441,7 @@ Learning objectives
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="arithmetic-operators-in-r" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="arithmetic-operators-in-r">
+<section id="arithmetic-operators-in-r" class="level2 page-columns page-full" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="arithmetic-operators-in-r">
 <span class="header-section-number">3.1</span> Arithmetic Operators in R</h2>
 <p>The simplest thing we could do with R is arithmetic operations with numbers. For example:</p>
 <div class="cell">
@@ -478,8 +478,16 @@ Learning objectives
 <td>division</td>
 </tr>
 <tr class="odd">
-<td>^</td>
+<td>^ &nbsp;or &nbsp;**</td>
 <td>exponent</td>
+</tr>
+<tr class="even">
+<td>%/%</td>
+<td>integer division</td>
+</tr>
+<tr class="odd">
+<td>%%</td>
+<td>modulo (remainder)</td>
 </tr>
 </tbody>
 </table>
@@ -491,13 +499,8 @@ Learning objectives
 </li>
 <li>Exponents: <code>^</code> or <code>**</code>
 </li>
-<li>Division: <code>/</code>
-</li>
-<li>Multiplication: <code>*</code>
-</li>
-<li>Addition: <code>+</code>
-</li>
-<li>Subtraction: <code>-</code>
+<li>Multiplication, division, integer division, modulo: <code>*</code>, <code>/</code>, %/%, %%</li>
+<li>Addition, subtraction: <code>+</code>, <code>-</code>
 </li>
 </ul>
 <p>Therefore:</p>
@@ -507,18 +510,29 @@ Learning objectives
 <pre data-code-line-numbers=""><code>[1] 13</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
+<p>When multiple operators have the <strong>same precedence</strong>, they are evaluated in the order they appear in the mathematical expression from <strong>left to right</strong>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="fl">3</span> <span class="op">/</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">2</span>   <span class="co"># the division 3/5 is done before the multiplication by 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 1.2</code></pre>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>NOTE:</strong> To obtain additional information on how R prioritizes operators, we can access the R help section by using the following command:</p>
+<p><code><a href="https://rdrr.io/r/base/Syntax.html">?Syntax</a></code></p>
+</div></div><p>&nbsp;</p>
 <section id="parentheses" class="level3"><h3 class="anchored" data-anchor-id="parentheses">Parentheses</h3>
 <p>Use parentheses to group operations in order to force the order of evaluation if it differs from the default, or to make clear what we intend.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 16</code></pre>
 </div>
 </div>
 <p>This can get unwieldy when not needed, but clarifies our intentions. Remember that others may later read our code.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="op">(</span><span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># hard to read</span></span>
+<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="op">(</span><span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># hard to read</span></span>
 <span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">2</span> <span class="op">^</span> <span class="fl">2</span>       <span class="co"># clear, if we remember the rules</span></span>
 <span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span>     <span class="co"># if we forget some rules, this might help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -586,37 +600,37 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">&lt;</span> <span class="fl">1</span>  <span class="co"># less than</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">&lt;</span> <span class="fl">1</span>  <span class="co"># less than</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] FALSE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">&gt;</span> <span class="fl">0</span>  <span class="co"># greater than</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">&gt;</span> <span class="fl">0</span>  <span class="co"># greater than</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span>  <span class="co"># equal to (double equal sign for equality)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span>  <span class="co"># equal to (double equal sign for equality)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">&lt;=</span> <span class="fl">1</span>  <span class="co"># less than or equal to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">&lt;=</span> <span class="fl">1</span>  <span class="co"># less than or equal to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb16" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">-</span><span class="fl">9</span> <span class="op">&gt;=</span> <span class="op">-</span><span class="fl">3</span> <span class="co"># greater than or equal to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">-</span><span class="fl">9</span> <span class="op">&gt;=</span> <span class="op">-</span><span class="fl">3</span> <span class="co"># greater than or equal to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] FALSE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">!=</span> <span class="fl">2</span>  <span class="co"># not equal to (inequality)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">!=</span> <span class="fl">2</span>  <span class="co"># not equal to (inequality)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] TRUE</code></pre>
 </div>
@@ -651,11 +665,11 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 </div>
 <p>By default, R will return in the Console the scientific notation if we type a number less than 0.001. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.05</span>         <span class="co"># the number is greater than 0.001 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.05</span>         <span class="co"># the number is greater than 0.001 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.05</code></pre>
 </div>
-<div class="sourceCode" id="cb22" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.0005</span>       <span class="co"># the number is less than 0.001 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.0005</span>       <span class="co"># the number is less than 0.001 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 5e-04</code></pre>
 </div>
@@ -667,13 +681,13 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 <section id="missing-values-na" class="level3"><h3 class="anchored" data-anchor-id="missing-values-na">Missing values (NA)</h3>
 <p>In the real world, missing data may occur when recording medical information (e.g., patients lost to follow-up, incomplete medical records). R uses a special numeric value <code>NA</code> standing for “Not Available” and represents a missing value. Arithmetic operations using <code>NA</code> produces <code>NA</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] NA</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">)</span> <span class="op">/</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">)</span> <span class="op">/</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] NA</code></pre>
 </div>
@@ -683,14 +697,14 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 <p>There is also a special number <code>Inf</code> which represents infinity. Fortunately, R has special numbers for this.</p>
 <p>This allows us to represent entities like:</p>
 <div class="cell">
-<div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">/</span> <span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">/</span> <span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] Inf</code></pre>
 </div>
 </div>
 <p>The <code>Inf</code> can also be used in arithmetic calculations:</p>
 <div class="cell">
-<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">+</span> <span class="fl">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">+</span> <span class="fl">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] Inf</code></pre>
 </div>
@@ -699,19 +713,19 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 </section><section id="not-a-number-nan" class="level3"><h3 class="anchored" data-anchor-id="not-a-number-nan">Not A Number (NaN)</h3>
 <p>The value NaN (stands for “not a number”) represents an undefined value and it is usually the product of some arithmetic operations. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">/</span> <span class="cn">Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">/</span> <span class="cn">Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] NaN</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0</span> <span class="op">/</span> <span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0</span> <span class="op">/</span> <span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] NaN</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">-</span><span class="cn">Inf</span> <span class="op">+</span> <span class="cn">Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">-</span><span class="cn">Inf</span> <span class="op">+</span> <span class="cn">Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] NaN</code></pre>
 </div>

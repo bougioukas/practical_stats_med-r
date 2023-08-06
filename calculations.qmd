@@ -29,13 +29,15 @@ R printed out the result, with a preceding `[1]`.
 
 In the previous calculation the `+` sign was used to carry out the addition. @tbl-arithmetic_operators presents a list of arithmetic operators available in R.
 
-| Operator | Description    |
-|----------|----------------|
-| \+       | addition       |
-| \-       | subtraction    |
-| \*       | multiplication |
-| /        | division       |
-| \^       | exponent       |
+| Operator      | Description        |
+|---------------|--------------------|
+| \+            | addition           |
+| \-            | subtraction        |
+| \*            | multiplication     |
+| /             | division           |
+| \^ \ or \ **  | exponent           |
+| %/%           | integer division   |
+| %%            | modulo (remainder) |
 
 : Basic arithmetic operators in R {#tbl-arithmetic_operators}
 
@@ -45,16 +47,29 @@ From highest to lowest precedence:
 
 -   Parentheses: `( )`
 -   Exponents: `^` or `**`
--   Division: `/`
--   Multiplication: `*`
--   Addition: `+`
--   Subtraction: `-`
+-   Multiplication, division, integer division, modulo: `*`, `/`, %/%, %% 
+-   Addition, subtraction: `+`, `-`
 
 Therefore:
 
 ```{r}
 3 + 5 * 2
 ```
+
+
+When multiple operators have the **same precedence**, they are evaluated in the order they appear in the mathematical expression from **left to right**:
+
+```{r}
+ 3 / 5 * 2   # the division 3/5 is done before the multiplication by 2
+```
+
+::: {.column-margin}
+**NOTE:** To obtain additional information on how R prioritizes operators, we can access the R help section by using the following command:
+
+`?Syntax`
+
+:::
+
 
  
 
@@ -131,7 +146,9 @@ Some simple comparisons with integer numbers follow:
 
 ## Scientific notation
 
-Scientific notation is a special way of expressing numbers that are too big or too small to be conveniently written in decimal form. Generally, it expresses numbers in forms of $m \times 10^n$ and R uses the **e** notation^[**NOTE:** that the *e* notation has nothing to do with the Euler's number *e=2.718*.].
+Scientific notation is a special way of expressing numbers that are too big or too small to be conveniently written in decimal form. Generally, it expresses numbers in forms of $m \times 10^n$ and R uses the **e** notation[^calculations-1].
+
+[^calculations-1]: **NOTE:** that the *e* notation has nothing to do with the Euler's number *e=2.718*.
 
 ::: {.callout-note icon="false"}
 ## Examples
@@ -149,14 +166,12 @@ Scientific notation is a special way of expressing numbers that are too big or t
     because 150000000 = 1.5 × 100000000 = 1.5 × $10^{8}$ or 1.5e8
 :::
 
-
 By default, R will return in the Console the scientific notation if we type a number less than 0.001. For example:
 
 ```{r}
 0.05         # the number is greater than 0.001 
 0.0005       # the number is less than 0.001 
 ```
-
 
  
 

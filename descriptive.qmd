@@ -32,6 +32,7 @@ library(dlookr)
 library(EnvStats)
 library(modeest)
 library(MESS)
+library(descriptr)
 
 # data transformation
 library(here)
@@ -527,6 +528,14 @@ arrhythmia |>
   describe(age) |>  
   select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis)|> 
   print(width = 100)
+```
+
+## descriptr
+
+```{r}
+arrhythmia |> 
+ds_tidy_stats(age) |> 
+print(width = 100)
 ```
 :::
 :::
