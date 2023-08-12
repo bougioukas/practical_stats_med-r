@@ -63,7 +63,7 @@ We can use the probability distribution to answer probability questions:
 
 **What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?**
 
-We know that individuals with blood type B or O can donate to a person with blood type B (@fig-bloodtypes). 
+We know that individuals with blood type B or O can donate to a person with blood type B (@fig-bloodtypes).
 
 ```{r}
 #| code-fold: true
@@ -84,7 +84,6 @@ network <- graph_from_adjacency_matrix(adjm)
 # plot it
 plot(network, vertex.size= 32, vertex.color = "red")
 ```
-
 
 Therefore, we need to find the probability P(blood type B OR blood type O). Since the events blood type B or blood type O are mutually exclusive, we can use the addition rule for mutually exclusive events to get:
 
@@ -625,7 +624,7 @@ ggplot(dat7, aes(x=x, y=y)) +
 
  
 
-**Let's assume that we want to calculate the area under the curve between 150 cm and 180 cm, that is:**
+**Let's assume that we want to calculate the area under the curve between 160 cm and 180 cm, that is:**
 
 $$ P(160\leq X \leq 180)=\int_{160}^{180}f(x)dx $$
 
@@ -657,7 +656,7 @@ Using the properties of integrals we have:
 
 $$ \int_{-\infty}^{180}f(x)dx = \int_{-\infty}^{160}f(x)dx + \int_{160}^{180}f(x)dx $$ $$ \Leftrightarrow \int_{160}^{180}f(x)dx = \int_{-\infty}^{180}f(x)dx - \int_{-\infty}^{160}f(x)dx $$ $$ \Leftrightarrow P(160\leq X \leq 180) = P(X \leq 180)- P(X \leq 160) $$
 
-Therefore, one way to find the area under the curve between 150 cm and 180 cm is to calculate the cdf at each of these values and then find the difference between them:
+Therefore, one way to find the area under the curve between 160 cm and 180 cm is to calculate the cdf at each of these values and then find the difference between them:
 
 -   Lets calculate the $P(X \leq 180)$:
 
@@ -857,7 +856,6 @@ ggplot() +
 
 Just like the standard normal distribution, the probability density curve of a t-distribution is bell-shaped and symmetric around its mean (μ = 0). However, the probability density curve of the t-distribution decreases more slowly than that of the standard normal distribution (t-distribution has "heavier" tails than the standard normal distribution).
 
-
 If the area of the curve is known, it is possible to calculate the corresponding t-value. For example, in @fig-t2, if each of the shaded light blue areas equal to 0.025, we can find the t-value using the `qt()` function in R:
 
 ```{r}
@@ -885,7 +883,6 @@ ggplot() +
   labs(x = "t", y = "Probabiblity Density") +
   theme_minimal(base_size = 16)
 ```
-
 
 ```{r}
 qt(0.025, df = 3)

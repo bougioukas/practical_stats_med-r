@@ -1,1 +1,899 @@
 # Data structures in R: matrices and arrays {#sec-matrices}
+
+```{r}
+#| include: false
+library(fontawesome)
+```
+
+When we have finished this chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## Learning objectives
+
+-   Create and manipulate matrices in R.
+-   Conduct basic matrix algebra in R.
+-   Create arrays in R.
+:::
+
+ 
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(matlib)
+```
+
+## Definition of a matrix
+
+In mathematics, a matrix **X** is a rectangular array of numbers, symbols, or expressions arranged in rows and columns. A matrix is defined by its dimensions, which specify the number of rows and columns it contains. For example:
+
+$$
+  X_{3\times 4} = 
+  \begin{bmatrix}
+    x_{11} & x_{12} & x_{13} & x_{14}\\
+    x_{21} & x_{22} & x_{23} & x_{24}\\
+    x_{31} & x_{32} & x_{33} & x_{34}
+  \end{bmatrix}
+$$
+
+In this case, the matrix is a $3 \times 4$ matrix because it has 3 rows and 4 columns. The element in the first row and second column is $x_{12}$, and the element in the second row and third column is $x_{23}$.
+
+Then $3 \times 1$ matrices $\begin{bmatrix} x_{11} \\ x_{21} \\ x_{31} \end{bmatrix}, \begin{bmatrix} x_{12} \\ x_{22} \\ x_{32} \end{bmatrix}, \begin{bmatrix} x_{13} \\ x_{23} \\ x_{33} \end{bmatrix}, \begin{bmatrix} x_{14} \\ x_{24} \\ x_{34} \end{bmatrix}$ are called **column** vectors of the matrix.
+
+Also $1 \times 4$ matrices such that $\begin{bmatrix} x_{11} & x_{12} & x_{13} & x_{14} \end{bmatrix}, \begin{bmatrix} x_{21} & x_{22} & x_{23} & x_{24} \end{bmatrix}, \begin{bmatrix} x_{31} & x_{32} & x_{33} & x_{34} \end{bmatrix}$ are called **row** vectors of the matrix.
+
+::: {.callout-note icon="false"}
+## Main diagonal
+
+The main diagonal of a matrix refers to the collection of elements that run from the top-left corner to the bottom-right corner of the matrix. In other words, it is a sequence of elements where the row index and the column index are the same ($x_{ij}$ where i=j).
+
+In the above example, the elements of the main diagonal are: $x_{11}, x_{22}, and\ x_{33}$.
+:::
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+  X_{3\times 4} = 
+  \begin{bmatrix}
+    4 & 0 & 2 & 1\\
+    3 & 1 & 4 & 2\\
+    2 & 0 & 1 & 3
+  \end{bmatrix}
+$$ The column vectors are: $\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$
+
+The row vectors are: $\begin{bmatrix} 4 & 0 & 2 & 1 \end{bmatrix}, \begin{bmatrix} 3 & 1 & 4 & 2 \end{bmatrix}, \begin{bmatrix} 2 & 0 & 1 & 3 \end{bmatrix}$
+
+The main diagonal consisted of the numbers 4, 1, and 1.
+
+## Creating a matrix in R
+
+In R, every data object contains various attributes to describe the characteristics of the data it holds. For example, objects like matrices can be produced using the `dim` (dimension) attribute, facilitating the performance of matrix algebra operations.
+
+::: {.callout-tip icon="false"}
+## Matrix
+
+A matrix is an atomic vector with **two dimensions** and it is used to represent 2-dimensional data (they have rows and columns) of the **same type** (numeric, character, or logical).
+:::
+
+In R, adding a dimension attribute to a vector allows to reshape it into a 2-dimensional matrix. For example:
+
+```{r}
+X1 <- c(4, 3, 2, 0, 1, 0, 2, 4, 1, 1, 2, 3)
+
+dim(X1) <- c(3, 4)
+
+X1
+```
+
+The `dim()` is an inbuilt R function that either **sets** or **returns** the dimension of the matrix, array, or data frame. Here, the `dim()` function sets the dimension for the `X1` object.
+
+ 
+
+Most often we create a matrix using the `matrix()` function. In this case, we need to specify the number of rows and columns in the function.
+
+**Example 1: numeric matrix**
+
+```{r}
+X2 <- matrix(X1, nrow = 3, ncol = 4)
+X2
+```
+
+The matrix is filled by columns (default column-wise), so entries can be thought of starting in the "upper left" corner and running down the columns. If we want the matrix to be filled by rows we must add the extra argument `byrow = TRUE` in the `matrix()` function, as follows:
+
+```{r}
+X3 <- matrix(X1, nrow = 3, ncol = 4, byrow = TRUE)
+X3
+```
+
+ 
+
+The `type` of data, the `class` and the `dimension` of the `X3` object are:
+
+```{r}
+typeof(X3)
+class(X3)
+dim(X3)
+```
+
+Of note, the `typeof()` function gives the type of data that the object includes (integer), while the `class` is the type of structure (matrix) of the object.
+
+In this example, the `dim()` function takes the R object, X3, as an argument and returns its dimension.
+
+ 
+
+**Example 2: logical matrix**
+
+```{r}
+x_logical <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)
+X4 <- matrix(x_logical, nrow = 2, ncol = 3)
+X4
+```
+
+ 
+
+The `type` of data, the `class` and the `dimension` of the `X4` object are:
+
+```{r}
+typeof(X4)
+class(X4)
+dim(X4)
+```
+
+ 
+
+**Example 3: character matrix**
+
+```{r}
+x_char <- c("a", "b", "c", "d", "e", "f")
+X5 <- matrix(x_char, nrow = 2, ncol = 3)
+X5
+```
+
+ 
+
+The `type` of data, the `class` and the `dimension` of the `X5` object are:
+
+```{r}
+typeof(X5)
+class(X5)
+dim(X5)
+```
+
+## Using matrix subscripts
+
+In R, we can identify rows, columns, or elements of a matrix by using subscripts and brackets. Particularly, *X\[i, \]* refers to the *ith* row of matrix X, *X\[ , j\]* refers to *jth* column, and *X\[i, j\]* refers to the *ijth* element, respectively.
+
+The subscripts *i* and *j* can be numeric vectors in order to select multiple rows or columns, as shown in the following examples.
+
+```{r}
+X <- matrix(1:10, nrow=2)  # create a 2x5 numeric matrix filled by column
+X
+
+X[2, ]   # select the 2nd row
+X[, 2]  # select the 2nd column
+X[1, 4]  # select the element in the 1st row, 4th column
+X[1, c(4, 5)]  # select the elements in the 1st row, 4th and 5th column 
+```
+
+ 
+
+## Special types of matrices
+
+### The square matrix
+
+A square matrix is a matrix that has an equal number of rows and columns.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+M_{3\times 3} = 
+  \begin{bmatrix}
+    5 & 1 & 0\\
+    3 & -1 & 2\\
+    4 & 0 & -1
+  \end{bmatrix}
+$$ 
+
+In R,
+
+```{r}
+M <- matrix( c(5, 3, 4, 1, -1, 0, 0, 2, -1), nrow = 3)
+M
+```
+
+The main diagonal consisted of the numbers 5, -1, and -1. In R:
+
+```{r}
+diag(M)
+```
+
+::: {.callout-note icon="false"}
+## Trace of a square matrix
+
+The trace of a square matrix is the **sum** of its main diagonal elements. In the above example: $Tr = 5 - 1 - 1 = 3$.
+
+In R:
+
+```{r}
+tr(M)
+```
+:::
+
+ 
+
+### The diagonal matrix
+
+A diagonal matrix is a special type of square matrix where all the elements outside the main diagonal are zero.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+D_{3\times 3} = 
+  \begin{bmatrix}
+    4 & 0 & 0\\
+    0 & -1 & 0\\
+    0 & 0 & -5
+  \end{bmatrix}
+$$
+
+In R, we can create a diagonal matrix of size 3 by using the `diag()` function:
+
+```{r}
+elements <- c(4, -1, -5)
+D <- diag(elements)
+D
+```
+
+ 
+
+### The identity matrix
+
+An identity matrix, often denoted as "I", is a square matrix (i.e. the number of rows is equal to the number of columns) with **ones** on the main diagonal and **zeros** elsewhere.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+I_{3\times 3} = 
+  \begin{bmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+  \end{bmatrix}
+$$
+
+In R, we can create the identity matrix of size 5 by using the `diag()` function:
+
+```{r}
+I <- diag(3)
+I
+```
+
+ 
+
+### Symmetric matrix
+
+A symmetric matrix is a square matrix that remains unchanged when we transpose it, which means we swap its rows and columns.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+S_{3\times 3} = 
+  \begin{bmatrix}
+    13 & -4 & 2\\
+    -4 & 11 & -2\\
+    2 & -2 & 8
+  \end{bmatrix}
+$$
+
+```{r}
+S <- matrix(c(13, -4, 2, -4, 11, -2, 2, -2, 8), nrow = 3)
+S
+```
+
+In *S* matrix, the elements at positions (1,2) and (2,1) are both -4, the elements at positions (1,3) and (3,1) are both 2, and the elements at positions (2,3) and (3,2) are both -2. This reflects the symmetry property.
+
+ 
+
+## Basic matrix algebra
+
+### The transpose of a matrix
+
+The transpose operation simply changes columns to rows of the original matrix with dimension $m \times n$ to obtain a new matrix with dimension $n \times m$.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+For a matrix `A`:
+
+$$
+  A_{2\times 3} = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}
+$$
+
+the transpose matrix is:
+
+$$
+  A^T_{3\times 2} = 
+  \begin{bmatrix}
+    4  &  0 \\
+    -1 & 1\\
+    5  & -2
+  \end{bmatrix}
+$$ In R:
+
+```{r}
+A <- matrix(c(4, 0, -1, 1, -5, -2), nrow = 2)
+A
+```
+
+the transpose matrix is:
+
+```{r}
+t(A)
+```
+
+ 
+
+### Matrix addition
+
+Matrix addition is an operation performed between two matrices of the same dimensions. The addition of matrices involves adding corresponding elements of the matrices (element-wise addition) to create a new matrix of the same dimension.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Suppose we have the A and B matrices:
+
+$$
+  A_{2\times 3} = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}
+$$
+
+$$
+  B_{2\times 3} = 
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix}
+$$
+
+The addition of the two matrices gives the following new matrix:
+
+$$
+  A_{2\times 3} + B_{2\times 3}= 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix} +
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  7 & 0 & -10 \\
+  0 & 3 & -4
+  \end{bmatrix}
+$$
+
+Here, the element in the first row and first column of the new matrix is $4 + 3 = 7$, the element in the first row and second column is $-1 + 1 = 0$, the element in the first row and third column is $-5 - 5 = -10$, and so on.
+
+In R:
+
+```{r}
+A
+
+B <-matrix(c(3, 0, 1, 2, -5, -2), nrow = 2)
+B
+```
+
+The addition:
+
+```{r}
+A + B
+```
+
+ 
+
+### Scalar multiplication of matrices
+
+In **scalar** multiplication, each element in the matrix is multiplied by the given number (scalar). For example:
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+ -3* A_{2\times 3} = -3*
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix} = 
+  \begin{bmatrix}
+    -12 & 3 & 15 \\
+    0 & -3 & 6
+  \end{bmatrix}
+$$ Here, the element in the first row and first column of the new matrix is $-3*4 = -12$, the element in the first row and second column is $-3 * (-1) = 3$, the element in the first row and third column is $-3 * (- 5) = 15$, and so on.
+
+In R:
+
+```{r}
+A
+-3 * A
+```
+
+ 
+
+### Element-wise multiplication of matrices (Hadamard product)
+
+The **element-wise** multiplication of two matrices, **A** and **B**, of the **same** dimensions can be computed with the $\odot$ operator.
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+$$
+  A_{2\times 3} \odot B_{2\times 3}= 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix} \odot
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  12 & -1 & 25 \\
+  0 & 2 & 4
+  \end{bmatrix}
+$$ In this case, the element in the first row and first column of the new matrix is $4*3 = 12$, the element in the first row and second column is $-1 * 1 = -1$, the element in the first row and third column is $-5 * (- 5) = 25$, and so on.
+
+In R:
+
+```{r}
+A
+B
+```
+
+The output will be a matrix of the same dimensions of the original matrices:
+
+```{r}
+A * B
+```
+
+ 
+
+### Multiplication of compatible matrices (matrix product)
+
+Suppose we have two matrices, $A_{m \times n}$ and $C_{n \times m}$, in which the number of columns in the first matrix is equal to the number of rows in the second matrix (compatible matrices). The multiplication of matrix A with matrix C is defined as $A \bullet C$ and is computed by performing **dot product** operations between the rows from the first matrix and the columns from the second matrix (row-by-column multiplication). Let's illustrate it using an examples.
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+We'll start by demonstrating how to multiply a $1 \times 3$ matrix by an $3 \times 1$ matrix. The first is a row vector, such as  $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix}$, and the second is a column vector, such as $\begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix}$. Therefore, the dot product is equal to the following:
+
+
+$\begin{bmatrix} 4 & -1 & -5 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 4 * (-5) + (-1) * 2 + (-5) * (-2) = -20 -2 + 10 = -12$
+
+In R, this can be done either with one-dimensional atomic vectors or matrices.
+
+- Vector notation:
+
+```{r}
+c(4, -1, -5) %*% c(-5, 2, -2)
+```
+
+- Matrix notation:
+
+```{r}
+# matrix notation of the row vector
+A_row1 <- matrix(c(4, -1, -5), nrow = 1)
+A_row1
+# matrix notation of the column vector
+C_col1 <- matrix(c(-5, 2, -2), nrow = 3)
+C_col1
+# matrix multiplication
+A_row1 %*% C_col1
+```
+
+
+We ended up with a matrix multiplication equivalent to the familiar dot product of vectors (see @sec-vectors).
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Now that we are familiar with the process of multiplying a row with a column, the multiplication of larger matrices becomes straightforward. Suppose that we have the A and C matrices:
+
+$$
+  A_{2\times 3} = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}
+$$
+
+$$
+  C_{3\times 2} = 
+  \begin{bmatrix}
+    -5 & 5 \\
+    2 & 1 \\
+    -2 & 0 \\
+  \end{bmatrix}
+$$
+
+The row-by-column multiplication of the two matrices gives the following new matrix:
+
+$$
+  A_{2\times 3} \bullet C_{3\times 2}= 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix} \bullet
+  \begin{bmatrix}
+    -5 & 5 \\
+    2 & 1 \\
+    -2 & 0 \\
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  -12 & 19  \\
+  6 & 1 
+  \end{bmatrix}
+$$
+
+We observe that the produced matrix has dimension $2 \times 2$.
+
+In this case:
+
+-   the element in the first row and first column of the new matrix is the result of the dot product between the first row of A and the first column of C: $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 4 * (-5) + (-1) * 2 + (-5) * (-2) = -20 -2 + 10 = -12$
+
+-   the element in the first row and second column of the new matrix is the result of the dot product between the first row of A and the second column of C: $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix} \bullet \begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix} = 4 * 5 + (-1) * 1 + (-5) * 0 = 20 - 1 + 0 = 19$
+
+-   the element in the second row and first column of the new matrix is the result of the dot product between the second row of A and the first column of C: $\begin{bmatrix} 0 & 1 & -2 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 0 * (-5) + 1 * 2 + (-2) * (-2) = 0 + 2 + 4 = 6$
+
+-   the element in the second row and second column of the new matrix is the result of the dot product between the second row of A and the second column of C: $\begin{bmatrix} 0 & 1 & -2 \end{bmatrix} \bullet \begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix} = 0 * 5 + 1 * 1 + (-2) * 0 = 1$
+
+In R, this type of multiplication of two matrices can be performed with the dot (inner) product `%*%` operator.
+
+```{r}
+A
+C <- matrix(c(-5, 2, -2, 5, 1, 0), nrow = 3)
+C
+
+A %*% C
+```
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+The matrices $A_{2\times 3}$ and $B_{2\times 3}$ are not compatible matrices. However, if we transpose the first matrix, we turn it into a $3 \times 2$ matrix:
+
+$$
+  A_{2\times 3} = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}
+$$
+
+$$
+  A^T_{3\times 2} = 
+  \begin{bmatrix}
+    4 & 0 \\
+    -1 & 1 \\
+    -5 & -2
+  \end{bmatrix}
+$$
+Now, the $A^T_{3\times 2}$ and $B_{2\times 3}$ matrices are compatible, so their product is well defined. In this case, we can multiply them:
+
+$$
+  A^T_{3\times 2} \bullet B_{2\times 3}= 
+  \begin{bmatrix}
+    4 & 0 \\
+    -1 & 1 \\
+    -5 & -2
+  \end{bmatrix} \bullet
+  \begin{bmatrix}
+   3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  12 & 4 & -20  \\
+  -3 & 1 & 3 \\
+  -15 & -9 & 29
+  \end{bmatrix}
+$$
+
+In R:
+
+```{r}
+t(A)
+B
+t(A) %*% B
+```
+
+However, it is more efficient and faster using the `crossprod()` function:
+
+```{r}
+crossprod(A, B)
+```
+
+ 
+
+
+::: callout-important
+Before inner multiplying two matrices check that the **dimensions** are compatible. The number of columns of the first matrix must be equal to the number of rows of the second matrix.
+:::
+
+ 
+
+
+### The determinant of a square matrix
+
+The determinant of a square matrix is a scalar value that can be computed from the matrix's elements. Let's consider a simple 2x2 matrix:
+
+
+$$
+E_{2 \times 2} = \begin{bmatrix}
+     e_{11} & e_{12} \\ 
+     e_{21} & e_{22}
+\end{bmatrix} 
+$$
+
+To calculate the determinant of this matrix, we can use the formula:
+$$
+detE = \begin{vmatrix}
+     e_{11} & e_{12} \\ 
+     e_{21} & e_{22}
+\end{vmatrix} = e_{11}*e_{22} - e_{12}*e_{21}
+$$
+To calculate the determinant of a larger matrix, we can use the method of expansion by minors. Consider the $3 \times 3$ matrix:
+
+$$
+E_{3\times 3} = 
+  \begin{bmatrix}
+    e_{11} & e_{12} & e_{13}\\ 
+    e_{21} & e_{22} & e_{23}\\
+    e_{31} & e_{32} & e_{33}
+  \end{bmatrix}
+$$ 
+
+In this case, we can find the determinant using expansion by minors, we can choose any row or column and calculate the determinant using smaller $2 \times 2$ matrices. Let's choose the last row for this example:
+
+
+$$
+\det E =
+\begin{vmatrix}
+     e_{11} & e_{12} & e_{13}\\ 
+     e_{21} & e_{22} & e_{23}\\
+     e_{31} & e_{32} & e_{33} 
+\end{vmatrix}
+   = e_{31}\begin{vmatrix} e_{12} & e_{13} \\ e_{22} & e_{23} \end{vmatrix} 
+   - e_{32}\begin{vmatrix} e_{11} & e_{13} \\ a_{21} & a_{23} \end{vmatrix} 
+   + e_{33}\begin{vmatrix} e_{11} & e_{12} \\ e_{21} & e_{22} \end{vmatrix}
+$$
+
+Therefore:
+$$	\Rightarrow
+detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21}) $$
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Let's consider a 2x2 matrix:
+
+
+$$
+E_{2 \times 2} = \begin{bmatrix}
+     1 & -1 \\ 
+     2 & 0
+\end{bmatrix} 
+$$
+
+To calculate the determinant of this matrix, we can use the formula:
+$$
+\begin{vmatrix}
+     1 & -1 \\ 
+     2 & 0
+\end{vmatrix} = 1*0 - (-1)*2= 2
+$$
+
+
+In R:
+
+```{r}
+E_minor <- matrix( c(1, 2, -1, 0), nrow = 2)
+E_minor 
+
+det(E_minor)
+```
+
+ 
+
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+
+$$
+\det E =
+\begin{vmatrix}
+     1 & -1 & 1\\ 
+     2 & 0 & 1\\
+     1 & 1 & 2 
+\end{vmatrix}
+   = 1\begin{vmatrix} -1 & 1 \\ 0 & 1 \end{vmatrix} 
+   - 1\begin{vmatrix} 1 & 1 \\ 2 & 1 \end{vmatrix} 
+   + 2\begin{vmatrix} 1 & -1 \\ 2 & 0 \end{vmatrix}
+$$
+
+Therefore:
+$$	\Rightarrow
+detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 $$
+
+
+
+
+```{r}
+E <- matrix( c(1, 2, 1, -1, 0, 1, 1, 1, 2), nrow = 3)
+E
+det(E)
+```
+
+ 
+
+### The inverse of a matrix
+
+The `det(E)` is not zero, so inverse exists:
+
+```{r}
+E_inv  <- inv(E)
+E_inv
+```
+
+The inverse of a matrix `E` is defined as the `E_inv` matrix which multiplies E to give the identity matrix:
+
+```{r}
+E_inv %*% E
+```
+
+ 
+
+
+### Application: calculation of the average using matrices
+
+In ordinary algebra, the mean of a set of `n` observations, $v_1, v_2, v_3,...,v_i, ..., v_n$ is computed by adding all of the observations and dividing by the number of observations:
+
+$$
+\overline{v} = \frac{1}{n}\sum_{i=1}^{n}v_i
+$$
+
+where $\overline{v}$ is the mean of observations, $\sum_{i=1}^{n}v_i$ is the sum of all observations, and $n$ is the number of observations.
+
+Let's compute the mean using column vectors from matrix algebra.
+
+First we define the column vectors:
+
+
+$$
+U_{n\times1} = \left[\begin{array}{cc} 
+1 \\
+1 \\
+\vdots \\
+1
+\end{array}\right]
+$$
+
+and
+
+$$
+V_{n\times1} = \left[\begin{array}{c} 
+\nu_1 \\
+\nu_2 \\
+\vdots \\
+\nu_n
+\end{array}\right]
+$$
+
+then the mean can be computed as follows:
+
+$$
+\frac{1}{n} \cdot U^T \cdot V =
+\frac{1}{n} \cdot
+\begin{bmatrix}
+      1 & 1 & 1 & ...& 1
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+      \nu_{1} \\
+      \nu_{2} \\
+      \nu_{3} \\
+      \vdots \\
+      \nu_{n} \\
+    \end{bmatrix} =
+$$
+
+$$
+=
+    \frac{1}{n} \cdot
+    \begin{pmatrix}
+      1\cdot v_{1} + 1\cdot v_{2} +1\cdot v_{3} +...1\cdot v_{n} 
+    \end{pmatrix} =
+    \frac{1}{n}\sum_{i=1}^{n}v_i
+$$
+
+where $U^T$ is the transpose of $U$.
+
+For example:
+
+```{r}
+my_values <- c(2, 5, 7, -4, 8, 6, 3)
+mean(my_values)
+```
+
+```{r}
+n <- length(my_values)  # get the length (number of elements) of vector
+U <- matrix(1, n, 1)
+U
+V <- matrix(my_values, n, 1)
+V
+```
+
+```{r}
+average_my_values <- t(U) %*% V/n
+average_my_values 
+```
+
+ 
+
+### Eigenvalues and Eigenvectors
+
+We have already mentioned that a **symmetric** matrix is a square matrix that is equal to its transpose. For example:
+
+```{r}
+S
+t(S)
+```
+
+
+A symmetric matrix guarantees that its eigenvalues are real numbers. Eigenvalues and eigenvectors are highly used by the data scientists as they are the core of the data science field. 
+For example, eigenvalues and eigenvectors are very much useful in the principal component analysis which is a dimensionality reduction technique in machine learning.
+
+The `eigen()` built-in function in R calculates the eigenvalues and eigenvectors of a symmetric matrix. It returns a named list, with eigenvalues named values and eigenvectors named vectors:
+
+```{r}
+ev <- eigen(S)
+ev
+```
+
+The eigenvalues are always returned in decreasing order and are 17, 8, and 7.
+
+-   The first column vector $\begin{bmatrix} 0.745 \\ -0.596 \\ 0.298 \end{bmatrix}$ represents the eigenvector corresponding to the eigenvalue 17.
+-   The second column vector $\begin{bmatrix} 0.667 \\ 0.667 \\ -0.333 \end{bmatrix}$ corresponds to the eigenvector for the eigenvalue 8.
+-   The third column vector $\begin{bmatrix} 0.000 \\ 0.447 \\ 0.894 \end{bmatrix}$ corresponds to the eigenvector for the eigenvalue 7.
+
+ 
+
+## Arrays
+
+Arrays are similar to matrices but can have **more than two dimensions**. They're created with an `array()` function from base R:
+
+```{r}
+# build the 2x3x4 array
+my_array <- array(1:24, dim = c(2,3,4))
+my_array
+```
+
+As you can see, arrays are a natural extension of matrices. They can be useful in programming new statistical methods. Like matrices, they contain a single type of data (e.g., numeric).
+
+We can find the `type`, `class` and the `dimensions` of the array:
+
+```{r}
+typeof(my_array)
+class(my_array)
+dim(my_array)
+```

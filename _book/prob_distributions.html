@@ -1071,7 +1071,7 @@ Note
 </div>
 </div>
 <p>&nbsp;</p>
-<p><strong>Let’s assume that we want to calculate the area under the curve between 150 cm and 180 cm, that is:</strong></p>
+<p><strong>Let’s assume that we want to calculate the area under the curve between 160 cm and 180 cm, that is:</strong></p>
 <p><span class="math display">\[ P(160\leq X \leq 180)=\int_{160}^{180}f(x)dx \]</span></p>
 <div class="cell" data-layout-align="center">
 <details><summary>Show the code</summary><div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
@@ -1096,7 +1096,7 @@ Note
 </div>
 <p>Using the properties of integrals we have:</p>
 <p><span class="math display">\[ \int_{-\infty}^{180}f(x)dx = \int_{-\infty}^{160}f(x)dx + \int_{160}^{180}f(x)dx \]</span> <span class="math display">\[ \Leftrightarrow \int_{160}^{180}f(x)dx = \int_{-\infty}^{180}f(x)dx - \int_{-\infty}^{160}f(x)dx \]</span> <span class="math display">\[ \Leftrightarrow P(160\leq X \leq 180) = P(X \leq 180)- P(X \leq 160) \]</span></p>
-<p>Therefore, one way to find the area under the curve between 150 cm and 180 cm is to calculate the cdf at each of these values and then find the difference between them:</p>
+<p>Therefore, one way to find the area under the curve between 160 cm and 180 cm is to calculate the cdf at each of these values and then find the difference between them:</p>
 <ul>
 <li>Lets calculate the <span class="math inline">\(P(X \leq 180)\)</span>:</li>
 </ul>

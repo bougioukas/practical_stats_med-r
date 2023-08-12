@@ -377,11 +377,67 @@ x_abcde <- c("a", "b", "c", "d", "e")
 as.numeric(x_abcde)
 ```
 
+
  
 
-## Mathematical operations and functions applied to numeric vectors
+## Operators applied between two vectors
 
-Mathematical operations applied to **all the elements** of a numeric vector (that is called **vectorization**). For example:
+### Arithmetic Operators
+
+
+**A. Arithmetic operators applied between a long vector and a scalar (one-element vector)**
+
+Let's go through some examples of arithmetic operators `(+, -, *, /, ^)` applied between a long vector and a scalar.
+
+**Examples:**
+
+When we add a scalar to a vector, the scalar is added to each element of the vector (vectorization):
+```{r}
+v <- c(1, 2, 3)
+
+3 + v
+```
+
+Multiplying a vector by a scalar results in each element of the vector being multiplied by the scalar (vectorization):
+
+
+```{r}
+3 * v
+```
+
+ 
+
+**B. Arithmetic operators applied between two long vectors**
+
+The arithmetic operations can be performed element-wise between corresponding elements of the vectors (vectorization). In simple terms, each element of one vector interacts with the corresponding element of the other vector .
+
+
+**Examples:**
+
+```{r}
+v <- c(1, 2, 3)
+t <- c(8, 3, 2)
+```
+
+```{r}
+t + v
+
+t * v
+
+t^v
+
+t + 3 * v / 2   # remember the order of operations in R
+```
+
+
+
+::: {.callout-note}
+# Vectorization
+
+Vectorization refers to the process of efficiently applying operations or functions to entire vectors without the need for explicit looping or iteration. This involves element-wise operations on vectors, which results in code that is more concise, readable, and often faster compared to traditional iterative approaches.
+
+
+For example, mathematical operations applied to **all the elements** of a numeric vector:
 
 ```{r}
 (1:5) * 2
@@ -401,29 +457,27 @@ We can also round the results using the `round()` function and set the argument 
 round(sqrt(z_seq), digits = 2)
 ```
 
+:::
+
+
  
 
-## Operators applied between two vectors
+### Dot (inner) product operator
 
-### Arithmetic Operators
+The dot product, also known as the inner product, is a mathematical operation between two numeric vectors, v and t. This operation is commonly represented using a dot placed between the vectors: $\nu \cdot t$.
 
-The arithmetic operators `(+, -, *, /, ^)` act on each element of the vector in an element-wise way.
+Particularly, we multiply the corresponding elements of the two vectors and then sum up those products to obtain a single scalar value. 
+Given the two vectors, $\nu = (\nu_1, \nu_2, ..., \nu_n)$ and $t = (t_1, t_2, ..., t_n)$, we have: 
+$$\nu \cdot t = \nu_1 * t_1 + \nu_2 * t_2 + ... + \nu_n * t_n$$
+In our example, $\nu = (1, 2, 3)$ and $t = (8, 3, 2)$, so the inner product is:
+$\nu \cdot t = 1 * 8 + 2 * 3 + 3 * 2 = 8 + 6 + 6 = 20$
 
-[**Note:** R follows the **BODMAS** (Brackets, Orders (powers/roots), Division, Multiplication, Addition, Subtraction) rule for the order in which it will carry out calculations.]{.aside}
-
-**Examples:**
-
+In R, the inner product operator is denoted as `%*%`, so we obtain:
 ```{r}
-v <- c(1, 2, 3)
-t <- c(8, 3, 2)
+v %*% t
 ```
 
-```{r}
-t + v
-t^v
-
-t + 3 * v / 2
-```
+The inner product of two vectors is an important operation in multiplication of matrices (see @sec-matrices).
 
  
 
@@ -448,7 +502,7 @@ m != 3
 
  
 
-**B. Relational operators applied between two (long) vectors**
+**B. Relational operators applied between two long vectors**
 
 In the case of two long vectors, each element of the first vector is compared with the corresponding element of the second vector (element-wise comparison). The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
 
@@ -473,9 +527,9 @@ w != z
 
 The logical (Boolean) operators are:
 
--   `&`, `&`  (AND)
+-   `&`, `&` (AND)
 -   `|`, `||` (OR)
--   `!`       (NOT)
+-   `!` (NOT)
 
 Logical operators are applicable to **logical** and/or **numeric** vectors and are applied in an element-wise way. The result of each comparison is a **logical (Boolean) value**.
 
@@ -516,7 +570,6 @@ The `&` operator combines each element of the first vector with the correspondin
 s & u
 ```
 
-
 The `&&` operator works with one-element vectors and gives an output TRUE if **both** elements are TRUE. For example:
 
 ```{r}
@@ -537,7 +590,6 @@ s && u
 `r kableExtra::text_spec("Error in s && u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
 :::
 
-
 **B. OR operators (`|`, `||`)**
 
 The `|` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **at least one of the elements** is TRUE.
@@ -552,11 +604,10 @@ The `||` operator works with one-element vectors and gives an output TRUE if **a
 s[1] || u[1]
 ```
 
-
 ::: callout-important
-## NOTE: Operator ||
+## NOTE: Operator \|\|
 
-In R 4.3.0 version and later, calling the || in operations with vectors of length greater than one gives an error. For example:
+In R 4.3.0 version and later, calling the \|\| in operations with vectors of length greater than one gives an error. For example:
 
 ```{r}
 #| eval: false
@@ -567,7 +618,6 @@ s || u
 `r kableExtra::text_spec("Error in s || u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
 :::
 
-
 **C. NOT operator (`!`)**
 
 The `!` operator takes each element of the vector and gives the opposite logical value.
@@ -576,6 +626,7 @@ The `!` operator takes each element of the vector and gives the opposite logical
 ! s
 ! u
 ```
+
 
  
 

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.176">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Practical Statistics in Medicine with R - 8&nbsp; Data structures in R: matrices and arrays</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -44,8 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -69,17 +98,12 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -90,13 +114,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -108,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome!</span></a>
@@ -122,8 +142,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
@@ -190,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -199,8 +219,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
@@ -351,7 +371,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -359,18 +379,45 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link active" data-scroll-target="#packages-we-need"><span class="header-section-number">8.1</span> Packages we need</a></li>
+  <li><a href="#definition-of-a-matrix" id="toc-definition-of-a-matrix" class="nav-link" data-scroll-target="#definition-of-a-matrix"><span class="header-section-number">8.2</span> Definition of a matrix</a></li>
+  <li><a href="#creating-a-matrix-in-r" id="toc-creating-a-matrix-in-r" class="nav-link" data-scroll-target="#creating-a-matrix-in-r"><span class="header-section-number">8.3</span> Creating a matrix in R</a></li>
+  <li><a href="#using-matrix-subscripts" id="toc-using-matrix-subscripts" class="nav-link" data-scroll-target="#using-matrix-subscripts"><span class="header-section-number">8.4</span> Using matrix subscripts</a></li>
+  <li>
+<a href="#special-types-of-matrices" id="toc-special-types-of-matrices" class="nav-link" data-scroll-target="#special-types-of-matrices"><span class="header-section-number">8.5</span> Special types of matrices</a>
+  <ul class="collapse">
+<li><a href="#the-square-matrix" id="toc-the-square-matrix" class="nav-link" data-scroll-target="#the-square-matrix">The square matrix</a></li>
+  <li><a href="#the-diagonal-matrix" id="toc-the-diagonal-matrix" class="nav-link" data-scroll-target="#the-diagonal-matrix">The diagonal matrix</a></li>
+  <li><a href="#the-identity-matrix" id="toc-the-identity-matrix" class="nav-link" data-scroll-target="#the-identity-matrix">The identity matrix</a></li>
+  <li><a href="#symmetric-matrix" id="toc-symmetric-matrix" class="nav-link" data-scroll-target="#symmetric-matrix">Symmetric matrix</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#basic-matrix-algebra" id="toc-basic-matrix-algebra" class="nav-link" data-scroll-target="#basic-matrix-algebra"><span class="header-section-number">8.6</span> Basic matrix algebra</a>
+  <ul class="collapse">
+<li><a href="#the-transpose-of-a-matrix" id="toc-the-transpose-of-a-matrix" class="nav-link" data-scroll-target="#the-transpose-of-a-matrix">The transpose of a matrix</a></li>
+  <li><a href="#matrix-addition" id="toc-matrix-addition" class="nav-link" data-scroll-target="#matrix-addition">Matrix addition</a></li>
+  <li><a href="#scalar-multiplication-of-matrices" id="toc-scalar-multiplication-of-matrices" class="nav-link" data-scroll-target="#scalar-multiplication-of-matrices">Scalar multiplication of matrices</a></li>
+  <li><a href="#element-wise-multiplication-of-matrices-hadamard-product" id="toc-element-wise-multiplication-of-matrices-hadamard-product" class="nav-link" data-scroll-target="#element-wise-multiplication-of-matrices-hadamard-product">Element-wise multiplication of matrices (Hadamard product)</a></li>
+  <li><a href="#multiplication-of-compatible-matrices-matrix-product" id="toc-multiplication-of-compatible-matrices-matrix-product" class="nav-link" data-scroll-target="#multiplication-of-compatible-matrices-matrix-product">Multiplication of compatible matrices (matrix product)</a></li>
+  <li><a href="#the-determinant-of-a-square-matrix" id="toc-the-determinant-of-a-square-matrix" class="nav-link" data-scroll-target="#the-determinant-of-a-square-matrix">The determinant of a square matrix</a></li>
+  <li><a href="#the-inverse-of-a-matrix" id="toc-the-inverse-of-a-matrix" class="nav-link" data-scroll-target="#the-inverse-of-a-matrix">The inverse of a matrix</a></li>
+  <li><a href="#application-calculation-of-the-average-using-matrices" id="toc-application-calculation-of-the-average-using-matrices" class="nav-link" data-scroll-target="#application-calculation-of-the-average-using-matrices">Application: calculation of the average using matrices</a></li>
+  <li><a href="#eigenvalues-and-eigenvectors" id="toc-eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</a></li>
+  </ul>
+</li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="header-section-number">8.7</span> Arrays</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./matrices.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./matrices.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-matrices" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span></h1>
 </div>
 
@@ -384,13 +431,1027 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
+</header><p>When we have finished this chapter, we should be able to:</p>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Create and manipulate matrices in R.</li>
+<li>Conduct basic matrix algebra in R.</li>
+<li>Create arrays in R.</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<section id="packages-we-need" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">8.1</span> Packages we need</h2>
+<p>We need to load the following packages:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/friendly/matlib">matlib</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="definition-of-a-matrix" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="definition-of-a-matrix">
+<span class="header-section-number">8.2</span> Definition of a matrix</h2>
+<p>In mathematics, a matrix <strong>X</strong> is a rectangular array of numbers, symbols, or expressions arranged in rows and columns. A matrix is defined by its dimensions, which specify the number of rows and columns it contains. For example:</p>
+<p><span class="math display">\[
+  X_{3\times 4} =
+  \begin{bmatrix}
+    x_{11} &amp; x_{12} &amp; x_{13} &amp; x_{14}\\
+    x_{21} &amp; x_{22} &amp; x_{23} &amp; x_{24}\\
+    x_{31} &amp; x_{32} &amp; x_{33} &amp; x_{34}
+  \end{bmatrix}
+\]</span></p>
+<p>In this case, the matrix is a <span class="math inline">\(3 \times 4\)</span> matrix because it has 3 rows and 4 columns. The element in the first row and second column is <span class="math inline">\(x_{12}\)</span>, and the element in the second row and third column is <span class="math inline">\(x_{23}\)</span>.</p>
+<p>Then <span class="math inline">\(3 \times 1\)</span> matrices <span class="math inline">\(\begin{bmatrix} x_{11} \\ x_{21} \\ x_{31} \end{bmatrix}, \begin{bmatrix} x_{12} \\ x_{22} \\ x_{32} \end{bmatrix}, \begin{bmatrix} x_{13} \\ x_{23} \\ x_{33} \end{bmatrix}, \begin{bmatrix} x_{14} \\ x_{24} \\ x_{34} \end{bmatrix}\)</span> are called <strong>column</strong> vectors of the matrix.</p>
+<p>Also <span class="math inline">\(1 \times 4\)</span> matrices such that <span class="math inline">\(\begin{bmatrix} x_{11} &amp; x_{12} &amp; x_{13} &amp; x_{14} \end{bmatrix}, \begin{bmatrix} x_{21} &amp; x_{22} &amp; x_{23} &amp; x_{24} \end{bmatrix}, \begin{bmatrix} x_{31} &amp; x_{32} &amp; x_{33} &amp; x_{34} \end{bmatrix}\)</span> are called <strong>row</strong> vectors of the matrix.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Main diagonal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The main diagonal of a matrix refers to the collection of elements that run from the top-left corner to the bottom-right corner of the matrix. In other words, it is a sequence of elements where the row index and the column index are the same (<span class="math inline">\(x_{ij}\)</span> where i=j).</p>
+<p>In the above example, the elements of the main diagonal are: <span class="math inline">\(x_{11}, x_{22}, and\ x_{33}\)</span>.</p>
+</div>
+</div>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+  X_{3\times 4} =
+  \begin{bmatrix}
+    4 &amp; 0 &amp; 2 &amp; 1\\
+    3 &amp; 1 &amp; 4 &amp; 2\\
+    2 &amp; 0 &amp; 1 &amp; 3
+  \end{bmatrix}
+\]</span> The column vectors are: <span class="math inline">\(\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}\)</span></p>
+<p>The row vectors are: <span class="math inline">\(\begin{bmatrix} 4 &amp; 0 &amp; 2 &amp; 1 \end{bmatrix}, \begin{bmatrix} 3 &amp; 1 &amp; 4 &amp; 2 \end{bmatrix}, \begin{bmatrix} 2 &amp; 0 &amp; 1 &amp; 3 \end{bmatrix}\)</span></p>
+<p>The main diagonal consisted of the numbers 4, 1, and 1.</p>
+</section><section id="creating-a-matrix-in-r" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="creating-a-matrix-in-r">
+<span class="header-section-number">8.3</span> Creating a matrix in R</h2>
+<p>In R, every data object contains various attributes to describe the characteristics of the data it holds. For example, objects like matrices can be produced using the <code>dim</code> (dimension) attribute, facilitating the performance of matrix algebra operations.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Matrix
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A matrix is an atomic vector with <strong>two dimensions</strong> and it is used to represent 2-dimensional data (they have rows and columns) of the <strong>same type</strong> (numeric, character, or logical).</p>
+</div>
+</div>
+<p>In R, adding a dimension attribute to a vector allows to reshape it into a 2-dimensional matrix. For example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">X1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3] [,4]
+[1,]    4    0    2    1
+[2,]    3    1    4    2
+[3,]    2    0    1    3</code></pre>
+</div>
+</div>
+<p>The <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> is an inbuilt R function that either <strong>sets</strong> or <strong>returns</strong> the dimension of the matrix, array, or data frame. Here, the <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> function sets the dimension for the <code>X1</code> object.</p>
+<p>&nbsp;</p>
+<p>Most often we create a matrix using the <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> function. In this case, we need to specify the number of rows and columns in the function.</p>
+<p><strong>Example 1: numeric matrix</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">X1</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">X2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3] [,4]
+[1,]    4    0    2    1
+[2,]    3    1    4    2
+[3,]    2    0    1    3</code></pre>
+</div>
+</div>
+<p>The matrix is filled by columns (default column-wise), so entries can be thought of starting in the “upper left” corner and running down the columns. If we want the matrix to be filled by rows we must add the extra argument <code>byrow = TRUE</code> in the <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> function, as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">X1</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">X3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3] [,4]
+[1,]    4    3    2    0
+[2,]    1    0    2    4
+[3,]    1    1    2    3</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>The <code>type</code> of data, the <code>class</code> and the <code>dimension</code> of the <code>X3</code> object are:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">X3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "double"</code></pre>
+</div>
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">X3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 3 4</code></pre>
+</div>
+</div>
+<p>Of note, the <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> function gives the type of data that the object includes (integer), while the <code>class</code> is the type of structure (matrix) of the object.</p>
+<p>In this example, the <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> function takes the R object, X3, as an argument and returns its dimension.</p>
+<p>&nbsp;</p>
+<p><strong>Example 2: logical matrix</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x_logical</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">X4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">x_logical</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">X4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>      [,1]  [,2]  [,3]
+[1,]  TRUE FALSE FALSE
+[2,] FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>The <code>type</code> of data, the <code>class</code> and the <code>dimension</code> of the <code>X4</code> object are:</p>
+<div class="cell">
+<div class="sourceCode" id="cb16" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">X4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "logical"</code></pre>
+</div>
+<div class="sourceCode" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">X4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 2 3</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><strong>Example 3: character matrix</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb22" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span><span class="op">)</span></span>
+<span><span class="va">X5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">x_char</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">X5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,] "a"  "c"  "e" 
+[2,] "b"  "d"  "f" </code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>The <code>type</code> of data, the <code>class</code> and the <code>dimension</code> of the <code>X5</code> object are:</p>
+<div class="cell">
+<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">X5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">X5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 2 3</code></pre>
+</div>
+</div>
+</section><section id="using-matrix-subscripts" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="using-matrix-subscripts">
+<span class="header-section-number">8.4</span> Using matrix subscripts</h2>
+<p>In R, we can identify rows, columns, or elements of a matrix by using subscripts and brackets. Particularly, <em>X[i, ]</em> refers to the <em>ith</em> row of matrix X, <em>X[ , j]</em> refers to <em>jth</em> column, and <em>X[i, j]</em> refers to the <em>ijth</em> element, respectively.</p>
+<p>The subscripts <em>i</em> and <em>j</em> can be numeric vectors in order to select multiple rows or columns, as shown in the following examples.</p>
+<div class="cell">
+<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, nrow<span class="op">=</span><span class="fl">2</span><span class="op">)</span>  <span class="co"># create a 2x5 numeric matrix filled by column</span></span>
+<span><span class="va">X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    3    5    7    9
+[2,]    2    4    6    8   10</code></pre>
+</div>
+<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span>   <span class="co"># select the 2nd row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1]  2  4  6  8 10</code></pre>
+</div>
+<div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>  <span class="co"># select the 2nd column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 3 4</code></pre>
+</div>
+<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">]</span>  <span class="co"># select the element in the 1st row, 4th column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode" id="cb38" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span><span class="op">[</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span>  <span class="co"># select the elements in the 1st row, 4th and 5th column </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 7 9</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="special-types-of-matrices" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="special-types-of-matrices">
+<span class="header-section-number">8.5</span> Special types of matrices</h2>
+<section id="the-square-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-square-matrix">The square matrix</h3>
+<p>A square matrix is a matrix that has an equal number of rows and columns.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+M_{3\times 3} =
+  \begin{bmatrix}
+    5 &amp; 1 &amp; 0\\
+    3 &amp; -1 &amp; 2\\
+    4 &amp; 0 &amp; -1
+  \end{bmatrix}
+\]</span></p>
+<p>In R,</p>
+<div class="cell">
+<div class="sourceCode" id="cb40" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">M</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    5    1    0
+[2,]    3   -1    2
+[3,]    4    0   -1</code></pre>
+</div>
+</div>
+<p>The main diagonal consisted of the numbers 5, -1, and -1. In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb42" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1]  5 -1 -1</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Trace of a square matrix
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The trace of a square matrix is the <strong>sum</strong> of its main diagonal elements. In the above example: <span class="math inline">\(Tr = 5 - 1 - 1 = 3\)</span>.</p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb44" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/matlib/man/tr.html">tr</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="the-diagonal-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-diagonal-matrix">The diagonal matrix</h3>
+<p>A diagonal matrix is a special type of square matrix where all the elements outside the main diagonal are zero.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+D_{3\times 3} =
+  \begin{bmatrix}
+    4 &amp; 0 &amp; 0\\
+    0 &amp; -1 &amp; 0\\
+    0 &amp; 0 &amp; -5
+  \end{bmatrix}
+\]</span></p>
+<p>In R, we can create a diagonal matrix of size 3 by using the <code><a href="https://rdrr.io/r/base/diag.html">diag()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb46" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">elements</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">elements</span><span class="op">)</span></span>
+<span><span class="va">D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4    0    0
+[2,]    0   -1    0
+[3,]    0    0   -5</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="the-identity-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-identity-matrix">The identity matrix</h3>
+<p>An identity matrix, often denoted as “I”, is a square matrix (i.e.&nbsp;the number of rows is equal to the number of columns) with <strong>ones</strong> on the main diagonal and <strong>zeros</strong> elsewhere.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+I_{3\times 3} =
+  \begin{bmatrix}
+    1 &amp; 0 &amp; 0\\
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; 1
+  \end{bmatrix}
+\]</span></p>
+<p>In R, we can create the identity matrix of size 5 by using the <code><a href="https://rdrr.io/r/base/diag.html">diag()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb48" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">I</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">I</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="symmetric-matrix" class="level3"><h3 class="anchored" data-anchor-id="symmetric-matrix">Symmetric matrix</h3>
+<p>A symmetric matrix is a square matrix that remains unchanged when we transpose it, which means we swap its rows and columns.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+S_{3\times 3} =
+  \begin{bmatrix}
+    13 &amp; -4 &amp; 2\\
+    -4 &amp; 11 &amp; -2\\
+    2 &amp; -2 &amp; 8
+  \end{bmatrix}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb50" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">11</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   13   -4    2
+[2,]   -4   11   -2
+[3,]    2   -2    8</code></pre>
+</div>
+</div>
+<p>In <em>S</em> matrix, the elements at positions (1,2) and (2,1) are both -4, the elements at positions (1,3) and (3,1) are both 2, and the elements at positions (2,3) and (3,2) are both -2. This reflects the symmetry property.</p>
+<p>&nbsp;</p>
+</section></section><section id="basic-matrix-algebra" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="basic-matrix-algebra">
+<span class="header-section-number">8.6</span> Basic matrix algebra</h2>
+<section id="the-transpose-of-a-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-transpose-of-a-matrix">The transpose of a matrix</h3>
+<p>The transpose operation simply changes columns to rows of the original matrix with dimension <span class="math inline">\(m \times n\)</span> to obtain a new matrix with dimension <span class="math inline">\(n \times m\)</span>.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>For a matrix <code>A</code>:</p>
+<p><span class="math display">\[
+  A_{2\times 3} =
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix}
+\]</span></p>
+<p>the transpose matrix is:</p>
+<p><span class="math display">\[
+  A^T_{3\times 2} =
+  \begin{bmatrix}
+    4  &amp;  0 \\
+    -1 &amp; 1\\
+    5  &amp; -2
+  \end{bmatrix}
+\]</span> In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb52" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4   -1   -5
+[2,]    0    1   -2</code></pre>
+</div>
+</div>
+<p>the transpose matrix is:</p>
+<div class="cell">
+<div class="sourceCode" id="cb54" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2]
+[1,]    4    0
+[2,]   -1    1
+[3,]   -5   -2</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="matrix-addition" class="level3"><h3 class="anchored" data-anchor-id="matrix-addition">Matrix addition</h3>
+<p>Matrix addition is an operation performed between two matrices of the same dimensions. The addition of matrices involves adding corresponding elements of the matrices (element-wise addition) to create a new matrix of the same dimension.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>Suppose we have the A and B matrices:</p>
+<p><span class="math display">\[
+  A_{2\times 3} =
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+  B_{2\times 3} =
+  \begin{bmatrix}
+    3 &amp; 1 &amp; -5 \\
+    0 &amp; 2 &amp; -2
+  \end{bmatrix}
+\]</span></p>
+<p>The addition of the two matrices gives the following new matrix:</p>
+<p><span class="math display">\[
+  A_{2\times 3} + B_{2\times 3}=
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix} +
+  \begin{bmatrix}
+    3 &amp; 1 &amp; -5 \\
+    0 &amp; 2 &amp; -2
+  \end{bmatrix} =
+  \begin{bmatrix}
+  7 &amp; 0 &amp; -10 \\
+  0 &amp; 3 &amp; -4
+  \end{bmatrix}
+\]</span></p>
+<p>Here, the element in the first row and first column of the new matrix is <span class="math inline">\(4 + 3 = 7\)</span>, the element in the first row and second column is <span class="math inline">\(-1 + 1 = 0\)</span>, the element in the first row and third column is <span class="math inline">\(-5 - 5 = -10\)</span>, and so on.</p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb56" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4   -1   -5
+[2,]    0    1   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb58" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    3    1   -5
+[2,]    0    2   -2</code></pre>
+</div>
+</div>
+<p>The addition:</p>
+<div class="cell">
+<div class="sourceCode" id="cb60" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">+</span> <span class="va">B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    7    0  -10
+[2,]    0    3   -4</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="scalar-multiplication-of-matrices" class="level3"><h3 class="anchored" data-anchor-id="scalar-multiplication-of-matrices">Scalar multiplication of matrices</h3>
+<p>In <strong>scalar</strong> multiplication, each element in the matrix is multiplied by the given number (scalar). For example:</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+-3* A_{2\times 3} = -3*
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix} =
+  \begin{bmatrix}
+    -12 &amp; 3 &amp; 15 \\
+    0 &amp; -3 &amp; 6
+  \end{bmatrix}
+\]</span> Here, the element in the first row and first column of the new matrix is <span class="math inline">\(-3*4 = -12\)</span>, the element in the first row and second column is <span class="math inline">\(-3 * (-1) = 3\)</span>, the element in the first row and third column is <span class="math inline">\(-3 * (- 5) = 15\)</span>, and so on.</p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb62" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4   -1   -5
+[2,]    0    1   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb64" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">-</span><span class="fl">3</span> <span class="op">*</span> <span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]  -12    3   15
+[2,]    0   -3    6</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="element-wise-multiplication-of-matrices-hadamard-product" class="level3"><h3 class="anchored" data-anchor-id="element-wise-multiplication-of-matrices-hadamard-product">Element-wise multiplication of matrices (Hadamard product)</h3>
+<p>The <strong>element-wise</strong> multiplication of two matrices, <strong>A</strong> and <strong>B</strong>, of the <strong>same</strong> dimensions can be computed with the <span class="math inline">\(\odot\)</span> operator.</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+  A_{2\times 3} \odot B_{2\times 3}=
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix} \odot
+  \begin{bmatrix}
+    3 &amp; 1 &amp; -5 \\
+    0 &amp; 2 &amp; -2
+  \end{bmatrix} =
+  \begin{bmatrix}
+  12 &amp; -1 &amp; 25 \\
+  0 &amp; 2 &amp; 4
+  \end{bmatrix}
+\]</span> In this case, the element in the first row and first column of the new matrix is <span class="math inline">\(4*3 = 12\)</span>, the element in the first row and second column is <span class="math inline">\(-1 * 1 = -1\)</span>, the element in the first row and third column is <span class="math inline">\(-5 * (- 5) = 25\)</span>, and so on.</p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb66" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4   -1   -5
+[2,]    0    1   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb68" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    3    1   -5
+[2,]    0    2   -2</code></pre>
+</div>
+</div>
+<p>The output will be a matrix of the same dimensions of the original matrices:</p>
+<div class="cell">
+<div class="sourceCode" id="cb70" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">*</span> <span class="va">B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   12   -1   25
+[2,]    0    2    4</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="multiplication-of-compatible-matrices-matrix-product" class="level3"><h3 class="anchored" data-anchor-id="multiplication-of-compatible-matrices-matrix-product">Multiplication of compatible matrices (matrix product)</h3>
+<p>Suppose we have two matrices, <span class="math inline">\(A_{m \times n}\)</span> and <span class="math inline">\(C_{n \times m}\)</span>, in which the number of columns in the first matrix is equal to the number of rows in the second matrix (compatible matrices). The multiplication of matrix A with matrix C is defined as <span class="math inline">\(A \bullet C\)</span> and is computed by performing <strong>dot product</strong> operations between the rows from the first matrix and the columns from the second matrix (row-by-column multiplication). Let’s illustrate it using an examples.</p>
+<p>&nbsp;</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>We’ll start by demonstrating how to multiply a <span class="math inline">\(1 \times 3\)</span> matrix by an <span class="math inline">\(3 \times 1\)</span> matrix. The first is a row vector, such as <span class="math inline">\(\begin{bmatrix} 4 &amp; -1 &amp; -5 \end{bmatrix}\)</span>, and the second is a column vector, such as <span class="math inline">\(\begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix}\)</span>. Therefore, the dot product is equal to the following:</p>
+<p><span class="math inline">\(\begin{bmatrix} 4 &amp; -1 &amp; -5 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 4 * (-5) + (-1) * 2 + (-5) * (-2) = -20 -2 + 10 = -12\)</span></p>
+<p>In R, this can be done either with one-dimensional atomic vectors or matrices.</p>
+<ul>
+<li>Vector notation:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb72" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1]
+[1,]  -12</code></pre>
+</div>
+</div>
+<ul>
+<li>Matrix notation:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb74" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># matrix notation of the row vector</span></span>
+<span><span class="va">A_row1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">5</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">A_row1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4   -1   -5</code></pre>
+</div>
+<div class="sourceCode" id="cb76" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># matrix notation of the column vector</span></span>
+<span><span class="va">C_col1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">C_col1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1]
+[1,]   -5
+[2,]    2
+[3,]   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb78" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># matrix multiplication</span></span>
+<span><span class="va">A_row1</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">C_col1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1]
+[1,]  -12</code></pre>
+</div>
+</div>
+<p>We ended up with a matrix multiplication equivalent to the familiar dot product of vectors (see <a href="vectors.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a>).</p>
+<p>&nbsp;</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>Now that we are familiar with the process of multiplying a row with a column, the multiplication of larger matrices becomes straightforward. Suppose that we have the A and C matrices:</p>
+<p><span class="math display">\[
+  A_{2\times 3} =
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+  C_{3\times 2} =
+  \begin{bmatrix}
+    -5 &amp; 5 \\
+    2 &amp; 1 \\
+    -2 &amp; 0 \\
+  \end{bmatrix}
+\]</span></p>
+<p>The row-by-column multiplication of the two matrices gives the following new matrix:</p>
+<p><span class="math display">\[
+  A_{2\times 3} \bullet C_{3\times 2}=
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix} \bullet
+  \begin{bmatrix}
+    -5 &amp; 5 \\
+    2 &amp; 1 \\
+    -2 &amp; 0 \\
+  \end{bmatrix} =
+  \begin{bmatrix}
+  -12 &amp; 19  \\
+  6 &amp; 1
+  \end{bmatrix}
+\]</span></p>
+<p>We observe that the produced matrix has dimension <span class="math inline">\(2 \times 2\)</span>.</p>
+<p>In this case:</p>
+<ul>
+<li><p>the element in the first row and first column of the new matrix is the result of the dot product between the first row of A and the first column of C: <span class="math inline">\(\begin{bmatrix} 4 &amp; -1 &amp; -5 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 4 * (-5) + (-1) * 2 + (-5) * (-2) = -20 -2 + 10 = -12\)</span></p></li>
+<li><p>the element in the first row and second column of the new matrix is the result of the dot product between the first row of A and the second column of C: <span class="math inline">\(\begin{bmatrix} 4 &amp; -1 &amp; -5 \end{bmatrix} \bullet \begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix} = 4 * 5 + (-1) * 1 + (-5) * 0 = 20 - 1 + 0 = 19\)</span></p></li>
+<li><p>the element in the second row and first column of the new matrix is the result of the dot product between the second row of A and the first column of C: <span class="math inline">\(\begin{bmatrix} 0 &amp; 1 &amp; -2 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 0 * (-5) + 1 * 2 + (-2) * (-2) = 0 + 2 + 4 = 6\)</span></p></li>
+<li><p>the element in the second row and second column of the new matrix is the result of the dot product between the second row of A and the second column of C: <span class="math inline">\(\begin{bmatrix} 0 &amp; 1 &amp; -2 \end{bmatrix} \bullet \begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix} = 0 * 5 + 1 * 1 + (-2) * 0 = 1\)</span></p></li>
+</ul>
+<p>In R, this type of multiplication of two matrices can be performed with the dot (inner) product <code>%*%</code> operator.</p>
+<div class="cell">
+<div class="sourceCode" id="cb80" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    4   -1   -5
+[2,]    0    1   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb82" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2]
+[1,]   -5    5
+[2,]    2    1
+[3,]   -2    0</code></pre>
+</div>
+<div class="sourceCode" id="cb84" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2]
+[1,]  -12   19
+[2,]    6    1</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>The matrices <span class="math inline">\(A_{2\times 3}\)</span> and <span class="math inline">\(B_{2\times 3}\)</span> are not compatible matrices. However, if we transpose the first matrix, we turn it into a <span class="math inline">\(3 \times 2\)</span> matrix:</p>
+<p><span class="math display">\[
+  A_{2\times 3} =
+  \begin{bmatrix}
+    4 &amp; -1 &amp; -5 \\
+    0 &amp; 1 &amp; -2
+  \end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+  A^T_{3\times 2} =
+  \begin{bmatrix}
+    4 &amp; 0 \\
+    -1 &amp; 1 \\
+    -5 &amp; -2
+  \end{bmatrix}
+\]</span> Now, the <span class="math inline">\(A^T_{3\times 2}\)</span> and <span class="math inline">\(B_{2\times 3}\)</span> matrices are compatible, so their product is well defined. In this case, we can multiply them:</p>
+<p><span class="math display">\[
+  A^T_{3\times 2} \bullet B_{2\times 3}=
+  \begin{bmatrix}
+    4 &amp; 0 \\
+    -1 &amp; 1 \\
+    -5 &amp; -2
+  \end{bmatrix} \bullet
+  \begin{bmatrix}
+   3 &amp; 1 &amp; -5 \\
+    0 &amp; 2 &amp; -2
+  \end{bmatrix} =
+  \begin{bmatrix}
+  12 &amp; 4 &amp; -20  \\
+  -3 &amp; 1 &amp; 3 \\
+  -15 &amp; -9 &amp; 29
+  \end{bmatrix}
+\]</span></p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb86" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2]
+[1,]    4    0
+[2,]   -1    1
+[3,]   -5   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb88" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    3    1   -5
+[2,]    0    2   -2</code></pre>
+</div>
+<div class="sourceCode" id="cb90" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   12    4  -20
+[2,]   -3    1    3
+[3,]  -15   -9   29</code></pre>
+</div>
+</div>
+<p>However, it is more efficient and faster using the <code><a href="https://rdrr.io/r/base/crossprod.html">crossprod()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb92" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">crossprod</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   12    4  -20
+[2,]   -3    1    3
+[3,]  -15   -9   29</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before inner multiplying two matrices check that the <strong>dimensions</strong> are compatible. The number of columns of the first matrix must be equal to the number of rows of the second matrix.</p>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="the-determinant-of-a-square-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-determinant-of-a-square-matrix">The determinant of a square matrix</h3>
+<p>The determinant of a square matrix is a scalar value that can be computed from the matrix’s elements. Let’s consider a simple 2x2 matrix:</p>
+<p><span class="math display">\[
+E_{2 \times 2} = \begin{bmatrix}
+     e_{11} &amp; e_{12} \\
+     e_{21} &amp; e_{22}
+\end{bmatrix}
+\]</span></p>
+<p>To calculate the determinant of this matrix, we can use the formula: <span class="math display">\[
+detE = \begin{vmatrix}
+     e_{11} &amp; e_{12} \\
+     e_{21} &amp; e_{22}
+\end{vmatrix} = e_{11}*e_{22} - e_{12}*e_{21}
+\]</span> To calculate the determinant of a larger matrix, we can use the method of expansion by minors. Consider the <span class="math inline">\(3 \times 3\)</span> matrix:</p>
+<p><span class="math display">\[
+E_{3\times 3} =
+  \begin{bmatrix}
+    e_{11} &amp; e_{12} &amp; e_{13}\\
+    e_{21} &amp; e_{22} &amp; e_{23}\\
+    e_{31} &amp; e_{32} &amp; e_{33}
+  \end{bmatrix}
+\]</span></p>
+<p>In this case, we can find the determinant using expansion by minors, we can choose any row or column and calculate the determinant using smaller <span class="math inline">\(2 \times 2\)</span> matrices. Let’s choose the last row for this example:</p>
+<p><span class="math display">\[
+\det E =
+\begin{vmatrix}
+     e_{11} &amp; e_{12} &amp; e_{13}\\
+     e_{21} &amp; e_{22} &amp; e_{23}\\
+     e_{31} &amp; e_{32} &amp; e_{33}
+\end{vmatrix}
+   = e_{31}\begin{vmatrix} e_{12} &amp; e_{13} \\ e_{22} &amp; e_{23} \end{vmatrix}
+   - e_{32}\begin{vmatrix} e_{11} &amp; e_{13} \\ a_{21} &amp; a_{23} \end{vmatrix}
+   + e_{33}\begin{vmatrix} e_{11} &amp; e_{12} \\ e_{21} &amp; e_{22} \end{vmatrix}
+\]</span></p>
+<p>Therefore: <span class="math display">\[  \Rightarrow
+detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21}) \]</span></p>
+<p>&nbsp;</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>Let’s consider a 2x2 matrix:</p>
+<p><span class="math display">\[
+E_{2 \times 2} = \begin{bmatrix}
+     1 &amp; -1 \\
+     2 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p>To calculate the determinant of this matrix, we can use the formula: <span class="math display">\[
+\begin{vmatrix}
+     1 &amp; -1 \\
+     2 &amp; 0
+\end{vmatrix} = 1*0 - (-1)*2= 2
+\]</span></p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb94" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E_minor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">E_minor</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2]
+[1,]    1   -1
+[2,]    2    0</code></pre>
+</div>
+<div class="sourceCode" id="cb96" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/det.html">det</a></span><span class="op">(</span><span class="va">E_minor</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 2</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><span class="math display">\[
+\det E =
+\begin{vmatrix}
+     1 &amp; -1 &amp; 1\\
+     2 &amp; 0 &amp; 1\\
+     1 &amp; 1 &amp; 2
+\end{vmatrix}
+   = 1\begin{vmatrix} -1 &amp; 1 \\ 0 &amp; 1 \end{vmatrix}
+   - 1\begin{vmatrix} 1 &amp; 1 \\ 2 &amp; 1 \end{vmatrix}
+   + 2\begin{vmatrix} 1 &amp; -1 \\ 2 &amp; 0 \end{vmatrix}
+\]</span></p>
+<p>Therefore: <span class="math display">\[  \Rightarrow
+detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 \]</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb98" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">E</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    1   -1    1
+[2,]    2    0    1
+[3,]    1    1    2</code></pre>
+</div>
+<div class="sourceCode" id="cb100" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/det.html">det</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 4</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="the-inverse-of-a-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-inverse-of-a-matrix">The inverse of a matrix</h3>
+<p>The <code>det(E)</code> is not zero, so inverse exists:</p>
+<div class="cell">
+<div class="sourceCode" id="cb102" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E_inv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/matlib/man/Inverse.html">inv</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span></span>
+<span><span class="va">E_inv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>      [,1]  [,2]  [,3]
+[1,] -0.25  0.75 -0.25
+[2,] -0.75  0.25  0.25
+[3,]  0.50 -0.50  0.50</code></pre>
+</div>
+</div>
+<p>The inverse of a matrix <code>E</code> is defined as the <code>E_inv</code> matrix which multiplies E to give the identity matrix:</p>
+<div class="cell">
+<div class="sourceCode" id="cb104" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E_inv</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">E</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="application-calculation-of-the-average-using-matrices" class="level3"><h3 class="anchored" data-anchor-id="application-calculation-of-the-average-using-matrices">Application: calculation of the average using matrices</h3>
+<p>In ordinary algebra, the mean of a set of <code>n</code> observations, <span class="math inline">\(v_1, v_2, v_3,...,v_i, ..., v_n\)</span> is computed by adding all of the observations and dividing by the number of observations:</p>
+<p><span class="math display">\[
+\overline{v} = \frac{1}{n}\sum_{i=1}^{n}v_i
+\]</span></p>
+<p>where <span class="math inline">\(\overline{v}\)</span> is the mean of observations, <span class="math inline">\(\sum_{i=1}^{n}v_i\)</span> is the sum of all observations, and <span class="math inline">\(n\)</span> is the number of observations.</p>
+<p>Let’s compute the mean using column vectors from matrix algebra.</p>
+<p>First we define the column vectors:</p>
+<p><span class="math display">\[
+U_{n\times1} = \left[\begin{array}{cc}
+1 \\
+1 \\
+\vdots \\
+1
+\end{array}\right]
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+V_{n\times1} = \left[\begin{array}{c}
+\nu_1 \\
+\nu_2 \\
+\vdots \\
+\nu_n
+\end{array}\right]
+\]</span></p>
+<p>then the mean can be computed as follows:</p>
+<p><span class="math display">\[
+\frac{1}{n} \cdot U^T \cdot V =
+\frac{1}{n} \cdot
+\begin{bmatrix}
+      1 &amp; 1 &amp; 1 &amp; ...&amp; 1
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+      \nu_{1} \\
+      \nu_{2} \\
+      \nu_{3} \\
+      \vdots \\
+      \nu_{n} \\
+    \end{bmatrix} =
+\]</span></p>
+<p><span class="math display">\[
+=
+    \frac{1}{n} \cdot
+    \begin{pmatrix}
+      1\cdot v_{1} + 1\cdot v_{2} +1\cdot v_{3} +...1\cdot v_{n}
+    \end{pmatrix} =
+    \frac{1}{n}\sum_{i=1}^{n}v_i
+\]</span></p>
+<p>where <span class="math inline">\(U^T\)</span> is the transpose of <span class="math inline">\(U\)</span>.</p>
+<p>For example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb106" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_values</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 3.857143</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb108" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_values</span><span class="op">)</span>  <span class="co"># get the length (number of elements) of vector</span></span>
+<span><span class="va">U</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">U</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1]
+[1,]    1
+[2,]    1
+[3,]    1
+[4,]    1
+[5,]    1
+[6,]    1
+[7,]    1</code></pre>
+</div>
+<div class="sourceCode" id="cb110" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">my_values</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">V</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1]
+[1,]    2
+[2,]    5
+[3,]    7
+[4,]   -4
+[5,]    8
+[6,]    6
+[7,]    3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb112" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">average_my_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">U</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">V</span><span class="op">/</span><span class="va">n</span></span>
+<span><span class="va">average_my_values</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>         [,1]
+[1,] 3.857143</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="eigenvalues-and-eigenvectors" class="level3"><h3 class="anchored" data-anchor-id="eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</h3>
+<p>We have already mentioned that a <strong>symmetric</strong> matrix is a square matrix that is equal to its transpose. For example:</p>
+<div class="cell">
+<div class="sourceCode" id="cb114" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   13   -4    2
+[2,]   -4   11   -2
+[3,]    2   -2    8</code></pre>
+</div>
+<div class="sourceCode" id="cb116" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   13   -4    2
+[2,]   -4   11   -2
+[3,]    2   -2    8</code></pre>
+</div>
+</div>
+<p>A symmetric matrix guarantees that its eigenvalues are real numbers. Eigenvalues and eigenvectors are highly used by the data scientists as they are the core of the data science field. For example, eigenvalues and eigenvectors are very much useful in the principal component analysis which is a dimensionality reduction technique in machine learning.</p>
+<p>The <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> built-in function in R calculates the eigenvalues and eigenvectors of a symmetric matrix. It returns a named list, with eigenvalues named values and eigenvectors named vectors:</p>
+<div class="cell">
+<div class="sourceCode" id="cb118" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
+<span><span class="va">ev</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>eigen() decomposition
+$values
+[1] 17  8  7
+
+$vectors
+           [,1]       [,2]      [,3]
+[1,]  0.7453560  0.6666667 0.0000000
+[2,] -0.5962848  0.6666667 0.4472136
+[3,]  0.2981424 -0.3333333 0.8944272</code></pre>
+</div>
+</div>
+<p>The eigenvalues are always returned in decreasing order and are 17, 8, and 7.</p>
+<ul>
+<li>The first column vector <span class="math inline">\(\begin{bmatrix} 0.745 \\ -0.596 \\ 0.298 \end{bmatrix}\)</span> represents the eigenvector corresponding to the eigenvalue 17.</li>
+<li>The second column vector <span class="math inline">\(\begin{bmatrix} 0.667 \\ 0.667 \\ -0.333 \end{bmatrix}\)</span> corresponds to the eigenvector for the eigenvalue 8.</li>
+<li>The third column vector <span class="math inline">\(\begin{bmatrix} 0.000 \\ 0.447 \\ 0.894 \end{bmatrix}\)</span> corresponds to the eigenvector for the eigenvalue 7.</li>
+</ul>
+<p>&nbsp;</p>
+</section></section><section id="arrays" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="arrays">
+<span class="header-section-number">8.7</span> Arrays</h2>
+<p>Arrays are similar to matrices but can have <strong>more than two dimensions</strong>. They’re created with an <code><a href="https://rdrr.io/r/base/array.html">array()</a></code> function from base R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb120" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># build the 2x3x4 array</span></span>
+<span><span class="va">my_array</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">my_array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>, , 1
+
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]    7    9   11
+[2,]    8   10   12
+
+, , 3
+
+     [,1] [,2] [,3]
+[1,]   13   15   17
+[2,]   14   16   18
+
+, , 4
+
+     [,1] [,2] [,3]
+[1,]   19   21   23
+[2,]   20   22   24</code></pre>
+</div>
+</div>
+<p>As you can see, arrays are a natural extension of matrices. They can be useful in programming new statistical methods. Like matrices, they contain a single type of data (e.g., numeric).</p>
+<p>We can find the <code>type</code>, <code>class</code> and the <code>dimensions</code> of the array:</p>
+<div class="cell">
+<div class="sourceCode" id="cb122" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "integer"</code></pre>
+</div>
+<div class="sourceCode" id="cb124" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] "array"</code></pre>
+</div>
+<div class="sourceCode" id="cb126" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 2 3 4</code></pre>
+</div>
+</div>
 
 
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -764,9 +1825,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./vectors.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span>
       </a>          
@@ -778,8 +1837,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright 2023, Konstantinos I. Bougioukas</p>
 </div>   
@@ -790,9 +1848,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer>
-<div class="page-columns page-rows-contents page-layout-article"><div class="social-share"><a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical Statistics in Medicine with R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical Statistics in Medicine with R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a></div></div>
-
+</footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share">
+<a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a>
+</div></div>
 
 
 
