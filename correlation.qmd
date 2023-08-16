@@ -15,6 +15,8 @@ library(rstatix)
 library(XICOR)
 library(ggExtra)
 
+library(patchwork)
+
 library(here)
 library(tidyverse)
 ```
@@ -31,7 +33,7 @@ When we have finished this Chapter, we should be able to:
 
 ## Research question and Hypothesis Testing
 
-We consider the data in *Birthweight* dataset. Let's say that we want to explore the association between weight (in Kg) and height (in cm) for a sample of 550 infants of 1 month age.
+We consider the data in *Birthweight* dataset. Let's say that we want to explore the association between weight (in g) and height (in cm) for a sample of 550 infants of 1 month age.
 
 ::: {.callout-note icon="false"}
 ## Null hypothesis and alternative hypothesis
@@ -51,6 +53,7 @@ We need to load the following packages:
 library(rstatix)
 library(XICOR)
 library(ggExtra)
+library(patchwork)
 library(here)
 library(tidyverse)
 ```
@@ -73,7 +76,8 @@ BirthWeight <- read_excel(here("data", "BirthWeight.xlsx"))
 
 DT::datatable(
   BirthWeight, extensions = 'Buttons', options = list(
-    dom = 'tip'
+    dom = 'tip',
+    columnDefs = list(list(className = 'dt-center', targets = "_all"))
   )
 )
 
@@ -85,7 +89,7 @@ We inspect the data and the type of variables:
 glimpse(BirthWeight)
 ```
 
-The data set *BirthWeight* has 550 infants of 1 month age (rows) and includes seven variables (columns). Both the `weight` and `height` are numeric (`<dbl>`) variables.
+The data set *BirthWeight* has 550 infants of 1 month age (rows) and includes six variables (columns). Both the `weight` and `height` are numeric (`<dbl>`) variables.
 
 ## Plot the data
 
@@ -114,6 +118,291 @@ The points in the scatter plot seem to be scattered around an invisible line. Th
 Additionally, the marginal histograms show that the data are approximately normally distributed (we have a large sample so the graphs are reliable) for both weight and height.
 
 ## Correlation between two numeric variables
+
+### Pearson's correlation coefficient
+
+Given a set of ${n}$ pairs of observations $(x_{1},y_{1}),\ldots ,(x_{n},y_{n})$ with means $\bar{x}$ and $\bar{y}$ respectively, $r$ is defined as:
+
+$$r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n(y_i - \bar{y})^2}}$$ {#eq-r1}
+
+We observe that the above formula is based on calculating the sum of the product $(x_i - \bar{x})(y_i - \bar{y})$. In our example, that is the the sum of the product $(height_{i} - \overline{height}) \cdot (weight_{i} - \overline{weight})$.
+
+ 
+
+```{r}
+#| echo: false
+#| warning: false
+#| label: fig-correlation01
+#| fig-cap: Scatter plot with two pink axes intersecting at the mean point of the variables. The vertical distances of the data points from these axes express the deviations from the mean.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+# plot 0.1
+  ggplot(BirthWeight, aes(height, weight)) +
+  geom_point(color = "blue", size = 3 ,alpha = 0.7) +
+  theme_minimal(base_size = 14) +
+  geom_vline(xintercept = mean(BirthWeight$height), linetype="dashed", color = "deeppink", size = 1.0) +
+  geom_hline(yintercept = mean(BirthWeight$weight), linetype="dashed", color = "deeppink", size = 1.0) +
+  annotate("text", x = 60, y = 6800, size = 5.0, label = "(+, +) = + \n+ positive association") +
+  annotate("text", x = 50, y = 2500, size = 5.0, label = "(-, -) = + \n+ positive association") +
+  annotate("text", x = 50, y = 6800, size = 5.0, label = "(-, +) = - \n- negative association") +
+  annotate("text", x = 60, y = 2500, size = 5.0, label = "(+, -) = - \n- negative association") 
+  
+```
+
+ 
+
+Our approach begins by examining the signs of these products.
+
+**Positive product:** In the **top-right** pane of the @fig-correlation01, the deviations from the mean for both variables, height and weight, are positive. Consequently, their products will also be positive. In the **bottom-left** pane, the deviations from the mean for both variables are negative. Once again, their product will be positive.
+
+**Negative product:** In the **top-left** pane of the @fig-correlation01, the deviation of height from its mean is negative, while the deviation of weight is positive. Therefore, their product will be negative. Similarly, in the **bottom-right** pane, the product will be negative.
+
+In @fig-correlation01, we observe that most of the products are positive. We say that there is a **positive correlation** between the two variables; as one increases so does the other.
+
+ 
+
+::: {.callout-tip icon="false"}
+## Characteristics of Pearson's correlation coefficient $r$
+
+The $r$ statistic shows the **direction** and measures the **strength** of the linear association between the variables.
+
+**Range of values**
+
+Correlation coefficient is a **dimensionless** quantity that takes a value in the range **-1** to **+1**.
+
+ 
+
+**Direction of the association**
+
+A **negative** correlation coefficient indicates that as one variable increases, the other variable tends to decrease, and vice versa (@fig-correlation1 a). A **zero** value indicates that no association exists between the two variables (@fig-correlation1 b). A **positive** coefficient indicates that both variables increase (or decrease) together (@fig-correlation1 c).
+
+```{r}
+#| echo: false
+#| warning: false
+#| label: fig-correlation1
+#| fig-cap: The direction of association can be (a) negative, (b) no association, or (c) positive.
+#| fig-width: 11.8
+#| fig-height: 4.0
+
+
+# plot 1
+sigma1<-rbind(c(1,-0.8), c(-0.8,1))
+mu1<-c(10, 5) 
+
+set.seed(123)
+dat1 <- data.frame(MASS::mvrnorm(n=500, mu=mu1, Sigma=sigma1))
+
+cor1 <- cor(dat1$X1, dat1$X2)
+
+pcor1 <- dat1 |>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "chartreuse3", alpha = 0.8) +
+  ggtitle(paste0("Negative Correlation r=", round(cor1, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+# plot2
+sigma2<-rbind(c(1,0.000), c(0.000,1))
+mu2<-c(10, 5) 
+
+set.seed(124)
+dat2 <- data.frame(MASS::mvrnorm(n=500, mu=mu2, Sigma=sigma2))
+
+cor2 <- cor(dat2$X1, dat2$X2)
+
+pcor2 <- dat2 |>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "grey80") +
+  ggtitle(paste0("Zero Correlation r=", round(cor2, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+# plot3
+sigma3<-rbind(c(1,0.8), c(0.8,1))
+mu3<-c(10, 5)
+
+set.seed(125)
+dat3 <- data.frame(MASS::mvrnorm(n=500, mu=mu3, Sigma=sigma3))
+
+cor3 <- cor(dat3$X1, dat3$X2)
+
+pcor3 <- dat3|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "deeppink", alpha = 0.8) +
+  ggtitle(paste0("Positive Correlation r=", round(cor3, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+pcor1 + pcor2 + pcor3 + plot_annotation(tag_levels = 'a')
+```
+
+ 
+
+**Magnitude of the association**
+
+The **magnitude** of association range from -1 to +1. The **stronger** the correlation, the more closely the correlation coefficient approaches ±1. A correlation coefficient of **-1** or **+1** indicates a **perfect** negative or positive association, respectively (@fig-correlation2 c and f).
+
+```{r}
+#| echo: false
+#| warning: false
+#| label: fig-correlation2
+#| fig-cap: The stronger the correlation, the more closely the correlation coefficient approaches ±1.
+#| fig-width: 11.8
+#| fig-height: 8.0
+
+
+# plot 4
+sigma4<-rbind(c(1,1), c(1,1))
+mu4<-c(10, 5) 
+
+set.seed(136)
+dat4 <- data.frame(MASS::mvrnorm(n=500, mu=mu4, Sigma=sigma4))
+
+cor4 <- cor(dat4$X1, dat4$X2)
+
+pcor4 <- dat4|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "deeppink") +
+  ggtitle(paste0("r=", round(cor4, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+# plot5
+sigma5<-rbind(c(1,0.8), c(0.8,1))
+mu5<-c(10, 5) 
+set.seed(139)
+dat5 <- data.frame(MASS::mvrnorm(n=500, mu=mu5, Sigma=sigma5))
+
+cor5 <- cor(dat5$X1, dat5$X2)
+
+pcor5 <- dat5|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "deeppink", alpha = 0.8) +
+  ggtitle(paste0("r=", round(cor5, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+
+
+# plot6
+sigma6<-rbind(c(1,0.6), c(0.6,1))
+mu6<-c(10, 5) 
+set.seed(138)
+dat6 <- data.frame(MASS::mvrnorm(n=500, mu=mu6, Sigma=sigma6))
+
+cor6 <- cor(dat6$X1, dat6$X2)
+
+pcor6 <- dat6|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "deeppink", alpha = 0.6) +
+  ggtitle(paste0("r=", round(cor6, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+
+# plot 7
+sigma7<-rbind(c(1,-1), c(-1,1))
+mu7<-c(10, 5) 
+
+set.seed(146)
+dat7 <- data.frame(MASS::mvrnorm(n=500, mu=mu7, Sigma=sigma7))
+
+cor7 <- cor(dat7$X1, dat7$X2)
+
+pcor7 <- dat7|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "chartreuse3") +
+  ggtitle(paste0("r=", round(cor7, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+# plot8
+sigma8<-rbind(c(1,-0.8), c(-0.8,1))
+mu8<-c(10, 5) 
+set.seed(149)
+dat8 <- data.frame(MASS::mvrnorm(n=500, mu=mu8, Sigma=sigma8))
+
+cor8 <- cor(dat8$X1, dat8$X2)
+
+pcor8 <- dat8|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "chartreuse3", alpha = 0.8) +
+  ggtitle(paste0("r=", round(cor8, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+# plot9
+sigma9<-rbind(c(1,-0.6), c(-0.6,1))
+mu9<-c(10, 5) 
+set.seed(148)
+dat9 <- data.frame(MASS::mvrnorm(n=500, mu=mu9, Sigma=sigma9))
+
+cor9 <- cor(dat9$X1, dat9$X2)
+
+pcor9 <- dat9|>
+  ggplot(aes(X1, X2)) +
+  geom_point(color = "chartreuse3", alpha = 0.6) +
+  ggtitle(paste0("r=", round(cor9, digits=1))) +
+  theme_minimal(base_size = 14)
+
+
+(pcor9 + pcor8 + pcor7) / (pcor6 + pcor5 + pcor4)   + plot_annotation(tag_levels = 'a')
+```
+
+ 
+
+**Interpretation of the association**
+
+The table below demonstrates how to interpret the strength of an association.
+
+| Value of r         | Strength of association |
+|--------------------|-------------------------|
+| $|r| \geq{0.8}$    | very strong association |
+| $0.6\leq|r| < 0.8$ | strong association      |
+| $0.4\leq|r| < 0.6$ | moderate association    |
+| $0.2\leq|r| < 0.4$ | weak association        |
+| $|r| < 0.2$        | very weak association   |
+
+: Interpretation of the values of the sample estimate of the correlation coefficient.
+
+ 
+
+**Anscombe's Quartet**
+
+Anscombe's quartet consists of four sets of data, each containing eleven (x, y) points. Despite having the same basic statistical characteristics, these datasets exhibit distinct distributions and present remarkable differences in their graphical representations [@anscombe1973].
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-anscombe
+#| fig-cap: Anscombe's quartet. All datasets have a Pearson's correlation of r = 0.82.
+#| fig-width: 11.8
+#| fig-height: 8.0
+
+
+anscombe_tidy <- anscombe %>%
+  mutate(observation = seq_len(n())) %>%
+  gather(key, value, -observation) %>%
+  separate(key, c("variable", "set"), 1, convert = TRUE) %>%
+  mutate(set = c("I. Well-fitted line, r=0.82", "II. Not linear, r=0.82", "III. One outlier, r=0.82", "IV. Data point out of a group, r=0.82")[set]) %>%
+  spread(variable, value)
+
+anscombe_quartet <- ggplot(anscombe_tidy, aes(x, y)) + 
+  geom_point(aes(color = set), size = 3) + 
+  geom_smooth(method = lm, se = FALSE) + 
+  theme(legend.position="none") + 
+  facet_wrap(~set) +
+  theme(strip.text = element_text(size=12))
+
+anscombe_quartet
+```
+
+Even though all datasets have a Pearson's correlation equal to 0.82, their graphical representations are very different. @fig-anscombe I depicts a linear association where the application of Pearson's correlation would be appropriate. @fig-anscombe II shows a non-linear association and a non-parametric analysis would be appropriate. @fig-anscombe III demonstrates a nearly perfect linear association (approaching r = 1), but the presence of an outlier has caused a reduction in the correlation coefficient. @fig-anscombe IV shows no association between the two variables (X, Y), although an outlier has artificially increased the correlation value.
+:::
+
+ 
 
 **Correlation coefficients**
 
@@ -190,7 +479,7 @@ xicor(BirthWeight$height, BirthWeight$weight)
 
 A correlation test is used to test whether the correlation (denoted ρ) between two numeric variables is significantly different from 0 or not in the population.
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## Hypothesis Testing for correlation coefficients
 
 ::: panel-tabset

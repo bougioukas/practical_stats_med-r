@@ -120,7 +120,7 @@ class(X3)
 dim(X3)
 ```
 
-Of note, the `typeof()` function gives the type of data that the object includes (integer), while the `class` is the type of structure (matrix) of the object.
+Of note, the `typeof()` function gives the type of data that the object includes (double), while the `class` is the type of structure (matrix) of the object.
 
 In this example, the `dim()` function takes the R object, X3, as an argument and returns its dimension.
 
@@ -197,7 +197,7 @@ M_{3\times 3} =
     3 & -1 & 2\\
     4 & 0 & -1
   \end{bmatrix}
-$$ 
+$$
 
 In R,
 
@@ -266,7 +266,7 @@ I_{3\times 3} =
   \end{bmatrix}
 $$
 
-In R, we can create the identity matrix of size 5 by using the `diag()` function:
+In R, we can create the identity matrix of size 3 by using the `diag()` function:
 
 ```{r}
 I <- diag(3)
@@ -474,20 +474,19 @@ Suppose we have two matrices, $A_{m \times n}$ and $C_{n \times m}$, in which th
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-We'll start by demonstrating how to multiply a $1 \times 3$ matrix by an $3 \times 1$ matrix. The first is a row vector, such as  $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix}$, and the second is a column vector, such as $\begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix}$. Therefore, the dot product is equal to the following:
-
+We'll start by demonstrating how to multiply a $1 \times 3$ matrix by an $3 \times 1$ matrix. The first is a row vector, such as $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix}$, and the second is a column vector, such as $\begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix}$. Therefore, the dot product is equal to the following:
 
 $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix} \bullet \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 4 * (-5) + (-1) * 2 + (-5) * (-2) = -20 -2 + 10 = -12$
 
 In R, this can be done either with one-dimensional atomic vectors or matrices.
 
-- Vector notation:
+-   Vector notation:
 
 ```{r}
 c(4, -1, -5) %*% c(-5, 2, -2)
 ```
 
-- Matrix notation:
+-   Matrix notation:
 
 ```{r}
 # matrix notation of the row vector
@@ -499,7 +498,6 @@ C_col1
 # matrix multiplication
 A_row1 %*% C_col1
 ```
-
 
 We ended up with a matrix multiplication equivalent to the familiar dot product of vectors (see @sec-vectors).
 
@@ -588,8 +586,7 @@ $$
     -1 & 1 \\
     -5 & -2
   \end{bmatrix}
-$$
-Now, the $A^T_{3\times 2}$ and $B_{2\times 3}$ matrices are compatible, so their product is well defined. In this case, we can multiply them:
+$$ Now, the $A^T_{3\times 2}$ and $B_{2\times 3}$ matrices are compatible, so their product is well defined. In this case, we can multiply them:
 
 $$
   A^T_{3\times 2} \bullet B_{2\times 3}= 
@@ -625,18 +622,15 @@ crossprod(A, B)
 
  
 
-
 ::: callout-important
 Before inner multiplying two matrices check that the **dimensions** are compatible. The number of columns of the first matrix must be equal to the number of rows of the second matrix.
 :::
 
  
 
-
 ### The determinant of a square matrix
 
 The determinant of a square matrix is a scalar value that can be computed from the matrix's elements. Let's consider a simple 2x2 matrix:
-
 
 $$
 E_{2 \times 2} = \begin{bmatrix}
@@ -645,14 +639,12 @@ E_{2 \times 2} = \begin{bmatrix}
 \end{bmatrix} 
 $$
 
-To calculate the determinant of this matrix, we can use the formula:
-$$
+To calculate the determinant of this matrix, we can use the formula: $$
 detE = \begin{vmatrix}
      e_{11} & e_{12} \\ 
      e_{21} & e_{22}
 \end{vmatrix} = e_{11}*e_{22} - e_{12}*e_{21}
-$$
-To calculate the determinant of a larger matrix, we can use the method of expansion by minors. Consider the $3 \times 3$ matrix:
+$$ To calculate the determinant of a larger matrix, we can use the method of expansion by minors. Consider the $3 \times 3$ matrix:
 
 $$
 E_{3\times 3} = 
@@ -661,10 +653,9 @@ E_{3\times 3} =
     e_{21} & e_{22} & e_{23}\\
     e_{31} & e_{32} & e_{33}
   \end{bmatrix}
-$$ 
+$$
 
 In this case, we can find the determinant using expansion by minors, we can choose any row or column and calculate the determinant using smaller $2 \times 2$ matrices. Let's choose the last row for this example:
-
 
 $$
 \det E =
@@ -678,8 +669,7 @@ $$
    + e_{33}\begin{vmatrix} e_{11} & e_{12} \\ e_{21} & e_{22} \end{vmatrix}
 $$
 
-Therefore:
-$$	\Rightarrow
+Therefore: $$  \Rightarrow
 detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21}) $$
 
  
@@ -688,7 +678,6 @@ detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{
 
 Let's consider a 2x2 matrix:
 
-
 $$
 E_{2 \times 2} = \begin{bmatrix}
      1 & -1 \\ 
@@ -696,14 +685,12 @@ E_{2 \times 2} = \begin{bmatrix}
 \end{bmatrix} 
 $$
 
-To calculate the determinant of this matrix, we can use the formula:
-$$
+To calculate the determinant of this matrix, we can use the formula: $$
 \begin{vmatrix}
      1 & -1 \\ 
      2 & 0
 \end{vmatrix} = 1*0 - (-1)*2= 2
 $$
-
 
 In R:
 
@@ -718,7 +705,6 @@ det(E_minor)
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-
 $$
 \det E =
 \begin{vmatrix}
@@ -731,12 +717,8 @@ $$
    + 2\begin{vmatrix} 1 & -1 \\ 2 & 0 \end{vmatrix}
 $$
 
-Therefore:
-$$	\Rightarrow
+Therefore: $$  \Rightarrow
 detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 $$
-
-
-
 
 ```{r}
 E <- matrix( c(1, 2, 1, -1, 0, 1, 1, 1, 2), nrow = 3)
@@ -763,7 +745,6 @@ E_inv %*% E
 
  
 
-
 ### Application: calculation of the average using matrices
 
 In ordinary algebra, the mean of a set of `n` observations, $v_1, v_2, v_3,...,v_i, ..., v_n$ is computed by adding all of the observations and dividing by the number of observations:
@@ -777,7 +758,6 @@ where $\overline{v}$ is the mean of observations, $\sum_{i=1}^{n}v_i$ is the sum
 Let's compute the mean using column vectors from matrix algebra.
 
 First we define the column vectors:
-
 
 $$
 U_{n\times1} = \left[\begin{array}{cc} 
@@ -859,9 +839,7 @@ S
 t(S)
 ```
 
-
-A symmetric matrix guarantees that its eigenvalues are real numbers. Eigenvalues and eigenvectors are highly used by the data scientists as they are the core of the data science field. 
-For example, eigenvalues and eigenvectors are very much useful in the principal component analysis which is a dimensionality reduction technique in machine learning.
+A symmetric matrix guarantees that its eigenvalues are real numbers. Eigenvalues and eigenvectors are highly used by the data scientists as they are the core of the data science field. For example, eigenvalues and eigenvectors are very much useful in the principal component analysis which is a dimensionality reduction technique in machine learning.
 
 The `eigen()` built-in function in R calculates the eigenvalues and eigenvectors of a symmetric matrix. It returns a named list, with eigenvalues named values and eigenvectors named vectors:
 

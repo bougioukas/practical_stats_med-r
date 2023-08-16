@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.176">
+<meta name="generator" content="quarto-1.4.322">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Practical Statistics in Medicine with R - 26&nbsp; Correlation</title>
 <style>
@@ -51,7 +51,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -395,7 +414,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">26.2</span> Packages we need</a></li>
   <li><a href="#preraring-the-data" id="toc-preraring-the-data" class="nav-link" data-scroll-target="#preraring-the-data"><span class="header-section-number">26.3</span> Preraring the data</a></li>
   <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">26.4</span> Plot the data</a></li>
-  <li><a href="#correlation-between-two-numeric-variables" id="toc-correlation-between-two-numeric-variables" class="nav-link" data-scroll-target="#correlation-between-two-numeric-variables"><span class="header-section-number">26.5</span> Correlation between two numeric variables</a></li>
+  <li>
+<a href="#correlation-between-two-numeric-variables" id="toc-correlation-between-two-numeric-variables" class="nav-link" data-scroll-target="#correlation-between-two-numeric-variables"><span class="header-section-number">26.5</span> Correlation between two numeric variables</a>
+  <ul class="collapse">
+<li><a href="#pearsons-correlation-coefficient" id="toc-pearsons-correlation-coefficient" class="nav-link" data-scroll-target="#pearsons-correlation-coefficient">Pearson’s correlation coefficient</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -412,6 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
+
 
 </header><p><strong>Correlation</strong> is a statistical method used to assess a possible <strong>association</strong> between two numeric variables, X and Y. There are several statistical coefficients that we can use to quantify correlation depending on the underlying relation of the data. In this chapter, we’ll learn about four correlation coefficients:</p>
 <ul>
@@ -439,7 +464,7 @@ Learning objectives
 </div>
 <section id="research-question-and-hypothesis-testing" class="level2" data-number="26.1"><h2 data-number="26.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
 <span class="header-section-number">26.1</span> Research question and Hypothesis Testing</h2>
-<p>We consider the data in <em>Birthweight</em> dataset. Let’s say that we want to explore the association between weight (in Kg) and height (in cm) for a sample of 550 infants of 1 month age.</p>
+<p>We consider the data in <em>Birthweight</em> dataset. Let’s say that we want to explore the association between weight (in g) and height (in cm) for a sample of 550 infants of 1 month age.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -465,6 +490,7 @@ Null hypothesis and alternative hypothesis
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">XICOR</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daattali/ggExtra">ggExtra</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -477,8 +503,8 @@ Null hypothesis and alternative hypothesis
 </div>
 <div class="cell">
 <div id="fig-BirthWeight" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3b356b917d2ffff7dcbf" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3b356b917d2ffff7dcbf">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550"],["L001","L003","L004","L005","L006","L007","L008","L009","L010","L011","L013","L014","L016","L018","L019","L020","L021","L022","L024","L025","L026","L027","L028","L029","L030","L031","L033","L034","L035","L036","L037","L038","L039","L040","L041","L042","L043","L044","L045","L046","L047","L048","L049","L051","L052","L053","L056","L057","L058","L059","L060","L061","L062","L063","L064","L065","L066","L067","L068","L069","L070","L071","L072","L073","L074","L075","L076","L077","L078","L079","L080","L081","L082","L083","L084","L085","L086","L087","L088","L089","L090","L091","L092","L093","L094","L095","L096","L097","L098","L099","L100","L101","L102","L103","L104","L105","L106","L107","L108","L109","L110","L112","L113","L114","L115","L116","L117","L118","L120","L121","L122","L123","L124","L125","L126","L127","L128","L129","L130","L131","L132","L133","L134","L135","L136","L139","L141","L142","L143","L144","L145","L146","L147","L148","L149","L150","L153","L154","L155","L156","L157","L158","L159","L160","L161","L162","L163","L164","L165","L166","L167","L168","L170","L171","L172","L174","L175","L176","L177","L178","L179","L180","L181","L182","L183","L184","L185","L186","L187","L188","L189","L190","L191","L192","L193","L195","L197","L198","L199","L200","L201","L202","L203","L204","L205","L206","L207","L208","L209","L210","L211","L212","L213","L214","L215","L216","L217","L218","L219","L220","L221","L222","L224","L225","L226","L227","L228","L229","L230","L232","L233","L234","L235","L236","L237","L238","L239","L240","L241","L242","L243","L244","L245","L246","L247","L248","L249","L250","L251","L252","L253","L254","L255","L256","L257","L258","L259","L260","L261","L262","L264","L265","L266","L267","L268","L269","L271","L272","L273","L274","L275","L276","L277","L278","L279","L280","L281","L282","L283","L284","L285","L286","L287","L288","L289","L290","L291","L292","L293","W004","W005","W006","W007","W008","W009","W011","W012","W013","W014","W015","W016","W017","W018","W019","W021","W022","W023","W025","W026","W027","W029","W030","W031","W032","W033","W037","W041","W042","W043","W044","W045","W046","W048","W049","W050","W051","W052","W053","W054","W055","W056","W057","W058","W059","W060","W061","W062","W063","W064","W065","W066","W067","W068","W069","W071","W072","W073","W074","W075","W076","W077","W078","W079","W080","W081","W082","W083","W084","W085","W087","W088","W089","W090","W091","W092","W093","W094","W095","W096","W097","W098","W099","W100","W101","W102","W103","W105","W106","W107","W108","W109","W110","W111","W112","W113","W114","W115","W116","W117","W119","W120","W122","W123","W124","W125","W126","W127","W128","W129","W130","W131","W133","W134","W135","W137","W138","W139","W141","W142","W143","W144","W145","W146","W147","W148","W149","W150","W151","W152","W154","W155","W156","W157","W158","W159","W160","W161","W162","W163","W164","W165","W167","W168","W169","W170","W171","W172","W173","W174","W175","W176","W177","W178","W179","W180","W181","W182","W183","W184","W185","W186","W189","W190","W191","W192","W193","W195","W196","W197","W198","W199","W200","W201","W202","W204","W205","W206","W207","W208","W209","W210","W211","W212","W214","W215","W216","W217","W218","W219","W220","W221","W222","W224","W225","W226","W227","W228","W229","W230","W231","W232","W233","W234","W236","W237","W238","W239","W240","W241","W242","W244","W245","W246","W247","W248","W249","W250","W252","W253","W255","W257","W258","W259","W260","W261","W262","W263","W264","W266","W267","W268","W269","W270","W271","W272","W273","W274","W276","W277","W278","W279","W280","W281","W282","W283","W285","W286","W287","W289","W290","W291","W292","W293","W295","W296","W297","W298","W299","W300","W301","W302","W303","W304","W306","W308","W309","W310","W311","W312","W313","W314","W315","W316","W317","W318","W319","W320","W321","W322","W323"],[4,4.6,4.8,3.9,4.6,3.6,3.6,4.5,5,3.7,4.2,4.4,4.6,4.1,4.4,5.6,5.3,4.3,4.4,4.2,4.3,4.7,4,4.6,4.5,4.2,4.8,3.7,4.5,4.5,4.1,4,3.4,4.9,3.3,4.5,4.1,4.5,4,3.3,4.8,4.2,4.3,3.9,4.4,4.7,5.4,3.9,4.2,3.7,3.7,4.3,4.6,4.6,4.9,3.7,4.5,5.1,4.8,4.5,5.3,3.5,5,5,5.4,5.8,3.7,3.3,4.2,4.6,4.8,4,4.3,3.5,4.6,5.7,4.5,3.1,3.8,4,3.5,4.5,4.9,4.9,3.9,4.1,4.6,4.4,5,4.2,4.1,3.8,4,4.6,3.5,4.9,4.3,4.9,4.1,4.3,4.7,4,4.1,4.9,4.7,3.8,4,4.5,4.8,4.2,4.7,4.4,4.6,4.2,3.7,3.9,3.9,5.1,3.1,3.5,4.5,3.8,4.4,3.8,5,5.2,4.7,3.8,4.3,4.4,5.6,4.1,3.6,5,3.9,4,4.9,5.1,5,4.3,4.3,5.5,4.4,4.5,4.9,3.8,3.9,4,3.9,3.9,5.2,4,4.4,5.2,4.3,5.6,4.3,3.7,3.4,3.5,4.5,3.7,4.5,3.9,5,3.8,4,4.2,5.5,4.8,3.9,4.3,4.3,4,4.6,5,3.6,4.3,4.7,5.2,4.6,4.1,4.6,4.8,4.7,4.4,4.1,4.5,4.5,4.2,4,4.4,3.8,4.8,3.7,5.4,4.5,4.7,5.3,4.2,5.2,4.3,4.1,4.1,3.5,4.8,6.3,5.9,5.4,4.1,2.9,4.7,3.7,3,4.2,4.9,3.7,3.2,4,4.3,5.4,3.7,4.6,4.1,5.1,3.7,5,4.9,4.4,4.7,4.3,3.4,3.6,5.8,4.9,4.3,4.9,3.9,4,4.9,3.1,5.2,5.2,4.5,4.3,3.6,5,4.5,4.3,4.2,3.7,3.1,4.9,4.1,5.4,5.2,4.4,4,5.5,4.8,4.3,4.3,3.8,4.4,5.2,5.3,4.6,4.1,4.2,3.5,5.8,5.1,4,5,4.1,5.1,4,5,4.1,4.1,4,3.3,5.4,3.6,5.3,4.5,4.1,5.3,5.3,3.6,4.6,4.4,5.3,4.1,5.3,4,4.7,3.7,4.4,5,3.7,4.6,4.5,5,4,4.1,4.2,3.5,3.2,4.6,3.7,4.1,3.3,4.3,4.7,4.6,3.6,4.1,4.6,4.8,3.8,4.3,4.3,4.8,5.2,4.3,4,4.2,4,4.7,3,4.8,4.3,4.1,4.8,3.4,4,4.5,4.7,4.3,3.7,3.2,5.1,3.9,4.1,3.4,4,4.2,4.6,5.1,4.9,4.4,4,4,4.8,4.8,4.4,3.5,3.4,3.8,5,3.9,4.6,3.8,3.9,4.4,3.8,3.9,4.5,3.7,3.8,3.2,3.4,5.1,4.9,4.9,4.6,4.2,3.7,4,3.9,3.7,4.7,3.9,5.3,4.4,5.3,4.3,4.8,4.5,4.1,4.2,4.2,5.4,4.1,4.1,4.8,4.2,3.9,4.5,4.4,4.7,3.5,3.4,3.7,3.9,4.8,5.6,4.5,4,4.7,3.6,4.1,4.1,5.2,3.9,3.3,4.7,5.1,4.8,4.8,4.5,4.8,5.3,4.2,4,4.9,3.7,4.3,3.9,4.7,3.3,5.3,4.8,4.6,5.1,5.1,4.1,4.7,3.9,4,4.8,3.3,4.9,4.5,3.9,4.6,4.3,4.8,4.5,4.2,5.6,4,3.5,4.7,4.9,4.2,4.8,3.8,4.5,3.9,3.8,3.7,4.8,4.8,4.8,5.1,4,5.2,4.7,4.6,3.9,4.5,4.2,3.9,4.5,5.1,4.1,4.1,4.1,4.1,3.4,3.8,4.4,4.1,3.4,4,4.9,4.8,4.1,4.9,4.2,4.7,5.8,3.8,4.3,3.7,4.2,5.2,3,5.3,4.5,4.8,3.7,5.6,4.3,3.9,4.8,3.6,3.5,4.8,3.7,4.5,4.3,4.5,4,3.7,4.1,4.4,5.1,3.1,5.4,4.5,4.7,5.8,4.2,4,3.4,4.7,4.6,4.2,3.2,4.2,4.2,4.9,4.6,5.3,3.7,6.5,5.1,5.4,4.8,4.9,3.7,4.3,5.3,5.4,3.9,5.2,4.6],[55.5,57,56,56,55,51.5,56,57,58.5,52,54,59,56,53,57,58,58,54.5,57,53.5,55,54.5,53.5,59,56,56.5,58,52,55.5,58.5,53.5,54.5,51.5,56,52,55,53.5,59,54,50,56,54.5,54,52.5,52,55.5,58,52,57,51.5,52,57,56,56,57.5,54.5,53,62,56,58,58,51,56,56,58,56,51,55,52,55,56,57,53,51,56,59,52.5,51,52.5,55,52,57,56,56.5,53,54,56.5,55,59.5,52,54,51,50,57,54,57,54.5,57,54,53,56,52,53,55,56,53,54,56,56,53.5,54,51,56,48,51,51,52,58,52,51,52,55,55,55,54.5,59,56.5,51.5,55,58,60.5,53.7999992370605,52,58,53,53,54,56,57.5,57,55.7999992370605,58,56,56,56,57,54,54,57,54,57.5,54,56,59,56,59,56,52.5,51,53,53,53,53,58,57,54,53,55,59,56.5,52,55.5,55,52,53,58.5,52,59,54,57,54,55,56,57,55.5,55,54,57,54,54.5,53,53,54,58,52,57.5,56,55,60,53,56,56,55,52,56,56,59,56,57,56,49,55.5,53,53,59.5,56,54,52,53,54.5,58,52,54,50.5,57,52,57,56,52,53,59,50.5,51,60.5,56,54,60,54,52,59,50,56,53,54,54,53,58,54,49.5,53,52.5,50.5,59,54,61,54,52,54,55.5,56,55,54,53,55,57.5,60.5,56,55,53,51.5,62,61,51,57,56,57,53,57,53.5,58,53,51,61,53.5,58,53.5,57,58,56.5,55,57.5,56,54,53.5,58.5,52.5,57,53,55.5,57.5,53.5,54,51.5,57.5,52,54.5,54.5,52,55,57.5,53.5,50.5,50,55.5,55,58,55,52.5,56.5,56.5,53,52,53,58,53.5,53,53.5,53,53,56,51,54,54,54,55,51.5,53.5,53.5,57,52.5,53,49.5,57,51,52.5,53,54,53,56,60.5,56.5,52,53.5,54.5,55,56.5,53.5,53.5,51.5,54,56,53,56,54,54,55.5,53,54,54,51.5,54,51.5,55,59,55,55,55.5,55,56.5,55.5,55,55.5,53.5,55.5,53.5,53.5,60.5,56.5,55,56,53.5,56.5,55.5,58,54,54,55.5,56,55,56.5,56.5,58,50.5,50.5,53.5,52.5,58.5,59,57,55,57,52,54.5,55.5,60,54,53,54.5,55,56.5,57,53,56.5,58,55.5,54,57,54.5,54.5,54,60,54.5,56.5,56.5,55,56,57,52,56.5,53.5,53,54.5,51,57.5,54,51,55.5,54.5,54.5,55,53,57.5,55.5,53,55,54.5,54,56,52.5,56,54.5,58.5,51.5,53.5,56,58,55,54,58,55.5,53,54,55,54,52.5,53,56,54.5,53.5,52.5,55,51,52,54.5,51,53,54,56,55.5,52,54.5,53,54,58.5,53,56.5,53.5,52,56,51,57.5,54.5,57,52,57,55,55,57,53,50.5,55.5,52.5,51.5,55,54.5,55,50,58.5,55.5,57,51,54,55,52.5,55,54.5,52.5,51,55.5,54.5,56.5,54,54.5,56,58,57.5,58,53.5,62,55.9000015258789,58,57.5,54.5,54,55,57,60,52,57.5,53.5],[37.5,38.5,38.5,39,39.5,34.5,38,39.7,39,38,37.5,39.5,38.5,38,38,40,38.5,38.5,38,38,37.5,40.5,38,39.2,38,37.5,38.4,38,38.5,37.5,37.4,38.7,38,41.2,36,38.5,37,38.5,37,36,40.5,37.5,39,36,38,39.5,37.5,38.3,37.8,37,38,39,38,38,39,38,37.5,40.3,40.5,40.3,39,37.5,38.5,38.4,40.5,39.5,37.9,38,39,38,38,39.5,38,36.5,38.5,41,37.5,35.5,36,37,37.5,37.5,38.5,40,37.5,39.5,40,39,38,35.5,37.5,36,38,37,38,39,37,37,37,37.5,39,37,36,40,39,38,37.5,39,38,37,38,38,36.5,35,37,38,36,39,37,34.5,36,36,37.5,38.5,38.5,38,39.5,36,38,40.5,40.5,36.5,37.5,39,36.5,37.5,38,40,37.5,38,36.5,40,37.4,37.2,36.1,36.5,38,37.2,38,37,40.5,37.5,37,35,38.2,40,37.5,37,35,35.5,39,37,37.5,37,39,37,39,37,40.5,38,37,38,37.5,38.5,38,41,36.5,37,36.5,39.5,38,38,39,38,39,37.5,36.5,37,38.5,38,38,39.5,36.5,38.5,36.5,39.5,37,38.5,39,37,38,37,38,36.5,38.5,39,38.5,40,37.5,37,34,37.5,36,36.5,39,38.5,37.5,34.5,36,37.5,39.5,37.5,38.5,34.5,38,35.5,39,39.5,37,38,39,36,34.5,40,39,36,40.5,36,39,37.5,35.5,39,38,39.5,38,36.5,38,37,38,36.5,36.5,36,39.5,37,39.5,37,36.5,37.5,40,38,38.5,37.5,34.5,38.5,39,39,37,37.5,37.5,37,38.5,38.2,35.5,38.5,35.5,39.5,38,37.2,37.5,39,37.5,35,39.5,36.5,40,39,38,39,39.5,35,39,38.5,39.5,36,40,37,37.5,37,39,39,35.5,37,39,39.2,37.5,38,38,37,38.5,38,37,38,37,40,37,39.8,37,36,38,39,38,37.5,37,39,39,38,37,39,37.4,38,36,40,36.5,37,40.5,35.5,37.2,38,38,38.7,36,35.5,38,37.5,37.5,36,40,38.5,40.5,40.5,38.5,38.4,37.5,39,35,39,37.3,36.5,36,37.5,39.5,39.5,39,38,36.5,37.5,38,36,37.5,36.5,36.6,37,38,40.5,37,40,38,39.5,36.5,37.5,37,36.5,38.5,37,40,37.5,40.5,39.5,39,38.5,38,37.5,40,39.5,38,38,37,39,38,39,38,37,34.5,37,36.8,37.5,38.6,39.5,39.5,38.5,38,37.5,38,38,39,36,34.5,37,40,39,39,37.9,39,40.5,39,38.5,39.5,37.5,36.5,38.5,39,36.5,39,40,38,39,40,36,39.5,38,37.5,38.5,35.7,38,38,37,39,37.5,39,39,36.5,40.5,36.5,36.5,38.7,37.5,38,38,38,40,37.5,41,38,37,39,40,36.5,37,39.5,39,38,36.5,37,38,37.5,36,37.5,37.5,40,37.5,38.5,38.5,36.5,36,38.5,36.5,36.5,40,36.5,38,39,38,37,40.5,37,37.5,38,37,39,37,38,37.5,39,36.5,39.5,37,37,38,37,36,37.5,35,35.5,37,38,34.5,36,40.5,37.5,40,36,37.5,38,37.5,38.5,37,37,35.5,38.5,38.5,38.5,36.5,36.5,38,40,39,40,35,39,39,39,37.5,37.5,36,37.5,39.5,40,36,40,37.5],["Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Male","Male","Male","Female","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Female","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Female","Male","Female","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Female","Male","Male","Male","Male","Male","Male","Female","Male","Male","Male","Male","Female"],["tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year10","tertiary","year10","year10","year10","year10","year12","year10","tertiary","year12","year10","tertiary","tertiary","year12","year10","year10","year12","tertiary","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year12","year10","year10","tertiary","tertiary","tertiary","year10","year10","year10","year10","year10","year10","year12","year10","tertiary","year10","year10","year12","year12","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","year12","year10","year10","year12","tertiary","year10","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year12","year10","year10","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","year10","year10","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","year12","year10","year10","tertiary","year10","tertiary","year12","year12","year10","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","year10","tertiary","year10","year10","tertiary","year10","tertiary","year10","tertiary","year12","year10","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year12","tertiary","year10","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","year10","year12","year12","year10","year10","tertiary","year12","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","year10","year12","year10","tertiary","tertiary","tertiary","year10","year10","year12","tertiary","year10","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","tertiary","year12","year10","year10","year10","tertiary","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","year12","tertiary","year10","year10","year12","year10","year12","year12","year12","tertiary","tertiary","year10","year10","year10","year10","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year12","year10","tertiary","year10","year10","year10","tertiary","year10","year10","tertiary","year12","year12","tertiary","tertiary","year10","year12","year12","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year12","year12","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","year10","year10","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","year10","year12","tertiary","year12","year10","tertiary","year10","year10","tertiary","tertiary","year12","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year10","year10","year10","tertiary","year12","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year10","tertiary","year12","year10","tertiary","tertiary","year12","tertiary","year10","year10","tertiary","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year10","year10","year12","year12","year12","tertiary","year12","year12","tertiary","year10","tertiary","year10","year10","year10","tertiary","year10","tertiary","tertiary","year10","year12","year10","year12","year12","year10","year10","tertiary","tertiary","year10","year12","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","tertiary","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","year12","year10","tertiary","year12","year10","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","tertiary","year10","year10","year10","year10","tertiary","tertiary","tertiary","year12","year12","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","tertiary","year10","tertiary","year10","year12","year10","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year12","year10","year10","year12","year12","year10","tertiary","year12","tertiary","year10","tertiary","tertiary","year10","year10","tertiary"],["2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","2 or more siblings","One sibling","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","2 or more siblings","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","Singleton","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","2 or more siblings"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>weight<\/th>\n      <th>height<\/th>\n      <th>headc<\/th>\n      <th>gender<\/th>\n      <th>education<\/th>\n      <th>parity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;26.1: Table with data from “BirthWeight” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f5fa6b2be8dddedabaab" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f5fa6b2be8dddedabaab">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550"],[3950,4630,4750,3920,4560,3640,3550,4530,4970,3740,4190,4350,4620,4090,4420,5620,5250,4320,4410,4180,4290,4670,3970,4570,4530,4180,4780,3720,4530,4460,4110,4000,3420,4950,3300,4520,4070,4540,4050,3340,4770,4210,4260,3880,4360,4650,5400,3900,4240,3740,3700,4340,4610,4600,4890,3690,4470,5140,4770,4500,5340,3530,5020,5020,5450,5810,3660,3340,4200,4600,4840,3960,4260,3510,4620,5690,4520,3110,3790,4010,3540,4480,4920,4930,3900,4090,4590,4390,4990,4180,4120,3790,3990,4620,3480,4900,4260,4880,4060,4270,4680,4030,4100,4860,4700,3770,4010,4470,4780,4220,4730,4390,4600,4150,3740,3950,3880,5110,3050,3450,4520,3820,4400,3790,5020,5200,4740,3770,4270,4410,5550,4080,3590,5030,3850,4010,4910,5130,4980,4320,4270,5540,4350,4530,4920,3800,3890,3960,3850,3900,5180,4010,4450,5240,4320,5590,4290,3710,3360,3540,4520,3690,4510,3940,5000,3750,3980,4220,5500,4800,3890,4340,4320,3980,4560,5000,3620,4330,4670,5240,4590,4060,4610,4810,4740,4360,4070,4460,4460,4230,3960,4360,3840,4780,3720,5430,4490,4700,5310,4190,5180,4340,4070,4110,3500,4750,6330,5920,5410,4060,2920,4730,3730,3010,4180,4860,3700,3200,4000,4350,5450,3660,4560,4120,5080,3720,5050,4950,4390,4680,4320,3370,3550,5750,4890,4280,4860,3900,3950,4910,3130,5200,5230,4510,4340,3600,4980,4550,4270,4180,3680,3080,4900,4100,5410,5220,4450,4020,5480,4830,4300,4350,3760,4380,5180,5260,4630,4080,4230,3540,5820,5120,4030,5040,4080,5130,3960,5030,4060,4060,4040,3310,5430,3560,5270,4540,4050,5280,5330,3610,4640,4440,5280,4130,5260,3970,4700,3730,4410,4980,3690,4590,4490,4970,3990,4090,4200,3460,3180,4610,3670,4100,3280,4320,4700,4570,3580,4100,4600,4790,3780,4320,4330,4750,5190,4250,4050,4180,4040,4650,2980,4800,4300,4110,4760,3380,4050,4490,4700,4250,3720,3170,5060,3900,4130,3420,4010,4210,4630,5140,4870,4400,3990,4000,4800,4780,4440,3510,3370,3790,5020,3930,4580,3800,3930,4440,3810,3850,4500,3670,3840,3200,3370,5100,4890,4870,4610,4220,3670,4000,3900,3720,4680,3850,5300,4440,5320,4330,4750,4460,4140,4180,4150,5390,4140,4070,4770,4200,3850,4530,4410,4690,3510,3410,3680,3870,4830,5560,4470,3990,4700,3590,4060,4130,5170,3940,3330,4700,5120,4760,4810,4500,4790,5310,4200,3990,4900,3680,4270,3870,4740,3340,5290,4790,4630,5050,5100,4120,4700,3880,4040,4770,3310,4870,4550,3880,4610,4270,4790,4520,4230,5600,4010,3480,4650,4940,4220,4800,3790,4520,3910,3800,3680,4800,4750,4800,5050,3990,5160,4660,4620,3870,4520,4180,3860,4500,5080,4090,4110,4140,4130,3410,3810,4420,4070,3360,4030,4870,4750,4130,4920,4180,4730,5750,3790,4310,3680,4170,5210,3010,5250,4500,4840,3730,5550,4270,3950,4800,3590,3500,4760,3720,4500,4330,4510,4020,3700,4120,4440,5140,3090,5400,4520,4680,5760,4180,4020,3410,4670,4600,4230,3240,4210,4170,4950,4610,5330,3710,6490,5090,5430,4750,4900,3740,4320,5350,5390,3880,5230,4570],[55.5,57,56,56,55,51.5,56,57,58.5,52,54,59,56,53,57,58,58,54.5,57,53.5,55,54.5,53.5,59,56,56.5,58,52,55.5,58.5,53.5,54.5,51.5,56,52,55,53.5,59,54,50,56,54.5,54,52.5,52,55.5,58,52,57,51.5,52,57,56,56,57.5,54.5,53,62,56,58,58,51,56,56,58,56,51,55,52,55,56,57,53,51,56,59,52.5,51,52.5,55,52,57,56,56.5,53,54,56.5,55,59.5,52,54,51,50,57,54,57,54.5,57,54,53,56,52,53,55,56,53,54,56,56,53.5,54,51,56,48,51,51,52,58,52,51,52,55,55,55,54.5,59,56.5,51.5,55,58,60.5,53.7999992370605,52,58,53,53,54,56,57.5,57,55.7999992370605,58,56,56,56,57,54,54,57,54,57.5,54,56,59,56,59,56,52.5,51,53,53,53,53,58,57,54,53,55,59,56.5,52,55.5,55,52,53,58.5,52,59,54,57,54,55,56,57,55.5,55,54,57,54,54.5,53,53,54,58,52,57.5,56,55,60,53,56,56,55,52,56,56,59,56,57,56,49,55.5,53,53,59.5,56,54,52,53,54.5,58,52,54,50.5,57,52,57,56,52,53,59,50.5,51,60.5,56,54,60,54,52,59,50,56,53,54,54,53,58,54,49.5,53,52.5,50.5,59,54,61,54,52,54,55.5,56,55,54,53,55,57.5,60.5,56,55,53,51.5,62,61,51,57,56,57,53,57,53.5,58,53,51,61,53.5,58,53.5,57,58,56.5,55,57.5,56,54,53.5,58.5,52.5,57,53,55.5,57.5,53.5,54,51.5,57.5,52,54.5,54.5,52,55,57.5,53.5,50.5,50,55.5,55,58,55,52.5,56.5,56.5,53,52,53,58,53.5,53,53.5,53,53,56,51,54,54,54,55,51.5,53.5,53.5,57,52.5,53,49.5,57,51,52.5,53,54,53,56,60.5,56.5,52,53.5,54.5,55,56.5,53.5,53.5,51.5,54,56,53,56,54,54,55.5,53,54,54,51.5,54,51.5,55,59,55,55,55.5,55,56.5,55.5,55,55.5,53.5,55.5,53.5,53.5,60.5,56.5,55,56,53.5,56.5,55.5,58,54,54,55.5,56,55,56.5,56.5,58,50.5,50.5,53.5,52.5,58.5,59,57,55,57,52,54.5,55.5,60,54,53,54.5,55,56.5,57,53,56.5,58,55.5,54,57,54.5,54.5,54,60,54.5,56.5,56.5,55,56,57,52,56.5,53.5,53,54.5,51,57.5,54,51,55.5,54.5,54.5,55,53,57.5,55.5,53,55,54.5,54,56,52.5,56,54.5,58.5,51.5,53.5,56,58,55,54,58,55.5,53,54,55,54,52.5,53,56,54.5,53.5,52.5,55,51,52,54.5,51,53,54,56,55.5,52,54.5,53,54,58.5,53,56.5,53.5,52,56,51,57.5,54.5,57,52,57,55,55,57,53,50.5,55.5,52.5,51.5,55,54.5,55,50,58.5,55.5,57,51,54,55,52.5,55,54.5,52.5,51,55.5,54.5,56.5,54,54.5,56,58,57.5,58,53.5,62,55.9000015258789,58,57.5,54.5,54,55,57,60,52,57.5,53.5],[37.5,38.5,38.5,39,39.5,34.5,38,39.7000007629395,39,38,37.5,39.5,38.5,38,38,40,38.5,38.5,38,38,37.5,40.5,38,39.2000007629395,38,37.5,38.4000015258789,38,38.5,37.5,37.4000015258789,38.7000007629395,38,41.2000007629395,36,38.5,37,38.5,37,36,40.5,37.5,39,36,38,39.5,37.5,38.2999992370605,37.7999992370605,37,38,39,38,38,39,38,37.5,40.2999992370605,40.5,40.2999992370605,39,37.5,38.5,38.4000015258789,40.5,39.5,37.9000015258789,38,39,38,38,39.5,38,36.5,38.5,41,37.5,35.5,36,37,37.5,37.5,38.5,40,37.5,39.5,40,39,38,35.5,37.5,36,38,37,38,39,37,37,37,37.5,39,37,36,40,39,38,37.5,39,38,37,38,38,36.5,35,37,38,36,39,37,34.5,36,36,37.5,38.5,38.5,38,39.5,36,38,40.5,40.5,36.5,37.5,39,36.5,37.5,38,40,37.5,38,36.5,40,37.4000015258789,37.2000007629395,36.0999984741211,36.5,38,37.2000007629395,38,37,40.5,37.5,37,35,38.2000007629395,40,37.5,37,35,35.5,39,37,37.5,37,39,37,39,37,40.5,38,37,38,37.5,38.5,38,41,36.5,37,36.5,39.5,38,38,39,38,39,37.5,36.5,37,38.5,38,38,39.5,36.5,38.5,36.5,39.5,37,38.5,39,37,38,37,38,36.5,38.5,39,38.5,40,37.5,37,34,37.5,36,36.5,39,38.5,37.5,34.5,36,37.5,39.5,37.5,38.5,34.5,38,35.5,39,39.5,37,38,39,36,34.5,40,39,36,40.5,36,39,37.5,35.5,39,38,39.5,38,36.5,38,37,38,36.5,36.5,36,39.5,37,39.5,37,36.5,37.5,40,38,38.5,37.5,34.5,38.5,39,39,37,37.5,37.5,37,38.5,38.2000007629395,35.5,38.5,35.5,39.5,38,37.2000007629395,37.5,39,37.5,35,39.5,36.5,40,39,38,39,39.5,35,39,38.5,39.5,36,40,37,37.5,37,39,39,35.5,37,39,39.2000007629395,37.5,38,38,37,38.5,38,37,38,37,40,37,39.7999992370605,37,36,38,39,38,37.5,37,39,39,38,37,39,37.4000015258789,38,36,40,36.5,37,40.5,35.5,37.2000007629395,38,38,38.7000007629395,36,35.5,38,37.5,37.5,36,40,38.5,40.5,40.5,38.5,38.4000015258789,37.5,39,35,39,37.2999992370605,36.5,36,37.5,39.5,39.5,39,38,36.5,37.5,38,36,37.5,36.5,36.5999984741211,37,38,40.5,37,40,38,39.5,36.5,37.5,37,36.5,38.5,37,40,37.5,40.5,39.5,39,38.5,38,37.5,40,39.5,38,38,37,39,38,39,38,37,34.5,37,36.7999992370605,37.5,38.5999984741211,39.5,39.5,38.5,38,37.5,38,38,39,36,34.5,37,40,39,39,37.9000015258789,39,40.5,39,38.5,39.5,37.5,36.5,38.5,39,36.5,39,40,38,39,40,36,39.5,38,37.5,38.5,35.7000007629395,38,38,37,39,37.5,39,39,36.5,40.5,36.5,36.5,38.7000007629395,37.5,38,38,38,40,37.5,41,38,37,39,40,36.5,37,39.5,39,38,36.5,37,38,37.5,36,37.5,37.5,40,37.5,38.5,38.5,36.5,36,38.5,36.5,36.5,40,36.5,38,39,38,37,40.5,37,37.5,38,37,39,37,38,37.5,39,36.5,39.5,37,37,38,37,36,37.5,35,35.5,37,38,34.5,36,40.5,37.5,40,36,37.5,38,37.5,38.5,37,37,35.5,38.5,38.5,38.5,36.5,36.5,38,40,39,40,35,39,39,39,37.5,37.5,36,37.5,39.5,40,36,40,37.5],["Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Male","Male","Male","Female","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Female","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Female","Male","Female","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Female","Male","Male","Male","Male","Male","Male","Female","Male","Male","Male","Male","Female"],["tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year10","tertiary","year10","year10","year10","year10","year12","year10","tertiary","year12","year10","tertiary","tertiary","year12","year10","year10","year12","tertiary","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year12","year10","year10","tertiary","tertiary","tertiary","year10","year10","year10","year10","year10","year10","year12","year10","tertiary","year10","year10","year12","year12","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","year12","year10","year10","year12","tertiary","year10","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year12","year10","year10","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","year10","year10","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","year12","year10","year10","tertiary","year10","tertiary","year12","year12","year10","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","year10","tertiary","year10","year10","tertiary","year10","tertiary","year10","tertiary","year12","year10","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year12","tertiary","year10","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","year10","year12","year12","year10","year10","tertiary","year12","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","year10","year12","year10","tertiary","tertiary","tertiary","year10","year10","year12","tertiary","year10","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","tertiary","year12","year10","year10","year10","tertiary","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","year12","tertiary","year10","year10","year12","year10","year12","year12","year12","tertiary","tertiary","year10","year10","year10","year10","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year12","year10","tertiary","year10","year10","year10","tertiary","year10","year10","tertiary","year12","year12","tertiary","tertiary","year10","year12","year12","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year12","year12","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","year10","year10","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","year10","year12","tertiary","year12","year10","tertiary","year10","year10","tertiary","tertiary","year12","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year10","year10","year10","tertiary","year12","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year10","tertiary","year12","year10","tertiary","tertiary","year12","tertiary","year10","year10","tertiary","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year10","year10","year12","year12","year12","tertiary","year12","year12","tertiary","year10","tertiary","year10","year10","year10","tertiary","year10","tertiary","tertiary","year10","year12","year10","year12","year12","year10","year10","tertiary","tertiary","year10","year12","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","tertiary","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","year12","year10","tertiary","year12","year10","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","tertiary","year10","year10","year10","year10","tertiary","tertiary","tertiary","year12","year12","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","tertiary","year10","tertiary","year10","year12","year10","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year12","year10","year10","year12","year12","year10","tertiary","year12","tertiary","year10","tertiary","tertiary","year10","year10","tertiary"],["2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","2 or more siblings","One sibling","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","2 or more siblings","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","Singleton","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","2 or more siblings"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight<\/th>\n      <th>height<\/th>\n      <th>headc<\/th>\n      <th>gender<\/th>\n      <th>education<\/th>\n      <th>parity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;26.1: Table with data from “BirthWeight” file.</figcaption></figure>
 </div>
 </div>
 <p>We inspect the data and the type of variables:</p>
@@ -486,9 +512,8 @@ Null hypothesis and alternative hypothesis
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>Rows: 550
-Columns: 7
-$ id        &lt;chr&gt; "L001", "L003", "L004", "L005", "L006", "L007", "L008", "L00…
-$ weight    &lt;dbl&gt; 4.0, 4.6, 4.8, 3.9, 4.6, 3.6, 3.6, 4.5, 5.0, 3.7, 4.2, 4.4, …
+Columns: 6
+$ weight    &lt;dbl&gt; 3950, 4630, 4750, 3920, 4560, 3640, 3550, 4530, 4970, 3740, …
 $ height    &lt;dbl&gt; 55.5, 57.0, 56.0, 56.0, 55.0, 51.5, 56.0, 57.0, 58.5, 52.0, …
 $ headc     &lt;dbl&gt; 37.5, 38.5, 38.5, 39.0, 39.5, 34.5, 38.0, 39.7, 39.0, 38.0, …
 $ gender    &lt;chr&gt; "Female", "Female", "Male", "Male", "Male", "Female", "Femal…
@@ -496,7 +521,7 @@ $ education &lt;chr&gt; "tertiary", "tertiary", "year12", "tertiary", "year10", 
 $ parity    &lt;chr&gt; "2 or more siblings", "Singleton", "2 or more siblings", "On…</code></pre>
 </div>
 </div>
-<p>The data set <em>BirthWeight</em> has 550 infants of 1 month age (rows) and includes seven variables (columns). Both the <code>weight</code> and <code>height</code> are numeric (<code>&lt;dbl&gt;</code>) variables.</p>
+<p>The data set <em>BirthWeight</em> has 550 infants of 1 month age (rows) and includes six variables (columns). Both the <code>weight</code> and <code>height</code> are numeric (<code>&lt;dbl&gt;</code>) variables.</p>
 </section><section id="plot-the-data" class="level2" data-number="26.4"><h2 data-number="26.4" class="anchored" data-anchor-id="plot-the-data">
 <span class="header-section-number">26.4</span> Plot the data</h2>
 <p>A first step that is usually useful in studying the association between two numeric variables is to prepare a scatter plot of the data. The pattern made by the points plotted on the scatter plot usually suggests the basic nature and strength of the association between two variables.</p>
@@ -519,6 +544,107 @@ $ parity    &lt;chr&gt; "2 or more siblings", "Singleton", "2 or more siblings",
 <p>Additionally, the marginal histograms show that the data are approximately normally distributed (we have a large sample so the graphs are reliable) for both weight and height.</p>
 </section><section id="correlation-between-two-numeric-variables" class="level2" data-number="26.5"><h2 data-number="26.5" class="anchored" data-anchor-id="correlation-between-two-numeric-variables">
 <span class="header-section-number">26.5</span> Correlation between two numeric variables</h2>
+<section id="pearsons-correlation-coefficient" class="level3"><h3 class="anchored" data-anchor-id="pearsons-correlation-coefficient">Pearson’s correlation coefficient</h3>
+<p>Given a set of <span class="math inline">\({n}\)</span> pairs of observations <span class="math inline">\((x_{1},y_{1}),\ldots ,(x_{n},y_{n})\)</span> with means <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> respectively, <span class="math inline">\(r\)</span> is defined as:</p>
+<p><span id="eq-r1"><span class="math display">\[r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n(y_i - \bar{y})^2}} \tag{26.1}\]</span></span></p>
+<p>We observe that the above formula is based on calculating the sum of the product <span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>. In our example, that is the the sum of the product <span class="math inline">\((height_{i} - \overline{height}) \cdot (weight_{i} - \overline{weight})\)</span>.</p>
+<p>&nbsp;</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-correlation01" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="correlation_files/figure-html/fig-correlation01-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure&nbsp;26.3: Scatter plot with two pink axes intersecting at the mean point of the variables. The vertical distances of the data points from these axes express the deviations from the mean.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>Our approach begins by examining the signs of these products.</p>
+<p><strong>Positive product:</strong> In the <strong>top-right</strong> pane of the <a href="#fig-correlation01" class="quarto-xref">Figure&nbsp;<span>26.3</span></a>, the deviations from the mean for both variables, height and weight, are positive. Consequently, their products will also be positive. In the <strong>bottom-left</strong> pane, the deviations from the mean for both variables are negative. Once again, their product will be positive.</p>
+<p><strong>Negative product:</strong> In the <strong>top-left</strong> pane of the <a href="#fig-correlation01" class="quarto-xref">Figure&nbsp;<span>26.3</span></a>, the deviation of height from its mean is negative, while the deviation of weight is positive. Therefore, their product will be negative. Similarly, in the <strong>bottom-right</strong> pane, the product will be negative.</p>
+<p>In <a href="#fig-correlation01" class="quarto-xref">Figure&nbsp;<span>26.3</span></a>, we observe that most of the products are positive. We say that there is a <strong>positive correlation</strong> between the two variables; as one increases so does the other.</p>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Characteristics of Pearson’s correlation coefficient <span class="math inline">\(r\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <span class="math inline">\(r\)</span> statistic shows the <strong>direction</strong> and measures the <strong>strength</strong> of the linear association between the variables.</p>
+<p><strong>Range of values</strong></p>
+<p>Correlation coefficient is a <strong>dimensionless</strong> quantity that takes a value in the range <strong>-1</strong> to <strong>+1</strong>.</p>
+<p>&nbsp;</p>
+<p><strong>Direction of the association</strong></p>
+<p>A <strong>negative</strong> correlation coefficient indicates that as one variable increases, the other variable tends to decrease, and vice versa (<a href="#fig-correlation1" class="quarto-xref">Figure&nbsp;<span>26.4</span></a> a). A <strong>zero</strong> value indicates that no association exists between the two variables (<a href="#fig-correlation1" class="quarto-xref">Figure&nbsp;<span>26.4</span></a> b). A <strong>positive</strong> coefficient indicates that both variables increase (or decrease) together (<a href="#fig-correlation1" class="quarto-xref">Figure&nbsp;<span>26.4</span></a> c).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-correlation1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="correlation_files/figure-html/fig-correlation1-1.png" class="img-fluid figure-img" width="1132"></p>
+<figcaption class="figure-caption">Figure&nbsp;26.4: The direction of association can be (a) negative, (b) no association, or (c) positive.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><strong>Magnitude of the association</strong></p>
+<p>The <strong>magnitude</strong> of association range from -1 to +1. The <strong>stronger</strong> the correlation, the more closely the correlation coefficient approaches ±1. A correlation coefficient of <strong>-1</strong> or <strong>+1</strong> indicates a <strong>perfect</strong> negative or positive association, respectively (<a href="#fig-correlation2" class="quarto-xref">Figure&nbsp;<span>26.5</span></a> c and f).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-correlation2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="correlation_files/figure-html/fig-correlation2-1.png" class="img-fluid figure-img" width="1132"></p>
+<figcaption class="figure-caption">Figure&nbsp;26.5: The stronger the correlation, the more closely the correlation coefficient approaches ±1.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><strong>Interpretation of the association</strong></p>
+<p>The table below demonstrates how to interpret the strength of an association.</p>
+<table class="table">
+<caption>Interpretation of the values of the sample estimate of the correlation coefficient.</caption>
+<thead><tr class="header">
+<th>Value of r</th>
+<th>Strength of association</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(|r| \geq{0.8}\)</span></td>
+<td>very strong association</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0.6\leq|r| &lt; 0.8\)</span></td>
+<td>strong association</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0.4\leq|r| &lt; 0.6\)</span></td>
+<td>moderate association</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0.2\leq|r| &lt; 0.4\)</span></td>
+<td>weak association</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(|r| &lt; 0.2\)</span></td>
+<td>very weak association</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>Anscombe’s Quartet</strong></p>
+<p>Anscombe’s quartet consists of four sets of data, each containing eleven (x, y) points. Despite having the same basic statistical characteristics, these datasets exhibit distinct distributions and present remarkable differences in their graphical representations <span class="citation" data-cites="anscombe1973">(<a href="references.html#ref-anscombe1973" role="doc-biblioref">Anscombe 1973</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-anscombe" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="correlation_files/figure-html/fig-anscombe-1.png" class="img-fluid figure-img" width="1132"></p>
+<figcaption class="figure-caption">Figure&nbsp;26.6: Anscombe’s quartet. All datasets have a Pearson’s correlation of r = 0.82.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Even though all datasets have a Pearson’s correlation equal to 0.82, their graphical representations are very different. <a href="#fig-anscombe" class="quarto-xref">Figure&nbsp;<span>26.6</span></a> I depicts a linear association where the application of Pearson’s correlation would be appropriate. <a href="#fig-anscombe" class="quarto-xref">Figure&nbsp;<span>26.6</span></a> II shows a non-linear association and a non-parametric analysis would be appropriate. <a href="#fig-anscombe" class="quarto-xref">Figure&nbsp;<span>26.6</span></a> III demonstrates a nearly perfect linear association (approaching r = 1), but the presence of an outlier has caused a reduction in the correlation coefficient. <a href="#fig-anscombe" class="quarto-xref">Figure&nbsp;<span>26.6</span></a> IV shows no association between the two variables (X, Y), although an outlier has artificially increased the correlation value.</p>
+</div>
+</div>
+<p>&nbsp;</p>
 <p><strong>Correlation coefficients</strong></p>
 <p>Pearson’s coefficient measures <strong>linear</strong> correlation, while the Spearman’s and Kendall’s coefficients compare the <strong>ranks</strong> of data and measures <strong>monotonic</strong> associations. These coefficients are very powerful for detecting linear or monotonic associations, respectively. The new <span class="math inline">\(ξ\)</span> correlation coefficient is more appropriate to measure the strength of non-monotonic associations.</p>
 <p>Note that the correlation between variables X and Y is equal to the correlation between variables Y and X so the order of the variables in the functions does not matter. The four correlations coefficients are:</p>
@@ -554,7 +680,7 @@ Correlation coefficients
 <div class="cell">
 <div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.7127154</code></pre>
+<pre data-code-line-numbers=""><code>[1] 0.7131192</code></pre>
 </div>
 </div>
 </div>
@@ -569,7 +695,7 @@ Correlation coefficients
 <div class="cell">
 <div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.7109399</code></pre>
+<pre data-code-line-numbers=""><code>[1] 0.711021</code></pre>
 </div>
 </div>
 </div>
@@ -584,7 +710,7 @@ Correlation coefficients
 <div class="cell">
 <div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"kendal"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.5511955</code></pre>
+<pre data-code-line-numbers=""><code>[1] 0.5408389</code></pre>
 </div>
 </div>
 </div>
@@ -597,7 +723,7 @@ Correlation coefficients
 <div class="cell">
 <div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/XICOR/man/xicor.html">xicor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.3368051</code></pre>
+<pre data-code-line-numbers=""><code>[1] 0.3511583</code></pre>
 </div>
 </div>
 </div>
@@ -607,7 +733,7 @@ Correlation coefficients
 </div>
 <p><strong>Correlation tests</strong></p>
 <p>A correlation test is used to test whether the correlation (denoted ρ) between two numeric variables is significantly different from 0 or not in the population.</p>
-<div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -640,13 +766,13 @@ Hypothesis Testing for correlation coefficients
     Pearson's product-moment correlation
 
 data:  BirthWeight$height and BirthWeight$weight
-t = 23.785, df = 548, p-value &lt; 2.2e-16
+t = 23.813, df = 548, p-value &lt; 2.2e-16
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6689714 0.7515394
+ 0.6694248 0.7518965
 sample estimates:
       cor 
-0.7127154 </code></pre>
+0.7131192 </code></pre>
 </div>
 </div>
 </div>
@@ -669,11 +795,11 @@ sample estimates:
     Spearman's rank correlation rho
 
 data:  BirthWeight$height and BirthWeight$weight
-S = 8015368, p-value &lt; 2.2e-16
+S = 8013119, p-value &lt; 2.2e-16
 alternative hypothesis: true rho is not equal to 0
 sample estimates:
-      rho 
-0.7109399 </code></pre>
+     rho 
+0.711021 </code></pre>
 </div>
 </div>
 </div>
@@ -692,11 +818,11 @@ sample estimates:
     Kendall's rank correlation tau
 
 data:  BirthWeight$height and BirthWeight$weight
-z = 18.34, p-value &lt; 2.2e-16
+z = 18.359, p-value &lt; 2.2e-16
 alternative hypothesis: true tau is not equal to 0
 sample estimates:
       tau 
-0.5511955 </code></pre>
+0.5408389 </code></pre>
 </div>
 </div>
 </div>
@@ -712,10 +838,10 @@ sample estimates:
 <div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/XICOR/man/xicor.html">xicor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, pvalue <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>$xi
-[1] 0.340919
+[1] 0.3220746
 
 $sd
-[1] 0.02701652
+[1] 0.02697177
 
 $pval
 [1] 0</code></pre>
@@ -728,7 +854,12 @@ $pval
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-anscombe1973" class="csl-entry" role="listitem">
+Anscombe, F. J. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>The American Statistician</em> 27 (1): 17. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.
+</div>
+</div>
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -846,6 +977,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
   const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
     if (id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -858,6 +999,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return note.innerHTML;
       }
     } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
       return note.innerHTML;
     }
   }
@@ -867,33 +1013,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       instance.disable();
       let url = xref.getAttribute('href');
       let hash = undefined; 
-      try { hash = new URL(url).hash; } catch {}
-      const id = hash.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note !== null) {
-        try {
-          const html = processXRef(id, note);
-          instance.setContent(html);
-        } finally {
-          instance.enable();
-          instance.show();
-        }
+      if (url.startsWith('#')) {
+        hash = url;
       } else {
-        // See if we can fetch this
-        fetch(url.split('#')[0])
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.getElementById(id);
-          if (note !== null) {
-            const html = processXRef(id, note);
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
             instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
       }
     }, function(instance) {
     });
@@ -965,32 +1117,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-      // Handle positioning of the toggle
-      window.addEventListener(
+        // Handle positioning of the toggle
+    window.addEventListener(
       "resize",
       throttle(() => {
+        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
         }
       }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
               fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
       for (let i=0; i<annoteTargets.length; i++) {
         const annoteTarget = annoteTargets[i];
@@ -1093,7 +1246,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

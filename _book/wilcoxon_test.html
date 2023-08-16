@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.176">
+<meta name="generator" content="quarto-1.4.322">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Practical Statistics in Medicine with R - 21&nbsp; Wilcoxon Signed-Rank test</title>
 <style>
@@ -414,6 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header><p>Wilcoxon Signed-Rank test (Wilcoxon test) is a non-parametric test that can be conducted to compare paired samples when the differences are not normally distributed. It is based on the signs of the differences and the magnitude of the rank of the differences between pairs of measurements, rather than the actual values. The null hypothesis is that there is no tendency for values under each paired variable to be higher or lower. It is often thought of as a test for small samples. However, if the sample is smaller than 6, then statistical significance is impossible.</p>
 <p>When we have finished this Chapter, we should be able to:</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
@@ -477,8 +478,8 @@ Null hypothesis and alternative hypothesis
 </div>
 <div class="cell">
 <div id="fig-weight" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6b47f9d68259cd99659c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6b47f9d68259cd99659c">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8"],[488,478,480,426,440,410,458,460],[484,478,492,444,436,398,464,476],[4,0,-12,-18,4,12,-6,-16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>affected_eye<\/th>\n      <th>unaffected_eye<\/th>\n      <th>dif_thickness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;21.1: Table with data from “eyes” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8cbde59665e8db918164" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8cbde59665e8db918164">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8"],[488,478,480,426,440,410,458,460],[484,478,492,444,436,398,464,476],[4,0,-12,-18,4,12,-6,-16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>affected_eye<\/th>\n      <th>unaffected_eye<\/th>\n      <th>dif_thickness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;21.1: Table with data from “eyes” file.</figcaption></figure>
 </div>
 </div>
 <p>We inspect the data:</p>
@@ -702,23 +703,23 @@ sample estimates:
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_p.html">add_p</a></span><span class="op">(</span>test <span class="op">=</span> <span class="va">thickness</span> <span class="op">~</span> <span class="st">"paired.wilcox.test"</span>, group <span class="op">=</span> <span class="va">id</span>,</span>
 <span>                 estimate_fun <span class="op">=</span> <span class="va">thickness</span> <span class="op">~</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/style_sigfig.html">style_sigfig</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="lhzwcznzfj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lhzwcznzfj table {
+<div id="mfwfirbeyz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mfwfirbeyz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lhzwcznzfj thead, #lhzwcznzfj tbody, #lhzwcznzfj tfoot, #lhzwcznzfj tr, #lhzwcznzfj td, #lhzwcznzfj th {
+#mfwfirbeyz thead, #mfwfirbeyz tbody, #mfwfirbeyz tfoot, #mfwfirbeyz tr, #mfwfirbeyz td, #mfwfirbeyz th {
   border-style: none;
 }
 
-#lhzwcznzfj p {
+#mfwfirbeyz p {
   margin: 0;
   padding: 0;
 }
 
-#lhzwcznzfj .gt_table {
+#mfwfirbeyz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -744,12 +745,12 @@ sample estimates:
   border-left-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_caption {
+#mfwfirbeyz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lhzwcznzfj .gt_title {
+#mfwfirbeyz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -761,7 +762,7 @@ sample estimates:
   border-bottom-width: 0;
 }
 
-#lhzwcznzfj .gt_subtitle {
+#mfwfirbeyz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -773,7 +774,7 @@ sample estimates:
   border-top-width: 0;
 }
 
-#lhzwcznzfj .gt_heading {
+#mfwfirbeyz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -785,13 +786,13 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_bottom_border {
+#mfwfirbeyz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_col_headings {
+#mfwfirbeyz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -806,7 +807,7 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_col_heading {
+#mfwfirbeyz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -826,7 +827,7 @@ sample estimates:
   overflow-x: hidden;
 }
 
-#lhzwcznzfj .gt_column_spanner_outer {
+#mfwfirbeyz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -838,15 +839,15 @@ sample estimates:
   padding-right: 4px;
 }
 
-#lhzwcznzfj .gt_column_spanner_outer:first-child {
+#mfwfirbeyz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lhzwcznzfj .gt_column_spanner_outer:last-child {
+#mfwfirbeyz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lhzwcznzfj .gt_column_spanner {
+#mfwfirbeyz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -858,11 +859,11 @@ sample estimates:
   width: 100%;
 }
 
-#lhzwcznzfj .gt_spanner_row {
+#mfwfirbeyz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lhzwcznzfj .gt_group_heading {
+#mfwfirbeyz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -888,7 +889,7 @@ sample estimates:
   text-align: left;
 }
 
-#lhzwcznzfj .gt_empty_group_heading {
+#mfwfirbeyz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -903,15 +904,15 @@ sample estimates:
   vertical-align: middle;
 }
 
-#lhzwcznzfj .gt_from_md > :first-child {
+#mfwfirbeyz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lhzwcznzfj .gt_from_md > :last-child {
+#mfwfirbeyz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lhzwcznzfj .gt_row {
+#mfwfirbeyz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -930,7 +931,7 @@ sample estimates:
   overflow-x: hidden;
 }
 
-#lhzwcznzfj .gt_stub {
+#mfwfirbeyz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -943,7 +944,7 @@ sample estimates:
   padding-right: 5px;
 }
 
-#lhzwcznzfj .gt_stub_row_group {
+#mfwfirbeyz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -957,15 +958,15 @@ sample estimates:
   vertical-align: top;
 }
 
-#lhzwcznzfj .gt_row_group_first td {
+#mfwfirbeyz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lhzwcznzfj .gt_row_group_first th {
+#mfwfirbeyz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lhzwcznzfj .gt_summary_row {
+#mfwfirbeyz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -975,16 +976,16 @@ sample estimates:
   padding-right: 5px;
 }
 
-#lhzwcznzfj .gt_first_summary_row {
+#mfwfirbeyz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_first_summary_row.thick {
+#mfwfirbeyz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lhzwcznzfj .gt_last_summary_row {
+#mfwfirbeyz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -994,7 +995,7 @@ sample estimates:
   border-bottom-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_grand_summary_row {
+#mfwfirbeyz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1004,7 +1005,7 @@ sample estimates:
   padding-right: 5px;
 }
 
-#lhzwcznzfj .gt_first_grand_summary_row {
+#mfwfirbeyz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1014,7 +1015,7 @@ sample estimates:
   border-top-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_last_grand_summary_row_top {
+#mfwfirbeyz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1024,11 +1025,11 @@ sample estimates:
   border-bottom-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_striped {
+#mfwfirbeyz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lhzwcznzfj .gt_table_body {
+#mfwfirbeyz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1037,7 +1038,7 @@ sample estimates:
   border-bottom-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_footnotes {
+#mfwfirbeyz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1051,7 +1052,7 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_footnote {
+#mfwfirbeyz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1060,7 +1061,7 @@ sample estimates:
   padding-right: 5px;
 }
 
-#lhzwcznzfj .gt_sourcenotes {
+#mfwfirbeyz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1074,7 +1075,7 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#lhzwcznzfj .gt_sourcenote {
+#mfwfirbeyz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1082,63 +1083,63 @@ sample estimates:
   padding-right: 5px;
 }
 
-#lhzwcznzfj .gt_left {
+#mfwfirbeyz .gt_left {
   text-align: left;
 }
 
-#lhzwcznzfj .gt_center {
+#mfwfirbeyz .gt_center {
   text-align: center;
 }
 
-#lhzwcznzfj .gt_right {
+#mfwfirbeyz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lhzwcznzfj .gt_font_normal {
+#mfwfirbeyz .gt_font_normal {
   font-weight: normal;
 }
 
-#lhzwcznzfj .gt_font_bold {
+#mfwfirbeyz .gt_font_bold {
   font-weight: bold;
 }
 
-#lhzwcznzfj .gt_font_italic {
+#mfwfirbeyz .gt_font_italic {
   font-style: italic;
 }
 
-#lhzwcznzfj .gt_super {
+#mfwfirbeyz .gt_super {
   font-size: 65%;
 }
 
-#lhzwcznzfj .gt_footnote_marks {
+#mfwfirbeyz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lhzwcznzfj .gt_asterisk {
+#mfwfirbeyz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lhzwcznzfj .gt_indent_1 {
+#mfwfirbeyz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lhzwcznzfj .gt_indent_2 {
+#mfwfirbeyz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lhzwcznzfj .gt_indent_3 {
+#mfwfirbeyz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lhzwcznzfj .gt_indent_4 {
+#mfwfirbeyz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lhzwcznzfj .gt_indent_5 {
+#mfwfirbeyz .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1296,6 +1297,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
   const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
     if (id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -1308,6 +1319,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return note.innerHTML;
       }
     } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
       return note.innerHTML;
     }
   }
@@ -1317,33 +1333,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       instance.disable();
       let url = xref.getAttribute('href');
       let hash = undefined; 
-      try { hash = new URL(url).hash; } catch {}
-      const id = hash.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note !== null) {
-        try {
-          const html = processXRef(id, note);
-          instance.setContent(html);
-        } finally {
-          instance.enable();
-          instance.show();
-        }
+      if (url.startsWith('#')) {
+        hash = url;
       } else {
-        // See if we can fetch this
-        fetch(url.split('#')[0])
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.getElementById(id);
-          if (note !== null) {
-            const html = processXRef(id, note);
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
             instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
       }
     }, function(instance) {
     });
@@ -1415,32 +1437,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-      // Handle positioning of the toggle
-      window.addEventListener(
+        // Handle positioning of the toggle
+    window.addEventListener(
       "resize",
       throttle(() => {
+        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
         }
       }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
               fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
       for (let i=0; i<annoteTargets.length; i++) {
         const annoteTarget = annoteTargets[i];
@@ -1543,7 +1566,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

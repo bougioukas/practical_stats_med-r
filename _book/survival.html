@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.176">
+<meta name="generator" content="quarto-1.4.322">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Practical Statistics in Medicine with R - 32&nbsp; Survival analysis</title>
 <style>
@@ -426,6 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header><p>In health sciences we often have data which represent the <strong>time until some event occurs</strong>. In a clinical trial setting, the primary outcome may be the time from onset of therapy until a well-defined critical event such as death, cancer recurrence, or first occurrence of a particular adverse event. One of the challenges specific to survival data is that the survival times will be unknown for some patients (censored data) for a variety of reasons:</p>
 <ul>
 <li>lost to follow-up during the study period</li>
@@ -485,8 +486,8 @@ Learning objectives
 </div>
 <div class="cell">
 <div id="fig-depression" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ed967231beb551b871b7" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ed967231beb551b871b7">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42"],[6,6,6,6,7,9,10,10,11,13,16,17,19,20,22,23,25,32,32,34,35,1,1,2,2,3,4,4,5,5,8,8,8,9,11,11,12,12,15,17,22,23],[0,1,1,1,1,0,0,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1],["therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time<\/th>\n      <th>status<\/th>\n      <th>intervention<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;32.1: Table with data from “leukemia” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-89f3973fd4301ea49393" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-89f3973fd4301ea49393">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42"],[6,6,6,6,7,9,10,10,11,13,16,17,19,20,22,23,25,32,32,34,35,1,1,2,2,3,4,4,5,5,8,8,8,9,11,11,12,12,15,17,22,23],[0,1,1,1,1,0,0,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1],["therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time<\/th>\n      <th>status<\/th>\n      <th>intervention<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;32.1: Table with data from “leukemia” file.</figcaption></figure>
 </div>
 </div>
 <p>The dataset has 42 observations (rows) and includes three variables (columns).</p>
@@ -590,23 +591,23 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 <span>            locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="va">n.risk</span>, rows <span class="op">=</span> <span class="va">n.risk</span> <span class="op">==</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-tb1" class="anchored">
-<div id="vgmpohrkck" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vgmpohrkck table {
+<div id="lpeakqgkpc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lpeakqgkpc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vgmpohrkck thead, #vgmpohrkck tbody, #vgmpohrkck tfoot, #vgmpohrkck tr, #vgmpohrkck td, #vgmpohrkck th {
+#lpeakqgkpc thead, #lpeakqgkpc tbody, #lpeakqgkpc tfoot, #lpeakqgkpc tr, #lpeakqgkpc td, #lpeakqgkpc th {
   border-style: none;
 }
 
-#vgmpohrkck p {
+#lpeakqgkpc p {
   margin: 0;
   padding: 0;
 }
 
-#vgmpohrkck .gt_table {
+#lpeakqgkpc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -632,12 +633,12 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-left-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_caption {
+#lpeakqgkpc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vgmpohrkck .gt_title {
+#lpeakqgkpc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -649,7 +650,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-width: 0;
 }
 
-#vgmpohrkck .gt_subtitle {
+#lpeakqgkpc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -661,7 +662,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-top-width: 0;
 }
 
-#vgmpohrkck .gt_heading {
+#lpeakqgkpc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -673,13 +674,13 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_bottom_border {
+#lpeakqgkpc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_col_headings {
+#lpeakqgkpc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -694,7 +695,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_col_heading {
+#lpeakqgkpc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -714,7 +715,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   overflow-x: hidden;
 }
 
-#vgmpohrkck .gt_column_spanner_outer {
+#lpeakqgkpc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -726,15 +727,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 4px;
 }
 
-#vgmpohrkck .gt_column_spanner_outer:first-child {
+#lpeakqgkpc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vgmpohrkck .gt_column_spanner_outer:last-child {
+#lpeakqgkpc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vgmpohrkck .gt_column_spanner {
+#lpeakqgkpc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -746,11 +747,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   width: 100%;
 }
 
-#vgmpohrkck .gt_spanner_row {
+#lpeakqgkpc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vgmpohrkck .gt_group_heading {
+#lpeakqgkpc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -776,7 +777,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   text-align: left;
 }
 
-#vgmpohrkck .gt_empty_group_heading {
+#lpeakqgkpc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -791,15 +792,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   vertical-align: middle;
 }
 
-#vgmpohrkck .gt_from_md > :first-child {
+#lpeakqgkpc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vgmpohrkck .gt_from_md > :last-child {
+#lpeakqgkpc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vgmpohrkck .gt_row {
+#lpeakqgkpc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -818,7 +819,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   overflow-x: hidden;
 }
 
-#vgmpohrkck .gt_stub {
+#lpeakqgkpc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -831,7 +832,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#vgmpohrkck .gt_stub_row_group {
+#lpeakqgkpc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -845,15 +846,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   vertical-align: top;
 }
 
-#vgmpohrkck .gt_row_group_first td {
+#lpeakqgkpc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vgmpohrkck .gt_row_group_first th {
+#lpeakqgkpc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vgmpohrkck .gt_summary_row {
+#lpeakqgkpc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -863,16 +864,16 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#vgmpohrkck .gt_first_summary_row {
+#lpeakqgkpc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_first_summary_row.thick {
+#lpeakqgkpc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vgmpohrkck .gt_last_summary_row {
+#lpeakqgkpc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -882,7 +883,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_grand_summary_row {
+#lpeakqgkpc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -892,7 +893,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#vgmpohrkck .gt_first_grand_summary_row {
+#lpeakqgkpc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -902,7 +903,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-top-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_last_grand_summary_row_top {
+#lpeakqgkpc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -912,11 +913,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_striped {
+#lpeakqgkpc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vgmpohrkck .gt_table_body {
+#lpeakqgkpc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -925,7 +926,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_footnotes {
+#lpeakqgkpc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -939,7 +940,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_footnote {
+#lpeakqgkpc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -948,7 +949,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#vgmpohrkck .gt_sourcenotes {
+#lpeakqgkpc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -962,7 +963,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#vgmpohrkck .gt_sourcenote {
+#lpeakqgkpc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -970,63 +971,63 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#vgmpohrkck .gt_left {
+#lpeakqgkpc .gt_left {
   text-align: left;
 }
 
-#vgmpohrkck .gt_center {
+#lpeakqgkpc .gt_center {
   text-align: center;
 }
 
-#vgmpohrkck .gt_right {
+#lpeakqgkpc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vgmpohrkck .gt_font_normal {
+#lpeakqgkpc .gt_font_normal {
   font-weight: normal;
 }
 
-#vgmpohrkck .gt_font_bold {
+#lpeakqgkpc .gt_font_bold {
   font-weight: bold;
 }
 
-#vgmpohrkck .gt_font_italic {
+#lpeakqgkpc .gt_font_italic {
   font-style: italic;
 }
 
-#vgmpohrkck .gt_super {
+#lpeakqgkpc .gt_super {
   font-size: 65%;
 }
 
-#vgmpohrkck .gt_footnote_marks {
+#lpeakqgkpc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vgmpohrkck .gt_asterisk {
+#lpeakqgkpc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vgmpohrkck .gt_indent_1 {
+#lpeakqgkpc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vgmpohrkck .gt_indent_2 {
+#lpeakqgkpc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vgmpohrkck .gt_indent_3 {
+#lpeakqgkpc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vgmpohrkck .gt_indent_4 {
+#lpeakqgkpc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vgmpohrkck .gt_indent_5 {
+#lpeakqgkpc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1213,23 +1214,23 @@ Important
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-tb2" class="anchored">
-<div id="ehlfpxjlok" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ehlfpxjlok table {
+<div id="bnalcmjupb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bnalcmjupb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ehlfpxjlok thead, #ehlfpxjlok tbody, #ehlfpxjlok tfoot, #ehlfpxjlok tr, #ehlfpxjlok td, #ehlfpxjlok th {
+#bnalcmjupb thead, #bnalcmjupb tbody, #bnalcmjupb tfoot, #bnalcmjupb tr, #bnalcmjupb td, #bnalcmjupb th {
   border-style: none;
 }
 
-#ehlfpxjlok p {
+#bnalcmjupb p {
   margin: 0;
   padding: 0;
 }
 
-#ehlfpxjlok .gt_table {
+#bnalcmjupb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1255,12 +1256,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_caption {
+#bnalcmjupb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ehlfpxjlok .gt_title {
+#bnalcmjupb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1272,7 +1273,7 @@ Important
   border-bottom-width: 0;
 }
 
-#ehlfpxjlok .gt_subtitle {
+#bnalcmjupb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1284,7 +1285,7 @@ Important
   border-top-width: 0;
 }
 
-#ehlfpxjlok .gt_heading {
+#bnalcmjupb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1296,13 +1297,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_bottom_border {
+#bnalcmjupb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_col_headings {
+#bnalcmjupb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1317,7 +1318,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_col_heading {
+#bnalcmjupb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1337,7 +1338,7 @@ Important
   overflow-x: hidden;
 }
 
-#ehlfpxjlok .gt_column_spanner_outer {
+#bnalcmjupb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1349,15 +1350,15 @@ Important
   padding-right: 4px;
 }
 
-#ehlfpxjlok .gt_column_spanner_outer:first-child {
+#bnalcmjupb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ehlfpxjlok .gt_column_spanner_outer:last-child {
+#bnalcmjupb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ehlfpxjlok .gt_column_spanner {
+#bnalcmjupb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1369,11 +1370,11 @@ Important
   width: 100%;
 }
 
-#ehlfpxjlok .gt_spanner_row {
+#bnalcmjupb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ehlfpxjlok .gt_group_heading {
+#bnalcmjupb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1399,7 +1400,7 @@ Important
   text-align: left;
 }
 
-#ehlfpxjlok .gt_empty_group_heading {
+#bnalcmjupb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1414,15 +1415,15 @@ Important
   vertical-align: middle;
 }
 
-#ehlfpxjlok .gt_from_md > :first-child {
+#bnalcmjupb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ehlfpxjlok .gt_from_md > :last-child {
+#bnalcmjupb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ehlfpxjlok .gt_row {
+#bnalcmjupb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1441,7 +1442,7 @@ Important
   overflow-x: hidden;
 }
 
-#ehlfpxjlok .gt_stub {
+#bnalcmjupb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1454,7 +1455,7 @@ Important
   padding-right: 5px;
 }
 
-#ehlfpxjlok .gt_stub_row_group {
+#bnalcmjupb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1468,15 +1469,15 @@ Important
   vertical-align: top;
 }
 
-#ehlfpxjlok .gt_row_group_first td {
+#bnalcmjupb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ehlfpxjlok .gt_row_group_first th {
+#bnalcmjupb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ehlfpxjlok .gt_summary_row {
+#bnalcmjupb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1486,16 +1487,16 @@ Important
   padding-right: 5px;
 }
 
-#ehlfpxjlok .gt_first_summary_row {
+#bnalcmjupb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_first_summary_row.thick {
+#bnalcmjupb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ehlfpxjlok .gt_last_summary_row {
+#bnalcmjupb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1505,7 +1506,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_grand_summary_row {
+#bnalcmjupb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1515,7 +1516,7 @@ Important
   padding-right: 5px;
 }
 
-#ehlfpxjlok .gt_first_grand_summary_row {
+#bnalcmjupb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1525,7 +1526,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_last_grand_summary_row_top {
+#bnalcmjupb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1535,11 +1536,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_striped {
+#bnalcmjupb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ehlfpxjlok .gt_table_body {
+#bnalcmjupb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1548,7 +1549,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_footnotes {
+#bnalcmjupb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1562,7 +1563,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_footnote {
+#bnalcmjupb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1571,7 +1572,7 @@ Important
   padding-right: 5px;
 }
 
-#ehlfpxjlok .gt_sourcenotes {
+#bnalcmjupb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1585,7 +1586,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ehlfpxjlok .gt_sourcenote {
+#bnalcmjupb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1593,63 +1594,63 @@ Important
   padding-right: 5px;
 }
 
-#ehlfpxjlok .gt_left {
+#bnalcmjupb .gt_left {
   text-align: left;
 }
 
-#ehlfpxjlok .gt_center {
+#bnalcmjupb .gt_center {
   text-align: center;
 }
 
-#ehlfpxjlok .gt_right {
+#bnalcmjupb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ehlfpxjlok .gt_font_normal {
+#bnalcmjupb .gt_font_normal {
   font-weight: normal;
 }
 
-#ehlfpxjlok .gt_font_bold {
+#bnalcmjupb .gt_font_bold {
   font-weight: bold;
 }
 
-#ehlfpxjlok .gt_font_italic {
+#bnalcmjupb .gt_font_italic {
   font-style: italic;
 }
 
-#ehlfpxjlok .gt_super {
+#bnalcmjupb .gt_super {
   font-size: 65%;
 }
 
-#ehlfpxjlok .gt_footnote_marks {
+#bnalcmjupb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ehlfpxjlok .gt_asterisk {
+#bnalcmjupb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ehlfpxjlok .gt_indent_1 {
+#bnalcmjupb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ehlfpxjlok .gt_indent_2 {
+#bnalcmjupb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ehlfpxjlok .gt_indent_3 {
+#bnalcmjupb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ehlfpxjlok .gt_indent_4 {
+#bnalcmjupb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ehlfpxjlok .gt_indent_5 {
+#bnalcmjupb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2057,6 +2058,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
   const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
     if (id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -2069,6 +2080,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return note.innerHTML;
       }
     } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
       return note.innerHTML;
     }
   }
@@ -2078,33 +2094,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       instance.disable();
       let url = xref.getAttribute('href');
       let hash = undefined; 
-      try { hash = new URL(url).hash; } catch {}
-      const id = hash.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note !== null) {
-        try {
-          const html = processXRef(id, note);
-          instance.setContent(html);
-        } finally {
-          instance.enable();
-          instance.show();
-        }
+      if (url.startsWith('#')) {
+        hash = url;
       } else {
-        // See if we can fetch this
-        fetch(url.split('#')[0])
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.getElementById(id);
-          if (note !== null) {
-            const html = processXRef(id, note);
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
             instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
       }
     }, function(instance) {
     });
@@ -2176,32 +2198,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-      // Handle positioning of the toggle
-      window.addEventListener(
+        // Handle positioning of the toggle
+    window.addEventListener(
       "resize",
       throttle(() => {
+        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
         }
       }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
               fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
       for (let i=0; i<annoteTargets.length; i++) {
         const annoteTarget = annoteTargets[i];
@@ -2304,7 +2327,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
