@@ -112,7 +112,7 @@ ggMarginal(p, type = "histogram",
 
 ## Linear correlation (Pearson's coefficient $r$)
 
-### The formula $r$
+### The formula
 
 Given a set of ${n}$ pairs of observations $(x_{1},y_{1}),\ldots ,(x_{n},y_{n})$ with means $\bar{x}$ and $\bar{y}$ respectively, $r$ is defined as:
 
@@ -381,7 +381,7 @@ Even though all datasets have a Pearson's correlation equal to 0.82, their graph
 
  
 
-### Hypothesis Testing for Pearson's correlation coefficient
+### Hypothesis Testing
 
 ::: {.callout-note icon="false"}
 ## Null hypothesis and alternative hypothesis
@@ -389,8 +389,6 @@ Even though all datasets have a Pearson's correlation equal to 0.82, their graph
 -   $H_0$: There is no linear association between the two numeric variables (they are independent, $ρ = 0$)
 -   $H_1$: There is linear association between the two numeric variables (they are dependent, $ρ \neq 0$)
 :::
-
- 
 
 ### Assumptions
 
@@ -406,8 +404,6 @@ Before we conduct a statistical test for the Pearson r coefficient, we should ma
 :::
 
 Based on the @fig-correlation0 the points seem to be scattered around an invisible line without any important outlier value. Additionally, the marginal histograms show that the data are approximately normally distributed (we have a large sample so the graphs are reliable) for both weight and height. Therefore, we conclude that the assumptions are satisfied.
-
- 
 
 ### Run the test
 
@@ -450,8 +446,6 @@ The result is significant (p \< 0.001) and we reject the null hypothesis.
 The **significance** of correlation is influenced by **the size of the sample**. With a large sample size, even a weak association may be significant, whereas with a small sample size, even a strong association might or might not be significant.
 :::
 
- 
-
 ### Present the results
 
 **Summary table**
@@ -463,8 +457,6 @@ BirthWeight |>
   fmt_number(columns = starts_with(c("c", "st", "p")), 
              decimals = 3)
 ```
-
- 
 
 **Report the results** [according to @evans1996]
 
@@ -478,33 +470,21 @@ cor.test(BirthWeight$height, BirthWeight$weight) |>
 ::: callout-tip
 ## Final report
 
-We observed a strong, positive linear association between height and weight of one-month-old infants which is significant (r = 0.71, 95% CI \[0.67, 0.75\], n = 550, p \< 0.001).
+We observed a strong, positive linear association between height and weight of one-month-old infants which is significant (Pearson r = 0.71, 95% CI \[0.67, 0.75\], n = 550, p \< 0.001).
 :::
 
  
 
 ## Rank correlation (Spearman's $r_{s}$ and Kendall's $\tau$ coefficients)
 
-The basic idea of Spearman's rank correlation involves obtaining the **rankings** of both variables X and Y. This is achieved by individually arranging their values in ascending order and subsequently calculating the correlation between these two sets of rankings. The strength of association is denoted by the coefficient of rank correlation which is referred to as Spearman's rank correlation coefficient, $r_{s}$.
-
-### The formula $r_{s}$
-
-Suppose a set of ${n}$ pairs of observations $(x_{1},y_{1}),\ldots ,(x_{n},y_{n})$. Let $x_{i}$ and $y_{i}$ be arranged in ascending order, and the ranks of $x_{i}$ and $y_{i}$ in their respective order be denoted by $R_{x_{i}}$ and $R_{y_{i}}$, respectively. Spearman's rank correlation coefficient of the sample is defined as:
-
-$$r_{s} = \frac{\sum_{i=1}^n (R_{x_i} - \bar{R_{x}})(R{y_i} - \bar{R{y}})}{\sqrt{\sum_{i=1}^n (R_{x_i} - \bar{R_x})^2 \sum_{i=1}^n(R_{y_i} - \bar{R_{y}})^2}}$$ {#eq-rk1}
-
-where $\bar{R_{x}}= \frac{1}{n} \cdot \sum_{i=1}^n R_{x_i}$ and $\bar{R_{y}}= \frac{1}{n} \cdot \sum_{i=1}^n R_{y_i}$
-
- 
+**Spearman's correlation** $r_{s}$ and **Kendall's coefficient** $\tau$ are both non-parametric correlation coefficients used to measure the strength and direction of association between two variables. Both coefficients are based on the concept of ranking the data but they employ distinct methods in their calculation and have some different characteristics [@puth2015].
 
 ::: {.callout-tip icon="false"}
-## Characteristics of Spearman's coefficient $r_{s}$
+## Characteristics of Spearman's and Kendall's coefficients
 
-The interpretation of Spearman's rank correlation coefficient $r_{s}$ is similar to the Pearson correlation coefficient $r$, and it also ranges between −1 and 1.
+The range of both coefficients is between −1 and 1 and the interpretation of rank correlation coefficients is similar to the Pearson's correlation coefficient. However, the focus is on assessing the monotonic association between variables, rather than just the linear association.
 
-The $r_{s}$ is a dimensionless quantity. The closer $r_{s}$ is to 0, the weaker is the association; $r_{s}=1$ indicates a perfect association of ranks, $r_{s}=-1$ indicates a perfect negative association of ranks, and $r_{s}=0$ indicates no monotonic association between ranks.
-
-Next, we demonstrate the idea of **monotonicity** (@fig-monotonicity). In a monotonic association, the variables tend to move in the same relative direction, but not necessarily at a constant rate. Note that while all linear associations can be considered monotonic (@fig-monotonicity a), the reverse isn't always true, as monotonic associations can also take on non-linear forms (@fig-monotonicity b).
+In a monotonic association the variables tend to move in the same relative direction, but not necessarily at a constant rate. Note that while all linear associations can be considered monotonic (@fig-monotonicity a), the reverse isn't always true, as monotonic associations can also take on non-linear forms (@fig-monotonicity b).
 
 ```{r}
 #| echo: false
@@ -545,7 +525,7 @@ pmon1 + pmon2 + plot_annotation(tag_levels = 'a')
 
  
 
-### Hypothesis Testing for Spearman's correlation coefficient
+### Hypothesis Testing
 
 ::: {.callout-note icon="false"}
 ## Null hypothesis and alternative hypothesis
@@ -553,8 +533,6 @@ pmon1 + pmon2 + plot_annotation(tag_levels = 'a')
 -   $H_0$: There is no monotonic association between the two numeric variables (they are independent)
 -   $H_1$: There is monotonic association between the two numeric variables (they are dependent)
 :::
-
- 
 
 ### Assumptions
 
@@ -564,8 +542,6 @@ pmon1 + pmon2 + plot_annotation(tag_levels = 'a')
 1.  The variables are observed on a **random sample** of individuals (each individual should have a pair of values).
 2.  There is a **monotonic association** between the two variables.
 :::
-
- 
 
 ### Run the test
 
@@ -588,9 +564,30 @@ BirthWeight |>
 :::
 :::
 
+::: callout-tip
+## Kendall's correlation test
+
+::: panel-tabset
+## Base R
+
+```{r}
+cor.test(BirthWeight$height, BirthWeight$weight, method = "kendall")
+```
+
+## rstatix
+
+```{r}
+BirthWeight |> 
+  cor_test(height, weight, method = "kendall")  
+```
+:::
+
  
 
-### Present the results
+We observe that Kendall's $\tau$ is **smaller** than Spearman's $r_s$ correlation (0.54 vs 0.71).
+:::
+
+### Present the results for Spearman's correlation test
 
 **Summary table**
 
@@ -614,41 +611,22 @@ report(rules = "evans")
 ::: callout-tip
 ## Final report
 
-We observed a strong, positive monotonic association between height and weight of one-month-old infants which is significant ($r_s$ = 0.71, n = 550, p \< 0.001).
+We observed a strong, positive monotonic association between height and weight of one-month-old infants which is significant (Spearman $r_s$ = 0.71, n = 550, p \< 0.001).
 :::
 
  
 
-::: {.callout-important icon="false"}
-## Kendall's coefficient $\tau$
+### Present the results for Kendall's correlation test
 
-The **Kendall's coefficient** is an alternative to Spearman's correlation. It is calculated by comparing the number of concordant pairs and discordant pairs of ranks in two sets of data.
-
-**Run the test**
-
-::: panel-tabset
-## Base R
-
-```{r}
-cor.test(BirthWeight$height, BirthWeight$weight, method = "kendall")
-```
-
-Similar to other correlation coefficients, Kendall's coefficient is dimensionless quantity that falls within the range of -1 to +1. The stronger the association, the closer the correlation coefficient approaches ±1..
-
-## rstatix
+**Summary table**
 
 ```{r}
 BirthWeight |> 
-  cor_test(height, weight, method = "kendall")  
+  cor_test(height, weight, method = "kendall") |>
+  gt() |> 
+  fmt_number(columns = starts_with(c("c", "st", "p")),
+             decimals = 3)
 ```
-:::
-
- 
-
-We observe that Kendall’s $\tau$ is smaller than Spearman’s $r_s$ correlation (0.54 vs 0.71).  
-
-
- 
 
 **Report the results** [according to @evans1996]
 
@@ -656,6 +634,13 @@ We observe that Kendall’s $\tau$ is smaller than Spearman’s $r_s$ correlatio
 cor.test(BirthWeight$height, BirthWeight$weight, method = "kendall") |> 
 report(rules = "evans")
 ```
+
+  We can use the above information to write up a final report:
+
+::: callout-tip
+## Final report
+
+We observed a moderate, positive monotonic association between height and weight of one-month-old infants which is significant (Kendall $\tau$ = 0.54, n = 550, p \< 0.001).
 :::
 
  
@@ -664,8 +649,7 @@ report(rules = "evans")
 
 The correlation coefficient $ξ$ ranges from 0 to 1 and is a measure of dependence between X and Y variables [@chatterjee2021]. It equals 1 when the Y is a function of X and it equals 0 when X and Y are independent. Thus, $ξ$ gives a measure of the **strength** of the association and it can be used for **non-monotonic** associations. However, for monotonic associations, it does not indicate the direction of the association.
 
-
-### Hypothesis Testing for $ξ$ correlation coefficient
+### Hypothesis Testing
 
 ::: {.callout-note icon="false"}
 ## Null hypothesis and alternative hypothesis
@@ -673,8 +657,6 @@ The correlation coefficient $ξ$ ranges from 0 to 1 and is a measure of dependen
 -   $H_0$: There is not association between the two numeric variables (they are independent)
 -   $H_1$: There is association between the two numeric variables (they are dependent)
 :::
-
-
 
 ### Assumptions
 
@@ -684,7 +666,6 @@ The correlation coefficient $ξ$ ranges from 0 to 1 and is a measure of dependen
 1.  The variables are observed on a **random sample** of individuals (each individual should have a pair of values).
 :::
 
-
 ### Run the test
 
 ```{r}
@@ -693,14 +674,14 @@ xicor(BirthWeight$height, BirthWeight$weight, pvalue = TRUE)
 
 ### Present the results
 
-Based on the $ξ$ correlation coefficient, there is a significant association between height and weight ($ξ$ = 0.31, sd = 0.027, p < 0.001).
+Based on the $ξ$ correlation coefficient, there is a significant association between height and weight ($ξ$ = 0.31, sd = 0.027, p \< 0.001).
 
  
 
 ::: {.callout-note icon="false"}
 ## NOTE
 
-In our example, there is a linear association between the height and weight, so the most appropriate correlation measure is the Pearson's coefficient. Now, consider another example with a non-monotonic association between X and Y, as illustrated in @fig-non_monotonic: 
+In our example, there is a linear association between the height and weight, so the most appropriate correlation measure is the Pearson's coefficient. Now, consider another example with a non-monotonic association between X and Y, as illustrated in @fig-non_monotonic:
 
 ```{r}
 #| echo: false
@@ -726,9 +707,7 @@ df3|>
   theme(plot.title = element_text(size = 10, face = "bold"))
 ```
 
-
 Let's calculate in R the correlation coefficients for this data set:
-
 
 ```{r}
 cor(df3$x3, df3$y3)
@@ -740,6 +719,3 @@ xicor(df3$x3, df3$y3)
 
 In this case, the correlation coefficient that is appropriate to be used is the $ξ$ correlation coefficient.
 :::
-
-
-
