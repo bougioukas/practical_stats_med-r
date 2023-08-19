@@ -341,7 +341,7 @@ K-M plot reveals that patients receiving the new therapy have higher probability
 km.AB
 ```
 
-The median survival of patients in the new therapy (18 months) is higher than in standard therapy (9 months).
+The median survival of patients in the new therapy (23 months) is higher than in standard therapy (9 months).
 
 We can plot the cumulative risk function (aka "cumulative incidence" or "cumulative events"), $F(t) = 1 - S(t)$, with argument type = "risk".
 

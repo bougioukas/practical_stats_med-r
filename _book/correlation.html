@@ -410,14 +410,37 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">26.1</span> Research question and Hypothesis Testing</a></li>
+<li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">26.1</span> Research question</a></li>
   <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">26.2</span> Packages we need</a></li>
   <li><a href="#preraring-the-data" id="toc-preraring-the-data" class="nav-link" data-scroll-target="#preraring-the-data"><span class="header-section-number">26.3</span> Preraring the data</a></li>
   <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">26.4</span> Plot the data</a></li>
   <li>
-<a href="#correlation-between-two-numeric-variables" id="toc-correlation-between-two-numeric-variables" class="nav-link" data-scroll-target="#correlation-between-two-numeric-variables"><span class="header-section-number">26.5</span> Correlation between two numeric variables</a>
+<a href="#linear-correlation-pearsons-coefficient-r" id="toc-linear-correlation-pearsons-coefficient-r" class="nav-link" data-scroll-target="#linear-correlation-pearsons-coefficient-r"><span class="header-section-number">26.5</span> Linear correlation (Pearson’s coefficient <span class="math inline">\(r\)</span>)</a>
   <ul class="collapse">
-<li><a href="#pearsons-correlation-coefficient" id="toc-pearsons-correlation-coefficient" class="nav-link" data-scroll-target="#pearsons-correlation-coefficient">Pearson’s correlation coefficient</a></li>
+<li><a href="#the-formula-r" id="toc-the-formula-r" class="nav-link" data-scroll-target="#the-formula-r">The formula <span class="math inline">\(r\)</span></a></li>
+  <li><a href="#hypothesis-testing-for-pearsons-correlation-coefficient" id="toc-hypothesis-testing-for-pearsons-correlation-coefficient" class="nav-link" data-scroll-target="#hypothesis-testing-for-pearsons-correlation-coefficient">Hypothesis Testing for Pearson’s correlation coefficient</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  <li><a href="#run-the-test" id="toc-run-the-test" class="nav-link" data-scroll-target="#run-the-test">Run the test</a></li>
+  <li><a href="#present-the-results" id="toc-present-the-results" class="nav-link" data-scroll-target="#present-the-results">Present the results</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#rank-correlation-spearmans-r_s-and-kendalls-tau-coefficients" id="toc-rank-correlation-spearmans-r_s-and-kendalls-tau-coefficients" class="nav-link" data-scroll-target="#rank-correlation-spearmans-r_s-and-kendalls-tau-coefficients"><span class="header-section-number">26.6</span> Rank correlation (Spearman’s <span class="math inline">\(r_{s}\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> coefficients)</a>
+  <ul class="collapse">
+<li><a href="#the-formula-r_s" id="toc-the-formula-r_s" class="nav-link" data-scroll-target="#the-formula-r_s">The formula <span class="math inline">\(r_{s}\)</span></a></li>
+  <li><a href="#hypothesis-testing-for-spearmans-correlation-coefficient" id="toc-hypothesis-testing-for-spearmans-correlation-coefficient" class="nav-link" data-scroll-target="#hypothesis-testing-for-spearmans-correlation-coefficient">Hypothesis Testing for Spearman’s correlation coefficient</a></li>
+  <li><a href="#assumptions-1" id="toc-assumptions-1" class="nav-link" data-scroll-target="#assumptions-1">Assumptions</a></li>
+  <li><a href="#run-the-test-1" id="toc-run-the-test-1" class="nav-link" data-scroll-target="#run-the-test-1">Run the test</a></li>
+  <li><a href="#present-the-results-1" id="toc-present-the-results-1" class="nav-link" data-scroll-target="#present-the-results-1">Present the results</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#non-monotonic-association-coefficient-%CE%BE" id="toc-non-monotonic-association-coefficient-ξ" class="nav-link" data-scroll-target="#non-monotonic-association-coefficient-%CE%BE"><span class="header-section-number">26.7</span> Non-monotonic association (coefficient <span class="math inline">\(ξ\)</span>)</a>
+  <ul class="collapse">
+<li><a href="#hypothesis-testing-for-%CE%BE-correlation-coefficient" id="toc-hypothesis-testing-for-ξ-correlation-coefficient" class="nav-link" data-scroll-target="#hypothesis-testing-for-%CE%BE-correlation-coefficient">Hypothesis Testing for <span class="math inline">\(ξ\)</span> correlation coefficient</a></li>
+  <li><a href="#assumptions-2" id="toc-assumptions-2" class="nav-link" data-scroll-target="#assumptions-2">Assumptions</a></li>
+  <li><a href="#run-the-test-2" id="toc-run-the-test-2" class="nav-link" data-scroll-target="#run-the-test-2">Run the test</a></li>
+  <li><a href="#present-the-results-2" id="toc-present-the-results-2" class="nav-link" data-scroll-target="#present-the-results-2">Present the results</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -440,10 +463,14 @@ div.csl-indent {
 
 </header><p><strong>Correlation</strong> is a statistical method used to assess a possible <strong>association</strong> between two numeric variables, X and Y. There are several statistical coefficients that we can use to quantify correlation depending on the underlying relation of the data. In this chapter, we’ll learn about four correlation coefficients:</p>
 <ul>
-<li><p>Pearson’s <span class="math inline">\(r\)</span></p></li>
-<li><p>Spearman’s <span class="math inline">\(r_{s}\)</span> and Kendall’s <span class="math inline">\(\tau\)</span></p></li>
-<li><p>Coefficient <span class="math inline">\(ξ\)</span></p></li>
+<li>Pearson’s <span class="math inline">\(r\)</span>
+</li>
+<li>Spearman’s <span class="math inline">\(r_{s}\)</span> and and Kendall’s <span class="math inline">\(\tau\)</span>
+</li>
+<li>Coefficient <span class="math inline">\(ξ\)</span>
+</li>
 </ul>
+<p>Pearson’s coefficient measures <strong>linear</strong> correlation, while the Spearman’s and Kendall’s coefficients compare the <strong>ranks</strong> of data and measure <strong>monotonic</strong> associations. The new <span class="math inline">\(ξ\)</span> correlation coefficient is more appropriate to measure the strength of <strong>non-monotonic</strong> associations.</p>
 <p>When we have finished this Chapter, we should be able to:</p>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -457,32 +484,14 @@ Learning objectives
 <div class="callout-body-container callout-body">
 <ul>
 <li>Explain the concept of correlation of two numeric variables.</li>
-<li>Understand the most commonly used correlation coefficients, Pearson’s r, Spearman’s <span class="math inline">\(r_{s}\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> coefficients as well as the new <span class="math inline">\(ξ\)</span> coefficient.</li>
+<li>Understand the most commonly used correlation coefficients: Pearson’s r, Spearman’s <span class="math inline">\(r_{s}\)</span>, and the new <span class="math inline">\(ξ\)</span> coefficient.</li>
 <li>Discuss the possible meaning of correlation that we observe.</li>
 </ul>
 </div>
 </div>
-<section id="research-question-and-hypothesis-testing" class="level2" data-number="26.1"><h2 data-number="26.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
-<span class="header-section-number">26.1</span> Research question and Hypothesis Testing</h2>
+<section id="research-question" class="level2" data-number="26.1"><h2 data-number="26.1" class="anchored" data-anchor-id="research-question">
+<span class="header-section-number">26.1</span> Research question</h2>
 <p>We consider the data in <em>Birthweight</em> dataset. Let’s say that we want to explore the association between weight (in g) and height (in cm) for a sample of 550 infants of 1 month age.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Null hypothesis and alternative hypothesis
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>
-<span class="math inline">\(H_0\)</span>: There is no association between the two numeric variables (they are independent)</li>
-<li>
-<span class="math inline">\(H_1\)</span>: There is association between the two numeric variables (they are dependent)</li>
-</ul>
-</div>
-</div>
 </section><section id="packages-we-need" class="level2" data-number="26.2"><h2 data-number="26.2" class="anchored" data-anchor-id="packages-we-need">
 <span class="header-section-number">26.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
@@ -492,7 +501,9 @@ Null hypothesis and alternative hypothesis
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daattali/ggExtra">ggExtra</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/report/">report</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="preraring-the-data" class="level2" data-number="26.3"><h2 data-number="26.3" class="anchored" data-anchor-id="preraring-the-data">
 <span class="header-section-number">26.3</span> Preraring the data</h2>
@@ -503,8 +514,8 @@ Null hypothesis and alternative hypothesis
 </div>
 <div class="cell">
 <div id="fig-BirthWeight" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f5fa6b2be8dddedabaab" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f5fa6b2be8dddedabaab">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550"],[3950,4630,4750,3920,4560,3640,3550,4530,4970,3740,4190,4350,4620,4090,4420,5620,5250,4320,4410,4180,4290,4670,3970,4570,4530,4180,4780,3720,4530,4460,4110,4000,3420,4950,3300,4520,4070,4540,4050,3340,4770,4210,4260,3880,4360,4650,5400,3900,4240,3740,3700,4340,4610,4600,4890,3690,4470,5140,4770,4500,5340,3530,5020,5020,5450,5810,3660,3340,4200,4600,4840,3960,4260,3510,4620,5690,4520,3110,3790,4010,3540,4480,4920,4930,3900,4090,4590,4390,4990,4180,4120,3790,3990,4620,3480,4900,4260,4880,4060,4270,4680,4030,4100,4860,4700,3770,4010,4470,4780,4220,4730,4390,4600,4150,3740,3950,3880,5110,3050,3450,4520,3820,4400,3790,5020,5200,4740,3770,4270,4410,5550,4080,3590,5030,3850,4010,4910,5130,4980,4320,4270,5540,4350,4530,4920,3800,3890,3960,3850,3900,5180,4010,4450,5240,4320,5590,4290,3710,3360,3540,4520,3690,4510,3940,5000,3750,3980,4220,5500,4800,3890,4340,4320,3980,4560,5000,3620,4330,4670,5240,4590,4060,4610,4810,4740,4360,4070,4460,4460,4230,3960,4360,3840,4780,3720,5430,4490,4700,5310,4190,5180,4340,4070,4110,3500,4750,6330,5920,5410,4060,2920,4730,3730,3010,4180,4860,3700,3200,4000,4350,5450,3660,4560,4120,5080,3720,5050,4950,4390,4680,4320,3370,3550,5750,4890,4280,4860,3900,3950,4910,3130,5200,5230,4510,4340,3600,4980,4550,4270,4180,3680,3080,4900,4100,5410,5220,4450,4020,5480,4830,4300,4350,3760,4380,5180,5260,4630,4080,4230,3540,5820,5120,4030,5040,4080,5130,3960,5030,4060,4060,4040,3310,5430,3560,5270,4540,4050,5280,5330,3610,4640,4440,5280,4130,5260,3970,4700,3730,4410,4980,3690,4590,4490,4970,3990,4090,4200,3460,3180,4610,3670,4100,3280,4320,4700,4570,3580,4100,4600,4790,3780,4320,4330,4750,5190,4250,4050,4180,4040,4650,2980,4800,4300,4110,4760,3380,4050,4490,4700,4250,3720,3170,5060,3900,4130,3420,4010,4210,4630,5140,4870,4400,3990,4000,4800,4780,4440,3510,3370,3790,5020,3930,4580,3800,3930,4440,3810,3850,4500,3670,3840,3200,3370,5100,4890,4870,4610,4220,3670,4000,3900,3720,4680,3850,5300,4440,5320,4330,4750,4460,4140,4180,4150,5390,4140,4070,4770,4200,3850,4530,4410,4690,3510,3410,3680,3870,4830,5560,4470,3990,4700,3590,4060,4130,5170,3940,3330,4700,5120,4760,4810,4500,4790,5310,4200,3990,4900,3680,4270,3870,4740,3340,5290,4790,4630,5050,5100,4120,4700,3880,4040,4770,3310,4870,4550,3880,4610,4270,4790,4520,4230,5600,4010,3480,4650,4940,4220,4800,3790,4520,3910,3800,3680,4800,4750,4800,5050,3990,5160,4660,4620,3870,4520,4180,3860,4500,5080,4090,4110,4140,4130,3410,3810,4420,4070,3360,4030,4870,4750,4130,4920,4180,4730,5750,3790,4310,3680,4170,5210,3010,5250,4500,4840,3730,5550,4270,3950,4800,3590,3500,4760,3720,4500,4330,4510,4020,3700,4120,4440,5140,3090,5400,4520,4680,5760,4180,4020,3410,4670,4600,4230,3240,4210,4170,4950,4610,5330,3710,6490,5090,5430,4750,4900,3740,4320,5350,5390,3880,5230,4570],[55.5,57,56,56,55,51.5,56,57,58.5,52,54,59,56,53,57,58,58,54.5,57,53.5,55,54.5,53.5,59,56,56.5,58,52,55.5,58.5,53.5,54.5,51.5,56,52,55,53.5,59,54,50,56,54.5,54,52.5,52,55.5,58,52,57,51.5,52,57,56,56,57.5,54.5,53,62,56,58,58,51,56,56,58,56,51,55,52,55,56,57,53,51,56,59,52.5,51,52.5,55,52,57,56,56.5,53,54,56.5,55,59.5,52,54,51,50,57,54,57,54.5,57,54,53,56,52,53,55,56,53,54,56,56,53.5,54,51,56,48,51,51,52,58,52,51,52,55,55,55,54.5,59,56.5,51.5,55,58,60.5,53.7999992370605,52,58,53,53,54,56,57.5,57,55.7999992370605,58,56,56,56,57,54,54,57,54,57.5,54,56,59,56,59,56,52.5,51,53,53,53,53,58,57,54,53,55,59,56.5,52,55.5,55,52,53,58.5,52,59,54,57,54,55,56,57,55.5,55,54,57,54,54.5,53,53,54,58,52,57.5,56,55,60,53,56,56,55,52,56,56,59,56,57,56,49,55.5,53,53,59.5,56,54,52,53,54.5,58,52,54,50.5,57,52,57,56,52,53,59,50.5,51,60.5,56,54,60,54,52,59,50,56,53,54,54,53,58,54,49.5,53,52.5,50.5,59,54,61,54,52,54,55.5,56,55,54,53,55,57.5,60.5,56,55,53,51.5,62,61,51,57,56,57,53,57,53.5,58,53,51,61,53.5,58,53.5,57,58,56.5,55,57.5,56,54,53.5,58.5,52.5,57,53,55.5,57.5,53.5,54,51.5,57.5,52,54.5,54.5,52,55,57.5,53.5,50.5,50,55.5,55,58,55,52.5,56.5,56.5,53,52,53,58,53.5,53,53.5,53,53,56,51,54,54,54,55,51.5,53.5,53.5,57,52.5,53,49.5,57,51,52.5,53,54,53,56,60.5,56.5,52,53.5,54.5,55,56.5,53.5,53.5,51.5,54,56,53,56,54,54,55.5,53,54,54,51.5,54,51.5,55,59,55,55,55.5,55,56.5,55.5,55,55.5,53.5,55.5,53.5,53.5,60.5,56.5,55,56,53.5,56.5,55.5,58,54,54,55.5,56,55,56.5,56.5,58,50.5,50.5,53.5,52.5,58.5,59,57,55,57,52,54.5,55.5,60,54,53,54.5,55,56.5,57,53,56.5,58,55.5,54,57,54.5,54.5,54,60,54.5,56.5,56.5,55,56,57,52,56.5,53.5,53,54.5,51,57.5,54,51,55.5,54.5,54.5,55,53,57.5,55.5,53,55,54.5,54,56,52.5,56,54.5,58.5,51.5,53.5,56,58,55,54,58,55.5,53,54,55,54,52.5,53,56,54.5,53.5,52.5,55,51,52,54.5,51,53,54,56,55.5,52,54.5,53,54,58.5,53,56.5,53.5,52,56,51,57.5,54.5,57,52,57,55,55,57,53,50.5,55.5,52.5,51.5,55,54.5,55,50,58.5,55.5,57,51,54,55,52.5,55,54.5,52.5,51,55.5,54.5,56.5,54,54.5,56,58,57.5,58,53.5,62,55.9000015258789,58,57.5,54.5,54,55,57,60,52,57.5,53.5],[37.5,38.5,38.5,39,39.5,34.5,38,39.7000007629395,39,38,37.5,39.5,38.5,38,38,40,38.5,38.5,38,38,37.5,40.5,38,39.2000007629395,38,37.5,38.4000015258789,38,38.5,37.5,37.4000015258789,38.7000007629395,38,41.2000007629395,36,38.5,37,38.5,37,36,40.5,37.5,39,36,38,39.5,37.5,38.2999992370605,37.7999992370605,37,38,39,38,38,39,38,37.5,40.2999992370605,40.5,40.2999992370605,39,37.5,38.5,38.4000015258789,40.5,39.5,37.9000015258789,38,39,38,38,39.5,38,36.5,38.5,41,37.5,35.5,36,37,37.5,37.5,38.5,40,37.5,39.5,40,39,38,35.5,37.5,36,38,37,38,39,37,37,37,37.5,39,37,36,40,39,38,37.5,39,38,37,38,38,36.5,35,37,38,36,39,37,34.5,36,36,37.5,38.5,38.5,38,39.5,36,38,40.5,40.5,36.5,37.5,39,36.5,37.5,38,40,37.5,38,36.5,40,37.4000015258789,37.2000007629395,36.0999984741211,36.5,38,37.2000007629395,38,37,40.5,37.5,37,35,38.2000007629395,40,37.5,37,35,35.5,39,37,37.5,37,39,37,39,37,40.5,38,37,38,37.5,38.5,38,41,36.5,37,36.5,39.5,38,38,39,38,39,37.5,36.5,37,38.5,38,38,39.5,36.5,38.5,36.5,39.5,37,38.5,39,37,38,37,38,36.5,38.5,39,38.5,40,37.5,37,34,37.5,36,36.5,39,38.5,37.5,34.5,36,37.5,39.5,37.5,38.5,34.5,38,35.5,39,39.5,37,38,39,36,34.5,40,39,36,40.5,36,39,37.5,35.5,39,38,39.5,38,36.5,38,37,38,36.5,36.5,36,39.5,37,39.5,37,36.5,37.5,40,38,38.5,37.5,34.5,38.5,39,39,37,37.5,37.5,37,38.5,38.2000007629395,35.5,38.5,35.5,39.5,38,37.2000007629395,37.5,39,37.5,35,39.5,36.5,40,39,38,39,39.5,35,39,38.5,39.5,36,40,37,37.5,37,39,39,35.5,37,39,39.2000007629395,37.5,38,38,37,38.5,38,37,38,37,40,37,39.7999992370605,37,36,38,39,38,37.5,37,39,39,38,37,39,37.4000015258789,38,36,40,36.5,37,40.5,35.5,37.2000007629395,38,38,38.7000007629395,36,35.5,38,37.5,37.5,36,40,38.5,40.5,40.5,38.5,38.4000015258789,37.5,39,35,39,37.2999992370605,36.5,36,37.5,39.5,39.5,39,38,36.5,37.5,38,36,37.5,36.5,36.5999984741211,37,38,40.5,37,40,38,39.5,36.5,37.5,37,36.5,38.5,37,40,37.5,40.5,39.5,39,38.5,38,37.5,40,39.5,38,38,37,39,38,39,38,37,34.5,37,36.7999992370605,37.5,38.5999984741211,39.5,39.5,38.5,38,37.5,38,38,39,36,34.5,37,40,39,39,37.9000015258789,39,40.5,39,38.5,39.5,37.5,36.5,38.5,39,36.5,39,40,38,39,40,36,39.5,38,37.5,38.5,35.7000007629395,38,38,37,39,37.5,39,39,36.5,40.5,36.5,36.5,38.7000007629395,37.5,38,38,38,40,37.5,41,38,37,39,40,36.5,37,39.5,39,38,36.5,37,38,37.5,36,37.5,37.5,40,37.5,38.5,38.5,36.5,36,38.5,36.5,36.5,40,36.5,38,39,38,37,40.5,37,37.5,38,37,39,37,38,37.5,39,36.5,39.5,37,37,38,37,36,37.5,35,35.5,37,38,34.5,36,40.5,37.5,40,36,37.5,38,37.5,38.5,37,37,35.5,38.5,38.5,38.5,36.5,36.5,38,40,39,40,35,39,39,39,37.5,37.5,36,37.5,39.5,40,36,40,37.5],["Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Male","Male","Male","Female","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Female","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Female","Male","Female","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Female","Male","Male","Male","Male","Male","Male","Female","Male","Male","Male","Male","Female"],["tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year10","tertiary","year10","year10","year10","year10","year12","year10","tertiary","year12","year10","tertiary","tertiary","year12","year10","year10","year12","tertiary","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year12","year10","year10","tertiary","tertiary","tertiary","year10","year10","year10","year10","year10","year10","year12","year10","tertiary","year10","year10","year12","year12","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","year12","year10","year10","year12","tertiary","year10","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year12","year10","year10","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","year10","year10","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","year12","year10","year10","tertiary","year10","tertiary","year12","year12","year10","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","year10","tertiary","year10","year10","tertiary","year10","tertiary","year10","tertiary","year12","year10","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year12","tertiary","year10","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","year10","year12","year12","year10","year10","tertiary","year12","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","year10","year12","year10","tertiary","tertiary","tertiary","year10","year10","year12","tertiary","year10","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","tertiary","year12","year10","year10","year10","tertiary","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","year12","tertiary","year10","year10","year12","year10","year12","year12","year12","tertiary","tertiary","year10","year10","year10","year10","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year12","year10","tertiary","year10","year10","year10","tertiary","year10","year10","tertiary","year12","year12","tertiary","tertiary","year10","year12","year12","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year12","year12","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","year10","year10","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","year10","year12","tertiary","year12","year10","tertiary","year10","year10","tertiary","tertiary","year12","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year10","year10","year10","tertiary","year12","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year10","tertiary","year12","year10","tertiary","tertiary","year12","tertiary","year10","year10","tertiary","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year10","year10","year12","year12","year12","tertiary","year12","year12","tertiary","year10","tertiary","year10","year10","year10","tertiary","year10","tertiary","tertiary","year10","year12","year10","year12","year12","year10","year10","tertiary","tertiary","year10","year12","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","tertiary","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","year12","year10","tertiary","year12","year10","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","tertiary","year10","year10","year10","year10","tertiary","tertiary","tertiary","year12","year12","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","tertiary","year10","tertiary","year10","year12","year10","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year12","year10","year10","year12","year12","year10","tertiary","year12","tertiary","year10","tertiary","tertiary","year10","year10","tertiary"],["2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","2 or more siblings","One sibling","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","2 or more siblings","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","Singleton","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","2 or more siblings"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight<\/th>\n      <th>height<\/th>\n      <th>headc<\/th>\n      <th>gender<\/th>\n      <th>education<\/th>\n      <th>parity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;26.1: Table with data from “BirthWeight” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3593734318c512e19024" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3593734318c512e19024">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550"],[3950,4630,4750,3920,4560,3640,3550,4530,4970,3740,4190,4350,4620,4090,4420,5620,5250,4320,4410,4180,4290,4670,3970,4570,4530,4180,4780,3720,4530,4460,4110,4000,3420,4950,3300,4520,4070,4540,4050,3340,4770,4210,4260,3880,4360,4650,5400,3900,4240,3740,3700,4340,4610,4600,4890,3690,4470,5140,4770,4500,5340,3530,5020,5020,5450,5810,3660,3340,4200,4600,4840,3960,4260,3510,4620,5690,4520,3110,3790,4010,3540,4480,4920,4930,3900,4090,4590,4390,4990,4180,4120,3790,3990,4620,3480,4900,4260,4880,4060,4270,4680,4030,4100,4860,4700,3770,4010,4470,4780,4220,4730,4390,4600,4150,3740,3950,3880,5110,3050,3450,4520,3820,4400,3790,5020,5200,4740,3770,4270,4410,5550,4080,3590,5030,3850,4010,4910,5130,4980,4320,4270,5540,4350,4530,4920,3800,3890,3960,3850,3900,5180,4010,4450,5240,4320,5590,4290,3710,3360,3540,4520,3690,4510,3940,5000,3750,3980,4220,5500,4800,3890,4340,4320,3980,4560,5000,3620,4330,4670,5240,4590,4060,4610,4810,4740,4360,4070,4460,4460,4230,3960,4360,3840,4780,3720,5430,4490,4700,5310,4190,5180,4340,4070,4110,3500,4750,6330,5920,5410,4060,2920,4730,3730,3010,4180,4860,3700,3200,4000,4350,5450,3660,4560,4120,5080,3720,5050,4950,4390,4680,4320,3370,3550,5750,4890,4280,4860,3900,3950,4910,3130,5200,5230,4510,4340,3600,4980,4550,4270,4180,3680,3080,4900,4100,5410,5220,4450,4020,5480,4830,4300,4350,3760,4380,5180,5260,4630,4080,4230,3540,5820,5120,4030,5040,4080,5130,3960,5030,4060,4060,4040,3310,5430,3560,5270,4540,4050,5280,5330,3610,4640,4440,5280,4130,5260,3970,4700,3730,4410,4980,3690,4590,4490,4970,3990,4090,4200,3460,3180,4610,3670,4100,3280,4320,4700,4570,3580,4100,4600,4790,3780,4320,4330,4750,5190,4250,4050,4180,4040,4650,2980,4800,4300,4110,4760,3380,4050,4490,4700,4250,3720,3170,5060,3900,4130,3420,4010,4210,4630,5140,4870,4400,3990,4000,4800,4780,4440,3510,3370,3790,5020,3930,4580,3800,3930,4440,3810,3850,4500,3670,3840,3200,3370,5100,4890,4870,4610,4220,3670,4000,3900,3720,4680,3850,5300,4440,5320,4330,4750,4460,4140,4180,4150,5390,4140,4070,4770,4200,3850,4530,4410,4690,3510,3410,3680,3870,4830,5560,4470,3990,4700,3590,4060,4130,5170,3940,3330,4700,5120,4760,4810,4500,4790,5310,4200,3990,4900,3680,4270,3870,4740,3340,5290,4790,4630,5050,5100,4120,4700,3880,4040,4770,3310,4870,4550,3880,4610,4270,4790,4520,4230,5600,4010,3480,4650,4940,4220,4800,3790,4520,3910,3800,3680,4800,4750,4800,5050,3990,5160,4660,4620,3870,4520,4180,3860,4500,5080,4090,4110,4140,4130,3410,3810,4420,4070,3360,4030,4870,4750,4130,4920,4180,4730,5750,3790,4310,3680,4170,5210,3010,5250,4500,4840,3730,5550,4270,3950,4800,3590,3500,4760,3720,4500,4330,4510,4020,3700,4120,4440,5140,3090,5400,4520,4680,5760,4180,4020,3410,4670,4600,4230,3240,4210,4170,4950,4610,5330,3710,6490,5090,5430,4750,4900,3740,4320,5350,5390,3880,5230,4570],[55.5,57,56,56,55,51.5,56,57,58.5,52,54,59,56,53,57,58,58,54.5,57,53.5,55,54.5,53.5,59,56,56.5,58,52,55.5,58.5,53.5,54.5,51.5,56,52,55,53.5,59,54,50,56,54.5,54,52.5,52,55.5,58,52,57,51.5,52,57,56,56,57.5,54.5,53,62,56,58,58,51,56,56,58,56,51,55,52,55,56,57,53,51,56,59,52.5,51,52.5,55,52,57,56,56.5,53,54,56.5,55,59.5,52,54,51,50,57,54,57,54.5,57,54,53,56,52,53,55,56,53,54,56,56,53.5,54,51,56,48,51,51,52,58,52,51,52,55,55,55,54.5,59,56.5,51.5,55,58,60.5,53.7999992370605,52,58,53,53,54,56,57.5,57,55.7999992370605,58,56,56,56,57,54,54,57,54,57.5,54,56,59,56,59,56,52.5,51,53,53,53,53,58,57,54,53,55,59,56.5,52,55.5,55,52,53,58.5,52,59,54,57,54,55,56,57,55.5,55,54,57,54,54.5,53,53,54,58,52,57.5,56,55,60,53,56,56,55,52,56,56,59,56,57,56,49,55.5,53,53,59.5,56,54,52,53,54.5,58,52,54,50.5,57,52,57,56,52,53,59,50.5,51,60.5,56,54,60,54,52,59,50,56,53,54,54,53,58,54,49.5,53,52.5,50.5,59,54,61,54,52,54,55.5,56,55,54,53,55,57.5,60.5,56,55,53,51.5,62,61,51,57,56,57,53,57,53.5,58,53,51,61,53.5,58,53.5,57,58,56.5,55,57.5,56,54,53.5,58.5,52.5,57,53,55.5,57.5,53.5,54,51.5,57.5,52,54.5,54.5,52,55,57.5,53.5,50.5,50,55.5,55,58,55,52.5,56.5,56.5,53,52,53,58,53.5,53,53.5,53,53,56,51,54,54,54,55,51.5,53.5,53.5,57,52.5,53,49.5,57,51,52.5,53,54,53,56,60.5,56.5,52,53.5,54.5,55,56.5,53.5,53.5,51.5,54,56,53,56,54,54,55.5,53,54,54,51.5,54,51.5,55,59,55,55,55.5,55,56.5,55.5,55,55.5,53.5,55.5,53.5,53.5,60.5,56.5,55,56,53.5,56.5,55.5,58,54,54,55.5,56,55,56.5,56.5,58,50.5,50.5,53.5,52.5,58.5,59,57,55,57,52,54.5,55.5,60,54,53,54.5,55,56.5,57,53,56.5,58,55.5,54,57,54.5,54.5,54,60,54.5,56.5,56.5,55,56,57,52,56.5,53.5,53,54.5,51,57.5,54,51,55.5,54.5,54.5,55,53,57.5,55.5,53,55,54.5,54,56,52.5,56,54.5,58.5,51.5,53.5,56,58,55,54,58,55.5,53,54,55,54,52.5,53,56,54.5,53.5,52.5,55,51,52,54.5,51,53,54,56,55.5,52,54.5,53,54,58.5,53,56.5,53.5,52,56,51,57.5,54.5,57,52,57,55,55,57,53,50.5,55.5,52.5,51.5,55,54.5,55,50,58.5,55.5,57,51,54,55,52.5,55,54.5,52.5,51,55.5,54.5,56.5,54,54.5,56,58,57.5,58,53.5,62,55.9000015258789,58,57.5,54.5,54,55,57,60,52,57.5,53.5],[37.5,38.5,38.5,39,39.5,34.5,38,39.7,39,38,37.5,39.5,38.5,38,38,40,38.5,38.5,38,38,37.5,40.5,38,39.2,38,37.5,38.4,38,38.5,37.5,37.4,38.7,38,41.2,36,38.5,37,38.5,37,36,40.5,37.5,39,36,38,39.5,37.5,38.3,37.8,37,38,39,38,38,39,38,37.5,40.3,40.5,40.3,39,37.5,38.5,38.4,40.5,39.5,37.9,38,39,38,38,39.5,38,36.5,38.5,41,37.5,35.5,36,37,37.5,37.5,38.5,40,37.5,39.5,40,39,38,35.5,37.5,36,38,37,38,39,37,37,37,37.5,39,37,36,40,39,38,37.5,39,38,37,38,38,36.5,35,37,38,36,39,37,34.5,36,36,37.5,38.5,38.5,38,39.5,36,38,40.5,40.5,36.5,37.5,39,36.5,37.5,38,40,37.5,38,36.5,40,37.4,37.2,36.1,36.5,38,37.2,38,37,40.5,37.5,37,35,38.2,40,37.5,37,35,35.5,39,37,37.5,37,39,37,39,37,40.5,38,37,38,37.5,38.5,38,41,36.5,37,36.5,39.5,38,38,39,38,39,37.5,36.5,37,38.5,38,38,39.5,36.5,38.5,36.5,39.5,37,38.5,39,37,38,37,38,36.5,38.5,39,38.5,40,37.5,37,34,37.5,36,36.5,39,38.5,37.5,34.5,36,37.5,39.5,37.5,38.5,34.5,38,35.5,39,39.5,37,38,39,36,34.5,40,39,36,40.5,36,39,37.5,35.5,39,38,39.5,38,36.5,38,37,38,36.5,36.5,36,39.5,37,39.5,37,36.5,37.5,40,38,38.5,37.5,34.5,38.5,39,39,37,37.5,37.5,37,38.5,38.2,35.5,38.5,35.5,39.5,38,37.2,37.5,39,37.5,35,39.5,36.5,40,39,38,39,39.5,35,39,38.5,39.5,36,40,37,37.5,37,39,39,35.5,37,39,39.2,37.5,38,38,37,38.5,38,37,38,37,40,37,39.8,37,36,38,39,38,37.5,37,39,39,38,37,39,37.4,38,36,40,36.5,37,40.5,35.5,37.2,38,38,38.7,36,35.5,38,37.5,37.5,36,40,38.5,40.5,40.5,38.5,38.4,37.5,39,35,39,37.3,36.5,36,37.5,39.5,39.5,39,38,36.5,37.5,38,36,37.5,36.5,36.6,37,38,40.5,37,40,38,39.5,36.5,37.5,37,36.5,38.5,37,40,37.5,40.5,39.5,39,38.5,38,37.5,40,39.5,38,38,37,39,38,39,38,37,34.5,37,36.8,37.5,38.6,39.5,39.5,38.5,38,37.5,38,38,39,36,34.5,37,40,39,39,37.9,39,40.5,39,38.5,39.5,37.5,36.5,38.5,39,36.5,39,40,38,39,40,36,39.5,38,37.5,38.5,35.7,38,38,37,39,37.5,39,39,36.5,40.5,36.5,36.5,38.7,37.5,38,38,38,40,37.5,41,38,37,39,40,36.5,37,39.5,39,38,36.5,37,38,37.5,36,37.5,37.5,40,37.5,38.5,38.5,36.5,36,38.5,36.5,36.5,40,36.5,38,39,38,37,40.5,37,37.5,38,37,39,37,38,37.5,39,36.5,39.5,37,37,38,37,36,37.5,35,35.5,37,38,34.5,36,40.5,37.5,40,36,37.5,38,37.5,38.5,37,37,35.5,38.5,38.5,38.5,36.5,36.5,38,40,39,40,35,39,39,39,37.5,37.5,36,37.5,39.5,40,36,40,37.5],["Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Male","Male","Male","Female","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Male","Female","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Male","Female","Female","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Male","Female","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Male","Male","Female","Male","Male","Female","Male","Male","Male","Male","Male","Female","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Female","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Female","Female","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Female","Male","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Female","Male","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Male","Female","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Female","Male","Male","Female","Male","Male","Male","Female","Female","Female","Female","Female","Female","Male","Female","Male","Male","Female","Male","Male","Female","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Female","Male","Female","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Female","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male","Female","Female","Male","Female","Male","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Female","Male","Male","Male","Male","Male","Male","Female","Male","Male","Male","Male","Female"],["tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year10","tertiary","year10","year10","year10","year10","year12","year10","tertiary","year12","year10","tertiary","tertiary","year12","year10","year10","year12","tertiary","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year12","year10","year10","tertiary","tertiary","tertiary","year10","year10","year10","year10","year10","year10","year12","year10","tertiary","year10","year10","year12","year12","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","year12","year10","year10","year12","tertiary","year10","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year12","year10","year10","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","year10","year10","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","year12","year10","year10","tertiary","year10","tertiary","year12","year12","year10","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","year10","tertiary","year10","year10","tertiary","year10","tertiary","year10","tertiary","year12","year10","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year12","tertiary","year10","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","year10","year12","year12","year10","year10","tertiary","year12","tertiary","year12","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","year10","year12","year10","tertiary","tertiary","tertiary","year10","year10","year12","tertiary","year10","year10","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","year10","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","tertiary","year12","year10","year10","year10","tertiary","year10","tertiary","year12","tertiary","year10","year10","tertiary","year10","year12","tertiary","year10","year10","year12","year10","year12","year12","year12","tertiary","tertiary","year10","year10","year10","year10","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","year10","tertiary","year10","year12","year10","tertiary","year10","year10","year10","tertiary","year10","year10","tertiary","year12","year12","tertiary","tertiary","year10","year12","year12","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year12","year12","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","tertiary","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year12","year10","year10","tertiary","year12","tertiary","tertiary","tertiary","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","year10","year12","tertiary","tertiary","year12","tertiary","tertiary","year10","year12","tertiary","year12","year10","tertiary","year10","year10","tertiary","tertiary","year12","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year12","year10","year10","year10","tertiary","year12","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","tertiary","year12","tertiary","tertiary","year12","tertiary","tertiary","tertiary","year10","year10","tertiary","year12","year10","tertiary","tertiary","year12","tertiary","year10","year10","tertiary","tertiary","year12","year10","tertiary","year10","tertiary","tertiary","year10","tertiary","tertiary","year12","year12","year10","year12","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","tertiary","year10","year10","year12","year12","year12","tertiary","year12","year12","tertiary","year10","tertiary","year10","year10","year10","tertiary","year10","tertiary","tertiary","year10","year12","year10","year12","year12","year10","year10","tertiary","tertiary","year10","year12","tertiary","year10","tertiary","year10","year12","year10","year10","tertiary","tertiary","year10","year12","year10","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year10","tertiary","year12","year10","tertiary","year12","year10","tertiary","tertiary","tertiary","year12","year10","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","tertiary","year10","tertiary","year10","tertiary","year10","year10","year10","year10","tertiary","tertiary","tertiary","year12","year12","tertiary","tertiary","year10","year10","tertiary","tertiary","year10","year10","year10","tertiary","year10","tertiary","year10","tertiary","year10","year12","year10","year10","year10","year10","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","tertiary","year10","tertiary","year12","year10","year10","year12","year12","year10","tertiary","year12","tertiary","year10","tertiary","tertiary","year10","year10","tertiary"],["2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","2 or more siblings","One sibling","Singleton","Singleton","Singleton","Singleton","One sibling","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","2 or more siblings","One sibling","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","Singleton","2 or more siblings","Singleton","Singleton","Singleton","One sibling","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","One sibling","Singleton","Singleton","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","2 or more siblings","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","One sibling","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","Singleton","2 or more siblings","Singleton","One sibling","One sibling","Singleton","2 or more siblings","One sibling","Singleton","One sibling","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","One sibling","Singleton","Singleton","Singleton","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","One sibling","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","Singleton","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","One sibling","One sibling","2 or more siblings","One sibling","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","Singleton","One sibling","Singleton","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","Singleton","2 or more siblings","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","Singleton","One sibling","2 or more siblings","One sibling","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","Singleton","2 or more siblings","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","Singleton","Singleton","Singleton","One sibling","One sibling","One sibling","Singleton","One sibling","One sibling","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","Singleton","2 or more siblings","2 or more siblings","One sibling","One sibling","One sibling","Singleton","2 or more siblings","One sibling","2 or more siblings","One sibling","One sibling","One sibling","2 or more siblings","Singleton","Singleton","One sibling","One sibling","One sibling","2 or more siblings","2 or more siblings","One sibling","One sibling","2 or more siblings","2 or more siblings","2 or more siblings","2 or more siblings","One sibling","Singleton","Singleton","Singleton","2 or more siblings","2 or more siblings","Singleton","One sibling","2 or more siblings","2 or more siblings"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight<\/th>\n      <th>height<\/th>\n      <th>headc<\/th>\n      <th>gender<\/th>\n      <th>education<\/th>\n      <th>parity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;26.1: Table with data from “BirthWeight” file.</figcaption></figure>
 </div>
 </div>
 <p>We inspect the data and the type of variables:</p>
@@ -540,14 +551,13 @@ $ parity    &lt;chr&gt; "2 or more siblings", "Singleton", "2 or more siblings",
 </div>
 </div>
 </div>
-<p>The points in the scatter plot seem to be scattered around an invisible line. The scatter plot also shows that, in general, infants with high height tend to have high weight (positive association).</p>
-<p>Additionally, the marginal histograms show that the data are approximately normally distributed (we have a large sample so the graphs are reliable) for both weight and height.</p>
-</section><section id="correlation-between-two-numeric-variables" class="level2" data-number="26.5"><h2 data-number="26.5" class="anchored" data-anchor-id="correlation-between-two-numeric-variables">
-<span class="header-section-number">26.5</span> Correlation between two numeric variables</h2>
-<section id="pearsons-correlation-coefficient" class="level3"><h3 class="anchored" data-anchor-id="pearsons-correlation-coefficient">Pearson’s correlation coefficient</h3>
+</section><section id="linear-correlation-pearsons-coefficient-r" class="level2" data-number="26.5"><h2 data-number="26.5" class="anchored" data-anchor-id="linear-correlation-pearsons-coefficient-r">
+<span class="header-section-number">26.5</span> Linear correlation (Pearson’s coefficient <span class="math inline">\(r\)</span>)</h2>
+<section id="the-formula-r" class="level3"><h3 class="anchored" data-anchor-id="the-formula-r">The formula <span class="math inline">\(r\)</span>
+</h3>
 <p>Given a set of <span class="math inline">\({n}\)</span> pairs of observations <span class="math inline">\((x_{1},y_{1}),\ldots ,(x_{n},y_{n})\)</span> with means <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> respectively, <span class="math inline">\(r\)</span> is defined as:</p>
 <p><span id="eq-r1"><span class="math display">\[r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n(y_i - \bar{y})^2}} \tag{26.1}\]</span></span></p>
-<p>We observe that the above formula is based on calculating the sum of the product <span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>. In our example, that is the the sum of the product <span class="math inline">\((height_{i} - \overline{height}) \cdot (weight_{i} - \overline{weight})\)</span>.</p>
+<p>We observe that the <a href="#eq-r1" class="quarto-xref">Equation&nbsp;<span>26.1</span></a> is based on calculating the sum of the product <span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>. In our example, that is the the sum of the product <span class="math inline">\((height_{i} - \overline{height}) \cdot (weight_{i} - \overline{weight})\)</span>. Our approach begins by examining the signs of these products.</p>
 <p>&nbsp;</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -558,11 +568,15 @@ $ parity    &lt;chr&gt; "2 or more siblings", "Singleton", "2 or more siblings",
 </div>
 </div>
 <p>&nbsp;</p>
-<p>Our approach begins by examining the signs of these products.</p>
 <p><strong>Positive product:</strong> In the <strong>top-right</strong> pane of the <a href="#fig-correlation01" class="quarto-xref">Figure&nbsp;<span>26.3</span></a>, the deviations from the mean for both variables, height and weight, are positive. Consequently, their products will also be positive. In the <strong>bottom-left</strong> pane, the deviations from the mean for both variables are negative. Once again, their product will be positive.</p>
 <p><strong>Negative product:</strong> In the <strong>top-left</strong> pane of the <a href="#fig-correlation01" class="quarto-xref">Figure&nbsp;<span>26.3</span></a>, the deviation of height from its mean is negative, while the deviation of weight is positive. Therefore, their product will be negative. Similarly, in the <strong>bottom-right</strong> pane, the product will be negative.</p>
-<p>In <a href="#fig-correlation01" class="quarto-xref">Figure&nbsp;<span>26.3</span></a>, we observe that most of the products are positive. We say that there is a <strong>positive correlation</strong> between the two variables; as one increases so does the other.</p>
-<p>&nbsp;</p>
+<p>We observe that most of the products are positive. By applying the <a href="#eq-r1" class="quarto-xref">Equation&nbsp;<span>26.1</span></a>, we can calculate the Pearson’s correlation coefficient, a task that can be easily carried out using R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.7131192</code></pre>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -573,10 +587,7 @@ Characteristics of Pearson’s correlation coefficient <span class="math inline"
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <span class="math inline">\(r\)</span> statistic shows the <strong>direction</strong> and measures the <strong>strength</strong> of the linear association between the variables.</p>
-<p><strong>Range of values</strong></p>
-<p>Correlation coefficient is a <strong>dimensionless</strong> quantity that takes a value in the range <strong>-1</strong> to <strong>+1</strong>.</p>
-<p>&nbsp;</p>
+<p>The <span class="math inline">\(r\)</span> statistic shows the <strong>direction</strong> and measures the <strong>strength</strong> of the linear association between the variables. It is a <strong>dimensionless</strong> quantity that takes a value in the range <strong>-1</strong> to <strong>+1</strong>.</p>
 <p><strong>Direction of the association</strong></p>
 <p>A <strong>negative</strong> correlation coefficient indicates that as one variable increases, the other variable tends to decrease, and vice versa (<a href="#fig-correlation1" class="quarto-xref">Figure&nbsp;<span>26.4</span></a> a). A <strong>zero</strong> value indicates that no association exists between the two variables (<a href="#fig-correlation1" class="quarto-xref">Figure&nbsp;<span>26.4</span></a> b). A <strong>positive</strong> coefficient indicates that both variables increase (or decrease) together (<a href="#fig-correlation1" class="quarto-xref">Figure&nbsp;<span>26.4</span></a> c).</p>
 <div class="cell">
@@ -588,8 +599,8 @@ Characteristics of Pearson’s correlation coefficient <span class="math inline"
 </div>
 </div>
 <p>&nbsp;</p>
-<p><strong>Magnitude of the association</strong></p>
-<p>The <strong>magnitude</strong> of association range from -1 to +1. The <strong>stronger</strong> the correlation, the more closely the correlation coefficient approaches ±1. A correlation coefficient of <strong>-1</strong> or <strong>+1</strong> indicates a <strong>perfect</strong> negative or positive association, respectively (<a href="#fig-correlation2" class="quarto-xref">Figure&nbsp;<span>26.5</span></a> c and f).</p>
+<p><strong>Strength of the association</strong></p>
+<p>The <strong>strength</strong> of the association range from -1 to +1. The <strong>stronger</strong> the correlation, the more closely the correlation coefficient approaches ±1. A correlation coefficient of <strong>-1</strong> or <strong>+1</strong> indicates a <strong>perfect</strong> negative or positive association, respectively (<a href="#fig-correlation2" class="quarto-xref">Figure&nbsp;<span>26.5</span></a> c and f).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-correlation2" class="quarto-figure quarto-figure-center anchored">
@@ -598,11 +609,13 @@ Characteristics of Pearson’s correlation coefficient <span class="math inline"
 </div>
 </div>
 </div>
+</div>
+</div>
 <p>&nbsp;</p>
-<p><strong>Interpretation of the association</strong></p>
-<p>The table below demonstrates how to interpret the strength of an association.</p>
+<p>The <a href="#tbl-correlation" class="quarto-xref">Table&nbsp;<span>26.1</span></a> demonstrates how to interpret the strength of an association according to <span class="citation" data-cites="evans1996">(<a href="references.html#ref-evans1996" role="doc-biblioref">Evans 1996</a>)</span>.</p>
+<div id="tbl-correlation" class="anchored">
 <table class="table">
-<caption>Interpretation of the values of the sample estimate of the correlation coefficient.</caption>
+<caption>Table&nbsp;26.1: Interpretation of the values of the sample estimate of the correlation coefficient.</caption>
 <thead><tr class="header">
 <th>Value of r</th>
 <th>Strength of association</th>
@@ -630,8 +643,19 @@ Characteristics of Pearson’s correlation coefficient <span class="math inline"
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>
-<p><strong>Anscombe’s Quartet</strong></p>
+</div>
+<p>In our example, the coefficient equals r = 0.713, indicating that infants with greater height generally exhibit higher weight. We say that there is a <strong>linear positive association</strong> between the two variables. However, <strong>correlation does not mean causation</strong> <span class="citation" data-cites="altman2015">(<a href="references.html#ref-altman2015" role="doc-biblioref">Altman and Krzywinski 2015</a>)</span>.</p>
+<p>Even though summary statistics, such as Pearson r, can provide useful information, they are just simplified representations of the data and may not always capture the full picture. This is typically demonstrated with the Anscombe’s quartet, highlighting the need to explore and understand the underlying patterns and associations within the data through graphical representations (<a href="#fig-anscombe" class="quarto-xref">Figure&nbsp;<span>26.6</span></a>).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Anscombe’s Quartet
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Anscombe’s quartet consists of four sets of data, each containing eleven (x, y) points. Despite having the same basic statistical characteristics, these datasets exhibit distinct distributions and present remarkable differences in their graphical representations <span class="citation" data-cites="anscombe1973">(<a href="references.html#ref-anscombe1973" role="doc-biblioref">Anscombe 1973</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -645,122 +669,77 @@ Characteristics of Pearson’s correlation coefficient <span class="math inline"
 </div>
 </div>
 <p>&nbsp;</p>
-<p><strong>Correlation coefficients</strong></p>
-<p>Pearson’s coefficient measures <strong>linear</strong> correlation, while the Spearman’s and Kendall’s coefficients compare the <strong>ranks</strong> of data and measures <strong>monotonic</strong> associations. These coefficients are very powerful for detecting linear or monotonic associations, respectively. The new <span class="math inline">\(ξ\)</span> correlation coefficient is more appropriate to measure the strength of non-monotonic associations.</p>
-<p>Note that the correlation between variables X and Y is equal to the correlation between variables Y and X so the order of the variables in the functions does not matter. The four correlations coefficients are:</p>
-<div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
+</section><section id="hypothesis-testing-for-pearsons-correlation-coefficient" class="level3"><h3 class="anchored" data-anchor-id="hypothesis-testing-for-pearsons-correlation-coefficient">Hypothesis Testing for Pearson’s correlation coefficient</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Correlation coefficients
+Null hypothesis and alternative hypothesis
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Pearson’s <span class="math inline">\(r\)</span></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Spearman’s <span class="math inline">\(r_{s}\)</span></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Kendall’s <span class="math inline">\(\tau\)</span></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Coefficient <span class="math inline">\(ξ\)</span></a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>The Pearson’s correlation coefficient can be calculated for any dataset with two numeric variables. However, before we calculate the Pearson’s coefficient we should make sure that the following assumptions are met:</p>
-<p><strong>Assumptions for Pearson’s</strong> <span class="math inline">\(r\)</span> coefficient</p>
-<ol type="1">
-<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).</li>
-<li>There is a <strong>linear association</strong> between the two variables.</li>
-<li>For a valid hypothesis testing and calculation of confidence intervals both variables should have an approximately <strong>normal distribution</strong>.</li>
-<li>
-<strong>Absence of outliers</strong> in the data set.</li>
-</ol>
-<p>Pearson’s <span class="math inline">\(r\)</span> coefficient is a dimensionless quantity that takes a value in the range -1 to +1. A positive value indicates that both variables increase (or decrease) together while a negative coefficient indicates that one variable decreases as the other variable increases and vice versa. The stronger the correlation, the closer the correlation coefficient comes to ±1.</p>
-<div class="cell">
-<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.7131192</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>The basic idea of Spearman’s rank correlation is that the <strong>ranks of X and Y</strong> are obtained by first separately ordering their values from small to large and then computing the correlation between the two sets of ranks. The strength of correlation is denoted by the coefficient of rank correlation, named Spearman’s rank correlation coefficient, <span class="math inline">\(r_{s}\)</span>.</p>
-<p><strong>Assumptions for Spearman’s</strong> <span class="math inline">\(r_{s}\)</span> coefficient</p>
-<ol type="1">
-<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).</li>
-<li>There is a <strong>monotonic association</strong> between the two variables. In a monotonic association, the variables tend to move in the same relative direction, but not necessarily at a constant rate. So all linear correlations are monotonic but the opposite is not always true, because we can have also monotonic non-linear associations.</li>
-</ol>
-<p>Spearman’s <span class="math inline">\(rho\)</span> coefficient is dimensionless quantity that take value in the range -1 to +1. A positive correlation coefficient indicates that both variables increase (or decrease) in value together and a negative coefficient indicates that one variable decreases in value as the other variable increases and vice versa. The stronger the correlation, the closer the correlation coefficient comes to ±1.</p>
-<div class="cell">
-<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.711021</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>The Kendall’s <span class="math inline">\(\tau\)</span> coefficient is the best alternative to Spearman’s <span class="math inline">\(rho\)</span> correlation when the sample size is small and has many tied ranks. It is used to test the similarities in the ordering of data when it is ranked by quantities. Kendall’s correlation coefficient uses pairs of observations and determines the strength of association based on the patter on concordance and discordance between the pairs.</p>
-<p><strong>Assumptions for Kendall’s</strong> <span class="math inline">\(\tau\)</span> coefficient</p>
-<ol type="1">
-<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).</li>
-<li>There is a <strong>monotonic association</strong> between the two variables. In a monotonic association, the variables tend to move in the same relative direction, but not necessarily at a constant rate. So all linear correlations are monotonic but the opposite is not always true, because we can have also monotonic non-linear associations.</li>
-</ol>
-<p>Kendall’s <span class="math inline">\(\tau\)</span> coefficient is dimensionless quantity that takes value in the range -1 to +1. A positive correlation coefficient indicates that both variables increase (or decrease) in value together and a negative coefficient indicates that one variable decreases in value as the other variable increases and vice versa. The stronger the correlation, the closer the correlation coefficient comes to ±1.</p>
-<div class="cell">
-<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"kendal"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.5408389</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p>The correlation coefficient <span class="math inline">\(ξ\)</span> converges to a limit which has an easy interpretation as a measure of dependence. The limit ranges from 0 to 1. It is 1 if and only if Y is a measurable function of X and 0 if and only if X and Y are independent. Thus, <span class="math inline">\(ξ\)</span> gives an actual measure of the <strong>strength</strong> of the association and it can be used for non-monotonic associations. However, for monotonic associations, it does not indicate the direction of the association.</p>
-<p><strong>Assumptions for</strong> <span class="math inline">\(ξ\)</span> coefficient</p>
-<ol type="1">
-<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).</li>
-</ol>
-<div class="cell">
-<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/XICOR/man/xicor.html">xicor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.3511583</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p><strong>Correlation tests</strong></p>
-<p>A correlation test is used to test whether the correlation (denoted ρ) between two numeric variables is significantly different from 0 or not in the population.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hypothesis Testing for correlation coefficients
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Pearson’s <span class="math inline">\(r\)</span> test</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Spearman’s <span class="math inline">\(r_{s}\)</span> test</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Kendal’s <span class="math inline">\(\tau\)</span> test</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Coefficient <span class="math inline">\(ξ\)</span> test</a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p><strong>Null hypothesis and alternative hypothesis</strong></p>
 <ul>
 <li>
 <span class="math inline">\(H_0\)</span>: There is no linear association between the two numeric variables (they are independent, <span class="math inline">\(ρ = 0\)</span>)</li>
 <li>
 <span class="math inline">\(H_1\)</span>: There is linear association between the two numeric variables (they are dependent, <span class="math inline">\(ρ \neq 0\)</span>)</li>
 </ul>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="assumptions" class="level3"><h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
+<p>Before we conduct a statistical test for the Pearson r coefficient, we should make sure that some assumptions are met.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Check if the following assumptions are satisfied
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).<br>
+</li>
+<li>There is a <strong>linear association</strong> between the two variables. If the association is nonlinear, the correlation coefficient might not accurately represent the association between the variables.</li>
+<li>For a valid hypothesis testing and calculation of confidence intervals both variables should have an approximately <strong>normal distribution</strong>.</li>
+<li>
+<strong>Absence of outliers</strong> in the data set. It’s important to identify and address outliers before calculating the coefficient.</li>
+</ol>
+</div>
+</div>
+<p>Based on the <a href="#fig-correlation0" class="quarto-xref">Figure&nbsp;<span>26.2</span></a> the points seem to be scattered around an invisible line without any important outlier value. Additionally, the marginal histograms show that the data are approximately normally distributed (we have a large sample so the graphs are reliable) for both weight and height. Therefore, we conclude that the assumptions are satisfied.</p>
+<p>&nbsp;</p>
+</section><section id="run-the-test" class="level3"><h3 class="anchored" data-anchor-id="run-the-test">Run the test</h3>
+<p>To determine whether to reject the null hypothesis or not, a test is conducted based on the formula:</p>
+<p><span id="eq-r2"><span class="math display">\[t = \frac{r}{SE_{r}}=\frac{r}{\sqrt{(1-r^2)/(n-2)}} \tag{26.2}\]</span></span></p>
+<p>where <em>n</em> is the sample size.</p>
+<p>For the data in our example, the number of observations are n= 550, r= 0.713 and <span class="math inline">\(SE_{r}=\sqrt{ \frac{(1-0.713^2)}{(550-2)}}= \sqrt{ \frac{(1-0.5084)}{548}} = \sqrt{\frac{0.4916}{548}}= 0.0299\)</span>.</p>
+<p>According to <a href="#eq-r2" class="quarto-xref">Equation&nbsp;<span>26.2</span></a>:</p>
+<p><span class="math display">\[t = \frac{r}{SE_{r}}= \frac{0.713}{0.0299}= 23.8\]</span></p>
+<p>In this example, the value for the test statistic equals 23.8. Using R, we can find the 95% confidence interval and the corresponding p-value for a two tailed test:</p>
+<div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pearson’s correlation test
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Base R</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">rstatix</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span> <span class="co"># the default method is "pearson"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span> <span class="co"># the default method is "pearson"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>
     Pearson's product-moment correlation
@@ -776,16 +755,630 @@ sample estimates:
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p><strong>Null hypothesis and alternative hypothesis</strong></p>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BirthWeight</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span><span class="op">)</span>   <span class="co"># the default method is "pearson"  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 1 × 8
+  var1   var2     cor statistic        p conf.low conf.high method 
+  &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  
+1 height weight  0.71      23.8 1.40e-86    0.669     0.752 Pearson</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The result is significant (p &lt; 0.001) and we reject the null hypothesis.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>significance</strong> of correlation is influenced by <strong>the size of the sample</strong>. With a large sample size, even a weak association may be significant, whereas with a small sample size, even a strong association might or might not be significant.</p>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="present-the-results" class="level3"><h3 class="anchored" data-anchor-id="present-the-results">Present the results</h3>
+<p><strong>Summary table</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BirthWeight</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/fmt_number.html">fmt_number</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"st"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>             decimals <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="uvqnumwtpp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uvqnumwtpp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#uvqnumwtpp thead, #uvqnumwtpp tbody, #uvqnumwtpp tfoot, #uvqnumwtpp tr, #uvqnumwtpp td, #uvqnumwtpp th {
+  border-style: none;
+}
+
+#uvqnumwtpp p {
+  margin: 0;
+  padding: 0;
+}
+
+#uvqnumwtpp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#uvqnumwtpp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uvqnumwtpp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uvqnumwtpp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uvqnumwtpp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uvqnumwtpp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uvqnumwtpp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uvqnumwtpp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uvqnumwtpp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#uvqnumwtpp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#uvqnumwtpp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uvqnumwtpp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#uvqnumwtpp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#uvqnumwtpp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uvqnumwtpp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uvqnumwtpp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#uvqnumwtpp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#uvqnumwtpp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#uvqnumwtpp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uvqnumwtpp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#uvqnumwtpp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uvqnumwtpp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uvqnumwtpp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uvqnumwtpp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uvqnumwtpp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uvqnumwtpp .gt_left {
+  text-align: left;
+}
+
+#uvqnumwtpp .gt_center {
+  text-align: center;
+}
+
+#uvqnumwtpp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uvqnumwtpp .gt_font_normal {
+  font-weight: normal;
+}
+
+#uvqnumwtpp .gt_font_bold {
+  font-weight: bold;
+}
+
+#uvqnumwtpp .gt_font_italic {
+  font-style: italic;
+}
+
+#uvqnumwtpp .gt_super {
+  font-size: 65%;
+}
+
+#uvqnumwtpp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#uvqnumwtpp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#uvqnumwtpp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#uvqnumwtpp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#uvqnumwtpp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#uvqnumwtpp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#uvqnumwtpp .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="var1">var1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="var2">var2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cor">cor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p">p</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="method">method</th>
+    </tr></thead>
+<tbody class="gt_table_body"><tr>
+<td headers="var1" class="gt_row gt_left">height</td>
+<td headers="var2" class="gt_row gt_left">weight</td>
+<td headers="cor" class="gt_row gt_right">0.710</td>
+<td headers="statistic" class="gt_row gt_right">23.813</td>
+<td headers="p" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">0.669</td>
+<td headers="conf.high" class="gt_row gt_right">0.752</td>
+<td headers="method" class="gt_row gt_left">Pearson</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><strong>Report the results</strong> <span class="citation" data-cites="evans1996">(according to <a href="references.html#ref-evans1996" role="doc-biblioref">Evans 1996</a>)</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://easystats.github.io/report/reference/report.html">report</a></span><span class="op">(</span>rules <span class="op">=</span> <span class="st">"evans"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>Effect sizes were labelled following Evans's (1996) recommendations.
+
+The Pearson's product-moment correlation between BirthWeight$height and
+BirthWeight$weight is positive, statistically significant, and strong (r =
+0.71, 95% CI [0.67, 0.75], t(548) = 23.81, p &lt; .001)</code></pre>
+</div>
+</div>
+<p>&nbsp; We can use the above information to write up a final report:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Final report
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We observed a strong, positive linear association between height and weight of one-month-old infants which is significant (r = 0.71, 95% CI [0.67, 0.75], n = 550, p &lt; 0.001).</p>
+</div>
+</div>
+<p>&nbsp;</p>
+</section></section><section id="rank-correlation-spearmans-r_s-and-kendalls-tau-coefficients" class="level2" data-number="26.6"><h2 data-number="26.6" class="anchored" data-anchor-id="rank-correlation-spearmans-r_s-and-kendalls-tau-coefficients">
+<span class="header-section-number">26.6</span> Rank correlation (Spearman’s <span class="math inline">\(r_{s}\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> coefficients)</h2>
+<p>The basic idea of Spearman’s rank correlation involves obtaining the <strong>rankings</strong> of both variables X and Y. This is achieved by individually arranging their values in ascending order and subsequently calculating the correlation between these two sets of rankings. The strength of association is denoted by the coefficient of rank correlation which is referred to as Spearman’s rank correlation coefficient, <span class="math inline">\(r_{s}\)</span>.</p>
+<section id="the-formula-r_s" class="level3"><h3 class="anchored" data-anchor-id="the-formula-r_s">The formula <span class="math inline">\(r_{s}\)</span>
+</h3>
+<p>Suppose a set of <span class="math inline">\({n}\)</span> pairs of observations <span class="math inline">\((x_{1},y_{1}),\ldots ,(x_{n},y_{n})\)</span>. Let <span class="math inline">\(x_{i}\)</span> and <span class="math inline">\(y_{i}\)</span> be arranged in ascending order, and the ranks of <span class="math inline">\(x_{i}\)</span> and <span class="math inline">\(y_{i}\)</span> in their respective order be denoted by <span class="math inline">\(R_{x_{i}}\)</span> and <span class="math inline">\(R_{y_{i}}\)</span>, respectively. Spearman’s rank correlation coefficient of the sample is defined as:</p>
+<p><span id="eq-rk1"><span class="math display">\[r_{s} = \frac{\sum_{i=1}^n (R_{x_i} - \bar{R_{x}})(R{y_i} - \bar{R{y}})}{\sqrt{\sum_{i=1}^n (R_{x_i} - \bar{R_x})^2 \sum_{i=1}^n(R_{y_i} - \bar{R_{y}})^2}} \tag{26.3}\]</span></span></p>
+<p>where <span class="math inline">\(\bar{R_{x}}= \frac{1}{n} \cdot \sum_{i=1}^n R_{x_i}\)</span> and <span class="math inline">\(\bar{R_{y}}= \frac{1}{n} \cdot \sum_{i=1}^n R_{y_i}\)</span></p>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Characteristics of Spearman’s coefficient <span class="math inline">\(r_{s}\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The interpretation of Spearman’s rank correlation coefficient <span class="math inline">\(r_{s}\)</span> is similar to the Pearson correlation coefficient <span class="math inline">\(r\)</span>, and it also ranges between −1 and 1.</p>
+<p>The <span class="math inline">\(r_{s}\)</span> is a dimensionless quantity. The closer <span class="math inline">\(r_{s}\)</span> is to 0, the weaker is the association; <span class="math inline">\(r_{s}=1\)</span> indicates a perfect association of ranks, <span class="math inline">\(r_{s}=-1\)</span> indicates a perfect negative association of ranks, and <span class="math inline">\(r_{s}=0\)</span> indicates no monotonic association between ranks.</p>
+<p>Next, we demonstrate the idea of <strong>monotonicity</strong> (<a href="#fig-monotonicity" class="quarto-xref">Figure&nbsp;<span>26.7</span></a>). In a monotonic association, the variables tend to move in the same relative direction, but not necessarily at a constant rate. Note that while all linear associations can be considered monotonic (<a href="#fig-monotonicity" class="quarto-xref">Figure&nbsp;<span>26.7</span></a> a), the reverse isn’t always true, as monotonic associations can also take on non-linear forms (<a href="#fig-monotonicity" class="quarto-xref">Figure&nbsp;<span>26.7</span></a> b).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-monotonicity" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="correlation_files/figure-html/fig-monotonicity-1.png" class="img-fluid figure-img" width="1132"></p>
+<figcaption class="figure-caption">Figure&nbsp;26.7: The association can be (a) linear monotonic and (b) monotonic non-linear.</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="hypothesis-testing-for-spearmans-correlation-coefficient" class="level3"><h3 class="anchored" data-anchor-id="hypothesis-testing-for-spearmans-correlation-coefficient">Hypothesis Testing for Spearman’s correlation coefficient</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Null hypothesis and alternative hypothesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>
 <span class="math inline">\(H_0\)</span>: There is no monotonic association between the two numeric variables (they are independent)</li>
 <li>
 <span class="math inline">\(H_1\)</span>: There is monotonic association between the two numeric variables (they are dependent)</li>
 </ul>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="assumptions-1" class="level3"><h3 class="anchored" data-anchor-id="assumptions-1">Assumptions</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Check if the following assumptions are satisfied
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).</li>
+<li>There is a <strong>monotonic association</strong> between the two variables.</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="run-the-test-1" class="level3"><h3 class="anchored" data-anchor-id="run-the-test-1">Run the test</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spearman’s correlation test
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Base R</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">rstatix</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb16" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre data-code-line-numbers=""><code>Warning in cor.test.default(BirthWeight$height, BirthWeight$weight, method =
 "spearman"): Cannot compute exact p-value with ties</code></pre>
@@ -803,16 +1396,545 @@ sample estimates:
 </div>
 </div>
 </div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<p><strong>Null hypothesis and alternative hypothesis</strong></p>
-<ul>
-<li>
-<span class="math inline">\(H_0\)</span>: There is no monotonic association between the two numeric variables (they are independent)</li>
-<li>
-<span class="math inline">\(H_1\)</span>: There is monotonic association between the two numeric variables (they are dependent)</li>
-</ul>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BirthWeight</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 1 × 6
+  var1   var2     cor statistic       p method  
+  &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   
+1 height weight  0.71  8013119. 7.4e-86 Spearman</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="present-the-results-1" class="level3"><h3 class="anchored" data-anchor-id="present-the-results-1">Present the results</h3>
+<p><strong>Summary table</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BirthWeight</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/fmt_number.html">fmt_number</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>             decimals <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="bqajdgkciq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bqajdgkciq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#bqajdgkciq thead, #bqajdgkciq tbody, #bqajdgkciq tfoot, #bqajdgkciq tr, #bqajdgkciq td, #bqajdgkciq th {
+  border-style: none;
+}
+
+#bqajdgkciq p {
+  margin: 0;
+  padding: 0;
+}
+
+#bqajdgkciq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#bqajdgkciq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#bqajdgkciq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#bqajdgkciq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#bqajdgkciq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bqajdgkciq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#bqajdgkciq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#bqajdgkciq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#bqajdgkciq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#bqajdgkciq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#bqajdgkciq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bqajdgkciq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#bqajdgkciq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#bqajdgkciq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#bqajdgkciq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bqajdgkciq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#bqajdgkciq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#bqajdgkciq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#bqajdgkciq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bqajdgkciq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#bqajdgkciq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bqajdgkciq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#bqajdgkciq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bqajdgkciq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bqajdgkciq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bqajdgkciq .gt_left {
+  text-align: left;
+}
+
+#bqajdgkciq .gt_center {
+  text-align: center;
+}
+
+#bqajdgkciq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#bqajdgkciq .gt_font_normal {
+  font-weight: normal;
+}
+
+#bqajdgkciq .gt_font_bold {
+  font-weight: bold;
+}
+
+#bqajdgkciq .gt_font_italic {
+  font-style: italic;
+}
+
+#bqajdgkciq .gt_super {
+  font-size: 65%;
+}
+
+#bqajdgkciq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#bqajdgkciq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#bqajdgkciq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#bqajdgkciq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#bqajdgkciq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#bqajdgkciq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#bqajdgkciq .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="var1">var1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="var2">var2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cor">cor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p">p</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="method">method</th>
+    </tr></thead>
+<tbody class="gt_table_body"><tr>
+<td headers="var1" class="gt_row gt_left">height</td>
+<td headers="var2" class="gt_row gt_left">weight</td>
+<td headers="cor" class="gt_row gt_right">0.710</td>
+<td headers="statistic" class="gt_row gt_right">8013119</td>
+<td headers="p" class="gt_row gt_right">0.000</td>
+<td headers="method" class="gt_row gt_left">Spearman</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Report the results</strong> <span class="citation" data-cites="evans1996">(according to <a href="references.html#ref-evans1996" role="doc-biblioref">Evans 1996</a>)</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="https://easystats.github.io/report/reference/report.html">report</a></span><span class="op">(</span>rules <span class="op">=</span> <span class="st">"evans"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre data-code-line-numbers=""><code>Warning in cor.test.default(BirthWeight$height, BirthWeight$weight, method =
+"spearman"): Cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>Effect sizes were labelled following Evans's (1996) recommendations.
+
+The Spearman's rank correlation rho between BirthWeight$height and
+BirthWeight$weight is positive, statistically significant, and strong (rho =
+0.71, S = 8.01e+06, p &lt; .001)</code></pre>
+</div>
+</div>
+<p>&nbsp; We can use the above information to write up a final report:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Final report
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We observed a strong, positive monotonic association between height and weight of one-month-old infants which is significant (<span class="math inline">\(r_s\)</span> = 0.71, n = 550, p &lt; 0.001).</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kendall’s coefficient <span class="math inline">\(\tau\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>Kendall’s coefficient</strong> is an alternative to Spearman’s correlation. It is calculated by comparing the number of concordant pairs and discordant pairs of ranks in two sets of data.</p>
+<p><strong>Run the test</strong></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Base R</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">rstatix</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>
     Kendall's rank correlation tau
@@ -825,20 +1947,84 @@ sample estimates:
 0.5408389 </code></pre>
 </div>
 </div>
+<p>Similar to other correlation coefficients, Kendall’s coefficient is dimensionless quantity that falls within the range of -1 to +1. The stronger the association, the closer the correlation coefficient approaches ±1..</p>
 </div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
-<p><strong>Null hypothesis and alternative hypothesis</strong></p>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BirthWeight</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 1 × 6
+  var1   var2     cor statistic        p method 
+  &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  
+1 height weight  0.54      18.4 2.78e-75 Kendall</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>We observe that Kendall’s <span class="math inline">\(\tau\)</span> is smaller than Spearman’s <span class="math inline">\(r_s\)</span> correlation (0.54 vs 0.71).</p>
+<p>&nbsp;</p>
+<p><strong>Report the results</strong> <span class="citation" data-cites="evans1996">(according to <a href="references.html#ref-evans1996" role="doc-biblioref">Evans 1996</a>)</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="https://easystats.github.io/report/reference/report.html">report</a></span><span class="op">(</span>rules <span class="op">=</span> <span class="st">"evans"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>Effect sizes were labelled following Evans's (1996) recommendations.
+
+The Kendall's rank correlation tau between BirthWeight$height and
+BirthWeight$weight is positive, statistically significant, and moderate (tau =
+0.54, z = 18.36, p &lt; .001)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section></section><section id="non-monotonic-association-coefficient-ξ" class="level2" data-number="26.7"><h2 data-number="26.7" class="anchored" data-anchor-id="non-monotonic-association-coefficient-ξ">
+<span class="header-section-number">26.7</span> Non-monotonic association (coefficient <span class="math inline">\(ξ\)</span>)</h2>
+<p>The correlation coefficient <span class="math inline">\(ξ\)</span> ranges from 0 to 1 and is a measure of dependence between X and Y variables <span class="citation" data-cites="chatterjee2021">(<a href="references.html#ref-chatterjee2021" role="doc-biblioref">Chatterjee 2021</a>)</span>. It equals 1 when the Y is a function of X and it equals 0 when X and Y are independent. Thus, <span class="math inline">\(ξ\)</span> gives a measure of the <strong>strength</strong> of the association and it can be used for <strong>non-monotonic</strong> associations. However, for monotonic associations, it does not indicate the direction of the association.</p>
+<section id="hypothesis-testing-for-ξ-correlation-coefficient" class="level3"><h3 class="anchored" data-anchor-id="hypothesis-testing-for-ξ-correlation-coefficient">Hypothesis Testing for <span class="math inline">\(ξ\)</span> correlation coefficient</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Null hypothesis and alternative hypothesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>
 <span class="math inline">\(H_0\)</span>: There is not association between the two numeric variables (they are independent)</li>
 <li>
 <span class="math inline">\(H_1\)</span>: There is association between the two numeric variables (they are dependent)</li>
 </ul>
+</div>
+</div>
+</section><section id="assumptions-2" class="level3"><h3 class="anchored" data-anchor-id="assumptions-2">Assumptions</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Check if the following assumptions are satisfied
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The variables are observed on a <strong>random sample</strong> of individuals (each individual should have a pair of values).</li>
+</ol>
+</div>
+</div>
+</section><section id="run-the-test-2" class="level3"><h3 class="anchored" data-anchor-id="run-the-test-2">Run the test</h3>
 <div class="cell">
-<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/XICOR/man/xicor.html">xicor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, pvalue <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/XICOR/man/xicor.html">xicor</a></span><span class="op">(</span><span class="va">BirthWeight</span><span class="op">$</span><span class="va">height</span>, <span class="va">BirthWeight</span><span class="op">$</span><span class="va">weight</span>, pvalue <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>$xi
-[1] 0.3220746
+[1] 0.3149699
 
 $sd
 [1] 0.02697177
@@ -847,16 +2033,64 @@ $pval
 [1] 0</code></pre>
 </div>
 </div>
+</section><section id="present-the-results-2" class="level3"><h3 class="anchored" data-anchor-id="present-the-results-2">Present the results</h3>
+<p>Based on the <span class="math inline">\(ξ\)</span> correlation coefficient, there is a significant association between height and weight (<span class="math inline">\(ξ\)</span> = 0.31, sd = 0.027, p &lt; 0.001).</p>
+<p>&nbsp;</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+NOTE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In our example, there is a linear association between the height and weight, so the most appropriate correlation measure is the Pearson’s coefficient. Now, consider another example with a non-monotonic association between X and Y, as illustrated in <a href="#fig-non_monotonic" class="quarto-xref">Figure&nbsp;<span>26.8</span></a>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-non_monotonic" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="correlation_files/figure-html/fig-non_monotonic-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;26.8: Non-monotonic association.</figcaption></figure>
 </div>
 </div>
 </div>
+<p>Let’s calculate in R the correlation coefficients for this data set:</p>
+<div class="cell">
+<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x3</span>, <span class="va">df3</span><span class="op">$</span><span class="va">y3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -0.04640522</code></pre>
+</div>
+<div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x3</span>, <span class="va">df3</span><span class="op">$</span><span class="va">y3</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -0.08800493</code></pre>
+</div>
+<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x3</span>, <span class="va">df3</span><span class="op">$</span><span class="va">y3</span>, method <span class="op">=</span>  <span class="st">"kendall"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -0.047343</code></pre>
+</div>
+<div class="sourceCode" id="cb38" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/XICOR/man/xicor.html">xicor</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x3</span>, <span class="va">df3</span><span class="op">$</span><span class="va">y3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.7021277</code></pre>
+</div>
+</div>
+<p>In this case, the correlation coefficient that is appropriate to be used is the <span class="math inline">\(ξ\)</span> correlation coefficient.</p>
 </div>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-altman2015" class="csl-entry" role="listitem">
+Altman, Naomi, and Martin Krzywinski. 2015. <span>“Association, Correlation and Causation.”</span> <em>Nature Methods</em> 12 (10): 899–900. <a href="https://doi.org/10.1038/nmeth.3587">https://doi.org/10.1038/nmeth.3587</a>.
+</div>
 <div id="ref-anscombe1973" class="csl-entry" role="listitem">
 Anscombe, F. J. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>The American Statistician</em> 27 (1): 17. <a href="https://doi.org/10.2307/2682899">https://doi.org/10.2307/2682899</a>.
+</div>
+<div id="ref-chatterjee2021" class="csl-entry" role="listitem">
+Chatterjee, Sourav. 2021. <span>“A New Coefficient of Correlation.”</span> <em>Journal of the American Statistical Association</em> 116 (536): 2009–22. <a href="https://doi.org/10.1080/01621459.2020.1758115">https://doi.org/10.1080/01621459.2020.1758115</a>.
+</div>
+<div id="ref-evans1996" class="csl-entry" role="listitem">
+Evans, James D. 1996. <em>Straightforward Statistics for the Behavioral Sciences.</em> Straightforward Statistics for the Behavioral Sciences. Belmont, CA, US: Thomson Brooks/Cole Publishing Co.
 </div>
 </div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
