@@ -42,6 +42,7 @@ library(rstatix)
 library(gtsummary)
 library(here)
 library(tidyverse)
+library(report)
 ```
 
 ## Preraring the data
@@ -58,8 +59,8 @@ weight <- read_excel(here("data", "weight.xlsx"))
 We calculate the differences using the `mutate()` function:
 
 ```{r}
-weight <- weight %>%
-  mutate(dif_weight = birth_weight - discharge_weight)
+weight <- weight |> 
+  mutate(dif_weight = discharge_weight - birth_weight)
 ```
 
 ```{r}
@@ -103,7 +104,7 @@ We can explore the distribution of differences visually for symmetry with a dens
 #| label: fig-hist1
 #| fig-cap: Density plot of the weight differences.
 
-weight %>%
+weight |> 
   ggplot(aes(x = dif_weight)) +
   geom_density(fill = "#76B7B2", color="black", alpha = 0.2) +
   geom_vline(aes(xintercept=mean(dif_weight)),
@@ -115,7 +116,7 @@ weight %>%
   theme(plot.title.position = "plot")
 ```
 
-The above figure shows that the data are following an approximately symmetrical distribution. Note that the arethmetic mean (blue vertical dashed line) is very close to the median (red vertical dashed line) of the data.
+The above figure shows that the data are following an approximately symmetrical distribution. Note that the arithmetic mean (blue vertical dashed line) is very close to the median (red vertical dashed line) of the data.
 
 **Summary statistics**
 
@@ -132,7 +133,7 @@ We can utilize the `across` function to obtain the results across the three vari
 ```{r}
 #| warning: false
 
-summary_weight <- weight %>%
+summary_weight <- weight |> 
   dplyr::summarise(across(
     .cols = c(dif_weight, birth_weight, discharge_weight), 
     .fns = list(
@@ -152,32 +153,34 @@ summary_weight <- weight %>%
     )
 
 # present the results
-summary_weight <- summary_weight %>% 
-  mutate(across(everything(), round, 2)) %>%   # round to 3 decimal places
+summary_weight <- summary_weight |> 
+  mutate(across(everything(), round, 2)) |>    # round to 3 decimal places
   pivot_longer(1:33, names_to = "Stats", values_to = "Values")  # long format
 
-summary_weight
+summary_weight|> 
+  head(n = 11L)
 ```
 
 ## dlookr
 
 ```{r}
-weight %>% 
+weight |>  
   dlookr::describe(dif_weight, birth_weight, discharge_weight) %>% 
-  select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) %>% 
-  ungroup()
+  select(described_variables, n, na, mean, sd, p25, p50, p75, skewness, kurtosis) |> 
+  ungroup() |> 
+  print(width = 100)
 ```
 :::
 :::
 
-As it was previously mentioned, the mean of the differences (39.64) is close to median (40). Moreover, both the skewness and the kurtosis are approximately zero indicating a symmetric and mesokurtic distribution for the weight differences.
+As it was previously mentioned, the mean of the differences (-39.64) is close to median (-40). Moreover, both the skewness and the kurtosis are approximately zero indicating a symmetric and mesokurtic distribution for the weight differences.
 
 **Normality test**
 
 Additionally, we can check the statistical test for normality of the differences.
 
 ```{r}
- weight %>%
+ weight |> 
     shapiro_test(dif_weight)
 ```
 
@@ -185,9 +188,72 @@ The Shapiro-Wilk test suggests that the weight differences are normally distribu
 
 ## Run the paired t-test
 
-We will perform a paired t-test to test the null hypothesis that the mean differences of weight equals to zero.
+We will perform a paired t-test to test the null hypothesis that the mean differences of weight equals to zero. Under this $H_o$, the test statistic is:
 
-::: {#exercise-joins .callout-tip}
+$$ 
+t = \frac{\bar d}{SE_{\bar d}}
+$$
+
+where $\bar d$ is the mean of the differences, $SE_{\bar d} = s_d/ \sqrt n$ is the estimate of standard error and n is the number of pairs.
+
+Under the null hypothesis, the t statistic follows the t-distribution with n-1 degrees of freedom (d.f.).
+
+The 95% confidence interval of the mean of the differences is:
+
+$$ 
+95\% \ CI = \bar d \pm t_{n-1;a/2} * SE_{\bar d}
+$$
+
+**In R:**
+
+First, we calculate the **mean of the differences**:
+
+```{r}
+mean_dif <- mean(weight$dif_weight, na.rm = TRUE)
+mean_dif 
+```
+
+Second, we find the **standard error** of the mean of differences:
+
+```{r}
+n <- length(weight$dif_weight)
+st_error <- sd(weight$dif_weight, na.rm = TRUE)/sqrt(n)
+st_error
+```
+
+Therefore, the **t statistic** is:
+
+```{r}
+t <- mean_dif / st_error
+t
+```
+
+The corresponding probability for this value can be calculated as the cumulative probability P(T \≤ t) for n-1 degrees of freedom. Then, the **p-value** is 2\*P(T \≤ t) because we are doing a two-tailed test.
+
+```{r}
+P <- pt(t, df = 24)
+
+p_value <- 2*P
+p_value
+```
+
+The **95% confidence interval** of the mean of differences is:
+
+```{r}
+lower_CI <- mean_dif + qt(0.025, df = 24)*st_error
+lower_CI
+
+upper_CI <- mean_dif - qt(0.025, df = 24)*st_error
+upper_CI
+```
+
+Note that the 95% confidence interval (-53.0 to -26.3) doesn't include the null hypothesized value of zero.
+
+ 
+
+Next, we present **R functions** to carry out all the tasks on our behalf.
+
+::: callout-tip
 ## Paired t-test
 
 ::: panel-tabset
@@ -202,39 +268,57 @@ t.test(weight$dif_weight)
 ## Base R (2nd way)
 
 ```{r}
-t.test(weight$birth_weight, weight$discharge_weight, paired = T)
+t.test(weight$discharge_weight, weight$birth_weight, paired = T)
 ```
 
 ## rstatix
 
 ```{r}
-weight %>% 
+weight |>  
   t_test(dif_weight ~ 1, detailed = T)
 ```
 :::
 :::
 
-## Present the results in a summary table
+### Present the results
+
+**Summary table**
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
 #| 
-tb1 <- weight %>% 
-  mutate(id = row_number()) %>% 
-  select(-dif_weight) %>% 
+tb1 <- weight |>  
+  mutate(id = row_number()) |> 
+  select(-dif_weight) |> 
   pivot_longer(!id, names_to = "group", values_to = "weights")
 
-tb1 %>% 
+tb1 |>  
   tbl_summary(by = group, include = -id,
-            label = list(weights ~ "weights (grams)"),
-            statistic =  weights ~ "{mean} ({sd})") %>%
+              label = list(weights ~ "weights (g)"),
+              statistic =  weights ~ "{mean} ({sd})") %>%
   add_difference(test = weights ~ "paired.t.test", group = id,
-                 estimate_fun = weights ~ function(x) style_sigfig(x, digits = 3))
-
+                 estimate_fun = weights ~ function(x) style_sigfig(x, digits = 3)) |> 
+  modify_table_body(~.x |> dplyr::relocate(stat_2, .before = stat_1)) |> 
+  modify_table_body(~.x |> mutate(estimate = -estimate,
+                                  ci = "-53.0, -26.3"))
 ```
 
-There was a significant reduction in weight (mean change = 39.6 g, sd = 32.3[^paired_t_test-1]) after the discharge (p-value \<0.001 that is lower than 0.05; reject $H_0$). Note that the 95% confidence interval (26.3 to 53.0) doesn't include the null hypothesized value of zero. However, is this reduction of clinical importance?
+**Report the results**
 
+```{r}
+t.test(weight$discharge_weight, weight$birth_weight, paired = T) |> 
+  report()
+```
+
+  We can use the above information to write up a final report:
+
+::: callout-tip
+## Final report
+
+There was a significant reduction of 39.6 g in weight after the discharge (mean change = -39.6 g, sd = 32.3[^paired_t_test-1], 95% CI: \[-52.96, -26.32\]; p-value \<0.001).
+:::
 
 [^paired_t_test-1]: sd for the change is useful information for meta-analytic techniques (see [Cochrane Handbook for Systematic Reviews of Interventions](https://training.cochrane.org/handbook/archive/v6.1/chapter-06))
+
+We concluded that the result is statistical significant (reject $H_o$). However, is this reduction of clinical importance?

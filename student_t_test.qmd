@@ -19,7 +19,7 @@ We consider the data in *depression* dataset. In an experiment designed to test 
 **Note:** A score of 0--7 in HDRS is generally accepted to be within the normal range, while a score of 20 or higher indicates at least moderate severity.
 
 ::: {.callout-note icon="false"}
-## Null hypothesis and alternative hypothesis
+## Null hypothesis and alternative hypothesis for the research question
 
 -   $H_0$: the means of HDRS in the two groups are equal ($\mu_{1} = \mu_{2}$)
 -   $H_1$: the means of HDRS in the two groups are not equal ($\mu_{1} \neq \mu_{2}$)
@@ -37,9 +37,11 @@ We need to load the following packages:
 library(ggrain)
 library(ggsci)
 library(ggpubr)
+library(ggprism)
 
 # packages for data description, transformation and analysis
 library(dlookr)
+library(descriptr)
 library(rstatix)
 library(here)
 library(tidyverse)
@@ -113,11 +115,10 @@ We can visualize the distribution of HDRS for the two groups:
 
 ggplot(depression, aes(x= intervention, y = HDRS, fill = intervention)) +
   geom_rain(likert= TRUE, seed = 123, point.args = list(alpha = 0.3)) +
-  theme_classic(base_size = 20) +
+  theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +
   labs(title = "Grouped Raincloud Plot: HDRS by intervention") +
   scale_fill_jco() +
-  theme(legend.position = "none",
-        axis.text = element_text(size = 20))
+  theme(legend.position = "none")
 ```
 
 The above figure shows that the data are close to symmetry and the assumption of a normal distribution is reasonable.
@@ -128,11 +129,10 @@ The above figure shows that the data are close to symmetry and the assumption of
 #| fig-cap: Normality Q-Q plot for HDRS for paroxetine and placebo.
 
 ggqqplot(depression, "HDRS", color = "intervention", conf.int = F) +
-  theme_classic(base_size = 20) +
+  theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +
   scale_color_jco() +
   facet_wrap(~ intervention) + 
-  theme(legend.position = "none", 
-        axis.text = element_text(size = 18))
+  theme(legend.position = "none")
 ```
 
  
@@ -178,6 +178,14 @@ depression |>
   print(width = 100)
 
 ```
+
+## descriptr
+
+```{r}
+depression |> 
+ds_group_summary(intervention, HDRS)
+```
+
 :::
 :::
 
@@ -239,17 +247,108 @@ Since the p-value = 0.676 \>0.05, the null hypothesis that the variances of HDRs
 
 ## Run the t-test
 
-We will perform a pooled variance t-test (Student's t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo).
+We will perform a pooled variance t-test (Student's t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo). Under this $H_o$, the test statistic is:
 
-::: column-margin
-The formula of the test is given by the t-statistic as follows:
-
-$$t = \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$
+$$t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$
 
 where $s_{p}$ is an estimate of the pooled standard deviation of the two groups which is calculated by the following equation:
 
 $$s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}}$$
+
+Under the null hypothesis, the t statistic follows the t-distribution with $n_1 + n_2 - 2$ degrees of freedom (d.f.).
+
+
+::: {.callout-note}
+
+The Student t-test does not have any restrictions on $n_1$ and $n_2$ ---**they can be equal or unequal**. However, equal samples are preferred because this maximizes the power to detect a specified difference.
 :::
+
+
+The 95% confidence interval of the mean difference is:
+
+$$ 
+95\% \ CI = \bar x_1 - \bar x_2 \pm t_{n-2;a/2} * SE_{\bar x_1 - \bar x_2}
+$$
+
+ 
+
+**In R:**
+
+First, we calculate the **mean difference**:
+
+```{r}
+mean_1 <- mean(depression$HDRS[depression$intervention == "paroxetine"])
+mean_2 <- mean(depression$HDRS[depression$intervention == "placebo"])
+
+mean_dif <- mean_1 - mean_2
+mean_dif
+  
+```
+
+Second, we find the **pooled standard deviation**:
+
+```{r}
+n_1 <- length(depression$HDRS[depression$intervention == "paroxetine"])
+n_2 <- length(depression$HDRS[depression$intervention == "placebo"])
+st_div_1 <- sd(depression$HDRS[depression$intervention == "paroxetine"])
+st_div_2 <- sd(depression$HDRS[depression$intervention == "placebo"])
+numerator <- (n_1-1)*st_div_1^2 + (n_2-1)*st_div_2^2
+denominator <- n_1 + n_2 - 2
+
+pooled_st_div <- sqrt(numerator/denominator)
+pooled_st_div
+```
+
+
+Third, we find the **standard error** of the mean difference:
+
+```{r}
+st_error <- pooled_st_div*sqrt(1/n_1 + 1/n_2)
+st_error
+```
+
+
+
+Therefore, the **t statistic** is:
+
+```{r}
+t <- mean_dif / st_error
+t
+```
+
+
+
+The corresponding probability for this value can be calculated as the cumulative probability P(T \≤ t) for n-2 degrees of freedom. Then, the **p-value** is 2\*P(T \≤ t) because we are doing a two-tailed test.
+
+```{r}
+P <- pt(t, df = 74)
+
+p_value <- 2*P
+p_value
+```
+
+::: {.callout-note}
+
+The paroxetine group ($n_1=33$) has df (degrees of freedom) = 33-1 = 32 and the placebo sample ($n_2= 43$) has df = 43-1 = 42 , so we have df = 32 + 42 = 74 in total. Another way of thinking of this is that the complete sample size is 76, and we have estimated two parameters from the data (the two means), so we have df = 76-2 = 74 (see also @sec-prob_distributions).
+:::
+
+
+The **95% confidence interval** of the mean of the differences is:
+
+```{r}
+lower_CI <- mean_dif + qt(0.025, df = 74)*st_error
+lower_CI
+
+upper_CI <- mean_dif - qt(0.025, df = 74)*st_error
+upper_CI
+```
+
+Note that the 95% confidence interval of the mean difference (-2.78, 0.47) **includes** the hypothesized null value of 0.
+
+
+ 
+
+Next, we present **R functions** to carry out all the tasks on our behalf.
 
 ::: {#exercise-joins .callout-tip}
 ## Student's t-test
@@ -269,18 +368,12 @@ t.test(HDRS ~ intervention, var.equal = T, data = depression)                   
 depression |> 
   t_test(HDRS ~ intervention, var.equal = T, detailed = T)              
 ```
-
-
 :::
 :::
 
-The p-value = 0.16 is greater than 0.05. There is **no evidence** of a significant difference in mean HDRS between the two groups (failed to reject $H_0$). The difference between means (20.33 - 21.49) equals to -1.16 units of the HDRS and note that the 95% confidence interval of the difference in means (-2.78 to 0.47) **includes** the hypothesized null value of 0. Based on these results, there is not evidence that paroxetine is effective as a treatment for bipolar depression.
+The difference between means (20.33 - 21.49) equals to -1.16 units is not significant (failed to reject $H_0$; p = 0.16 > 0.05).  
 
-Note that the paroxetine group ($n_1=33$) has df (degrees of freedom) = 33-1 = 32 and the placebo sample ($n_2= 43$) has df = 43-1 = 42 , so we have df = 32 + 42 = 74 in total. Another way of thinking of this is that the complete sample size is 76, and we have estimated two parameters from the data (the two means), so we have df = 76-2 = 74 .
 
-::: column-margin
-**NOTE:** The Student t-test does not have any restrictions on $n_1$ and $n_2$ ---**they can be equal or unequal**. However, equal samples are preferred because this maximizes the power to detect a specified difference.
-:::
 
  
 
@@ -321,5 +414,5 @@ report(report_results)
 ::: callout-tip
 ## Final report
 
-There is not evidence that HDRS score is significantly different in paroxetine group, mean = 20.3 (sd = 3.7), as compared to placebo group, 21.5 (3.4), (mean difference= -1.2 units, 95% CI = -2.8 to 0.47, p = 0.16 \>0.05).
+There is not evidence that HDRS score is significantly different in paroxetine group, mean = 20.3 (sd = 3.7), as compared to placebo group, 21.5 (3.4), (mean difference= -1.2 units, 95% CI = -2.8 to 0.47, p = 0.16).
 :::

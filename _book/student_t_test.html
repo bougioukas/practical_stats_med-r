@@ -477,7 +477,7 @@ Learning objectives
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Null hypothesis and alternative hypothesis
+Null hypothesis and alternative hypothesis for the research question
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -496,16 +496,18 @@ Null hypothesis and alternative hypothesis
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrain)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsci)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># packages for data description, transformation and analysis</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dlookr)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># packages for reporting the results</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(report)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggprism)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># packages for data description, transformation and analysis</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dlookr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(descriptr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># packages for reporting the results</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(report)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="preraring-the-data" class="level2" data-number="18.3">
@@ -518,8 +520,8 @@ Null hypothesis and alternative hypothesis
 <div class="cell">
 <div id="fig-depression" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e64f344f2a596d65cfe6" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e64f344f2a596d65cfe6">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76"],["placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine"],[19,21,28,22,22,28,23,17,19,20,26,23,23,22,19,28,23,14,24,20,17,21,18,19,19,15,25,22,17,26,23,20,25,25,25,24,24,21,20,20,19,21,17,18,19,26,21,21,27,22,15,18,19,25,22,22,21,18,27,22,13,23,19,16,20,16,18,18,14,24,21,16,25,22,19,24]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>intervention<\/th>\n      <th>HDRS<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-081872de1124cfad3688" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-081872de1124cfad3688">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76"],["placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine"],[19,21,28,22,22,28,23,17,19,20,26,23,23,22,19,28,23,14,24,20,17,21,18,19,19,15,25,22,17,26,23,20,25,25,25,24,24,21,20,20,19,21,17,18,19,26,21,21,27,22,15,18,19,25,22,22,21,18,27,22,13,23,19,16,20,16,18,18,14,24,21,16,25,22,19,24]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>intervention<\/th>\n      <th>HDRS<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 <figcaption class="figure-caption">Figure&nbsp;18.1: Table with data from “depression” file.</figcaption>
 </figure>
 </div>
@@ -573,11 +575,10 @@ Check if the following assumptions are satisfied
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(depression, <span class="fu">aes</span>(<span class="at">x=</span> intervention, <span class="at">y =</span> HDRS, <span class="at">fill =</span> intervention)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rain</span>(<span class="at">likert=</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">123</span>, <span class="at">point.args =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">20</span>, <span class="at">base_line_size =</span> <span class="fl">0.4</span>, <span class="at">palette =</span> <span class="st">"office"</span>) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Grouped Raincloud Plot: HDRS by intervention"</span>) <span class="sc">+</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_jco</span>() <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-rainplot1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -590,11 +591,10 @@ Check if the following assumptions are satisfied
 <p>The above figure shows that the data are close to symmetry and the assumption of a normal distribution is reasonable.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(depression, <span class="st">"HDRS"</span>, <span class="at">color =</span> <span class="st">"intervention"</span>, <span class="at">conf.int =</span> F) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_prism</span>(<span class="at">base_size =</span> <span class="dv">20</span>, <span class="at">base_line_size =</span> <span class="fl">0.4</span>, <span class="at">palette =</span> <span class="st">"office"</span>) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_jco</span>() <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> intervention) <span class="sc">+</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-qq_HDRS" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -618,7 +618,7 @@ Summary statistics by group
 </div>
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">dplyr</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">dlookr</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">dplyr</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">dlookr</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">descriptr</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
@@ -669,6 +669,35 @@ Summary statistics by group
 </div>
 </div>
 </div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ds_group_summary</span>(intervention, HDRS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>                       HDRS by intervention                         
+-------------------------------------------------------------------
+|     Statistic/Levels|           paroxetine|              placebo|
+-------------------------------------------------------------------
+|                  Obs|                   33|                   43|
+|              Minimum|                   13|                   14|
+|              Maximum|                   27|                   28|
+|                 Mean|                20.33|                21.49|
+|               Median|                   21|                   21|
+|                 Mode|                   18|                   19|
+|       Std. Deviation|                 3.65|                 3.41|
+|             Variance|                13.35|                11.64|
+|             Skewness|                    0|                 0.03|
+|             Kurtosis|                -0.57|                 -0.4|
+|       Uncorrected SS|                14071|                20344|
+|         Corrected SS|               427.33|               488.74|
+|      Coeff Variation|                17.97|                15.87|
+|      Std. Error Mean|                 0.64|                 0.52|
+|                Range|                   14|                   14|
+|  Interquartile Range|                    4|                    5|
+-------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -685,10 +714,10 @@ Summary statistics by group
 </ul>
 </div></div><p>The <em>Shapiro-Wilk</em> test for normality for each group is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(intervention) <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(HDRS) <span class="sc">|&gt;</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(intervention) <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(HDRS) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 2 × 4
   intervention variable statistic     p
@@ -739,8 +768,8 @@ Tip
 </ul>
 </div></div><p>The <em>Levene’s test</em> for equality of variances is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">levene_test</span>(HDRS <span class="sc">~</span> intervention)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">levene_test</span>(HDRS <span class="sc">~</span> intervention)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 1 × 4
     df1   df2 statistic     p
@@ -750,16 +779,114 @@ Tip
 </div>
 <p>Since the p-value = 0.676 &gt;0.05, the null hypothesis that the variances of HDRs in two groups are equal is not rejected.</p>
 </section>
-<section id="run-the-t-test" class="level2 page-columns page-full" data-number="18.5">
+<section id="run-the-t-test" class="level2" data-number="18.5">
 <h2 data-number="18.5" class="anchored" data-anchor-id="run-the-t-test"><span class="header-section-number">18.5</span> Run the t-test</h2>
-<p>We will perform a pooled variance t-test (Student’s t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo).</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The formula of the test is given by the t-statistic as follows:</p>
-<p><span class="math display">\[t = \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}\]</span></p>
+<p>We will perform a pooled variance t-test (Student’s t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo). Under this <span class="math inline">\(H_o\)</span>, the test statistic is:</p>
+<p><span class="math display">\[t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}\]</span></p>
 <p>where <span class="math inline">\(s_{p}\)</span> is an estimate of the pooled standard deviation of the two groups which is calculated by the following equation:</p>
 <p><span class="math display">\[s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}}\]</span></p>
-</div></div><div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
+<p>Under the null hypothesis, the t statistic follows the t-distribution with <span class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom (d.f.).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Student t-test does not have any restrictions on <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> —<strong>they can be equal or unequal</strong>. However, equal samples are preferred because this maximizes the power to detect a specified difference.</p>
+</div>
+</div>
+<p>The 95% confidence interval of the mean difference is:</p>
+<p><span class="math display">\[
+95\% \ CI = \bar x_1 - \bar x_2 \pm t_{n-2;a/2} * SE_{\bar x_1 - \bar x_2}
+\]</span></p>
+<p>&nbsp;</p>
+<p><strong>In R:</strong></p>
+<p>First, we calculate the <strong>mean difference</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mean_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(depression<span class="sc">$</span>HDRS[depression<span class="sc">$</span>intervention <span class="sc">==</span> <span class="st">"paroxetine"</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mean_2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(depression<span class="sc">$</span>HDRS[depression<span class="sc">$</span>intervention <span class="sc">==</span> <span class="st">"placebo"</span>])</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>mean_dif <span class="ot">&lt;-</span> mean_1 <span class="sc">-</span> mean_2</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>mean_dif</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -1.155039</code></pre>
+</div>
+</div>
+<p>Second, we find the <strong>pooled standard deviation</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>n_1 <span class="ot">&lt;-</span> <span class="fu">length</span>(depression<span class="sc">$</span>HDRS[depression<span class="sc">$</span>intervention <span class="sc">==</span> <span class="st">"paroxetine"</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>n_2 <span class="ot">&lt;-</span> <span class="fu">length</span>(depression<span class="sc">$</span>HDRS[depression<span class="sc">$</span>intervention <span class="sc">==</span> <span class="st">"placebo"</span>])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>st_div_1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(depression<span class="sc">$</span>HDRS[depression<span class="sc">$</span>intervention <span class="sc">==</span> <span class="st">"paroxetine"</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>st_div_2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(depression<span class="sc">$</span>HDRS[depression<span class="sc">$</span>intervention <span class="sc">==</span> <span class="st">"placebo"</span>])</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>numerator <span class="ot">&lt;-</span> (n_1<span class="dv">-1</span>)<span class="sc">*</span>st_div_1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n_2<span class="dv">-1</span>)<span class="sc">*</span>st_div_2<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>denominator <span class="ot">&lt;-</span> n_1 <span class="sc">+</span> n_2 <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>pooled_st_div <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(numerator<span class="sc">/</span>denominator)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>pooled_st_div</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 3.518441</code></pre>
+</div>
+</div>
+<p>Third, we find the <strong>standard error</strong> of the mean difference:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>st_error <span class="ot">&lt;-</span> pooled_st_div<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n_1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n_2)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>st_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.8142652</code></pre>
+</div>
+</div>
+<p>Therefore, the <strong>t statistic</strong> is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> mean_dif <span class="sc">/</span> st_error</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -1.418504</code></pre>
+</div>
+</div>
+<p>The corresponding probability for this value can be calculated as the cumulative probability P(T ≤ t) for n-2 degrees of freedom. Then, the <strong>p-value</strong> is 2*P(T ≤ t) because we are doing a two-tailed test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="fu">pt</span>(t, <span class="at">df =</span> <span class="dv">74</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>P</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.1602415</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The paroxetine group (<span class="math inline">\(n_1=33\)</span>) has df (degrees of freedom) = 33-1 = 32 and the placebo sample (<span class="math inline">\(n_2= 43\)</span>) has df = 43-1 = 42 , so we have df = 32 + 42 = 74 in total. Another way of thinking of this is that the complete sample size is 76, and we have estimated two parameters from the data (the two means), so we have df = 76-2 = 74 (see also <a href="prob_distributions.html" class="quarto-xref"><span>Chapter&nbsp;15</span></a>).</p>
+</div>
+</div>
+<p>The <strong>95% confidence interval</strong> of the mean of the differences is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>lower_CI <span class="ot">&lt;-</span> mean_dif <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="dv">74</span>)<span class="sc">*</span>st_error</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>lower_CI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -2.777498</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>upper_CI <span class="ot">&lt;-</span> mean_dif <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="dv">74</span>)<span class="sc">*</span>st_error</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>upper_CI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.46742</code></pre>
+</div>
+</div>
+<p>Note that the 95% confidence interval of the mean difference (-2.78, 0.47) <strong>includes</strong> the hypothesized null value of 0.</p>
+<p>&nbsp;</p>
+<p>Next, we present <strong>R functions</strong> to carry out all the tasks on our behalf.</p>
+<div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -774,12 +901,12 @@ Student’s t-test
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1">1</button><span id="annotated-cell-19-1" class="code-annotation-target"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(HDRS <span class="sc">~</span> intervention, <span class="at">var.equal =</span> T, <span class="at">data =</span> depression)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="1">1</button><span id="annotated-cell-35-1" class="code-annotation-target"><a href="#annotated-cell-35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(HDRS <span class="sc">~</span> intervention, <span class="at">var.equal =</span> T, <span class="at">data =</span> depression)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="1" data-code-annotation="1">If we reject the null hypothesis of Levene’s test, we have to type <strong><code>var.equal = F</code></strong> (or type nothing as this is the default), so the Welch’s t-test is applied.</span>
+<span data-code-cell="annotated-cell-35" data-code-lines="1" data-code-annotation="1">If we reject the null hypothesis of Levene’s test, we have to type <strong><code>var.equal = F</code></strong> (or type nothing as this is the default), so the Welch’s t-test is applied.</span>
 </dd>
 </dl>
 </div>
@@ -800,8 +927,8 @@ mean in group paroxetine    mean in group placebo
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t_test</span>(HDRS <span class="sc">~</span> intervention, <span class="at">var.equal =</span> T, <span class="at">detailed =</span> T)              </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t_test</span>(HDRS <span class="sc">~</span> intervention, <span class="at">var.equal =</span> T, <span class="at">detailed =</span> T)              </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 1 × 15
   estimate estimate1 estimate2 .y.   group1   group2    n1    n2 statistic     p
@@ -816,12 +943,8 @@ mean in group paroxetine    mean in group placebo
 </div>
 </div>
 </div>
-<p>The p-value = 0.16 is greater than 0.05. There is <strong>no evidence</strong> of a significant difference in mean HDRS between the two groups (failed to reject <span class="math inline">\(H_0\)</span>). The difference between means (20.33 - 21.49) equals to -1.16 units of the HDRS and note that the 95% confidence interval of the difference in means (-2.78 to 0.47) <strong>includes</strong> the hypothesized null value of 0. Based on these results, there is not evidence that paroxetine is effective as a treatment for bipolar depression.</p>
-<p>Note that the paroxetine group (<span class="math inline">\(n_1=33\)</span>) has df (degrees of freedom) = 33-1 = 32 and the placebo sample (<span class="math inline">\(n_2= 43\)</span>) has df = 43-1 = 42 , so we have df = 32 + 42 = 74 in total. Another way of thinking of this is that the complete sample size is 76, and we have estimated two parameters from the data (the two means), so we have df = 76-2 = 74 .</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><strong>NOTE:</strong> The Student t-test does not have any restrictions on <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> —<strong>they can be equal or unequal</strong>. However, equal samples are preferred because this maximizes the power to detect a specified difference.</p>
-</div></div><p>&nbsp;</p>
+<p>The difference between means (20.33 - 21.49) equals to -1.16 units is not significant (failed to reject <span class="math inline">\(H_0\)</span>; p = 0.16 &gt; 0.05).</p>
+<p>&nbsp;</p>
 </section>
 <section id="present-the-results" class="level2" data-number="18.6">
 <h2 data-number="18.6" class="anchored" data-anchor-id="present-the-results"><span class="header-section-number">18.6</span> Present the results</h2>
@@ -830,36 +953,36 @@ mean in group paroxetine    mean in group placebo
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span>  </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> intervention, </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> HDRS <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="dv">1</span>),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(HDRS <span class="sc">~</span> <span class="st">"HDRS score"</span>), </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing =</span> <span class="fu">c</span>(<span class="st">"no"</span>)) <span class="sc">|&gt;</span>  </span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_difference</span>(<span class="at">test.args =</span> <span class="fu">all_tests</span>(<span class="st">"t.test"</span>) <span class="sc">~</span> <span class="fu">list</span>(<span class="at">var.equal =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">estimate_fun =</span> HDRS <span class="sc">~</span> <span class="cf">function</span>(x) <span class="fu">style_sigfig</span>(x, <span class="at">digits =</span> <span class="dv">2</span>),</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalue_fun =</span> <span class="cf">function</span>(x) <span class="fu">style_pvalue</span>(x, <span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_n</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>depression <span class="sc">|&gt;</span>  </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> intervention, </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> HDRS <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>, </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="dv">1</span>),</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(HDRS <span class="sc">~</span> <span class="st">"HDRS score"</span>), </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing =</span> <span class="fu">c</span>(<span class="st">"no"</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_difference</span>(<span class="at">test.args =</span> <span class="fu">all_tests</span>(<span class="st">"t.test"</span>) <span class="sc">~</span> <span class="fu">list</span>(<span class="at">var.equal =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">estimate_fun =</span> HDRS <span class="sc">~</span> <span class="cf">function</span>(x) <span class="fu">style_sigfig</span>(x, <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalue_fun =</span> <span class="cf">function</span>(x) <span class="fu">style_pvalue</span>(x, <span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_n</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="gpupkznfpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gpupkznfpg table {
+<div id="iysrepnwiw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iysrepnwiw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gpupkznfpg thead, #gpupkznfpg tbody, #gpupkznfpg tfoot, #gpupkznfpg tr, #gpupkznfpg td, #gpupkznfpg th {
+#iysrepnwiw thead, #iysrepnwiw tbody, #iysrepnwiw tfoot, #iysrepnwiw tr, #iysrepnwiw td, #iysrepnwiw th {
   border-style: none;
 }
 
-#gpupkznfpg p {
+#iysrepnwiw p {
   margin: 0;
   padding: 0;
 }
 
-#gpupkznfpg .gt_table {
+#iysrepnwiw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -885,12 +1008,12 @@ mean in group paroxetine    mean in group placebo
   border-left-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_caption {
+#iysrepnwiw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gpupkznfpg .gt_title {
+#iysrepnwiw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -902,7 +1025,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-width: 0;
 }
 
-#gpupkznfpg .gt_subtitle {
+#iysrepnwiw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -914,7 +1037,7 @@ mean in group paroxetine    mean in group placebo
   border-top-width: 0;
 }
 
-#gpupkznfpg .gt_heading {
+#iysrepnwiw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -926,13 +1049,13 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_bottom_border {
+#iysrepnwiw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_col_headings {
+#iysrepnwiw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -947,7 +1070,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_col_heading {
+#iysrepnwiw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -967,7 +1090,7 @@ mean in group paroxetine    mean in group placebo
   overflow-x: hidden;
 }
 
-#gpupkznfpg .gt_column_spanner_outer {
+#iysrepnwiw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -979,15 +1102,15 @@ mean in group paroxetine    mean in group placebo
   padding-right: 4px;
 }
 
-#gpupkznfpg .gt_column_spanner_outer:first-child {
+#iysrepnwiw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gpupkznfpg .gt_column_spanner_outer:last-child {
+#iysrepnwiw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gpupkznfpg .gt_column_spanner {
+#iysrepnwiw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -999,11 +1122,11 @@ mean in group paroxetine    mean in group placebo
   width: 100%;
 }
 
-#gpupkznfpg .gt_spanner_row {
+#iysrepnwiw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gpupkznfpg .gt_group_heading {
+#iysrepnwiw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1029,7 +1152,7 @@ mean in group paroxetine    mean in group placebo
   text-align: left;
 }
 
-#gpupkznfpg .gt_empty_group_heading {
+#iysrepnwiw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1044,15 +1167,15 @@ mean in group paroxetine    mean in group placebo
   vertical-align: middle;
 }
 
-#gpupkznfpg .gt_from_md > :first-child {
+#iysrepnwiw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gpupkznfpg .gt_from_md > :last-child {
+#iysrepnwiw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gpupkznfpg .gt_row {
+#iysrepnwiw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1071,7 +1194,7 @@ mean in group paroxetine    mean in group placebo
   overflow-x: hidden;
 }
 
-#gpupkznfpg .gt_stub {
+#iysrepnwiw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1084,7 +1207,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#gpupkznfpg .gt_stub_row_group {
+#iysrepnwiw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1098,15 +1221,15 @@ mean in group paroxetine    mean in group placebo
   vertical-align: top;
 }
 
-#gpupkznfpg .gt_row_group_first td {
+#iysrepnwiw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gpupkznfpg .gt_row_group_first th {
+#iysrepnwiw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gpupkznfpg .gt_summary_row {
+#iysrepnwiw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1116,16 +1239,16 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#gpupkznfpg .gt_first_summary_row {
+#iysrepnwiw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_first_summary_row.thick {
+#iysrepnwiw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gpupkznfpg .gt_last_summary_row {
+#iysrepnwiw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1135,7 +1258,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_grand_summary_row {
+#iysrepnwiw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1145,7 +1268,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#gpupkznfpg .gt_first_grand_summary_row {
+#iysrepnwiw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1155,7 +1278,7 @@ mean in group paroxetine    mean in group placebo
   border-top-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_last_grand_summary_row_top {
+#iysrepnwiw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1165,11 +1288,11 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_striped {
+#iysrepnwiw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gpupkznfpg .gt_table_body {
+#iysrepnwiw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1178,7 +1301,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_footnotes {
+#iysrepnwiw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1192,7 +1315,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_footnote {
+#iysrepnwiw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1201,7 +1324,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#gpupkznfpg .gt_sourcenotes {
+#iysrepnwiw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1215,7 +1338,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#gpupkznfpg .gt_sourcenote {
+#iysrepnwiw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1223,63 +1346,63 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#gpupkznfpg .gt_left {
+#iysrepnwiw .gt_left {
   text-align: left;
 }
 
-#gpupkznfpg .gt_center {
+#iysrepnwiw .gt_center {
   text-align: center;
 }
 
-#gpupkznfpg .gt_right {
+#iysrepnwiw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gpupkznfpg .gt_font_normal {
+#iysrepnwiw .gt_font_normal {
   font-weight: normal;
 }
 
-#gpupkznfpg .gt_font_bold {
+#iysrepnwiw .gt_font_bold {
   font-weight: bold;
 }
 
-#gpupkznfpg .gt_font_italic {
+#iysrepnwiw .gt_font_italic {
   font-style: italic;
 }
 
-#gpupkznfpg .gt_super {
+#iysrepnwiw .gt_super {
   font-size: 65%;
 }
 
-#gpupkznfpg .gt_footnote_marks {
+#iysrepnwiw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gpupkznfpg .gt_asterisk {
+#iysrepnwiw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gpupkznfpg .gt_indent_1 {
+#iysrepnwiw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gpupkznfpg .gt_indent_2 {
+#iysrepnwiw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gpupkznfpg .gt_indent_3 {
+#iysrepnwiw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gpupkznfpg .gt_indent_4 {
+#iysrepnwiw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gpupkznfpg .gt_indent_5 {
+#iysrepnwiw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1324,8 +1447,8 @@ mean in group paroxetine    mean in group placebo
 <p><strong>Report the results</strong></p>
 <p>There is also a specific package with the name {report} that may be useful in reporting the results of the t-test:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>report_results <span class="ot">&lt;-</span> <span class="fu">t.test</span>(depression<span class="sc">$</span>HDRS <span class="sc">~</span> depression<span class="sc">$</span>intervention, <span class="at">var.equal =</span> T) </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(report_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>report_results <span class="ot">&lt;-</span> <span class="fu">t.test</span>(depression<span class="sc">$</span>HDRS <span class="sc">~</span> depression<span class="sc">$</span>intervention, <span class="at">var.equal =</span> T) </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(report_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>Effect sizes were labelled following Cohen's (1988) recommendations.
 
@@ -1347,7 +1470,7 @@ Final report
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is not evidence that HDRS score is significantly different in paroxetine group, mean = 20.3 (sd = 3.7), as compared to placebo group, 21.5 (3.4), (mean difference= -1.2 units, 95% CI = -2.8 to 0.47, p = 0.16 &gt;0.05).</p>
+<p>There is not evidence that HDRS score is significantly different in paroxetine group, mean = 20.3 (sd = 3.7), as compared to placebo group, 21.5 (3.4), (mean difference= -1.2 units, 95% CI = -2.8 to 0.47, p = 0.16).</p>
 </div>
 </div>
 
