@@ -1,11 +1,16 @@
 # Two-sample t-test (Student's t-test) {#sec-two_samples}
 
+```{r}
+#| include: false
+library(fontawesome)
+```
+
 Two sample t-test (Student's t-test) can be used if we have two independent (unrelated) groups (e.g., males-females, treatment-non treatment) and one quantitative variable of interest.
 
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Applying hypothesis testing
 -   Compare two independent samples applying Student's t-test
@@ -19,7 +24,7 @@ We consider the data in *depression* dataset. In an experiment designed to test 
 **Note:** A score of 0--7 in HDRS is generally accepted to be within the normal range, while a score of 20 or higher indicates at least moderate severity.
 
 ::: {.callout-note icon="false"}
-## Null hypothesis and alternative hypothesis for the research question
+## `r fa("angles-right", fill = "#1DC5CE")` Null hypothesis and alternative hypothesis for the main research question
 
 -   $H_0$: the means of HDRS in the two groups are equal ($\mu_{1} = \mu_{2}$)
 -   $H_1$: the means of HDRS in the two groups are not equal ($\mu_{1} \neq \mu_{2}$)
@@ -94,13 +99,13 @@ glimpse(depression)
 ## Assumptions
 
 ::: {.callout-note icon="false"}
-## Check if the following assumptions are satisfied
+## `r fa("angles-right", fill = "#1DC5CE")` Check if the following assumptions are satisfied
 
 A.  The data are **normally** distributed in **both** groups
 B.  The data in both groups have similar **variance** (also named as homogeneity of variance or homoscedasticity)
 :::
 
-**A. Explore the characteristics of distribution for each group and check for normality**
+### A. Explore the characteristics of distribution for each group and check for normality
 
 The distributions can be explored visually with appropriate plots. Additionally, summary statistics and significance tests to check for normality (e.g., Shapiro-Wilk test) can be used.
 
@@ -135,14 +140,12 @@ ggqqplot(depression, "HDRS", color = "intervention", conf.int = F) +
   theme(legend.position = "none")
 ```
 
- 
-
 **Summary statistics**
 
 The HDRS summary statistics for each group are:
 
-::: {#exercise-joins .callout-tip}
-## Summary statistics by group
+::: {#exercise-joins .callout-important icon="false"}
+## `r fa("r-project", fill = "#0008C1")` Summary statistics by group
 
 ::: panel-tabset
 ## dplyr
@@ -185,13 +188,10 @@ depression |>
 depression |> 
 ds_group_summary(intervention, HDRS)
 ```
-
 :::
 :::
 
 The means are close to medians (20.3 vs 21 and 21.5 vs 21). The skewness is approximately zero (symmetric distribution) and the (excess) kurtosis falls into the acceptable range of \[-1, 1\] indicating approximately normal distributions for both groups.
-
- 
 
 **Normality test**
 
@@ -213,21 +213,21 @@ depression |>
 
 The tests of normality suggest that the data for the `HDRS` in both groups are normally distributed (p=0.67 \>0.05 and p=0.61 \>0.05, respectively).
 
-::: callout-important
-**Normality tests often are not helpful guides**
+::: callout-warning
+## Normality tests frequently fail to be valuable indicators
 
 -   For **small** sample sizes, the Shapiro-Wilk test (and other normality tests) has little power to reject the null hypothesis (under-powered test).
 
 -   If the sample size is **large** normality tests may detect even trivial deviations from the normal distribution (over-powered test).
 :::
 
-::: callout-tip
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
 The decision about normality of data should be based on a careful consideration of all available information such as graphs (histograms, Q-Q plots), summary and shape measures and statistical tests.
 :::
 
- 
-
-**B. Levene's test for equality of variances**
+### B. Levene's test for equality of variances
 
 ::: column-margin
 **Hypothesis testing for Levene's test for equality of variances**<br> $H_{0}$: the variances of data in two groups are equal<br> $H_{1}$: the variances of data in two groups are not equal<br>
@@ -247,32 +247,38 @@ Since the p-value = 0.676 \>0.05, the null hypothesis that the variances of HDRs
 
 ## Run the t-test
 
-We will perform a pooled variance t-test (Student's t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo). Under this $H_o$, the test statistic is:
+### Formulas
+
+We will perform a pooled variance t-test (Student's t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo). 
+
+- Under this $H_o$, the test statistic is:
 
 $$t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$
 
-where $s_{p}$ is an estimate of the pooled standard deviation of the two groups which is calculated by the following equation:
+where $n_1$ and $n_2$ are the sample sizes for paroxetine and placebo groups respectively, and $s_{p}$ is an estimate of the pooled standard deviation of the two groups which is calculated by the following equation:
 
 $$s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}}$$
 
-Under the null hypothesis, the t statistic follows the t-distribution with $n_1 + n_2 - 2$ degrees of freedom (d.f.).
+Under the null hypothesis, the t statistic follows the t-distribution with $n - 2$ degrees of freedom (d.f.).
 
 
-::: {.callout-note}
-
-The Student t-test does not have any restrictions on $n_1$ and $n_2$ ---**they can be equal or unequal**. However, equal samples are preferred because this maximizes the power to detect a specified difference.
-:::
-
-
-The 95% confidence interval of the mean difference is:
+- The **95% confidence interval** of the mean difference is:
 
 $$ 
 95\% \ CI = \bar x_1 - \bar x_2 \pm t_{n-2;a/2} * SE_{\bar x_1 - \bar x_2}
 $$
 
- 
 
-**In R:**
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+-   **Sample size of the groups:** The Student t-test does not have any restrictions on $n_1$ and $n_2$ ---they can be equal or unequal. However, equal samples are preferred because this maximizes the power to detect a specified difference.
+
+-   **Degrees of freedom:** The paroxetine group has $df_1 = n_1 - 1$ and the placebo group has $df_2 = n_2 - 1$ , so we have $df = n_1 + n_2 -2 = n -2$ in total. Another way of thinking of this is that the complete sample size is $n$, and we have estimated two parameters from the data (the two means), so we have $df = n-2$ (see also @sec-prob_distributions).
+:::
+
+
+### In R:
 
 First, we calculate the **mean difference**:
 
@@ -299,15 +305,12 @@ pooled_st_div <- sqrt(numerator/denominator)
 pooled_st_div
 ```
 
-
 Third, we find the **standard error** of the mean difference:
 
 ```{r}
 st_error <- pooled_st_div*sqrt(1/n_1 + 1/n_2)
 st_error
 ```
-
-
 
 Therefore, the **t statistic** is:
 
@@ -316,9 +319,7 @@ t <- mean_dif / st_error
 t
 ```
 
-
-
-The corresponding probability for this value can be calculated as the cumulative probability P(T \≤ t) for n-2 degrees of freedom. Then, the **p-value** is 2\*P(T \≤ t) because we are doing a two-tailed test.
+The corresponding probability for this value can be calculated as the cumulative probability P(T ≤ t) for n-2 degrees of freedom. Then, the **p-value** is 2\*P(T ≤ t) because we are doing a two-tailed test.
 
 ```{r}
 P <- pt(t, df = 74)
@@ -327,13 +328,7 @@ p_value <- 2*P
 p_value
 ```
 
-::: {.callout-note}
-
-The paroxetine group ($n_1=33$) has df (degrees of freedom) = 33-1 = 32 and the placebo sample ($n_2= 43$) has df = 43-1 = 42 , so we have df = 32 + 42 = 74 in total. Another way of thinking of this is that the complete sample size is 76, and we have estimated two parameters from the data (the two means), so we have df = 76-2 = 74 (see also @sec-prob_distributions).
-:::
-
-
-The **95% confidence interval** of the mean of the differences is:
+The **95% confidence interval** of the mean difference is:
 
 ```{r}
 lower_CI <- mean_dif + qt(0.025, df = 74)*st_error
@@ -345,16 +340,13 @@ upper_CI
 
 Note that the 95% confidence interval of the mean difference (-2.78, 0.47) **includes** the hypothesized null value of 0.
 
-
- 
-
 Next, we present **R functions** to carry out all the tasks on our behalf.
 
-::: {#exercise-joins .callout-tip}
-## Student's t-test
+::: {#exercise-joins .callout-important icon="false"}
+## `r fa("r-project", fill = "#0008C1")` Student's t-test
 
 ::: panel-tabset
-## Base R
+## stats
 
 ```{r}
 t.test(HDRS ~ intervention, var.equal = T, data = depression)                     # <1>
@@ -371,11 +363,7 @@ depression |>
 :::
 :::
 
-The difference between means (20.33 - 21.49) equals to -1.16 units is not significant (failed to reject $H_0$; p = 0.16 > 0.05).  
-
-
-
- 
+The difference between means (20.33 - 21.49) equals to -1.16 units is not significant (failed to reject $H_0$; p = 0.16 \> 0.05).
 
 ## Present the results
 
@@ -409,10 +397,10 @@ report_results <- t.test(depression$HDRS ~ depression$intervention, var.equal = 
 report(report_results)
 ```
 
-  We can use the above information to write up a final report:
+We can use the above information to write up a final report:
 
-::: callout-tip
-## Final report
+::: {.callout-note icon="false"}
+## `r fa("pen", fill = "#1DC5CE")` Final report
 
 There is not evidence that HDRS score is significantly different in paroxetine group, mean = 20.3 (sd = 3.7), as compared to placebo group, 21.5 (3.4), (mean difference= -1.2 units, 95% CI = -2.8 to 0.47, p = 0.16).
 :::

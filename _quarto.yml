@@ -78,12 +78,12 @@ share:
 format:
   html:
     theme:
-      light: [cosmo, theme-light.scss]
+      light: [cosmo, custom.scss]
     grid:
       sidebar-width: 270px
-      body-width: 810px
+      body-width: 840px
       margin-width: 250px
-    fontsize: 1.2em
+    fontsize: 1.25em
     linestretch: 1.8
     toc-title: "On this page"
     link-external-newwindow: true
