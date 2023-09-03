@@ -30,7 +30,7 @@ $$ {#eq-line1}
 #| code-summary: "Show the code"
 #| warning: false
 #| label: fig-line
-#| fig-cap: Simple regression line.
+#| fig-cap: Parameters of a straight line.
 #| fig-width: 9.0
 #| fig-height: 6.5
 
@@ -158,7 +158,7 @@ First, we plot the data in a scatter plot:
 ```{r}
 #| warning: false
 #| label: fig-scat
-#| fig-cap: Scatter plot of the association between height and weight in 550 infants of 1 month age.
+#| fig-cap: Scatter plot of height and weight of 550 infants of 1 month age.
 #| fig-width: 9.0
 #| fig-height: 6.5
 
@@ -180,7 +180,7 @@ where $b_0$ and $b_1$ are best choices or estimates of the parameters $\beta_0$ 
 #| code-fold: true
 #| code-summary: "Show the code"
 #| label: fig-linear_model
-#| fig-cap: The complement of the union $B^c$ as represented in a Venn diagram.
+#| fig-cap: The Y variable  having a distribution (orange curve) for any given value of variable X .
 
 
 x <- BirthWeight$height
@@ -243,7 +243,7 @@ Let's see, for example, the values for the infant in the position 207 in our dat
 #| code-summary: "Show the code"
 #| warning: false
 #| label: fig-concepts
-#| fig-cap: Scatter plot of the association between height and weight in 550 infants of 1 month age.
+#| fig-cap: Explanation of the basic concepts of the linear model.
 #| fig-width: 9.0
 #| fig-height: 6.5
 
@@ -286,7 +286,7 @@ ggplot(BirthWeight, aes(height, weight)) +
     colour = "purple", ends = "both"
   ) +
   annotate("text", x = 59, y = 2910, label = bquote(x[207] == 59), color = "#EC7014", size = 5.5) +
-  annotate("text", x = 59, y = 4920, label = "expected data point", color = "#EC7014", size = 5.5) +
+  annotate("text", x = 59, y = 4920, label = "expected value", color = "#EC7014", size = 5.5) +
   annotate("text", x = 59, y = 6425, label = "observed data point", color = "#EC7014", size = 5.5) +
   annotate("text", x = 49.2, y = 5230, label = bquote(widehat(y)[207] == 5108), color = "#EC7014", size = 5.5) +
   annotate("text", x = 49.2, y = 6425, label = bquote(y[207] == 6330), color = "#EC7014", size = 5.5) +
@@ -366,7 +366,7 @@ The intercept $b_0$ = -5412.14 is the mean weight for those infants with height 
 #| warning: false
 #| message: false
 #| label: fig-intercept
-#| fig-cap: Simple regression line.
+#| fig-cap: Scatter plot with fitted line crossing the y-axis.
 #| fig-width: 9.0
 #| fig-height: 6.5
 
@@ -378,7 +378,7 @@ ggplot(BirthWeight, aes(x = height, y = weight)) +
   ylim(-6000, 6500) +
   geom_hline(yintercept = 0, color = "black", linetype = "solid") +
   geom_vline(xintercept = 0, color = "black", linetype = "solid") +
-  annotate("text", x = 19.0, y = -1000, label = bquote(paste (widehat(weight), "= -5412.14 + 178.31*height")), color = "blue", angle = 30.2, size = 5) +
+  annotate("text", x = 19.0, y = -1000, label = bquote(paste (widehat(weight), "= -5412.14 + 178.31*height")), color = "blue", angle = 32, size = 5) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   labs(x = "X = Height (cm)", y = "Y = Weight (g)")
 ```
@@ -397,7 +397,7 @@ Of greater importance is the slope of the fitted line, $b_1 = 178.31$, as this d
 #| warning: false
 #| message: false
 #| label: fig-slope
-#| fig-cap: Simple regression line.
+#| fig-cap: Graphical calculation of the slope in simple linear regression.
 #| fig-width: 9.0
 #| fig-height: 6.5
 
