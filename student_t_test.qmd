@@ -195,11 +195,11 @@ The means are close to medians (20.3 vs 21 and 21.5 vs 21). The skewness is appr
 
 **Normality test**
 
-::: column-margin
-**Hypothesis testing for Shapiro-Wilk test for normality** <br> $H_{0}$: the data came from a normally distributed population. <br> $H_{1}$: the data tested are not normally distributed. <br>
+::: {.callout-note icon="false"}
+## `r fa("angles-right", fill = "#1DC5CE")` Hypothesis testing for Shapiro-Wilk test for normality
 
--   If p − value \< 0.05, reject the null hypothesis, $H_{0}$. <br>
--   If p − value ≥ 0.05, do not reject the null hypothesis, $H_{0}$.
+-   $H_{0}$: the data came from a normally distributed population
+-   $H_{1}$: the data tested are not normally distributed
 :::
 
 The *Shapiro-Wilk* test for normality for each group is:
@@ -227,13 +227,13 @@ The tests of normality suggest that the data for the `HDRS` in both groups are n
 The decision about normality of data should be based on a careful consideration of all available information such as graphs (histograms, Q-Q plots), summary and shape measures and statistical tests.
 :::
 
-### B. Levene's test for equality of variances
+### B. Check Levene's test for equality of variances
 
-::: column-margin
-**Hypothesis testing for Levene's test for equality of variances**<br> $H_{0}$: the variances of data in two groups are equal<br> $H_{1}$: the variances of data in two groups are not equal<br>
+::: {.callout-note icon="false"}
+## `r fa("angles-right", fill = "#1DC5CE")` Hypothesis testing for Levene's test for equality of variances
 
--   If p − value \< 0.05, reject the null hypothesis, $H_{0}$ <br>
--   If p − value ≥ 0.05, do not reject the null hypothesis, $H_{0}$
+-   $H_{0}$: the variances of data in two groups are equal
+-   $H_{1}$: the variances of data in two groups are not equal
 :::
 
 The *Levene's test* for equality of variances is:
@@ -243,31 +243,35 @@ depression |>
   levene_test(HDRS ~ intervention)
 ```
 
-Since the p-value = 0.676 \>0.05, the null hypothesis that the variances of HDRs in two groups are equal is not rejected.
+Since the p-value = 0.676 \>0.05, the $H_o$ is not rejected. The variances are supposed to be equal.
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+If the assumption of equal variances is not satisfied ($H_o$ of Levene's test is rejected), the **Welch's t-test** can be applied. This statistical test assumes normality but does not assume equal variances.
+:::
 
 ## Run the t-test
 
 ### Formulas
 
-We will perform a pooled variance t-test (Student's t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo). 
+We will perform a pooled variance t-test (Student's t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo).
 
-- Under this $H_o$, the test statistic is:
+-   Under this $H_o$, the test statistic is:
 
-$$t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$
+$$t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$ {#eq-t1}
 
 where $n_1$ and $n_2$ are the sample sizes for paroxetine and placebo groups respectively, and $s_{p}$ is an estimate of the pooled standard deviation of the two groups which is calculated by the following equation:
 
-$$s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}}$$
+$$s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}}$$ {#eq-sp}
 
 Under the null hypothesis, the t statistic follows the t-distribution with $n - 2$ degrees of freedom (d.f.).
 
-
-- The **95% confidence interval** of the mean difference is:
+-   The **95% confidence interval** of the mean difference is:
 
 $$ 
-95\% \ CI = \bar x_1 - \bar x_2 \pm t_{n-2;a/2} * SE_{\bar x_1 - \bar x_2}
-$$
-
+95\% \ CI = \bar x_1 - \bar x_2 \pm t^{*}_{df;a/2} * SE_{\bar x_1 - \bar x_2} 
+$$ {#eq-ci}
 
 ::: {.callout-tip icon="false"}
 ## `r fa("circle-info", fill = "#1DC5CE")` INFO
@@ -276,7 +280,6 @@ $$
 
 -   **Degrees of freedom:** The paroxetine group has $df_1 = n_1 - 1$ and the placebo group has $df_2 = n_2 - 1$ , so we have $df = n_1 + n_2 -2 = n -2$ in total. Another way of thinking of this is that the complete sample size is $n$, and we have estimated two parameters from the data (the two means), so we have $df = n-2$ (see also @sec-prob_distributions).
 :::
-
 
 ### In R:
 
@@ -322,7 +325,7 @@ t
 The corresponding probability for this value can be calculated as the cumulative probability P(T ≤ t) for n-2 degrees of freedom. Then, the **p-value** is 2\*P(T ≤ t) because we are doing a two-tailed test.
 
 ```{r}
-P <- pt(t, df = 74)
+P <- pt(t, df = n_1 + n_2 - 2)
 
 p_value <- 2*P
 p_value
@@ -331,10 +334,10 @@ p_value
 The **95% confidence interval** of the mean difference is:
 
 ```{r}
-lower_CI <- mean_dif + qt(0.025, df = 74)*st_error
+lower_CI <- mean_dif - qt(0.025, df = 74, lower.tail = FALSE)*st_error
 lower_CI
 
-upper_CI <- mean_dif - qt(0.025, df = 74)*st_error
+upper_CI <- mean_dif + qt(0.025, df = 74, lower.tail = FALSE)*st_error
 upper_CI
 ```
 
@@ -349,10 +352,8 @@ Next, we present **R functions** to carry out all the tasks on our behalf.
 ## stats
 
 ```{r}
-t.test(HDRS ~ intervention, var.equal = T, data = depression)                     # <1>
+t.test(HDRS ~ intervention, var.equal = T, data = depression)                     
 ```
-
-1.  If we reject the null hypothesis of Levene's test, we have to type **`var.equal = F`** (or type nothing as this is the default), so the Welch's t-test is applied.
 
 ## rstatix
 
@@ -361,9 +362,11 @@ depression |>
   t_test(HDRS ~ intervention, var.equal = T, detailed = T)              
 ```
 :::
+
+**NOTE:** If we reject the null hypothesis of Levene's test, we have to type **`var.equal = F`** (or type nothing as this is the default), so the Welch's t-test is applied.
 :::
 
-The difference between means (20.33 - 21.49) equals to -1.16 units is not significant (failed to reject $H_0$; p = 0.16 \> 0.05).
+The difference between means (20.33 - 21.49) equals -1.16 units and it is not significant (failed to reject $H_0$; p = 0.16 \> 0.05).
 
 ## Present the results
 

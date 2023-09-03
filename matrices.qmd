@@ -8,7 +8,7 @@ library(fontawesome)
 When we have finished this chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Create and manipulate matrices in R.
 -   Conduct basic matrix algebra in R.
@@ -64,7 +64,9 @@ $$
     3 & 1 & 4 & 2\\
     2 & 0 & 1 & 3
   \end{bmatrix}
-$$ The column vectors are: $\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$
+$$
+
+The column vectors are: $\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$
 
 The row vectors are: $\begin{bmatrix} 4 & 0 & 2 & 1 \end{bmatrix}, \begin{bmatrix} 3 & 1 & 4 & 2 \end{bmatrix}, \begin{bmatrix} 2 & 0 & 1 & 3 \end{bmatrix}$
 
@@ -326,14 +328,16 @@ $$
     -1 & 1\\
     5  & -2
   \end{bmatrix}
-$$ In R:
+$$
+
+In R:
 
 ```{r}
 A <- matrix(c(4, 0, -1, 1, -5, -2), nrow = 2)
 A
 ```
 
-the transpose matrix is:
+The transpose matrix is:
 
 ```{r}
 t(A)
@@ -418,7 +422,9 @@ $$
     -12 & 3 & 15 \\
     0 & -3 & 6
   \end{bmatrix}
-$$ Here, the element in the first row and first column of the new matrix is $-3*4 = -12$, the element in the first row and second column is $-3 * (-1) = 3$, the element in the first row and third column is $-3 * (- 5) = 15$, and so on.
+$$
+
+Here, the element in the first row and first column of the new matrix is $-3*4 = -12$, the element in the first row and second column is $-3 * (-1) = 3$, the element in the first row and third column is $-3 * (- 5) = 15$, and so on.
 
 In R:
 
@@ -449,7 +455,9 @@ $$
   12 & -1 & 25 \\
   0 & 2 & 4
   \end{bmatrix}
-$$ In this case, the element in the first row and first column of the new matrix is $4*3 = 12$, the element in the first row and second column is $-1 * 1 = -1$, the element in the first row and third column is $-5 * (- 5) = 25$, and so on.
+$$
+
+In this case, the element in the first row and first column of the new matrix is $4*3 = 12$, the element in the first row and second column is $-1 * 1 = -1$, the element in the first row and third column is $-5 * (- 5) = 25$, and so on.
 
 In R:
 
@@ -586,7 +594,9 @@ $$
     -1 & 1 \\
     -5 & -2
   \end{bmatrix}
-$$ Now, the $A^T_{3\times 2}$ and $B_{2\times 3}$ matrices are compatible, so their product is well defined. In this case, we can multiply them:
+$$
+
+Now, the $A^T_{3\times 2}$ and $B_{2\times 3}$ matrices are compatible, so their product is well defined. In this case, we can multiply them:
 
 $$
   A^T_{3\times 2} \bullet B_{2\times 3}= 
@@ -669,8 +679,12 @@ $$
    + e_{33}\begin{vmatrix} e_{11} & e_{12} \\ e_{21} & e_{22} \end{vmatrix}
 $$
 
-Therefore: $$  \Rightarrow
-detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21}) $$
+Therefore:
+
+$$
+\Rightarrow
+detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21}) 
+$$
 
  
 
@@ -685,7 +699,9 @@ E_{2 \times 2} = \begin{bmatrix}
 \end{bmatrix} 
 $$
 
-To calculate the determinant of this matrix, we can use the formula: $$
+To calculate the determinant of this matrix, we can use the formula:
+
+$$
 \begin{vmatrix}
      1 & -1 \\ 
      2 & 0
@@ -717,8 +733,11 @@ $$
    + 2\begin{vmatrix} 1 & -1 \\ 2 & 0 \end{vmatrix}
 $$
 
-Therefore: $$  \Rightarrow
-detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 $$
+Therefore:
+
+$$ 
+\Rightarrow detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4
+$$
 
 ```{r}
 E <- matrix( c(1, 2, 1, -1, 0, 1, 1, 1, 2), nrow = 3)
@@ -730,17 +749,36 @@ det(E)
 
 ### The inverse of a matrix
 
-The `det(E)` is not zero, so inverse exists:
+Given a square matrix E its inverse is another square matrix of the same dimensions, denoted as $E^{-1}$, such that when these two matrices are multiplied together, they yield the **identity matrix**, typically denoted as I. The inverse of a matrix can be computed if its determinant is non-zero. For example, matrix E is a square matrix and the `det(E)` is not zero, so inverse exists (the matrix is invertible).
+
+$$
+E_{n \times n} \bullet E^{-1}_{n \times n} = I_{n \times n}
+$$
+
+In R, we can use the generic built-in `solve()` function to find the inverse of the matrix E:
 
 ```{r}
-E_inv  <- inv(E)
+# the solve() function takes a matrix as input and returns the matrix's inverse
+E_inv <- solve(E)
 E_inv
 ```
 
-The inverse of a matrix `E` is defined as the `E_inv` matrix which multiplies E to give the identity matrix:
+Alternatively, we can use the `inv()` function from the `matlib` package for the computation of a matrix's inverse:
 
 ```{r}
-E_inv %*% E
+inv(E)
+```
+
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+`inv()` function employs Gaussian Elimination as a method to find the inverse of a matrix.
+:::
+
+Therefore, we can verify that if we multiply the matrix $E$ by its inverse $E^{-1}$, we get back the identity matrix:
+
+```{r}
+ E %*% E_inv
 ```
 
  

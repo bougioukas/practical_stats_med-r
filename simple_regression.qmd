@@ -1,1 +1,866 @@
 # Simple linear regression {#sec-simple_regression}
+
+```{r}
+#| include: false
+library(fontawesome)
+library(ggplot2)
+```
+
+In this chapter, we explore an extension of correlation for investigating the association between two variables: the **simple linear regression**.
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Fit and interpret simple linear models
+-   Assess the quality of a linear regression fit
+:::
+
+## The mathematical equation of a straight line
+
+Simple linear regression involves a **numeric dependent** (or outcome) variable $Y$ and one independent (or explanatory) variable $X$ that is either numeric or categorical.
+
+The general equation of a straight line is: $$
+y = \beta_0 + \beta_1 \cdot x
+$$ {#eq-line1}
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| label: fig-line
+#| fig-cap: Simple regression line.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+# Create example data
+data <- data.frame(x = c(-1:5),
+                   y = c(-1:5) + 1)
+
+# Create a linear regression line with annotations
+ggplot(data, aes(x = x, y = y)) +
+  geom_smooth(method = "lm", se = FALSE, linetype = "dashed") +
+  labs(title = "Linear Regression Plot") +
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +
+  geom_vline(xintercept = 0, color = "black", linetype = "solid") +
+  annotate("text", x = -0.2, y = 5.5, label = "Y Variable", angle = 90) +
+  annotate("text", x = 4.4, y = -0.18, label = "X Variable") +
+  theme(axis.title = element_blank()) +
+  annotate("point", x = 0, y = 1, col = "black", shape = 16, size = 2.5) +
+  geom_segment(
+    x = -0.6, y = 1,
+    xend = -0.15, yend = 1,
+    lineend = "round",
+    linejoin = "round",
+    size = 1.2, 
+    arrow = arrow(length = unit(0.12, "inches")),
+    colour = "#EC7014" 
+  ) +
+  annotate("text", x = -0.8, y = 1, label = bquote(β[0]), color = "#EC7014") +
+  geom_segment(
+    x = 2, y = 3,
+    xend = 3, yend = 3,
+    lineend = "round",
+    linejoin = "round",
+    size = 1.2, 
+    colour = "#EC7014"
+  ) +
+  geom_segment(
+    x = 3, y = 3,
+    xend = 3, yend = 4,
+    lineend = "round", 
+    linejoin = "round",
+    size = 1.2, 
+    colour = "#EC7014"
+  ) +
+  annotate("text", x = 2.5, y = 2.8, label = "1 unit", color = "#EC7014") +
+  annotate("text", x = 3.4, y = 3.5, label = bquote(β[1]), color = "#EC7014") +
+  coord_fixed(ratio = 1)
+```
+
+The @eq-line1 is defined by two coefficients (parameters) $\beta_0$ and $\beta_1$.
+
+-   The **intercept coefficient** $\beta_0$ is the value of $y$ when $x = 0$ (the black point where the dashed blue line crosses the y-axis; @fig-line).
+
+-   The **slope coefficient** $\beta_1$ for $x$ is the change in $y$ for every one unit increase in $x$ (@fig-line).
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The term "dependent" does not necessarily imply a cause and effect association between the two variables.
+:::
+
+## Research question
+
+Continuing from the previous chapter, we're analyzing the data in the *BirthWeight* dataset exploring the association between weight and height of the infants. But now, our aim is to build a **model** where the dependent variable Y is a function of the explanatory variable X.
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+#| warning: false
+
+# packages for graphs
+library(ggprism)
+
+# packages for data description, transformation and analysis
+library(matlib)
+library(parameters)
+library(performance)
+library(see)
+library(tidymodels)
+
+library(here)
+library(tidyverse)
+
+# packages for reporting the results
+library(report)
+```
+
+## Preraring the data
+
+```{r}
+#| warning: false
+
+library(readxl)
+BirthWeight <- read_excel(here("data", "BirthWeight.xlsx"))
+```
+
+```{r}
+#| echo: false
+#| label: fig-BirthWeight
+#| fig-cap: Table with data from "BirthWeight" file.
+
+DT::datatable(
+  BirthWeight, extensions = 'Buttons', options = list(
+    dom = 'tip',
+    columnDefs = list(list(className = 'dt-center', targets = "_all"))
+  )
+)
+
+```
+
+We inspect the data and the type of variables:
+
+```{r}
+glimpse(BirthWeight)
+```
+
+We are interested in the numeric variables of `weight` (in g) and `height`(in cm).
+
+## Basic concepts
+
+First, we plot the data in a scatter plot:
+
+```{r}
+#| warning: false
+#| label: fig-scat
+#| fig-cap: Scatter plot of the association between height and weight in 550 infants of 1 month age.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+ggplot(BirthWeight, aes(height, weight)) +
+  geom_point(size = 2, alpha = 0.4) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+```
+
+In @fig-scat, the points are scattered around an invisible line. The objective is to find a mathematical approach that yields a line that, on average, goes through most of the points on the graph. This line is commonly known as a regression line or a line of best fit (blue line in @fig-linear_model). We write the equation of the best-fitting line as:
+
+$$\widehat{y} = b_0  + b_1 \cdot x$$ {#eq-reg1}
+
+where $b_0$ and $b_1$ are best choices or estimates of the parameters $\beta_0$ and $\beta_1$ in @eq-line1, and $\hat y$ is the value of Y that is **expected** by this model for a specified value of X. We can interpret the "hat" notation as the dependent variable Y having a distribution (orange curve) with mean equals to $\widehat{y}$ for any given value of variable X (@fig-linear_model).
+
+```{r}
+#| warning: false
+#| message: false
+#| code-fold: true
+#| code-summary: "Show the code"
+#| label: fig-linear_model
+#| fig-cap: The complement of the union $B^c$ as represented in a Venn diagram.
+
+
+x <- BirthWeight$height
+y <- BirthWeight$weight
+
+dat <- data.frame(x, y)
+
+# breaks: where you want to compute densities
+breaks <- seq(min(dat$x), max(dat$x), length.out = 8)
+dat$section <- cut(dat$x, breaks)
+
+# Get the residuals
+dat$res <- residuals(lm(y ~ x, data = dat))
+
+# Compute densities for each section, and flip the axes, and add means of sections
+# Note: the densities need to be scaled in relation to the section size (2000 here)
+dens <- do.call(rbind, lapply(split(dat, dat$section), function(x) {
+  d <- density(x$res, n = 50)
+  res <- data.frame(x = max(x$x)- d$y*2000, y = d$x + mean(x$y))
+  res <- res[order(res$y), ]
+  ## Get some data for normal lines as well
+  xs <- seq(min(x$res), max(x$res), length.out = 50)
+  res <- rbind(res, data.frame(y = xs + mean(x$y),
+                               x = max(x$x) - 2000*dnorm(xs, 0, sd(x$res))))
+  res$type <- rep(c("empirical", "normal"), each = 50)
+  res
+}))
+dens$section <- rep(levels(dat$section), each = 100)
+
+## the plot
+ggplot(dat, aes(x, y)) +
+  geom_point() +
+  geom_smooth(method = "lm", fill = NA, lwd = 2) +
+  geom_path(data=dens[dens$type == "normal",], aes(x, y, group = section), color = "salmon", lwd = 1.1) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  geom_vline(xintercept = breaks, lty = 2) +
+  scale_x_continuous(breaks = breaks) + 
+  annotate("text", x = 60.2, y = 5100, label = bquote(widehat(y) == b[0] + b[1] * x), color = "blue", angle = 25.7, size = 5) +
+  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+```
+
+ 
+
+We define the following three concepts:
+
+<div class="content-box-yellow">
+
+1.  **Observed** value $y_i$: the observed value of the dependent variable Y for a given $x_i$ value.
+
+2.  **Expected** (or fitted) value $\widehat{y_i}$: the value of the dependent variable Y that is expected by the model for a given $x_i$ value.
+
+3.  **Residual** $e_i$: the deviation (error) between the observed value $y_i$ and the expected value $\hat y$ for a given $x_i$ value ($e_i = y_i - \hat y_i$).
+
+    </div>
+
+Let's see, for example, the values for the infant in the position 207 in our data set (@fig-concepts).
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| label: fig-concepts
+#| fig-cap: Scatter plot of the association between height and weight in 550 infants of 1 month age.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+ggplot(BirthWeight, aes(height, weight)) +
+  geom_point(size = 3, alpha = 0.4) +
+  geom_smooth(method = "lm", fill = NA, lwd = 2) +
+  annotate("point", x = 59, y = 5108, col = "#EC7014", shape = 18, size = 7.5) +
+  geom_segment(
+    x = 59, y = min(BirthWeight$weight),
+    xend = 59, yend = 6330,
+    lineend = "round",
+    linejoin = "round",
+    size = 1, 
+    colour = "#EC7014", 
+    linetype = "dashed"
+  ) +
+  geom_segment(
+    x = 59, y = 5108,
+    xend = min(BirthWeight$height), yend = 5108,
+    lineend = "round",
+    linejoin = "round",
+    size = 1, 
+    colour = "#EC7014", 
+    linetype = "dashed"
+  ) +
+  geom_segment(
+    x = 59, y = 6330,
+    xend = min(BirthWeight$height), yend = 6330,
+    lineend = "round",
+    linejoin = "round",
+    size = 1, 
+    colour = "#EC7014", 
+    linetype = "dashed"
+  ) +
+  geom_segment(
+    x = 52, y = 5108,
+    xend = 52, yend = 6330,
+    arrow = arrow(length = unit(0.03, "npc"), ends = "both"),
+    size = 1.5, 
+    colour = "purple", ends = "both"
+  ) +
+  annotate("text", x = 59, y = 2910, label = bquote(x[207] == 59), color = "#EC7014", size = 5.5) +
+  annotate("text", x = 59, y = 4920, label = "expected data point", color = "#EC7014", size = 5.5) +
+  annotate("text", x = 59, y = 6425, label = "observed data point", color = "#EC7014", size = 5.5) +
+  annotate("text", x = 49.2, y = 5230, label = bquote(widehat(y)[207] == 5108), color = "#EC7014", size = 5.5) +
+  annotate("text", x = 49.2, y = 6425, label = bquote(y[207] == 6330), color = "#EC7014", size = 5.5) +
+  annotate("text", x = 53.4, y = 5730, label = bquote(e[207] == 1222), color = "purple", size = 5.5) +
+  annotate("text", x = 51.5, y = 5730, label = "residual", color = "purple", size = 5.5, angle = 90) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  scale_x_continuous(expand = c(0, 0), limits = c(47.9, 63.1)) +
+  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+```
+
+-   The **observed value** $y$ = 6330 g is infant's weight for $x$ = 59 cm.
+
+-   The **expected value** $\widehat{y}$ is the value 5108 g on the regression line for $x$ = 59. This value can be computed by the @eq-line3.
+
+-   The **residual** is computed by subtracting the expected (fitted) value $\widehat{y}$ from the observed value $y$. In the case, it is $y - \widehat{y}$ = 6330 - 5108 = 1222 g.
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The residuals are exactly the **vertical** distance between the observed data point and the associated point on the regression line (expected value) (@fig-concepts). Positive residuals are associated with y values above the fitted line, while negative residuals correspond to values below the line.
+
+Residuals can be thought of as "noise" - they are fluctuations caused by various factors, preventing the observed values from forming a perfectly straight line on the scatter plot. Residuals play a crucial role in linear regression as they provide valuable insights into the **assessment** of a linear regression model.
+:::
+
+## Ordinary least squares (OLS) estimation of $b_0$ and $b_1$ in matrix form
+
+Let's describe the underlying association between $y_i$ and $x_i$ by:
+
+$$y_i = b_0  + b_1 \cdot x_i + e_i$$ {#eq-line1.5}
+
+where the $e_i$ is the error term, called **residual**, which represents the deviation between the observed value $y_i$ and the expected value $\hat y$ of the linear model ($e_i = y_i - \hat y_i$).
+
+In a matrix notation, the outcome $Y$ is modeled by:
+
+$$Y = X\hat{B} + e$$ {#eq-mtrx1}
+
+Specifically, given $n$ observations of the explanatory variable X and the outcome variable Y, the @eq-mtrx1 becomes:
+
+$$\begin{bmatrix} y_1\\ y_2 \\ y_3 \\ ... \\ y_n \end{bmatrix} = \begin{bmatrix} 1 & x_1\\ 1 & x_2\\ 1 & x_3\\ ... \\ 1 & x_n
+\end{bmatrix} \bullet \begin{bmatrix} b_0\\ b_1\end{bmatrix} + \begin{bmatrix} e_1\\ e_2 \\ e_3 \\ ... \\ e_n \end{bmatrix}$$ {#eq-mtrx2}
+
+The coefficients $b_0$ and $b_1$ are selected by **minimizing** the sum of squares of the residuals $e$. It can be proven that the least squares estimates are obtained by the following matrix formula:
+
+$$\hat{B} = (X^TX)^{-1}X^TY = \begin{bmatrix} b_0 \\ b_1 \end{bmatrix}$$ {#eq-mtrx3}
+
+That is, we've got one matrix equation which gives us both coefficient estimates.
+
+### In R:
+
+```{r}
+n <- length(BirthWeight$weight)
+Y <- matrix(BirthWeight$weight, n, 1)
+
+ones <- rep(1, n)
+X <- cbind(intercept = ones, height = BirthWeight$height)
+X <- as.matrix(X)
+
+B <- solve(t(X) %*% X) %*% t(X) %*% Y
+B
+```
+
+The regression equation for our example becomes:
+
+$$
+\begin{aligned}
+\widehat{y} &= b_0 + b_1 \cdot x\\
+\widehat{\text{weight}} &= b_0 + b_1 \cdot\text{height}\\
+\widehat{\text{weight}}&= -5412.14 + 178.31 \cdot\text{height}
+\end{aligned}
+$$ {#eq-line3}
+
+The intercept $b_0$ = -5412.14 is the mean weight for those infants with height of 0. Visually, it's the point where the line crosses the y-axis when x equals 0 (@fig-intercept).
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| message: false
+#| label: fig-intercept
+#| fig-cap: Simple regression line.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+# Create a linear regression line with annotations
+ggplot(BirthWeight, aes(x = height, y = weight)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue", fullrange = TRUE) +
+  xlim(0, 62) +
+  ylim(-6000, 6500) +
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +
+  geom_vline(xintercept = 0, color = "black", linetype = "solid") +
+  annotate("text", x = 19.0, y = -1000, label = bquote(paste (widehat(weight), "= -5412.14 + 178.31*height")), color = "blue", angle = 30.2, size = 5) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+```
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+Note that while there is a mathematical interpretation for the intercept of the regression line, it doesn't hold any physical meaning in this case, as the observation of a weight of 0 is not feasible.
+:::
+
+Of greater importance is the slope of the fitted line, $b_1 = 178.31$, as this describes the association between the `height` and `weight` variables.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| message: false
+#| label: fig-slope
+#| fig-cap: Simple regression line.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+# Create a linear regression line with annotations
+ggplot(BirthWeight, aes(x = height, y = weight)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue", fullrange = TRUE) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  labs(x = "X = Height (cm)", y = "Y = Weight (g)") +
+  geom_segment(
+    x = 56, y = 4560,
+    xend = 60, yend = 4560,
+    lineend = "round",
+    linejoin = "round",
+    size = 1.2, 
+    colour = "#EC7014"
+  ) +
+  geom_segment(
+    x = 60, y = 4560,
+    xend = 60, yend = 5270,
+    lineend = "round", 
+    linejoin = "round",
+    size = 1.2, 
+    colour = "#EC7014"
+  ) +
+  annotate("text", x = 55.6, y = 4800, label = "(56, 4560)", color = "#EC7014", size = 5) +
+    annotate("text", x = 59, y = 5400, label = "(60, 5270)", color = "#EC7014", size = 5) +
+  annotate("text", x = 58, y = 4420, label = "dx", color = "#EC7014", size = 5) +
+  annotate("text", x = 60.5, y = 4900, label = "dy", color = "#EC7014", size = 5)
+```
+
+The graphical calculation of the slope from two points of the fitted blue line is (@fig-slope):
+
+$$  
+b_1 =\frac{dy}{dx}=\frac{5270-4560}{60-56}= \frac{710}{4} \approx 178 \ g/cm
+$$
+
+The positive slope indicates a positive association between height and weight. This implies that infants with greater height also generally exhibit increased weight.
+
+::: content-box-blue
+For every 1 cm increase in height, there is **on average** an associated increase of 178 g in weight.
+:::
+
+## The Standard error (SE) of the coefficients
+
+The standard error is a way to measure the "uncertainty" in the estimate of the regression coefficients and it can be calculated by:
+
+$$
+\mathrm{SE}_{b_j} = \sqrt{\mathrm{Var}(b_j)}
+$$ {#eq-se}
+
+where the $\mathrm{Var}(b_j)$ represents the variance of the coefficients of the model.
+
+We can obtain the $\mathrm{Var}(b_j)$ from the variance--covariance matrix. For the simple linear regression model is:
+
+$$
+\boldsymbol{\sigma^2_B} = \begin{bmatrix}\mathrm{Var}(b_0) & \mathrm{Cov}(b_0,b_1) \\ \mathrm{Cov}(b_0,b_1)  & \mathrm{Var}(b_1) \end{bmatrix}
+$$ {#eq-cov}
+
+where $\mathrm{Cov}(b_0,b_1)$ represents the covariance of $b_0$ and $b_1$.
+
+The variance-covariance matrix is a square, symmetric matrix which is defined in matrix notation as:
+
+$$
+\boldsymbol{\sigma^2_B} = \sigma^2_{e} (\mathbf{X}^{\intercal}\mathbf{X})^{-1}
+$$ {#eq-cov2}
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Residual variance $\sigma^2_{e}$
+
+In order to compute the variance-covariance matrix in @eq-cov2, we need to calculate the residual variance (i.e., mean squared residuals) for the model:
+
+$$
+\sigma^2_{e} = \frac{SS_{residuals}}{df_{residuals}} 
+$$ {#eq-stderror}
+
+where
+
+-   the residual sum of squares (also known as sum of squares error) is $SS_{residuals} = \mathbf{e}^2 =\mathbf{e}^\intercal\mathbf{e}$
+
+-   the degrees of freedom are $df_{residuals} = n -k$, where $k$ is the number of coefficients (including the intercept) being estimated in the regression model. Defining, the hat matrix, or the H-matrix, as: $$
+    \mathbf{H} = \mathbf{X}(\mathbf{X}^{\intercal}\mathbf{X})^{-1}\mathbf{X}^{\intercal}
+    $$ {#eq-Hat} the $k$ equals to the trace of the H-matrix.
+
+Therefore, the @eq-stderror becomes: $$
+\sigma^2_{e} = \frac{\mathbf{e}^\intercal\mathbf{e}}{n - \mathrm{tr}(\mathbf{H})}
+$$ {#eq-stderror2}
+:::
+
+### In R:
+
+```{r}
+
+# calculate the residuals
+e <- Y - X %*% B
+
+# compute the residual sum of squares (sum of squares error)
+ss_e <- t(e) %*% e
+
+# compute the H-matrix
+H <- X %*% solve(t(X) %*% X) %*% t(X)
+
+# compute the residual variance
+var_e <- ss_e/(n-tr(H))
+
+# find the variance-covariance matrix of the coefficients
+var_covar_matrix <- as.numeric(var_e) * solve(t(X) %*% X)
+var_covar_matrix
+```
+
+Finally, we can compute the standard error (SE) of the coefficients:
+
+```{r}
+# compute the SEs
+std_error_B <- sqrt(diag(var_covar_matrix))
+std_error_B
+```
+
+## Test statistic and confidence intervals
+
+The hypothesis testing for the coefficients of the regression model are:
+
+$$
+\begin{aligned}
+H_0 &: \beta_j = 0\\
+\text{vs } H_1&: \beta_j \neq 0.
+\end{aligned}
+$$
+
+The null hypothesis, $H_{0}$, states that the coefficients are equal to zero, and the alternative hypothesis, $H_{1}$, states that the coefficients are not equal to zero.
+
+The **t-statistic** for the coefficients are defined by the following equation:
+
+$$
+\ t_j = \frac{\ b_j}{\text{SE}_{b_j}}
+$$ {#eq-tstats}
+
+### In R:
+
+```{r}
+# Compute t for the coefficients bo and b1
+t_stat = B / std_error_B
+t_stat
+```
+
+We can use the p-value to guide our decision:
+
+-   If p − value \< 0.05, reject the null hypothesis, $H_{0}$.
+-   If p − value ≥ 0.05, do not reject the null hypothesis, $H_{0}$.
+
+```{r}
+# Compute p-value for a two-tailed test
+2 * pt(abs(t_stat), df = n-tr(H), lower.tail = FALSE)
+```
+
+In our example p \<0.001 $\Rightarrow$ reject $H_{0}$.
+
+The $95\%$ CI of the coefficients for a significance level α, $df=n-k$ degrees of freedom and for a two-tailed t-test is given by:
+
+$$
+95\% \ \text{CI}_{b_j} = b_j \pm t^{*}_{df;a/2} \cdot \text{SE}_{b_j}
+$$ {#eq-tci}
+
+In our example:
+
+```{r}
+# obtain critical value for 95% CI
+t_star <-  qt(0.025, df = n-tr(H), lower.tail = FALSE)
+
+# compute lower limit of 95% CI
+B - t_star*std_error_B
+```
+
+```{r}
+# compute upper limit of 95% CI
+
+B + t_star*std_error_B
+```
+
+## lm() function
+
+As anticipated, R provides a built-in function for the purpose of fitting linear regression models. We can utilize the `lm()` function to perform this task.
+
+### Classical approach
+
+```{r}
+model_lm <- lm(weight ~ height, data = BirthWeight)
+model_lm
+```
+
+::: {#exercise-joins .callout-important icon="false"}
+## `r fa("r-project", fill = "#0008C1")` Summary information about the model
+
+::: panel-tabset
+## base
+
+```{r}
+summary(model_lm)
+```
+
+## parameters
+
+```{r}
+model_parameters(model_lm)
+```
+:::
+:::
+
+### Tidy approach (tidymodels)
+
+```{r}
+model_lm_tidy <- linear_reg() |> 
+  set_engine("lm") |> 
+  fit(weight ~ height, data = BirthWeight)
+model_lm_tidy
+```
+
+```{r}
+tidy(model_lm_tidy)
+```
+
+ 
+
+### Summary table
+
+All the estimates and statistics of interest for the regression model are presented in the following summary table (@fig-eq_table):
+
+```{r}
+#| echo: false
+#| label: fig-eq_table
+#| fig-cap: The linear regression table.
+
+model <- lm(weight ~ height, data = BirthWeight)
+
+tb <- moderndive::get_regression_table(model)
+tb[5] <- as.character(tb[5])
+tb[5] <- "<0.001"
+
+tb %>%
+  knitr::kable(
+    digits = 2,
+    booktabs = TRUE,
+    linesep = ""
+  ) %>%
+  kableExtra::kable_styling(font_size = ifelse(knitr:::is_latex_output(), 10, 16),
+                latex_options = c("hold_position"))
+```
+
+ 
+
+## Verifying Model Assumptions
+
+Specific assumptions have to be met for reliable hypothesis tests and confidence intervals in simple linear regression: linearity of the data, independence of the residuals, normality of the residuals, and equality of variance of the residuals.
+
+We will describe some statistical test and diagnostic plots in R for testing the assumptions underlying linear regression model.
+
+::: callout-warning
+Variations or different versions of the statistical tests may have different results.
+:::
+
+ 
+
+### Linearity of the data
+
+::: content-box-yellow
+Linear association between the independent variable X and the dependent variable (outcome) Y.
+:::
+
+#### `r fa("arrow-right", fill = "orange")`   Plot: Residuals vs Fitted values
+
+```{r}
+#| message: false
+
+diagnostic_plots <- plot(check_model(model_lm, panel = FALSE))
+diagnostic_plots[2] 
+```
+
+**Residuals vs Fitted values** plot is used to check the linear association assumption. We would expect to see a random scatter of points around the horizontal dashed line at zero, as demonstrated in our example. The green line is a scatter plot smoother, showing the average value of the residuals corresponding to each fitted value. **A horizontal green line, without noticeable patterns or curvature, indicates a linear association**.
+
+ 
+
+### Independence of the residuals
+
+::: content-box-yellow
+The residuals (or errors) resulting from the model should be independent of each other.
+:::
+
+#### `r fa("arrow-right", fill = "orange")`   Statistical test: Durbin-Watson test
+
+We can perform a Durbin-Watson-Test to check for autocorrelated residuals (a p-value \< 0.05 indicates autocorrelated residuals).
+
+```{r}
+set.seed(126)
+check_autocorrelation(model_lm, nsim = 1000)
+```
+
+ 
+
+### Normality of the residuals
+
+::: content-box-yellow
+The residuals should be normally distributed.
+:::
+
+#### `r fa("arrow-right", fill = "orange")`   Statistical test: Shapiro test
+
+```{r}
+check_normality(model_lm)
+```
+
+The function performs a `shapiro.test` and checks the standardized residuals for normal distribution. According to the documentation "this formal test almost always yields significant results for the distribution of residuals for large samples and visual inspection (e.g., Q-Q plots) are preferable."
+
+#### `r fa("arrow-right", fill = "orange")`   Plot: Normal Q-Q plot
+
+```{r}
+diagnostic_plots[5] 
+```
+
+Normal Q-Q plot is used to examine whether the residuals are roughly normally distributed. Ideally, the standardized residuals points should follow the green line. In our example, the normal Q-Q normal plot does not deviate greatly from normal.
+
+ 
+
+### Equality of variance of the residuals (Homoscedasticity)
+
+::: content-box-yellow
+The spread or dispersion of the residuals should remain roughly the same for all values of the X variable.
+:::
+
+#### `r fa("arrow-right", fill = "orange")`   Statistical test: Breusch-Pagan test
+
+The most common test for checking equality of variance of the residuals (homoskedasticity) is the Breush-Pagan test (a p-value \< 0.05 indicates presence of heteroscedasticity).
+
+The original version of Breusch-Pagan test:
+
+```{r}
+lmtest::bptest(model_lm, studentize = F) 
+```
+
+However, the **studentized** BP test (which is the default) is more robust than the original one:
+
+```{r}
+lmtest::bptest(model_lm) 
+```
+
+#### `r fa("arrow-right", fill = "orange")`   Plot: Square root of standardized residuals vs Fitted values
+
+```{r}
+diagnostic_plots[3] 
+```
+
+This plot checks the assumption of equal variance of the residuals (homoscedasticity). To verify the assumption, we plot the square root of standardized residuals against the fitted values from the regression. In this case, the residuals are re-scaled and all values are positive. A horizontal line with equally spread points would be the desired pattern, as demonstrated in our example. However, if the spread of residuals widens or narrows systematically as we move along the x-axis, it indicates a violation of homoscedasticity.
+
+ 
+
+### Influential observations in the data
+
+::: content-box-yellow
+The dataset should not include data points with exceptional influence on the model.
+:::
+
+
+#### `r fa("arrow-right", fill = "orange")`   Plot: Standardized residuals vs Leverage
+
+```{r}
+diagnostic_plots[4] 
+```
+
+This plot is used to detect influential observations. These data are outlier points that might have a substantial impact on the regression model's results when included or excluded from the analysis. If any point in this plot fall outside the dashed green lines then it is considered an influential observation. In our example, all the data points are inside the dashed green lines suggesting that none of the observations is influential on the fitted model.
+
+
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The standardized residual is the residual divided by its standard deviation. The standardization, which results in a mean of zero and a variance of one, enables the residuals to be compared on the "standard scale". When a standardized residual falls within the range of +/- 2, it indicates an unusual observation, while a value between +/- 3 indicates a highly unusual data".
+:::
+
+ 
+
+## Model evaluation
+
+Two related measures are typically used to evaluate the linear regression model: the residual standard error (RSE) and the coefficient of determination $R^2$.
+
+### Residual standard error (RSE)
+
+The residual standard error is the square root of the residual variance $\sigma^2_{e}$ that we have already calculated. It informs us about the average error of the regression model in terms of the units of the outcome variable. Lower values are better because it indicates that the observations are closer to the fitted line. In our example:
+
+$$\ RSE = \sqrt{\frac{SS_{residuals}}{n-k}}$$ {#eq-rse}
+
+### In R:
+
+```{r}
+rse <- sqrt(var_e)
+rse
+```
+
+### Coefficient of determination $R^2$
+
+The regression model allows us to divide the total variation in the outcome into two components: one explained by the model, and the other that remains unexplained by the model.
+
+$$
+\mathrm{SS}_{\mathrm{total}} = \mathrm{SS}_{\mathrm{model}} + \mathrm{SS}_{\mathrm{residual}}
+$$
+
+In matrix notation:
+
+-   the sum of squares total is defined as:
+
+$$
+\mathrm{SS}_{total} = (\mathbf{Y} - \bar{\mathbf{Y}})^2 = (\mathbf{Y} - \bar{\mathbf{Y}})^\intercal(\mathbf{Y} - \bar{\mathbf{Y}}) 
+$$
+
+-   the residual sum of squares is:
+
+$$
+SS_{residuals} = \mathbf{e}^2 =\mathbf{e}^\intercal\mathbf{e}
+$$
+
+Therefore,
+
+$$
+\mathrm{SS}_{\mathrm{model}} = \mathrm{SS}_{\mathrm{total}} - \mathrm{SS}_{\mathrm{residual}}
+$$
+
+The **coefficient of determination**, $R^2$, indicates the percentage of the total variation in the dependent variable Y that can be explained by the regression model (in this simple case the independent variable X). Hence, it is a measure of the **'goodness of fit'** of the regression line to the data.
+
+$$\ R^2 = \frac{\ explained \ \ variation}{total \ \ variation} = \frac{SS_{model}}{SS_{total}} = 1- \frac{SS_{residual}}{SS_{total}}$$ {#eq-r2}
+
+```{r}
+dev_mean <- Y - mean(Y)
+ss_total <- t(dev_mean) %*% dev_mean
+R_square <- 1 - (ss_e / ss_total)
+R_square 
+```
+
+The R-squared measure ranges between 0 and 1. When $R^2$ approaches 1 indicates that a substantial proportion of the variation in the dependent variable Y has been explained by the regression model. Conversely, when it nears 0, it implies that the regression model has not effectively explained the majority of the variation in the outcome.
+
+::: content-box-blue
+In our example, $R^2 = 0.508$ indicates that about 50.8% of the variation in infant's body weight can be explained by the variation of the infant's body height.
+:::
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+In simple linear regression $\sqrt{0.5085} = 0.713$ which equals to the Pearson's correlation coefficient r.
+:::
+
+
+
+
+
+## Present the results
+
+
+```{r}
+report(model_lm)
+```
+
+
+We can use the above information to write up a final report:
+
+::: {.callout-note icon="false"}
+## `r fa("pen", fill = "#1DC5CE")` Final report
+
+In summary, the regression coefficient of the height is positive and significantly different from zero (p < 0.001). There is on average an increase of 178 g ($95\%$CI: 164 to 193) in weight for every 1 cm increase in height. The model explains a substantial proportion of variance (51% of the variation in infant's body weight can be explained by the variation of the infant's body height).
+:::

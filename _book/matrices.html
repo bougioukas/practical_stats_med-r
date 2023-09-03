@@ -439,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning objectives
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:red;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"></path></svg> Learning objectives
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -493,7 +493,8 @@ Main diagonal
     3 &amp; 1 &amp; 4 &amp; 2\\
     2 &amp; 0 &amp; 1 &amp; 3
   \end{bmatrix}
-\]</span> The column vectors are: <span class="math inline">\(\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}\)</span></p>
+\]</span></p>
+<p>The column vectors are: <span class="math inline">\(\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}\)</span></p>
 <p>The row vectors are: <span class="math inline">\(\begin{bmatrix} 4 &amp; 0 &amp; 2 &amp; 1 \end{bmatrix}, \begin{bmatrix} 3 &amp; 1 &amp; 4 &amp; 2 \end{bmatrix}, \begin{bmatrix} 2 &amp; 0 &amp; 1 &amp; 3 \end{bmatrix}\)</span></p>
 <p>The main diagonal consisted of the numbers 4, 1, and 1.</p>
 </section><section id="creating-a-matrix-in-r" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="creating-a-matrix-in-r">
@@ -798,7 +799,8 @@ S_{3\times 3} =
     -1 &amp; 1\\
     5  &amp; -2
   \end{bmatrix}
-\]</span> In R:</p>
+\]</span></p>
+<p>In R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb52" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -808,7 +810,7 @@ S_{3\times 3} =
 [2,]    0    1   -2</code></pre>
 </div>
 </div>
-<p>the transpose matrix is:</p>
+<p>The transpose matrix is:</p>
 <div class="cell">
 <div class="sourceCode" id="cb54" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -893,7 +895,8 @@ S_{3\times 3} =
     -12 &amp; 3 &amp; 15 \\
     0 &amp; -3 &amp; 6
   \end{bmatrix}
-\]</span> Here, the element in the first row and first column of the new matrix is <span class="math inline">\(-3*4 = -12\)</span>, the element in the first row and second column is <span class="math inline">\(-3 * (-1) = 3\)</span>, the element in the first row and third column is <span class="math inline">\(-3 * (- 5) = 15\)</span>, and so on.</p>
+\]</span></p>
+<p>Here, the element in the first row and first column of the new matrix is <span class="math inline">\(-3*4 = -12\)</span>, the element in the first row and second column is <span class="math inline">\(-3 * (-1) = 3\)</span>, the element in the first row and third column is <span class="math inline">\(-3 * (- 5) = 15\)</span>, and so on.</p>
 <p>In R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb62" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -927,7 +930,8 @@ S_{3\times 3} =
   12 &amp; -1 &amp; 25 \\
   0 &amp; 2 &amp; 4
   \end{bmatrix}
-\]</span> In this case, the element in the first row and first column of the new matrix is <span class="math inline">\(4*3 = 12\)</span>, the element in the first row and second column is <span class="math inline">\(-1 * 1 = -1\)</span>, the element in the first row and third column is <span class="math inline">\(-5 * (- 5) = 25\)</span>, and so on.</p>
+\]</span></p>
+<p>In this case, the element in the first row and first column of the new matrix is <span class="math inline">\(4*3 = 12\)</span>, the element in the first row and second column is <span class="math inline">\(-1 * 1 = -1\)</span>, the element in the first row and third column is <span class="math inline">\(-5 * (- 5) = 25\)</span>, and so on.</p>
 <p>In R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb66" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1081,7 +1085,8 @@ S_{3\times 3} =
     -1 &amp; 1 \\
     -5 &amp; -2
   \end{bmatrix}
-\]</span> Now, the <span class="math inline">\(A^T_{3\times 2}\)</span> and <span class="math inline">\(B_{2\times 3}\)</span> matrices are compatible, so their product is well defined. In this case, we can multiply them:</p>
+\]</span></p>
+<p>Now, the <span class="math inline">\(A^T_{3\times 2}\)</span> and <span class="math inline">\(B_{2\times 3}\)</span> matrices are compatible, so their product is well defined. In this case, we can multiply them:</p>
 <p><span class="math display">\[
   A^T_{3\times 2} \bullet B_{2\times 3}=
   \begin{bmatrix}
@@ -1181,8 +1186,11 @@ E_{3\times 3} =
    - e_{32}\begin{vmatrix} e_{11} &amp; e_{13} \\ a_{21} &amp; a_{23} \end{vmatrix}
    + e_{33}\begin{vmatrix} e_{11} &amp; e_{12} \\ e_{21} &amp; e_{22} \end{vmatrix}
 \]</span></p>
-<p>Therefore: <span class="math display">\[  \Rightarrow
-detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21}) \]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\Rightarrow
+detE = e_{31}(e_{12}*e_{23} - e_{13}*e_{22}) - e_{32}(e_{11}*e_{23} - e_{13}*e_{21}) + e_{33}(e_{11}*e_{22} - e_{12}*e_{21})
+\]</span></p>
 <p>&nbsp;</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let’s consider a 2x2 matrix:</p>
@@ -1192,7 +1200,8 @@ E_{2 \times 2} = \begin{bmatrix}
      2 &amp; 0
 \end{bmatrix}
 \]</span></p>
-<p>To calculate the determinant of this matrix, we can use the formula: <span class="math display">\[
+<p>To calculate the determinant of this matrix, we can use the formula:</p>
+<p><span class="math display">\[
 \begin{vmatrix}
      1 &amp; -1 \\
      2 &amp; 0
@@ -1225,8 +1234,10 @@ E_{2 \times 2} = \begin{bmatrix}
    - 1\begin{vmatrix} 1 &amp; 1 \\ 2 &amp; 1 \end{vmatrix}
    + 2\begin{vmatrix} 1 &amp; -1 \\ 2 &amp; 0 \end{vmatrix}
 \]</span></p>
-<p>Therefore: <span class="math display">\[  \Rightarrow
-detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 \]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\Rightarrow detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4
+\]</span></p>
 <div class="cell">
 <div class="sourceCode" id="cb98" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">E</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1243,9 +1254,14 @@ detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 \]</span>
 </div>
 <p>&nbsp;</p>
 </section><section id="the-inverse-of-a-matrix" class="level3"><h3 class="anchored" data-anchor-id="the-inverse-of-a-matrix">The inverse of a matrix</h3>
-<p>The <code>det(E)</code> is not zero, so inverse exists:</p>
+<p>Given a square matrix E its inverse is another square matrix of the same dimensions, denoted as <span class="math inline">\(E^{-1}\)</span>, such that when these two matrices are multiplied together, they yield the <strong>identity matrix</strong>, typically denoted as I. The inverse of a matrix can be computed if its determinant is non-zero. For example, matrix E is a square matrix and the <code>det(E)</code> is not zero, so inverse exists (the matrix is invertible).</p>
+<p><span class="math display">\[
+E_{n \times n} \bullet E^{-1}_{n \times n} = I_{n \times n}
+\]</span></p>
+<p>In R, we can use the generic built-in <code><a href="https://rdrr.io/r/base/solve.html">solve()</a></code> function to find the inverse of the matrix E:</p>
 <div class="cell">
-<div class="sourceCode" id="cb102" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E_inv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/matlib/man/Inverse.html">inv</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb102" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the solve() function takes a matrix as input and returns the matrix's inverse</span></span>
+<span><span class="va">E_inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span></span>
 <span><span class="va">E_inv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>      [,1]  [,2]  [,3]
@@ -1254,9 +1270,32 @@ detE = 1(-1*1 - 1*0) - 1(1*1 - 1*2) + 2(1*0 - (-1)*2) = -1 + 1 + 4 = 4 \]</span>
 [3,]  0.50 -0.50  0.50</code></pre>
 </div>
 </div>
-<p>The inverse of a matrix <code>E</code> is defined as the <code>E_inv</code> matrix which multiplies E to give the identity matrix:</p>
+<p>Alternatively, we can use the <code><a href="https://rdrr.io/pkg/matlib/man/Inverse.html">inv()</a></code> function from the <code>matlib</code> package for the computation of a matrix’s inverse:</p>
 <div class="cell">
-<div class="sourceCode" id="cb104" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">E_inv</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">E</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb104" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/matlib/man/Inverse.html">inv</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>      [,1]  [,2]  [,3]
+[1,] -0.25  0.75 -0.25
+[2,] -0.75  0.25  0.25
+[3,]  0.50 -0.50  0.50</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"></path></svg> INFO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code><a href="https://rdrr.io/pkg/matlib/man/Inverse.html">inv()</a></code> function employs Gaussian Elimination as a method to find the inverse of a matrix.</p>
+</div>
+</div>
+<p>Therefore, we can verify that if we multiply the matrix <span class="math inline">\(E\)</span> by its inverse <span class="math inline">\(E^{-1}\)</span>, we get back the identity matrix:</p>
+<div class="cell">
+<div class="sourceCode" id="cb106" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">E</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">E_inv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
 [1,]    1    0    0
@@ -1317,14 +1356,14 @@ V_{n\times1} = \left[\begin{array}{c}
 <p>where <span class="math inline">\(U^T\)</span> is the transpose of <span class="math inline">\(U\)</span>.</p>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb106" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb108" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_values</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 3.857143</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb108" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_values</span><span class="op">)</span>  <span class="co"># get the length (number of elements) of vector</span></span>
+<div class="sourceCode" id="cb110" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_values</span><span class="op">)</span>  <span class="co"># get the length (number of elements) of vector</span></span>
 <span><span class="va">U</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">U</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1337,7 +1376,7 @@ V_{n\times1} = \left[\begin{array}{c}
 [6,]    1
 [7,]    1</code></pre>
 </div>
-<div class="sourceCode" id="cb110" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">my_values</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb112" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">my_values</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">V</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>     [,1]
@@ -1351,7 +1390,7 @@ V_{n\times1} = \left[\begin{array}{c}
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb112" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">average_my_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">U</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">V</span><span class="op">/</span><span class="va">n</span></span>
+<div class="sourceCode" id="cb114" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">average_my_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">U</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">V</span><span class="op">/</span><span class="va">n</span></span>
 <span><span class="va">average_my_values</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>         [,1]
@@ -1362,14 +1401,14 @@ V_{n\times1} = \left[\begin{array}{c}
 </section><section id="eigenvalues-and-eigenvectors" class="level3"><h3 class="anchored" data-anchor-id="eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</h3>
 <p>We have already mentioned that a <strong>symmetric</strong> matrix is a square matrix that is equal to its transpose. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb114" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb116" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
 [1,]   13   -4    2
 [2,]   -4   11   -2
 [3,]    2   -2    8</code></pre>
 </div>
-<div class="sourceCode" id="cb116" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb118" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
 [1,]   13   -4    2
@@ -1380,7 +1419,7 @@ V_{n\times1} = \left[\begin{array}{c}
 <p>A symmetric matrix guarantees that its eigenvalues are real numbers. Eigenvalues and eigenvectors are highly used by the data scientists as they are the core of the data science field. For example, eigenvalues and eigenvectors are very much useful in the principal component analysis which is a dimensionality reduction technique in machine learning.</p>
 <p>The <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> built-in function in R calculates the eigenvalues and eigenvectors of a symmetric matrix. It returns a named list, with eigenvalues named values and eigenvectors named vectors:</p>
 <div class="cell">
-<div class="sourceCode" id="cb118" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb120" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
 <span><span class="va">ev</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>eigen() decomposition
@@ -1405,7 +1444,7 @@ $vectors
 <span class="header-section-number">8.7</span> Arrays</h2>
 <p>Arrays are similar to matrices but can have <strong>more than two dimensions</strong>. They’re created with an <code><a href="https://rdrr.io/r/base/array.html">array()</a></code> function from base R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb120" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># build the 2x3x4 array</span></span>
+<div class="sourceCode" id="cb122" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># build the 2x3x4 array</span></span>
 <span><span class="va">my_array</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">my_array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1437,15 +1476,15 @@ $vectors
 <p>As you can see, arrays are a natural extension of matrices. They can be useful in programming new statistical methods. Like matrices, they contain a single type of data (e.g., numeric).</p>
 <p>We can find the <code>type</code>, <code>class</code> and the <code>dimensions</code> of the array:</p>
 <div class="cell">
-<div class="sourceCode" id="cb122" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb124" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "integer"</code></pre>
 </div>
-<div class="sourceCode" id="cb124" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb126" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "array"</code></pre>
 </div>
-<div class="sourceCode" id="cb126" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb128" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 2 3 4</code></pre>
 </div>
@@ -1643,73 +1682,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, function(instance) {
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
         // Handle positioning of the toggle
     window.addEventListener(
       "resize",
@@ -1737,65 +1709,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
-            unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
-            }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

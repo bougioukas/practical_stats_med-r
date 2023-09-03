@@ -527,20 +527,8 @@ Command prompt &nbsp;&gt;
 </ul>
 <p>Now, let’s type in the Console the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">We have not finished the mathematical expression.</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2">Here the plus sign (<code>+</code>) is a prompt.</span>
-</dd>
-</dl>
-</div>
+<div class="sourceCode cell-code" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If an R command is <strong>not complete</strong> then a plus sign (<code>+</code>) (prompt) appears on second and subsequent lines in the Console until the command syntax is correct. In our example, we can type a number to finish the mathematical expression we are trying to calculate. We can also press the escape key <kbd>Esc</kbd> to cancel the command.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -562,8 +550,8 @@ Recall a previously typed command in Console
 <p>Before asking others for help, we should try to solve the R programming problems on our own. Therefore, it is recommended to learn how to use R’s built-in help system.</p>
 <p>First, we can use the <code>help()</code> command or the <strong><code>?</code></strong> help operator which provide access to the R documentation pages in the standard R distribution. For example, if we want information for the <code>median</code> we will type the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(median)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>?median</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>RStudio also provides a search box in the <strong>“Help”</strong> tab (<a href="#fig-median_help" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>):</p>
 <div id="fig-median_help" class="quarto-figure quarto-figure-center anchored">
@@ -574,8 +562,8 @@ Recall a previously typed command in Console
 </div>
 <p>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our R library and it is a shortcut to <code>help.search()</code> command. So for example, let’s say we want to search documentation specifically for the <code>geometric median</code>. Keep in mind if our phrase is a string, we must include it in (double or single) quotation marks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"geometric median"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geometric median"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"geometric median"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-help_search" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -585,7 +573,7 @@ Recall a previously typed command in Console
 </div>
 <p>To find all the names containing the pattern we search in the current R session, by partial matching, we can use the <strong><code>apropos()</code></strong> command. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"med"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"med"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "elNamed"        "elNamed&lt;-"      "median"         "median.default"
 [5] "medpolish"      "runmed"        </code></pre>
@@ -593,7 +581,7 @@ Recall a previously typed command in Console
 </div>
 <p>Use the <strong><code>example()</code></strong> command to run the examples that are provided in the R documentation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>
 median&gt; median(1:4)                # = 2.5 [even number]
@@ -800,73 +788,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, function(instance) {
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
         // Handle positioning of the toggle
     window.addEventListener(
       "resize",
@@ -894,65 +815,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
-            unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
-            }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
