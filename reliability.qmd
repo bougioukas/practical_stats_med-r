@@ -1,0 +1,384 @@
+# Measures of relative and absolute reliability {#sec-reliability}
+
+```{r}
+#| include: false
+library(fontawesome)
+```
+
+In this chapter, we explore measures of relative and absolute reliability (or agreement) that are used to assess the consistency, stability, and reproducibility of measurements or judgments.
+
+When we have finished this Chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Understand the concepts of relative and absolute reliability
+-   Apply appropriate measures of reliability
+-   Interpret the results of reliability analysis
+:::
+
+## Relative and absolute reliability
+
+Two distinct types of reliability are used: the relative and absolute reliability (agreement) [@kottner2011].
+
+-   **Relative Reliability** is defined as the ratio of variability between scores of the same subjects (e.g., by different raters or at different times) to the total variability of all scores in the sample. Reliability coefficients, such as the intra-class correlation coefficient for numerical data or Cohen's kappa for nominal data, are employed as suitable metrics for this purpose.
+
+-   **Absolute Reliability (or Agreement)** pertains to the assessment of whether scores, or judgments are identical or comparable, as well as the extent to which they might differ. Typical statistical measures employed to quantify this degree of error are the standard error of measurement (SEM) and the limits of agreement (LOA) for numerical data, or percent in agreement for numerical data.
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(irr)
+library(irrCAC)
+library(SimplyAgree)
+
+library(ggprism)
+library(ggExtra)
+
+library(here)
+library(tidyverse)
+```
+
+## Reliability for continuous measurements
+
+### Introduction
+
+The observed scores (X) from an instrument are thought to be composed of an underlying true score (T) and an error component (E) that is due to measurement error, such that:
+
+$$
+X = T + E
+$$ {#eq-score}
+
+If the true measurement and the error term are uncorrelated, it follows that:
+
+$$
+SD^2_X = SD^2_T + SD^2_E
+$$ {#eq-SD}
+
+The measurement variance can be summarized by the squared standard deviation, that is, the variance, $SD^2_{X}$.
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The total variability can break down into smaller pieces based on characteristics of the study design.
+:::
+
+### Research question
+
+The parent version of Gait Outcomes Assessment List questionnaire (GOAL) is a parent-reported outcome assessment of family priorities and functional mobility for ambulatory children with cerebral palsy. We aim to examine the test--retest reliability of the GOAL questionnaire for the total score (score range: 0 - 100).
+
+::: content-box-yellow
+**Test-Retest Reliability**
+
+Test-retest reliability is used to assess the consistency and stability of a measurement tool (e.g. self-report survey instrument) over time on the same subjects under the same conditions. Specifically, assessing test-retest reliability involves administering the measurement tool to a group of individuals initially, subsequently reapplying it to the same group at a later time, and finally examining the correlation between the two sets of scores obtained.
+:::
+
+### Preraring the data
+
+The GOAL questionnaire was completed twice, 30 days apart, in a prospective cohort study of 127 caregivers of children with cerebral palsy and the data were recorded as follows:
+
+```{r}
+#| warning: false
+
+library(readxl)
+goal <- read_excel(here("data", "goal.xlsx"))
+```
+
+```{r}
+#| echo: false
+#| label: fig-BirthWeight
+#| fig-cap: Table with data from "BirthWeight" file.
+
+DT::datatable(
+  goal, extensions = 'Buttons', options = list(
+    dom = 'tip',
+    columnDefs = list(list(className = 'dt-center', targets = "_all"))
+  )
+)
+
+```
+
+We will begin our investigation into the association between the first (GOAL1) and the second (GOAL2) measurement by generating a scatter plot:
+
+```{r}
+#| warning: false
+#| label: fig-correlation
+#| fig-cap: Scatter plot of the association between individual GOAL scores on the test and retest measurements (n = 127).
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+
+ggplot(goal, aes(GOAL1, GOAL2)) +
+  geom_point(color = "black", size = 2) +
+  lims(x = c(0, 100), y = c(0,100)) +
+  geom_abline(intercept = 0, slope = 1, linewidth = 1.0, color = "blue") +
+  coord_fixed(ratio = 1)
+```
+
+The scatter plot compares the GOAL1 and GOAL2 total scores. The solid blue diagonal line is the line of equality (i.e. the reference line: Y = X) that represents a perfect agreement of the two measurements.
+
+### Intra-class correlation coefficient (ICC)
+
+Test-retest data of continuous measurements is often assessed using the intra-class correlation coefficient (ICC). The ICC is a ratio defined as:
+
+$$
+ICC =\frac{SD^2_{T}}{SD^2_{X}} =\frac{SD^2_{T}}{SD^2_{T} +SD^2_{E}}
+$$ {#eq-icc}
+
+ICC ranges from 0 to 1 where higher values indicate better test-retest reliability.
+
+There are three different types of ICC representing different mathematical models:
+
+-   one-way random effects model ICC(1)
+-   two-way random effects model ICC(A,1)
+-   two-way mixed-effects model ICC(C,1)
+
+where **A** stands for "Agreement" and **C** stands for "Consistency".
+
+The choice of the appropriate ICC model depends on several factors, including how the data were collected, which variance components are considered relevant, and the specific type of reliability (agreement or consistency) we intend to assess [@liljequist2019].
+
+In the context of our example, it is recommended to use the **"two-way"** model rather than the "one-way" model and **"agreement"** rather than "consistency", as systematic differences in the individual scores on the GOAL instrument over time are of interest [@qin2018].
+
+In population, the ICC(A, 1) is defined as:
+
+$$
+ρ_{A, 1} = \frac{\sigma^2_{ID}}{\sigma^2_{ID} +\sigma^2_{Items} +\sigma^2_{Residual}}
+$$ {#eq-rA1}
+
+The sample ICC(A,1) is calculated by:
+
+$$
+ICC(A, 1) = \frac{MSB-MSE}{MSB + (k-1) MSE + \frac{k}{n}(MSM-MSE)}
+$$ {#eq-iccA1}
+
+where $MSB$ = Mean Square Between subjects (or between subjects variance); MSE = Mean Square of the Error; $MSM$ = Mean Square (Between) Measurements (or between measurements variance); n = number of subjects; k = number of measurements (or raters).
+
+**In R:**
+
+First, we convert data from a wide format to a long format using the `pivot_longer()` function:
+
+```{r}
+# convert data into long format
+goal_long <- goal |> 
+  mutate(id = row_number()) |> 
+  pivot_longer(cols = c("GOAL1", "GOAL2"), 
+             names_to = "items", values_to = "score") |> 
+  mutate(id = as.factor(id),
+         items = factor(items))
+
+head(goal_long)
+```
+
+
+Then, a two-way analysis of variance is applied with factors the `id` and the `items`:
+```{r}
+aov.goal <- aov(score ~ id + items, data = goal_long)
+s.aov <- summary(aov.goal)
+s.aov
+```
+
+
+The statistical results are arranged within a matrix and we extract the mean squares of interest:
+```{r}
+stats <- matrix(unlist(s.aov), ncol = 5)
+stats
+MSB <- stats[1,3]
+MSM <- stats[2,3]
+MSE <- stats[3,3]
+```
+
+
+Finally, we calculate the ICC based on the @eq-iccA1:
+```{r}
+n <- dim(goal)[1]
+k <- dim(goal)[2]
+
+iccA1 <- (MSB - MSE)/(MSB + (k - 1) * MSE + k/n * (MSM - MSE))
+iccA1
+```
+
+Next, we present R functions to carry out all the tasks for an reliability analysis.
+
+::: {#exercise-joins .callout-important icon="false"}
+## `r fa("r-project", fill = "#0008C1")` Summary statistics of reliability analysis
+
+::: panel-tabset
+## irr
+
+```{r}
+
+icc(goal, model = "twoway", type = "agreement")
+```
+
+## SimplyAgree
+
+```{r}
+SimplyAgree::jmvreli(
+  data = goal,
+  vars = vars(GOAL1, GOAL2),
+  desc = TRUE,
+  plots = TRUE)
+```
+:::
+:::
+
+The intra-class correlation coefficient for the total score was ICC(A,1) = 0.96 (95% CI = 0.94--0.97).
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+A 95% confidence interval can be presented for an ICC, but its significance is not a point of interest because of the expected high correlation between two repeated measurements obtained from the same individuals."
+:::
+
+### Standard Error of Measurement (SEM)
+
+The measurement error (SEM) is computed using the @eq-SD and @eq-icc as follows:
+
+$$
+SD^2_E = SD^2_X - SD^2_T
+$$
+
+we multiply and dived by $SD^2_X$:
+
+$$
+\begin{aligned}
+SD^2_E &= SD^2_X \cdot \frac{(SD^2_X - SD^2_T)}{SD^2_X} \\
+       &= SD^2_X \cdot (1 - \frac{SD^2_T}{SD^2_X})  \\
+       &= SD^2_X \cdot (1 - ICC)  
+\end{aligned}
+$$
+
+The $SD_X$ of the error measurement is the standard error of measurement, SEM, which is obtained by calculating the square root of both sides of the equation:
+
+$$
+SEM = SD_X \cdot \sqrt{1-ICC} 
+$$ {#eq-sem}
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+In practice, $SD_x$ is estimated from the sample data. Typically, it is either the standard deviation of the baseline score or the higher standard deviation among the two scores. Using the score with a higher standard deviation decreases the chances of underestimating the minimum detectable change (MDC) (see below @eq-mdc).
+:::
+
+```{r}
+# choose the higher standard deviation between GOAL1 and GOAL2
+SD <- max(c(sd(goal$GOAL1), sd(goal$GOAL2)))
+
+# calculate Standard Error of Measurement
+sem <- SD * sqrt(1 - iccA1)
+sem
+```
+
+### Minimum Detectable Change (MDC)
+
+The minimum detectable change (MDC) is based on the measurement error and is defined as:
+
+$$
+MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
+$$ {#eq-mdc}
+
+where $\sqrt{2}$ is a multiplier to account for extra uncertainty when repeated measurements are conducted, and $z_{a/2}$ the z-score associated with the 95% confidence level.
+
+```{r}
+# calculate the z-value for a/2 = 0.05/2 = 0.025
+z <- qnorm(0.025, mean = 0, sd = 1, lower.tail = FALSE)
+
+# calculate the minimum detectable change
+mdc <- sqrt(2) * z * sem
+mdc
+```
+
+Both random and systematic errors are taken into account in the MDC. A change in scores smaller than the MDC can be due to measurement error and may not be a real change.
+
+### Limits of Agreement (LOA) and Bland-Altman Plot
+
+-   **Limits of Agreement (LOA)**
+
+If the differences between the two scores (GOAL1 - GOAL2) follow a normal distribution, we expect that approximately 95% of the differences will fall within the following range (see @sec-normal):
+
+$$
+95\%\ LOA = \overline{dif} \pm 1.96 \cdot SD_{dif}
+$$ {#eq-loa}
+
+where $\overline{dif}$ is the mean of the differences (bias), and $SD_{dif}$ is the standard deviation of the differences that measure random fluctuations around this mean.
+
+```{r}
+#calculate the differences of scores
+dif <- goal$GOAL1 - goal$GOAL2
+
+# compute lower limit of 95% LOA
+lower_LOA <- mean(dif) - z * sd(dif)
+lower_LOA
+
+# compute upper limit of 95% LOA
+upper_LOA <- mean(dif) + z * sd(dif)
+upper_LOA
+```
+
+From our example, the mean of the differences (bias) is -0.73 (i.e. the scores at retest are on average 0.73 units higher than the scores at first test), which is a small difference. Additionally, the limits of agreement indicate that 95% of the differences lie in the range of −9 units to 8 units.
+
+-   **The Bland-Altman method**
+
+::: content-box-yellow
+The Bland-Altman method uses a scatter plot to quantify the measurement bias and a range of agreement by constructing 95% limits of agreement (LOA). The basic assumption of Bland-Altman is that the differences are normally distributed.
+:::
+
+```{r}
+#| warning: false
+#| label: fig-BA_plot
+#| fig-cap: Plot of differences between GOAL1 and GOAL2 vs. the mean of the two measurements. The bias of 0.73 units  is denoted by the gap (purple arrow) between the X axis, corresponding to a zero differences (black dashed line), and the solid blue line of the mean.
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+
+#calculate the mean of GOAL1 and GOAL2
+mean_goal12 <- (goal$GOAL1 + goal$GOAL2)/2
+
+# create a data frame with the means and the differences
+dat_BA <- data.frame(mean_goal12, dif)
+
+# Bland-Altman plot
+BA_plot <- ggplot(dat_BA, aes(x = mean_goal12, y = dif)) +
+  geom_point() +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.5, linetype = "dashed") +
+  geom_hline(yintercept = mean(dif), color = "blue", linewidth = 1.0) +
+  geom_hline(yintercept = lower_LOA, color = "red", linewidth = 0.5) +
+  geom_hline(yintercept = upper_LOA, color = "red", linewidth = 0.5) +
+  labs(title = "Bland-Altman plot of test-retest reliability", 
+       x = "Mean of GOAL1 and GOAL2", 
+       y = "GOAL1 - GOAL2") +
+  annotate("text", x = 90, y = 9, label = "+ 1.96 SD", color = "red", size = 4.0) +
+  annotate("text", x = 90, y = -10.5, label = "- 1.96 SD", color = "red", size = 4.0) +
+  annotate("text", x = 20, y = -1.5, label = "mean", color = "blue", size = 4.0) +
+  annotate("text", x = 31.0, y = -0.2, label = "bias", color = "#EA74FC", size = 4) +
+  geom_segment(x = 28, y = 0.1, xend = 28, yend = -0.85, linewidth = 0.8, colour = "#EA74FC",
+               arrow = arrow(length = unit(0.07, "inches"), ends = "both"))
+
+ggMarginal(BA_plot, type = "density", 
+           xparams = list(fill = 7),
+           yparams = list(fill = 3))
+
+```
+
+The difference between the two measurements is plotted on the Y axis, and the mean of the two measurements on the X axis. The mean of the differences, represented by the solid blue line, is an estimate of the overall bias between the two measurements. In our case, this bias (purple arrow) has a small value (-0.73 units). The lower and upper red horizontal lines represent the upper and lower 95% limits of agreement (LOA), respectively. Under the normality assumption of the differences (green histogram), nearly 95% of the data points are likely to be within the LOAs. In our example, most of the the points are randomly scattered within the limits of agreement (−9 to 8 units), and only 7 out of 127 (5.5%) data points fall out of these limits.
+
+::: content-box-blue
+If the data points in the Bland-Altman plot are close to the zero dashed line, it indicates that there is a good level of agreement between the two measurements.
+:::
+
+## Reliability for categorical measurements
+
+### Introduction
+
+### Research question
+
+### Cohen's kappa
+
+Test-retest reliability is used to assess the consistency and stability of an assessment tool (e.g. self-report survey instrument) or measurement instrument/method over time on the same subjects under the same conditions.
+
+measurement of anterior chamber depth of an eye segment two times by the same observer using the same method to evaluate the reliability of the method.

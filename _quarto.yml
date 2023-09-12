@@ -48,7 +48,7 @@ book:
         - mcnemar.qmd
         - cochran.qmd
         - survival.qmd
-        - measurement_properties.qmd
+        - reliability.qmd
         - diagnostic_accuracy.qmd
         - roc.qmd
         - sample_size.qmd
