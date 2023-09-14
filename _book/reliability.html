@@ -479,13 +479,18 @@ div.csl-indent {
 <span class="header-section-number">33.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org">irr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">irrCAC</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://aaroncaldwell.us/SimplyAgree/">SimplyAgree</a></span><span class="op">)</span></span>
-<span></span>
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># packages for graphs</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://csdaw.github.io/ggprism/">ggprism</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daattali/ggExtra">ggExtra</a></span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># packages for reliability analysis</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org">irr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">irrCAC</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://aaroncaldwell.us/SimplyAgree/">SimplyAgree</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/deepankardatta/blandr/">blandr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">BlandAltmanLeh</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># packages for data import and manipulation</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -494,13 +499,12 @@ div.csl-indent {
 <section id="introduction" class="level3"><h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
 <p>The observed scores (X) from an instrument are thought to be composed of an underlying true score (T) and an error component (E) that is due to measurement error, such that:</p>
 <p><span id="eq-score"><span class="math display">\[
-X = T + E
+X = True + Error
 \tag{33.1}\]</span></span></p>
-<p>If the true measurement and the error term are uncorrelated, it follows that:</p>
-<p><span id="eq-SD"><span class="math display">\[
-SD^2_X = SD^2_T + SD^2_E
+<p>If the true measurement and the error term are uncorrelated, the measurement variance, <span class="math inline">\(\sigma^2_X\)</span>, is given by:</p>
+<p><span id="eq-sigma"><span class="math display">\[
+\sigma^2_X = \sigma^2_{True} + \sigma^2_{Error}
 \tag{33.2}\]</span></span></p>
-<p>The measurement variance can be summarized by the squared standard deviation, that is, the variance, <span class="math inline">\(SD^2_{X}\)</span>.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -518,7 +522,36 @@ SD^2_X = SD^2_T + SD^2_E
 <p>The parent version of Gait Outcomes Assessment List questionnaire (GOAL) is a parent-reported outcome assessment of family priorities and functional mobility for ambulatory children with cerebral palsy. We aim to examine the test–retest reliability of the GOAL questionnaire for the total score (score range: 0 - 100).</p>
 <div class="content-box-yellow">
 <p><strong>Test-Retest Reliability</strong></p>
-<p>Test-retest reliability is used to assess the consistency and stability of a measurement tool (e.g.&nbsp;self-report survey instrument) over time on the same subjects under the same conditions. Specifically, assessing test-retest reliability involves administering the measurement tool to a group of individuals initially, subsequently reapplying it to the same group at a later time, and finally examining the correlation between the two sets of scores obtained.</p>
+<p>Test-retest reliability is used to assess the consistency and stability of a measurement tool (e.g.&nbsp;self-report survey instrument) over time on the same subjects under the same conditions. Specifically, assessing test-retest reliability involves administering the measurement tool to a group of individuals initially (time 1), subsequently reapplying it to the same group at a later time (time 2), and finally examining the correlation between the two sets of scores obtained.</p>
+<table class="table">
+<thead><tr class="header">
+<th style="text-align: center;">ID</th>
+<th style="text-align: center;">Measurement 1 (time 1)</th>
+<th style="text-align: center;">Measurement 2 (time 2)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(x_{11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x_{12}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(x_{21}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x_{22}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">n</td>
+<td style="text-align: center;"><span class="math inline">\(x_{n1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x_{n2}\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section><section id="preraring-the-data" class="level3"><h3 class="anchored" data-anchor-id="preraring-the-data">Preraring the data</h3>
 <p>The GOAL questionnaire was completed twice, 30 days apart, in a prospective cohort study of 127 caregivers of children with cerebral palsy and the data were recorded as follows:</p>
@@ -528,8 +561,8 @@ SD^2_X = SD^2_T + SD^2_E
 </div>
 <div class="cell">
 <div id="fig-BirthWeight" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3483ed2b8c954c55de36" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3483ed2b8c954c55de36">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127"],[22,36,35,39,39,42,44,48,46,48,46,45,42,40,39,36,42,43,45,51,49,49,45,46,48,50,51,49,48,45,55,53,51,52,53,49,55,57,57,60,59,60,61,62,64,57,49,53,55,57,58,60,62,63,65,66,65,60,59,58,59,61,62,64,62,63,63,65,66,65,67,68,70,71,69,67,69,73,73,73,75,75,78,71,72,73,74,75,76,76,76,79,80,81,78,78,77,80,84,85,84,86,87,86,88,90,94,95,99,77,72,52,50,62,60,80,91,84,83,76,77,80,69,67,78,75,82],[21,27,36,34,38,37,38,39,41,42,44,43,43,43,45,47,45,47,47,45,46,47,49,50,49,50,48,51,52,53,51,53,54,56,59,57,54,55,56,58,56,54,56,53,56,60,65,69,63,62,61,61,60,61,61,62,61,63,63,64,66,65,64,63,63,67,69,68,67,65,66,66,66,66,68,71,74,69,71,73,71,73,73,74,74,76,75,75,76,79,80,78,79,79,80,81,83,82,82,85,87,88,87,90,91,91,92,95,100,78,71,59,56,68,66,77,91,85,81,75,81,81,71,69,77,78,85]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>GOAL1<\/th>\n      <th>GOAL2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;33.1: Table with data from “BirthWeight” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1f04891490206cf0f6a2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1f04891490206cf0f6a2">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127"],[22,36,35,39,39,42,44,48,46,48,46,45,42,40,39,36,42,43,45,51,49,49,45,46,48,50,51,49,48,45,55,53,51,52,53,49,55,57,57,60,59,60,61,62,64,57,49,53,55,57,58,60,62,63,65,66,65,60,59,58,59,61,62,64,62,63,63,65,66,65,67,68,70,71,69,67,69,73,73,73,75,75,78,71,72,73,74,75,76,76,76,79,80,81,78,78,77,80,84,85,84,86,87,86,88,90,94,95,99,77,72,52,50,62,60,80,91,84,83,76,77,80,69,67,78,75,82],[21,27,36,34,38,37,38,39,41,42,44,43,43,43,45,47,45,47,47,45,46,47,49,50,49,50,48,51,52,53,51,53,54,56,59,57,54,55,56,58,56,54,56,53,56,60,65,69,63,62,61,61,60,61,61,62,61,63,63,64,66,65,64,63,63,67,69,68,67,65,66,66,66,66,68,71,74,69,71,73,71,73,73,74,74,76,75,75,76,79,80,78,79,79,80,81,83,82,82,85,87,88,87,90,91,91,92,95,100,78,71,59,56,68,66,77,91,85,81,75,81,81,71,69,77,78,85]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>GOAL1<\/th>\n      <th>GOAL2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;33.1: Table with data from “BirthWeight” file.</figcaption></figure>
 </div>
 </div>
 <p>We will begin our investigation into the association between the first (GOAL1) and the second (GOAL2) measurement by generating a scatter plot:</p>
@@ -548,12 +581,39 @@ SD^2_X = SD^2_T + SD^2_E
 </div>
 <p>The scatter plot compares the GOAL1 and GOAL2 total scores. The solid blue diagonal line is the line of equality (i.e.&nbsp;the reference line: Y = X) that represents a perfect agreement of the two measurements.</p>
 </section><section id="intra-class-correlation-coefficient-icc" class="level3"><h3 class="anchored" data-anchor-id="intra-class-correlation-coefficient-icc">Intra-class correlation coefficient (ICC)</h3>
-<p>Test-retest data of continuous measurements is often assessed using the intra-class correlation coefficient (ICC). The ICC is a ratio defined as:</p>
-<p><span id="eq-icc"><span class="math display">\[
-ICC =\frac{SD^2_{T}}{SD^2_{X}} =\frac{SD^2_{T}}{SD^2_{T} +SD^2_{E}}
+<p>Test-retest data of continuous measurements is often assessed using the intra-class correlation coefficient <span class="math inline">\(ρ_{ICC}\)</span>. The <span class="math inline">\(ρ_{ICC}\)</span> is a ratio generally defined as:</p>
+<p><span id="eq-ricc"><span class="math display">\[
+ρ_{ICC} =\frac{\sigma^2_{True}}{\sigma^2_{X}}
 \tag{33.3}\]</span></span></p>
-<p>ICC ranges from 0 to 1 where higher values indicate better test-retest reliability.</p>
-<p>There are three different types of ICC representing different mathematical models:</p>
+<p>The <span class="math inline">\(ρ_{ICC}\)</span> correlation coefficient ranges from 0 to 1 where higher values indicate better test-retest reliability. The <a href="#tbl-icc" class="quarto-xref">Table&nbsp;<span>33.1</span></a> provides a categorization of ICC index, yet the understanding of ICC values can be somewhat arbitrary.</p>
+<div id="tbl-icc" class="anchored">
+<table class="table">
+<caption>Table&nbsp;33.1: Interpretation of intra-class correlation coefficient (ICC).</caption>
+<thead><tr class="header">
+<th style="text-align: center;">ICC value</th>
+<th style="text-align: center;">Interpretation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">&lt;0.5</td>
+<td style="text-align: center;">Poor agreement</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.5 to &lt;0.75</td>
+<td style="text-align: center;">Moderate agreement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.75 to &lt;0.9</td>
+<td style="text-align: center;">Good agreement</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.9 to 1.0</td>
+<td style="text-align: center;">Very Good agreement</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The population intra-class coefficient <span class="math inline">\(ρ_{ICC}\)</span> can be estimated using the ICC index. There are three different types of ICC representing different mathematical models:</p>
 <ul>
 <li>one-way random effects model ICC(1)</li>
 <li>two-way random effects model ICC(A,1)</li>
@@ -562,30 +622,54 @@ ICC =\frac{SD^2_{T}}{SD^2_{X}} =\frac{SD^2_{T}}{SD^2_{T} +SD^2_{E}}
 <p>where <strong>A</strong> stands for “Agreement” and <strong>C</strong> stands for “Consistency”.</p>
 <p>The choice of the appropriate ICC model depends on several factors, including how the data were collected, which variance components are considered relevant, and the specific type of reliability (agreement or consistency) we intend to assess <span class="citation" data-cites="liljequist2019">(<a href="references.html#ref-liljequist2019" role="doc-biblioref">Liljequist, Elfving, and Skavberg Roaldsen 2019</a>)</span>.</p>
 <p>In the context of our example, it is recommended to use the <strong>“two-way”</strong> model rather than the “one-way” model and <strong>“agreement”</strong> rather than “consistency”, as systematic differences in the individual scores on the GOAL instrument over time are of interest <span class="citation" data-cites="qin2018">(<a href="references.html#ref-qin2018" role="doc-biblioref">Qin et al. 2018</a>)</span>.</p>
-<p>In population, the ICC(A, 1) is defined as:</p>
+<p>For this model the <a href="#eq-score" class="quarto-xref">Equation&nbsp;<span>33.1</span></a> becomes:</p>
+<p><span class="math display">\[
+X = μ + ID + M + Residual
+\]</span></p>
+<p>where <span class="math inline">\(μ\)</span> is a constant (the mean value of X for the whole population), <em>ID</em> term is the difference due to subjects, <em>M</em> the difference due to measurements (in our case different time points), and the <em>Residual</em> is the random error.</p>
+<p>Note that based on the <a href="#eq-score" class="quarto-xref">Equation&nbsp;<span>33.1</span></a> the “true score” is μ + ID and the measurement error is M + Residual.</p>
+<p>The variance <span class="math inline">\(\sigma^2_X\)</span> for this model is:</p>
+<p><span class="math display">\[
+\sigma^2_X=\sigma^2_{ID} +\sigma^2_{M} +\sigma^2_{Residual}
+\]</span></p>
+<p>In population, the intra-class coefficient, <span class="math inline">\(ρ_{A, 1}\)</span>, is defined as:</p>
 <p><span id="eq-rA1"><span class="math display">\[
-ρ_{A, 1} = \frac{\sigma^2_{ID}}{\sigma^2_{ID} +\sigma^2_{Items} +\sigma^2_{Residual}}
+ρ_{A, 1} = \frac{\sigma^2_{ID}}{\sigma^2_{ID} +\sigma^2_{M} +\sigma^2_{Residual}}
 \tag{33.4}\]</span></span></p>
-<p>The sample ICC(A,1) is calculated by:</p>
+<p>where <span class="math inline">\(\sigma^2_{ID}\)</span>, <span class="math inline">\(\sigma^2_{M}\)</span>, and <span class="math inline">\(\sigma^2_{Residual}\)</span> are the variances of subjects (ID), measurements and error (residuals), respectively.</p>
+<p>A statistical estimate of the <span class="math inline">\(ρ_{A, 1}\)</span> for agreement is given by the ICC(A,1) formula <span class="citation" data-cites="koo2016 qin2018 liljequist2019">(<a href="references.html#ref-koo2016" role="doc-biblioref">Koo and Li 2016</a>; <a href="references.html#ref-qin2018" role="doc-biblioref">Qin et al. 2018</a>; <a href="references.html#ref-liljequist2019" role="doc-biblioref">Liljequist, Elfving, and Skavberg Roaldsen 2019</a>)</span>:</p>
 <p><span id="eq-iccA1"><span class="math display">\[
 ICC(A, 1) = \frac{MSB-MSE}{MSB + (k-1) MSE + \frac{k}{n}(MSM-MSE)}
 \tag{33.5}\]</span></span></p>
-<p>where <span class="math inline">\(MSB\)</span> = Mean Square Between subjects (or between subjects variance); MSE = Mean Square of the Error; <span class="math inline">\(MSM\)</span> = Mean Square (Between) Measurements (or between measurements variance); n = number of subjects; k = number of measurements (or raters).</p>
+<p>where <span class="math inline">\(MSB\)</span> = Mean Square Between subjects; MSE = Mean Square Error; <span class="math inline">\(MSM\)</span> = Mean Square (Between) Measurements; n = number of subjects; k = number of measurements.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg> Comment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In test-retest reliability analysis there are only two measurements (Measurement 1 and Measurement 2) at different time points, so k = 2.</p>
+</div>
+</div>
 <p><strong>In R:</strong></p>
 <p>First, we convert data from a wide format to a long format using the <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># convert data into long format</span></span>
 <span><span class="va">goal_long</span> <span class="op">&lt;-</span> <span class="va">goal</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GOAL1"</span>, <span class="st">"GOAL2"</span><span class="op">)</span>, </span>
-<span>             names_to <span class="op">=</span> <span class="st">"items"</span>, values_to <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span>,</span>
-<span>         items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">items</span><span class="op">)</span><span class="op">)</span></span>
+<span>             names_to <span class="op">=</span> <span class="st">"M"</span>, values_to <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">ID</span><span class="op">)</span>,</span>
+<span>         M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">goal_long</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 6 × 3
-  id    items score
+  ID    M     score
   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
 1 1     GOAL1    22
 2 1     GOAL2    21
@@ -597,13 +681,13 @@ ICC(A, 1) = \frac{MSB-MSE}{MSB + (k-1) MSE + \frac{k}{n}(MSM-MSE)}
 </div>
 <p>Then, a two-way analysis of variance is applied with factors the <code>id</code> and the <code>items</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">aov.goal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">score</span> <span class="op">~</span> <span class="va">id</span> <span class="op">+</span> <span class="va">items</span>, data <span class="op">=</span> <span class="va">goal_long</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">aov.goal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">score</span> <span class="op">~</span> <span class="va">ID</span> <span class="op">+</span> <span class="va">M</span>, data <span class="op">=</span> <span class="va">goal_long</span><span class="op">)</span></span>
 <span><span class="va">s.aov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.goal</span><span class="op">)</span></span>
 <span><span class="va">s.aov</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-id          126  58691   465.8  49.219 &lt;2e-16 ***
-items         1     34    34.1   3.598 0.0601 .  
+ID          126  58691   465.8  49.219 &lt;2e-16 ***
+M             1     34    34.1   3.598 0.0601 .  
 Residuals   126   1192     9.5                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
@@ -623,7 +707,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span><span class="va">MSM</span> <span class="op">&lt;-</span> <span class="va">stats</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">MSE</span> <span class="op">&lt;-</span> <span class="va">stats</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Finally, we calculate the ICC based on the <a href="#eq-iccA1" class="quarto-xref">Equation&nbsp;<span>33.5</span></a>:</p>
+<p>Finally, we calculate the ICC(A, 1) for agreement based on the <a href="#eq-iccA1" class="quarto-xref">Equation&nbsp;<span>33.5</span></a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">goal</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">goal</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
@@ -734,26 +818,26 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A 95% confidence interval can be presented for an ICC, but its significance is not a point of interest because of the expected high correlation between two repeated measurements obtained from the same individuals.”</p>
+<p>The results of significance test is not a point of interest because of the expected high correlation between two repeated measurements obtained from the same individuals.</p>
 </div>
 </div>
 </section><section id="standard-error-of-measurement-sem" class="level3"><h3 class="anchored" data-anchor-id="standard-error-of-measurement-sem">Standard Error of Measurement (SEM)</h3>
-<p>The measurement error (SEM) is computed using the <a href="#eq-SD" class="quarto-xref">Equation&nbsp;<span>33.2</span></a> and <a href="#eq-icc" class="quarto-xref">Equation&nbsp;<span>33.3</span></a> as follows:</p>
+<p>The measurement error (SEM) is computed using the <a href="#eq-sigma" class="quarto-xref">Equation&nbsp;<span>33.2</span></a> and <a href="#eq-ricc" class="quarto-xref">Equation&nbsp;<span>33.3</span></a> as follows:</p>
 <p><span class="math display">\[
-SD^2_E = SD^2_X - SD^2_T
+\sigma^2_{Error} = \sigma^2_X - \sigma^2_{True}
 \]</span></p>
-<p>we multiply and dived by <span class="math inline">\(SD^2_X\)</span>:</p>
-<p><span class="math display">\[
+<p>we multiply and dived by <span class="math inline">\(\sigma^2_X\)</span>:</p>
+<p><span id="eq-sem0"><span class="math display">\[
 \begin{aligned}
-SD^2_E &amp;= SD^2_X \cdot \frac{(SD^2_X - SD^2_T)}{SD^2_X} \\
-       &amp;= SD^2_X \cdot (1 - \frac{SD^2_T}{SD^2_X})  \\
-       &amp;= SD^2_X \cdot (1 - ICC)  
+\sigma^2_{Error} &amp;= \sigma^2_X \cdot \frac{(\sigma^2_X - \sigma^2_{True})}{\sigma^2_X} \\
+       &amp;= \sigma^2_X \cdot (1 - \frac{\sigma^2_{True}}{\sigma^2_X})  \\
+       &amp;= \sigma^2_X \cdot (1 - \rho_{ICC})  
 \end{aligned}
-\]</span></p>
-<p>The <span class="math inline">\(SD_X\)</span> of the error measurement is the standard error of measurement, SEM, which is obtained by calculating the square root of both sides of the equation:</p>
-<p><span id="eq-sem"><span class="math display">\[
-SEM = SD_X \cdot \sqrt{1-ICC}
 \tag{33.6}\]</span></span></p>
+<p>The measurement error is represented by the standard error of measurement (SEM) and equals the square root of the error variance. Therefore, the SEM is obtained by calculating the square root of both sides of the equation <a href="#eq-sem0" class="quarto-xref">Equation&nbsp;<span>33.6</span></a>:</p>
+<p><span id="eq-sem1"><span class="math display">\[
+SEM = \sigma_X \cdot \sqrt{1-\rho_{ICC}}
+\tag{33.7}\]</span></span></p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -764,14 +848,17 @@ SEM = SD_X \cdot \sqrt{1-ICC}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In practice, <span class="math inline">\(SD_x\)</span> is estimated from the sample data. Typically, it is either the standard deviation of the baseline score or the higher standard deviation among the two scores. Using the score with a higher standard deviation decreases the chances of underestimating the minimum detectable change (MDC) (see below <a href="#eq-mdc" class="quarto-xref">Equation&nbsp;<span>33.7</span></a>).</p>
+<p>In practice, <span class="math inline">\(σ_{Χ}\)</span> is estimated from the sample data. Typically, it is either the standard deviation of the baseline score <span class="citation" data-cites="beninato2011">(<a href="references.html#ref-beninato2011" role="doc-biblioref">Beninato and Portney 2011</a>)</span> or the higher standard deviation among the two scores <span class="citation" data-cites="goldberg2011">(<a href="references.html#ref-goldberg2011" role="doc-biblioref">Goldberg and Schepens 2011</a>)</span>. Using the score with a higher standard deviation decreases the chances of underestimating the minimum detectable change (MDC) (see below <a href="#eq-mdc" class="quarto-xref">Equation&nbsp;<span>33.9</span></a>). Therefore using the <span class="math inline">\(ICC(A,1)\)</span> for agreement:</p>
+<p><span id="eq-sem"><span class="math display">\[
+SEM = SD_X \cdot \sqrt{1-ICC(A,1)}
+\tag{33.8}\]</span></span></p>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb18" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># choose the higher standard deviation between GOAL1 and GOAL2</span></span>
 <span><span class="va">SD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">goal</span><span class="op">$</span><span class="va">GOAL1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">goal</span><span class="op">$</span><span class="va">GOAL2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># calculate Standard Error of Measurement</span></span>
+<span><span class="co"># calculate the Standard Error of Measurement for agreement</span></span>
 <span><span class="va">sem</span> <span class="op">&lt;-</span> <span class="va">SD</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">iccA1</span><span class="op">)</span></span>
 <span><span class="va">sem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -779,10 +866,10 @@ SEM = SD_X \cdot \sqrt{1-ICC}
 </div>
 </div>
 </section><section id="minimum-detectable-change-mdc" class="level3"><h3 class="anchored" data-anchor-id="minimum-detectable-change-mdc">Minimum Detectable Change (MDC)</h3>
-<p>The minimum detectable change (MDC) is based on the measurement error and is defined as:</p>
+<p>The minimum detectable change (MDC) is based on the measurement error and is defined as <span class="citation" data-cites="goldberg2011">(<a href="references.html#ref-goldberg2011" role="doc-biblioref">Goldberg and Schepens 2011</a>)</span>:</p>
 <p><span id="eq-mdc"><span class="math display">\[
 MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
-\tag{33.7}\]</span></span></p>
+\tag{33.9}\]</span></span></p>
 <p>where <span class="math inline">\(\sqrt{2}\)</span> is a multiplier to account for extra uncertainty when repeated measurements are conducted, and <span class="math inline">\(z_{a/2}\)</span> the z-score associated with the 95% confidence level.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># calculate the z-value for a/2 = 0.05/2 = 0.025</span></span>
@@ -803,7 +890,7 @@ MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
 <p>If the differences between the two scores (GOAL1 - GOAL2) follow a normal distribution, we expect that approximately 95% of the differences will fall within the following range (see <a href="normal.html" class="quarto-xref"><span>Chapter&nbsp;16</span></a>):</p>
 <p><span id="eq-loa"><span class="math display">\[
 95\%\ LOA = \overline{dif} \pm 1.96 \cdot SD_{dif}
-\tag{33.8}\]</span></span></p>
+\tag{33.10}\]</span></span></p>
 <p>where <span class="math inline">\(\overline{dif}\)</span> is the mean of the differences (bias), and <span class="math inline">\(SD_{dif}\)</span> is the standard deviation of the differences that measure random fluctuations around this mean.</p>
 <div class="cell">
 <div class="sourceCode" id="cb22" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#calculate the differences of scores</span></span>
@@ -827,7 +914,7 @@ MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
 <li><strong>The Bland-Altman method</strong></li>
 </ul>
 <div class="content-box-yellow">
-<p>The Bland-Altman method uses a scatter plot to quantify the measurement bias and a range of agreement by constructing 95% limits of agreement (LOA). The basic assumption of Bland-Altman is that the differences are normally distributed.</p>
+<p>The Bland-Altman method uses a scatter plot to quantify the measurement bias and a range of agreement by constructing 95% limits of agreement (LOA). The basic assumption of Bland-Altman is that the differences are normally distributed .</p>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#calculate the mean of GOAL1 and GOAL2</span></span>
@@ -846,16 +933,15 @@ MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Bland-Altman plot of test-retest reliability"</span>, </span>
 <span>       x <span class="op">=</span> <span class="st">"Mean of GOAL1 and GOAL2"</span>, </span>
 <span>       y <span class="op">=</span> <span class="st">"GOAL1 - GOAL2"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">90</span>, y <span class="op">=</span> <span class="fl">9</span>, label <span class="op">=</span> <span class="st">"+ 1.96 SD"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">4.0</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">90</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">10.5</span>, label <span class="op">=</span> <span class="st">"- 1.96 SD"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">4.0</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, label <span class="op">=</span> <span class="st">"mean"</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">4.0</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">31.0</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.2</span>, label <span class="op">=</span> <span class="st">"bias"</span>, color <span class="op">=</span> <span class="st">"#EA74FC"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">90</span>, y <span class="op">=</span> <span class="fl">8.6</span>, label <span class="op">=</span> <span class="st">"Upper LOA"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">4.0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">90</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">8.6</span>, label <span class="op">=</span> <span class="st">"Lower LOA"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">4.0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, label <span class="op">=</span> <span class="st">"MD"</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">4.0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">31.2</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.2</span>, label <span class="op">=</span> <span class="st">"bias"</span>, color <span class="op">=</span> <span class="st">"#EA74FC"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">28</span>, y <span class="op">=</span> <span class="fl">0.1</span>, xend <span class="op">=</span> <span class="fl">28</span>, yend <span class="op">=</span> <span class="op">-</span><span class="fl">0.85</span>, linewidth <span class="op">=</span> <span class="fl">0.8</span>, colour <span class="op">=</span> <span class="st">"#EA74FC"</span>,</span>
 <span>               arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.07</span>, <span class="st">"inches"</span><span class="op">)</span>, ends <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggMarginal</a></span><span class="op">(</span><span class="va">BA_plot</span>, type <span class="op">=</span> <span class="st">"density"</span>, </span>
-<span>           xparams <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fl">7</span><span class="op">)</span>,</span>
-<span>           yparams <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggMarginal</a></span><span class="op">(</span><span class="va">BA_plot</span>, type <span class="op">=</span> <span class="st">"density"</span>, margins <span class="op">=</span> <span class="st">'y'</span>,</span>
+<span>           yparams <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#61D04F"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-BA_plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="reliability_files/figure-html/fig-BA_plot-1.png" class="img-fluid figure-img" width="864"></p>
@@ -863,20 +949,91 @@ MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
 </div>
 </div>
 </div>
-<p>The difference between the two measurements is plotted on the Y axis, and the mean of the two measurements on the X axis. The mean of the differences, represented by the solid blue line, is an estimate of the overall bias between the two measurements. In our case, this bias (purple arrow) has a small value (-0.73 units). The lower and upper red horizontal lines represent the upper and lower 95% limits of agreement (LOA), respectively. Under the normality assumption of the differences (green histogram), nearly 95% of the data points are likely to be within the LOAs. In our example, most of the the points are randomly scattered within the limits of agreement (−9 to 8 units), and only 7 out of 127 (5.5%) data points fall out of these limits.</p>
+<p>For each pair of measurements, the <em>difference</em> between the two measurements is plotted on the Y axis, and the <em>mean</em> of the two measurements on the X axis. We can check the distribution of the differences by examining the marginal green histogram on the right-hand side of the graph. In our example, the normality assumption is met; however, if the histogram is skewed or has very long tails, the assumption of Normality might not hold.</p>
+<p>The <em>mean of the differences</em> (MD), represented by the solid blue line, is an estimate of the systematic bias between the two measurements (<a href="#fig-BA_plot" class="quarto-xref">Figure&nbsp;<span>33.3</span></a>). In our case, the magnitude bias (purple arrow) has a small value (-0.73 units). The lower and upper red horizontal lines represent the upper and lower 95% limits of agreement (LOA), respectively. Under the normality assumption of the differences (green histogram), nearly 95% of the data points are likely to be within the LOAs. In our example, most of the the points are randomly scattered around the zero dashed line within the limits of agreement (−9 to 8 units), and as expected 7 out of 127 (5.5%) data points fall out of these limits.</p>
+<p>If we want to add confidence intervals for the MD and for the lower and upper limits of agreement (Lower LOA, Upper LOA) in <a href="#fig-BA_plot" class="quarto-xref">Figure&nbsp;<span>33.3</span></a>, we can use the <code><a href="https://rdrr.io/pkg/BlandAltmanLeh/man/bland.altman.stats.html">bland.altman.stats()</a></code> function from the <code>{BlandAltmanLeh}</code> package which provides these intervals:</p>
+<div class="cell">
+<div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># get the confidence intervals for the MD, Low and Upper LOA</span></span>
+<span><span class="va">ci_lines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BlandAltmanLeh/man/bland.altman.stats.html">bland.altman.stats</a></span><span class="op">(</span><span class="va">goal</span><span class="op">$</span><span class="va">GOAL1</span>, <span class="va">goal</span><span class="op">$</span><span class="va">GOAL2</span><span class="op">)</span><span class="op">$</span><span class="va">CI.lines</span></span>
+<span><span class="va">ci_lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>lower.limit.ci.lower lower.limit.ci.upper   mean.diff.ci.lower 
+        -10.58273587          -7.93620048          -1.49627242 
+  mean.diff.ci.upper upper.limit.ci.lower upper.limit.ci.upper 
+          0.03170549           6.47163356           9.11816894 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># define the color of the lines of the confidence intervals</span></span>
+<span><span class="va">ci_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"red"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Bland-Altman plot</span></span>
+<span><span class="va">BA_plot2</span> <span class="op">&lt;-</span> <span class="va">BA_plot</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="va">ci_lines</span>, color <span class="op">=</span> <span class="va">ci_colors</span>, linewidth <span class="op">=</span> <span class="fl">0.5</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggMarginal</a></span><span class="op">(</span><span class="va">BA_plot2</span>, type <span class="op">=</span> <span class="st">"density"</span>, margins <span class="op">=</span> <span class="st">'y'</span>,</span>
+<span>           yparams <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#61D04F"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reliability_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <div class="content-box-blue">
 <p>If the data points in the Bland-Altman plot are close to the zero dashed line, it indicates that there is a good level of agreement between the two measurements.</p>
+</div>
+<p>There are lots of packages on CRAN that include functions for creating Bland-Altman plots:</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#0008C1;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Bland Altman plots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">blandr</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">BlandAltmanLeh</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/blandr/man/blandr.draw.html">blandr.draw</a></span><span class="op">(</span><span class="va">goal</span><span class="op">$</span><span class="va">GOAL1</span>, <span class="va">goal</span><span class="op">$</span><span class="va">GOAL2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reliability_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/BlandAltmanLeh/man/bland.altman.plot.html">bland.altman.plot</a></span><span class="op">(</span><span class="va">goal</span><span class="op">$</span><span class="va">GOAL1</span>, <span class="va">goal</span><span class="op">$</span><span class="va">GOAL2</span>, graph.sys <span class="op">=</span> <span class="st">"ggplot2"</span>, conf.int<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reliability_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section></section><section id="reliability-for-categorical-measurements" class="level2" data-number="33.4"><h2 data-number="33.4" class="anchored" data-anchor-id="reliability-for-categorical-measurements">
 <span class="header-section-number">33.4</span> Reliability for categorical measurements</h2>
 <section id="introduction-1" class="level3"><h3 class="anchored" data-anchor-id="introduction-1">Introduction</h3>
 </section><section id="research-question-1" class="level3"><h3 class="anchored" data-anchor-id="research-question-1">Research question</h3>
 </section><section id="cohens-kappa" class="level3"><h3 class="anchored" data-anchor-id="cohens-kappa">Cohen’s kappa</h3>
-<p>Test-retest reliability is used to assess the consistency and stability of an assessment tool (e.g.&nbsp;self-report survey instrument) or measurement instrument/method over time on the same subjects under the same conditions.</p>
-<p>measurement of anterior chamber depth of an eye segment two times by the same observer using the same method to evaluate the reliability of the method.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-beninato2011" class="csl-entry" role="listitem">
+Beninato, Marianne, and Leslie G. Portney. 2011. <span>“Applying Concepts of Responsiveness to Patient Management in Neurologic Physical Therapy.”</span> <em>Journal of Neurologic Physical Therapy</em> 35 (2): 75–81. <a href="https://doi.org/10.1097/npt.0b013e318219308c">https://doi.org/10.1097/npt.0b013e318219308c</a>.
+</div>
+<div id="ref-goldberg2011" class="csl-entry" role="listitem">
+Goldberg, Allon, and Stacey Schepens. 2011. <span>“Measurement Error and Minimum Detectable Change in 4-Meter Gait Speed in Older Adults.”</span> <em>Aging Clinical and Experimental Research</em> 23 (5-6): 406–12. <a href="https://doi.org/10.1007/bf03325236">https://doi.org/10.1007/bf03325236</a>.
+</div>
+<div id="ref-koo2016" class="csl-entry" role="listitem">
+Koo, Terry K., and Mae Y. Li. 2016. <span>“A Guideline of Selecting and Reporting Intraclass Correlation Coefficients for Reliability Research.”</span> <em>Journal of Chiropractic Medicine</em> 15 (2): 155–63. <a href="https://doi.org/10.1016/j.jcm.2016.02.012">https://doi.org/10.1016/j.jcm.2016.02.012</a>.
+</div>
 <div id="ref-kottner2011" class="csl-entry" role="listitem">
 Kottner, Jan, and David L. Streiner. 2011. <span>“The Difference Between Reliability and Agreement.”</span> <em>Journal of Clinical Epidemiology</em> 64 (6): 701–2. <a href="https://doi.org/10.1016/j.jclinepi.2010.12.001">https://doi.org/10.1016/j.jclinepi.2010.12.001</a>.
 </div>

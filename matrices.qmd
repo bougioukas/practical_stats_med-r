@@ -675,7 +675,7 @@ $$
      e_{31} & e_{32} & e_{33} 
 \end{vmatrix}
    = e_{31}\begin{vmatrix} e_{12} & e_{13} \\ e_{22} & e_{23} \end{vmatrix} 
-   - e_{32}\begin{vmatrix} e_{11} & e_{13} \\ a_{21} & a_{23} \end{vmatrix} 
+   - e_{32}\begin{vmatrix} e_{11} & e_{13} \\ e_{21} & e_{23} \end{vmatrix} 
    + e_{33}\begin{vmatrix} e_{11} & e_{12} \\ e_{21} & e_{22} \end{vmatrix}
 $$
 
