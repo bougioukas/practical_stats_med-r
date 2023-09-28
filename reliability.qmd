@@ -68,6 +68,9 @@ Test-retest reliability is used to assess the consistency and stability of a mea
 |  2  |        $x_{21}$        |        $x_{22}$        |
 | ... |          ...           |          ...           |
 |  n  |        $x_{n1}$        |        $x_{n2}$        |
+
+: Measurements in two time points Time 1 and Time 2. {#tbl-data_str}
+
 :::
 
 ### Preraring the data
@@ -193,7 +196,7 @@ where $MSB$ = Mean Square Between subjects; MSE = Mean Square Error; $MSM$ = Mea
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
 
-In test-retest reliability analysis there are only two measurements (Measurement 1 and Measurement 2; see @tbl-icc) at different time points, so k = 2.
+In test-retest reliability analysis there are only two measurements (Measurement 1 and Measurement 2; see @tbl-data_str) at different time points, so k = 2.
 :::
 
 The @tbl-icc provides a categorization of ICC index [@koo2016], yet the interpretation of ICC values can be somewhat arbitrary.
@@ -843,7 +846,7 @@ The proportions for question Q3 are:
 addmargins(prop.table(table3))
 ```
 
-The percent of observed overall agreement is 0.45 + 0.15 = 0.60. The distribution of marginal totals of question Q3 is relatively symmetrical (same direction) but it is **imbalanced** (f1 = 0.70 and f2 = 0.30 deviate greatly from 0.5).
+The percent of observed overall agreement is 0.45 + 0.15 = 0.60. The distribution of marginal totals of question Q3 is relatively **symmetrical** (same direction) but it is **imbalanced** (f1 = 0.70 and f2 = 0.30 deviate greatly from 0.5).
 
 -   **kappa**
 
@@ -882,7 +885,7 @@ The proportions for question Q4 are:
 addmargins(prop.table(table4))
 ```
 
-The percent of observed overall agreement is 0.25 + 0.35 = 0.60. The distribution of marginal totals of question Q4 is **asymmetrical** (opposite direction) and **imbalanced** (f1 = 0.70 and f2 = 0.30 deviate greatly from 0.5).
+The percent of observed overall agreement is 0.25 + 0.35 = 0.60. The distribution of marginal totals of question Q4 is **asymmetrical** (opposite direction) and **imbalanced** (f1 = 0.30 and f2 = 0.70 deviate greatly from 0.5).
 
 -   **kappa**
 
