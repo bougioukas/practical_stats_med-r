@@ -441,13 +441,16 @@ Learning objectives
 <div class="cell-output cell-output-stderr">
 <pre data-code-line-numbers=""><code>Warning: package 'purrr' was built under R version 4.3.1</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre data-code-line-numbers=""><code>Warning: package 'dplyr' was built under R version 4.3.1</code></pre>
+</div>
 </div>
 </section><section id="contingency-2x2-table" class="level2" data-number="34.3"><h2 data-number="34.3" class="anchored" data-anchor-id="contingency-2x2-table">
 <span class="header-section-number">34.3</span> Contingency 2x2 table</h2>
 <p>Generally, an individual’s disease status is a dichotomous variable; the individual either has the disease (<span class="math inline">\(D_+\)</span>) or hasn’t the disease (<span class="math inline">\(D_-\)</span>) as defined by the reference standard (or “gold” standard). The diagnostic test can be measured with a dichotomous variable (e.g.&nbsp;presence or absence of breast abnormalities using an X-ray) or a continuous variable (e.g.&nbsp;fasting glucose level for diabetes diagnosis), that can be transformed to a dichotomous variable by choosing an optimal cut-off value (threshold) which distinguishes positive (<span class="math inline">\(T_+\)</span>) from negative (<span class="math inline">\(T_-\)</span>) test results.</p>
 <p>If the diagnostic test gives a dichotomous result for each participant in a study the data can be tabulated in a 2 x 2 table of test result (<span class="math inline">\(T_+\)</span>, <span class="math inline">\(T_-\)</span>) versus true disease status (<span class="math inline">\(D_+\)</span>, <span class="math inline">\(D_-\)</span>). For example, the result of digital mammography test to diagnose breast cancer compared to the “gold” standard biopsy/surgery and histopathology in 1220 women with suspected breast cancer are following:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.table</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.table</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
@@ -465,7 +468,7 @@ Test  D+  D-
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.tests.html">epi.tests</a></span><span class="op">(</span><span class="va">tb1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.tests.html">epi.tests</a></span><span class="op">(</span><span class="va">tb1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>          Outcome +    Outcome -      Total
 Test +          890          110       1000

@@ -21,7 +21,7 @@ When we have finished this Chapter, we should be able to:
 
 Two distinct types of reliability are used: the relative and absolute reliability (agreement) [@kottner2011].
 
--   **Relative Reliability** is defined as the ratio of variability between scores of the same subjects (e.g., by different raters or at different times) to the total variability of all scores in the sample. Reliability coefficients, such as the intra-class correlation coefficient for numerical data or Cohen's kappa for nominal data, are employed as suitable metrics for this purpose.
+-   **Relative Reliability** is defined as the ratio of variability between scores of the same subjects (e.g., by different raters or at different times) to the total variability of all scores in the sample. Reliability coefficients, such as the intra-class correlation coefficient for numerical data or Cohen's kappa for dichotomous data, are employed as suitable metrics for this purpose.
 
 -   **Absolute Reliability (or Agreement)** pertains to the assessment of whether scores, or judgments are identical or comparable, as well as the extent to which they might differ. Typical statistical measures employed to quantify this degree of error are the standard error of measurement (SEM) and the limits of agreement (LOA) for numerical data, or percent in agreement for numerical data.
 
@@ -33,9 +33,9 @@ We need to load the following packages:
 #| message: false
 #| warning: false
 
-# packages for graphs
-library(ggprism)
+# packages for graphs and tables
 library(ggExtra)
+library(janitor)
 
 # packages for reliability analysis
 library(irr)
@@ -43,6 +43,8 @@ library(irrCAC)
 library(SimplyAgree)
 library(blandr)
 library(BlandAltmanLeh)
+library(flextable)
+library(vcd)
 
 # packages for data import and manipulation
 library(here)
@@ -51,29 +53,9 @@ library(tidyverse)
 
 ## Reliability for continuous measurements
 
-### Introduction
-
-The observed scores (X) from an instrument are thought to be composed of an underlying true score (T) and an error component (E) that is due to measurement error, such that:
-
-$$
-X = True + Error
-$$ {#eq-score}
-
-If the true measurement and the error term are uncorrelated, the measurement variance, $\sigma^2_X$, is given by:
-
-$$
-\sigma^2_X = \sigma^2_{True} + \sigma^2_{Error}
-$$ {#eq-sigma}
-
-::: {.callout-tip icon="false"}
-## `r fa("comment", fill = "#1DC5CE")` Comment
-
-The total variability can break down into smaller pieces based on characteristics of the study design.
-:::
-
 ### Research question
 
-The parent version of Gait Outcomes Assessment List questionnaire (GOAL) is a parent-reported outcome assessment of family priorities and functional mobility for ambulatory children with cerebral palsy. We aim to examine the test--retest reliability of the GOAL questionnaire for the total score (score range: 0 - 100).
+The parent version of Gait Outcomes Assessment List questionnaire (GOAL) is a parent-reported outcome assessment of family priorities and functional mobility for ambulatory children with cerebral palsy. We aim to examine the test--retest reliability of the GOAL questionnaire for the total score (score range: 0 - 100) which is an indicator of the stability of the questionnaire.
 
 ::: content-box-yellow
 **Test-Retest Reliability**
@@ -86,9 +68,7 @@ Test-retest reliability is used to assess the consistency and stability of a mea
 |  2  |        $x_{21}$        |        $x_{22}$        |
 | ... |          ...           |          ...           |
 |  n  |        $x_{n1}$        |        $x_{n2}$        |
-
 :::
-
 
 ### Preraring the data
 
@@ -134,6 +114,26 @@ ggplot(goal, aes(GOAL1, GOAL2)) +
 
 The scatter plot compares the GOAL1 and GOAL2 total scores. The solid blue diagonal line is the line of equality (i.e. the reference line: Y = X) that represents a perfect agreement of the two measurements.
 
+### True measurement and the measurement error
+
+The observed scores (X) from an instrument are thought to be composed of an underlying true score (T) and an error component (E) that is due to measurement error, such that:
+
+$$
+X = True + Error
+$$ {#eq-score}
+
+If the true measurement and the error term are uncorrelated, the measurement variance, $\sigma^2_X$, is given by:
+
+$$
+\sigma^2_X = \sigma^2_{True} + \sigma^2_{Error}
+$$ {#eq-sigma}
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The total variability can break down into smaller pieces based on characteristics of the study design.
+:::
+
 ### Intra-class correlation coefficient (ICC)
 
 Test-retest data of continuous measurements is often assessed using the intra-class correlation coefficient $ρ_{ICC}$. The $ρ_{ICC}$ is a ratio generally defined as:
@@ -142,19 +142,7 @@ $$
 ρ_{ICC} =\frac{\sigma^2_{True}}{\sigma^2_{X}}
 $$ {#eq-ricc}
 
-The $ρ_{ICC}$ correlation coefficient ranges from 0 to 1 where higher values indicate better test-retest reliability. The @tbl-icc provides a categorization of ICC index, yet the understanding of ICC values can be somewhat arbitrary.
-
-
-| ICC value                | Interpretation         |
-|:------------------------:|:----------------------:|
-|        <0.5              |    Poor agreement      |
-|        0.5 to <0.75      |    Moderate agreement  |
-|        0.75 to <0.9      |    Good agreement      |
-|        0.9 to 1.0        |    Very Good agreement |
-: Interpretation of intra-class correlation coefficient (ICC). {#tbl-icc}
-
-
-The population intra-class coefficient $ρ_{ICC}$ can be estimated using the ICC index. There are three different types of ICC representing different mathematical models:
+The $ρ_{ICC}$ correlation coefficient ranges from 0 to 1 where higher values indicate better test-retest reliability. The population intra-class coefficient $ρ_{ICC}$ can be estimated using the ICC index. There are three different types of ICC representing different mathematical models:
 
 -   one-way random effects model ICC(1)
 -   two-way random effects model ICC(A,1)
@@ -174,9 +162,13 @@ $$
 
 where $μ$ is a constant (the mean value of X for the whole population), *ID* term is the difference due to subjects, *M* the difference due to measurements (in our case different time points), and the *Residual* is the random error.
 
-Note that based on the @eq-score the "true score" is μ + ID and the measurement error is M + Residual.
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
 
-The variance $\sigma^2_X$ for this model is:
+Based on the @eq-score the "true score" is μ + ID and the measurement error is M + Residual.
+:::
+
+The variance $\sigma^2_X$ for this model consists of three variance components:
 
 $$
 \sigma^2_X=\sigma^2_{ID} +\sigma^2_{M} +\sigma^2_{Residual}
@@ -188,9 +180,9 @@ $$
 ρ_{A, 1} = \frac{\sigma^2_{ID}}{\sigma^2_{ID} +\sigma^2_{M} +\sigma^2_{Residual}}
 $$ {#eq-rA1}
 
-where $\sigma^2_{ID}$, $\sigma^2_{M}$, and $\sigma^2_{Residual}$ are the variances of subjects (ID), measurements and error (residuals), respectively.
+where $\sigma^2_{ID}$, $\sigma^2_{M}$, and $\sigma^2_{Residual}$ are the variances of subjects (ID), measurements (M) and error (Residual), respectively.
 
-A statistical estimate of the $ρ_{A, 1}$ for agreement is given by the ICC(A,1) formula [@koo2016; @qin2018; @liljequist2019]:
+A statistical estimate of the $ρ_{A, 1}$ for agreement is given by the ICC(A,1) formula [@mcgraw1996; @koo2016; @qin2018; @liljequist2019]:
 
 $$
 ICC(A, 1) = \frac{MSB-MSE}{MSB + (k-1) MSE + \frac{k}{n}(MSM-MSE)}
@@ -201,8 +193,19 @@ where $MSB$ = Mean Square Between subjects; MSE = Mean Square Error; $MSM$ = Mea
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
 
-In test-retest reliability analysis there are only two measurements (Measurement 1 and Measurement 2) at different time points, so k = 2.
+In test-retest reliability analysis there are only two measurements (Measurement 1 and Measurement 2; see @tbl-icc) at different time points, so k = 2.
 :::
+
+The @tbl-icc provides a categorization of ICC index [@koo2016], yet the interpretation of ICC values can be somewhat arbitrary.
+
+|     ICC     | Level of agreement |
+|:-----------:|:------------------:|
+|   \<0.50    |        Poor        |
+| 0.50 - 0.74 |      Moderate      |
+| 0.75 - 0.89 |        Good        |
+| 0.90 - 1.00 |     Very good      |
+
+: Interpretation of intra-class correlation coefficient (ICC). {#tbl-icc}
 
 **In R:**
 
@@ -267,48 +270,62 @@ icc(goal, model = "twoway", type = "agreement")
 SimplyAgree::jmvreli(
   data = goal,
   vars = vars(GOAL1, GOAL2),
-  desc = TRUE,
-  plots = TRUE)
+  desc = TRUE)
 ```
 :::
 :::
 
-The intra-class correlation coefficient for the total score was ICC(A,1) = 0.96 (95% CI = 0.94--0.97).
+The test--retest relative reliability obtained between the initial measurement and the measurement recorded 30 days later was very good according to the inter-rater correlation coefficient, ICC(A,1) = 0.96 (95% CI = 0.94--0.97).
 
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
 
-The results of significance test is not a point of interest because of the expected high correlation between two repeated measurements obtained from the same individuals.
+The result of significance test is not a point of interest because of the expected high correlation between two repeated measurements obtained from the same individuals.
 :::
 
 ### Standard Error of Measurement (SEM)
 
-The measurement error (SEM) is computed using the @eq-sigma and @eq-ricc as follows:
+The standard error of measurement (SEM; not to be confused with the standard error of the mean) is considered a measure that quantifies the amount of measurement error within an instrument, thus serving as an absolute estimate of the instrument's reliability. The SEM is defined as the square root of the error variance [@lek2018]:
+
+$$
+SEM =\sqrt{\sigma^2_{Error}} 
+$$ {#eq-sem_definition}
+
+Now, let's see how the SEM and $\rho_{ICC}$ are mathematically associated in a formula. [@tesio2012]. From @eq-sigma, the error variance of randomly selected subjects is simply the difference between the total variation in observed scores and true-score variance:
 
 $$
 \sigma^2_{Error} = \sigma^2_X - \sigma^2_{True}
 $$
 
-we multiply and dived by $\sigma^2_X$:
+We multiply and divide the right-hand side of the equation by $\sigma^2_X$:
 
 $$
 \begin{aligned}
 \sigma^2_{Error} &= \sigma^2_X \cdot \frac{(\sigma^2_X - \sigma^2_{True})}{\sigma^2_X} \\
-       &= \sigma^2_X \cdot (1 - \frac{\sigma^2_{True}}{\sigma^2_X})  \\
-       &= \sigma^2_X \cdot (1 - \rho_{ICC})  
+       &= \sigma^2_X \cdot (1 - \frac{\sigma^2_{True}}{\sigma^2_X})
 \end{aligned}
 $$ {#eq-sem0}
 
-The measurement error is represented by the standard error of measurement (SEM) and equals the square root of the error variance. Therefore, the SEM is obtained by calculating the square root of both sides of the equation @eq-sem0:
+and using the @eq-ricc becomes:
+
+$$
+\begin{aligned}
+\sigma^2_{Error} &= \sigma^2_X \cdot (1 - \rho_{ICC})  
+\end{aligned}
+$$ {#eq-sem10}
+
+Finally, the SEM is obtained by calculating the square root of both sides of the equation @eq-sem10:
 
 $$
 SEM = \sigma_X \cdot \sqrt{1-\rho_{ICC}} 
 $$ {#eq-sem1}
 
+If $\rho_{ICC}$ equals 0, the SEM will equal the standard deviation of the observed test scores. Conversely, if $\rho_{ICC}$ equals 1, the SEM is zero.
+
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
 
-In practice, $σ_{Χ}$ is estimated from the sample data. Typically, it is either the standard deviation of the baseline score [@beninato2011] or the higher standard deviation among the two scores [@goldberg2011]. Using the score with a higher standard deviation decreases the chances of underestimating the minimum detectable change (MDC) (see below @eq-mdc). Therefore using the $ICC(A,1)$ for agreement:
+In practice, $σ_{Χ}$ is estimated from the sample data. Typically, in a test-retest analysis, it is either the standard deviation of the baseline score [@beninato2011] or the higher standard deviation among the two scores [@goldberg2011]. Using the score with a higher standard deviation decreases the chances of underestimating the minimum detectable change (MDC) (see below @eq-mdc). Therefore, by using the $ICC(A,1)$ for agreement, the @eq-sem1 becomes:
 
 $$
 SEM = SD_X \cdot \sqrt{1-ICC(A,1)} 
@@ -324,15 +341,36 @@ sem <- SD * sqrt(1 - iccA1)
 sem
 ```
 
+Note that the higher the ICC, the smaller the SEM which implies higher reliability as it indicates that observed scores are close to the true scores. SEM estimates the variability of the observed scores likely to be obtained given an individual's true score [@mcmanus2012; @harvill1991] . In our example, the SEM is approximately 3 units. This means that, there is a probability of 0.95 of the individual's observed score being between -6 units and +6 units of the true score (Observed score = True score ± 2SEM), assuming normally distributed errors.
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+In test-retest analysis where there are 2 measurements at different times, the SEM often is approximated by the formula:
+
+$$
+SEM = \frac{SD_{dif}}{\sqrt{2}}
+$$
+
+where $SD_{dif}$ is the standard deviation of the differences in scores.
+
+```{r}
+#calculate the differences of scores
+dif <- goal$GOAL1 - goal$GOAL2
+
+sd(dif)/sqrt(2)
+```
+:::
+
 ### Minimum Detectable Change (MDC)
 
-The minimum detectable change (MDC) is based on the measurement error and is defined as [@goldberg2011]:
+Now, the question that arises is whether a given change in score between test and retest is likely to be beyond the expected level of measurement error (real difference). In this case, the key measure to consider is the minimum detectable change (MDC) defined as [@goldberg2011]:
 
 $$
 MDC = \sqrt{2} \cdot z_{a/2}   \cdot SEM
 $$ {#eq-mdc}
 
-where $\sqrt{2}$ is a multiplier to account for extra uncertainty when repeated measurements are conducted, and $z_{a/2}$ the z-score associated with the 95% confidence level.
+where $\sqrt{2}$ is introduced because we are interested in the change between two measurements (test and retest), and $z_{a/2}$ the z-score associated with the 95% confidence level.
 
 ```{r}
 # calculate the z-value for a/2 = 0.05/2 = 0.025
@@ -343,7 +381,13 @@ mdc <- sqrt(2) * z * sem
 mdc
 ```
 
-Both random and systematic errors are taken into account in the MDC. A change in scores smaller than the MDC can be due to measurement error and may not be a real change.
+Both random and systematic errors are taken into account in the MDC. In our example, an individual change in score smaller than 9 units can be due to measurement error and may not be a real change.
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+To define a 95% CI outside which one could be confident that a retest score reflects a real change, we should use a more complicated approach that uses the standard error of prediction (SEP; $SEP = SD_X \cdot \sqrt{1-ICC^2}$) instead of the SEM. This method can yield a more accurate result [@weir2005].
+:::
 
 ### Limits of Agreement (LOA) and Bland-Altman Plot
 
@@ -358,8 +402,9 @@ $$ {#eq-loa}
 where $\overline{dif}$ is the mean of the differences (bias), and $SD_{dif}$ is the standard deviation of the differences that measure random fluctuations around this mean.
 
 ```{r}
-#calculate the differences of scores
-dif <- goal$GOAL1 - goal$GOAL2
+# calculate the mean of the differences (MD)
+MD <- mean(dif)
+MD
 
 # compute lower limit of 95% LOA
 lower_LOA <- mean(dif) - z * sd(dif)
@@ -370,7 +415,7 @@ upper_LOA <- mean(dif) + z * sd(dif)
 upper_LOA
 ```
 
-From our example, the mean of the differences (bias) is -0.73 (i.e. the scores at retest are on average 0.73 units higher than the scores at first test), which is a small difference. Additionally, the limits of agreement indicate that 95% of the differences lie in the range of −9 units to 8 units.
+In our example, the mean of the differences (bias) is -0.73 (i.e. the scores at retest are on average 0.73 units higher than the scores at first test), which is a small difference. Additionally, the limits of agreement indicate that 95% of the differences lie in the range of −9 units to 8 units.
 
 -   **The Bland-Altman method**
 
@@ -396,7 +441,7 @@ dat_BA <- data.frame(mean_goal12, dif)
 BA_plot <- ggplot(dat_BA, aes(x = mean_goal12, y = dif)) +
   geom_point() +
   geom_hline(yintercept = 0, color = "black", linewidth = 0.5, linetype = "dashed") +
-  geom_hline(yintercept = mean(dif), color = "blue", linewidth = 1.0) +
+  geom_hline(yintercept = MD, color = "blue", linewidth = 1.0) +
   geom_hline(yintercept = lower_LOA, color = "red", linewidth = 0.5) +
   geom_hline(yintercept = upper_LOA, color = "red", linewidth = 0.5) +
   labs(title = "Bland-Altman plot of test-retest reliability", 
@@ -409,6 +454,7 @@ BA_plot <- ggplot(dat_BA, aes(x = mean_goal12, y = dif)) +
   geom_segment(x = 28, y = 0.1, xend = 28, yend = -0.85, linewidth = 0.8, colour = "#EA74FC",
                arrow = arrow(length = unit(0.07, "inches"), ends = "both"))
 
+# add a histogram on the right-hand side of the graph
 ggMarginal(BA_plot, type = "density", margins = 'y',
            yparams = list(fill = "#61D04F"))
 
@@ -416,7 +462,7 @@ ggMarginal(BA_plot, type = "density", margins = 'y',
 
 For each pair of measurements, the *difference* between the two measurements is plotted on the Y axis, and the *mean* of the two measurements on the X axis. We can check the distribution of the differences by examining the marginal green histogram on the right-hand side of the graph. In our example, the normality assumption is met; however, if the histogram is skewed or has very long tails, the assumption of Normality might not hold.
 
-The *mean of the differences* (MD), represented by the solid blue line, is an estimate of the systematic bias between the two measurements (@fig-BA_plot). In our case, the magnitude bias (purple arrow) has a small value (-0.73 units). The lower and upper red horizontal lines represent the upper and lower 95% limits of agreement (LOA), respectively. Under the normality assumption of the differences (green histogram), nearly 95% of the data points are likely to be within the LOAs. In our example, most of the the points are randomly scattered around the zero dashed line within the limits of agreement (−9 to 8 units), and as expected 7 out of 127 (5.5%) data points fall out of these limits.
+The *mean of the differences* (MD), represented by the solid blue line, is an estimate of the systematic bias between the two measurements (@fig-BA_plot). In our case, the magnitude of bias (purple arrow) has a small value (-0.73 units). The lower and upper red horizontal lines represent the upper and lower 95% limits of agreement (LOA), respectively. Under the normality assumption of the differences (green histogram), nearly 95% of the data points are likely to be within the LOAs. In our example, most of the the points are randomly scattered around the zero dashed line within the limits of agreement (−9 to 8 units), and as expected 7 out of 127 (5.5%) data points fall out of these limits.
 
 If we want to add confidence intervals for the MD and for the lower and upper limits of agreement (Lower LOA, Upper LOA) in @fig-BA_plot, we can use the `bland.altman.stats()` function from the `{BlandAltmanLeh}` package which provides these intervals:
 
@@ -427,6 +473,12 @@ ci_lines
 ```
 
 ```{r}
+#| warning: false
+#| label: fig-BA_plot2
+#| fig-cap: Bland-Altman plot with confidence intervals for the MD and for the lower and upper limits of agreement (Lower LOA, Upper LOA).
+#| fig-width: 9.0
+#| fig-height: 6.5
+
 # define the color of the lines of the confidence intervals
 ci_colors <- c("red", "red", "blue", "blue", "red", "red")
 
@@ -434,45 +486,424 @@ ci_colors <- c("red", "red", "blue", "blue", "red", "red")
 BA_plot2 <- BA_plot +
   geom_hline(yintercept = ci_lines, color = ci_colors, linewidth = 0.5, linetype = "dashed")
 
+# add a histogram on the right-hand side of the graph
 ggMarginal(BA_plot2, type = "density", margins = 'y',
            yparams = list(fill = "#61D04F"))
 ```
 
 ::: content-box-blue
-If the data points in the Bland-Altman plot are close to the zero dashed line, it indicates that there is a good level of agreement between the two measurements.
+If many data points in the Bland-Altman plot are close to the zero dashed line, it indicates that there is a good level of agreement between the two measurements.
 :::
 
+The MD (bias) can be considered insignificant, as the zero dashed line of equality lies inside the confidence interval for the mean difference (-1.5, 0.03). We can also test this with a paired t-test:
 
-There are lots of packages on CRAN that include functions for creating Bland-Altman plots:
+```{r}
+t.test(goal$GOAL1, goal$GOAL2, paired = T)
+```
+
+There are lots of packages on CRAN that include functions for creating Bland-Altman plots such as the `{blandr}` and `{BlandAltmanLeh}`:
 
 ::: {.callout-important icon="false"}
-## `r fa("r-project", fill = "#0008C1")` Bland Altman plots
+## `r fa("r-project", fill = "#0008C1")` Bland-Altman plots
 
 ::: panel-tabset
 ## blandr
 
 ```{r}
 #| warning: false
+#| label: fig-BA_plot3
+#| fig-width: 9.0
+#| fig-height: 6.5
 
-blandr.draw(goal$GOAL1, goal$GOAL2)
+blandr.draw(goal$GOAL1, goal$GOAL2) +
+  annotate("text", x = 90, y = 8.6, label = "Upper LOA", color = "red", size = 4.0) +
+  annotate("text", x = 90, y = -8.6, label = "Lower LOA", color = "red", size = 4.0) +
+  annotate("text", x = 20, y = -1.5, label = "MD", color = "blue", size = 4.0)
 ```
-
 
 ## BlandAltmanLeh
 
 ```{r}
 #| warning: false
-bland.altman.plot(goal$GOAL1, goal$GOAL2, graph.sys = "ggplot2", conf.int=0.95)
+#| label: fig-BA_plot4
+#| fig-width: 9.0
+#| fig-height: 6.5
+
+bland.altman.plot(goal$GOAL1, goal$GOAL2, graph.sys = "ggplot2", conf.int=0.95) +
+  annotate("text", x = 90, y = 8.6, label = "Upper LOA", color = "red", size = 4.0) +
+  annotate("text", x = 90, y = -8.6, label = "Lower LOA", color = "red", size = 4.0) +
+  annotate("text", x = 20, y = -1.5, label = "MD", color = "blue", size = 4.0)
 ```
-
 :::
 :::
 
+ 
 
 ## Reliability for categorical measurements
 
-### Introduction
-
 ### Research question
 
-### Cohen's kappa
+A screening questionnaire for Parkinson's disease in a community was administrated with two weeks interval. We aim to examine the test--retest reliability of the following questions included in the questionnaire:
+
+::: content-box-yellow
+**Q1:** Do you have trouble buttoning buttons? (yes/no)
+
+**Q2:** Do you have trouble arising from a chair? (yes/no)
+
+**Q3:** Do your feet suddenly seem to freeze in door-ways? (yes/no)
+
+**Q4:** Is your handwriting smaller than it once was? (yes/no)
+:::
+
+### Preraring the data
+
+The file *questions* contains the data of the four questions which required a 'yes' or 'no' response. The same set of questions was administered to 2000 individuals aged over 65 years old on two different time points (T1 and T2) with a 14-day gap in between.
+
+```{r}
+#| warning: false
+
+library(readxl)
+qs <- read_excel(here("data", "questions.xlsx"))
+```
+
+```{r}
+#| echo: false
+#| label: fig-questions
+#| fig-cap: Table with data from "questions" file.
+
+DT::datatable(
+  qs, extensions = 'Buttons', options = list(
+    dom = 'tip',
+    columnDefs = list(list(className = 'dt-center', targets = "_all"))
+  )
+)
+
+```
+
+### Contingency table
+
+The test-retest data are arranged in a 2x2 contingency table as follows:
+
+|                        |        | $\textbf{Time 2 (T2)}$ |     |        |
+|:----------------------:|:------:|:----------------------:|:---:|:------:|
+|                        |        |          yes           | no  | Totals |
+| $\textbf{Time 1 (T1)}$ |  yes   |           a            |  b  |   g1   |
+|                        |   no   |           c            |  d  |   g2   |
+|                        | Totals |           f1           | f2  |   N    |
+
+: Interpretation. {#tbl-table}
+
+The **Marginal totals** (f1, f2, g1, g2) provide important summary information about the distribution of categories and rater's assessments.
+
+::: content-box-green
+**Symmetry and balance in a contingency table** [@dettori2020]
+
+-   **Symmetrical:** The distribution across f1 and f2 is the same as g1 and g2
+-   **Asymmetrical:** The distribution across f1 and f2 is in the opposite direction to g1 and g2
+-   **Balanced:** The proportion of the total number of objects in f1 and g1 is equal to 0.5
+-   **Imbalance:** The proportion of the total number of objects in f1 and g1 is not equal to 0.5
+:::
+
+### Cohen's kappa (unweighted)
+
+The Cohen's kappa (κ), also known as the Kappa statistic, is used to measure relative reliability for categorical items. It quantifies the degree of agreement beyond what would be expected due to chance alone [@cohen1960].
+
+The Cohen's kappa statistic is defined as follows:
+
+$$
+k = \frac{p_o-p_{e\kappa}}{1-p_{e\kappa}}
+$$
+
+where $p_o = (a+d)/N$ is the proportion of observed overall agreement and $p_{e\kappa} = (f_1 \cdot g_1 + f_2 \cdot g_2)/N^2$ is the proportion of agreement that would be expected by chance.
+
+Kappa can range form negative values (no agreement) to +1 (perfect agreement).
+
+| Cohen's kappa | Level of agreement |
+|:-------------:|:------------------:|
+|    \<0.20     |        Poor        |
+|  0.21 - 0.40  |        Fair        |
+|  0.41 - 0.60  |      Moderate      |
+|  0.61 - 0.80  |        Good        |
+|  0.81 - 1.00  |     Very good      |
+
+: Interpretation of Cohen's kappa statistic. {#tbl-kappa}
+
+### Gwet's AC1
+
+Gwet's AC1 is another measurement of relative reliability [@gwet2008]. The AC1 statistic is given by the formula:
+
+$$
+AC1 = \frac{p_o-p_{eAC1}}{1-p_{eAC1}}
+$$
+
+$p_o$ remains the same, but $p_{eAC1} = 2q \cdot (1 - q)$ is the proportion of agreement that would be expected by chance where $q = (f1 + g1)/2N$.
+
+ 
+
+### Examples
+
+ 
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Q1: Do you have trouble buttoning buttons?** (symmetrical and balanced distribution of marginal totals)
+:::
+
+The first step consists of creating the contingency table with marginal totals as follows:
+
+```{r}
+qs$Q1_T1 <- factor(qs$Q1_T1, levels=c("yes", "no"))
+qs$Q1_T2 <- factor(qs$Q1_T2, levels=c("yes", "no"))
+
+table1 <- table(Q1_T1 = qs$Q1_T1, Q1_T2 = qs$Q1_T2)
+
+tb1 <- addmargins(table1)
+tb1
+```
+
+The proportions for question Q1 are:
+
+```{r}
+addmargins(prop.table(table1))
+```
+
+We observe that the distribution of marginal totals of question Q1 is **symmetrical** (f1 = 0.46 is close to g1 = 0.49; f2 = 0.54 is close to g2 = 0.51) and approximately **balanced** (f1 = 0.46 and f2 = 0.54 are close to 0.5; g1 = 0.49 and g2 = 0.51 are close to 0.5).
+
+-   **kappa**
+
+First, we extract the elements of the `tb1`:
+
+```{r}
+a <- tb1[1,1]
+b <- tb1[1,2]
+c <- tb1[2,1]
+d <- tb1[2,2]
+f1 <- tb1[3,1]
+f2 <- tb1[3,2]
+g1 <- tb1[1,3]
+g2 <- tb1[2,3]
+N <- tb1[3,3]
+```
+
+The percent of observed overall agreement is:
+
+```{r}
+po <- (a + d)/N
+po
+```
+
+The proportion of agreement that would be expected by chance is:
+
+```{r}
+pek <- (f1 * g1 + f2 * g2)/N^2
+pek
+```
+
+Finally, we calculate the Cohen's kappa statistic:
+
+```{r}
+k <- (po-pek)/(1-pek)
+k
+```
+
+There are lots of packages on CRAN that include functions to calculate Cohen's kappa statistic such as the `{irr}` and `{vcd}`:
+
+::: {.callout-important icon="false"}
+## `r fa("r-project", fill = "#0008C1")` Cohen's kappa
+
+::: panel-tabset
+## irr
+
+```{r}
+Q1 <- qs[1:2]
+kappa2(Q1)
+```
+
+**Hypothesis Testing**
+
+::: {.callout-note icon="false"}
+## `r fa("angles-right", fill = "#1DC5CE")` Null hypothesis and alternative hypothesis for kappa
+
+-   $H_0$: The agreement is the same as chance agreement. ($k = 0$)
+-   $H_1$: The agreement is different from chance agreement. ($k \neq 0$)
+:::
+
+The p-value is less than 0.05 (reject $H_0$), the two assessments agreed more than would be expected by chance. Note that measurements taken from the same individuals on two different time points are closely associated by nature.
+
+## vcd
+
+```{r}
+k_Q1 <- Kappa(table1)
+k_Q1
+```
+
+::: callout-warning
+Note that, in the above results ASE, which is used for calculating the confidence intervals, is the asymptotic standard error of the kappa value.
+:::
+
+```{r}
+confint(k_Q1)
+```
+:::
+:::
+
+Therefore, the relative agreement for the question Q1 is good (k = 0.7, 95%CI: 0.67, 0.73).
+
+-   **AC1**
+
+For AC1 statistic, the proportion of agreement that would be expected by chance is:
+
+```{r}
+q <- (f1 + g1)/(2*N)
+peAC1 <- 2*q*(1-q)
+peAC1
+```
+
+The AC1 statistic is as follows:
+
+```{r}
+AC1 <- (po-peAC1)/(1-peAC1)
+AC1
+```
+
+We can also use the `{irrCAC}` package to get the relevant statistic with confidence intervals:
+
+```{r}
+Q1 <- qs[1:2]
+gwet.ac1.raw(Q1)$est
+```
+
+We conclude that AC1 is 0.7, with a 95% confidence interval ranging from 0.67 to 0.73, consistent with the result obtained using Cohen's kappa statistic.
+
+ 
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Q2: Do you have trouble arising from a chair?** (symmetrical and imbalanced distribution of marginal totals)
+:::
+
+```{r}
+qs$Q2_T1 <- factor(qs$Q2_T1, levels=c("yes", "no"))
+qs$Q2_T2 <- factor(qs$Q2_T2, levels=c("yes", "no"))
+
+table2 <- table(Q2_T1 = qs$Q2_T1, Q2_T2 = qs$Q2_T2)
+
+tb2 <- addmargins(table2)
+tb2
+```
+
+The proportions for question Q2 are:
+
+```{r}
+addmargins(prop.table(table2))
+```
+
+The percent of observed overall agreement is 0.80 + 0.05 = 0.85. The distribution of marginal totals of question Q2 is **symmetrical** (f1 = 0.85 is close to g1 = 0.90; f2 = 0.15 is close to g2 = 0.10) but **imbalanced** (f1 = 0.85 and f2 = 0.15 deviate greatly from 0.5; g1 = 0.90 and g2 = 0.10 are far away from 0.5).
+
+-   **kappa**
+
+```{r}
+Q2 <- qs[3:4]
+kappa2(Q2)
+```
+
+According to the value of kappa statistic, k = 0.32, there appears to be a fair agreement between test and re-test for question Q2.
+
+::: content-box-green
+**The first kappa paradox**
+
+Although questions Q1 and Q2 have the same high percentage of agreement ($p_o$), the imbalanced distribution of the marginal totals in Q2 affects the kappa statistic, creating what appears to be a 'paradox'--- **high percent agreement and low kappa** [@feinstein1990; @cicchetti1990].
+:::
+
+-   **AC1**
+
+```{r}
+gwet.ac1.raw(Q2)$est
+```
+
+The AC1 value is 0.81, which means that this measure is robust against what is known as the 'kappa' paradox.
+
+ 
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Q3: Do your feet suddenly seem to freeze in door-ways?** (symmetrical and imbalanced distribution of marginal totals)
+:::
+
+```{r}
+qs$Q3_T1 <- factor(qs$Q3_T1, levels=c("yes", "no"))
+qs$Q3_T2 <- factor(qs$Q3_T2, levels=c("yes", "no"))
+
+table3 <- table(Q3_T1 = qs$Q3_T1, Q3_T2 = qs$Q3_T2)
+
+tb3 <- addmargins(table3)
+tb3
+```
+
+The proportions for question Q3 are:
+
+```{r}
+addmargins(prop.table(table3))
+```
+
+The percent of observed overall agreement is 0.45 + 0.15 = 0.60. The distribution of marginal totals of question Q3 is relatively symmetrical (same direction) but it is **imbalanced** (f1 = 0.70 and f2 = 0.30 deviate greatly from 0.5).
+
+-   **kappa**
+
+```{r}
+Q3 <- qs[5:6]
+kappa2(Q3)
+```
+
+According to the value of kappa statistic, k = 0.13, there appears to be a poor agreement between test and re-test for question Q3.
+
+-   **AC1**
+
+```{r}
+gwet.ac1.raw(Q3)$est
+```
+
+ 
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Q4: Is your handwriting smaller than it once was?** (asymmetrical and imbalanced distribution of marginal totals)
+:::
+
+```{r}
+qs$Q4_T1 <- factor(qs$Q4_T1, levels=c("yes", "no"))
+qs$Q4_T2 <- factor(qs$Q4_T2, levels=c("yes", "no"))
+
+table4 <- table(Q4_T1 = qs$Q4_T1, Q4_T2 = qs$Q4_T2)
+
+tb4 <- addmargins(table4)
+tb4
+```
+
+The proportions for question Q4 are:
+
+```{r}
+addmargins(prop.table(table4))
+```
+
+The percent of observed overall agreement is 0.25 + 0.35 = 0.60. The distribution of marginal totals of question Q4 is **asymmetrical** (opposite direction) and **imbalanced** (f1 = 0.70 and f2 = 0.30 deviate greatly from 0.5).
+
+-   **kappa**
+
+```{r}
+# Q4: Is your handwriting smaller than it once was?
+Q4 <- qs[7:8]
+kappa2(Q4)
+```
+
+According to the value of kappa statistic, k = 0.26, there appears to be a fair agreement between test and re-test for question Q3.
+
+The asymmetrical imbalance in Q4 results in a higher value of k (0.26) compared to the more symmetrical imbalance in Q3, which yielded a lower k value (0.13).
+
+::: content-box-green
+**The second kappa paradox**
+
+The k values for the same percentage of agreement ($p_o$) can be unexpectedly **raised** when imbalances in the marginal totals are not perfectly symmetrical [@feinstein1990; @cicchetti1990].
+:::
+
+-   **AC1**
+
+```{r}
+gwet.ac1.raw(Q4)$est
+```
