@@ -413,7 +413,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#eigenvalues-and-eigenvectors" id="toc-eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</a></li>
   </ul>
 </li>
-  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="header-section-number">8.7</span> Arrays</a></li>
+  <li>
+<a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="header-section-number">8.7</span> Arrays</a>
+  <ul class="collapse">
+<li><a href="#creating-an-array" id="toc-creating-an-array" class="nav-link" data-scroll-target="#creating-an-array">Creating an array</a></li>
+  <li><a href="#indexing-in-an-array" id="toc-indexing-in-an-array" class="nav-link" data-scroll-target="#indexing-in-an-array">Indexing in an array</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -1442,10 +1448,11 @@ $vectors
 <p>&nbsp;</p>
 </section></section><section id="arrays" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="arrays">
 <span class="header-section-number">8.7</span> Arrays</h2>
+<section id="creating-an-array" class="level3"><h3 class="anchored" data-anchor-id="creating-an-array">Creating an array</h3>
 <p>Arrays are similar to matrices but can have <strong>more than two dimensions</strong>. They’re created with an <code><a href="https://rdrr.io/r/base/array.html">array()</a></code> function from base R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb122" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># build the 2x3x4 array</span></span>
-<span><span class="va">my_array</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">my_array</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">my_array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>, , 1
@@ -1473,7 +1480,7 @@ $vectors
 [2,]   20   22   24</code></pre>
 </div>
 </div>
-<p>As you can see, arrays are a natural extension of matrices. They can be useful in programming new statistical methods. Like matrices, they contain a single type of data (e.g., numeric).</p>
+<p>As we can see, arrays are an extension of matrices. Like matrices, they contain a single type of data (e.g., numeric).</p>
 <p>We can find the <code>type</code>, <code>class</code> and the <code>dimensions</code> of the array:</p>
 <div class="cell">
 <div class="sourceCode" id="cb124" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">my_array</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1489,9 +1496,34 @@ $vectors
 <pre data-code-line-numbers=""><code>[1] 2 3 4</code></pre>
 </div>
 </div>
+</section><section id="indexing-in-an-array" class="level3"><h3 class="anchored" data-anchor-id="indexing-in-an-array">Indexing in an array</h3>
+<p>To access a particular matrix of the array, for example the 3rd matrix, we type:</p>
+<div class="cell">
+<div class="sourceCode" id="cb130" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># access the 3rd matrix of the array</span></span>
+<span><span class="va">my_array</span><span class="op">[</span>, , <span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     [,1] [,2] [,3]
+[1,]   13   15   17
+[2,]   14   16   18</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb132" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># access the 2nd row of the 3rd matrix of the array.</span></span>
+<span><span class="va">my_array</span><span class="op">[</span><span class="fl">2</span>, , <span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 14 16 18</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb134" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># access the element in the 1st row and 3rd column of the 3rd matrix</span></span>
+<span><span class="va">my_array</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 17</code></pre>
+</div>
+</div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

@@ -389,6 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">34.1</span> Research question</a></li>
   <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">34.2</span> Packages we need</a></li>
   <li><a href="#contingency-2x2-table" id="toc-contingency-2x2-table" class="nav-link" data-scroll-target="#contingency-2x2-table"><span class="header-section-number">34.3</span> Contingency 2x2 table</a></li>
+  <li><a href="#diagnostic-accuracy-measures" id="toc-diagnostic-accuracy-measures" class="nav-link" data-scroll-target="#diagnostic-accuracy-measures"><span class="header-section-number">34.4</span> Diagnostic Accuracy Measures</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -431,44 +432,194 @@ Learning objectives
 <span class="header-section-number">34.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mvs.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">epiR</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/haleyjeppson/ggmosaic">ggmosaic</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mvs.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">epiR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre data-code-line-numbers=""><code>Warning: package 'ggplot2' was built under R version 4.3.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre data-code-line-numbers=""><code>Warning: package 'purrr' was built under R version 4.3.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre data-code-line-numbers=""><code>Warning: package 'dplyr' was built under R version 4.3.1</code></pre>
-</div>
 </div>
 </section><section id="contingency-2x2-table" class="level2" data-number="34.3"><h2 data-number="34.3" class="anchored" data-anchor-id="contingency-2x2-table">
 <span class="header-section-number">34.3</span> Contingency 2x2 table</h2>
-<p>Generally, an individual’s disease status is a dichotomous variable; the individual either has the disease (<span class="math inline">\(D_+\)</span>) or hasn’t the disease (<span class="math inline">\(D_-\)</span>) as defined by the reference standard (or “gold” standard). The diagnostic test can be measured with a dichotomous variable (e.g.&nbsp;presence or absence of breast abnormalities using an X-ray) or a continuous variable (e.g.&nbsp;fasting glucose level for diabetes diagnosis), that can be transformed to a dichotomous variable by choosing an optimal cut-off value (threshold) which distinguishes positive (<span class="math inline">\(T_+\)</span>) from negative (<span class="math inline">\(T_-\)</span>) test results.</p>
-<p>If the diagnostic test gives a dichotomous result for each participant in a study the data can be tabulated in a 2 x 2 table of test result (<span class="math inline">\(T_+\)</span>, <span class="math inline">\(T_-\)</span>) versus true disease status (<span class="math inline">\(D_+\)</span>, <span class="math inline">\(D_-\)</span>). For example, the result of digital mammography test to diagnose breast cancer compared to the “gold” standard biopsy/surgery and histopathology in 1220 women with suspected breast cancer are following:</p>
+<p>Generally, an individual’s disease status is a dichotomous variable; the individual either has the disease (<span class="math inline">\(Outcome+\)</span>) or hasn’t the disease (<span class="math inline">\(Outcome-\)</span>) as defined by the reference standard (or “gold” standard). The diagnostic test under evaluation (also named as index test) can be measured with a dichotomous variable (e.g.&nbsp;presence or absence of breast abnormalities using an X-ray) or a continuous variable (e.g.&nbsp;fasting glucose level for diabetes diagnosis), that can be transformed to a dichotomous variable by choosing an optimal cut-off value (threshold) which distinguishes positive (<span class="math inline">\(Test+\)</span>) from negative (<span class="math inline">\(Test-\)</span>) test results.</p>
+<p>If the index test gives a dichotomous result for each participant in a study, the data can be tabulated in a 2 x 2 table of test result (<span class="math inline">\(Test+\)</span>, <span class="math inline">\(Test-\)</span>) versus “true” disease status (<span class="math inline">\(Outcome+\)</span>, <span class="math inline">\(Outcome-\)</span>). For example, the result of digital mammography test to diagnose breast cancer compared to the “gold” standard biopsy/surgery and histopathology in 1220 women with suspected breast cancer are following:</p>
+<div id="tbl-tbl1" class="anchored">
+<table class="table">
+<caption>Table&nbsp;34.1: A 2 × 2 table reporting cross-classification of individuals by index and reference test result.</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Outcome according to the reference standard</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">
+<span class="math inline">\(Outcome+\)</span> <br> (Disease present)</td>
+<td style="text-align: center;">
+<span class="math inline">\(Outcome-\)</span> <br> (Disease absent)</td>
+<td style="text-align: center;">Totals</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Index Test result</strong></td>
+<td style="text-align: center;"><span class="math inline">\(Test+\)</span></td>
+<td style="text-align: center;">
+<strong>TP</strong>=890</td>
+<td style="text-align: center;">
+<strong>FP</strong>=110</td>
+<td style="text-align: center;">TP+FP=1000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(Test-\)</span></td>
+<td style="text-align: center;">
+<strong>FN</strong>=20</td>
+<td style="text-align: center;">
+<strong>TN</strong>=200</td>
+<td style="text-align: center;">TN+FN=220</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Totals</td>
+<td style="text-align: center;">TP+FN=910</td>
+<td style="text-align: center;">TN+FP=310</td>
+<td style="text-align: center;">
+<strong>N</strong>=1220 <br> (TP+TN+FP+FN)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>where</p>
+<p>TP: true positive; test positive and disease present (Test+ ∩ Outcome+)</p>
+<p>FP = false positive; test positive and disease absent (Test+ ∩ Outcome-)</p>
+<p>FN = false negative; test negative and disease present (Test- ∩ Outcome+)</p>
+<p>TN = true negative; test negative and disease absent (Test- ∩ Outcome-)</p>
+</section><section id="diagnostic-accuracy-measures" class="level2" data-number="34.4"><h2 data-number="34.4" class="anchored" data-anchor-id="diagnostic-accuracy-measures">
+<span class="header-section-number">34.4</span> Diagnostic Accuracy Measures</h2>
+<div class="content-box-green">
+<p><strong>Basic Diagnostic Accuracy Measures</strong></p>
+<p>The <strong>Sensitivity (Sn)</strong> of a diagnostic test refers to the ability of the test to correctly identify those individuals with the disease. It is defined as the proportion of true positive test results among individuals who have the disease.</p>
+<p>Sn = <span class="math inline">\(\frac{TP}{TP+FN}=\frac{890}{910}=0.978\)</span> or <span class="math inline">\(97.8\%\)</span></p>
+<p>The <strong>Specificity (Sp)</strong> of a diagnostic test refers to the ability of the test to correctly identify those patients without the disease. It is defined as the proportion of true negative test results among individuals who do not have the disease.</p>
+<p>Sp = <span class="math inline">\(\frac{TN}{TN+FP}=\frac{200}{310}=0.645\)</span> or <span class="math inline">\(64.5\%\)</span></p>
+<p><strong>Positive Predictive Value (PPV)</strong> is the probability that individuals with a positive diagnostic test result actually have the disease. It is defined as the proportion of true positive test results among individuals who have a positive test.</p>
+<p>PPV = <span class="math inline">\(\frac{TP}{TP+FP}=\frac{890}{1000}=0.890\)</span> or <span class="math inline">\(89.0\%\)</span></p>
+<p><strong>Negative Predictive Value (NPV)</strong> is the probability that individuals with a negative diagnostic test result are truly free from the disease. It is defined as the proportion of true negative test results among individuals who have a negative test.</p>
+<p>NPV = <span class="math inline">\(\frac{TN}{TN+FN}=\frac{200}{220}=0.909\)</span> or <span class="math inline">\(90.9\%\)</span></p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+NOTE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Positive and negative predictive values are influenced by the prevalence of disease in the population that is being tested. Using the same test in a population with a higher prevalence (e.g.&nbsp;women over the age of 55) increases positive predictive value. Conversely, increased prevalence results in decreased negative predictive value. Therefore, when considering predictive values of diagnostic or screening tests, we should take into account the influence of the prevalence of the disease.</p>
+</div>
+</div>
+<p>And other useful diagnostic measures are following:</p>
+<div class="content-box-green">
+<p><strong>More Diagnostic Accuracy Measures</strong></p>
+<p><strong>Apparent prevalence</strong> is the proportion of individuals with a positive test result.</p>
+<p>Apparent prevalence = <span class="math inline">\(\frac{TP + FP}{N}=\frac{1000}{1220}=0.820\)</span> or <span class="math inline">\(82.0\%\)</span></p>
+<p><strong>True prevalence</strong> is the proportion of individuals that are truly diseased.</p>
+<p>True prevalence = <span class="math inline">\(\frac{TP + FN}{N}=\frac{910}{1220}=0.746\)</span> or <span class="math inline">\(74.6\%\)</span></p>
+<p>The <strong>Likelihood ratio for a positive test result (LR+)</strong> is the probability of an individual who has the disease testing positive divided by the probability of an individual who does not have the disease testing positive. It is calculated as sensitivity divided by 1 minus the specificity value.</p>
+<p>LR+ = <span class="math inline">\(\frac{Sn}{1-Sp}=\frac{0.978}{1-0.645}=\frac{0.978}{0.355}= 2.755\)</span></p>
+<p>The <strong>Likelihood ratio for a negative test result (LR-)</strong> is the probability of an individual who has the disease testing negative divided by the probability of an individual who does not have the disease testing negative. It is calculated as 1 minus the sensitivity divided by specificity value.</p>
+<p>LR- = <span class="math inline">\(\frac{1-Sn}{Sp}=\frac{1-0.978}{0.645}=\frac{0.022}{0.645}= 0.034\)</span></p>
+<p><strong>Diagnostic accuracy</strong> (effectiveness), expressed as a proportion of correctly classified subjects (TP+TN) among all subjects (N). Diagnostic accuracy is affected by the disease prevalence.</p>
+<p>Accuracy = <span class="math inline">\(\frac{TP + TN}{N}=\frac{890 + 200}{1220}=\frac{1090}{1220}= 0.893\)</span> or <span class="math inline">\(89.3\%\)</span></p>
+</div>
+<p>In R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.table</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.table</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="va">tb1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>  Test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"T+"</span>, <span class="st">"T_"</span><span class="op">)</span>,</span>
-<span>  Disease <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D+"</span>, <span class="st">"D-"</span><span class="op">)</span></span>
+<span>  Test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Test +"</span>, <span class="st">"Test -"</span><span class="op">)</span>,</span>
+<span>  Outcome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Outcome +"</span>, <span class="st">"Outcome -"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tb1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>    Disease
-Test  D+  D-
-  T+ 890 110
-  T_  20 200</code></pre>
+<pre data-code-line-numbers=""><code>        Outcome
+Test     Outcome + Outcome -
+  Test +       890       110
+  Test -        20       200</code></pre>
+</div>
+</div>
+<p>From this contingency table, we can create a basic mosaic plot.</p>
+<div id="exercise-joins" class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#0008C1;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Mosaic plot for a 2x2 table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">graphics</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">ggmosaic</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/mosaicplot.html">mosaicplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">tb1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"goldenrod1"</span>, <span class="st">"firebrick"</span><span class="op">)</span>, </span>
+<span>           cex.axis <span class="op">=</span> <span class="fl">0.9</span>, main<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diagnostic_accuracy_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html">melt</a></span><span class="op">(</span><span class="va">tb1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmosaic/man/geom_mosaic.html">geom_mosaic</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="va">value</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmosaic/man/product.html">product</a></span><span class="op">(</span><span class="va">Test</span>, <span class="va">Outcome</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>              fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"goldenrod1"</span>, <span class="st">"firebrick"</span>,  <span class="st">"goldenrod1"</span>, <span class="st">"firebrick"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot_build</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre data-code-line-numbers=""><code>Warning: `unite_()` was deprecated in tidyr 1.2.0.
+ℹ Please use `unite()` instead.
+ℹ The deprecated feature was likely used in the ggmosaic package.
+  Please report the issue at &lt;https://github.com/haleyjeppson/ggmosaic&gt;.</code></pre>
+</div>
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df2</span><span class="op">$</span><span class="va">percentage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="va">df</span><span class="op">$</span><span class="va">value</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df2</span><span class="op">$</span><span class="va">lab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">value</span>, <span class="st">" ("</span>, <span class="va">df2</span><span class="op">$</span><span class="va">percentage</span>, <span class="st">"%"</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df2</span>, </span>
+<span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">(</span><span class="va">xmin</span><span class="op">+</span><span class="va">xmax</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, y <span class="op">=</span> <span class="op">(</span><span class="va">ymin</span><span class="op">+</span><span class="va">ymax</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, label <span class="op">=</span> <span class="va">lab</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="diagnostic_accuracy_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.tests.html">epi.tests</a></span><span class="op">(</span><span class="va">tb1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.tests.html">epi.tests</a></span><span class="op">(</span><span class="va">tb1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>          Outcome +    Outcome -      Total
 Test +          890          110       1000

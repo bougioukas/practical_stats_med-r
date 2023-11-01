@@ -56,7 +56,7 @@ library(gtsummary)
 library(report)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *depression* in R:
 

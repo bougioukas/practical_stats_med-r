@@ -41,7 +41,7 @@ library(here)
 library(tidyverse)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *asthma* in R:
 
@@ -142,7 +142,7 @@ The basic assumption of the test is that the sum of the **discordant** cells sho
 
 Finally, we run the McNemar's test:
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## McNemar's test
 
 ::: panel-tabset

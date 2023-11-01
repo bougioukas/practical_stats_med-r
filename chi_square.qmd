@@ -42,7 +42,7 @@ library(here)
 library(tidyverse)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *meldata* in R:
 
@@ -177,7 +177,7 @@ Here, as we observe the assumption is fulfilled.
 
 Finally, we run the chi-square test:
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## chi-square test
 
 ::: panel-tabset

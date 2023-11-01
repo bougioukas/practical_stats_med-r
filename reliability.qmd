@@ -70,10 +70,9 @@ Test-retest reliability is used to assess the consistency and stability of a mea
 |  n  |        $x_{n1}$        |        $x_{n2}$        |
 
 : Measurements in two time points Time 1 and Time 2. {#tbl-data_str}
-
 :::
 
-### Preraring the data
+### Preparing the data
 
 The GOAL questionnaire was completed twice, 30 days apart, in a prospective cohort study of 127 caregivers of children with cerebral palsy and the data were recorded as follows:
 
@@ -558,7 +557,7 @@ A screening questionnaire for Parkinson's disease in a community was administrat
 **Q4:** Is your handwriting smaller than it once was? (yes/no)
 :::
 
-### Preraring the data
+### Preparing the data
 
 The file *questions* contains the data of the four questions which required a 'yes' or 'no' response. The same set of questions was administered to 2000 individuals aged over 65 years old on two different time points (T1 and T2) with a 14-day gap in between.
 

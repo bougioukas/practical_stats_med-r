@@ -52,7 +52,7 @@ library(gtsummary)
 library(report)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *thromboglobulin* in R:
 
@@ -211,7 +211,6 @@ wilcox.test(b_TG ~ status, conf.int = T, data = tg)
 ```
 
 **Historical Note:** As you can see, in R the Mann-Whitney test is calculated with the `wilcox.test()` function and it is called Wilcoxon rank-sum test. What is the reason for this? Henry Mann and Donald Whitney (1947) reported in their article that the test was first proposed by Frank Wilcoxon (1945) and they gave their version for the test. So the right would be to call this test Wilcoxon-Mann-Whitney (WMW) test.
-
 
 ## rstatix
 

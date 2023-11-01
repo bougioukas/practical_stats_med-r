@@ -120,7 +120,7 @@ library(tidyverse)
 library(report)
 ```
 
-## Preraring the data
+## Preparing the data
 
 ```{r}
 #| warning: false
@@ -758,7 +758,6 @@ This plot checks the assumption of equal variance of the residuals (homoscedasti
 The dataset should not include data points with exceptional influence on the model.
 :::
 
-
 #### `r fa("arrow-right", fill = "orange")`   Plot: Standardized residuals vs Leverage
 
 ```{r}
@@ -766,8 +765,6 @@ diagnostic_plots[4]
 ```
 
 This plot is used to detect influential observations. These data are outlier points that might have a substantial impact on the regression model's results when included or excluded from the analysis. If any point in this plot fall outside the dashed green lines then it is considered an influential observation. In our example, all the data points are inside the dashed green lines suggesting that none of the observations is influential on the fitted model.
-
-
 
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
@@ -845,22 +842,16 @@ In our example, $R^2 = 0.508$ indicates that about 50.8% of the variation in inf
 In simple linear regression $\sqrt{0.5085} = 0.713$ which equals to the Pearson's correlation coefficient r.
 :::
 
-
-
-
-
 ## Present the results
-
 
 ```{r}
 report(model_lm)
 ```
-
 
 We can use the above information to write up a final report:
 
 ::: {.callout-note icon="false"}
 ## `r fa("pen", fill = "#1DC5CE")` Final report
 
-In summary, the regression coefficient of the height is positive and significantly different from zero (p < 0.001). There is on average an increase of 178 g ($95\%$CI: 164 to 193) in weight for every 1 cm increase in height. The model explains a substantial proportion of variance (51% of the variation in infant's body weight can be explained by the variation of the infant's body height).
+In summary, the regression coefficient of the height is positive and significantly different from zero (p \< 0.001). There is on average an increase of 178 g ($95\%$CI: 164 to 193) in weight for every 1 cm increase in height. The model explains a substantial proportion of variance (51% of the variation in infant's body weight can be explained by the variation of the infant's body height).
 :::

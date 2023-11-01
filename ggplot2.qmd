@@ -872,7 +872,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   theme(legend.key = element_rect(fill = "deeppink"))
 ```
 
-
 ## Themes
 
 ### Default ggplot theme
@@ -904,11 +903,9 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
        caption = "Source Data: Covid-19 related data Jonhs Hopkins University")
 ```
 
-
-
 ### Predefined theme
 
-We can customize the theme elements of our graph by applying a predefined theme rather than changing everything by hand. There are ready to use themes from the `{ggplot2}` and `{ggthemes}` packages. 
+We can customize the theme elements of our graph by applying a predefined theme rather than changing everything by hand. There are ready to use themes from the `{ggplot2}` and `{ggthemes}` packages.
 
 Examples of in-build theme from "ggplot2":
 
@@ -918,7 +915,6 @@ Examples of in-build theme from "ggplot2":
 -   **theme_classic()** -- theme with no grid lines.
 -   **theme_void()** -- empty theme with no elements
 
-
 Examples of themes from "ggthemes":
 
 -   **theme_economist()** -- theme approximates the style of "[The Economist](https://www.economist.com/)".
@@ -927,9 +923,7 @@ Examples of themes from "ggthemes":
 -   **theme_gdocs()** -- theme based on Google Docs Chart defaults.
 -   **theme_hc()** -- theme based on [Highcharts](https://www.highcharts.com/) plots.
 
-
 In our case, we will use the `theme_fivethirtyeight()` from the "ggthemes" to understand how we can handle default themes.
-
 
 ```{r}
 #| message: false
@@ -959,12 +953,9 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
 
 If we take a look at the code for `theme_fivethirtyeight` (we just run `theme_fivethirtyeight` in our console to see the code), we'll observe that `axis.title` is set to `element_blank()`. So this theme has no axis titles by default. We'll need to change this if we want to set X and Y axis titles. You can turn them back on with theme(axis.title = element_text()) you need to change some of the theme settings that are the defaults in theme_fivethirtyeight.
 
-
-
 ### Publication Quality Figure
 
 More customization of plot
-
 
 ```{r}
 #| message: false
@@ -974,7 +965,7 @@ More customization of plot
 #| fig-cap: fgdfgdfg.
 #| fig-height: 12
 #| fig-width: 12
-#| source-line-numbers: "8,16-20"
+#| source-line-numbers: "2,3,8,16-20"
 
 
 ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
@@ -999,4 +990,43 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   guides(color = guide_legend(override.aes = list(size = 4)))
 ```
 
-## ggplot extensions
+
+
+```{r}
+#| message: false
+#| warning: false
+#| label: fig-ggthemes3
+#| fig-align: center
+#| fig-cap: fgdfgdfg.
+#| fig-height: 12
+#| fig-width: 12
+#| source-line-numbers: "2,7"
+
+ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
+  geom_smooth(method = lm, color = "red") +
+  geom_point(aes(size = tests_per_capita, color = region), shape = 1, stroke = 2) +
+  geom_text_repel(aes(label = country), 
+                  min.segment.length = 0, seed = 42, 
+                  box.padding = 0.1, color = "black", size = 5) +
+  scale_x_log10() +
+  scale_y_log10() +
+  scale_color_jco() +
+  labs(x = "GDP per capita ($) (log scale)",
+       y = "Cases per 100,000 inhabitants (log scale)",
+       color = "Region",
+       size = "Proportion tested",
+       title = "Confirmed cases per 100,000 inhabitants, GDP per capita, and COVID-19 testing rate by country", 
+       subtitle = "May 20, 2021", 
+       caption = "Source Data: Covid-19 related data Jonhs Hopkins University") +
+  theme_fivethirtyeight(base_size = 16) +
+  theme(plot.title = element_text(size = 17),
+        axis.title = element_text(face = "bold"),
+        legend.title = element_text(face = "bold")) +
+  guides(color = guide_legend(override.aes = list(size = 4)))
+```
+
+
+
+
+
+

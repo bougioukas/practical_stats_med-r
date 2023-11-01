@@ -41,7 +41,7 @@ library(here)
 library(tidyverse)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *dataVO2* in R:
 
@@ -173,7 +173,7 @@ By considering all of the information together (small samples, graphs, normality
 
 Now, we will perform a Kruskal-Wallis test to compare the VO2max in three sports.
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## Kruskal-Wallis test
 
 ::: panel-tabset
@@ -221,7 +221,7 @@ gt_sum10
 
 A significant WMW is generally followed up by post-hoc tests to perform multiple pairwise comparisons between groups:
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## Post-hoc tests
 
 ::: panel-tabset

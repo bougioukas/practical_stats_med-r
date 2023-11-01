@@ -45,7 +45,7 @@ library(here)
 library(tidyverse)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *dataDWL* in R:
 
@@ -195,7 +195,7 @@ Since the p = 0.617 \> 0.05, the null hypothesis ($H_{0}$: the variances of Weig
 
 Now, we will perform an one-way ANOVA (with equal variances: Fisher's classic ANOVA) to test the null hypothesis that the mean weight loss is the same for all the diet groups.
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## One-way ANOVA test
 
 ::: panel-tabset
@@ -254,7 +254,7 @@ gt_sum4
 
 A significant one-way ANOVA is generally followed up by post-hoc tests to perform multiple pairwise comparisons between groups:
 
-::: {#exercise-joins .callout-tip}
+::: callout-tip
 ## Post-hoc tests
 
 ::: panel-tabset
@@ -276,7 +276,6 @@ The output contains the following columns of interest:
 -   conf.low, conf.high: the lower and the upper end point of the confidence interval at 95% (default)
 -   p.adj: p-value after adjustment for the multiple comparisons.
 
-
 ```{r}
 multi.group <- dataDWL %>%
   dabest(Diet, WeightLoss, 
@@ -288,8 +287,6 @@ multi.group.mean_diff <- multi.group %>% mean_diff()
 
 plot(multi.group.mean_diff)
 ```
-
-
 
 ## Bonferroni
 

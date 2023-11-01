@@ -393,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">32.1</span> Research question</a></li>
   <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">32.2</span> Packages we need</a></li>
-  <li><a href="#preraring-the-data" id="toc-preraring-the-data" class="nav-link" data-scroll-target="#preraring-the-data"><span class="header-section-number">32.3</span> Preraring the data</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">32.3</span> Preparing the data</a></li>
   <li>
 <a href="#the-kaplanmeier-product-limit-estimator" id="toc-the-kaplanmeier-product-limit-estimator" class="nav-link" data-scroll-target="#the-kaplanmeier-product-limit-estimator"><span class="header-section-number">32.4</span> The Kaplan–Meier Product Limit Estimator</a>
   <ul class="collapse">
@@ -476,8 +476,8 @@ Learning objectives
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="preraring-the-data" class="level2" data-number="32.3"><h2 data-number="32.3" class="anchored" data-anchor-id="preraring-the-data">
-<span class="header-section-number">32.3</span> Preraring the data</h2>
+</section><section id="preparing-the-data" class="level2" data-number="32.3"><h2 data-number="32.3" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">32.3</span> Preparing the data</h2>
 <p>In a clinical trial, the patients are monitored for the occurrence of a particular event or outcome. In preparing Kaplan-Meier survival analysis that compares different treatments, three variables should be recorded for each patient: (a) the <strong>time</strong> that is the duration between the beginning of the treatment and the end-point (event of interest or censoring), (b) the <strong>status</strong> at the end of the survival time (event occurrence or censored data), and (c) the <strong>study group</strong> such as treatment versus control intervention.</p>
 <p>We import the data <em>“leukemia”</em> in R:</p>
 <div class="cell">
@@ -486,8 +486,8 @@ Learning objectives
 </div>
 <div class="cell">
 <div id="fig-depression" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4a245023028543a69eee" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4a245023028543a69eee">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42"],[6,6,6,6,7,9,10,10,11,13,16,17,19,20,22,23,25,32,32,34,35,1,1,2,2,3,4,4,5,5,8,8,8,9,11,11,12,12,15,17,22,23],[0,1,1,1,1,0,0,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1],["therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time<\/th>\n      <th>status<\/th>\n      <th>intervention<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;32.1: Table with data from “leukemia” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-948e492acea1a9c05df4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-948e492acea1a9c05df4">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42"],[6,6,6,6,7,9,10,10,11,13,16,17,19,20,22,23,25,32,32,34,35,1,1,2,2,3,4,4,5,5,8,8,8,9,11,11,12,12,15,17,22,23],[0,1,1,1,1,0,0,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1],["therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time<\/th>\n      <th>status<\/th>\n      <th>intervention<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;32.1: Table with data from “leukemia” file.</figcaption></figure>
 </div>
 </div>
 <p>The dataset has 42 observations (rows) and includes three variables (columns).</p>
@@ -591,23 +591,23 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 <span>            locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="va">n.risk</span>, rows <span class="op">=</span> <span class="va">n.risk</span> <span class="op">==</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-tb1" class="anchored">
-<div id="kgrjxudzjc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kgrjxudzjc table {
+<div id="xrxlxtykoz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xrxlxtykoz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kgrjxudzjc thead, #kgrjxudzjc tbody, #kgrjxudzjc tfoot, #kgrjxudzjc tr, #kgrjxudzjc td, #kgrjxudzjc th {
+#xrxlxtykoz thead, #xrxlxtykoz tbody, #xrxlxtykoz tfoot, #xrxlxtykoz tr, #xrxlxtykoz td, #xrxlxtykoz th {
   border-style: none;
 }
 
-#kgrjxudzjc p {
+#xrxlxtykoz p {
   margin: 0;
   padding: 0;
 }
 
-#kgrjxudzjc .gt_table {
+#xrxlxtykoz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -633,12 +633,12 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-left-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_caption {
+#xrxlxtykoz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kgrjxudzjc .gt_title {
+#xrxlxtykoz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -650,7 +650,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-width: 0;
 }
 
-#kgrjxudzjc .gt_subtitle {
+#xrxlxtykoz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -662,7 +662,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-top-width: 0;
 }
 
-#kgrjxudzjc .gt_heading {
+#xrxlxtykoz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -674,13 +674,13 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_bottom_border {
+#xrxlxtykoz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_col_headings {
+#xrxlxtykoz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -695,7 +695,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_col_heading {
+#xrxlxtykoz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -715,7 +715,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   overflow-x: hidden;
 }
 
-#kgrjxudzjc .gt_column_spanner_outer {
+#xrxlxtykoz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -727,15 +727,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 4px;
 }
 
-#kgrjxudzjc .gt_column_spanner_outer:first-child {
+#xrxlxtykoz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kgrjxudzjc .gt_column_spanner_outer:last-child {
+#xrxlxtykoz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kgrjxudzjc .gt_column_spanner {
+#xrxlxtykoz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -747,11 +747,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   width: 100%;
 }
 
-#kgrjxudzjc .gt_spanner_row {
+#xrxlxtykoz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kgrjxudzjc .gt_group_heading {
+#xrxlxtykoz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -777,7 +777,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   text-align: left;
 }
 
-#kgrjxudzjc .gt_empty_group_heading {
+#xrxlxtykoz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -792,15 +792,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   vertical-align: middle;
 }
 
-#kgrjxudzjc .gt_from_md > :first-child {
+#xrxlxtykoz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kgrjxudzjc .gt_from_md > :last-child {
+#xrxlxtykoz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kgrjxudzjc .gt_row {
+#xrxlxtykoz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,7 +819,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   overflow-x: hidden;
 }
 
-#kgrjxudzjc .gt_stub {
+#xrxlxtykoz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -832,7 +832,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#kgrjxudzjc .gt_stub_row_group {
+#xrxlxtykoz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -846,15 +846,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   vertical-align: top;
 }
 
-#kgrjxudzjc .gt_row_group_first td {
+#xrxlxtykoz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kgrjxudzjc .gt_row_group_first th {
+#xrxlxtykoz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kgrjxudzjc .gt_summary_row {
+#xrxlxtykoz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -864,16 +864,16 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#kgrjxudzjc .gt_first_summary_row {
+#xrxlxtykoz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_first_summary_row.thick {
+#xrxlxtykoz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kgrjxudzjc .gt_last_summary_row {
+#xrxlxtykoz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -883,7 +883,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_grand_summary_row {
+#xrxlxtykoz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -893,7 +893,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#kgrjxudzjc .gt_first_grand_summary_row {
+#xrxlxtykoz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -903,7 +903,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-top-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_last_grand_summary_row_top {
+#xrxlxtykoz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -913,11 +913,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_striped {
+#xrxlxtykoz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kgrjxudzjc .gt_table_body {
+#xrxlxtykoz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -926,7 +926,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_footnotes {
+#xrxlxtykoz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -940,7 +940,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_footnote {
+#xrxlxtykoz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -949,7 +949,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#kgrjxudzjc .gt_sourcenotes {
+#xrxlxtykoz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -963,7 +963,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#kgrjxudzjc .gt_sourcenote {
+#xrxlxtykoz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -971,63 +971,63 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#kgrjxudzjc .gt_left {
+#xrxlxtykoz .gt_left {
   text-align: left;
 }
 
-#kgrjxudzjc .gt_center {
+#xrxlxtykoz .gt_center {
   text-align: center;
 }
 
-#kgrjxudzjc .gt_right {
+#xrxlxtykoz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kgrjxudzjc .gt_font_normal {
+#xrxlxtykoz .gt_font_normal {
   font-weight: normal;
 }
 
-#kgrjxudzjc .gt_font_bold {
+#xrxlxtykoz .gt_font_bold {
   font-weight: bold;
 }
 
-#kgrjxudzjc .gt_font_italic {
+#xrxlxtykoz .gt_font_italic {
   font-style: italic;
 }
 
-#kgrjxudzjc .gt_super {
+#xrxlxtykoz .gt_super {
   font-size: 65%;
 }
 
-#kgrjxudzjc .gt_footnote_marks {
+#xrxlxtykoz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kgrjxudzjc .gt_asterisk {
+#xrxlxtykoz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kgrjxudzjc .gt_indent_1 {
+#xrxlxtykoz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kgrjxudzjc .gt_indent_2 {
+#xrxlxtykoz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kgrjxudzjc .gt_indent_3 {
+#xrxlxtykoz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kgrjxudzjc .gt_indent_4 {
+#xrxlxtykoz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kgrjxudzjc .gt_indent_5 {
+#xrxlxtykoz .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1214,23 +1214,23 @@ Important
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-tb2" class="anchored">
-<div id="ipwziwvewp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ipwziwvewp table {
+<div id="fvimkdsvlj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fvimkdsvlj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ipwziwvewp thead, #ipwziwvewp tbody, #ipwziwvewp tfoot, #ipwziwvewp tr, #ipwziwvewp td, #ipwziwvewp th {
+#fvimkdsvlj thead, #fvimkdsvlj tbody, #fvimkdsvlj tfoot, #fvimkdsvlj tr, #fvimkdsvlj td, #fvimkdsvlj th {
   border-style: none;
 }
 
-#ipwziwvewp p {
+#fvimkdsvlj p {
   margin: 0;
   padding: 0;
 }
 
-#ipwziwvewp .gt_table {
+#fvimkdsvlj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1256,12 +1256,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_caption {
+#fvimkdsvlj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ipwziwvewp .gt_title {
+#fvimkdsvlj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1273,7 +1273,7 @@ Important
   border-bottom-width: 0;
 }
 
-#ipwziwvewp .gt_subtitle {
+#fvimkdsvlj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1285,7 +1285,7 @@ Important
   border-top-width: 0;
 }
 
-#ipwziwvewp .gt_heading {
+#fvimkdsvlj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1297,13 +1297,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_bottom_border {
+#fvimkdsvlj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_col_headings {
+#fvimkdsvlj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1318,7 +1318,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_col_heading {
+#fvimkdsvlj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1338,7 +1338,7 @@ Important
   overflow-x: hidden;
 }
 
-#ipwziwvewp .gt_column_spanner_outer {
+#fvimkdsvlj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1350,15 +1350,15 @@ Important
   padding-right: 4px;
 }
 
-#ipwziwvewp .gt_column_spanner_outer:first-child {
+#fvimkdsvlj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ipwziwvewp .gt_column_spanner_outer:last-child {
+#fvimkdsvlj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ipwziwvewp .gt_column_spanner {
+#fvimkdsvlj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1370,11 +1370,11 @@ Important
   width: 100%;
 }
 
-#ipwziwvewp .gt_spanner_row {
+#fvimkdsvlj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ipwziwvewp .gt_group_heading {
+#fvimkdsvlj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1400,7 +1400,7 @@ Important
   text-align: left;
 }
 
-#ipwziwvewp .gt_empty_group_heading {
+#fvimkdsvlj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1415,15 +1415,15 @@ Important
   vertical-align: middle;
 }
 
-#ipwziwvewp .gt_from_md > :first-child {
+#fvimkdsvlj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ipwziwvewp .gt_from_md > :last-child {
+#fvimkdsvlj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ipwziwvewp .gt_row {
+#fvimkdsvlj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1442,7 +1442,7 @@ Important
   overflow-x: hidden;
 }
 
-#ipwziwvewp .gt_stub {
+#fvimkdsvlj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1455,7 +1455,7 @@ Important
   padding-right: 5px;
 }
 
-#ipwziwvewp .gt_stub_row_group {
+#fvimkdsvlj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1469,15 +1469,15 @@ Important
   vertical-align: top;
 }
 
-#ipwziwvewp .gt_row_group_first td {
+#fvimkdsvlj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ipwziwvewp .gt_row_group_first th {
+#fvimkdsvlj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ipwziwvewp .gt_summary_row {
+#fvimkdsvlj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1487,16 +1487,16 @@ Important
   padding-right: 5px;
 }
 
-#ipwziwvewp .gt_first_summary_row {
+#fvimkdsvlj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_first_summary_row.thick {
+#fvimkdsvlj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ipwziwvewp .gt_last_summary_row {
+#fvimkdsvlj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1506,7 +1506,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_grand_summary_row {
+#fvimkdsvlj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1516,7 +1516,7 @@ Important
   padding-right: 5px;
 }
 
-#ipwziwvewp .gt_first_grand_summary_row {
+#fvimkdsvlj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1526,7 +1526,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_last_grand_summary_row_top {
+#fvimkdsvlj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1536,11 +1536,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_striped {
+#fvimkdsvlj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ipwziwvewp .gt_table_body {
+#fvimkdsvlj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1549,7 +1549,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_footnotes {
+#fvimkdsvlj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1563,7 +1563,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_footnote {
+#fvimkdsvlj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1572,7 +1572,7 @@ Important
   padding-right: 5px;
 }
 
-#ipwziwvewp .gt_sourcenotes {
+#fvimkdsvlj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1586,7 +1586,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ipwziwvewp .gt_sourcenote {
+#fvimkdsvlj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1594,63 +1594,63 @@ Important
   padding-right: 5px;
 }
 
-#ipwziwvewp .gt_left {
+#fvimkdsvlj .gt_left {
   text-align: left;
 }
 
-#ipwziwvewp .gt_center {
+#fvimkdsvlj .gt_center {
   text-align: center;
 }
 
-#ipwziwvewp .gt_right {
+#fvimkdsvlj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ipwziwvewp .gt_font_normal {
+#fvimkdsvlj .gt_font_normal {
   font-weight: normal;
 }
 
-#ipwziwvewp .gt_font_bold {
+#fvimkdsvlj .gt_font_bold {
   font-weight: bold;
 }
 
-#ipwziwvewp .gt_font_italic {
+#fvimkdsvlj .gt_font_italic {
   font-style: italic;
 }
 
-#ipwziwvewp .gt_super {
+#fvimkdsvlj .gt_super {
   font-size: 65%;
 }
 
-#ipwziwvewp .gt_footnote_marks {
+#fvimkdsvlj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ipwziwvewp .gt_asterisk {
+#fvimkdsvlj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ipwziwvewp .gt_indent_1 {
+#fvimkdsvlj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ipwziwvewp .gt_indent_2 {
+#fvimkdsvlj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ipwziwvewp .gt_indent_3 {
+#fvimkdsvlj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ipwziwvewp .gt_indent_4 {
+#fvimkdsvlj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ipwziwvewp .gt_indent_5 {
+#fvimkdsvlj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

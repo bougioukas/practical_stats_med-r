@@ -45,7 +45,7 @@ library(tidyverse)
 library(report)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *weight* in R:
 
@@ -228,7 +228,7 @@ t <- mean_dif / st_error
 t
 ```
 
-The corresponding probability for this value can be calculated as the cumulative probability P(T \≤ t) for n-1 degrees of freedom. Then, the **p-value** is 2\*P(T \≤ t) because we are doing a two-tailed test.
+The corresponding probability for this value can be calculated as the cumulative probability P(T ≤ t) for n-1 degrees of freedom. Then, the **p-value** is 2\*P(T ≤ t) because we are doing a two-tailed test.
 
 ```{r}
 P <- pt(t, df = 24)

@@ -41,7 +41,7 @@ library(here)
 library(tidyverse)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *eyes* in R:
 

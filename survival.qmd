@@ -50,7 +50,7 @@ library(here)
 library(tidyverse)
 ```
 
-## Preraring the data
+## Preparing the data
 
 In a clinical trial, the patients are monitored for the occurrence of a particular event or outcome. In preparing Kaplan-Meier survival analysis that compares different treatments, three variables should be recorded for each patient: (a) the **time** that is the duration between the beginning of the treatment and the end-point (event of interest or censoring), (b) the **status** at the end of the survival time (event occurrence or censored data), and (c) the **study group** such as treatment versus control intervention.
 

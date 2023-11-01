@@ -428,7 +428,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#publication-quality-figure" id="toc-publication-quality-figure" class="nav-link" data-scroll-target="#publication-quality-figure">Publication Quality Figure</a></li>
   </ul>
 </li>
-  <li><a href="#ggplot-extensions" id="toc-ggplot-extensions" class="nav-link" data-scroll-target="#ggplot-extensions"><span class="header-section-number">11.9</span> ggplot extensions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -1351,8 +1350,8 @@ Syntax of the <code>theme()</code> function
 <p>If we take a look at the code for <code>theme_fivethirtyeight</code> (we just run <code>theme_fivethirtyeight</code> in our console to see the code), we’ll observe that <code>axis.title</code> is set to <code>element_blank()</code>. So this theme has no axis titles by default. We’ll need to change this if we want to set X and Y axis titles. You can turn them back on with theme(axis.title = element_text()) you need to change some of the theme settings that are the defaults in theme_fivethirtyeight.</p>
 </section><section id="publication-quality-figure" class="level3"><h3 class="anchored" data-anchor-id="publication-quality-figure">Publication Quality Figure</h3>
 <p>More customization of plot</p>
-<div class="cell" data-layout-align="center" data-source-line-numbers="8,16-20">
-<div class="sourceCode" id="cb36" data-source-line-numbers="8,16-20" data-code-line-numbers="8,16-20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="cell" data-layout-align="center" data-source-line-numbers="2,3,8,16-20">
+<div class="sourceCode" id="cb36" data-source-line-numbers="2,3,8,16-20" data-code-line-numbers="2,3,8,16-20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_smooth</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span>, color <span class="op">=</span> <span class="va">region</span><span class="op">)</span>, shape <span class="op">=</span> <span class="fl">1</span>, stroke <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, </span>
@@ -1379,11 +1378,38 @@ Syntax of the <code>theme()</code> function
 </div>
 </div>
 </div>
-</section></section><section id="ggplot-extensions" class="level2" data-number="11.9"><h2 data-number="11.9" class="anchored" data-anchor-id="ggplot-extensions">
-<span class="header-section-number">11.9</span> ggplot extensions</h2>
+<div class="cell" data-layout-align="center" data-source-line-numbers="2,7">
+<div class="sourceCode" id="cb37" data-source-line-numbers="2,7" data-code-line-numbers="2,7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span>, color <span class="op">=</span> <span class="va">region</span><span class="op">)</span>, shape <span class="op">=</span> <span class="fl">1</span>, stroke <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, </span>
+<span>                  min.segment.length <span class="op">=</span> <span class="fl">0</span>, seed <span class="op">=</span> <span class="fl">42</span>, </span>
+<span>                  box.padding <span class="op">=</span> <span class="fl">0.1</span>, color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_jco</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GDP per capita ($) (log scale)"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Cases per 100,000 inhabitants (log scale)"</span>,</span>
+<span>       color <span class="op">=</span> <span class="st">"Region"</span>,</span>
+<span>       size <span class="op">=</span> <span class="st">"Proportion tested"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Confirmed cases per 100,000 inhabitants, GDP per capita, and COVID-19 testing rate by country"</span>, </span>
+<span>       subtitle <span class="op">=</span> <span class="st">"May 20, 2021"</span>, </span>
+<span>       caption <span class="op">=</span> <span class="st">"Source Data: Covid-19 related data Jonhs Hopkins University"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_fivethirtyeight</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">17</span><span class="op">)</span>,</span>
+<span>        axis.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,</span>
+<span>        legend.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">guides</span><span class="op">(</span>color <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ggthemes3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-ggthemes3-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption class="figure-caption">Figure&nbsp;11.28: fgdfgdfg.</figcaption></figure>
+</div>
+</div>
+</div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

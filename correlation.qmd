@@ -55,7 +55,7 @@ library(gt)
 library(report)
 ```
 
-## Preraring the data
+## Preparing the data
 
 We import the data *BirthWeight* in R:
 
