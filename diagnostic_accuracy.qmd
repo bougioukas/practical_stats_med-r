@@ -8,15 +8,18 @@ library(fontawesome)
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Evaluate a diagnostic test with dichotomous test result
+-   Calculate the post-test probability using the Bayes's theorem
 -   Interpret the results
 :::
 
-## Research question
+## Research questions
 
-To estimate the diagnostic accuracy of digital mammography (index test) in the detection of breast cancer, using histopathology as a "gold standard" in women aged over 40 years, who are undergoing mammography for the evaluation of different symptoms related to breast diseases.
+-   To estimate the diagnostic accuracy of digital mammography (index test) in the detection of breast cancer, using histopathology as a "gold standard" in women aged over 40 years, who are undergoing mammography for the evaluation of different symptoms related to breast diseases.
+
+-   To estimate the post-test probability of breast cancer when the digital mammography is positive or negative given a pre-test probability.
 
 ## Packages we need
 
@@ -28,6 +31,8 @@ We need to load the following packages:
 
 library(ggmosaic)
 library(epiR)
+library(TeachingDemos)
+library(scales)
 
 library(here)
 library(tidyverse)
@@ -63,9 +68,9 @@ TN = true negative; test negative and disease absent (Test- ∩ Outcome-)
 ::: content-box-green
 **Basic Diagnostic Accuracy Measures**
 
-The **Sensitivity (Sn)** of a diagnostic test refers to the ability of the test to correctly identify those individuals with the disease. It is defined as the proportion of true positive test results among individuals who have the disease.
+The **Sensitivity (Se)** of a diagnostic test refers to the ability of the test to correctly identify those individuals with the disease. It is defined as the proportion of true positive test results among individuals who have the disease.
 
-Sn = $\frac{TP}{TP+FN}=\frac{890}{910}=0.978$ or $97.8\%$
+Se = $\frac{TP}{TP+FN}=\frac{890}{910}=0.978$ or $97.8\%$
 
 The **Specificity (Sp)** of a diagnostic test refers to the ability of the test to correctly identify those patients without the disease. It is defined as the proportion of true negative test results among individuals who do not have the disease.
 
@@ -99,13 +104,13 @@ Apparent prevalence = $\frac{TP + FP}{N}=\frac{1000}{1220}=0.820$ or $82.0\%$
 
 True prevalence = $\frac{TP + FN}{N}=\frac{910}{1220}=0.746$ or $74.6\%$
 
-The **Likelihood ratio for a positive test result (LR+)** is the probability of an individual who has the disease testing positive divided by the probability of an individual who does not have the disease testing positive. It is calculated as sensitivity divided by 1 minus the specificity value.
+The **Likelihood ratio for a positive test result (LR+)** is the likelihood (probability) of an individual who has the disease testing positive divided by the likelihood (probability) of an individual who does not have the disease testing positive. It is calculated as sensitivity divided by 1 minus the specificity value.
 
-LR+ = $\frac{Sn}{1-Sp}=\frac{0.978}{1-0.645}=\frac{0.978}{0.355}= 2.755$
+LR+ = $\frac{Se}{1-Sp}=\frac{0.978}{1-0.645}=\frac{0.978}{0.355}= 2.755$
 
-The **Likelihood ratio for a negative test result (LR-)** is the probability of an individual who has the disease testing negative divided by the probability of an individual who does not have the disease testing negative. It is calculated as 1 minus the sensitivity  divided by specificity value.
+The **Likelihood ratio for a negative test result (LR-)** is the probability of an individual who has the disease testing negative divided by the probability of an individual who does not have the disease testing negative. It is calculated as 1 minus the sensitivity divided by specificity value.
 
-LR- = $\frac{1-Sn}{Sp}=\frac{1-0.978}{0.645}=\frac{0.022}{0.645}= 0.034$
+LR- = $\frac{1-Se}{Sp}=\frac{1-0.978}{0.645}=\frac{0.022}{0.645}= 0.034$
 
 **Diagnostic accuracy** (effectiveness), expressed as a proportion of correctly classified subjects (TP+TN) among all subjects (N). Diagnostic accuracy is affected by the disease prevalence.
 
@@ -165,3 +170,123 @@ p + geom_label(data = df2,
 ```{r}
 epi.tests(tb1, digits = 3)
 ```
+
+## Likelihood ratios in practice
+
+### Interpretation of LRs
+
+Likelihood ratio (LR), along with sensitivity and specificity, can be considered properties of the test itself that do not change with the prevalence of disease.
+
+In our example, LR+ = 2.756, meaning a positive result in digital mammography is approximately 2.8 times more likely to be a true positive test than a false positive test.
+
+Similarly, LR- = 0.034, meaning a negative result in digital mammography is approximately 0.034 times more likely to be a false negative test than a true negative test. This can also be interpreted as: A woman without breast cancer is about 29.4 (= 1/0.034) times more likely to have a negative digital mammography test than a woman with breast cancer.
+
+::: content-box-green
+In clinical practice, a higher LR+ is desirable for tests used to "rule in" a diagnosis, while a lower LR- is preferred for tests used to "rule out" a diagnosis.
+:::
+
+### Application of LRs (revising the probability of disease)
+
+The LR is commonly used in decision-making based on Bayes' Theorem ([Chapter -@sec-probability]). The pre-test odds of a particular diagnosis, multiplied by the likelihood ratio of the diagnostic test, determines the post-test odds.
+
+::: content-box-green
+$post \text{-} test \ odds = likelihood \ ratio \times pre \text{-} test \ odds$
+:::
+
+These post-test odds provides an updated estimate of the odds that the patient has the condition or disease after taking into account the diagnostic test result. If the test result is positive, we use the LR+ for this calculation. If the test result is negative, we use the LR- instead. In both scenarios, the odds refer to the odds in favor of the disease **being present**.
+
+#### `r fa("arrow-right", fill = "orange")`   Example: LR+
+
+::: content-box-blue
+LR+ tells us how much the odds of the condition or disease being present increase given a positive test result.
+
+-   LR+ greater than 1: Increases the post-test odds.
+
+-   LR+ of 1: No change in the post-test odds (post-test odds equals pre-test odds).
+:::
+
+Now, let's suppose that, based on family history of breast cancer and clinical symptoms, a woman has 0.78 probability for breast cancer (pre-test probability).
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+Pre-test probability refers to the probability that a patient has the disease before the result of the diagnostic test is known. This probability can be derived either from clinician experience or research evidence (e.g., disease prevalence and clinical prediction rules); for a single patient, or for groups of patients [@uy2022].
+:::
+
+We are interested in the the **post-test probability** of breast cancer when the digital mammography is **positive**. It is important to note that "odds" and "probability" are not the same; however, they can be derived from each other as follows:
+
+$pre \text{-} test \ odds = \frac{pre \text{-} test \ probability}{1 - pre \text{-} test \ probability} = \frac{0.78}{1-0.78} = \frac{0.78}{0.22} = 3.55$
+
+$post \text{-} test \ odds = LR\text{+} \times pre \text{-} test \ odds = 2.756 \times 3.55 = 9.78$
+
+$post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{9.78}{9.78 + 1} = \frac{9.78}{10.78} = 0.9072 \ or \ 90.72\%$
+
+The Fagan nomogram allows us to turn pre-test probabilities into post-test probabilities without needing to convert into odds. The nomogram typically consists of three parallel scales representing the pre-test probability, the likelihood ratio, and the post-test probability. We can visually estimate the post-test probability of a positive diagnosis result by drawing a line from the known pre-test probability, through the LR+ and read off the post-test probability.
+
+**In R:**
+
+```{r}
+#| warning: false
+#| message: false
+#| label: fig-nomogram1
+#| fig-cap: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a positive test result for digital mammography with LR+ of 2.76, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient's post-test probability.
+#| fig-width: 7.0
+#| fig-height: 7.5
+
+fagan.plot(probs.pre.test = 0.78, LR = 2.756)
+```
+
+#### `r fa("arrow-right", fill = "orange")`   Example: LR-
+
+::: content-box-blue
+LR- tells us how much the odds of the condition or disease being present decrease given a negative test result.
+
+-   LR- less than 1: Decreases the post-test odds.
+
+-   LR- of 1: No change in the probability (post-test odds equals pre-test odds).
+:::
+
+What is the the post-test probability of breast cancer for the same population when the digital mammography is **negative**?
+
+$post \text{-} test \ odds = LR\text{-} \times pre \text{-} test \ odds = 0.034 \times 3.55 = 0.1207$
+
+$post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{0.1207}{0.1207 + 1} = \frac{0.1207}{1.1207} = 0.1077 \ or \ 10.77\%$
+
+```{r}
+#| warning: false
+#| message: false
+#| label: fig-nomogram2
+#| fig-cap: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a negative test result for digital mammography with LR- of 0.034, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient's post-test probability.
+#| fig-width: 7.0
+#| fig-height: 8.5
+
+fagan.plot(probs.pre.test = 0.78, LR = 0.034)
+```
+
+
+We can also use the `nomogrammer` function, which allows us to plot Fagan's nomgrams with `{ggplot2}`:
+
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| message: false
+#| label: fig-slope
+#| fig-cap: sdfdsfd.
+#| fig-width: 7.0
+#| fig-height: 8.5
+
+# nomogrammer is a standalone function from the below repository 
+
+source("https://raw.githubusercontent.com/achekroud/nomogrammer/master/nomogrammer.r")
+
+
+nomogrammer(Prevalence = 0.78,
+            Plr = 2.755,
+            Nlr = 0.034,
+            Detail = TRUE,
+            NullLine = TRUE)
+```
+
+The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.

@@ -165,7 +165,7 @@ First, we plot the data in a scatter plot:
 ggplot(BirthWeight, aes(height, weight)) +
   geom_point(size = 2, alpha = 0.4) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
-  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+  labs(x = "x = Height (cm)", y = "y = Weight (g)")
 ```
 
 In @fig-scat, the points are scattered around an invisible line. The objective is to find a mathematical approach that yields a line that, on average, goes through most of the points on the graph. This line is commonly known as a regression line or a line of best fit (blue line in @fig-linear_model). We write the equation of the best-fitting line as:
@@ -219,7 +219,7 @@ ggplot(dat, aes(x, y)) +
   geom_vline(xintercept = breaks, lty = 2) +
   scale_x_continuous(breaks = breaks) + 
   annotate("text", x = 60.2, y = 5100, label = bquote(widehat(y) == b[0] + b[1] * x), color = "blue", angle = 25.7, size = 5) +
-  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+  labs(x = "x = Height (cm)", y = "y = Weight (g)")
 ```
 
  
@@ -313,20 +313,24 @@ Residuals can be thought of as "noise" - they are fluctuations caused by various
 
 ## Ordinary least squares (OLS) estimation of $b_0$ and $b_1$ in matrix form
 
-Let's describe the underlying association between $y_i$ and $x_i$ by:
+Let's describe for the $i^{th}$ observation the underlying association between $y_i$ and $x_i$ by:
 
 $$y_i = b_0  + b_1 \cdot x_i + e_i$$ {#eq-line1.5}
 
 where the $e_i$ is the error term, called **residual**, which represents the deviation between the observed value $y_i$ and the expected value $\hat y$ of the linear model ($e_i = y_i - \hat y_i$).
 
-In a matrix notation, the outcome $Y$ is modeled by:
 
-$$Y = X\hat{B} + e$$ {#eq-mtrx1}
-
-Specifically, given $n$ observations of the explanatory variable X and the outcome variable Y, the @eq-mtrx1 becomes:
+In a matrix notation, given $n$ observations of the explanatory variable **x** and the outcome variable **y**, the @eq-line1.5 becomes:
 
 $$\begin{bmatrix} y_1\\ y_2 \\ y_3 \\ ... \\ y_n \end{bmatrix} = \begin{bmatrix} 1 & x_1\\ 1 & x_2\\ 1 & x_3\\ ... \\ 1 & x_n
 \end{bmatrix} \bullet \begin{bmatrix} b_0\\ b_1\end{bmatrix} + \begin{bmatrix} e_1\\ e_2 \\ e_3 \\ ... \\ e_n \end{bmatrix}$$ {#eq-mtrx2}
+
+
+Then the outcome **y** can be compactly modeled by:
+
+$$Y = X\hat{B} + e$$ {#eq-mtrx1}
+
+where the matrix **X** is called the **design matrix** (the first column contains 1s, and the second column contains the actual observations of x).
 
 The coefficients $b_0$ and $b_1$ are selected by **minimizing** the sum of squares of the residuals $e$. It can be proven that the least squares estimates are obtained by the following matrix formula:
 
@@ -380,7 +384,7 @@ ggplot(BirthWeight, aes(x = height, y = weight)) +
   geom_vline(xintercept = 0, color = "black", linetype = "solid") +
   annotate("text", x = 19.0, y = -1000, label = bquote(paste (widehat(weight), "= -5412.14 + 178.31*height")), color = "blue", angle = 32, size = 5) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
-  labs(x = "X = Height (cm)", y = "Y = Weight (g)")
+  labs(x = "x = Height (cm)", y = "y = Weight (g)")
 ```
 
 ::: {.callout-tip icon="false"}
@@ -406,7 +410,7 @@ ggplot(BirthWeight, aes(x = height, y = weight)) +
   geom_point(alpha = 0.3) +
   geom_smooth(method = "lm", se = FALSE, color = "blue", fullrange = TRUE) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
-  labs(x = "X = Height (cm)", y = "Y = Weight (g)") +
+  labs(x = "x = Height (cm)", y = "y = Weight (g)") +
   geom_segment(
     x = 56, y = 4560,
     xend = 60, yend = 4560,
@@ -663,7 +667,7 @@ Variations or different versions of the statistical tests may have different res
 ### Linearity of the data
 
 ::: content-box-yellow
-Linear association between the independent variable X and the dependent variable (outcome) Y.
+Linear association between the independent variable x and the dependent variable (outcome) y.
 :::
 
 #### `r fa("arrow-right", fill = "orange")`   Plot: Residuals vs Fitted values

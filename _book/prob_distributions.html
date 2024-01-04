@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.322">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 15&nbsp; Probability Distributions</title>
+<title>Practical Statistics in Medicine with R - 14&nbsp; Probability Distributions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./prob_distributions.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./prob_distributions.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -223,31 +223,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability theory, Statistics and Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_distributions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,10 +386,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link active" data-scroll-target="#packages-we-need"><span class="header-section-number">15.1</span> Packages we need</a></li>
-  <li><a href="#random-variables-and-probability-distributions" id="toc-random-variables-and-probability-distributions" class="nav-link" data-scroll-target="#random-variables-and-probability-distributions"><span class="header-section-number">15.2</span> Random variables and Probability Distributions</a></li>
+<li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link active" data-scroll-target="#packages-we-need"><span class="header-section-number">14.1</span> Packages we need</a></li>
+  <li><a href="#random-variables-and-probability-distributions" id="toc-random-variables-and-probability-distributions" class="nav-link" data-scroll-target="#random-variables-and-probability-distributions"><span class="header-section-number">14.2</span> Random variables and Probability Distributions</a></li>
   <li>
-<a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">15.3</span> Discrete Probability Distributions</a>
+<a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">14.3</span> Discrete Probability Distributions</a>
   <ul class="collapse">
 <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution">Bernoulli distribution</a></li>
   <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution">Binomial distribution</a></li>
@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
-<a href="#probability-distributions-for-continuous-outcomes" id="toc-probability-distributions-for-continuous-outcomes" class="nav-link" data-scroll-target="#probability-distributions-for-continuous-outcomes"><span class="header-section-number">15.4</span> Probability distributions for Continuous Outcomes</a>
+<a href="#probability-distributions-for-continuous-outcomes" id="toc-probability-distributions-for-continuous-outcomes" class="nav-link" data-scroll-target="#probability-distributions-for-continuous-outcomes"><span class="header-section-number">14.4</span> Probability distributions for Continuous Outcomes</a>
   <ul class="collapse">
 <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
   <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution">Standard Normal distribution</a></li>
@@ -407,8 +407,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./prob_distributions.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-prob_distributions" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./prob_distributions.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-prob_distributions" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></h1>
 </div>
 
 
@@ -438,22 +438,22 @@ Learning objectives
 </ul>
 </div>
 </div>
-<section id="packages-we-need" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">15.1</span> Packages we need</h2>
+<section id="packages-we-need" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">14.1</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># graphs</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre data-code-line-numbers=""><code>Warning: package 'ggplot2' was built under R version 4.3.1</code></pre>
+<pre data-code-line-numbers=""><code>Warning: package 'ggplot2' was built under R version 4.3.2</code></pre>
 </div>
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r.igraph.org/">igraph</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre data-code-line-numbers=""><code>Warning: package 'igraph' was built under R version 4.3.1</code></pre>
+<pre data-code-line-numbers=""><code>Warning: package 'igraph' was built under R version 4.3.2</code></pre>
 </div>
 </div>
-</section><section id="random-variables-and-probability-distributions" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="random-variables-and-probability-distributions">
-<span class="header-section-number">15.2</span> Random variables and Probability Distributions</h2>
+</section><section id="random-variables-and-probability-distributions" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="random-variables-and-probability-distributions">
+<span class="header-section-number">14.2</span> Random variables and Probability Distributions</h2>
 <p>A random variable assigns a numerical quantity to every possible outcome of a random phenomenon and may be:</p>
 <ul>
 <li>discrete if it takes either a finite number or an infinite sequence of possible values</li>
@@ -494,7 +494,7 @@ Learning objectives
 <p><br></p>
 <p>We can use the probability distribution to answer probability questions:</p>
 <p><strong>What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?</strong></p>
-<p>We know that individuals with blood type B or O can donate to a person with blood type B (<a href="#fig-bloodtypes" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>).</p>
+<p>We know that individuals with blood type B or O can donate to a person with blood type B (<a href="#fig-bloodtypes" class="quarto-xref">Figure&nbsp;<span>14.1</span></a>).</p>
 <div class="cell">
 <details><summary>Show the code</summary><div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data in a form of a matrix</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
@@ -510,7 +510,7 @@ Learning objectives
 </details><div class="cell-output-display">
 <div id="fig-bloodtypes" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-bloodtypes-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.1: Blood types matching for a safe transfusion.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.1: Blood types matching for a safe transfusion.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -518,31 +518,49 @@ Learning objectives
 <p><span class="math display">\[ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 0.55}\]</span></p>
 <p>Hence, there is a 55% chance that a randomly selected person in our population can donate blood to someone with type B blood.</p>
 <p>There are several types of probability distributions, and they can be broadly categorized into two main groups: <strong>discrete probability distributions</strong> and <strong>continuous probability distributions</strong>.</p>
-</section><section id="discrete-probability-distributions" class="level2 page-columns page-full" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="discrete-probability-distributions">
-<span class="header-section-number">15.3</span> Discrete Probability Distributions</h2>
+</section><section id="discrete-probability-distributions" class="level2 page-columns page-full" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="discrete-probability-distributions">
+<span class="header-section-number">14.3</span> Discrete Probability Distributions</h2>
 <p>The probability distribution of a discrete random variable X is defined by the <strong>probability mass function</strong> (pmf) as:</p>
-<p><span id="eq-pdfdiscrete"><span class="math display">\[  P(X = x) = P(x) \tag{15.1}\]</span></span></p>
+<p><span id="eq-pdfdiscrete"><span class="math display">\[  P(X = x) = P(x) \tag{14.1}\]</span></span></p>
 <p>where:</p>
 <p><span class="math inline">\(P(X = x)\)</span> is the probability that the random variable X takes the value x</p>
 <p><span class="math inline">\(P(x)\)</span> is the probability of the specific outcome x occurring.</p>
 <p>&nbsp;</p>
 <p>Additionally, the <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to x and is usually denoted as F(x):</p>
-<p><span id="eq-cdfdiscrete"><span class="math display">\[F(x) = P(X \le x)= \sum_{x_i\le x} P(x_i) \tag{15.2}\]</span></span></p>
-<p>where the sum takes place for all the values <span class="math inline">\(x_i,\ \ \ i = 0, 1, 2, ...\)</span>, which are <span class="math inline">\(x_i\le x\)</span>.</p>
+<p><span id="eq-cdfdiscrete"><span class="math display">\[F(x) = P(X \le x)= \sum_{x_i\le x} P(x_i) \tag{14.2}\]</span></span></p>
+<p>where the sum takes place for all the values <span class="math inline">\(x_1, x_2, \ldots, x_i\)</span>, which are <span class="math inline">\(x_i\le x\)</span>.</p>
 <p>&nbsp;</p>
+<p>When dealing with a random variable, it is common to calculate three important summary statistics: the expected value, variance and standard deviation.</p>
+<p><strong>Expected Value</strong></p>
+<div class="content-box-green">
+<p>The expected value, denoted as <strong>μ</strong> or <strong>E(X)</strong>, is defined as the weighted average of the values that X can take on, with each possible value being weighted by its respective probability, P(x).</p>
+<p><span class="math inline">\(\mu = E(X)= \sum\limits_i x_i \cdot P(x_i)\)</span></p>
+</div>
+<p><strong>Variance</strong></p>
+<div class="content-box-green">
+<p>We can also define the variance, denoted as <span class="math inline">\(\sigma^2\)</span>, which is a measure of the variability of the X.</p>
+<p><span class="math inline">\(\sigma^2=\text{Var}(X)= E[X - E(X)]^2 = E[(X - \mu)^2] = \sum\limits_i\ (x_i-\mu)^2 P(x_i)\)</span></p>
+<p>There is an easier form of this formula.</p>
+<p><span class="math inline">\(\sigma^2=\text{Var}(X)= E(X^2) - E(X)^2=\sum\limits_i x_i^2 P(x_i)-\mu^2\)</span></p>
+</div>
+<p><strong>Standard deviation</strong></p>
+<div class="content-box-green">
+<p>The standard deviation is the square root of the variance. It is often preferred over the variance because it is in the same units as the random variable.</p>
+<p><span class="math inline">\(\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}\)</span></p>
+</div>
 <section id="bernoulli-distribution" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="bernoulli-distribution">Bernoulli distribution</h3>
 <p>A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a <strong>Bernoulli trial</strong>.</p>
 <p>Let X be a binary random variable of a Bernoulli trial which takes the value 1 (success) with probability p and 0 (failure) with probability 1-p.&nbsp;The distribution of the X variable is called Bernoulli distribution with parameter p, denoted as <span class="math inline">\(X ∼ Bernoulli(p)\)</span>, where <span class="math inline">\({0\leq p\leq 1}\)</span>.</p>
 <ul>
 <li>The probability mass function (pmf) of X is given by:</li>
 </ul>
-<p><span id="eq-bernoulli1"><span class="math display">\[P(X=x)={\begin{cases}1-p,&amp;for\ x=0\\p,&amp;for\ x=1\end{cases}} \tag{15.3}\]</span></span></p>
-<p>which can also be written as: <span id="eq-bernoulli2"><span class="math display">\[P(X=x)=p^{x}(1-p)^{1-x}\quad {\text{for }}x\in \{0,1\} \tag{15.4}\]</span></span></p>
+<p><span id="eq-bernoulli1"><span class="math display">\[P(X=x)={\begin{cases}1-p,&amp;for\ x=0\\p,&amp;for\ x=1\end{cases}} \tag{14.3}\]</span></span></p>
+<p>which can also be written as: <span id="eq-bernoulli2"><span class="math display">\[P(X=x)=p^{x}(1-p)^{1-x}\quad {\text{for }}x\in \{0,1\} \tag{14.4}\]</span></span></p>
 <p>&nbsp;</p>
 <ul>
 <li>The cumulative distribution function (cdf) of X is given by:</li>
 </ul>
-<p><span id="eq-bernoulli3"><span class="math display">\[F(x) = P(X \le x)= {\begin{cases}0,&amp;for\ x &lt;0\\1-p,&amp;for\ 0\leq x &lt; 1\\1,&amp;for\ x \geq 1 \end{cases}} \tag{15.5}\]</span></span></p>
+<p><span id="eq-bernoulli3"><span class="math display">\[F(x) = P(X \le x)= {\begin{cases}0,&amp;for\ x &lt;0\\1-p,&amp;for\ 0\leq x &lt; 1\\1,&amp;for\ x \geq 1 \end{cases}} \tag{14.5}\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -557,15 +575,39 @@ Note
 </div>
 </div>
 <p>&nbsp;</p>
-<ul>
-<li>The mean of random variable, X, with Bernoulli(p) distribution is:</li>
-</ul>
+<p>The <strong>expected value</strong> of random variable, X, with Bernoulli(p) distribution is:</p>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> In this case, the mean can be interpreted as the proportion of the population who has the outcome (success).</span></div></div>
-<p><span id="eq-bernouli4"><span class="math display">\[μ = p \tag{15.6}\]</span></span></p>
-<p>the variance is:</p>
-<p><span id="eq-bernouli5"><span class="math display">\[ \sigma^2= p(1-p) \tag{15.7}\]</span></span></p>
+<p><span id="eq-bernouli4"><span class="math display">\[E(X) = μ = p \tag{14.6}\]</span></span></p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(E(X) = \sum_{i=1}^{2}x_iP(x_i) = 0 \cdot P(X=0) + 1 \cdot P(X=1) = p\)</span></p>
+</div>
+</div>
+<p>The <strong>variance</strong> is:</p>
+<p><span id="eq-bernouli5"><span class="math display">\[Var(X) = \sigma^2= p(1-p) \tag{14.7}\]</span></span></p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(Var(X) = \sum_{i=1}^{2}x_iP(x_i) - \mu^2= 0 \cdot P(X=0) + 1 \cdot P(X=1) - p^2= p (1-p)\)</span></p>
+</div>
+</div>
 <p>and the standard deviation is:</p>
-<p><span id="eq-bernouli6"><span class="math display">\[σ = \sqrt{p(1-p)} \tag{15.8}\]</span></span></p>
+<p><span id="eq-bernouli6"><span class="math display">\[ \sqrt{Var(X)} = σ = \sqrt{p(1-p)} \tag{14.8}\]</span></span></p>
 <p>&nbsp;</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let X be a random variable of the result of a surgical procedure, where X = 1 if the surgery was successful and X = 0 if it was unsuccessful. Suppose that the probability of success is p = 0.7. Then X has a Bernoulli distribution with parameter p = 0.7 :</p>
@@ -573,8 +615,8 @@ Note
 <ul>
 <li>The pmf for this distribution is:</li>
 </ul>
-<p><span id="eq-bernouli7"><span class="math display">\[P(X=x)={\begin{cases}0.3,&amp;for\ x=0\\0.7,&amp;for\ x=1\end{cases}} \tag{15.9}\]</span></span></p>
-<p>According to <a href="#eq-bernouli7" class="quarto-xref">Equation&nbsp;<span>15.9</span></a> we have:</p>
+<p><span id="eq-bernouli7"><span class="math display">\[P(X=x)={\begin{cases}0.3,&amp;for\ x=0\\0.7,&amp;for\ x=1\end{cases}} \tag{14.9}\]</span></span></p>
+<p>According to <a href="#eq-bernouli7" class="quarto-xref">Equation&nbsp;<span>14.9</span></a> we have:</p>
 <table class="table"><tbody>
 <tr class="odd">
 <td><strong>X</strong></td>
@@ -588,7 +630,7 @@ Note
 </tr>
 </tbody></table>
 <p>&nbsp;</p>
-<p>We can plot the pmf for visualizing the distribution of the two outcomes (<a href="#fig-bernpmf" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>).</p>
+<p>We can plot the pmf for visualizing the distribution of the two outcomes (<a href="#fig-bernpmf" class="quarto-xref">Figure&nbsp;<span>14.2</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
@@ -606,7 +648,7 @@ Note
 <div class="cell-output-display">
 <div id="fig-bernpmf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-bernpmf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.2: Plot of the pmf for Bernoulli(0.7) distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.2: Plot of the pmf for Bernoulli(0.7) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -630,7 +672,7 @@ Note
 <div class="cell-output-display">
 <div id="fig-berncdf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-berncdf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.3: Plot of the cdf for Bernoulli(0.7) distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.3: Plot of the cdf for Bernoulli(0.7) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -658,7 +700,7 @@ The binomial setting
 <ul>
 <li>The probability mass function (pmf) of X is given by:</li>
 </ul>
-<p><span id="eq-binom0"><span class="math display">\[ P(X=x) = {{n}\choose{x}} \cdot p^x \cdot (1-p)^{n-x} \tag{15.10}\]</span></span></p>
+<p><span id="eq-binom0"><span class="math display">\[ P(X=x) = {{n}\choose{x}} \cdot p^x \cdot (1-p)^{n-x} \tag{14.10}\]</span></span></p>
 <p>where x = 0, 1, … , n, <span class="math inline">\(\binom{n}{x} = \frac{n!}{x!(n-x)!}\)</span>, and <span class="math inline">\({0\leq p\leq 1}\)</span>.</p>
 <p>Note that: <span class="math inline">\(n! = 1\cdot 2 \cdot 3\cdot \ldots \cdot (n-2)\cdot (n-1)\cdot n\)</span></p>
 <p>&nbsp;</p>
@@ -666,25 +708,25 @@ The binomial setting
 <li>The cumulative distribution function (cdf) of X is given by:</li>
 </ul>
 <p><span id="eq-binom0.1"><span class="math display">\[F(x) = P(X \le x)=  {\begin{cases}0,&amp;for\ x &lt;0\\\sum_{k=0}^{x}{\left( \begin{array}{c} n \\ k \end{array}
-\right) p^{k}(1 - p)^{n-k}},&amp;for\ 0\leq x &lt; n\\1,&amp;for\ x \geq n \end{cases}} \tag{15.11}\]</span></span></p>
+\right) p^{k}(1 - p)^{n-k}},&amp;for\ 0\leq x &lt; n\\1,&amp;for\ x \geq n \end{cases}} \tag{14.11}\]</span></span></p>
 <p>&nbsp;</p>
 <ul>
 <li>The mean of random variable, X, with Binomial(n, p) distribution is:</li>
 </ul>
-<p><span id="eq-binom1"><span class="math display">\[μ = np \tag{15.12}\]</span></span></p>
+<p><span id="eq-binom1"><span class="math display">\[μ = np \tag{14.12}\]</span></span></p>
 <p>the variance is:</p>
-<p><span id="eq-binom2"><span class="math display">\[σ^2 = np(1-p) \tag{15.13}\]</span></span></p>
+<p><span id="eq-binom2"><span class="math display">\[σ^2 = np(1-p) \tag{14.13}\]</span></span></p>
 <p>and the standard deviation:</p>
-<p><span id="eq-binom3"><span class="math display">\[σ = \sqrt{np(1-p)} \tag{15.14}\]</span></span></p>
+<p><span id="eq-binom3"><span class="math display">\[σ = \sqrt{np(1-p)} \tag{14.14}\]</span></span></p>
 <p>&nbsp;</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let the random variable X be the number of successful surgical procedures and suppose that a new surgery is successful 70% of the time (p = 0.7). If the results of 10 surgeries are randomly sampled, the X has a Binomial distribution <span class="math inline">\(X ∼ Binomial(10, 0.7)\)</span>.</p>
 <ul>
 <li>So, the pmf for this distribution is:</li>
 </ul>
-<p><span id="eq-binom4"><span class="math display">\[ P(X=x) = {{10}\choose{x}} \cdot 0.7^x \cdot (1-0.7)^{10-x} \tag{15.15}\]</span></span></p>
+<p><span id="eq-binom4"><span class="math display">\[ P(X=x) = {{10}\choose{x}} \cdot 0.7^x \cdot (1-0.7)^{10-x} \tag{14.15}\]</span></span></p>
 <p>The pmf of Binomial(10, 0.7) distribution specifies the probability of 0 through 10 successful surgical procedures.</p>
-<p>According to <a href="#eq-binom4" class="quarto-xref">Equation&nbsp;<span>15.15</span></a> we have:</p>
+<p>According to <a href="#eq-binom4" class="quarto-xref">Equation&nbsp;<span>14.15</span></a> we have:</p>
 <table class="table">
 <colgroup>
 <col style="width: 15%">
@@ -731,7 +773,7 @@ The binomial setting
 [11] 0.0282475249</code></pre>
 </div>
 </div>
-<p>We can plot the pmf for visualizing the distribution (<a href="#fig-binompmf" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>).</p>
+<p>We can plot the pmf for visualizing the distribution (<a href="#fig-binompmf" class="quarto-xref">Figure&nbsp;<span>14.4</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">dat3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, </span>
@@ -749,7 +791,7 @@ The binomial setting
 <div class="cell-output-display">
 <div id="fig-binompmf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-binompmf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.4: Plot of the pmf for Binomial(10, 0.7) distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.4: Plot of the pmf for Binomial(10, 0.7) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -758,7 +800,7 @@ The binomial setting
 <li>The cdf for this distribution is:</li>
 </ul>
 <p><span id="eq-binom0.2"><span class="math display">\[F(x) = P(X \le x)={\begin{cases}0,&amp;for\ x &lt;0\\\sum_{k=0}^{x}{\left( \begin{array}{c} 10 \\ k \end{array}
-\right) 0.7^{k}(1 - 0.7)^{10-k}},&amp;for\ 0\leq x &lt; 10\\1,&amp;for\ x \geq 10 \end{cases}} \tag{15.16}\]</span></span></p>
+\right) 0.7^{k}(1 - 0.7)^{10-k}},&amp;for\ 0\leq x &lt; 10\\1,&amp;for\ x \geq 10 \end{cases}} \tag{14.16}\]</span></span></p>
 <p>In R, we can calculate the cumulative probabilities for all the possible outcomes using the <code><a href="https://rdrr.io/r/stats/Binomial.html">pbinom()</a></code> as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># find the cumulative probabilities</span></span>
@@ -769,7 +811,7 @@ The binomial setting
 [11] 1.0000000000</code></pre>
 </div>
 </div>
-<p>The cdf for this distribution is shown below (<a href="#fig-binomcdf" class="quarto-xref">Figure&nbsp;<span>15.5</span></a>):</p>
+<p>The cdf for this distribution is shown below (<a href="#fig-binomcdf" class="quarto-xref">Figure&nbsp;<span>14.5</span></a>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">dat4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, </span>
@@ -787,7 +829,7 @@ The binomial setting
 <div class="cell-output-display">
 <div id="fig-binomcdf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-binomcdf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.5: Plot of the cdf for Binomial(10, 0.7) distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.5: Plot of the cdf for Binomial(10, 0.7) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -847,14 +889,14 @@ The Poisson setting
 <ul>
 <li>The probability mass function (pmf) of X is given by:</li>
 </ul>
-<p><span id="eq-poisson1"><span class="math display">\[ P(X=x)={\frac {\lambda ^{x}e^{-\lambda }}{x!}}  \tag{15.17}\]</span></span></p>
+<p><span id="eq-poisson1"><span class="math display">\[ P(X=x)={\frac {\lambda ^{x}e^{-\lambda }}{x!}}  \tag{14.17}\]</span></span></p>
 <p>where x = 0, 1, … +∞, λ &gt; 0.</p>
 <p>The mean and variance of a random variable with Poisson(λ) distribution are the same and equal to λ. That is, μ = λ and <span class="math inline">\(σ^2 = λ\)</span>.</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>For instance, let’s say we’re analyzing the number of successful heart transplant surgeries per week in a specialized cardiac center. We assume that the average rate of successful surgeries per week is 2.5 (<span class="math inline">\(λ = 2.5\)</span>).</p>
 <p><span class="math display">\[X ∼ Poisson(2.5)\]</span></p>
 <p>Therefore, the population mean and variance of this variable is 2.5.</p>
-<p>According to <a href="#eq-poisson1" class="quarto-xref">Equation&nbsp;<span>15.17</span></a> the resulting probability table is:</p>
+<p>According to <a href="#eq-poisson1" class="quarto-xref">Equation&nbsp;<span>14.17</span></a> the resulting probability table is:</p>
 <table class="table">
 <colgroup>
 <col style="width: 12%">
@@ -906,7 +948,7 @@ The Poisson setting
 [7] 0.027833726 0.009940617 0.003106443</code></pre>
 </div>
 </div>
-<p>We can also plot the pmf for visualizing the distribution (<a href="#fig-poissonpmf" class="quarto-xref">Figure&nbsp;<span>15.6</span></a>).</p>
+<p>We can also plot the pmf for visualizing the distribution (<a href="#fig-poissonpmf" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">dat5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">8</span>, </span>
@@ -924,7 +966,7 @@ The Poisson setting
 <div class="cell-output-display">
 <div id="fig-poissonpmf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-poissonpmf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.6: Plot of the pmf for Poisson(2.5) distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.6: Plot of the pmf for Poisson(2.5) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -938,7 +980,7 @@ The Poisson setting
 [8] 0.9957533 0.9988597</code></pre>
 </div>
 </div>
-<p>The cdf for this distribution is shown below (<a href="#fig-poissoncdf" class="quarto-xref">Figure&nbsp;<span>15.7</span></a>):</p>
+<p>The cdf for this distribution is shown below (<a href="#fig-poissoncdf" class="quarto-xref">Figure&nbsp;<span>14.7</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">dat6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">8</span>, </span>
@@ -956,7 +998,7 @@ The Poisson setting
 <div class="cell-output-display">
 <div id="fig-poissoncdf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-poissoncdf-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.7: Plot of the pmf for Poisson(2.5) distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.7: Plot of the pmf for Poisson(2.5) distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -971,10 +1013,10 @@ The Poisson setting
 </div>
 <p>So, the probability of up to four successful heart transplant surgeries per week in the specialized cardiac center is approximately 0.89 or 89%.</p>
 <p>&nbsp;</p>
-</section></section><section id="probability-distributions-for-continuous-outcomes" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="probability-distributions-for-continuous-outcomes">
-<span class="header-section-number">15.4</span> Probability distributions for Continuous Outcomes</h2>
-<p>Unlike discrete random variables, which have a probability mass function (pmf) that assigns probabilities to individual values, <strong>continuous random variables</strong> have a <strong>probability density function</strong> (pdf). In this case, we are interested in the probability that the value of the random variable X is within a specific interval from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span>, denoted as <span class="math inline">\(P(x_1 ≤ X ≤ x_2)\)</span> (<a href="#fig-contdistrib" class="quarto-xref">Figure&nbsp;<span>15.8</span></a>).</p>
-<p><span id="eq-continuous1"><span class="math display">\[ P(x_1\leq X \leq x_2)=\int_{x_1}^{x_2}f(x)dx  \tag{15.18}\]</span></span></p>
+</section></section><section id="probability-distributions-for-continuous-outcomes" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="probability-distributions-for-continuous-outcomes">
+<span class="header-section-number">14.4</span> Probability distributions for Continuous Outcomes</h2>
+<p>Unlike discrete random variables, which have a probability mass function (pmf) that assigns probabilities to individual values, <strong>continuous random variables</strong> have a <strong>probability density function</strong> (pdf). In this case, we are interested in the probability that the value of the random variable X is within a specific interval from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span>, denoted as <span class="math inline">\(P(x_1 ≤ X ≤ x_2)\)</span> (<a href="#fig-contdistrib" class="quarto-xref">Figure&nbsp;<span>14.8</span></a>).</p>
+<p><span id="eq-continuous1"><span class="math display">\[ P(x_1\leq X \leq x_2)=\int_{x_1}^{x_2}f(x)dx  \tag{14.18}\]</span></span></p>
 <p>where f(x) is the probability density functions (pdf) of X .</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Show the code</summary><div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
@@ -994,11 +1036,11 @@ The Poisson setting
 </details><div class="cell-output-display">
 <div id="fig-contdistrib" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-contdistrib-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.8: Plot of the distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.8: Plot of the distribution.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>Additionally, from the pdf we can find the <strong>cumulative probability</strong> by calculating the likelihood from -∞ to a specific value <span class="math inline">\(x_o\)</span> (shaded blue area in <a href="#fig-contdistrib2" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>):</p>
+<p>Additionally, from the pdf we can find the <strong>cumulative probability</strong> by calculating the likelihood from -∞ to a specific value <span class="math inline">\(x_o\)</span> (shaded blue area in <a href="#fig-contdistrib2" class="quarto-xref">Figure&nbsp;<span>14.9</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Show the code</summary><div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df1</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
@@ -1009,12 +1051,12 @@ The Poisson setting
 </details><div class="cell-output-display">
 <div id="fig-contdistrib2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-contdistrib2-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.9: Plot of the cumulative distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.9: Plot of the cumulative distribution.</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to <span class="math inline">\(x_o\)</span> and is usually denoted as:</p>
-<p><span id="eq-continuous2"><span class="math display">\[ F(x_o) = P(X\leq x_o)=\int_{- \infty }^{x_o}f(x)dx  \tag{15.19}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
+<p><span id="eq-continuous2"><span class="math display">\[ F(x_o) = P(X\leq x_o)=\int_{- \infty }^{x_o}f(x)dx  \tag{14.19}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1030,18 +1072,18 @@ Note
 </div>
 <p>&nbsp;</p>
 <section id="normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
-<p>A normal distribution, also known as a Gaussian distribution, is a fundamental concept in statistics and probability theory and is defined by two parameters: the mean (μ) and the standard deviation (σ) (see <a href="normal.html" class="quarto-xref"><span>Chapter&nbsp;16</span></a>).</p>
+<p>A normal distribution, also known as a Gaussian distribution, is a fundamental concept in statistics and probability theory and is defined by two parameters: the mean (μ) and the standard deviation (σ) (see <a href="normal.html" class="quarto-xref"><span>Chapter&nbsp;15</span></a>).</p>
 <ul>
 <li>The probability density function (pdf) of <span class="math inline">\(X ∼ Normal(μ, σ^2)\)</span> is given by:</li>
 </ul>
-<p><span id="eq-gauss"><span class="math display">\[ f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}  \tag{15.20}\]</span></span></p>
+<p><span id="eq-gauss"><span class="math display">\[ f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}  \tag{14.20}\]</span></span></p>
 <p>where <span class="math inline">\(\pi \approx 3.14\)</span> and <span class="math inline">\(e \approx 2.718\)</span>.</p>
 <ul>
 <li>The cumulative distribution function (cdf) of X sums from negative infinity up to the value of <span class="math inline">\(x_o\)</span>, which is <span class="math inline">\((-∞, x_o]\)</span> in interval notation:</li>
 </ul>
-<p><span id="eq-continuous3"><span class="math display">\[ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx  \tag{15.21}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
+<p><span id="eq-continuous3"><span class="math display">\[ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx  \tag{14.21}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Let’s say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm. The pdf for this distribution is shown below (<a href="#fig-normal1" class="quarto-xref">Figure&nbsp;<span>15.10</span></a>):</p>
+<p>Let’s say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm. The pdf for this distribution is shown below (<a href="#fig-normal1" class="quarto-xref">Figure&nbsp;<span>14.10</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, </span>
@@ -1053,11 +1095,11 @@ Note
 <div class="cell-output-display">
 <div id="fig-normal1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-normal1-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.10: The Normal Distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.10: The Normal Distribution</figcaption></figure>
 </div>
 </div>
 </div>
-<p>The <a href="#fig-cdfnormal" class="quarto-xref">Figure&nbsp;<span>15.11</span></a> illustrates the normal cumulative distribution function. Note that continuous variables generate a smooth curve, while discrete variables produce a stepped line plot.</p>
+<p>The <a href="#fig-cdfnormal" class="quarto-xref">Figure&nbsp;<span>14.11</span></a> illustrates the normal cumulative distribution function. Note that continuous variables generate a smooth curve, while discrete variables produce a stepped line plot.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">dat7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">140</span>, <span class="fl">200</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
@@ -1070,7 +1112,7 @@ Note
 <div class="cell-output-display">
 <div id="fig-cdfnormal" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-cdfnormal-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.11: The normal cumulative distribution function.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.11: The normal cumulative distribution function.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1094,7 +1136,7 @@ Note
 </details><div class="cell-output-display">
 <div id="fig-aucnormal" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-aucnormal-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.12: Plot of the distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.12: Plot of the distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1118,7 +1160,7 @@ Note
 </details><div class="cell-output-display">
 <div id="fig-cdfnormal3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-cdfnormal3-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.13: Plot of the distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.13: Plot of the distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1146,7 +1188,7 @@ Note
 </details><div class="cell-output-display">
 <div id="fig-cdfnormal4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-cdfnormal4-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.14: Plot of the distribution.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.14: Plot of the distribution.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1167,9 +1209,9 @@ Note
 <p>&nbsp;</p>
 </section><section id="standard-normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="standard-normal-distribution">Standard Normal distribution</h3>
 <p>If X is a random variable with a normal distribution having a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span>, then the standardized Normal deviate can be expressed as:</p>
-<p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{15.22}\]</span></span></p>
-<p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>15.20</span></a> is transformed as follows:</p>
-<p><span id="eq-zd"><span class="math display">\[ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2}  \tag{15.23}\]</span></span></p>
+<p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{14.22}\]</span></span></p>
+<p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>14.20</span></a> is transformed as follows:</p>
+<p><span id="eq-zd"><span class="math display">\[ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2}  \tag{14.23}\]</span></span></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb43" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1180,17 +1222,17 @@ Note
 <div class="cell-output-display">
 <div id="fig-z1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-z1-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.15: The Standard Normal Distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.15: The Standard Normal Distribution</figcaption></figure>
 </div>
 </div>
 </div>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Z-scores are commonly used in medical settings to assess how an individual’s measurement compares to the average value of the entire population. For example, let’s assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual’s diastolic blood pressure is recorded as 110 mmHg, the z-score (<a href="#eq-z" class="quarto-xref">Equation&nbsp;<span>15.22</span></a>) can be calculated to quantify the number of standard deviations by which his blood pressure differs from the population mean:</p>
+<p>Z-scores are commonly used in medical settings to assess how an individual’s measurement compares to the average value of the entire population. For example, let’s assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual’s diastolic blood pressure is recorded as 110 mmHg, the z-score (<a href="#eq-z" class="quarto-xref">Equation&nbsp;<span>14.22</span></a>) can be calculated to quantify the number of standard deviations by which his blood pressure differs from the population mean:</p>
 <p><span class="math inline">\(z = \frac{(110 – 80)}{15} = 2\)</span></p>
 <p>So this man has a diastolic blood pressure that is 2 standard deviations above the population mean.</p>
-<p>To find the area under the curve between two z-scores, <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>, we have to integrate the pdf <a href="#eq-zd" class="quarto-xref">Equation&nbsp;<span>15.23</span></a> as follows:</p>
-<p><span id="eq-integral"><span class="math display">\[ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz  \tag{15.24}\]</span></span></p>
-<p>For example, let’s calculate the area under the curve in <a href="#fig-z2" class="quarto-xref">Figure&nbsp;<span>15.16</span></a>:</p>
+<p>To find the area under the curve between two z-scores, <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>, we have to integrate the pdf <a href="#eq-zd" class="quarto-xref">Equation&nbsp;<span>14.23</span></a> as follows:</p>
+<p><span id="eq-integral"><span class="math display">\[ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz  \tag{14.24}\]</span></span></p>
+<p>For example, let’s calculate the area under the curve in <a href="#fig-z2" class="quarto-xref">Figure&nbsp;<span>14.16</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Show the code</summary><div class="sourceCode" id="cb44" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
@@ -1206,7 +1248,7 @@ Note
 </details><div class="cell-output-display">
 <div id="fig-z2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-z2-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.16: The Standard Normal Distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.16: The Standard Normal Distribution</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1256,7 +1298,7 @@ Example-Degrees of freedom
 </div>
 </div>
 <p>&nbsp;</p>
-<p>Given that the shape of the t-distribution changes with different sample sizes (signified by degrees of freedom), it’s essential to indicate the df value. In <a href="#fig-t" class="quarto-xref">Figure&nbsp;<span>15.17</span></a> we define our curve by setting df = 3:</p>
+<p>Given that the shape of the t-distribution changes with different sample sizes (signified by degrees of freedom), it’s essential to indicate the df value. In <a href="#fig-t" class="quarto-xref">Figure&nbsp;<span>14.17</span></a> we define our curve by setting df = 3:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb51" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1269,12 +1311,12 @@ Example-Degrees of freedom
 <div class="cell-output-display">
 <div id="fig-t" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-t-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.17: t-distribution with df=3 Vs Standard Normal distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.17: t-distribution with df=3 Vs Standard Normal distribution</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Just like the standard normal distribution, the probability density curve of a t-distribution is bell-shaped and symmetric around its mean (μ = 0). However, the probability density curve of the t-distribution decreases more slowly than that of the standard normal distribution (t-distribution has “heavier” tails than the standard normal distribution).</p>
-<p>If the area of the curve is known, it is possible to calculate the corresponding t-value. For example, in <a href="#fig-t2" class="quarto-xref">Figure&nbsp;<span>15.18</span></a>, if each of the shaded light blue areas equal to 0.025, we can find the t-value using the <code><a href="https://rdrr.io/r/stats/TDist.html">qt()</a></code> function in R:</p>
+<p>If the area of the curve is known, it is possible to calculate the corresponding t-value. For example, in <a href="#fig-t2" class="quarto-xref">Figure&nbsp;<span>14.18</span></a>, if each of the shaded light blue areas equal to 0.025, we can find the t-value using the <code><a href="https://rdrr.io/r/stats/TDist.html">qt()</a></code> function in R:</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Show the code</summary><div class="sourceCode" id="cb52" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">df4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
@@ -1293,7 +1335,7 @@ Example-Degrees of freedom
 </details><div class="cell-output-display">
 <div id="fig-t2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="prob_distributions_files/figure-html/fig-t2-1.png" class="img-fluid figure-img" width="1200"></p>
-<figcaption class="figure-caption">Figure&nbsp;15.18: t-distribution with df=3 Vs Standard Normal distribution</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;14.18: t-distribution with df=3 Vs Standard Normal distribution</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1583,12 +1625,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./probability.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./normal.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -111,9 +111,42 @@ Additionally, the **cumulative distribution function** (cdf) gives the probabili
 
 $$F(x) = P(X \le x)= \sum_{x_i\le x} P(x_i)$$ {#eq-cdfdiscrete}
 
-where the sum takes place for all the values $x_i,\ \ \ i = 0, 1, 2, ...$, which are $x_i\le x$.
+where the sum takes place for all the values $x_1, x_2, \ldots, x_i$, which are $x_i\le x$.
 
  
+
+When dealing with a random variable, it is common to calculate three important summary statistics: the expected value, variance and standard deviation.
+
+**Expected Value**
+
+::: content-box-green
+The expected value, denoted as **μ** or **E(X)**, is defined as the weighted average of the values that X can take on, with each possible value being weighted by its respective probability, P(x).
+
+$\mu = E(X)= \sum\limits_i x_i \cdot P(x_i)$
+:::
+
+**Variance**
+
+::: content-box-green
+We can also define the variance, denoted as $\sigma^2$, which is a measure of the variability of the X.
+
+$\sigma^2=\text{Var}(X)= E[X - E(X)]^2 = E[(X - \mu)^2] = \sum\limits_i\ (x_i-\mu)^2 P(x_i)$
+
+There is an easier form of this formula.
+
+$\sigma^2=\text{Var}(X)= E(X^2) - E(X)^2=\sum\limits_i x_i^2 P(x_i)-\mu^2$
+:::
+
+**Standard deviation**
+
+::: content-box-green
+
+The standard deviation is the square root of the variance. It is often preferred over the variance because it is in the same units as the random variable. 
+
+$\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}$
+:::
+
+
 
 ### Bernoulli distribution
 
@@ -139,19 +172,31 @@ The random variable X can take either value 0 or value 1. If $x<0$, then $P(X \l
 
  
 
--   The mean of random variable, X, with Bernoulli(p) distribution is:
+The **expected value** of random variable, X, with Bernoulli(p) distribution is:
 
 [**NOTE:** In this case, the mean can be interpreted as the proportion of the population who has the outcome (success).]{.aside}
 
-$$μ = p$$ {#eq-bernouli4}
+$$E(X) = μ = p$$ {#eq-bernouli4}
 
-the variance is:
+::: {.callout-note icon="false"}
+## Proof:
 
-$$ \sigma^2= p(1-p)$$ {#eq-bernouli5}
+$E(X) = \sum_{i=1}^{2}x_iP(x_i) = 0 \cdot P(X=0) + 1 \cdot P(X=1) = p$
+:::
+
+The **variance** is:
+
+$$Var(X) = \sigma^2= p(1-p)$$ {#eq-bernouli5}
+
+::: {.callout-note icon="false"}
+## Proof:
+
+$Var(X) = \sum_{i=1}^{2}x_iP(x_i) - \mu^2= 0 \cdot P(X=0) + 1 \cdot P(X=1) - p^2= p (1-p)$
+:::
 
 and the standard deviation is:
 
-$$σ = \sqrt{p(1-p)}$$ {#eq-bernouli6}
+$$ \sqrt{Var(X)} = σ = \sqrt{p(1-p)}$$ {#eq-bernouli6}
 
  
 

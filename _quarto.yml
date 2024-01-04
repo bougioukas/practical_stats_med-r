@@ -28,10 +28,10 @@ book:
     - part: "Part 2: Statistics"
       chapters:
         - introduction.qmd
-        - descriptive.qmd
         - probability.qmd
         - prob_distributions.qmd
         - normal.qmd
+        - descriptive.qmd
         - inference.qmd
         - student_t_test.qmd
         - wmw_test.qmd

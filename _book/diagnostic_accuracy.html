@@ -51,7 +51,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -223,31 +242,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability theory, Statistics and Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,10 +405,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">34.1</span> Research question</a></li>
+<li><a href="#research-questions" id="toc-research-questions" class="nav-link active" data-scroll-target="#research-questions"><span class="header-section-number">34.1</span> Research questions</a></li>
   <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">34.2</span> Packages we need</a></li>
   <li><a href="#contingency-2x2-table" id="toc-contingency-2x2-table" class="nav-link" data-scroll-target="#contingency-2x2-table"><span class="header-section-number">34.3</span> Contingency 2x2 table</a></li>
   <li><a href="#diagnostic-accuracy-measures" id="toc-diagnostic-accuracy-measures" class="nav-link" data-scroll-target="#diagnostic-accuracy-measures"><span class="header-section-number">34.4</span> Diagnostic Accuracy Measures</a></li>
+  <li>
+<a href="#likelihood-ratios-in-practice" id="toc-likelihood-ratios-in-practice" class="nav-link" data-scroll-target="#likelihood-ratios-in-practice"><span class="header-section-number">34.5</span> Likelihood ratios in practice</a>
+  <ul class="collapse">
+<li><a href="#interpretation-of-lrs" id="toc-interpretation-of-lrs" class="nav-link" data-scroll-target="#interpretation-of-lrs">Interpretation of LRs</a></li>
+  <li><a href="#application-of-lrs-revising-the-probability-of-disease" id="toc-application-of-lrs-revising-the-probability-of-disease" class="nav-link" data-scroll-target="#application-of-lrs-revising-the-probability-of-disease">Application of LRs (revising the probability of disease)</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -415,25 +441,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning objectives
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:red;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"></path></svg> Learning objectives
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
 <li>Evaluate a diagnostic test with dichotomous test result</li>
+<li>Calculate the post-test probability using the Bayes’s theorem</li>
 <li>Interpret the results</li>
 </ul>
 </div>
 </div>
-<section id="research-question" class="level2" data-number="34.1"><h2 data-number="34.1" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">34.1</span> Research question</h2>
-<p>To estimate the diagnostic accuracy of digital mammography (index test) in the detection of breast cancer, using histopathology as a “gold standard” in women aged over 40 years, who are undergoing mammography for the evaluation of different symptoms related to breast diseases.</p>
-</section><section id="packages-we-need" class="level2" data-number="34.2"><h2 data-number="34.2" class="anchored" data-anchor-id="packages-we-need">
+<section id="research-questions" class="level2" data-number="34.1"><h2 data-number="34.1" class="anchored" data-anchor-id="research-questions">
+<span class="header-section-number">34.1</span> Research questions</h2>
+<ul>
+<li><p>To estimate the diagnostic accuracy of digital mammography (index test) in the detection of breast cancer, using histopathology as a “gold standard” in women aged over 40 years, who are undergoing mammography for the evaluation of different symptoms related to breast diseases.</p></li>
+<li><p>To estimate the post-test probability of breast cancer when the digital mammography is positive or negative given a pre-test probability.</p></li>
+</ul></section><section id="packages-we-need" class="level2" data-number="34.2"><h2 data-number="34.2" class="anchored" data-anchor-id="packages-we-need">
 <span class="header-section-number">34.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/haleyjeppson/ggmosaic">ggmosaic</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mvs.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">epiR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TeachingDemos</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -507,8 +538,8 @@ Learning objectives
 <span class="header-section-number">34.4</span> Diagnostic Accuracy Measures</h2>
 <div class="content-box-green">
 <p><strong>Basic Diagnostic Accuracy Measures</strong></p>
-<p>The <strong>Sensitivity (Sn)</strong> of a diagnostic test refers to the ability of the test to correctly identify those individuals with the disease. It is defined as the proportion of true positive test results among individuals who have the disease.</p>
-<p>Sn = <span class="math inline">\(\frac{TP}{TP+FN}=\frac{890}{910}=0.978\)</span> or <span class="math inline">\(97.8\%\)</span></p>
+<p>The <strong>Sensitivity (Se)</strong> of a diagnostic test refers to the ability of the test to correctly identify those individuals with the disease. It is defined as the proportion of true positive test results among individuals who have the disease.</p>
+<p>Se = <span class="math inline">\(\frac{TP}{TP+FN}=\frac{890}{910}=0.978\)</span> or <span class="math inline">\(97.8\%\)</span></p>
 <p>The <strong>Specificity (Sp)</strong> of a diagnostic test refers to the ability of the test to correctly identify those patients without the disease. It is defined as the proportion of true negative test results among individuals who do not have the disease.</p>
 <p>Sp = <span class="math inline">\(\frac{TN}{TN+FP}=\frac{200}{310}=0.645\)</span> or <span class="math inline">\(64.5\%\)</span></p>
 <p><strong>Positive Predictive Value (PPV)</strong> is the probability that individuals with a positive diagnostic test result actually have the disease. It is defined as the proportion of true positive test results among individuals who have a positive test.</p>
@@ -536,10 +567,10 @@ NOTE
 <p>Apparent prevalence = <span class="math inline">\(\frac{TP + FP}{N}=\frac{1000}{1220}=0.820\)</span> or <span class="math inline">\(82.0\%\)</span></p>
 <p><strong>True prevalence</strong> is the proportion of individuals that are truly diseased.</p>
 <p>True prevalence = <span class="math inline">\(\frac{TP + FN}{N}=\frac{910}{1220}=0.746\)</span> or <span class="math inline">\(74.6\%\)</span></p>
-<p>The <strong>Likelihood ratio for a positive test result (LR+)</strong> is the probability of an individual who has the disease testing positive divided by the probability of an individual who does not have the disease testing positive. It is calculated as sensitivity divided by 1 minus the specificity value.</p>
-<p>LR+ = <span class="math inline">\(\frac{Sn}{1-Sp}=\frac{0.978}{1-0.645}=\frac{0.978}{0.355}= 2.755\)</span></p>
+<p>The <strong>Likelihood ratio for a positive test result (LR+)</strong> is the likelihood (probability) of an individual who has the disease testing positive divided by the likelihood (probability) of an individual who does not have the disease testing positive. It is calculated as sensitivity divided by 1 minus the specificity value.</p>
+<p>LR+ = <span class="math inline">\(\frac{Se}{1-Sp}=\frac{0.978}{1-0.645}=\frac{0.978}{0.355}= 2.755\)</span></p>
 <p>The <strong>Likelihood ratio for a negative test result (LR-)</strong> is the probability of an individual who has the disease testing negative divided by the probability of an individual who does not have the disease testing negative. It is calculated as 1 minus the sensitivity divided by specificity value.</p>
-<p>LR- = <span class="math inline">\(\frac{1-Sn}{Sp}=\frac{1-0.978}{0.645}=\frac{0.022}{0.645}= 0.034\)</span></p>
+<p>LR- = <span class="math inline">\(\frac{1-Se}{Sp}=\frac{1-0.978}{0.645}=\frac{0.022}{0.645}= 0.034\)</span></p>
 <p><strong>Diagnostic accuracy</strong> (effectiveness), expressed as a proportion of correctly classified subjects (TP+TN) among all subjects (N). Diagnostic accuracy is affected by the disease prevalence.</p>
 <p>Accuracy = <span class="math inline">\(\frac{TP + TN}{N}=\frac{890 + 200}{1220}=\frac{1090}{1220}= 0.893\)</span> or <span class="math inline">\(89.3\%\)</span></p>
 </div>
@@ -645,9 +676,108 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 * Exact CIs</code></pre>
 </div>
 </div>
+</section><section id="likelihood-ratios-in-practice" class="level2" data-number="34.5"><h2 data-number="34.5" class="anchored" data-anchor-id="likelihood-ratios-in-practice">
+<span class="header-section-number">34.5</span> Likelihood ratios in practice</h2>
+<section id="interpretation-of-lrs" class="level3"><h3 class="anchored" data-anchor-id="interpretation-of-lrs">Interpretation of LRs</h3>
+<p>Likelihood ratio (LR), along with sensitivity and specificity, can be considered properties of the test itself that do not change with the prevalence of disease.</p>
+<p>In our example, LR+ = 2.756, meaning a positive result in digital mammography is approximately 2.8 times more likely to be a true positive test than a false positive test.</p>
+<p>Similarly, LR- = 0.034, meaning a negative result in digital mammography is approximately 0.034 times more likely to be a false negative test than a true negative test. This can also be interpreted as: A woman without breast cancer is about 29.4 (= 1/0.034) times more likely to have a negative digital mammography test than a woman with breast cancer.</p>
+<div class="content-box-green">
+<p>In clinical practice, a higher LR+ is desirable for tests used to “rule in” a diagnosis, while a lower LR- is preferred for tests used to “rule out” a diagnosis.</p>
+</div>
+</section><section id="application-of-lrs-revising-the-probability-of-disease" class="level3"><h3 class="anchored" data-anchor-id="application-of-lrs-revising-the-probability-of-disease">Application of LRs (revising the probability of disease)</h3>
+<p>The LR is commonly used in decision-making based on Bayes’ Theorem (<a href="probability.html" class="quarto-xref">Chapter&nbsp;<span>13</span></a>). The pre-test odds of a particular diagnosis, multiplied by the likelihood ratio of the diagnostic test, determines the post-test odds.</p>
+<div class="content-box-green">
+<p><span class="math inline">\(post \text{-} test \ odds = likelihood \ ratio \times pre \text{-} test \ odds\)</span></p>
+</div>
+<p>These post-test odds provides an updated estimate of the odds that the patient has the condition or disease after taking into account the diagnostic test result. If the test result is positive, we use the LR+ for this calculation. If the test result is negative, we use the LR- instead. In both scenarios, the odds refer to the odds in favor of the disease <strong>being present</strong>.</p>
+<section id="example-lr" class="level4"><h4 class="anchored" data-anchor-id="example-lr">
+<svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; Example: LR+</h4>
+<div class="content-box-blue">
+<p>LR+ tells us how much the odds of the condition or disease being present increase given a positive test result.</p>
+<ul>
+<li><p>LR+ greater than 1: Increases the post-test odds.</p></li>
+<li><p>LR+ of 1: No change in the post-test odds (post-test odds equals pre-test odds).</p></li>
+</ul>
+</div>
+<p>Now, let’s suppose that, based on family history of breast cancer and clinical symptoms, a woman has 0.78 probability for breast cancer (pre-test probability).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg> Comment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pre-test probability refers to the probability that a patient has the disease before the result of the diagnostic test is known. This probability can be derived either from clinician experience or research evidence (e.g., disease prevalence and clinical prediction rules); for a single patient, or for groups of patients <span class="citation" data-cites="uy2022">(<a href="references.html#ref-uy2022" role="doc-biblioref">Uy 2022</a>)</span>.</p>
+</div>
+</div>
+<p>We are interested in the the <strong>post-test probability</strong> of breast cancer when the digital mammography is <strong>positive</strong>. It is important to note that “odds” and “probability” are not the same; however, they can be derived from each other as follows:</p>
+<p><span class="math inline">\(pre \text{-} test \ odds = \frac{pre \text{-} test \ probability}{1 - pre \text{-} test \ probability} = \frac{0.78}{1-0.78} = \frac{0.78}{0.22} = 3.55\)</span></p>
+<p><span class="math inline">\(post \text{-} test \ odds = LR\text{+} \times pre \text{-} test \ odds = 2.756 \times 3.55 = 9.78\)</span></p>
+<p><span class="math inline">\(post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{9.78}{9.78 + 1} = \frac{9.78}{10.78} = 0.9072 \ or \ 90.72\%\)</span></p>
+<p>The Fagan nomogram allows us to turn pre-test probabilities into post-test probabilities without needing to convert into odds. The nomogram typically consists of three parallel scales representing the pre-test probability, the likelihood ratio, and the post-test probability. We can visually estimate the post-test probability of a positive diagnosis result by drawing a line from the known pre-test probability, through the LR+ and read off the post-test probability.</p>
+<p><strong>In R:</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">2.756</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-nomogram1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-nomogram1-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;34.1: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a positive test result for digital mammography with LR+ of 2.76, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient’s post-test probability.</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="example-lr-" class="level4"><h4 class="anchored" data-anchor-id="example-lr-">
+<svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; Example: LR-</h4>
+<div class="content-box-blue">
+<p>LR- tells us how much the odds of the condition or disease being present decrease given a negative test result.</p>
+<ul>
+<li><p>LR- less than 1: Decreases the post-test odds.</p></li>
+<li><p>LR- of 1: No change in the probability (post-test odds equals pre-test odds).</p></li>
+</ul>
+</div>
+<p>What is the the post-test probability of breast cancer for the same population when the digital mammography is <strong>negative</strong>?</p>
+<p><span class="math inline">\(post \text{-} test \ odds = LR\text{-} \times pre \text{-} test \ odds = 0.034 \times 3.55 = 0.1207\)</span></p>
+<p><span class="math inline">\(post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{0.1207}{0.1207 + 1} = \frac{0.1207}{1.1207} = 0.1077 \ or \ 10.77\%\)</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">0.034</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-nomogram2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-nomogram2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;34.2: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a negative test result for digital mammography with LR- of 0.034, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient’s post-test probability.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We can also use the <code>nomogrammer</code> function, which allows us to plot Fagan’s nomgrams with <a href="https://ggplot2.tidyverse.org">ggplot2</a>:</p>
+<div class="cell">
+<details><summary>Show the code</summary><div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># nomogrammer is a standalone function from the below repository </span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/achekroud/nomogrammer/master/nomogrammer.r"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu">nomogrammer</span><span class="op">(</span>Prevalence <span class="op">=</span> <span class="fl">0.78</span>,</span>
+<span>            Plr <span class="op">=</span> <span class="fl">2.755</span>,</span>
+<span>            Nlr <span class="op">=</span> <span class="fl">0.034</span>,</span>
+<span>            Detail <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>            NullLine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-slope" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-slope-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;34.3: sdfdsfd.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-uy2022" class="csl-entry" role="listitem">
+Uy, Elenore Judy B. 2022. <span>“Key Concepts in Clinical Epidemiology: Estimating Pre-Test Probability.”</span> <em>Journal of Clinical Epidemiology</em> 144 (April): 198–202. <a href="https://doi.org/10.1016/j.jclinepi.2021.10.022">https://doi.org/10.1016/j.jclinepi.2021.10.022</a>.
+</div>
+</div>
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

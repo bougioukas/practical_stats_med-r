@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical Statistics in Medicine with R - 12&nbsp; Statistics and data</title>
+<title>Practical Statistics in Medicine with R - 12&nbsp; Probability theory, Statistics and Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./descriptive.html" rel="next">
+<link href="./probability.html" rel="next">
 <link href="./ggplot2.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability theory, Statistics and Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -206,31 +206,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability theory, Statistics and Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -371,13 +371,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-discipline-of-statistics" id="toc-the-discipline-of-statistics" class="nav-link active" data-scroll-target="#the-discipline-of-statistics"><span class="header-section-number">12.1</span> The discipline of statistics</a></li>
-  <li><a href="#data-and-variables" id="toc-data-and-variables" class="nav-link" data-scroll-target="#data-and-variables"><span class="header-section-number">12.2</span> Data and Variables</a>
+  <li><a href="#probability-theory" id="toc-probability-theory" class="nav-link active" data-scroll-target="#probability-theory"><span class="header-section-number">12.1</span> Probability theory</a></li>
+  <li><a href="#the-discipline-of-statistics" id="toc-the-discipline-of-statistics" class="nav-link" data-scroll-target="#the-discipline-of-statistics"><span class="header-section-number">12.2</span> The discipline of statistics</a></li>
+  <li><a href="#data-and-variables" id="toc-data-and-variables" class="nav-link" data-scroll-target="#data-and-variables"><span class="header-section-number">12.3</span> Data and Variables</a>
   <ul class="collapse">
   <li><a href="#biomedical-data" id="toc-biomedical-data" class="nav-link" data-scroll-target="#biomedical-data">Biomedical Data</a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   </ul></li>
-  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data"><span class="header-section-number">12.3</span> Types of Data</a>
+  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data"><span class="header-section-number">12.4</span> Types of Data</a>
   <ul class="collapse">
   <li><a href="#categorical-data" id="toc-categorical-data" class="nav-link" data-scroll-target="#categorical-data">Categorical Data</a></li>
   <li><a href="#numerical-data" id="toc-numerical-data" class="nav-link" data-scroll-target="#numerical-data">Numerical Data</a></li>
@@ -388,9 +389,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability theory, Statistics and Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Statistics and data</span></span></h1>
+<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability theory, Statistics and Data</span></span></h1>
 </div>
 
 
@@ -426,8 +427,14 @@ Learning objectives
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="the-discipline-of-statistics" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="the-discipline-of-statistics"><span class="header-section-number">12.1</span> The discipline of statistics</h2>
+<section id="probability-theory" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="probability-theory"><span class="header-section-number">12.1</span> Probability theory</h2>
+<p>Probability theory had its origin in gambling and games of chance. The mathematical theory of probability, as we know it today, provides a framework for quantifying uncertainty and randomness, enabling us to make well-informed predictions and decisions. In its application, probability theory utilizes mathematical concepts like events, sample spaces, and probability measures to model uncertain events. It also establishes rules and axioms governing the manipulation of probabilities (Kolmogorov’s axioms, Bayes’ rule).</p>
+<p>Furthermore, probability theory forms the basis for statistical inference, allowing us to draw conclusions about populations based on sample data.</p>
+<p>&nbsp;</p>
+</section>
+<section id="the-discipline-of-statistics" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="the-discipline-of-statistics"><span class="header-section-number">12.2</span> The discipline of statistics</h2>
 <p>Statistics is an empirical or practical method for collecting, organizing, summarizing, and presenting data, and for making inferences about the population from which the data are drawn.</p>
 <p>The discipline of traditional (frequentist) statistics includes two main branches (<a href="#fig-branches" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>):</p>
 <ul>
@@ -457,8 +464,8 @@ Learning objectives
 </div>
 </div>
 </section>
-<section id="data-and-variables" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="data-and-variables"><span class="header-section-number">12.2</span> Data and Variables</h2>
+<section id="data-and-variables" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="data-and-variables"><span class="header-section-number">12.3</span> Data and Variables</h2>
 <section id="biomedical-data" class="level3">
 <h3 class="anchored" data-anchor-id="biomedical-data">Biomedical Data</h3>
 <p><strong>Biomedical data</strong> have unique features compared with data in other domains. The data may include administrative health data, biomarker data, biometric data (for example, from wearable technologies) and imaging, and may originate from many different sources, including Electronic Health Records (EHRs), surveillance systems, clinical registries, biobanks, the internet (e.g.&nbsp;social media) and patient self-reports.</p>
@@ -497,8 +504,8 @@ Independent Vs Dependent variables
 <p>&nbsp;</p>
 </section>
 </section>
-<section id="types-of-data" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="types-of-data"><span class="header-section-number">12.3</span> Types of Data</h2>
+<section id="types-of-data" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="types-of-data"><span class="header-section-number">12.4</span> Types of Data</h2>
 <p>Data in variables can be either <strong>categorical</strong> or <strong>numerical</strong> (otherwise known as qualitative and quantitative) in nature (<a href="#fig-data_types" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>).</p>
 <div class="cell" data-fig-width="9">
 <div class="cell-output-display">
@@ -891,8 +898,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./descriptive.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./probability.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

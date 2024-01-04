@@ -1,4 +1,4 @@
-# Statistics and data {#sec-introduction}
+# Probability theory, Statistics and Data {#sec-introduction}
 
 When we have finished this chapter, we should be able to:
 
@@ -10,6 +10,16 @@ When we have finished this chapter, we should be able to:
 -   Understand the difference between dependent and independent variables.
 -   Identify the type of any given variable.
 :::
+
+ 
+
+
+## Probability theory
+
+Probability theory had its origin in gambling and games of chance. The mathematical theory of probability, as we know it today, provides a framework for quantifying uncertainty and randomness, enabling us to make well-informed predictions and decisions. In its application, probability theory utilizes mathematical concepts like events, sample spaces, and probability measures to model uncertain events. It also establishes rules and axioms governing the manipulation of probabilities (Kolmogorov's axioms, Bayes' rule).
+
+Furthermore, probability theory forms the basis for statistical inference, allowing us to draw conclusions about populations based on sample data.
+
 
  
 

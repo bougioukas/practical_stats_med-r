@@ -215,7 +215,7 @@ The concept of probability is used in everyday life which stands for the likelih
 
 1.  The probability of an event A is a non-negative number, **P(A) ≥ 0**
 2.  The probability of all possible outcomes, or sample space Ω, equals to one, **P(Ω) = 1**
-3.  If A and B are two mutually exclusive events, then **P(A ∪ B) = P(A) + P(B)** and **P(A ∩ B) = 0**.
+3.  If A and B are two mutually exclusive events (also known as disjoint events), then **P(A ∪ B) = P(A) + P(B)** and **P(A ∩ B) = 0**.
 :::
 
  
