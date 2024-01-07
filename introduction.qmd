@@ -1,10 +1,18 @@
-# Probability theory, Statistics and Data {#sec-introduction}
+# Introduction {#sec-introduction}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
 
 When we have finished this chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
+-   Introduce the probability theory
 -   Distinguish descriptive from inferential statistics.
 -   Explain the difference between qualitative and quantitative data.
 -   Understand the difference between dependent and independent variables.
@@ -16,7 +24,7 @@ When we have finished this chapter, we should be able to:
 
 ## Probability theory
 
-Probability theory had its origin in gambling and games of chance. The mathematical theory of probability, as we know it today, provides a framework for quantifying uncertainty and randomness, enabling us to make well-informed predictions and decisions. In its application, probability theory utilizes mathematical concepts like events, sample spaces, and probability measures to model uncertain events. It also establishes rules and axioms governing the manipulation of probabilities (Kolmogorov's axioms, Bayes' rule).
+Probability theory had its origin in gambling and games of chance. The mathematical theory of probability, as we know it today, provides a framework for quantifying uncertainty and randomness, enabling us to make well-informed predictions and decisions. In its application, probability theory utilizes mathematical concepts like events, sample spaces, and probability measures to model uncertain events. It also establishes axioms and rules governing the manipulation of probabilities (Kolmogorov's axioms, Bayes' rule).
 
 Furthermore, probability theory forms the basis for statistical inference, allowing us to draw conclusions about populations based on sample data.
 

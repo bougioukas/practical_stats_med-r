@@ -319,12 +319,10 @@ $$y_i = b_0  + b_1 \cdot x_i + e_i$$ {#eq-line1.5}
 
 where the $e_i$ is the error term, called **residual**, which represents the deviation between the observed value $y_i$ and the expected value $\hat y$ of the linear model ($e_i = y_i - \hat y_i$).
 
-
 In a matrix notation, given $n$ observations of the explanatory variable **x** and the outcome variable **y**, the @eq-line1.5 becomes:
 
 $$\begin{bmatrix} y_1\\ y_2 \\ y_3 \\ ... \\ y_n \end{bmatrix} = \begin{bmatrix} 1 & x_1\\ 1 & x_2\\ 1 & x_3\\ ... \\ 1 & x_n
 \end{bmatrix} \bullet \begin{bmatrix} b_0\\ b_1\end{bmatrix} + \begin{bmatrix} e_1\\ e_2 \\ e_3 \\ ... \\ e_n \end{bmatrix}$$ {#eq-mtrx2}
-
 
 Then the outcome **y** can be compactly modeled by:
 

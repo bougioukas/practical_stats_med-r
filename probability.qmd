@@ -9,7 +9,7 @@ library(fontawesome)
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Understand and use the terminology of probability
 :::
@@ -20,6 +20,7 @@ We need to load the following packages:
 
 ```{r}
 #| message: false
+#| warning: false
 
 # dice graphs
 library(tidydice)
@@ -27,12 +28,8 @@ library(ggplot2)
 
 # venn diagrams
 library(ggvenn)
-library(ggVennDiagram)
-
-
+library(venn)
 library(TeachingDemos)
-
-#library(dice)
 ```
 
 ## Sample Space and Random Events
@@ -93,25 +90,13 @@ union(A, B)          # A∪B = {2, 4, 6, 1}
 #| code-fold: true
 #| code-summary: "Show the code"
 #| warning: false
-#| out-width: 10cm
+#| out-width: 14cm
 #| label: fig-union
 #| fig-cap: The union of the events A and B as represented in a Venn diagram.
 
-# List of items
-x <- list(A = A, B = B)
-yes <- "#7F7FFF"
-no  <- "white"
-
-p <- ggVennDiagram(x, label = c("count")) +
-  labs(title = "Ω") +
-  scale_color_manual(values = c("black", "black")) +
-  theme(legend.position = "none",
-        plot.title = element_text(size = 20),
-        plot.background = element_rect(fill = "white"))
-
-p$layers[[1]]$mapping <- aes(fill = name)
-
-p + scale_fill_manual(values = c(A = yes, B = yes, A..B = yes))
+venn("A + B", zcolor = "#7F7FFF", opacity = 1, ggplot = TRUE) +
+  annotate("text", x = 35, y = 950, label = "Ω") +
+  annotate("text", x = 500, y = 750, label = "AUB")
 ```
 
  
@@ -133,40 +118,48 @@ intersect(A, B)
 #| code-fold: true
 #| code-summary: "Show the code"
 #| warning: false
-#| out-width: 9cm
+#| out-width: 14cm
 #| label: fig-intersection
 #| fig-cap: The intersection of the events A and B as represented in a Venn diagram.
 
-p + scale_fill_manual(values = c(A = no, B = no, A..B = yes))
+venn("A B", zcolor = "#7F7FFF", opacity = 1,  ggplot = TRUE) +
+  annotate("text", x = 35, y = 950, label = "Ω") +
+  annotate("text", x = 500, y = 530, label = "A∩B")
 ```
 
  
 
-### Complement Events: $A^c$
+### Complement Events
 
-The complement of an event A, denoted by $A^c$ (sometimes denoted as $\bar{A}$ or $A'$), is also an event and consists of all outcomes of the sample space Ω that are not in A.
+For example, the complement of the union of A and B, denoted by $(A∪B)^c$ (sometimes denoted as $(A∪B)'$), is also an event and consists of all outcomes of the sample space Ω that don't belong to A∪B.
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 ```{r}
 # A = {2, 4, 6}
+# B = {1, 2}
+
+AUB <- union(A, B)                     # A∪B = {2, 4, 6, 1} 
+
 
 sample_space <- c(1, 2, 3, 4, 5, 6)    # sample_space = {1, 2, 3, 4, 5, 6}
 
-setdiff(sample_space, A)
+setdiff(sample_space, AUB)
 ```
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
 #| warning: false
-#| out-width: 11cm
+#| out-width: 14cm
 #| label: fig-complement
-#| fig-cap: The complement of the union $B^c$ as represented in a Venn diagram.
+#| fig-cap: The complement of the union of A and B as represented in a Venn diagram.
 
-p + scale_fill_manual(values = c(A = no, B = yes, A..B = no)) +
-  theme(plot.title = element_text(size = 20),
-        plot.background = element_rect(fill = "#7F7FFF"))
+venn("A + B", zcolor = "white", opacity = 1, box = FALSE, ggplot = TRUE) +
+theme(panel.background = element_rect(fill = "#7F7FFF")) +
+  annotate("text", x = 5, y = 1000, label = "Ω") +
+  annotate("text", x = 500, y = 950, label = "(AUB)^{C}", parse =TRUE)
+
 ```
 
  
@@ -190,14 +183,14 @@ intersect(A, C)
 #| code-fold: true
 #| code-summary: "Show the code"
 #| warning: false
-#| out-width: 12cm
+#| out-width: 10cm
 #| label: fig-exclusive
 #| fig-cap: Venn Diagram of two mutually exclusive events.
 
 # List of items
 x2 <- list("A" = A, "C" = C)
 
-ggvenn(x2, fill_alpha = 1, auto_scale = T, show_elements = F, show_percentage = FALSE) +
+ggvenn(x2, fill_alpha = 1, auto_scale = T, show_percentage = FALSE) +
   labs(title = "Ω") +
   scale_fill_manual(values = c("#7F7FFF", "#7F7FFF")) +
   theme(plot.title = element_text(size = 20),
@@ -224,7 +217,7 @@ The concept of probability is used in everyday life which stands for the likelih
 
 **A. Theoretical probability (theoretical approach)**
 
-Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the possible outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:
+Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the **equally probable** outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:
 
 $$P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}}$$ {#eq-theoretical_probability}
 
@@ -277,6 +270,8 @@ $$\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/
 The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the **relative frequency** of occurrence of the event over a total number of experiments:
 
 $$ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of experiments}}$$ {#eq-probability}
+
+Yet, this definition seems less clear, as it does not specify the exact interpretation of "repetitions of the same experiment" [@finetti2008e].
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -343,6 +338,8 @@ The probability assigned to an event represents the **degree of belief** that th
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 In the die roll experiment, the determination of the subjective probability for events {{< fa dice-one size=1x >}}, {{< fa dice-two size=1x >}}, {{< fa dice-three size=1x >}}, {{< fa dice-four size=1x >}}, {{< fa dice-five size=1x >}}, {{< fa dice-six size=1x >}} relies on the belief that the die is **unbiased**, and therefore it must be true that P(1) = P(2) = P(3) = P(4) = P(5) = P(6). With this information, we can then simply use the Kolmogorov axioms to state that P(1) + P(2) + P(3) + P(4) + P(5) + P(6) = 1, and therefore obtain the intuitive result that P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6.
+
+Nonetheless, if some individuals were aware that the die was biased, such as favoring the number six, their viewpoint would undergo a substantial change.
 
  
 

@@ -9,7 +9,7 @@ library(fontawesome)
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Understand and use the terminology of probability
 :::
@@ -20,6 +20,7 @@ We need to load the following packages:
 
 ```{r}
 #| message: false
+#| warning: false
 
 # graphs
 library(ggplot2)
@@ -140,13 +141,10 @@ $\sigma^2=\text{Var}(X)= E(X^2) - E(X)^2=\sum\limits_i x_i^2 P(x_i)-\mu^2$
 **Standard deviation**
 
 ::: content-box-green
-
-The standard deviation is the square root of the variance. It is often preferred over the variance because it is in the same units as the random variable. 
+The standard deviation is the square root of the variance. It is often preferred over the variance because it is in the same units as the random variable.
 
 $\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}$
 :::
-
-
 
 ### Bernoulli distribution
 

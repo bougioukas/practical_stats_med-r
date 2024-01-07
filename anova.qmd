@@ -1,5 +1,12 @@
 # One-way ANOVA test {#sec-anova}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+
 One-way analysis of variance, usually referred to as **one-way ANOVA**, is a statistical test used when we want to compare several means. We may think of it as an extension of Student's t-test to the case of more than two independent samples.
 
 Although, this test can detect a difference between several groups it does not inform us about which groups are different from the others. At first glance, we might think to compare all groups in pairs with multiple t-tests. However, this procedure may lead to incorrect conclusions (known as multiple comparisons problem) because each comparison increases the likelihood of committing at least one Type I error within a set of comparisons (**familly-wise Type I error rate**).
@@ -9,7 +16,7 @@ This is the reason why, after an ANOVA test concluding on a significant differen
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Applying hypothesis testing
 -   Compare more than two independent samples applying ANOVA
