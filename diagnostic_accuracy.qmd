@@ -10,8 +10,9 @@ When we have finished this Chapter, we should be able to:
 ::: {.callout-caution icon="false"}
 ## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
--   Evaluate a diagnostic test with dichotomous test result
--   Calculate the post-test probability using the Bayes's theorem
+-   Calculate a variety of measures of diagnostic test accuracy
+-   Estimate the post-test probability using the Bayes's theorem
+-   Understand the Fagan's Nomogram
 -   Interpret the results
 :::
 
@@ -31,6 +32,7 @@ We need to load the following packages:
 
 library(ggmosaic)
 library(epiR)
+library(pubh)
 library(TeachingDemos)
 library(scales)
 
@@ -86,9 +88,9 @@ NPV = $\frac{TN}{TN+FN}=\frac{200}{220}=0.909$ or $90.9\%$
 :::
 
 ::: callout-important
-## NOTE
+## The influence of the prevalence of the disease on predictive values
 
-Positive and negative predictive values are influenced by the prevalence of disease in the population that is being tested. Using the same test in a population with a higher prevalence (e.g. women over the age of 55) increases positive predictive value. Conversely, increased prevalence results in decreased negative predictive value. Therefore, when considering predictive values of diagnostic or screening tests, we should take into account the influence of the prevalence of the disease.
+Positive and negative predictive values are influenced by the **prevalence** of disease in the population that is being tested. Using the same test in a population with a higher prevalence (e.g. women over the age of 55) increases positive predictive value. Conversely, increased prevalence results in decreased negative predictive value. Therefore, when considering predictive values of diagnostic or screening tests, we should take into account the influence of the prevalence of the disease.
 :::
 
 And other useful diagnostic measures are following:
@@ -117,7 +119,7 @@ LR- = $\frac{1-Se}{Sp}=\frac{1-0.978}{0.645}=\frac{0.022}{0.645}= 0.034$
 Accuracy = $\frac{TP + TN}{N}=\frac{890 + 200}{1220}=\frac{1090}{1220}= 0.893$ or $89.3\%$
 :::
 
-In R:
+**In R:**
 
 ```{r}
 tb1 <- as.table(
@@ -171,6 +173,16 @@ p + geom_label(data = df2,
 epi.tests(tb1, digits = 3)
 ```
 
+ 
+
+Alternatively, we can obtain the same results in R using the `diag_test2()` function from the `{pubh}` package:
+
+```{r}
+#| eval: false
+
+diag_test2(890, 110, 20, 200)
+```
+
 ## Likelihood ratios in practice
 
 ### Interpretation of LRs
@@ -182,7 +194,7 @@ In our example, LR+ = 2.756, meaning a positive result in digital mammography is
 Similarly, LR- = 0.034, meaning a negative result in digital mammography is approximately 0.034 times more likely to be a false negative test than a true negative test. This can also be interpreted as: A woman without breast cancer is about 29.4 (= 1/0.034) times more likely to have a negative digital mammography test than a woman with breast cancer.
 
 ::: content-box-green
-In clinical practice, a higher LR+ is desirable for tests used to "rule in" a diagnosis, while a lower LR- is preferred for tests used to "rule out" a diagnosis.
+In clinical practice, a higher LR+ is desirable for tests used to "rule in" a disease, while a lower LR- is preferred for tests used to "rule out" the chance that the individual has the disease.
 :::
 
 ### Application of LRs (revising the probability of disease)
@@ -229,7 +241,7 @@ The Fagan nomogram allows us to turn pre-test probabilities into post-test proba
 #| warning: false
 #| message: false
 #| label: fig-nomogram1
-#| fig-cap: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a positive test result for digital mammography with LR+ of 2.76, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient's post-test probability.
+#| fig-cap: The impact of a positive digital mammography result with LR+ of 2.76 on a patient's post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
 #| fig-width: 7.0
 #| fig-height: 7.5
 
@@ -252,33 +264,36 @@ $post \text{-} test \ odds = LR\text{-} \times pre \text{-} test \ odds = 0.034 
 
 $post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{0.1207}{0.1207 + 1} = \frac{0.1207}{1.1207} = 0.1077 \ or \ 10.77\%$
 
+**In R:**
+
 ```{r}
 #| warning: false
 #| message: false
 #| label: fig-nomogram2
-#| fig-cap: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a negative test result for digital mammography with LR- of 0.034, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient's post-test probability.
+#| fig-cap: The impact of a negative digital mammography result with LR- of 0.034 on a patient's post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
 #| fig-width: 7.0
 #| fig-height: 8.5
 
 fagan.plot(probs.pre.test = 0.78, LR = 0.034)
 ```
 
-We can also use the `nomogrammer` function, which allows us to plot Fagan's nomgrams with `{ggplot2}`:
+ 
+
+We can also use the `epi.nomogram()` and `nomogrammer()` functions which allow us to calculate the post-test probability and plot Fagan's nomgrams with `{ggplot2}`, respectively:
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 #| warning: false
 #| message: false
 #| label: fig-slope
-#| fig-cap: sdfdsfd.
+#| fig-cap: The impact of a positive (blue line) and negative (red line) digital mammography result with LR+ of 2.76 and LR- of 0.034 on a patient's post-test probability for breast cancer, respectively, starting from an initial pre-test probability of 78% on the Fagan Nomogram. The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.
 #| fig-width: 7.0
 #| fig-height: 8.5
 
+epi.nomogram(se = NA, sp = NA, lr = c(2.755, 0.034), pre.pos = 0.78,
+             verbose = FALSE)
+
 # nomogrammer is a standalone function from the below repository 
-
 source("https://raw.githubusercontent.com/achekroud/nomogrammer/master/nomogrammer.r")
-
 
 nomogrammer(Prevalence = 0.78,
             Plr = 2.755,
@@ -287,4 +302,3 @@ nomogrammer(Prevalence = 0.78,
             NullLine = TRUE)
 ```
 
-The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.

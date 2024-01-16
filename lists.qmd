@@ -1,1 +1,196 @@
 # Data structures in R: lists and data frames {#sec-lists}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+When we have finished this chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Create a list using the `list()` function.
+-   Refer a list item using its name or index number.
+-   Create a data frame from equal length vectors using the `tibble` function.
+-   Refer to a column of a data frame using the \$ notation.
+-   Convert variables from character to factor variables.
+:::
+
+ 
+
+## Creating a list
+
+In R, a list enables us to organize diverse objects (e.g., 1-D vectors, matrices, even other lists) under a single data structure. There is no requirement for these objects to be related to each other in any way. Essentially, a list can be considered a kind of super data type, allowing us to store practically any piece of information in it!
+
+We construct a list using the `list()` function. For example:
+
+```{r}
+my_list <- list(1:5, c("apple", "carrot"), c(TRUE, TRUE, FALSE))
+my_list
+```
+
+This list consists of three components (items) that are atomic vectors of different types of data (numeric, characters, and logical).
+
+We can assign names to the list items:
+
+```{r}
+my_list <- list(
+              num = 1:5, 
+              fruits = c("apple", "carrot"), 
+              TF = c(TRUE, TRUE, FALSE))
+my_list
+```
+
+We can also confirm that the class of the object is `list`:
+
+```{r}
+class(my_list)
+```
+
+ 
+
+## Subsetting a list
+
+### Subset list and preserve output as a list
+
+We can use the `[ ]` operator to extract one or more list items while preserving the output in list format:
+
+```{r}
+my_list[2]    # extract the second list item (indexing by position)
+
+class(my_list[2])
+```
+
+
+```{r}
+my_list["fruits"]   # same as above but using the item's name
+```
+
+
+```{r}
+my_list[c(FALSE, TRUE, FALSE)]    # same as above but using logical vectors (indexing by condition)
+```
+
+ 
+
+### Subset list and simplify the output
+
+We can use the `[[ ]]` to extract one or more list items while simplifying the output:
+
+```{r}
+my_list[[2]]   # extract the second list item and simplify it to a vector
+
+class(my_list[[2]])
+
+my_list[["fruits"]]   # same as above but using the item's name
+```
+
+We can also access the content of the list by typing the name of the list followed by a dollar sign `$` folowed by the name of the list item:
+
+```{r}
+my_list$fruits  # extract the numbers and simplify to a vector
+```
+
+One thing that differentiates the `[[ ]]` operator from the `$` is that the `[[ ]]` operator can be used with computed indices and names. The `$` operator can only be used with names.
+
+::: {.callout-important icon="false"}
+## Simplifying Vs Preserving subsetting
+
+It's important to understand the difference between simplifying and preserving subsetting. Simplifying subsets returns the simplest possible data structure that can represent the output. Preserving subsets keeps the structure of the output the same as the input.
+:::
+
+ 
+
+### Subset list to get individual elements out of a list item
+
+To extract individual elements out of a specific list item combine the `[[ ]]` (or \$) operator with the `[ ]` operator:
+
+```{r}
+my_list[[2]][2]          # using the index
+
+my_list[["fruits"]][2]  # using the name of the list item
+
+my_list$fruits[2]       # using the $
+
+```
+
+ 
+
+## Unlist a list
+
+We can turn a list into an atomic vector with `unlist()`:
+
+```{r}
+my_unlist <- unlist(my_list)
+my_unlist
+class(my_unlist)
+```
+
+ 
+
+## Recursive vectors and Nested Lists
+
+In R, lists are sometimes referred to as **recursive vectors** because they can include other lists within them. These sublists are known as **nested lists**. For example:
+
+```{r}
+my_super_list <- list(item1 = 3.14,
+                      item2 = list(item2a_num = 5:10,
+                                   item2b_char = c("a","b","c")))
+
+my_super_list
+```
+
+
+In this example, `item2`, which is the second item of `my_super_list`, is a nested list.
+
+ 
+
+**Subsetting a nested list**
+
+We can access the list items of a nested list by using the combination of `[[ ]]` (or \$) operator and the `[ ]` operator. For example:
+
+```{r}
+# preserve the output as a list
+my_super_list[[2]][1]
+class(my_super_list[[2]][1])
+
+# simplify the output
+my_super_list[[2]][[1]]
+class(my_super_list[[2]][[1]])
+
+# same as above with names
+my_super_list[["item2"]][["item2a_num"]]
+
+
+# same as above with $ operator
+my_super_list$item2$item2a_num
+
+```
+
+ 
+
+We can also **extract individual elements** from the list items of a nested list. For example:
+
+```{r}
+# extract individual element
+my_super_list[[2]][[2]][3]
+class(my_super_list[[2]][[2]][3])
+```
+
+
+
+ 
+
+## Data frames
+
+A data frame is the most common way of storing data in R and, generally, is the data structure most often used for data analyses.
+
+::: {.callout-tip icon="false"}
+## Data frame
+
+A **data frame** is a special type of list with **equal-length** atomic vectors. Each component of the list can be thought of as a column and the length of each component of the list is the number of rows.
+:::
+
+ 

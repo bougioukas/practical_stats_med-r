@@ -271,7 +271,9 @@ theme_classic(base_size = 14) +
 
 ### Binomial distribution
 
-The binomial probability distribution can be used for modeling the number of times a particular event occurs (successes) in a sequence of *n* repeated and independent Bernoulli trials.
+The binomial probability distribution can be used for modeling the number of times a particular event occurs (successes) in a sequence of *n* repeated and independent Bernoulli trials, each with probability *p* of success.
+
+
 
 ::: callout-note
 # The binomial setting

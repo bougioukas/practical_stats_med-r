@@ -343,7 +343,7 @@ km.AB
 
 The median survival of patients in the new therapy (23 months) is higher than in standard therapy (9 months).
 
-We can plot the cumulative risk function (aka "cumulative incidence" or "cumulative events"), $F(t) = 1 - S(t)$, with argument type = "risk".
+We can plot the cumulative risk function (aka "cumulative incidence" or "cumulative events"), $F(t) = 1 - S(t)$, with argument `type = "risk"`. This is the probability of an event, as opposed to the probability of being free from the event (survival).
 
 ```{r}
 #| message: false
@@ -378,7 +378,7 @@ km.AB |>
 
 The log-rank test is a non-parametric method for comparing two or more survival curves. It examines the distribution of the entire survival time rather than comparing the survival probability at specific time points.
 
-The log-rank test can be used to test the global null hypothesis that the curves are the same.
+The log-rank test can be used to test the global null hypothesis that the curves are the same. 
 
 ::: {.callout-note icon="false"}
 ## Null hypothesis and alternative hypothesis
@@ -389,5 +389,51 @@ The log-rank test can be used to test the global null hypothesis that the curves
 
 ```{r}
 #Run log-Rank test to compare the curves for the intervention groups A Vs B
-survdiff(Surv(time, status) ~ intervention, data = dat, rho = 0)
+SurvDiff <- survdiff(Surv(time, status) ~ intervention, data = dat)
+SurvDiff
 ```
+
+
+The log-rank test yields a chi-square statistical value, as it is built upon this framework. Therefore, the log-rank estimates the expected number of deaths among patients and compares it with the actual number of observed deaths. The resulting p-value is 0.0003, which means that we reject the null and that the survival curves are significantly different.
+
+
+
+### The Hazard Ratio (HR)
+
+Proportional hazards assumption says that the ratio of hazards between groups is constant over time
+
+The log-rank test has optimum power under the assumption of proportional hazard rates.
+
+
+The Hazard ratio (HR) can be considered as an estimate of relative risk (RR), which is the risk of an event (or of developing a disease) relative to exposure. 
+
+
+
+```{r}
+D1 <- SurvDiff$obs[1]
+D2 <- SurvDiff$obs[2]
+E1 <- SurvDiff$exp[1]
+E2 <- SurvDiff$exp[2]
+HR <- (D1/D2)/(E1/E2)
+HR
+```
+
+
+Standard errors and confidence interval can be calculated using the formula in the textbook.
+ 
+
+```{r}
+SE_lnHR = sqrt(1/E1 + 1/E2)
+SE_lnHR
+```
+
+
+```{r}
+L = log(HR)
+lower <- exp(L - 1.96*SE_lnHR)
+upper <- exp(L + 1.96*SE_lnHR)
+ci95 <- c(lower=lower, upper=upper)
+ci95
+```
+
+

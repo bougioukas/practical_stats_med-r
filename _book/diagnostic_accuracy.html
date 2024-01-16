@@ -446,8 +446,9 @@ div.csl-indent {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Evaluate a diagnostic test with dichotomous test result</li>
-<li>Calculate the post-test probability using the Bayes’s theorem</li>
+<li>Calculate a variety of measures of diagnostic test accuracy</li>
+<li>Estimate the post-test probability using the Bayes’s theorem</li>
+<li>Understand the Fagan’s Nomogram</li>
 <li>Interpret the results</li>
 </ul>
 </div>
@@ -463,6 +464,7 @@ div.csl-indent {
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/haleyjeppson/ggmosaic">ggmosaic</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mvs.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">epiR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pubh</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TeachingDemos</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
 <span></span>
@@ -553,11 +555,11 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-NOTE
+The influence of the prevalence of the disease on predictive values
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Positive and negative predictive values are influenced by the prevalence of disease in the population that is being tested. Using the same test in a population with a higher prevalence (e.g.&nbsp;women over the age of 55) increases positive predictive value. Conversely, increased prevalence results in decreased negative predictive value. Therefore, when considering predictive values of diagnostic or screening tests, we should take into account the influence of the prevalence of the disease.</p>
+<p>Positive and negative predictive values are influenced by the <strong>prevalence</strong> of disease in the population that is being tested. Using the same test in a population with a higher prevalence (e.g.&nbsp;women over the age of 55) increases positive predictive value. Conversely, increased prevalence results in decreased negative predictive value. Therefore, when considering predictive values of diagnostic or screening tests, we should take into account the influence of the prevalence of the disease.</p>
 </div>
 </div>
 <p>And other useful diagnostic measures are following:</p>
@@ -574,7 +576,7 @@ NOTE
 <p><strong>Diagnostic accuracy</strong> (effectiveness), expressed as a proportion of correctly classified subjects (TP+TN) among all subjects (N). Diagnostic accuracy is affected by the disease prevalence.</p>
 <p>Accuracy = <span class="math inline">\(\frac{TP + TN}{N}=\frac{890 + 200}{1220}=\frac{1090}{1220}= 0.893\)</span> or <span class="math inline">\(89.3\%\)</span></p>
 </div>
-<p>In R:</p>
+<p><strong>In R:</strong></p>
 <div class="cell">
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.table</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span></span>
@@ -676,6 +678,11 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 * Exact CIs</code></pre>
 </div>
 </div>
+<p>&nbsp;</p>
+<p>Alternatively, we can obtain the same results in R using the <code><a href="https://rdrr.io/pkg/pubh/man/diag_test2.html">diag_test2()</a></code> function from the <code>{pubh}</code> package:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/pubh/man/diag_test2.html">diag_test2</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section><section id="likelihood-ratios-in-practice" class="level2" data-number="34.5"><h2 data-number="34.5" class="anchored" data-anchor-id="likelihood-ratios-in-practice">
 <span class="header-section-number">34.5</span> Likelihood ratios in practice</h2>
 <section id="interpretation-of-lrs" class="level3"><h3 class="anchored" data-anchor-id="interpretation-of-lrs">Interpretation of LRs</h3>
@@ -683,7 +690,7 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <p>In our example, LR+ = 2.756, meaning a positive result in digital mammography is approximately 2.8 times more likely to be a true positive test than a false positive test.</p>
 <p>Similarly, LR- = 0.034, meaning a negative result in digital mammography is approximately 0.034 times more likely to be a false negative test than a true negative test. This can also be interpreted as: A woman without breast cancer is about 29.4 (= 1/0.034) times more likely to have a negative digital mammography test than a woman with breast cancer.</p>
 <div class="content-box-green">
-<p>In clinical practice, a higher LR+ is desirable for tests used to “rule in” a diagnosis, while a lower LR- is preferred for tests used to “rule out” a diagnosis.</p>
+<p>In clinical practice, a higher LR+ is desirable for tests used to “rule in” a disease, while a lower LR- is preferred for tests used to “rule out” the chance that the individual has the disease.</p>
 </div>
 </section><section id="application-of-lrs-revising-the-probability-of-disease" class="level3"><h3 class="anchored" data-anchor-id="application-of-lrs-revising-the-probability-of-disease">Application of LRs (revising the probability of disease)</h3>
 <p>The LR is commonly used in decision-making based on Bayes’ Theorem (<a href="probability.html" class="quarto-xref">Chapter&nbsp;<span>13</span></a>). The pre-test odds of a particular diagnosis, multiplied by the likelihood ratio of the diagnostic test, determines the post-test odds.</p>
@@ -721,11 +728,11 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <p>The Fagan nomogram allows us to turn pre-test probabilities into post-test probabilities without needing to convert into odds. The nomogram typically consists of three parallel scales representing the pre-test probability, the likelihood ratio, and the post-test probability. We can visually estimate the post-test probability of a positive diagnosis result by drawing a line from the known pre-test probability, through the LR+ and read off the post-test probability.</p>
 <p><strong>In R:</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">2.756</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">2.756</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-nomogram1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-nomogram1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;34.1: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a positive test result for digital mammography with LR+ of 2.76, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient’s post-test probability.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;34.1: The impact of a positive digital mammography result with LR+ of 2.76 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -741,35 +748,40 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <p>What is the the post-test probability of breast cancer for the same population when the digital mammography is <strong>negative</strong>?</p>
 <p><span class="math inline">\(post \text{-} test \ odds = LR\text{-} \times pre \text{-} test \ odds = 0.034 \times 3.55 = 0.1207\)</span></p>
 <p><span class="math inline">\(post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{0.1207}{0.1207 + 1} = \frac{0.1207}{1.1207} = 0.1077 \ or \ 10.77\%\)</span></p>
+<p><strong>In R:</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">0.034</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">0.034</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-nomogram2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-nomogram2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;34.2: If a patient had a pre-test probability of 0.78 (or 78%) for breast cancer, and had a negative test result for digital mammography with LR- of 0.034, drawing a (red) line from the pre-test probability intersecting the LR on the Fagan Nomogram would determine the patient’s post-test probability.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;34.2: The impact of a negative digital mammography result with LR- of 0.034 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>We can also use the <code>nomogrammer</code> function, which allows us to plot Fagan’s nomgrams with <a href="https://ggplot2.tidyverse.org">ggplot2</a>:</p>
+<p>&nbsp;</p>
+<p>We can also use the <code><a href="https://rdrr.io/pkg/epiR/man/epi.nomogram.html">epi.nomogram()</a></code> and <code>nomogrammer()</code> functions which allow us to calculate the post-test probability and plot Fagan’s nomgrams with <a href="https://ggplot2.tidyverse.org">ggplot2</a>, respectively:</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># nomogrammer is a standalone function from the below repository </span></span>
-<span></span>
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.nomogram.html">epi.nomogram</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">NA</span>, sp <span class="op">=</span> <span class="cn">NA</span>, lr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2.755</span>, <span class="fl">0.034</span><span class="op">)</span>, pre.pos <span class="op">=</span> <span class="fl">0.78</span>,</span>
+<span>             verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>Given a positive test result, the post-test probability of being outcome positive is 0.91 
+Given a negative test result, the post-test probability of being outcome positive is 0.11 </code></pre>
+</div>
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># nomogrammer is a standalone function from the below repository </span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/achekroud/nomogrammer/master/nomogrammer.r"</span><span class="op">)</span></span>
-<span></span>
 <span></span>
 <span><span class="fu">nomogrammer</span><span class="op">(</span>Prevalence <span class="op">=</span> <span class="fl">0.78</span>,</span>
 <span>            Plr <span class="op">=</span> <span class="fl">2.755</span>,</span>
 <span>            Nlr <span class="op">=</span> <span class="fl">0.034</span>,</span>
 <span>            Detail <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>            NullLine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+<div class="cell-output-display">
 <div id="fig-slope" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-slope-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;34.3: sdfdsfd.</figcaption></figure>
+<figcaption class="figure-caption">Figure&nbsp;34.3: The impact of a positive (blue line) and negative (red line) digital mammography result with LR+ of 2.76 and LR- of 0.034 on a patient’s post-test probability for breast cancer, respectively, starting from an initial pre-test probability of 78% on the Fagan Nomogram. The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

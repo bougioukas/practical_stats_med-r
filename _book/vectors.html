@@ -424,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#subsetting-vectors" id="toc-subsetting-vectors" class="nav-link" data-scroll-target="#subsetting-vectors"><span class="header-section-number">7.7</span> Subsetting vectors</a>
   <ul class="collapse">
 <li><a href="#subsetting-with-the-extract-operator-indexing-by-position" id="toc-subsetting-with-the-extract-operator-indexing-by-position" class="nav-link" data-scroll-target="#subsetting-with-the-extract-operator-indexing-by-position">Subsetting with the extract operator <code>[ ]</code> (indexing by position)</a></li>
-  <li><a href="#subsetting-with-logical-vectors-indexing-by-conditon" id="toc-subsetting-with-logical-vectors-indexing-by-conditon" class="nav-link" data-scroll-target="#subsetting-with-logical-vectors-indexing-by-conditon">Subsetting with logical vectors (indexing by conditon)</a></li>
+  <li><a href="#subsetting-with-logical-vectors-indexing-by-condition" id="toc-subsetting-with-logical-vectors-indexing-by-condition" class="nav-link" data-scroll-target="#subsetting-with-logical-vectors-indexing-by-condition">Subsetting with logical vectors (indexing by condition)</a></li>
   </ul>
 </li>
   <li><a href="#vector-recycling" id="toc-vector-recycling" class="nav-link" data-scroll-target="#vector-recycling"><span class="header-section-number">7.8</span> Vector recycling</a></li>
@@ -1356,7 +1356,7 @@ Missing data (NA) in vectors
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="subsetting-with-logical-vectors-indexing-by-conditon" class="level3"><h3 class="anchored" data-anchor-id="subsetting-with-logical-vectors-indexing-by-conditon">Subsetting with logical vectors (indexing by conditon)</h3>
+</section><section id="subsetting-with-logical-vectors-indexing-by-condition" class="level3"><h3 class="anchored" data-anchor-id="subsetting-with-logical-vectors-indexing-by-condition">Subsetting with logical vectors (indexing by condition)</h3>
 <p>We can also pass a <em>logical vector</em> to the <code>[]</code> operator indicating with <code>TRUE</code> the indices we want to select. For example, let’s say that we want to select only the first four months of the year:</p>
 <div class="cell">
 <div class="sourceCode" id="cb206" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fourmonths</span> <span class="op">&lt;-</span> <span class="va">month.name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, </span>

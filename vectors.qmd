@@ -377,13 +377,11 @@ x_abcde <- c("a", "b", "c", "d", "e")
 as.numeric(x_abcde)
 ```
 
-
  
 
 ## Operators applied between two vectors
 
 ### Arithmetic Operators
-
 
 **A. Arithmetic operators applied between a long vector and a scalar (one-element vector)**
 
@@ -392,6 +390,7 @@ Let's go through some examples of arithmetic operators `(+, -, *, /, ^)` applied
 **Examples:**
 
 When we add a scalar to a vector, the scalar is added to each element of the vector (vectorization):
+
 ```{r}
 v <- c(1, 2, 3)
 
@@ -399,7 +398,6 @@ v <- c(1, 2, 3)
 ```
 
 Multiplying a vector by a scalar results in each element of the vector being multiplied by the scalar (vectorization):
-
 
 ```{r}
 3 * v
@@ -410,7 +408,6 @@ Multiplying a vector by a scalar results in each element of the vector being mul
 **B. Arithmetic operators applied between two long vectors**
 
 The arithmetic operations can be performed element-wise between corresponding elements of the vectors (vectorization). In simple terms, each element of one vector interacts with the corresponding element of the other vector .
-
 
 **Examples:**
 
@@ -429,13 +426,10 @@ t^v
 t + 3 * v / 2   # remember the order of operations in R
 ```
 
-
-
-::: {.callout-note}
+::: callout-note
 # Vectorization
 
 Vectorization refers to the process of efficiently applying operations or functions to entire vectors without the need for explicit looping or iteration. This involves element-wise operations on vectors, which results in code that is more concise, readable, and often faster compared to traditional iterative approaches.
-
 
 For example, mathematical operations applied to **all the elements** of a numeric vector:
 
@@ -456,9 +450,7 @@ We can also round the results using the `round()` function and set the argument 
 ```{r}
 round(sqrt(z_seq), digits = 2)
 ```
-
 :::
-
 
  
 
@@ -466,13 +458,10 @@ round(sqrt(z_seq), digits = 2)
 
 The dot product, also known as the inner product, is a mathematical operation between two numeric vectors, v and t. This operation is commonly represented using a dot placed between the vectors: $\nu \cdot t$.
 
-Particularly, we multiply the corresponding elements of the two vectors and then sum up those products to obtain a single scalar value. 
-Given the two vectors, $\nu = (\nu_1, \nu_2, ..., \nu_n)$ and $t = (t_1, t_2, ..., t_n)$, we have: 
-$$\nu \cdot t = \nu_1 * t_1 + \nu_2 * t_2 + ... + \nu_n * t_n$$
-In our example, $\nu = (1, 2, 3)$ and $t = (8, 3, 2)$, so the inner product is:
-$\nu \cdot t = 1 * 8 + 2 * 3 + 3 * 2 = 8 + 6 + 6 = 20$
+Particularly, we multiply the corresponding elements of the two vectors and then sum up those products to obtain a single scalar value. Given the two vectors, $\nu = (\nu_1, \nu_2, ..., \nu_n)$ and $t = (t_1, t_2, ..., t_n)$, we have: $$\nu \cdot t = \nu_1 * t_1 + \nu_2 * t_2 + ... + \nu_n * t_n$$ In our example, $\nu = (1, 2, 3)$ and $t = (8, 3, 2)$, so the inner product is: $\nu \cdot t = 1 * 8 + 2 * 3 + 3 * 2 = 8 + 6 + 6 = 20$
 
 In R, the inner product operator is denoted as `%*%`, so we obtain:
+
 ```{r}
 v %*% t
 ```
@@ -627,7 +616,6 @@ The `!` operator takes each element of the vector and gives the opposite logical
 ! u
 ```
 
-
  
 
 ## Statistical functions applied to vectors
@@ -780,7 +768,7 @@ month.name[-(1:5)]            # skip the 1st to 5th element
 
  
 
-### Subsetting with logical vectors (indexing by conditon)
+### Subsetting with logical vectors (indexing by condition)
 
 We can also pass a *logical vector* to the `[]` operator indicating with `TRUE` the indices we want to select. For example, let's say that we want to select only the first four months of the year:
 
