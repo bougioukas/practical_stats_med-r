@@ -83,7 +83,6 @@ We inspect the data and the type of variables:
 glimpse(dat_cholesterol)
 ```
 
-
 ## Assumptions
 
 ::: {.callout-note icon="false"}
@@ -91,21 +90,15 @@ glimpse(dat_cholesterol)
 
 A.  The data are **normally** distributed in all time points.
 B.  The **variances** among the differences between all possible pairs of time points are equal (sphericity assumption).
-
 :::
-
 
 **A. Explore the characteristics of distribution for each time point and check for normality**
 
-
 The distributions can be explored visually with appropriate plots. Additionally, summary statistics and significance tests to check for normality (e.g., Shapiro-Wilk test) can be used.
-
-
 
 **Graphs**
 
 We can visualize the distribution of `cholesterol` for the three time points:
-
 
 ```{r}
 cholesterol_long <- dat_cholesterol |> 
@@ -113,10 +106,6 @@ cholesterol_long <- dat_cholesterol |>
   pivot_longer(1:3, names_to = "time", values_to = "cholesterol") |> 
   mutate(time = factor(time, levels = c("week0", "week6", "week12")))
 ```
-
-
-
-
 
 ```{r}
 #| warning: false
@@ -131,7 +120,6 @@ ggplot(cholesterol_long, aes(x= time, y = cholesterol, fill = time)) +
   theme(legend.position = "none")
 ```
 
-
 ```{r}
 ggqqplot(cholesterol_long, "cholesterol", color = "time", conf.int = F) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
@@ -141,8 +129,6 @@ ggqqplot(cholesterol_long, "cholesterol", color = "time", conf.int = F) +
 ```
 
 The above figures show that the data are close to symmetry and the assumption of a normal distribution is reasonable.
-
-
 
 **Summary statistics**
 
@@ -194,7 +180,6 @@ The means are close to medians and the standard deviations are also similar. Mor
 
 **Normality test**
 
-
 ```{r}
 cholesterol_long |> 
   group_by(time) |> 
@@ -204,14 +189,9 @@ cholesterol_long |>
 
 The tests of normality suggest that the data for the `cholesterol` in all time points are normally distributed (p \> 0.05).
 
-
-
 ::: content-box-green
-
 In our example, the data at each time point are approximately normally distributed. Therefore, we can conduct a repeated ANOVA analysis.
 :::
-
-
 
 **B. Sphericity test for equality of variances**
 
@@ -224,7 +204,6 @@ MauchlySphericityTest(dat_cholesterol)
 Here the assumption of sphericity has not been met (p \< 0.001)
 
 
-
 ## Run the one-way repeated ANOVA test
 
 ```{r}
@@ -233,6 +212,7 @@ repeated_anova <- cholesterol_long |>
 
 repeated_anova[[3]]
 ```
+
 
 The GGe value is known as epsilon. The epsilon measures how far the data is from the ideal sphericity and ranges between 0 and 1 where 1 is no departure from sphericity. If the epsilon of Greenhouse-Geisser is greater than 0.75 or there is a small sample size (e.g. 10), the epsilon of Huynh-Feldt should be used. This is because Greenhouse-Geisser tends to make the analysis too strict when the epsilon is large
 
