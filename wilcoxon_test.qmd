@@ -52,13 +52,6 @@ library(readxl)
 eyes <- read_excel(here("data", "eyes.xlsx"))
 ```
 
-We calculate the differences using the function `mutate()`:
-
-```{r}
-eyes <- eyes %>%
-  mutate(dif_thickness = affected_eye - unaffected_eye)
-```
-
 ```{r}
 #| echo: false
 #| label: fig-weight
@@ -71,6 +64,13 @@ DT::datatable(
   )
 )
 
+```
+
+We calculate the differences using the function `mutate()`:
+
+```{r}
+eyes <- eyes %>%
+  mutate(dif_thickness = affected_eye - unaffected_eye)
 ```
 
 We inspect the data:
@@ -140,7 +140,7 @@ summary_eyes <- eyes %>%
 
 # present the results
 summary_eyes <- summary_eyes %>% 
-  mutate(across(everything(), round, 2)) %>%   # round to 3 decimal places
+  mutate(across(everything(), \(x) round(x, 2))) %>%   # round to 3 decimal places
   pivot_longer(1:33, names_to = "Stats", values_to = "Values")  # long format
 
 summary_eyes

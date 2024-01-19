@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -391,11 +391,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">32.1</span> Research question</a></li>
-  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">32.2</span> Packages we need</a></li>
-  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">32.3</span> Preparing the data</a></li>
+<li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">32.2</span> Research question</a></li>
+  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">32.3</span> Packages we need</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">32.4</span> Preparing the data</a></li>
   <li>
-<a href="#the-kaplanmeier-product-limit-estimator" id="toc-the-kaplanmeier-product-limit-estimator" class="nav-link" data-scroll-target="#the-kaplanmeier-product-limit-estimator"><span class="header-section-number">32.4</span> The Kaplan–Meier Product Limit Estimator</a>
+<a href="#the-kaplanmeier-product-limit-estimator" id="toc-the-kaplanmeier-product-limit-estimator" class="nav-link" data-scroll-target="#the-kaplanmeier-product-limit-estimator"><span class="header-section-number">32.5</span> The Kaplan–Meier Product Limit Estimator</a>
   <ul class="collapse">
 <li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link" data-scroll-target="#basic-concepts">Basic concepts</a></li>
   <li><a href="#k-m-analysis-for-the-group-of-patients-in-new-therapy-a" id="toc-k-m-analysis-for-the-group-of-patients-in-new-therapy-a" class="nav-link" data-scroll-target="#k-m-analysis-for-the-group-of-patients-in-new-therapy-a">K-M analysis for the group of patients in new therapy A</a></li>
@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
-<a href="#comparing-survival-curves" id="toc-comparing-survival-curves" class="nav-link" data-scroll-target="#comparing-survival-curves"><span class="header-section-number">32.5</span> Comparing survival curves</a>
+<a href="#comparing-survival-curves" id="toc-comparing-survival-curves" class="nav-link" data-scroll-target="#comparing-survival-curves"><span class="header-section-number">32.6</span> Comparing survival curves</a>
   <ul class="collapse">
 <li><a href="#graphical-comparison" id="toc-graphical-comparison" class="nav-link" data-scroll-target="#graphical-comparison">Graphical comparison</a></li>
   <li><a href="#the-log-rank-test" id="toc-the-log-rank-test" class="nav-link" data-scroll-target="#the-log-rank-test">The log-Rank test</a></li>
@@ -444,22 +444,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning objectives
+Caution
 </div>
 </div>
-<div class="callout-body-container callout-body">
+<section id="learning-objectives" class="level2 callout-body-container callout-body" data-number="32.1"><h2 data-number="32.1" class="anchored" data-anchor-id="learning-objectives">
+<span class="header-section-number">32.1</span> Learning objectives</h2>
 <ul>
 <li>Understand the basic concepts of the Kaplan-Meier analysis of time-to-event data</li>
 <li>Compare different survival curves</li>
 <li>Interpret the results</li>
-</ul>
+</ul></section>
 </div>
-</div>
-<section id="research-question" class="level2" data-number="32.1"><h2 data-number="32.1" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">32.1</span> Research question</h2>
+<section id="research-question" class="level2" data-number="32.2"><h2 data-number="32.2" class="anchored" data-anchor-id="research-question">
+<span class="header-section-number">32.2</span> Research question</h2>
 <p>In a randomized controlled trial designed to find out the efficacy of a new therapy for leukemia, the patients were randomly assigned into two groups (new therapy versus standard therapy). The researchers want to (i) estimate the survival time of patients receiving the new therapy, and (ii) compare the survival curves of the patients receiving the new therapy and patients receiving the standard therapy.</p>
-</section><section id="packages-we-need" class="level2" data-number="32.2"><h2 data-number="32.2" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">32.2</span> Packages we need</h2>
+</section><section id="packages-we-need" class="level2" data-number="32.3"><h2 data-number="32.3" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">32.3</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># packages for graphs</span></span>
@@ -477,8 +477,8 @@ Learning objectives
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="preparing-the-data" class="level2" data-number="32.3"><h2 data-number="32.3" class="anchored" data-anchor-id="preparing-the-data">
-<span class="header-section-number">32.3</span> Preparing the data</h2>
+</section><section id="preparing-the-data" class="level2" data-number="32.4"><h2 data-number="32.4" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">32.4</span> Preparing the data</h2>
 <p>In a clinical trial, the patients are monitored for the occurrence of a particular event or outcome. In preparing Kaplan-Meier survival analysis that compares different treatments, three variables should be recorded for each patient: (a) the <strong>time</strong> that is the duration between the beginning of the treatment and the end-point (event of interest or censoring), (b) the <strong>status</strong> at the end of the survival time (event occurrence or censored data), and (c) the <strong>study group</strong> such as treatment versus control intervention.</p>
 <p>We import the data <em>“leukemia”</em> in R:</p>
 <div class="cell">
@@ -487,8 +487,8 @@ Learning objectives
 </div>
 <div class="cell">
 <div id="fig-depression" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-bd7f6804f23b53c3c2ce" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-bd7f6804f23b53c3c2ce">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42"],[6,6,6,6,7,9,10,10,11,13,16,17,19,20,22,23,25,32,32,34,35,1,1,2,2,3,4,4,5,5,8,8,8,9,11,11,12,12,15,17,22,23],[0,1,1,1,1,0,0,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1],["therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time<\/th>\n      <th>status<\/th>\n      <th>intervention<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"time","targets":1},{"name":"status","targets":2},{"name":"intervention","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;32.1: Table with data from “leukemia” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-c11fd37b908834d35562" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c11fd37b908834d35562">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42"],[6,6,6,6,7,9,10,10,11,13,16,17,19,20,22,23,25,32,32,34,35,1,1,2,2,3,4,4,5,5,8,8,8,9,11,11,12,12,15,17,22,23],[0,1,1,1,1,0,0,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1],["therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy A (new)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)","therapy B (standard)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time<\/th>\n      <th>status<\/th>\n      <th>intervention<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"time","targets":1},{"name":"status","targets":2},{"name":"intervention","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;32.1: Table with data from “leukemia” file.</figcaption></figure>
 </div>
 </div>
 <p>The dataset has 42 observations (rows) and includes three variables (columns).</p>
@@ -522,8 +522,8 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 </div>
 </div>
 <p><strong>NOTE:</strong> Censoring times are marked with “<strong>+</strong>” symbol. The above data show that patients in the new therapy were censored on months 6+, 9+, 10+, 11+, 17+, 19+, 20+, 32+, 32+, 34+, 35+.</p>
-</section><section id="the-kaplanmeier-product-limit-estimator" class="level2" data-number="32.4"><h2 data-number="32.4" class="anchored" data-anchor-id="the-kaplanmeier-product-limit-estimator">
-<span class="header-section-number">32.4</span> The Kaplan–Meier Product Limit Estimator</h2>
+</section><section id="the-kaplanmeier-product-limit-estimator" class="level2" data-number="32.5"><h2 data-number="32.5" class="anchored" data-anchor-id="the-kaplanmeier-product-limit-estimator">
+<span class="header-section-number">32.5</span> The Kaplan–Meier Product Limit Estimator</h2>
 <p>Kaplan-Meier estimator, also known as product-limit estimator, can be used to measure the cumulative probability of “surviving” for a certain amount of time after starting the therapy.</p>
 <section id="basic-concepts" class="level3"><h3 class="anchored" data-anchor-id="basic-concepts">Basic concepts</h3>
 <p>Let <span class="math inline">\(T\)</span> be a non-negative random variable, representing the time until the event of interest (death). Additionally, suppose that the events (deaths) are observed in the period of follow-up at <span class="math inline">\(k\)</span> distinct times <span class="math inline">\(t_{1} &lt; t_{2} &lt; t_{3} &lt; \ ...\ &lt; t_{k}\)</span>. The <strong>conditional survival probability</strong> at <span class="math inline">\(t_j\)</span> is defined as the probability of surviving beyond time <span class="math inline">\(t_j\)</span> (<span class="math inline">\(T&gt;t_j\)</span>), given that the patient has survived at least <span class="math inline">\(t_j\)</span> time (<span class="math inline">\(T≥t_j\)</span>). This conditional probability represents the proportion of patients who are at risk at time <span class="math inline">\(t_j\)</span> but who do not die at this time point, as follows:</p>
@@ -592,23 +592,23 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 <span>            locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="va">n.risk</span>, rows <span class="op">=</span> <span class="va">n.risk</span> <span class="op">==</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-tb1" class="anchored">
-<div id="menyfgnoqh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#menyfgnoqh table {
+<div id="cbhtbqtlyq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cbhtbqtlyq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#menyfgnoqh thead, #menyfgnoqh tbody, #menyfgnoqh tfoot, #menyfgnoqh tr, #menyfgnoqh td, #menyfgnoqh th {
+#cbhtbqtlyq thead, #cbhtbqtlyq tbody, #cbhtbqtlyq tfoot, #cbhtbqtlyq tr, #cbhtbqtlyq td, #cbhtbqtlyq th {
   border-style: none;
 }
 
-#menyfgnoqh p {
+#cbhtbqtlyq p {
   margin: 0;
   padding: 0;
 }
 
-#menyfgnoqh .gt_table {
+#cbhtbqtlyq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -634,12 +634,12 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-left-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_caption {
+#cbhtbqtlyq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#menyfgnoqh .gt_title {
+#cbhtbqtlyq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -651,7 +651,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-width: 0;
 }
 
-#menyfgnoqh .gt_subtitle {
+#cbhtbqtlyq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -663,7 +663,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-top-width: 0;
 }
 
-#menyfgnoqh .gt_heading {
+#cbhtbqtlyq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -675,13 +675,13 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_bottom_border {
+#cbhtbqtlyq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_col_headings {
+#cbhtbqtlyq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -696,7 +696,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_col_heading {
+#cbhtbqtlyq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -716,7 +716,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   overflow-x: hidden;
 }
 
-#menyfgnoqh .gt_column_spanner_outer {
+#cbhtbqtlyq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -728,15 +728,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 4px;
 }
 
-#menyfgnoqh .gt_column_spanner_outer:first-child {
+#cbhtbqtlyq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#menyfgnoqh .gt_column_spanner_outer:last-child {
+#cbhtbqtlyq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#menyfgnoqh .gt_column_spanner {
+#cbhtbqtlyq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -748,11 +748,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   width: 100%;
 }
 
-#menyfgnoqh .gt_spanner_row {
+#cbhtbqtlyq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#menyfgnoqh .gt_group_heading {
+#cbhtbqtlyq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -778,7 +778,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   text-align: left;
 }
 
-#menyfgnoqh .gt_empty_group_heading {
+#cbhtbqtlyq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -793,15 +793,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   vertical-align: middle;
 }
 
-#menyfgnoqh .gt_from_md > :first-child {
+#cbhtbqtlyq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#menyfgnoqh .gt_from_md > :last-child {
+#cbhtbqtlyq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#menyfgnoqh .gt_row {
+#cbhtbqtlyq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -820,7 +820,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   overflow-x: hidden;
 }
 
-#menyfgnoqh .gt_stub {
+#cbhtbqtlyq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -833,7 +833,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#menyfgnoqh .gt_stub_row_group {
+#cbhtbqtlyq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -847,15 +847,15 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   vertical-align: top;
 }
 
-#menyfgnoqh .gt_row_group_first td {
+#cbhtbqtlyq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#menyfgnoqh .gt_row_group_first th {
+#cbhtbqtlyq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#menyfgnoqh .gt_summary_row {
+#cbhtbqtlyq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -865,16 +865,16 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#menyfgnoqh .gt_first_summary_row {
+#cbhtbqtlyq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_first_summary_row.thick {
+#cbhtbqtlyq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#menyfgnoqh .gt_last_summary_row {
+#cbhtbqtlyq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -884,7 +884,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_grand_summary_row {
+#cbhtbqtlyq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -894,7 +894,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#menyfgnoqh .gt_first_grand_summary_row {
+#cbhtbqtlyq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -904,7 +904,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-top-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_last_grand_summary_row_top {
+#cbhtbqtlyq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -914,11 +914,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_striped {
+#cbhtbqtlyq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#menyfgnoqh .gt_table_body {
+#cbhtbqtlyq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -927,7 +927,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-bottom-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_footnotes {
+#cbhtbqtlyq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -941,7 +941,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_footnote {
+#cbhtbqtlyq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -950,7 +950,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#menyfgnoqh .gt_sourcenotes {
+#cbhtbqtlyq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -964,7 +964,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   border-right-color: #D3D3D3;
 }
 
-#menyfgnoqh .gt_sourcenote {
+#cbhtbqtlyq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -972,63 +972,63 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
   padding-right: 5px;
 }
 
-#menyfgnoqh .gt_left {
+#cbhtbqtlyq .gt_left {
   text-align: left;
 }
 
-#menyfgnoqh .gt_center {
+#cbhtbqtlyq .gt_center {
   text-align: center;
 }
 
-#menyfgnoqh .gt_right {
+#cbhtbqtlyq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#menyfgnoqh .gt_font_normal {
+#cbhtbqtlyq .gt_font_normal {
   font-weight: normal;
 }
 
-#menyfgnoqh .gt_font_bold {
+#cbhtbqtlyq .gt_font_bold {
   font-weight: bold;
 }
 
-#menyfgnoqh .gt_font_italic {
+#cbhtbqtlyq .gt_font_italic {
   font-style: italic;
 }
 
-#menyfgnoqh .gt_super {
+#cbhtbqtlyq .gt_super {
   font-size: 65%;
 }
 
-#menyfgnoqh .gt_footnote_marks {
+#cbhtbqtlyq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#menyfgnoqh .gt_asterisk {
+#cbhtbqtlyq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#menyfgnoqh .gt_indent_1 {
+#cbhtbqtlyq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#menyfgnoqh .gt_indent_2 {
+#cbhtbqtlyq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#menyfgnoqh .gt_indent_3 {
+#cbhtbqtlyq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#menyfgnoqh .gt_indent_4 {
+#cbhtbqtlyq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#menyfgnoqh .gt_indent_5 {
+#cbhtbqtlyq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1215,23 +1215,23 @@ Important
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-tb2" class="anchored">
-<div id="qwxatyxgrh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qwxatyxgrh table {
+<div id="kilnhzfwkm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kilnhzfwkm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qwxatyxgrh thead, #qwxatyxgrh tbody, #qwxatyxgrh tfoot, #qwxatyxgrh tr, #qwxatyxgrh td, #qwxatyxgrh th {
+#kilnhzfwkm thead, #kilnhzfwkm tbody, #kilnhzfwkm tfoot, #kilnhzfwkm tr, #kilnhzfwkm td, #kilnhzfwkm th {
   border-style: none;
 }
 
-#qwxatyxgrh p {
+#kilnhzfwkm p {
   margin: 0;
   padding: 0;
 }
 
-#qwxatyxgrh .gt_table {
+#kilnhzfwkm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1257,12 +1257,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_caption {
+#kilnhzfwkm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qwxatyxgrh .gt_title {
+#kilnhzfwkm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1274,7 +1274,7 @@ Important
   border-bottom-width: 0;
 }
 
-#qwxatyxgrh .gt_subtitle {
+#kilnhzfwkm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1286,7 +1286,7 @@ Important
   border-top-width: 0;
 }
 
-#qwxatyxgrh .gt_heading {
+#kilnhzfwkm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1298,13 +1298,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_bottom_border {
+#kilnhzfwkm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_col_headings {
+#kilnhzfwkm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1319,7 +1319,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_col_heading {
+#kilnhzfwkm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1339,7 +1339,7 @@ Important
   overflow-x: hidden;
 }
 
-#qwxatyxgrh .gt_column_spanner_outer {
+#kilnhzfwkm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1351,15 +1351,15 @@ Important
   padding-right: 4px;
 }
 
-#qwxatyxgrh .gt_column_spanner_outer:first-child {
+#kilnhzfwkm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qwxatyxgrh .gt_column_spanner_outer:last-child {
+#kilnhzfwkm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qwxatyxgrh .gt_column_spanner {
+#kilnhzfwkm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1371,11 +1371,11 @@ Important
   width: 100%;
 }
 
-#qwxatyxgrh .gt_spanner_row {
+#kilnhzfwkm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qwxatyxgrh .gt_group_heading {
+#kilnhzfwkm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1401,7 +1401,7 @@ Important
   text-align: left;
 }
 
-#qwxatyxgrh .gt_empty_group_heading {
+#kilnhzfwkm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1416,15 +1416,15 @@ Important
   vertical-align: middle;
 }
 
-#qwxatyxgrh .gt_from_md > :first-child {
+#kilnhzfwkm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qwxatyxgrh .gt_from_md > :last-child {
+#kilnhzfwkm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qwxatyxgrh .gt_row {
+#kilnhzfwkm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1443,7 +1443,7 @@ Important
   overflow-x: hidden;
 }
 
-#qwxatyxgrh .gt_stub {
+#kilnhzfwkm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1456,7 +1456,7 @@ Important
   padding-right: 5px;
 }
 
-#qwxatyxgrh .gt_stub_row_group {
+#kilnhzfwkm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1470,15 +1470,15 @@ Important
   vertical-align: top;
 }
 
-#qwxatyxgrh .gt_row_group_first td {
+#kilnhzfwkm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qwxatyxgrh .gt_row_group_first th {
+#kilnhzfwkm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qwxatyxgrh .gt_summary_row {
+#kilnhzfwkm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1488,16 +1488,16 @@ Important
   padding-right: 5px;
 }
 
-#qwxatyxgrh .gt_first_summary_row {
+#kilnhzfwkm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_first_summary_row.thick {
+#kilnhzfwkm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qwxatyxgrh .gt_last_summary_row {
+#kilnhzfwkm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1507,7 +1507,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_grand_summary_row {
+#kilnhzfwkm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1517,7 +1517,7 @@ Important
   padding-right: 5px;
 }
 
-#qwxatyxgrh .gt_first_grand_summary_row {
+#kilnhzfwkm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1527,7 +1527,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_last_grand_summary_row_top {
+#kilnhzfwkm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1537,11 +1537,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_striped {
+#kilnhzfwkm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qwxatyxgrh .gt_table_body {
+#kilnhzfwkm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1550,7 +1550,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_footnotes {
+#kilnhzfwkm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1564,7 +1564,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_footnote {
+#kilnhzfwkm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1573,7 +1573,7 @@ Important
   padding-right: 5px;
 }
 
-#qwxatyxgrh .gt_sourcenotes {
+#kilnhzfwkm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1587,7 +1587,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#qwxatyxgrh .gt_sourcenote {
+#kilnhzfwkm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1595,63 +1595,63 @@ Important
   padding-right: 5px;
 }
 
-#qwxatyxgrh .gt_left {
+#kilnhzfwkm .gt_left {
   text-align: left;
 }
 
-#qwxatyxgrh .gt_center {
+#kilnhzfwkm .gt_center {
   text-align: center;
 }
 
-#qwxatyxgrh .gt_right {
+#kilnhzfwkm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qwxatyxgrh .gt_font_normal {
+#kilnhzfwkm .gt_font_normal {
   font-weight: normal;
 }
 
-#qwxatyxgrh .gt_font_bold {
+#kilnhzfwkm .gt_font_bold {
   font-weight: bold;
 }
 
-#qwxatyxgrh .gt_font_italic {
+#kilnhzfwkm .gt_font_italic {
   font-style: italic;
 }
 
-#qwxatyxgrh .gt_super {
+#kilnhzfwkm .gt_super {
   font-size: 65%;
 }
 
-#qwxatyxgrh .gt_footnote_marks {
+#kilnhzfwkm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qwxatyxgrh .gt_asterisk {
+#kilnhzfwkm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qwxatyxgrh .gt_indent_1 {
+#kilnhzfwkm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qwxatyxgrh .gt_indent_2 {
+#kilnhzfwkm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qwxatyxgrh .gt_indent_3 {
+#kilnhzfwkm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qwxatyxgrh .gt_indent_4 {
+#kilnhzfwkm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qwxatyxgrh .gt_indent_5 {
+#kilnhzfwkm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1824,8 +1824,8 @@ Important
 </div>
 </div>
 <p>We observe that the median time equals to <strong>23 months</strong> for the patients receiving the new therapy A.</p>
-</section></section><section id="comparing-survival-curves" class="level2" data-number="32.5"><h2 data-number="32.5" class="anchored" data-anchor-id="comparing-survival-curves">
-<span class="header-section-number">32.5</span> Comparing survival curves</h2>
+</section></section><section id="comparing-survival-curves" class="level2" data-number="32.6"><h2 data-number="32.6" class="anchored" data-anchor-id="comparing-survival-curves">
+<span class="header-section-number">32.6</span> Comparing survival curves</h2>
 <section id="graphical-comparison" class="level3"><h3 class="anchored" data-anchor-id="graphical-comparison">Graphical comparison</h3>
 <p>Survival of two or more groups of patients can be compared graphically. In our example, we are interested in comparing the survival curves between the new therapy and the standard therapy.</p>
 <ul>
@@ -1939,39 +1939,89 @@ intervention=therapy B (standard) 21       18     9.35      8.00      13.3
  Chisq= 13.3  on 1 degrees of freedom, p= 3e-04 </code></pre>
 </div>
 </div>
-<p>The log-rank test yields a chi-square statistical value, as it is built upon this framework. Therefore, the log-rank estimates the expected number of deaths among patients and compares it with the actual number of observed deaths. The resulting p-value is 0.0003, which means that we reject the null and that the survival curves are significantly different.</p>
+<p>The log-rank test yields a chi-square statistical value, as it is built upon this framework. Therefore, the log-rank estimates the <strong>expected</strong> number of deaths among patients and compares it with the actual number of <strong>observed</strong> deaths. The resulting p-value is 0.0003, which means that we reject the null hypothesis and that the survival curves are significantly different.</p>
 </section><section id="the-hazard-ratio-hr" class="level3"><h3 class="anchored" data-anchor-id="the-hazard-ratio-hr">The Hazard Ratio (HR)</h3>
-<p>Proportional hazards assumption says that the ratio of hazards between groups is constant over time</p>
-<p>The log-rank test has optimum power under the assumption of proportional hazard rates.</p>
-<p>The Hazard ratio (HR) can be considered as an estimate of relative risk (RR), which is the risk of an event (or of developing a disease) relative to exposure.</p>
+<p>The Hazard ratio (HR) is an estimate of the ratio of the hazard rate in the new therapy versus the standard therapy. The hazard ratio is often interpreted as a risk ratio or odds ratio, although they are not technically the same.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+HR versus RR and OR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hazard ratios (HRs) differ from relative risks (RRs) and odds ratio (OR) in that RRs and ORs are cumulative over an entire study, using a defined endpoint, while HRs represent instantaneous risk over the study time period.</p>
+</div>
+</div>
+<p>After computing the number of observed events (deaths) in each group (<span class="math inline">\(O_A\)</span> for observed number of events in group A and <span class="math inline">\(O_B\)</span> for observed number of events in group B), and the expected number of events assuming a null hypothesis of no difference in survival (<span class="math inline">\(E_A\)</span> for expected number of events in group A and <span class="math inline">\(E_B\)</span> for expected number of events in group B) using the log-rank approach, we can calculate the hazard ratio:</p>
+<p><span class="math display">\[ Hazard \ Ratio = HR = \frac{\frac{O_A}{E_A}}{\frac{O_B}{E_B}} = \frac{\frac{9}{17.65}}{\frac{18}{9.35}} =\frac{0.51}{0.193} = 0.26\]</span></p>
+<p>We also can compute the 95% confidence interval for the HR. First, we compute the standard error of the natural logarithm of the hazard ratio:</p>
+<p><span class="math display">\[SE_{lnHR} = \sqrt{\frac{1}{E_A} + \frac{1}{E_B}} = \sqrt{\frac{1}{17.65} + \frac{1}{9.35}} = \sqrt{0.057 + 0.107} = \sqrt{0.164} = 0.404\]</span></p>
+<p>Second, we calculate the 95% CI of the natural logarithm of the hazard ratio. The lower limit is:</p>
+<p><span class="math display">\[LL_{lnHR} = lnHR - 1.96 \cdot SE_{lnHR}\]</span></p>
+<p>and the upper limit:</p>
+<p><span class="math display">\[UL_{lnHR} = lnHR + 1.96 \cdot SE_{lnHR}\]</span></p>
+<p>Finally, we convert each of these values back to HR using:</p>
+<p><span class="math display">\[LL_{HR} = exp(LL_{lnHR})\]</span> and</p>
+<p><span class="math display">\[UL_{HR} = exp(UL_{lnHR})\]</span></p>
+<p><strong>In R:</strong></p>
+<p>The HR is:</p>
 <div class="cell">
-<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">D1</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">obs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="va">D2</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">obs</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="va">E1</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">exp</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="va">E2</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">exp</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="va">HR</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">D1</span><span class="op">/</span><span class="va">D2</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">E1</span><span class="op">/</span><span class="va">E2</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">O_A</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">obs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">O_B</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">obs</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">E_A</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">exp</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">E_B</span> <span class="op">&lt;-</span> <span class="va">SurvDiff</span><span class="op">$</span><span class="va">exp</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">HR</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">O_A</span><span class="op">/</span><span class="va">E_A</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">O_B</span><span class="op">/</span><span class="va">E_B</span><span class="op">)</span></span>
 <span><span class="va">HR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.2649746</code></pre>
 </div>
 </div>
-<p>Standard errors and confidence interval can be calculated using the formula in the textbook.</p>
+<p>and the standard error of the logarithm of HR:</p>
 <div class="cell">
-<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SE_lnHR</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">E1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="va">E2</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SE_lnHR</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">E_A</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="va">E_B</span><span class="op">)</span></span>
 <span><span class="va">SE_lnHR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.4044623</code></pre>
 </div>
 </div>
+<p>The lower and upper limits of the logarithm of HR are:</p>
 <div class="cell">
-<div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">L</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">HR</span><span class="op">)</span></span>
-<span><span class="va">lower</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">L</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">SE_lnHR</span><span class="op">)</span></span>
-<span><span class="va">upper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">L</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">SE_lnHR</span><span class="op">)</span></span>
-<span><span class="va">ci95</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>lower<span class="op">=</span><span class="va">lower</span>, upper<span class="op">=</span><span class="va">upper</span><span class="op">)</span></span>
-<span><span class="va">ci95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">LL_lnHR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">HR</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">SE_lnHR</span></span>
+<span><span class="va">LL_lnHR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>    lower     upper 
+<pre data-code-line-numbers=""><code>[1] -2.120867</code></pre>
+</div>
+<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">UL_lnHR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">HR</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">SE_lnHR</span></span>
+<span><span class="va">UL_lnHR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] -0.5353751</code></pre>
+</div>
+</div>
+<p>Finally:</p>
+<div class="cell">
+<div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">LL_HR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">LL_lnHR</span><span class="op">)</span></span>
+<span><span class="va">UL_HR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">UL_lnHR</span><span class="op">)</span></span>
+<span><span class="va">CI95</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>LL_HR <span class="op">=</span> <span class="va">LL_HR</span>, UL_HR <span class="op">=</span> <span class="va">UL_HR</span><span class="op">)</span></span>
+<span><span class="va">CI95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>    LL_HR     UL_HR 
 0.1199276 0.5854496 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg> Comment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The log-rank test has optimum power under the assumption of proportional hazard rates. This assumption posits that the ratio of hazards between groups remains constant over time.</p>
 </div>
 </div>
 

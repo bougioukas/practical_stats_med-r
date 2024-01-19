@@ -301,4 +301,3 @@ nomogrammer(Prevalence = 0.78,
             Detail = TRUE,
             NullLine = TRUE)
 ```
-

@@ -56,13 +56,6 @@ library(readxl)
 weight <- read_excel(here("data", "weight.xlsx"))
 ```
 
-We calculate the differences using the `mutate()` function:
-
-```{r}
-weight <- weight |> 
-  mutate(dif_weight = discharge_weight - birth_weight)
-```
-
 ```{r}
 #| echo: false
 #| label: fig-weight
@@ -75,6 +68,13 @@ DT::datatable(
   )
 )
 
+```
+
+We calculate the differences using the `mutate()` function:
+
+```{r}
+weight <- weight |> 
+  mutate(dif_weight = discharge_weight - birth_weight)
 ```
 
 We inspect the data:
@@ -154,7 +154,7 @@ summary_weight <- weight |>
 
 # present the results
 summary_weight <- summary_weight |> 
-  mutate(across(everything(), round, 2)) |>    # round to 3 decimal places
+  mutate(across(everything(), \(x) round(x, 2))) |>    # round to 3 decimal places
   pivot_longer(1:33, names_to = "Stats", values_to = "Values")  # long format
 
 summary_weight|> 

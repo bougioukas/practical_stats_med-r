@@ -1,1 +1,241 @@
-# Repeated Measures ANOVA {#sec-repeated_anova}
+# One-way Repeated Measures ANOVA {#sec-repeated_anova}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+The one-way repeated measures analysis of variance (also known as a within-subjects ANOVA) is an extension of the paired t-test designed to assess whether there are significant differences in the means of three or more related groups, such as comparing the difference between three or more time points.
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Applying hypothesis testing
+-   Compare three or more dependent samples applying repeated ANOVA
+-   Perform post-hoc tests
+-   Interpret the results
+:::
+
+## Research question and Hypothesis Testing
+
+Participants used margarine for 12 weeks. Their blood cholesterol (in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.
+
+::: {.callout-note icon="false"}
+## `r fa("angles-right", fill = "#1DC5CE")` Null hypothesis and alternative hypothesis for the main research question
+
+-   $H_0$: all related group means are equal (the means of cholesterol at the three time points are equal; $\mu_{1} = \mu_{2} = \mu_{3}$)
+-   $H_1$: at least one related group mean differs from the others (there is at least one time point at which the mean cholesterol level differs from the others)
+:::
+
+## Packages we need
+
+We need to load the following packages:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(rstatix)
+library(superb)
+library(ggpubr)
+library(ggprism)
+library(ggsci)
+library(ggpubr)
+library(ggrain)
+
+library(PupillometryR)
+library(gtsummary)
+library(dabestr)
+
+library(here)
+library(tidyverse)
+```
+
+## Preparing the data
+
+We import the data *cholesterol* in R:
+
+```{r}
+#| warning: false
+
+library(readxl)
+dat_cholesterol <- read_excel(here("data", "cholesterol.xlsx"))
+```
+
+```{r}
+#| echo: false
+#| label: fig-cholesterol
+#| fig-cap: Table with data from "cholesterol" file.
+
+DT::datatable(
+  dat_cholesterol, extensions = 'Buttons', options = list(
+    dom = 'tip',
+    columnDefs = list(list(className = 'dt-center', targets = "_all"))
+  )
+)
+
+```
+
+We inspect the data and the type of variables:
+
+```{r}
+glimpse(dat_cholesterol)
+```
+
+
+## Assumptions
+
+::: {.callout-note icon="false"}
+## Check if the following assumptions are satisfied
+
+A.  The data are **normally** distributed in all time points.
+B.  The **variances** among the differences between all possible pairs of time points are equal (sphericity assumption).
+
+:::
+
+
+**A. Explore the characteristics of distribution for each time point and check for normality**
+
+
+The distributions can be explored visually with appropriate plots. Additionally, summary statistics and significance tests to check for normality (e.g., Shapiro-Wilk test) can be used.
+
+
+
+**Graphs**
+
+We can visualize the distribution of `cholesterol` for the three time points:
+
+
+```{r}
+cholesterol_long <- dat_cholesterol |> 
+  mutate(id = row_number()) |> 
+  pivot_longer(1:3, names_to = "time", values_to = "cholesterol") |> 
+  mutate(time = factor(time, levels = c("week0", "week6", "week12")))
+```
+
+
+
+
+
+```{r}
+#| warning: false
+#| label: fig-violin_plot3
+#| fig-cap: Rain cloud plot.
+
+ggplot(cholesterol_long, aes(x= time, y = cholesterol, fill = time)) +
+  geom_rain(likert= TRUE, seed = 123, point.args = list(alpha = 0.3)) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  labs(title = "Grouped Raincloud Plot: Cholesterol by time point") +
+  scale_fill_jco() +
+  theme(legend.position = "none")
+```
+
+
+```{r}
+ggqqplot(cholesterol_long, "cholesterol", color = "time", conf.int = F) +
+  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  scale_color_jco() +
+  facet_wrap(~ time) + 
+  theme(legend.position = "none")
+```
+
+The above figures show that the data are close to symmetry and the assumption of a normal distribution is reasonable.
+
+
+
+**Summary statistics**
+
+The `cholesterol` summary statistics for each time point are:
+
+::: {#exercise-joins .callout-tip}
+## Summary statistics by time point
+
+::: panel-tabset
+## dplyr
+
+```{r}
+cholesterol_summary <- cholesterol_long %>%
+  group_by(time) %>%
+  dplyr::summarise(
+    n = n(),
+    na = sum(is.na(cholesterol)),
+    min = min(cholesterol, na.rm = TRUE),
+    q1 = quantile(cholesterol, 0.25, na.rm = TRUE),
+    median = quantile(cholesterol, 0.5, na.rm = TRUE),
+    q3 = quantile(cholesterol, 0.75, na.rm = TRUE),
+    max = max(cholesterol, na.rm = TRUE),
+    mean = mean(cholesterol, na.rm = TRUE),
+    sd = sd(cholesterol, na.rm = TRUE),
+    skewness = EnvStats::skewness(cholesterol, na.rm = TRUE),
+    kurtosis= EnvStats::kurtosis(cholesterol, na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+cholesterol_summary
+```
+
+## dlookr
+
+```{r}
+cholesterol_long |> 
+  group_by(time) |> 
+  dlookr::describe(cholesterol) |> 
+  select(described_variables,  time, n, mean, sd, p25, p50, p75, skewness, kurtosis) |> 
+  ungroup() |> 
+  print(width = 100)
+```
+:::
+:::
+
+The means are close to medians and the standard deviations are also similar. Moreover, both skewness and (excess) kurtosis falls into the acceptable range of \[-1, 1\] indicating approximately normal distributions for all time points.
+
+ 
+
+**Normality test**
+
+
+```{r}
+cholesterol_long |> 
+  group_by(time) |> 
+  shapiro_test(cholesterol) |>  
+  ungroup()
+```
+
+The tests of normality suggest that the data for the `cholesterol` in all time points are normally distributed (p \> 0.05).
+
+
+
+::: content-box-green
+
+In our example, the data at each time point are approximately normally distributed. Therefore, we can conduct a repeated ANOVA analysis.
+:::
+
+
+
+**B. Sphericity test for equality of variances**
+
+The *Mauchly's sphericity test* for equality of the differences between time points is:
+
+```{r}
+MauchlySphericityTest(dat_cholesterol)
+```
+
+Here the assumption of sphericity has not been met (p \< 0.001)
+
+
+
+## Run the one-way repeated ANOVA test
+
+```{r}
+repeated_anova <- cholesterol_long |>
+  anova_test(dv = cholesterol, wid = id, within = time)
+
+repeated_anova[[3]]
+```
+
+The GGe value is known as epsilon. The epsilon measures how far the data is from the ideal sphericity and ranges between 0 and 1 where 1 is no departure from sphericity. If the epsilon of Greenhouse-Geisser is greater than 0.75 or there is a small sample size (e.g. 10), the epsilon of Huynh-Feldt should be used. This is because Greenhouse-Geisser tends to make the analysis too strict when the epsilon is large
+
+```{r}
+get_anova_table(repeated_anova)
+```

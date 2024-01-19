@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -471,16 +471,16 @@ Null hypothesis and alternative hypothesis
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="va">eyes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"eyes.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div id="fig-weight" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-7fae3d03c58a61c95bc0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7fae3d03c58a61c95bc0">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8"],[488,478,480,426,440,410,458,460],[484,478,492,444,436,398,464,476]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>affected_eye<\/th>\n      <th>unaffected_eye<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"affected_eye","targets":1},{"name":"unaffected_eye","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;21.1: Table with data from “eyes” file.</figcaption></figure>
+</div>
+</div>
 <p>We calculate the differences using the function <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eyes</span> <span class="op">&lt;-</span> <span class="va">eyes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dif_thickness <span class="op">=</span> <span class="va">affected_eye</span> <span class="op">-</span> <span class="va">unaffected_eye</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div id="fig-weight" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-bd9f44839fb585c3e770" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-bd9f44839fb585c3e770">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8"],[488,478,480,426,440,410,458,460],[484,478,492,444,436,398,464,476],[4,0,-12,-18,4,12,-6,-16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>affected_eye<\/th>\n      <th>unaffected_eye<\/th>\n      <th>dif_thickness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"affected_eye","targets":1},{"name":"unaffected_eye","targets":2},{"name":"dif_thickness","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;21.1: Table with data from “eyes” file.</figcaption></figure>
-</div>
 </div>
 <p>We inspect the data:</p>
 <div class="cell">
@@ -558,7 +558,7 @@ Summary statistics
 <span></span>
 <span><span class="co"># present the results</span></span>
 <span><span class="va">summary_eyes</span> <span class="op">&lt;-</span> <span class="va">summary_eyes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">round</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># round to 3 decimal places</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># round to 3 decimal places</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">33</span>, names_to <span class="op">=</span> <span class="st">"Stats"</span>, values_to <span class="op">=</span> <span class="st">"Values"</span><span class="op">)</span>  <span class="co"># long format</span></span>
 <span></span>
 <span><span class="va">summary_eyes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -708,23 +708,23 @@ sample estimates:
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_p.html">add_p</a></span><span class="op">(</span>test <span class="op">=</span> <span class="va">thickness</span> <span class="op">~</span> <span class="st">"paired.wilcox.test"</span>, group <span class="op">=</span> <span class="va">id</span>,</span>
 <span>                 estimate_fun <span class="op">=</span> <span class="va">thickness</span> <span class="op">~</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/style_sigfig.html">style_sigfig</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="edvfdhqwfp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#edvfdhqwfp table {
+<div id="odfkbjaejp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#odfkbjaejp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#edvfdhqwfp thead, #edvfdhqwfp tbody, #edvfdhqwfp tfoot, #edvfdhqwfp tr, #edvfdhqwfp td, #edvfdhqwfp th {
+#odfkbjaejp thead, #odfkbjaejp tbody, #odfkbjaejp tfoot, #odfkbjaejp tr, #odfkbjaejp td, #odfkbjaejp th {
   border-style: none;
 }
 
-#edvfdhqwfp p {
+#odfkbjaejp p {
   margin: 0;
   padding: 0;
 }
 
-#edvfdhqwfp .gt_table {
+#odfkbjaejp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -750,12 +750,12 @@ sample estimates:
   border-left-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_caption {
+#odfkbjaejp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#edvfdhqwfp .gt_title {
+#odfkbjaejp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -767,7 +767,7 @@ sample estimates:
   border-bottom-width: 0;
 }
 
-#edvfdhqwfp .gt_subtitle {
+#odfkbjaejp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -779,7 +779,7 @@ sample estimates:
   border-top-width: 0;
 }
 
-#edvfdhqwfp .gt_heading {
+#odfkbjaejp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -791,13 +791,13 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_bottom_border {
+#odfkbjaejp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_col_headings {
+#odfkbjaejp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -812,7 +812,7 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_col_heading {
+#odfkbjaejp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -832,7 +832,7 @@ sample estimates:
   overflow-x: hidden;
 }
 
-#edvfdhqwfp .gt_column_spanner_outer {
+#odfkbjaejp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -844,15 +844,15 @@ sample estimates:
   padding-right: 4px;
 }
 
-#edvfdhqwfp .gt_column_spanner_outer:first-child {
+#odfkbjaejp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#edvfdhqwfp .gt_column_spanner_outer:last-child {
+#odfkbjaejp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#edvfdhqwfp .gt_column_spanner {
+#odfkbjaejp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -864,11 +864,11 @@ sample estimates:
   width: 100%;
 }
 
-#edvfdhqwfp .gt_spanner_row {
+#odfkbjaejp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#edvfdhqwfp .gt_group_heading {
+#odfkbjaejp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -894,7 +894,7 @@ sample estimates:
   text-align: left;
 }
 
-#edvfdhqwfp .gt_empty_group_heading {
+#odfkbjaejp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -909,15 +909,15 @@ sample estimates:
   vertical-align: middle;
 }
 
-#edvfdhqwfp .gt_from_md > :first-child {
+#odfkbjaejp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#edvfdhqwfp .gt_from_md > :last-child {
+#odfkbjaejp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#edvfdhqwfp .gt_row {
+#odfkbjaejp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -936,7 +936,7 @@ sample estimates:
   overflow-x: hidden;
 }
 
-#edvfdhqwfp .gt_stub {
+#odfkbjaejp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -949,7 +949,7 @@ sample estimates:
   padding-right: 5px;
 }
 
-#edvfdhqwfp .gt_stub_row_group {
+#odfkbjaejp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -963,15 +963,15 @@ sample estimates:
   vertical-align: top;
 }
 
-#edvfdhqwfp .gt_row_group_first td {
+#odfkbjaejp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#edvfdhqwfp .gt_row_group_first th {
+#odfkbjaejp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#edvfdhqwfp .gt_summary_row {
+#odfkbjaejp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -981,16 +981,16 @@ sample estimates:
   padding-right: 5px;
 }
 
-#edvfdhqwfp .gt_first_summary_row {
+#odfkbjaejp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_first_summary_row.thick {
+#odfkbjaejp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#edvfdhqwfp .gt_last_summary_row {
+#odfkbjaejp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1000,7 +1000,7 @@ sample estimates:
   border-bottom-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_grand_summary_row {
+#odfkbjaejp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1010,7 +1010,7 @@ sample estimates:
   padding-right: 5px;
 }
 
-#edvfdhqwfp .gt_first_grand_summary_row {
+#odfkbjaejp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1020,7 +1020,7 @@ sample estimates:
   border-top-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_last_grand_summary_row_top {
+#odfkbjaejp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1030,11 +1030,11 @@ sample estimates:
   border-bottom-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_striped {
+#odfkbjaejp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#edvfdhqwfp .gt_table_body {
+#odfkbjaejp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1043,7 +1043,7 @@ sample estimates:
   border-bottom-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_footnotes {
+#odfkbjaejp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1057,7 +1057,7 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_footnote {
+#odfkbjaejp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1066,7 +1066,7 @@ sample estimates:
   padding-right: 5px;
 }
 
-#edvfdhqwfp .gt_sourcenotes {
+#odfkbjaejp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1080,7 +1080,7 @@ sample estimates:
   border-right-color: #D3D3D3;
 }
 
-#edvfdhqwfp .gt_sourcenote {
+#odfkbjaejp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1088,63 +1088,63 @@ sample estimates:
   padding-right: 5px;
 }
 
-#edvfdhqwfp .gt_left {
+#odfkbjaejp .gt_left {
   text-align: left;
 }
 
-#edvfdhqwfp .gt_center {
+#odfkbjaejp .gt_center {
   text-align: center;
 }
 
-#edvfdhqwfp .gt_right {
+#odfkbjaejp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#edvfdhqwfp .gt_font_normal {
+#odfkbjaejp .gt_font_normal {
   font-weight: normal;
 }
 
-#edvfdhqwfp .gt_font_bold {
+#odfkbjaejp .gt_font_bold {
   font-weight: bold;
 }
 
-#edvfdhqwfp .gt_font_italic {
+#odfkbjaejp .gt_font_italic {
   font-style: italic;
 }
 
-#edvfdhqwfp .gt_super {
+#odfkbjaejp .gt_super {
   font-size: 65%;
 }
 
-#edvfdhqwfp .gt_footnote_marks {
+#odfkbjaejp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#edvfdhqwfp .gt_asterisk {
+#odfkbjaejp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#edvfdhqwfp .gt_indent_1 {
+#odfkbjaejp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#edvfdhqwfp .gt_indent_2 {
+#odfkbjaejp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#edvfdhqwfp .gt_indent_3 {
+#odfkbjaejp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#edvfdhqwfp .gt_indent_4 {
+#odfkbjaejp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#edvfdhqwfp .gt_indent_5 {
+#odfkbjaejp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

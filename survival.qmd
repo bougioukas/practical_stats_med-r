@@ -1,5 +1,11 @@
 # Survival analysis {#sec-survival}
 
+```{r}
+#| include: false
+library(fontawesome)
+```
+
+
 In health sciences we often have data which represent the **time until some event occurs**. In a clinical trial setting, the primary outcome may be the time from onset of therapy until a well-defined critical event such as death, cancer recurrence, or first occurrence of a particular adverse event. One of the challenges specific to survival data is that the survival times will be unknown for some patients (censored data) for a variety of reasons:
 
 -   lost to follow-up during the study period
@@ -15,6 +21,7 @@ Survival analysis is a class of statistical methods. One approach to estimate th
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")`
 ## Learning objectives
 
 -   Understand the basic concepts of the Kaplan-Meier analysis of time-to-event data
@@ -378,7 +385,7 @@ km.AB |>
 
 The log-rank test is a non-parametric method for comparing two or more survival curves. It examines the distribution of the entire survival time rather than comparing the survival probability at specific time points.
 
-The log-rank test can be used to test the global null hypothesis that the curves are the same. 
+The log-rank test can be used to test the global null hypothesis that the curves are the same.
 
 ::: {.callout-note icon="false"}
 ## Null hypothesis and alternative hypothesis
@@ -393,47 +400,96 @@ SurvDiff <- survdiff(Surv(time, status) ~ intervention, data = dat)
 SurvDiff
 ```
 
-
-The log-rank test yields a chi-square statistical value, as it is built upon this framework. Therefore, the log-rank estimates the expected number of deaths among patients and compares it with the actual number of observed deaths. The resulting p-value is 0.0003, which means that we reject the null and that the survival curves are significantly different.
-
-
+The log-rank test yields a chi-square statistical value, as it is built upon this framework. Therefore, the log-rank estimates the **expected** number of deaths among patients and compares it with the actual number of **observed** deaths. The resulting p-value is 0.0003, which means that we reject the null hypothesis and that the survival curves are significantly different.
 
 ### The Hazard Ratio (HR)
 
-Proportional hazards assumption says that the ratio of hazards between groups is constant over time
-
-The log-rank test has optimum power under the assumption of proportional hazard rates.
+The Hazard ratio (HR) is an estimate of the ratio of the hazard rate in the new therapy versus the standard therapy. The hazard ratio is often interpreted as a risk ratio or odds ratio, although they are not technically the same.
 
 
-The Hazard ratio (HR) can be considered as an estimate of relative risk (RR), which is the risk of an event (or of developing a disease) relative to exposure. 
+::: callout-warning
+## HR versus RR and OR
+
+Hazard ratios (HRs) differ from relative risks (RRs) and odds ratio (OR) in that RRs and ORs are cumulative over an entire study, using a defined endpoint, while HRs represent instantaneous risk over the study time period.
+
+:::
+
+After computing the number of observed events (deaths) in each group ($O_A$ for observed number of events in group A and $O_B$ for observed number of events in group B), and the expected number of events assuming a null hypothesis of no difference in survival ($E_A$ for expected number of events in group A and $E_B$ for expected number of events in group B) using the log-rank approach, we can calculate the hazard ratio:
+
+$$ Hazard \ Ratio = HR = \frac{\frac{O_A}{E_A}}{\frac{O_B}{E_B}} = \frac{\frac{9}{17.65}}{\frac{18}{9.35}} =\frac{0.51}{0.193} = 0.26$$
+
+We also can compute the 95% confidence interval for the HR. First, we compute the standard error of the natural logarithm of the hazard ratio:
+
+$$SE_{lnHR} = \sqrt{\frac{1}{E_A} + \frac{1}{E_B}} = \sqrt{\frac{1}{17.65} + \frac{1}{9.35}} = \sqrt{0.057 + 0.107} = \sqrt{0.164} = 0.404$$
+
+Second, we calculate the 95% CI of the natural logarithm of the hazard ratio. The lower limit is:
+
+$$LL_{lnHR} = lnHR - 1.96 \cdot SE_{lnHR}$$
+
+and the upper limit:
+
+$$UL_{lnHR} = lnHR + 1.96 \cdot SE_{lnHR}$$
+
+Finally, we convert each of these values back to HR using:
+
+$$LL_{HR} = exp(LL_{lnHR})$$
+and 
+
+$$UL_{HR} = exp(UL_{lnHR})$$
 
 
 
+
+
+**In R:**
+
+The HR is:
 ```{r}
-D1 <- SurvDiff$obs[1]
-D2 <- SurvDiff$obs[2]
-E1 <- SurvDiff$exp[1]
-E2 <- SurvDiff$exp[2]
-HR <- (D1/D2)/(E1/E2)
+O_A <- SurvDiff$obs[1]
+O_B <- SurvDiff$obs[2]
+E_A <- SurvDiff$exp[1]
+E_B <- SurvDiff$exp[2]
+HR <- (O_A/E_A)/(O_B/E_B)
 HR
 ```
 
 
-Standard errors and confidence interval can be calculated using the formula in the textbook.
- 
+and the standard error of the logarithm of HR:
 
 ```{r}
-SE_lnHR = sqrt(1/E1 + 1/E2)
+SE_lnHR = sqrt(1/E_A + 1/E_B)
 SE_lnHR
 ```
 
 
+The lower and upper limits of the logarithm of HR are:
+
 ```{r}
-L = log(HR)
-lower <- exp(L - 1.96*SE_lnHR)
-upper <- exp(L + 1.96*SE_lnHR)
-ci95 <- c(lower=lower, upper=upper)
-ci95
+LL_lnHR <- log(HR) - 1.96*SE_lnHR
+LL_lnHR
+UL_lnHR <- log(HR) + 1.96*SE_lnHR
+UL_lnHR
 ```
 
+
+
+Finally: 
+
+```{r}
+
+LL_HR <- exp(LL_lnHR)
+UL_HR <- exp(UL_lnHR)
+CI95 <- c(LL_HR = LL_HR, UL_HR = UL_HR)
+CI95
+```
+
+
+
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The log-rank test has optimum power under the assumption of proportional hazard rates. This assumption posits that the ratio of hazards between groups remains constant over time.
+
+:::
 

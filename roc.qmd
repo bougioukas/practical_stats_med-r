@@ -29,6 +29,7 @@ We need to load the following packages:
 
 ```{r}
 #| message: false
+#| warning: false
 
 library(pROC)
 library(plotROC)
