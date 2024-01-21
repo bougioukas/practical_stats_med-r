@@ -19,7 +19,7 @@ The one-way repeated measures analysis of variance (also known as a within-subje
 
 ## Research question and Hypothesis Testing
 
-Participants used margarine for 12 weeks. Their blood cholesterol (in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.
+Participants used margarine for 12 weeks. Their blood total cholesterol (TCH; in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.
 
 ::: {.callout-note icon="false"}
 ## `r fa("angles-right", fill = "#1DC5CE")` Null hypothesis and alternative hypothesis for the main research question
@@ -60,7 +60,7 @@ We import the data *cholesterol* in R:
 #| warning: false
 
 library(readxl)
-dat_cholesterol <- read_excel(here("data", "cholesterol.xlsx"))
+dat_TCH <- read_excel(here("data", "cholesterol.xlsx"))
 ```
 
 ```{r}
@@ -69,7 +69,7 @@ dat_cholesterol <- read_excel(here("data", "cholesterol.xlsx"))
 #| fig-cap: Table with data from "cholesterol" file.
 
 DT::datatable(
-  dat_cholesterol, extensions = 'Buttons', options = list(
+  dat_TCH, extensions = 'Buttons', options = list(
     dom = 'tip',
     columnDefs = list(list(className = 'dt-center', targets = "_all"))
   )
@@ -80,7 +80,7 @@ DT::datatable(
 We inspect the data and the type of variables:
 
 ```{r}
-glimpse(dat_cholesterol)
+glimpse(dat_TCH)
 ```
 
 ## Assumptions
@@ -101,9 +101,9 @@ The distributions can be explored visually with appropriate plots. Additionally,
 We can visualize the distribution of `cholesterol` for the three time points:
 
 ```{r}
-cholesterol_long <- dat_cholesterol |> 
+dat_TCH_long <- dat_TCH |> 
   mutate(id = row_number()) |> 
-  pivot_longer(1:3, names_to = "time", values_to = "cholesterol") |> 
+  pivot_longer(cols = -id, names_to = "time", values_to = "cholesterol") |> 
   mutate(time = factor(time, levels = c("week0", "week6", "week12")))
 ```
 
@@ -112,7 +112,7 @@ cholesterol_long <- dat_cholesterol |>
 #| label: fig-violin_plot3
 #| fig-cap: Rain cloud plot.
 
-ggplot(cholesterol_long, aes(x= time, y = cholesterol, fill = time)) +
+ggplot(dat_TCH_long, aes(x= time, y = cholesterol, fill = time)) +
   geom_rain(likert= TRUE, seed = 123, point.args = list(alpha = 0.3)) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   labs(title = "Grouped Raincloud Plot: Cholesterol by time point") +
@@ -121,7 +121,7 @@ ggplot(cholesterol_long, aes(x= time, y = cholesterol, fill = time)) +
 ```
 
 ```{r}
-ggqqplot(cholesterol_long, "cholesterol", color = "time", conf.int = F) +
+ggqqplot(dat_TCH_long, "cholesterol", color = "time", conf.int = F) +
   theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   scale_color_jco() +
   facet_wrap(~ time) + 
@@ -141,7 +141,7 @@ The `cholesterol` summary statistics for each time point are:
 ## dplyr
 
 ```{r}
-cholesterol_summary <- cholesterol_long %>%
+cholesterol_summary <- dat_TCH_long %>%
   group_by(time) %>%
   dplyr::summarise(
     n = n(),
@@ -164,7 +164,7 @@ cholesterol_summary
 ## dlookr
 
 ```{r}
-cholesterol_long |> 
+dat_TCH_long |> 
   group_by(time) |> 
   dlookr::describe(cholesterol) |> 
   select(described_variables,  time, n, mean, sd, p25, p50, p75, skewness, kurtosis) |> 
@@ -181,7 +181,7 @@ The means are close to medians and the standard deviations are also similar. Mor
 **Normality test**
 
 ```{r}
-cholesterol_long |> 
+dat_TCH_long |> 
   group_by(time) |> 
   shapiro_test(cholesterol) |>  
   ungroup()
@@ -190,32 +190,77 @@ cholesterol_long |>
 The tests of normality suggest that the data for the `cholesterol` in all time points are normally distributed (p \> 0.05).
 
 ::: content-box-green
-In our example, the data at each time point are approximately normally distributed. Therefore, we can conduct a repeated ANOVA analysis.
+In our example, the data at each time point are approximately normally distributed; a repeated ANOVA analysis can be performed.
 :::
 
-**B. Sphericity test for equality of variances**
+**B. Sphericity test for equality of variances of the differences**
 
-The *Mauchly's sphericity test* for equality of the differences between time points is:
+In addition, the assumption of sphericity must be met for accurate interpretation of the results of repeated ANOVA. This assumption is usually checked with the **Mauchly's sphericity test**, wherein null hypothesis states that the variances of the differences are equal.
 
 ```{r}
-MauchlySphericityTest(dat_cholesterol)
+MauchlySphericityTest(dat_TCH)
 ```
 
-Here the assumption of sphericity has not been met (p \< 0.001)
+Here the assumption of sphericity has not been met (p \< 0.001). In this case, we have to correct the degrees of freedom in repeated ANOVA analysis.
+
 
 
 ## Run the one-way repeated ANOVA test
 
+First, let's run the repeated ANOVA test without any correction:
+
 ```{r}
-repeated_anova <- cholesterol_long |>
+repeated_anova <- dat_TCH_long |>
   anova_test(dv = cholesterol, wid = id, within = time)
 
-repeated_anova[[3]]
+repeated_anova[1]
 ```
 
 
-The GGe value is known as epsilon. The epsilon measures how far the data is from the ideal sphericity and ranges between 0 and 1 where 1 is no departure from sphericity. If the epsilon of Greenhouse-Geisser is greater than 0.75 or there is a small sample size (e.g. 10), the epsilon of Huynh-Feldt should be used. This is because Greenhouse-Geisser tends to make the analysis too strict when the epsilon is large
+However, we must adjust the results of the repeated ANOVA analysis. The correction involves multiplying the degrees of freedom DFn=2 and DFd=34 by a quantity *e*, which measures the extent to which the data deviates from ideal sphericity (*e* ranges between 0 and 1, where 1 indicates no departure from sphericity). Two methods are commonly used for calculating *e*:
+
+- the correction of Greenhouse-Geisser (GGe).  
+- the correction of Huynh-Feldt (HFe).
+
+
+
+
+
+In R, we can calculate both GGe and HFe, as follows:
+
+```{r}
+repeated_anova[3]
+```
+
+
+::: content-box-green
+
+The general recommendation is to use the Greenhouse-Geisser correction when GGe is less than 0.75; otherwise, we should use the Huynh-Feldt correction HFe.
+:::
+
+
+As the GGe value is less than 0.75, we use the Greenhouse-Geisser adjustment of 0.618. The corrected degrees of freedom are:
+
+$DF[GG]_n=2*0.618=1.24$ 
+
+and 
+
+$DF[GG]_d=34*0.618=21$.
+
+
+The new p-value (p[GG]) is available next to the corrected degrees of freedom (DF[GG]). In this example, as p<0.001 there is evidence of a difference between at least two time points.
+
+
+::: {#exercise-joins .callout-tip}
+## `get_anova_table()`
+
+
+By utilizing the `get_anova_table()` function to extract the ANOVA table, the Greenhouse-Geisser sphericity correction is automatically applied when the assumption of sphericity is violated.
+
 
 ```{r}
 get_anova_table(repeated_anova)
 ```
+:::
+
+

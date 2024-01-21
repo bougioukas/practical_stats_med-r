@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="research-question-and-hypothesis-testing" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
 <span class="header-section-number">24.1</span> Research question and Hypothesis Testing</h2>
-<p>Participants used margarine for 12 weeks. Their blood cholesterol (in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.</p>
+<p>Participants used margarine for 12 weeks. Their blood total cholesterol (TCH; in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -478,17 +478,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We import the data <em>cholesterol</em> in R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
-<span><span class="va">dat_cholesterol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"cholesterol.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">dat_TCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"cholesterol.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div id="fig-cholesterol" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-47edde5fc47eaead69d2" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-47edde5fc47eaead69d2">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],[6.42,6.76,6.56,4.8,8.43,7.49,8.050000000000001,5.05,5.77,3.91,6.77,6.44,6.17,7.67,7.34,6.85,5.13,5.73],[5.83,6.2,5.83,4.27,7.71,7.12,7.25,4.63,5.31,3.7,6.15,5.59,5.56,7.11,6.84,6.4,4.52,5.13],[5.75,6.13,5.71,4.15,7.67,7.05,7.1,4.67,5.33,3.66,5.96,5.64,5.51,6.96,6.82,6.29,4.45,5.17]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>week0<\/th>\n      <th>week6<\/th>\n      <th>week12<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"week0","targets":1},{"name":"week6","targets":2},{"name":"week12","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;24.1: Table with data from “cholesterol” file.</figcaption></figure>
+<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-e269a75c1bdea8642f06" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e269a75c1bdea8642f06">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],[6.42,6.76,6.56,4.8,8.43,7.49,8.050000000000001,5.05,5.77,3.91,6.77,6.44,6.17,7.67,7.34,6.85,5.13,5.73],[5.83,6.2,5.83,4.27,7.71,7.12,7.25,4.63,5.31,3.7,6.15,5.59,5.56,7.11,6.84,6.4,4.52,5.13],[5.75,6.13,5.71,4.15,7.67,7.05,7.1,4.67,5.33,3.66,5.96,5.64,5.51,6.96,6.82,6.29,4.45,5.17]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>week0<\/th>\n      <th>week6<\/th>\n      <th>week12<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"week0","targets":1},{"name":"week6","targets":2},{"name":"week12","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;24.1: Table with data from “cholesterol” file.</figcaption></figure>
 </div>
 </div>
 <p>We inspect the data and the type of variables:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">dat_cholesterol</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">dat_TCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>Rows: 18
 Columns: 3
@@ -520,13 +520,13 @@ Check if the following assumptions are satisfied
 <p><strong>Graphs</strong></p>
 <p>We can visualize the distribution of <code>cholesterol</code> for the three time points:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cholesterol_long</span> <span class="op">&lt;-</span> <span class="va">dat_cholesterol</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH_long</span> <span class="op">&lt;-</span> <span class="va">dat_TCH</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, names_to <span class="op">=</span> <span class="st">"time"</span>, values_to <span class="op">=</span> <span class="st">"cholesterol"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">id</span>, names_to <span class="op">=</span> <span class="st">"time"</span>, values_to <span class="op">=</span> <span class="st">"cholesterol"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">time</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"week0"</span>, <span class="st">"week6"</span>, <span class="st">"week12"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">cholesterol_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">cholesterol</span>, fill <span class="op">=</span> <span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_TCH_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">cholesterol</span>, fill <span class="op">=</span> <span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrain/man/geom_rain.html">geom_rain</a></span><span class="op">(</span>likert<span class="op">=</span> <span class="cn">TRUE</span>, seed <span class="op">=</span> <span class="fl">123</span>, point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://csdaw.github.io/ggprism/reference/theme_prism.html">theme_prism</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span>, base_line_size <span class="op">=</span> <span class="fl">0.4</span>, palette <span class="op">=</span> <span class="st">"office"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Grouped Raincloud Plot: Cholesterol by time point"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -540,7 +540,7 @@ Check if the following assumptions are satisfied
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">cholesterol_long</span>, <span class="st">"cholesterol"</span>, color <span class="op">=</span> <span class="st">"time"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">dat_TCH_long</span>, <span class="st">"cholesterol"</span>, color <span class="op">=</span> <span class="st">"time"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://csdaw.github.io/ggprism/reference/theme_prism.html">theme_prism</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span>, base_line_size <span class="op">=</span> <span class="fl">0.4</span>, palette <span class="op">=</span> <span class="st">"office"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_jco.html">scale_color_jco</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">time</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -570,7 +570,7 @@ Summary statistics by time point
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cholesterol_summary</span> <span class="op">&lt;-</span> <span class="va">cholesterol_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cholesterol_summary</span> <span class="op">&lt;-</span> <span class="va">dat_TCH_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
 <span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -600,7 +600,7 @@ Summary statistics by time point
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cholesterol_long</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH_long</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dlookr</span><span class="fu">::</span><span class="fu"><a href="https://choonghyunryu.github.io/dlookr/reference/describe.data.frame.html">describe</a></span><span class="op">(</span><span class="va">cholesterol</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">described_variables</span>,  <span class="va">time</span>, <span class="va">n</span>, <span class="va">mean</span>, <span class="va">sd</span>, <span class="va">p25</span>, <span class="va">p50</span>, <span class="va">p75</span>, <span class="va">skewness</span>, <span class="va">kurtosis</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -634,7 +634,7 @@ Summary statistics by time point
 <p>&nbsp;</p>
 <p><strong>Normality test</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cholesterol_long</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH_long</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span><span class="va">cholesterol</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -649,37 +649,74 @@ Summary statistics by time point
 </div>
 <p>The tests of normality suggest that the data for the <code>cholesterol</code> in all time points are normally distributed (p &gt; 0.05).</p>
 <div class="content-box-green">
-<p>In our example, the data at each time point are approximately normally distributed. Therefore, we can conduct a repeated ANOVA analysis.</p>
+<p>In our example, the data at each time point are approximately normally distributed; a repeated ANOVA analysis can be performed.</p>
 </div>
-<p><strong>B. Sphericity test for equality of variances</strong></p>
-<p>The <em>Mauchly’s sphericity test</em> for equality of the differences between time points is:</p>
+<p><strong>B. Sphericity test for equality of variances of the differences</strong></p>
+<p>In addition, the assumption of sphericity must be met for accurate interpretation of the results of repeated ANOVA. This assumption is usually checked with the <strong>Mauchly’s sphericity test</strong>, wherein null hypothesis states that the variances of the differences are equal.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="http://dcousin3.github.io/superb/reference/MauchlySphericityTest.html">MauchlySphericityTest</a></span><span class="op">(</span><span class="va">dat_cholesterol</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="http://dcousin3.github.io/superb/reference/MauchlySphericityTest.html">MauchlySphericityTest</a></span><span class="op">(</span><span class="va">dat_TCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.0004439621</code></pre>
 </div>
 </div>
-<p>Here the assumption of sphericity has not been met (p &lt; 0.001)</p>
+<p>Here the assumption of sphericity has not been met (p &lt; 0.001). In this case, we have to correct the degrees of freedom in repeated ANOVA analysis.</p>
 </section><section id="run-the-one-way-repeated-anova-test" class="level2" data-number="24.5"><h2 data-number="24.5" class="anchored" data-anchor-id="run-the-one-way-repeated-anova-test">
 <span class="header-section-number">24.5</span> Run the one-way repeated ANOVA test</h2>
+<p>First, let’s run the repeated ANOVA test without any correction:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repeated_anova</span> <span class="op">&lt;-</span> <span class="va">cholesterol_long</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repeated_anova</span> <span class="op">&lt;-</span> <span class="va">dat_TCH_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/anova_test.html">anova_test</a></span><span class="op">(</span>dv <span class="op">=</span> <span class="va">cholesterol</span>, wid <span class="op">=</span> <span class="va">id</span>, within <span class="op">=</span> <span class="va">time</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">repeated_anova</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">repeated_anova</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>  Effect   GGe   DF[GG]    p[GG] p[GG]&lt;.05   HFe      DF[HF]    p[HF] p[HF]&lt;.05
+<pre data-code-line-numbers=""><code>$ANOVA
+  Effect DFn DFd       F        p p&lt;.05   ges
+1   time   2  34 212.321 6.17e-20     * 0.061</code></pre>
+</div>
+</div>
+<p>However, we must adjust the results of the repeated ANOVA analysis. The correction involves multiplying the degrees of freedom DFn=2 and DFd=34 by a quantity <em>e</em>, which measures the extent to which the data deviates from ideal sphericity (<em>e</em> ranges between 0 and 1, where 1 indicates no departure from sphericity). Two methods are commonly used for calculating <em>e</em>:</p>
+<ul>
+<li>the correction of Greenhouse-Geisser (GGe).<br>
+</li>
+<li>the correction of Huynh-Feldt (HFe).</li>
+</ul>
+<p>In R, we can calculate both GGe and HFe, as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repeated_anova</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>$`Sphericity Corrections`
+  Effect   GGe   DF[GG]    p[GG] p[GG]&lt;.05   HFe      DF[HF]    p[HF] p[HF]&lt;.05
 1   time 0.618 1.24, 21 3.89e-13         * 0.642 1.28, 21.82 1.44e-13         *</code></pre>
 </div>
 </div>
-<p>The GGe value is known as epsilon. The epsilon measures how far the data is from the ideal sphericity and ranges between 0 and 1 where 1 is no departure from sphericity. If the epsilon of Greenhouse-Geisser is greater than 0.75 or there is a small sample size (e.g.&nbsp;10), the epsilon of Huynh-Feldt should be used. This is because Greenhouse-Geisser tends to make the analysis too strict when the epsilon is large</p>
+<div class="content-box-green">
+<p>The general recommendation is to use the Greenhouse-Geisser correction when GGe is less than 0.75; otherwise, we should use the Huynh-Feldt correction HFe.</p>
+</div>
+<p>As the GGe value is less than 0.75, we use the Greenhouse-Geisser adjustment of 0.618. The corrected degrees of freedom are:</p>
+<p><span class="math inline">\(DF[GG]_n=2*0.618=1.24\)</span></p>
+<p>and</p>
+<p><span class="math inline">\(DF[GG]_d=34*0.618=21\)</span>.</p>
+<p>The new p-value (p[GG]) is available next to the corrected degrees of freedom (DF[GG]). In this example, as p&lt;0.001 there is evidence of a difference between at least two time points.</p>
+<div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code><a href="https://rpkgs.datanovia.com/rstatix/reference/anova_test.html">get_anova_table()</a></code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By utilizing the <code><a href="https://rpkgs.datanovia.com/rstatix/reference/anova_test.html">get_anova_table()</a></code> function to extract the ANOVA table, the Greenhouse-Geisser sphericity correction is automatically applied when the assumption of sphericity is violated.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/anova_test.html">get_anova_table</a></span><span class="op">(</span><span class="va">repeated_anova</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/anova_test.html">get_anova_table</a></span><span class="op">(</span><span class="va">repeated_anova</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>ANOVA Table (type III tests)
 
   Effect  DFn DFd       F        p p&lt;.05   ges
 1   time 1.24  21 212.321 3.89e-13     * 0.061</code></pre>
+</div>
+</div>
 </div>
 </div>
 
