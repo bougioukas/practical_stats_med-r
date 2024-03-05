@@ -32,6 +32,7 @@ book:
         - prob_distributions.qmd
         - normal.qmd
         - descriptive.qmd
+        - sampling.qmd
         - inference.qmd
         - student_t_test.qmd
         - wmw_test.qmd

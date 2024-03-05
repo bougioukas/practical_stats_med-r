@@ -1,0 +1,354 @@
+# Populations and samples {#sec-sampling}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+library(ggh4x)
+library(tagger)
+
+library(stevemisc)
+library(tidyverse)
+```
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Explain the difference between sample and sampling distributions
+-   Distinguish the point estimation from interval estimation
+-   Understand the central limit theorem
+:::
+
+ 
+
+## Population, sample, and point estimation
+
+### Population and parameters
+
+In statistics, a **population** refers to a theoretical concept representing the complete collection of individuals (which may not necessarily be people) sharing specific defining characteristics. Examples are the population of all patients with diabetes mellitus, all people with depression, or the population of all middle-aged women.
+
+Researchers are particularly interested in quantities such as the population mean and population variance of random variables (characteristics) within these populations. These values are typically not directly observable and are denoted as **parameters** in statistical analysis. We use Greek lowercase letters for parameters, such as $μ$ and $σ^2$, to represent the population mean and variance, respectively. For example, researchers want to know what the mean depression score for the population would be if all people with depression were treated with a new anti-depression treatment.
+
+ 
+
+### Sample and sample statistics
+
+In practice, researchers encounter constraints in resources and time, particularly when dealing with large or inaccessible populations, making it impractical to study each individual within the population (e.g., every individual with depression in the world). As a result, obtaining an exact value of a population parameter is typically unattainable. Instead, researchers analyze a **sample**, a subset of the population intended to be representative. In such cases, a point estimator is utilized to calculate an estimate of the unknown parameter based on the measurements obtained from the sample. For example, a **sample statistic** such as the sample mean can serve as an estimator for the population mean.
+
+::: content-box-blue
+**Random sample**
+
+In most cases, the best way to get a sample that accurately represents the population is by taking a **random sample** from the population. When selecting a random sample, each individual in the population has **equal** and **independent** chance of being included in the sample.
+:::
+
+The statistical framework in @fig-sample_frame illustrates the process of inferring population parameters using sample statistics.
+
+![dfsfsd](images/sample_frame.png){#fig-sample_frame fig-align="center" width="80%"}
+
+ 
+
+::: content-box-blue
+**Point estimation**
+
+Point estimation is a statistical method used to estimate an unknown parameter of a population based on data collected from a sample. The objective of point estimation is to find a single, best guess or **estimate** for the value of the parameter. Common point estimators include the sample mean for the population mean and sample variance for the population variance.
+:::
+
+### Error in the estimate
+
+The difference between the point estimate and the population parameter is called the **error** in the estimate. Error consists of two aspects:
+
+-   **Bias:** This refers to a *systematic* tendency to overestimate or underestimate the true value of the population parameter (skews the results). There are numerous sources of bias including sampling bias, recall bias, response bias, and attrition bias. Bias can be minimized through careful and thoughtful data collection procedures.
+
+-   **Sampling error:** This measures the extent to which an estimate tends to vary from one sample to another due to random chance. Our objective is frequently to quantify and understand this variability in estimates. The standard error and confidence intervals are common measures of sampling error and depend on the estimation method, the sample size, and the variability of the estimated characteristic.
+
+::: content-box-blue
+The sampling error is the error caused by observing a sample instead of the whole population. There is no sampling error in a census because the calculations are based on the entire population.
+:::
+
+## Sampling distribution
+
+### What is a Sampling Distribution?
+
+Suppose a hospital is interested in finding out the average blood pressure (BP) of its diabetic patients, but measuring each patient is impractical. Instead, they randomly selected *n* patients from this group and measured their BP. The resulting average BP for this sample, let's say $\bar{x_1} = 130$ mmHg, represents one sample mean (@fig-sample1).
+
+![The estimate of mean, $\bar{x_1} =130$, represents an observed sample mean from an already collected sample.](images/sample1.png){#fig-sample1 fig-align="center" width="25%"}
+
+Consider repeating the sampling process by randomly selecting various samples, each consisting of *n* patients, and calculating their average blood pressure. This would yield a range of different sample means, such as $\bar{x_1} = 130$ mmHg, $\bar{x_2} = 128$ mmHg, $\bar{x_3} = 133$ mmHg, and so forth. This collection of multiple sample means (obtained from different samples) is the sampling distribution of the mean BP (@fig-many_samples).
+
+![The collection of sample means derived from repeated sampling forms a sampling distribution of the mean BP with its own characteristics.](images/many_samples.png){#fig-many_samples fig-align="center" width="70%"}
+
+| Parameter              | Population |  Sample   | Sampling distribution of mean |
+|------------------|:----------------:|:----------------:|:-----------------:|
+| **Mean**               |   $\mu$    | $\bar{x}$ |        $\mu_{\bar{x}}$        |
+| **Standard deviation** |  $\sigma$  |    $s$    |      $\sigma_{\bar{x}}$       |
+
+: dsadsd
+
+::: content-box-blue
+The **sampling distribution** is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.
+:::
+
+### Standard Error of the mean (SEM)
+
+The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. The standard error of the mean is the population σ divided by the square root of the sample size n:
+
+$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$ {#eq-se}
+
+However, we usually do not know the population parameter σ; therefore, we use the sample standard deviation s, as it is an estimator of the population standard deviation.
+
+$$SE_{\bar{x}} = \frac{s}{\sqrt{n}}$$ {#eq-se2}
+
+The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. It provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.
+
+### Properties of the distribution of sample means
+
+Consider a population of 100,000 adults, characterized by a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10. Now, imagine that the distribution of their BP reveals an intriguing bimodal pattern, as visually depicted in @fig-pop0.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(46)
+
+# Create a non-uniform population of 100,000 numbers between 1 and 100
+# Create a non-uniform population of 100,000 numbers between 1 and 100
+pop1 <- rnorm(70000, mean = 120, sd = 3)
+pop2 <- rnorm(30000, mean = 140, sd = 6)
+pop <- c(pop1, pop2)
+
+mu <- mean(pop) #calculate the population mean
+sigma <- sd(pop) #calculate the population standard deviation
+
+popdf <- as.data.frame(pop)
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-pop0
+#| fig-cap: A hypothetical population of 100,000 observations. The dashed black line represents the population, μ.
+#| fig-width: 7.0
+#| fig-height: 3.5
+
+# histogram
+ggplot(popdf, aes(x = pop)) + geom_histogram(color = "black", fill = "#894ae0", alpha=0.3) + 
+  geom_vline(xintercept = mu, linetype = "dashed", linewidth = 0.8) +
+  ggtitle("Histogram of Population") + xlab("x") +
+  theme(axis.title = element_text(hjust = 1))
+
+```
+
+Let's consider sampling 5 individuals from the population and calculating their sample mean BP, denoted as $\bar{x_1}$. Next, let's repeat this process by collecting a second sample of 5 individuals and calculating the sample mean again, which we might denote as $\bar{x_2}$. This process can be iterated 100 times ($N = 100$) and generate the histogram of the sample means, $\bar{x}$ (@fig-simulation2 a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (@fig-simulation2 b, c, d, e).
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+n <- c(5, 10, 30, 50, 100) #set up number of samples
+t <- c(100) #set up number of trials in simulation
+
+df <- data.frame() #initialize our empty data frame
+
+# Run the simulation
+for(i in n) { #for each value of n...
+  col <- c()
+  for(j in t) { #we loop through each value of t...
+    trial <- 1:j
+    counter <- j #set up an egg timer based on whichever t value we're on
+    value <- c()
+    while(counter > 0) {    # and extract n samples from the population...
+      bucket <- sample(pop, i, replace = TRUE)
+      xbar <- mean(bucket) #calculate the mean...
+      value <- c(value, xbar) # and add it to a vector
+      counter <- counter - 1 #egg timer counts down and loops back until it hits 0
+    }
+    sbar <- sd(value) #calculate the standard deviation of our sample
+    col <- cbind(trial, value, sbar, i, j) #stick all the info together...
+    df <- rbind(df, col) #and attach it to our master data frame
+  } #and we do it again for the next set of values until we're done!
+  
+}
+
+rm(col, bucket, value, counter, i, j, n, sbar, t, xbar, trial) #clean up
+names(df) <- c("trial#", "value", "sdev", "sample_size", "No.samples")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+df2 <- df |> 
+  mutate(sample_size = factor(sample_size)) |> 
+  group_by(sample_size) |> 
+  summarize(my_mean = mean(value))
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-simulation2
+#| fig-cap: Distribution of sample means. Each panel represents a simulation of 100 random samples of size 5, 10, 30, 50, 100 taken from the population data. The dashed black line represents the population, μ, while the yellow dashed line the mean of the sample means, $\mu_{\bar{x}}$.
+#| fig-width: 7.0
+#| fig-height: 12.0
+
+
+# We tidy up our data frame to get it ready for graphing. Note that we built it in "tall"
+# form so it's already structured for ggplot
+
+
+# Creating the plot
+ggplot(df, aes(x = value)) + 
+  geom_histogram(fill = "steelblue", binwidth = 0.8) + 
+  #ggtitle("Demonstrating The Central Limit Theorem With Simulation") +
+  geom_vline(data = df2, aes(xintercept = my_mean), color = "yellow", linetype = "dashed", linewidth = 0.8) +
+  geom_vline(xintercept = mu, linetype = "dashed", color = "gray30", linewidth = 0.7) +
+  xlab(expression(bar(x))) +
+  theme(axis.title = element_text(hjust = 1),
+        legend.position = "none") +
+  facet_grid(sample_size ~ No.samples, scales="free_y", labeller = label_both) +
+  tag_facets()
+
+```
+
+From @fig-simulation2, it is evident that as the sample size increases, the distribution of sample means tends to approximate a normal distribution, with the mean of this distribution,$\mu_{\bar{x}}$, approaching the population mean, $\mu$.
+
+ 
+
+::: content-box-blue
+**Properties of the distribution of sample means**
+
+-   As the sample size increases, the mean of a sufficiently number of sample means converges to the population mean. This property is known as the **law of large numbers**.
+-   The standard error of the mean (SEM) decreases as the sample size increases.
+-   As the sample size increases, the distribution of sample means tends to approximate a **normal** distribution.
+:::
+
+## Central Limit Theorem (CLM) for sample means
+
+The **Central Limit Theorem** (CLM) for sample means in statistics states that, given a sufficiently large sample size, the sampling distribution of the mean for a variable will approximate a normal distribution **regardless** of the variable's underlying distribution of the population observations: $\overline{X} \sim N(\mu, \sigma^2/n)$.
+
+To illustrate this, let's generate some data from a continuous uniform distribution (100,000 observations):
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(46)
+
+#get data from uniform distribution
+pop2 <- runif(100000, min = 0, max = 1)
+
+mu2 <- mean(pop2) #calculate the population mean
+sigma2 <- sd(pop2) #calculate the population standard deviation
+
+popdf2 <- as.data.frame(pop2)
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-pop
+#| fig-cap: A hypothetical population of 100,000 observations. The dashed black line represents the population, μ.
+#| fig-width: 7.0
+#| fig-height: 3.5
+
+
+# histogram
+ggplot(popdf2, aes(x = pop2)) + 
+  geom_histogram(color='black', fill = "#894ae0", 
+                 alpha=0.3, binwidth = 0.1, boundary = 0) +
+  geom_vline(xintercept = mu2, linetype = "dashed", linewidth = 1.2) +
+  theme_classic() +
+  ggtitle("Destribution of Simulated data for Population") +
+  xlab("x") +
+  scale_x_continuous(breaks = seq(0, 1, by = 0.1)) + 
+  theme(axis.title = element_text(hjust = 1))
+```
+
+We can consider the data we've just created above as the entire population (N=100,000) from which we can sample. We sample a bunch of times with different number of samples (50, 70, 100) and simple sizes (5, 10, 30) and we generate the histograms of the sample means (@fig-simulation).
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+n <- c(5, 10, 30) #set up number of samples
+t <- c(50, 70, 100) #set up number of trials in simulation
+
+df4 <- data.frame() #initialize our empty data frame
+
+# Run the simulation
+for(i in n) { #for each value of n...
+  col <- c()
+  for(j in t) { #we loop through each value of t...
+    trial <- 1:j
+    counter <- j #set up an egg timer based on whichever t value we're on
+    value <- c()
+    while(counter > 0) {    # and extract n samples from the population...
+      bucket <- sample(pop2, i, replace = TRUE)
+      xbar <- mean(bucket) #calculate the mean...
+      value <- c(value, xbar) # and add it to a vector
+      counter <- counter - 1 #egg timer counts down and loops back until it hits 0
+    }
+    sbar <- sd(value) #calculate the standard deviation of our sample
+    col <- cbind(trial, value, sbar, i, j) #stick all the info together...
+    df4 <- rbind(df4, col) #and attach it to our master data frame
+  } #and we do it again for the next set of values until we're done!
+  
+}
+
+rm(col, bucket, value, counter, i, j, n, sbar, t, xbar, trial) #clean up
+names(df4) <- c("trial#", "value", "sdev", "sample_size", "No.samples")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+#df5 <- df4 |> 
+  #mutate(sample_size = factor(sample_size),
+         #No.samples = factor(No.samples)) |> 
+  #group_by( sample_size, No.samples) |> 
+  #summarize(my_mean = mean(value))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-simulation
+#| fig-cap: Distribution of sample means. Each panel represents a simulation of 100 random samples of size 5, 10, 20, 30, 70, 100 taken from the uniform population data. The dashed black line represents the population, μ.
+#| fig-width: 8.0
+#| fig-height: 10.0
+
+
+# We tidy up our data frame to get it ready for graphing. Note that we built it in "tall"
+# form so it's already structured for ggplot
+
+# Creating the plot
+ggplot(df4, aes(x = value)) + 
+  geom_histogram(fill = "steelblue", binwidth = 0.06) + 
+  #ggtitle("Demonstrating The Central Limit Theorem With Simulation") +  
+  #geom_vline(data = df5, aes(xintercept = my_mean), color = "red", linetype = "dashed", linewidth = 0.7) +
+  geom_vline(xintercept = mu2, linetype = "dashed", color = "gray30", linewidth = 0.7) +
+  xlab(expression(bar(x))) +
+  theme(axis.title = element_text(hjust = 1)) +
+  facet_grid(sample_size ~ No.samples, scales="free_y", labeller = label_both) +
+  tag_facets()
+```
+
+We observe that the distribution of sample means for sample size of five exhibits considerable variability (@fig-simulation a, b, c). As the sample size is increased to 30, the distributions become increasingly symmetric and tend toward approximate normality.
