@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.322">
+<meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 11&nbsp; Data visualization with ggplot2</title>
+<title>Practical Statistics in Medicine with R – 11&nbsp; Data visualization with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -80,12 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,21 +95,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -116,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -380,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -482,9 +509,13 @@ Learning objectives
 <strong>themes</strong> that style all the visual elements which are not part of data.</li>
 </ul>
 <p>The key to understanding ggplot2 is thinking about a figure in <strong>multiple layers</strong>.</p>
-<div id="fig-layers" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/layers.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.1: The ggplot figure is built layer by layer by adding new graphical elements.</figcaption></figure>
+<div id="fig-layers" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/layers.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: The ggplot figure is built layer by layer by adding new graphical elements.
+</figcaption></figure>
 </div>
 </section><section id="covid-19-data" class="level2 page-columns page-full" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="covid-19-data">
 <span class="header-section-number">11.2</span> Covid-19 data</h2>
@@ -528,7 +559,7 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <li><p><strong>life_expectancy</strong> Average life expectancy at birth of country citizens in years as reported by the World Bank (original identifier ‘SP.DYN.LE00.IN’, time-stable)</p></li>
 <li><p><strong>gdp_capita:</strong> Country gross domestic product (GDP) per capita, measured in 2010 US-<span class="math inline">\(\$\)</span> as reported by the World Bank (original identifier ‘NY.GDP.PCAP.KD’, time-stable)</p></li>
 </ul>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;JHU CSSE: Johns Hopkins Coronavirus Resource Center</p></li></div><section id="data-preparation-for-the-plots" class="level3"><h3 class="anchored" data-anchor-id="data-preparation-for-the-plots">Data preparation for the plots</h3>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;JHU CSSE: Johns Hopkins Coronavirus Resource Center</p></div></div><section id="data-preparation-for-the-plots" class="level3"><h3 class="anchored" data-anchor-id="data-preparation-for-the-plots">Data preparation for the plots</h3>
 <p>The data cover a period from 1/1/2020 to 9/9/2021. Suppose we are interested in investigating countries with population more than 1 million up to June, 12 2021 and we want also to calculate the cases per 100000 inhabitants and tests per capita:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">covid_data</span> <span class="op">|&gt;</span> </span>
@@ -546,9 +577,13 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-blank" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-blank-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.2: A default blank ggplot object.</figcaption></figure>
+<div id="fig-blank" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-blank-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: A default blank ggplot object.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -558,9 +593,13 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-map_xy" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-map_xy-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.3: Variables are mapped to x and y axes on a canvas with grid lines.</figcaption></figure>
+<div id="fig-map_xy" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-map_xy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-map_xy-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-map_xy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: Variables are mapped to x and y axes on a canvas with grid lines.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -571,9 +610,11 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <p>As we can observe, only a grey canvas is created when running the code. This is because we also need to provide a geometry!</p>
 </section><section id="step-2-add-geometry" class="level3"><h3 class="anchored" data-anchor-id="step-2-add-geometry">Step 2: Add geometry</h3>
 <p>Geoms are the geometric objects that make up ggplot2 visualizations. Each geom is called with a function that begins with “<strong>geom_</strong>” and ends with the name of the geometric object (e.g., point, bar, line) (<a href="#tbl-geometry" class="quarto-xref">Table&nbsp;<span>11.1</span></a>).</p>
-<div id="tbl-geometry" class="anchored">
+<div id="tbl-geometry" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.1: Common geometries used in ggplot graphs.
+</figcaption><div aria-describedby="tbl-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;11.1: Common geometries used in ggplot graphs.</caption>
 <thead><tr class="header">
 <th>geom_</th>
 <th style="text-align: center;">Example</th>
@@ -581,45 +622,50 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <tbody>
 <tr class="odd">
 <td>geom_point()</td>
-<td style="text-align: center;"><img src="images/geom_point.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_point.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="even">
 <td>geom_line()</td>
-<td style="text-align: center;"><img src="images/geom_line.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_line.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="odd">
 <td>geom_text()</td>
-<td style="text-align: center;"><img src="images/geom_text.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_text.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="even">
 <td>geom_label()</td>
-<td style="text-align: center;"><img src="images/geom_label.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_label.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="odd">
 <td>geom_histogram()</td>
-<td style="text-align: center;"><img src="images/geom_histogram.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_histogram.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="even">
 <td>geom_density()</td>
-<td style="text-align: center;"><img src="images/geom_density.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_density.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="odd">
 <td>geom_bar()</td>
-<td style="text-align: center;"><img src="images/geom_bar.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_bar.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 <tr class="even">
 <td>geom_boxplot()</td>
-<td style="text-align: center;"><img src="images/geom_boxplot.png" class="img-fluid" style="width:20.0%"></td>
+<td style="text-align: center;"><img src="images/geom_boxplot.png" class="img-fluid figure-img" style="width:20.0%"></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Let’s select which style we want to use. We are interested in exploring the association between two numeric variables with a scatter plot (see also <a href="correlation.html" class="quarto-xref"><span>Chapter&nbsp;26</span></a>). So, we will add points using a geom layer called <code>geom_point</code>. In this case, <code>geom_point()</code> will inherit the <code>x</code> and <code>y</code> aesthetics from the <code>ggplot()</code> function:</p>
+</figure>
+</div>
+<p>Let’s select which style we want to use. We are interested in exploring the association between two numeric variables with a scatter plot (see also <a href="correlation.html" class="quarto-xref"><span>Chapter 26</span></a>). So, we will add points using a geom layer called <code>geom_point</code>. In this case, <code>geom_point()</code> will inherit the <code>x</code> and <code>y</code> aesthetics from the <code>ggplot()</code> function:</p>
 <div class="cell" data-source-line-numbers="2">
 <div class="sourceCode" id="cb8" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="step-3-add-aesthetics-to-geometry" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="step-3-add-aesthetics-to-geometry">Step 3: Add aesthetics to geometry</h3>
@@ -633,9 +679,13 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sequential" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/sequential.PNG" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.4: Example of sequential color scales.</figcaption></figure>
+<div id="fig-sequential" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sequential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sequential.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sequential-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.4: Example of sequential color scales.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -645,9 +695,13 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-gradient" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/gradient.PNG" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.5: Example diverging color scales.</figcaption></figure>
+<div id="fig-gradient" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gradient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/gradient.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gradient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.5: Example diverging color scales.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -657,9 +711,13 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-qualitative" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/qualitative.PNG" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.6: Example qualitative color scales.</figcaption></figure>
+<div id="fig-qualitative" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qualitative-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/qualitative.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qualitative-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.6: Example qualitative color scales.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -668,23 +726,31 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <div class="sourceCode" id="cb9" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span>        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Here, we added inside the <code>aes()</code> the color argument. The data of the categorical variable <code>region</code> mapped to color aesthetic of <code>geom_point</code>. Obviously, the qualitative palette of colors was applied automatically by <code>ggplot2</code>. Additionally, ggplot automatically created a legend to show the correspondence between the regions and colors.</p>
 <p>It is crucial to understand the difference between including the color<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> argument <strong>inside</strong> or <strong>outside</strong> of the <code>aes()</code> function. For example, let’s run the following code:</p>
-<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;ggplot2 understands both color and colour as well as the short version col.</p></li></div><div class="cell" data-source-line-numbers="2">
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;ggplot2 understands both color and colour as well as the short version col.</p></div></div><div class="cell" data-source-line-numbers="2">
 <div class="sourceCode" id="cb10" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"deeppink"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In this case, we set the color argument to a <strong>fixed value</strong> (“deeppink”) in the geom function instead of using <code>aes()</code>, so ggplot changed the color of the points “globally”.</p>
 <p>In R, colors can be specified in quotes either by name (e.g., <code>"deeppink"</code>) or as a hexadecimal color (hex code) that starts with a <code>#</code> (e.g., <code>"#FF1493"</code>). In the following <a href="#tbl-colors" class="quarto-xref">Table&nbsp;<span>11.2</span></a> we present an example of a color palette:</p>
-<div id="tbl-colors" class="anchored">
+<div id="tbl-colors" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-colors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.2: Examples of name and hex color code of different colors.
+</figcaption><div aria-describedby="tbl-colors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;11.2: Examples of name and hex color code of different colors.</caption>
 <thead><tr class="header">
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Hex code</th>
@@ -725,6 +791,8 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>The main advantage of the Hex color system is that it is very compact and we can pick out any color we desire.</p>
 <p>&nbsp;</p>
 <p><strong>B. <code>shape</code> aesthetics</strong></p>
@@ -733,16 +801,23 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <div class="sourceCode" id="cb11" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>shape <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We observe that <code>ggplot2</code> by default allows only six different point shapes to be displayed. However, we will see how to change this using appropriate <code>scales</code>.</p>
 <p>The different points shapes symbols commonly used in R are shown in the <a href="#fig-shape_symbols" class="quarto-xref">Figure&nbsp;<span>11.7</span></a> below:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-shape_symbols" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-shape_symbols-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.7: Points shapes symbols and their codes commonly used in R.</figcaption></figure>
+<div id="fig-shape_symbols" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-shape_symbols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-shape_symbols-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shape_symbols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.7: Points shapes symbols and their codes commonly used in R.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -776,7 +851,10 @@ Important
 <div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -785,7 +863,10 @@ Important
 <div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">24</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -794,7 +875,10 @@ Important
 <div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">24</span>, color <span class="op">=</span> <span class="st">"red"</span>, fill <span class="op">=</span> <span class="st">"yellow"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -807,7 +891,10 @@ Important
 <div class="sourceCode" id="cb15" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section></section><section id="add-a-new-geom-text-information-for-each-point" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="add-a-new-geom-text-information-for-each-point">
@@ -818,7 +905,10 @@ Important
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="change-the-default-properties-of-the-plot-with-scales" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="change-the-default-properties-of-the-plot-with-scales">
@@ -831,13 +921,15 @@ Important
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Continuous variable <code>tests_per_capital</code> mapped to size and categorical variable <code>region</code> mapped to color.</p>
 </section><section id="change-the-default-point-shapes" class="level3"><h3 class="anchored" data-anchor-id="change-the-default-point-shapes">Change the default point shapes</h3>
-<div>
-<div class="sourceCode" id="cb18" data-source-line-numbers="3,9,12" data-code-line-numbers="3,9,12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># default</span></span>
+<div class="sourceCode" id="cb18" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># default</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span>, shape<span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span> <span class="op">+</span></span>
@@ -849,31 +941,40 @@ Important
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_shape_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">9</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">19</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-charts" class="cell quarto-layout-panel" data-source-line-numbers="3,9,12">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-charts-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-charts-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672"></p>
-<figcaption class="figure-caption">(a) Default</figcaption></figure>
+<div id="fig-charts" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-charts-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-charts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-charts-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-charts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Default
+</figcaption></figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-charts-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-charts-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672"></p>
-<figcaption class="figure-caption">(b) Modified</figcaption></figure>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-charts-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-charts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-charts-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-charts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Modified
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;11.8: Change the default point shapes</figcaption><p></p>
-</figure>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.8: Change the default point shapes
+</figcaption></figure>
 </div>
 <p>However, when a variable is mapped to size (here, <code>test_per_capital</code>), it’s a good idea to not map a variable to shape (here, <code>region</code>). This is because it is difficult to compare the sizes of different shapes (e.g., a size 4 square with a size 4 triangle).</p>
 </section><section id="change-the-default-colors" class="level3"><h3 class="anchored" data-anchor-id="change-the-default-colors">Change the default colors</h3>
-<div>
-<div class="sourceCode" id="cb19" data-source-line-numbers="3,9,12" data-code-line-numbers="3,9,12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># default</span></span>
+<div class="sourceCode" id="cb19" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># default</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span>, color <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span> <span class="op">+</span></span>
@@ -885,26 +986,36 @@ Important
 <span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_color_jco</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-charts2" class="cell quarto-layout-panel" data-source-line-numbers="3,9,12">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-charts2-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-charts2-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts2" width="672"></p>
-<figcaption class="figure-caption">(a) Default</figcaption></figure>
+<div id="fig-charts2" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-charts2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts2" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-charts2-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-charts2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-charts2-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts2" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-charts2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Default
+</figcaption></figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-charts2-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-charts2-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts2" width="672"></p>
-<figcaption class="figure-caption">(b) Modified</figcaption></figure>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts2" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-charts2-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-charts2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-charts2-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts2" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-charts2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Modified
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;11.9: Change the default colors</figcaption><p></p>
-</figure>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-charts2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.9: Change the default colors
+</figcaption></figure>
 </div>
 </section></section><section id="modify-axis-legend-and-plot-labels-with-labs" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="modify-axis-legend-and-plot-labels-with-labs">
 <span class="header-section-number">11.6</span> Modify axis, legend, and plot labels with <em>labs</em>
@@ -924,7 +1035,10 @@ Important
 <span>       caption <span class="op">=</span> <span class="st">"Source Data: Covid-19 related data from {tidycovid19} package"</span>,</span>
 <span>       tag <span class="op">=</span> <span class="st">'A'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="modify-theme-elements-with-theme" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="modify-theme-elements-with-theme">
@@ -955,9 +1069,13 @@ Syntax of the <code>theme()</code> function
 </blockquote>
 <p><strong><em>Element name</em></strong></p>
 <p>We are able to modify the appearance of theme elements in <strong>plot</strong>, <strong>panel</strong>, <strong>axis</strong>, and <strong>legend</strong> compartments of a simple ggplot graph (<a href="#fig-compartments" class="quarto-xref">Figure&nbsp;<span>11.10</span></a>).</p>
-<div id="fig-compartments" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/compartments.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.10: Main compartments in a ggplot graph.</figcaption></figure>
+<div id="fig-compartments" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-compartments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/compartments.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compartments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.10: Main compartments in a ggplot graph.
+</figcaption></figure>
 </div>
 <p>The theme system enables us to specify the display of elements for a particular compartment of the graph by creating <strong>element names</strong> in the general form of <code>compartment.element</code>. For example, we can specify the title in plot, axis, and legend with the element names <code>plot.title</code>, <code>axis.title</code>, and <code>legend.title</code>, respectfully.</p>
 <p><strong><em>Element function</em></strong></p>
@@ -974,9 +1092,13 @@ Syntax of the <code>theme()</code> function
 <p>&nbsp;</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Suppose we want to change the color (from black to red) and the width of the x-axis line of our graph. The syntax would be similar to:</p>
-<div id="fig-theme_ex" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/theme_ex.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.11: Main compartments in a ggplot graph.</figcaption></figure>
+<div id="fig-theme_ex" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-theme_ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/theme_ex.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theme_ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.11: Main compartments in a ggplot graph.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -984,9 +1106,13 @@ Syntax of the <code>theme()</code> function
 <p>Next, we present some examples for each element function to help understanding of the previous concepts.</p>
 <section id="a.-element_line" class="level3"><h3 class="anchored" data-anchor-id="a.-element_line">A. element_line()</h3>
 <p>With <code>element_line()</code>, we can customize all the lines of the plot that are not part of data. The <a href="#fig-element_line" class="quarto-xref">Figure&nbsp;<span>11.12</span></a> shows the basic line elements (axes, ticks, and grids) that we can control in a simple ggplot graph.</p>
-<div id="fig-element_line" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/element_line.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.12: Anatomy of Line Elements in ggplot2.</figcaption></figure>
+<div id="fig-element_line" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-element_line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/element_line.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-element_line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.12: Anatomy of Line Elements in ggplot2.
+</figcaption></figure>
 </div>
 <p><strong>1. The <code>X</code> and <code>Y</code> axes lines:</strong></p>
 <ul>
@@ -999,9 +1125,13 @@ Syntax of the <code>theme()</code> function
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-linetypes" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-linetypes-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.13: dfsfdsfdsf.</figcaption></figure>
+<div id="fig-linetypes" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-linetypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-linetypes-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linetypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.13: dfsfdsfdsf.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1012,9 +1142,13 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>axis.line.x <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>        axis.line.y <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, linewidth <span class="op">=</span> <span class="fl">1</span>, linetype <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-axis1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-axis1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.14: fgdfgdfg.</figcaption></figure>
+<div id="fig-axis1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-axis1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-axis1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-axis1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.14: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1035,7 +1169,10 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>axis.ticks.x <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
 <span>        axis.ticks.y <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, linewidth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>3. The major and minor grid lines of the panel:</strong></p>
@@ -1055,7 +1192,10 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>panel.grid.major.x <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="fl">0.55</span><span class="op">)</span>,</span>
 <span>        panel.grid.major.y <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, linewidth <span class="op">=</span> <span class="fl">0.55</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Minor grid</strong></p>
@@ -1074,7 +1214,10 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>panel.grid.minor.x <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="fl">0.35</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
 <span>        panel.grid.minor.y <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, linewidth <span class="op">=</span> <span class="fl">0.35</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can also modify the display of both major and minor grids of the ggplot.</p>
@@ -1085,13 +1228,20 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, linewidth <span class="op">=</span> <span class="fl">0.55</span><span class="op">)</span>,</span>
 <span>        panel.grid.minor <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"deeppink"</span>, linewidth <span class="op">=</span> <span class="fl">0.35</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="b.-element_text" class="level3"><h3 class="anchored" data-anchor-id="b.-element_text">B. element_text()</h3>
-<div id="fig-element_text" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/element_text.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.15: Anatomy of Text Elements in ggplot2.</figcaption></figure>
+<div id="fig-element_text" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-element_text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/element_text.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-element_text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.15: Anatomy of Text Elements in ggplot2.
+</figcaption></figure>
 </div>
 <p><strong>1. The title of <code>X</code> and <code>Y</code> axes:</strong></p>
 <ul>
@@ -1115,9 +1265,13 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>axis.title.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">18</span>, angle <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
 <span>        axis.title.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-axis_title" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-axis_title-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.16: fgdfgdfg.</figcaption></figure>
+<div id="fig-axis_title" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-axis_title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-axis_title-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-axis_title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.16: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1136,9 +1290,13 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">16</span>, face<span class="op">=</span><span class="st">"bold"</span>, angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>,</span>
 <span>        axis.text.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-axis_text" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-axis_text-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.17: fgdfgdfg.</figcaption></figure>
+<div id="fig-axis_text" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-axis_text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-axis_text-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-axis_text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.17: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1159,9 +1317,13 @@ Syntax of the <code>theme()</code> function
 <span>        plot.caption <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"orange"</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
 <span>        plot.tag <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot_title" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-plot_title-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.18: fgdfgdfg.</figcaption></figure>
+<div id="fig-plot_title" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot_title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-plot_title-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot_title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.18: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1180,16 +1342,24 @@ Syntax of the <code>theme()</code> function
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,</span>
 <span>        legend.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-legend_title" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-legend_title-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.19: fgdfgdfg.</figcaption></figure>
+<div id="fig-legend_title" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-legend_title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-legend_title-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-legend_title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.19: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
 </section><section id="c.-element_rect" class="level3"><h3 class="anchored" data-anchor-id="c.-element_rect">C. element_rect()</h3>
-<div id="fig-element_rect" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/element_rect.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.20: Anatomy of Text Elements in ggplot2.</figcaption></figure>
+<div id="fig-element_rect" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-element_rect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/element_rect.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-element_rect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.20: Anatomy of Text Elements in ggplot2.
+</figcaption></figure>
 </div>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <div class="cell" data-layout-align="center" data-source-line-numbers="11-12">
@@ -1205,9 +1375,13 @@ Syntax of the <code>theme()</code> function
 <span>       tag <span class="op">=</span> <span class="st">'A'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"deeppink"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot_background" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-plot_background-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.21: fgdfgdfg.</figcaption></figure>
+<div id="fig-plot_background" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot_background-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-plot_background-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot_background-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.21: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1225,9 +1399,13 @@ Syntax of the <code>theme()</code> function
 <span>       tag <span class="op">=</span> <span class="st">'A'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"deeppink"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-panel_background" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-panel_background-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.22: fgdfgdfg.</figcaption></figure>
+<div id="fig-panel_background" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-panel_background-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-panel_background-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel_background-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.22: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1245,9 +1423,13 @@ Syntax of the <code>theme()</code> function
 <span>       tag <span class="op">=</span> <span class="st">'A'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"deeppink"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-legend_background" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-legend_background-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.23: fgdfgdfg.</figcaption></figure>
+<div id="fig-legend_background" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-legend_background-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-legend_background-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-legend_background-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.23: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1265,9 +1447,13 @@ Syntax of the <code>theme()</code> function
 <span>       tag <span class="op">=</span> <span class="st">'A'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"deeppink"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-legend_key" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-legend_key-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.24: fgdfgdfg.</figcaption></figure>
+<div id="fig-legend_key" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-legend_key-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-legend_key-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-legend_key-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.24: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1290,14 +1476,18 @@ Syntax of the <code>theme()</code> function
 <span>       subtitle <span class="op">=</span> <span class="st">"May 20, 2021"</span>, </span>
 <span>       caption <span class="op">=</span> <span class="st">"Source Data: Covid-19 related data Jonhs Hopkins University"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-ggthemes0" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-ggthemes0-1.png" class="img-fluid figure-img" width="1152"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.25: fgdfgdfg.</figcaption></figure>
+<div id="fig-ggthemes0" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggthemes0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-ggthemes0-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggthemes0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.25: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
 </section><section id="predefined-theme" class="level3"><h3 class="anchored" data-anchor-id="predefined-theme">Predefined theme</h3>
-<p>We can customize the theme elements of our graph by applying a predefined theme rather than changing everything by hand. There are ready to use themes from the <a href="https://ggplot2.tidyverse.org">ggplot2</a> and <a href="https://github.com/jrnold/ggthemes">ggthemes</a> packages.</p>
+<p>We can customize the theme elements of our graph by applying a predefined theme rather than changing everything by hand. There are ready to use themes from the <a href="https://ggplot2.tidyverse.org">ggplot2</a> and <a href="https://jrnold.github.io/ggthemes/">ggthemes</a> packages.</p>
 <p>Examples of in-build theme from “ggplot2”:</p>
 <ul>
 <li>
@@ -1341,9 +1531,13 @@ Syntax of the <code>theme()</code> function
 <span>       caption <span class="op">=</span> <span class="st">"Source Data: Covid-19 related data Jonhs Hopkins University"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_fivethirtyeight</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-ggthemes" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-ggthemes-1.png" class="img-fluid figure-img" width="1152"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.26: fgdfgdfg.</figcaption></figure>
+<div id="fig-ggthemes" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggthemes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-ggthemes-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggthemes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.26: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1372,9 +1566,13 @@ Syntax of the <code>theme()</code> function
 <span>        legend.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">guides</span><span class="op">(</span>color <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-ggthemes2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-ggthemes2-1.png" class="img-fluid figure-img" width="1152"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.27: fgdfgdfg.</figcaption></figure>
+<div id="fig-ggthemes2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggthemes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-ggthemes2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggthemes2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.27: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1401,9 +1599,13 @@ Syntax of the <code>theme()</code> function
 <span>        legend.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">guides</span><span class="op">(</span>color <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-ggthemes3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/fig-ggthemes3-1.png" class="img-fluid figure-img" width="1152"></p>
-<figcaption class="figure-caption">Figure&nbsp;11.28: fgdfgdfg.</figcaption></figure>
+<div id="fig-ggthemes3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggthemes3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggplot2_files/figure-html/fig-ggthemes3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggthemes3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.28: fgdfgdfg.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1488,6 +1690,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1522,7 +1747,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1537,15 +1766,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1554,7 +1796,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1596,6 +1846,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1604,7 +1877,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1664,28 +1936,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./transformation.html" class="pagination-link">
+      <a href="./transformation.html" class="pagination-link" aria-label="Data transformation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data transformation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./introduction.html" class="pagination-link">
+      <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
         <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

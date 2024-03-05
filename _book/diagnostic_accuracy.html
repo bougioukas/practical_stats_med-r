@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.322">
+<meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 34&nbsp; Measures of diagnostic test accuracy</title>
+<title>Practical Statistics in Medicine with R – 34&nbsp; Measures of diagnostic test accuracy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -55,6 +55,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -99,12 +100,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -113,21 +115,47 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./diagnostic_accuracy.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -135,7 +163,7 @@ div.csl-indent {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -399,7 +427,7 @@ div.csl-indent {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -475,9 +503,11 @@ div.csl-indent {
 <span class="header-section-number">34.3</span> Contingency 2x2 table</h2>
 <p>Generally, an individual’s disease status is a dichotomous variable; the individual either has the disease (<span class="math inline">\(Outcome+\)</span>) or hasn’t the disease (<span class="math inline">\(Outcome-\)</span>) as defined by the reference standard (or “gold” standard). The diagnostic test under evaluation (also named as index test) can be measured with a dichotomous variable (e.g.&nbsp;presence or absence of breast abnormalities using an X-ray) or a continuous variable (e.g.&nbsp;fasting glucose level for diabetes diagnosis), that can be transformed to a dichotomous variable by choosing an optimal cut-off value (threshold) which distinguishes positive (<span class="math inline">\(Test+\)</span>) from negative (<span class="math inline">\(Test-\)</span>) test results.</p>
 <p>If the index test gives a dichotomous result for each participant in a study, the data can be tabulated in a 2 x 2 table of test result (<span class="math inline">\(Test+\)</span>, <span class="math inline">\(Test-\)</span>) versus “true” disease status (<span class="math inline">\(Outcome+\)</span>, <span class="math inline">\(Outcome-\)</span>). For example, the result of digital mammography test to diagnose breast cancer compared to the “gold” standard biopsy/surgery and histopathology in 1220 women with suspected breast cancer are following:</p>
-<div id="tbl-tbl1" class="anchored">
+<div id="tbl-tbl1" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;34.1: A 2 × 2 table reporting cross-classification of individuals by index and reference test result.
+</figcaption><div aria-describedby="tbl-tbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;34.1: A 2 × 2 table reporting cross-classification of individuals by index and reference test result.</caption>
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -530,6 +560,8 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
 </div>
 <p>where</p>
 <p>TP: true positive; test positive and disease present (Test+ ∩ Outcome+)</p>
@@ -617,7 +649,10 @@ Test     Outcome + Outcome -
 <div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/mosaicplot.html">mosaicplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">tb1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"goldenrod1"</span>, <span class="st">"firebrick"</span><span class="op">)</span>, </span>
 <span>           cex.axis <span class="op">=</span> <span class="fl">0.9</span>, main<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="diagnostic_accuracy_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -631,19 +666,30 @@ Test     Outcome + Outcome -
 <span></span>
 <span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot_build</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
+<pre data-code-line-numbers=""><code>Warning: The `scale_name` argument of `continuous_scale()` is deprecated as of ggplot2
+3.5.0.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre data-code-line-numbers=""><code>Warning: The `trans` argument of `continuous_scale()` is deprecated as of ggplot2 3.5.0.
+ℹ Please use the `transform` argument instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre data-code-line-numbers=""><code>Warning: `unite_()` was deprecated in tidyr 1.2.0.
 ℹ Please use `unite()` instead.
 ℹ The deprecated feature was likely used in the ggmosaic package.
   Please report the issue at &lt;https://github.com/haleyjeppson/ggmosaic&gt;.</code></pre>
 </div>
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df2</span><span class="op">$</span><span class="va">percentage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="va">df</span><span class="op">$</span><span class="va">value</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df2</span><span class="op">$</span><span class="va">percentage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="va">df</span><span class="op">$</span><span class="va">value</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df2</span><span class="op">$</span><span class="va">lab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">value</span>, <span class="st">" ("</span>, <span class="va">df2</span><span class="op">$</span><span class="va">percentage</span>, <span class="st">"%"</span>, <span class="st">")"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df2</span>, </span>
 <span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">(</span><span class="va">xmin</span><span class="op">+</span><span class="va">xmax</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, y <span class="op">=</span> <span class="op">(</span><span class="va">ymin</span><span class="op">+</span><span class="va">ymax</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, label <span class="op">=</span> <span class="va">lab</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="diagnostic_accuracy_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -652,7 +698,7 @@ Test     Outcome + Outcome -
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.tests.html">epi.tests</a></span><span class="op">(</span><span class="va">tb1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.tests.html">epi.tests</a></span><span class="op">(</span><span class="va">tb1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>          Outcome +    Outcome -      Total
 Test +          890          110       1000
@@ -681,7 +727,7 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <p>&nbsp;</p>
 <p>Alternatively, we can obtain the same results in R using the <code><a href="https://rdrr.io/pkg/pubh/man/diag_test2.html">diag_test2()</a></code> function from the <code>{pubh}</code> package:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/pubh/man/diag_test2.html">diag_test2</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/pubh/man/diag_test2.html">diag_test2</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="likelihood-ratios-in-practice" class="level2" data-number="34.5"><h2 data-number="34.5" class="anchored" data-anchor-id="likelihood-ratios-in-practice">
 <span class="header-section-number">34.5</span> Likelihood ratios in practice</h2>
@@ -728,11 +774,15 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <p>The Fagan nomogram allows us to turn pre-test probabilities into post-test probabilities without needing to convert into odds. The nomogram typically consists of three parallel scales representing the pre-test probability, the likelihood ratio, and the post-test probability. We can visually estimate the post-test probability of a positive diagnosis result by drawing a line from the known pre-test probability, through the LR+ and read off the post-test probability.</p>
 <p><strong>In R:</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">2.756</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">2.756</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-nomogram1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-nomogram1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;34.1: The impact of a positive digital mammography result with LR+ of 2.76 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.</figcaption></figure>
+<div id="fig-nomogram1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nomogram1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagnostic_accuracy_files/figure-html/fig-nomogram1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nomogram1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;34.1: The impact of a positive digital mammography result with LR+ of 2.76 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -750,24 +800,28 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <p><span class="math inline">\(post \text{-} test \ probability = \frac{post \text{-} test \ odds}{post \text{-} test \ odds + 1} = \frac{0.1207}{0.1207 + 1} = \frac{0.1207}{1.1207} = 0.1077 \ or \ 10.77\%\)</span></p>
 <p><strong>In R:</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">0.034</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TeachingDemos/man/fagan.html">fagan.plot</a></span><span class="op">(</span>probs.pre.test <span class="op">=</span> <span class="fl">0.78</span>, LR <span class="op">=</span> <span class="fl">0.034</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-nomogram2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-nomogram2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;34.2: The impact of a negative digital mammography result with LR- of 0.034 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.</figcaption></figure>
+<div id="fig-nomogram2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nomogram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagnostic_accuracy_files/figure-html/fig-nomogram2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nomogram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;34.2: The impact of a negative digital mammography result with LR- of 0.034 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>&nbsp;</p>
 <p>We can also use the <code><a href="https://rdrr.io/pkg/epiR/man/epi.nomogram.html">epi.nomogram()</a></code> and <code>nomogrammer()</code> functions which allow us to calculate the post-test probability and plot Fagan’s nomgrams with <a href="https://ggplot2.tidyverse.org">ggplot2</a>, respectively:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.nomogram.html">epi.nomogram</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">NA</span>, sp <span class="op">=</span> <span class="cn">NA</span>, lr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2.755</span>, <span class="fl">0.034</span><span class="op">)</span>, pre.pos <span class="op">=</span> <span class="fl">0.78</span>,</span>
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.nomogram.html">epi.nomogram</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">NA</span>, sp <span class="op">=</span> <span class="cn">NA</span>, lr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2.755</span>, <span class="fl">0.034</span><span class="op">)</span>, pre.pos <span class="op">=</span> <span class="fl">0.78</span>,</span>
 <span>             verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>Given a positive test result, the post-test probability of being outcome positive is 0.91 
 Given a negative test result, the post-test probability of being outcome positive is 0.11 </code></pre>
 </div>
-<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># nomogrammer is a standalone function from the below repository </span></span>
+<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># nomogrammer is a standalone function from the below repository </span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/achekroud/nomogrammer/master/nomogrammer.r"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">nomogrammer</span><span class="op">(</span>Prevalence <span class="op">=</span> <span class="fl">0.78</span>,</span>
@@ -776,15 +830,19 @@ Given a negative test result, the post-test probability of being outcome positiv
 <span>            Detail <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>            NullLine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-slope" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="diagnostic_accuracy_files/figure-html/fig-slope-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;34.3: The impact of a positive (blue line) and negative (red line) digital mammography result with LR+ of 2.76 and LR- of 0.034 on a patient’s post-test probability for breast cancer, respectively, starting from an initial pre-test probability of 78% on the Fagan Nomogram. The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.</figcaption></figure>
+<div id="fig-slope" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagnostic_accuracy_files/figure-html/fig-slope-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;34.3: The impact of a positive (blue line) and negative (red line) digital mammography result with LR+ of 2.76 and LR- of 0.034 on a patient’s post-test probability for breast cancer, respectively, starting from an initial pre-test probability of 78% on the Fagan Nomogram. The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.
+</figcaption></figure>
 </div>
 </div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-uy2022" class="csl-entry" role="listitem">
 Uy, Elenore Judy B. 2022. <span>“Key Concepts in Clinical Epidemiology: Estimating Pre-Test Probability.”</span> <em>Journal of Clinical Epidemiology</em> 144 (April): 198–202. <a href="https://doi.org/10.1016/j.jclinepi.2021.10.022">https://doi.org/10.1016/j.jclinepi.2021.10.022</a>.
 </div>
@@ -868,6 +926,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -902,7 +983,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -917,15 +1002,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -934,7 +1032,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -976,6 +1082,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -984,7 +1113,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1044,28 +1172,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./reliability.html" class="pagination-link">
+      <a href="./reliability.html" class="pagination-link" aria-label="Measures of relative and absolute reliability">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./roc.html" class="pagination-link">
+      <a href="./roc.html" class="pagination-link" aria-label="Receiver Operating Characteristic (ROC) curve">
         <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

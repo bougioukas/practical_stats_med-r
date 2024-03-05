@@ -2,7 +2,9 @@
 
 ```{r}
 #| include: false
+
 library(fontawesome)
+library(htmlwidgets)
 ```
 
 In this chapter, we explore measures of relative and absolute reliability (or agreement) that are used to assess the consistency, stability, and reproducibility of measurements or judgments.

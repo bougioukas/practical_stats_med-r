@@ -4,6 +4,7 @@
 #| include: false
 library(fontawesome)
 library(ggplot2)
+library(htmlwidgets)
 ```
 
 In this chapter, we explore an extension of correlation for investigating the association between two variables: the **simple linear regression**.

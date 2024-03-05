@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.322">
+<meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 7&nbsp; Data structures in R: 1-Dimensional Vectors</title>
+<title>Practical Statistics in Medicine with R – 7&nbsp; Data structures in R: 1-Dimensional Vectors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -80,12 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,21 +95,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./vectors.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -116,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -380,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -472,9 +499,13 @@ Learning objectives
 <p>The R language supports many types of data structures that we can use to organize and store information. We will see that complex structures such as <strong>matrices, arrays, and data frames</strong> can be created. Each data structure type serves a specific purpose and might differ in terms of the type of data it can hold and its structural complexity. These data structures are schematically illustrated in <a href="#fig-str" class="quarto-xref">Figure&nbsp;<span>7.1</span></a></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-str" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/str.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;7.1: Data structures in R.</figcaption></figure>
+<div id="fig-str" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/str.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Data structures in R.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -490,7 +521,7 @@ Learning objectives
 <p>As a group integer and double vectors are considered <strong>numeric</strong> vectors.</p>
 <p>There are also two rare types: complex and raw but we won’t discuss them further because they are not used in this textbook.</p>
 <section id="one-element-atomic-vectors" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="one-element-atomic-vectors">One-element atomic vectors</h3>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> R has no 0-dimensional vectors or scalar types.</span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><strong>NOTE:</strong> R has no 0-dimensional vectors or scalar types.</span></div></div>
 <p>Individual numbers or strings are 1-Dimensional (1-D) vectors of length one and in some instances we call them scalars. Therefore, <strong>an one-element vector (oev) is just a single value</strong> like a number and they can be used to construct more complex objects (longer vectors). We present some examples of one-element vectors for each of the four primary types (in order from least to most general type):</p>
 <p><strong>1. Logical one-element vector:</strong> Logical values are boolean values of <code>TRUE</code> or <code>FALSE</code> which can be abbreviated, when we type them as <code>T</code> or <code>F</code> (we do not suggest this). Examples of logical one-element vectors (oev) follows:</p>
 <div class="cell">
@@ -530,7 +561,7 @@ Learning objectives
 </div>
 </div>
 <p><strong>3. Double one-element vector:</strong> Doubles<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> can be specified in decimal (e.g., 0.000017) or in scientific (e.g, 1.7e-5) format:</p>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Double format is a <strong>computer number format</strong>, usually occupying 64 bits in computer memory.</p></li></div><div class="cell">
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Double format is a <strong>computer number format</strong>, usually occupying 64 bits in computer memory.</p></div></div><div class="cell">
 <div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">oev_g</span> <span class="op">&lt;-</span> <span class="fl">0.000017</span>   </span>
 <span><span class="va">oev_g</span>                       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -544,7 +575,7 @@ Learning objectives
 </div>
 <p>&nbsp;</p>
 <p><strong>4. Character one-element vector:</strong> One-element vectors can also be characters (also known as <code>strings</code>). In R, we denote characters using single <code>''</code> or double <code>""</code> quotation marks<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Here, we present some examples of character one-element vectors:</p>
-<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Internally R stores every string within double quotes, even we have created them with single quotation marks.</p></li></div><div class="cell">
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Internally R stores every string within double quotes, even we have created them with single quotation marks.</p></div></div><div class="cell">
 <div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">oev_h</span> <span class="op">&lt;-</span> <span class="st">"hello"</span>      <span class="co"># double quotation marks</span></span>
 <span><span class="va">oev_h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -577,7 +608,7 @@ Important
 <span><span class="va">k</span> <span class="op">&lt;-</span> <span class="st">"2"</span></span>
 <span><span class="va">h</span> <span class="op">+</span> <span class="va">k</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="     color: #8676F8 !important;">Error in h + k : non-numeric argument to binary operator</span></p>
+<p><span style="     color: rgba(134, 118, 248, 255) !important;">Error in h + k : non-numeric argument to binary operator</span></p>
 <p>The error message indicates that we’re trying to apply numeric operations to character objects that’s wrong.</p>
 </div>
 </div>
@@ -639,7 +670,7 @@ Important
 <p>&nbsp;</p>
 </section><section id="the-function-seq" class="level3"><h3 class="anchored" data-anchor-id="the-function-seq">The function <code>seq()</code>
 </h3>
-<p>We have already explore in <a href="functions.html" class="quarto-xref"><span>Chapter&nbsp;4</span></a> the <strong><code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code></strong> function which creates vectors of consecutive values (seq stands for sequence):</p>
+<p>We have already explore in <a href="functions.html" class="quarto-xref"><span>Chapter 4</span></a> the <strong><code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code></strong> function which creates vectors of consecutive values (seq stands for sequence):</p>
 <div class="cell">
 <div class="sourceCode" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>    <span class="co"># increment by 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1000,7 +1031,7 @@ Vectorization
 [1,]   20</code></pre>
 </div>
 </div>
-<p>The inner product of two vectors is an important operation in multiplication of matrices (see <a href="matrices.html" class="quarto-xref"><span>Chapter&nbsp;8</span></a>).</p>
+<p>The inner product of two vectors is an important operation in multiplication of matrices (see <a href="matrices.html" class="quarto-xref"><span>Chapter 8</span></a>).</p>
 <p>&nbsp;</p>
 </section><section id="relational-operators" class="level3"><h3 class="anchored" data-anchor-id="relational-operators">Relational Operators</h3>
 <p><strong>A. Relational operators applied between a long vector and a scalar (one-element vector)</strong></p>
@@ -1127,7 +1158,7 @@ NOTE: Operator &amp;&amp;
 <div class="cell">
 <div class="sourceCode" id="cb153" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&amp;&amp;</span> <span class="va">u</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="     color: #8676F8 !important;">Error in s &amp;&amp; u : ‘length = 7’ in coercion to ‘logical(1)’</span></p>
+<p><span style="     color: rgba(134, 118, 248, 255) !important;">Error in s &amp;&amp; u : ‘length = 7’ in coercion to ‘logical(1)’</span></p>
 </div>
 </div>
 <p><strong>B. OR operators (<code>|</code>, <code>||</code>)</strong></p>
@@ -1159,7 +1190,7 @@ NOTE: Operator ||
 <div class="cell">
 <div class="sourceCode" id="cb158" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">||</span> <span class="va">u</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="     color: #8676F8 !important;">Error in s || u : ‘length = 7’ in coercion to ‘logical(1)’</span></p>
+<p><span style="     color: rgba(134, 118, 248, 255) !important;">Error in s || u : ‘length = 7’ in coercion to ‘logical(1)’</span></p>
 </div>
 </div>
 <p><strong>C. NOT operator (<code>!</code>)</strong></p>
@@ -1341,7 +1372,7 @@ Missing data (NA) in vectors
 <div class="cell">
 <div class="sourceCode" id="cb201" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This gives an error:<br><span style="     color: #8676F8 !important;">Error in month.name [-1:5]: only 0’s may be mixed with negative subscripts</span></p>
+<p>This gives an error:<br><span style="     color: rgba(134, 118, 248, 255) !important;">Error in month.name [-1:5]: only 0’s may be mixed with negative subscripts</span></p>
 <p>Remember that the colon <code>:</code> is an operator in R; in this example it generates the sequence <code>-1, 0, 1, 2, 3, 4, 5</code>.</p>
 <p>A way of solving the problem is to wrap the sequence in parentheses, so that the “<code>-</code>” arithmetic operator will be applied to all elements of the sequence:</p>
 <div class="cell">
@@ -1524,6 +1555,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1558,7 +1612,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1573,15 +1631,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1590,7 +1661,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1632,6 +1711,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1640,7 +1742,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1700,28 +1801,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./objects.html" class="pagination-link">
+      <a href="./objects.html" class="pagination-link" aria-label="R objects">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./matrices.html" class="pagination-link">
+      <a href="./matrices.html" class="pagination-link" aria-label="Data structures in R: matrices and arrays">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -4,7 +4,9 @@
 #| include: false
 
 library(fontawesome)
+library(htmlwidgets)
 ```
+
 
 The one-way repeated measures analysis of variance (also known as a within-subjects ANOVA) is an extension of the paired t-test designed to assess whether there are significant differences in the means of three or more related groups, such as comparing the difference between three or more time points.
 

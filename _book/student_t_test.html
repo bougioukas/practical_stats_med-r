@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.322">
+<meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 18&nbsp; Two-sample t-test (Student’s t-test)</title>
+<title>Practical Statistics in Medicine with R – 18&nbsp; Two-sample t-test (Student’s t-test)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -80,12 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,26 +95,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script><script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.31/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.32/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="site_libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet">
 <script src="site_libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script><script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script><script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script><script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script><link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student's t-test)</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -121,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -385,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -412,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student's t-test)</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-two_samples" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></h1>
 </div>
 
@@ -497,9 +524,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">depression</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"depression.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div id="fig-depression" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div class="datatables html-widget html-fill-item" id="htmlwidget-c43dcba678a3e036c0a5" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c43dcba678a3e036c0a5">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76"],["placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine"],[19,21,28,22,22,28,23,17,19,20,26,23,23,22,19,28,23,14,24,20,17,21,18,19,19,15,25,22,17,26,23,20,25,25,25,24,24,21,20,20,19,21,17,18,19,26,21,21,27,22,15,18,19,25,22,22,21,18,27,22,13,23,19,16,20,16,18,18,14,24,21,16,25,22,19,24]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>intervention<\/th>\n      <th>HDRS<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"intervention","targets":1},{"name":"HDRS","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Figure&nbsp;18.1: Table with data from “depression” file.</figcaption></figure>
+<div id="fig-depression" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b3a94ead512350ae0746" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b3a94ead512350ae0746">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76"],["placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine"],[19,21,28,22,22,28,23,17,19,20,26,23,23,22,19,28,23,14,24,20,17,21,18,19,19,15,25,22,17,26,23,20,25,25,25,24,24,21,20,20,19,21,17,18,19,26,21,21,27,22,15,18,19,25,22,22,21,18,27,22,13,23,19,16,20,16,18,18,14,24,21,16,25,22,19,24]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>intervention<\/th>\n      <th>HDRS<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"intervention","targets":1},{"name":"HDRS","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.1: Table with data from “depression” file.
+</figcaption></figure>
 </div>
 </div>
 <p>We inspect the data and the type of variables:</p>
@@ -550,28 +582,36 @@ $ HDRS         &lt;dbl&gt; 19, 21, 28, 22, 22, 28, 23, 17, 19, 20, 26, 23, 23, 2
 <div class="cell">
 <div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">depression</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">intervention</span>, y <span class="op">=</span> <span class="va">HDRS</span>, fill <span class="op">=</span> <span class="va">intervention</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrain/man/geom_rain.html">geom_rain</a></span><span class="op">(</span>likert<span class="op">=</span> <span class="cn">TRUE</span>, seed <span class="op">=</span> <span class="fl">123</span>, point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://csdaw.github.io/ggprism/reference/theme_prism.html">theme_prism</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span>, base_line_size <span class="op">=</span> <span class="fl">0.4</span>, palette <span class="op">=</span> <span class="st">"office"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co">#theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Grouped Raincloud Plot: HDRS by intervention"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_jco.html">scale_fill_jco</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-rainplot1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="student_t_test_files/figure-html/fig-rainplot1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;18.2: Raincloud plot of HDRS variable stratified by intervention.</figcaption></figure>
+<div id="fig-rainplot1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rainplot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="student_t_test_files/figure-html/fig-rainplot1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rainplot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.2: Raincloud plot of HDRS variable stratified by intervention.
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The above figure shows that the data are close to symmetry and the assumption of a normal distribution is reasonable.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">depression</span>, <span class="st">"HDRS"</span>, color <span class="op">=</span> <span class="st">"intervention"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://csdaw.github.io/ggprism/reference/theme_prism.html">theme_prism</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span>, base_line_size <span class="op">=</span> <span class="fl">0.4</span>, palette <span class="op">=</span> <span class="st">"office"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co">#theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +</span></span>
 <span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_jco.html">scale_color_jco</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">intervention</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-qq_HDRS" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="student_t_test_files/figure-html/fig-qq_HDRS-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;18.3: Normality Q-Q plot for HDRS for paroxetine and placebo.</figcaption></figure>
+<div id="fig-qq_HDRS" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_HDRS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="student_t_test_files/figure-html/fig-qq_HDRS-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_HDRS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.3: Normality Q-Q plot for HDRS for paroxetine and placebo.
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -813,7 +853,7 @@ Normality tests frequently fail to be valuable indicators
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Sample size of the groups:</strong> The Student t-test does not have any restrictions on <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> —they can be equal or unequal. However, equal samples are preferred because this maximizes the power to detect a specified difference.</p></li>
-<li><p><strong>Degrees of freedom:</strong> The paroxetine group has <span class="math inline">\(df_1 = n_1 - 1\)</span> and the placebo group has <span class="math inline">\(df_2 = n_2 - 1\)</span> , so we have <span class="math inline">\(df = n_1 + n_2 -2 = n -2\)</span> in total. Another way of thinking of this is that the complete sample size is <span class="math inline">\(n\)</span>, and we have estimated two parameters from the data (the two means), so we have <span class="math inline">\(df = n-2\)</span> (see also <a href="prob_distributions.html" class="quarto-xref"><span>Chapter&nbsp;14</span></a>).</p></li>
+<li><p><strong>Degrees of freedom:</strong> The paroxetine group has <span class="math inline">\(df_1 = n_1 - 1\)</span> and the placebo group has <span class="math inline">\(df_2 = n_2 - 1\)</span> , so we have <span class="math inline">\(df = n_1 + n_2 -2 = n -2\)</span> in total. Another way of thinking of this is that the complete sample size is <span class="math inline">\(n\)</span>, and we have estimated two parameters from the data (the two means), so we have <span class="math inline">\(df = n-2\)</span> (see also <a href="prob_distributions.html" class="quarto-xref"><span>Chapter 14</span></a>).</p></li>
 </ul>
 </div>
 </div>
@@ -944,7 +984,7 @@ mean in group paroxetine    mean in group placebo
 <p><strong>Summary table</strong></p>
 <p>It is common practice to report the mean (sd) for each group in summary tables.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">depression</span> <span class="op">|&gt;</span>  </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">depression</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span></span>
 <span>    by <span class="op">=</span> <span class="va">intervention</span>, </span>
 <span>    statistic <span class="op">=</span> <span class="va">HDRS</span> <span class="op">~</span> <span class="st">"{mean} ({sd})"</span>, </span>
@@ -956,23 +996,24 @@ mean in group paroxetine    mean in group placebo
 <span>                   pvalue_fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/style_pvalue.html">style_pvalue</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_n.html">add_n</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="elgydawafl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#elgydawafl table {
+<div>
+<div id="tjonrdqohg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tjonrdqohg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#elgydawafl thead, #elgydawafl tbody, #elgydawafl tfoot, #elgydawafl tr, #elgydawafl td, #elgydawafl th {
+#tjonrdqohg thead, #tjonrdqohg tbody, #tjonrdqohg tfoot, #tjonrdqohg tr, #tjonrdqohg td, #tjonrdqohg th {
   border-style: none;
 }
 
-#elgydawafl p {
+#tjonrdqohg p {
   margin: 0;
   padding: 0;
 }
 
-#elgydawafl .gt_table {
+#tjonrdqohg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -998,12 +1039,12 @@ mean in group paroxetine    mean in group placebo
   border-left-color: #D3D3D3;
 }
 
-#elgydawafl .gt_caption {
+#tjonrdqohg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#elgydawafl .gt_title {
+#tjonrdqohg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1015,7 +1056,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-width: 0;
 }
 
-#elgydawafl .gt_subtitle {
+#tjonrdqohg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1027,7 +1068,7 @@ mean in group paroxetine    mean in group placebo
   border-top-width: 0;
 }
 
-#elgydawafl .gt_heading {
+#tjonrdqohg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1039,13 +1080,13 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#elgydawafl .gt_bottom_border {
+#tjonrdqohg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#elgydawafl .gt_col_headings {
+#tjonrdqohg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1060,7 +1101,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#elgydawafl .gt_col_heading {
+#tjonrdqohg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1080,7 +1121,7 @@ mean in group paroxetine    mean in group placebo
   overflow-x: hidden;
 }
 
-#elgydawafl .gt_column_spanner_outer {
+#tjonrdqohg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1092,15 +1133,15 @@ mean in group paroxetine    mean in group placebo
   padding-right: 4px;
 }
 
-#elgydawafl .gt_column_spanner_outer:first-child {
+#tjonrdqohg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#elgydawafl .gt_column_spanner_outer:last-child {
+#tjonrdqohg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#elgydawafl .gt_column_spanner {
+#tjonrdqohg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1112,11 +1153,11 @@ mean in group paroxetine    mean in group placebo
   width: 100%;
 }
 
-#elgydawafl .gt_spanner_row {
+#tjonrdqohg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#elgydawafl .gt_group_heading {
+#tjonrdqohg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1142,7 +1183,7 @@ mean in group paroxetine    mean in group placebo
   text-align: left;
 }
 
-#elgydawafl .gt_empty_group_heading {
+#tjonrdqohg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1157,15 +1198,15 @@ mean in group paroxetine    mean in group placebo
   vertical-align: middle;
 }
 
-#elgydawafl .gt_from_md > :first-child {
+#tjonrdqohg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#elgydawafl .gt_from_md > :last-child {
+#tjonrdqohg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#elgydawafl .gt_row {
+#tjonrdqohg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1184,7 +1225,7 @@ mean in group paroxetine    mean in group placebo
   overflow-x: hidden;
 }
 
-#elgydawafl .gt_stub {
+#tjonrdqohg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1197,7 +1238,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#elgydawafl .gt_stub_row_group {
+#tjonrdqohg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1211,15 +1252,15 @@ mean in group paroxetine    mean in group placebo
   vertical-align: top;
 }
 
-#elgydawafl .gt_row_group_first td {
+#tjonrdqohg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#elgydawafl .gt_row_group_first th {
+#tjonrdqohg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#elgydawafl .gt_summary_row {
+#tjonrdqohg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1229,16 +1270,16 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#elgydawafl .gt_first_summary_row {
+#tjonrdqohg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#elgydawafl .gt_first_summary_row.thick {
+#tjonrdqohg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#elgydawafl .gt_last_summary_row {
+#tjonrdqohg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1248,7 +1289,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#elgydawafl .gt_grand_summary_row {
+#tjonrdqohg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1258,7 +1299,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#elgydawafl .gt_first_grand_summary_row {
+#tjonrdqohg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1268,7 +1309,7 @@ mean in group paroxetine    mean in group placebo
   border-top-color: #D3D3D3;
 }
 
-#elgydawafl .gt_last_grand_summary_row_top {
+#tjonrdqohg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1278,11 +1319,11 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#elgydawafl .gt_striped {
+#tjonrdqohg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#elgydawafl .gt_table_body {
+#tjonrdqohg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1291,7 +1332,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#elgydawafl .gt_footnotes {
+#tjonrdqohg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1305,7 +1346,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#elgydawafl .gt_footnote {
+#tjonrdqohg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1314,7 +1355,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#elgydawafl .gt_sourcenotes {
+#tjonrdqohg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1328,7 +1369,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#elgydawafl .gt_sourcenote {
+#tjonrdqohg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1336,110 +1377,111 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#elgydawafl .gt_left {
+#tjonrdqohg .gt_left {
   text-align: left;
 }
 
-#elgydawafl .gt_center {
+#tjonrdqohg .gt_center {
   text-align: center;
 }
 
-#elgydawafl .gt_right {
+#tjonrdqohg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#elgydawafl .gt_font_normal {
+#tjonrdqohg .gt_font_normal {
   font-weight: normal;
 }
 
-#elgydawafl .gt_font_bold {
+#tjonrdqohg .gt_font_bold {
   font-weight: bold;
 }
 
-#elgydawafl .gt_font_italic {
+#tjonrdqohg .gt_font_italic {
   font-style: italic;
 }
 
-#elgydawafl .gt_super {
+#tjonrdqohg .gt_super {
   font-size: 65%;
 }
 
-#elgydawafl .gt_footnote_marks {
+#tjonrdqohg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#elgydawafl .gt_asterisk {
+#tjonrdqohg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#elgydawafl .gt_indent_1 {
+#tjonrdqohg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#elgydawafl .gt_indent_2 {
+#tjonrdqohg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#elgydawafl .gt_indent_3 {
+#tjonrdqohg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#elgydawafl .gt_indent_4 {
+#tjonrdqohg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#elgydawafl .gt_indent_5 {
+#tjonrdqohg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>N</strong>"><strong>N</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>paroxetine</strong>, N = 33<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>N</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N</strong></th>
+<th id="<strong>paroxetine</strong>, N = 33<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
 <strong>paroxetine</strong>, N = 33<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>placebo</strong>, N = 43<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>">
+<th id="<strong>placebo</strong>, N = 43<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
 <strong>placebo</strong>, N = 43<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Difference</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>">
+<th id="<strong>Difference</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
 <strong>Difference</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>95% CI</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2,3</sup></span>">
+<th id="<strong>95% CI</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2,3</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
 <strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2,3</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>p-value</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>">
+<th id="<strong>p-value</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
 <strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span>
 </th>
-    </tr></thead>
-<tbody class="gt_table_body"><tr>
-<td headers="label" class="gt_row gt_left">HDRS score</td>
-<td headers="n" class="gt_row gt_center">76</td>
-<td headers="stat_1" class="gt_row gt_center">20.3 (3.7)</td>
-<td headers="stat_2" class="gt_row gt_center">21.5 (3.4)</td>
-<td headers="estimate" class="gt_row gt_center">-1.2</td>
-<td headers="ci" class="gt_row gt_center">-2.8, 0.47</td>
-<td headers="p.value" class="gt_row gt_center">0.16</td>
+</tr></thead>
+<tbody class="gt_table_body"><tr class="odd">
+<td class="gt_row gt_left" headers="label">HDRS score</td>
+<td class="gt_row gt_center" headers="n">76</td>
+<td class="gt_row gt_center" headers="stat_1">20.3 (3.7)</td>
+<td class="gt_row gt_center" headers="stat_2">21.5 (3.4)</td>
+<td class="gt_row gt_center" headers="estimate">-1.2</td>
+<td class="gt_row gt_center" headers="ci">-2.8, 0.47</td>
+<td class="gt_row gt_center" headers="p.value">0.16</td>
 </tr></tbody>
 <tfoot class="gt_footnotes">
-<tr>
-<td class="gt_footnote" colspan="7">
+<tr class="even">
+<td colspan="7" class="gt_footnote">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7">
+</tr>
+<tr class="odd">
+<td colspan="7" class="gt_footnote">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Two Sample t-test</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7">
+</tr>
+<tr class="even">
+<td colspan="7" class="gt_footnote">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>3</sup></span> CI = Confidence Interval</td>
-    </tr>
+</tr>
 </tfoot>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -1553,6 +1595,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1587,7 +1652,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1602,15 +1671,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1619,7 +1701,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1661,6 +1751,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1669,7 +1782,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1729,28 +1841,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./inference.html" class="pagination-link">
+      <a href="./inference.html" class="pagination-link" aria-label="Foundations for statistical inference">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./wmw_test.html" class="pagination-link">
+      <a href="./wmw_test.html" class="pagination-link" aria-label="Wilcoxon-Mann-Whitney (Mann-Whitney U) test">
         <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

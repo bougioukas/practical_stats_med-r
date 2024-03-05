@@ -1,5 +1,13 @@
 # Wilcoxon Signed-Rank test {#sec-wilcoxon_test}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
 Wilcoxon Signed-Rank test (Wilcoxon test) is a non-parametric test that can be conducted to compare paired samples when the differences are not normally distributed. It is based on the signs of the differences and the magnitude of the rank of the differences between pairs of measurements, rather than the actual values. The null hypothesis is that there is no tendency for values under each paired variable to be higher or lower. It is often thought of as a test for small samples. However, if the sample is smaller than 6, then statistical significance is impossible.
 
 When we have finished this Chapter, we should be able to:

@@ -1,5 +1,14 @@
 # Kruskal-Wallis test {#sec-kruskal_wallis}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
+
 The Kruskal-Wallis test is a rank-based non-parametric alternative to the one-way ANOVA and an extension of the Wilcoxon-Mann-Whitney test to allow the comparison of more than two independent groups. It's usually recommended when the assumptions of one-way ANOVA test are not met (non-normal distributions) or with small samples.
 
 When we have finished this Chapter, we should be able to:

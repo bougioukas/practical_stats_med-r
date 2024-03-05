@@ -2,9 +2,10 @@
 
 ```{r}
 #| include: false
-library(fontawesome)
-```
 
+library(fontawesome)
+library(htmlwidgets)
+```
 
 In health sciences we often have data which represent the **time until some event occurs**. In a clinical trial setting, the primary outcome may be the time from onset of therapy until a well-defined critical event such as death, cancer recurrence, or first occurrence of a particular adverse event. One of the challenges specific to survival data is that the survival times will be unknown for some patients (censored data) for a variety of reasons:
 
@@ -22,6 +23,7 @@ When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
 ## `r fa("circle-dot", prefer_type = "regular", fill = "red")`
+
 ## Learning objectives
 
 -   Understand the basic concepts of the Kaplan-Meier analysis of time-to-event data
@@ -258,7 +260,7 @@ Kaplan--Meier analysis is usually presented as a survival curve in addition to t
 
 km.A |>
   ggsurvfit(linewidth = 1, color = "#077E97" ) +
-  theme_prism(palette = "winter_bright", base_size = 12) + 
+  #theme_prism(palette = "winter_bright", base_size = 12) + 
   add_confidence_interval(fill = "#077E97") +
   add_censor_mark(color = "brown", size = 3.5) +
   add_risktable(risktable_stats = c("n.risk", "cum.censor", "cum.event")) +
@@ -324,7 +326,7 @@ km.AB <- survfit2(Surv(time, status) ~ intervention, data = dat)
 
 km.AB |>
   ggsurvfit(linewidth = 1) +
-  theme_prism(palette = "winter_bright", base_size = 12) + 
+  #theme_prism(palette = "winter_bright", base_size = 12) + 
   add_confidence_interval() +
   add_censor_mark(color = "brown", size = 3.5) +
   add_risktable(risktable_stats = c("n.risk", "cum.censor", "cum.event"), size = 4) +
@@ -363,7 +365,7 @@ We can plot the cumulative risk function (aka "cumulative incidence" or "cumulat
 
 km.AB |>
   ggsurvfit(type = "risk", linewidth = 1) +
-  theme_prism(palette = "winter_bright", base_size = 12) + 
+  #theme_prism(palette = "winter_bright", base_size = 12) + 
   add_confidence_interval() +
   add_censor_mark(color = "brown", size = 3.5) +
   add_risktable(risktable_stats = c("n.risk", "cum.censor", "cum.event"), size = 4) +
@@ -406,12 +408,10 @@ The log-rank test yields a chi-square statistical value, as it is built upon thi
 
 The Hazard ratio (HR) is an estimate of the ratio of the hazard rate in the new therapy versus the standard therapy. The hazard ratio is often interpreted as a risk ratio or odds ratio, although they are not technically the same.
 
-
 ::: callout-warning
 ## HR versus RR and OR
 
 Hazard ratios (HRs) differ from relative risks (RRs) and odds ratio (OR) in that RRs and ORs are cumulative over an entire study, using a defined endpoint, while HRs represent instantaneous risk over the study time period.
-
 :::
 
 After computing the number of observed events (deaths) in each group ($O_A$ for observed number of events in group A and $O_B$ for observed number of events in group B), and the expected number of events assuming a null hypothesis of no difference in survival ($E_A$ for expected number of events in group A and $E_B$ for expected number of events in group B) using the log-rank approach, we can calculate the hazard ratio:
@@ -432,18 +432,14 @@ $$UL_{lnHR} = lnHR + 1.96 \cdot SE_{lnHR}$$
 
 Finally, we convert each of these values back to HR using:
 
-$$LL_{HR} = exp(LL_{lnHR})$$
-and 
+$$LL_{HR} = exp(LL_{lnHR})$$ and
 
 $$UL_{HR} = exp(UL_{lnHR})$$
-
-
-
-
 
 **In R:**
 
 The HR is:
+
 ```{r}
 O_A <- SurvDiff$obs[1]
 O_B <- SurvDiff$obs[2]
@@ -453,14 +449,12 @@ HR <- (O_A/E_A)/(O_B/E_B)
 HR
 ```
 
-
 and the standard error of the logarithm of HR:
 
 ```{r}
 SE_lnHR = sqrt(1/E_A + 1/E_B)
 SE_lnHR
 ```
-
 
 The lower and upper limits of the logarithm of HR are:
 
@@ -471,9 +465,7 @@ UL_lnHR <- log(HR) + 1.96*SE_lnHR
 UL_lnHR
 ```
 
-
-
-Finally: 
+Finally:
 
 ```{r}
 
@@ -483,13 +475,8 @@ CI95 <- c(LL_HR = LL_HR, UL_HR = UL_HR)
 CI95
 ```
 
-
-
-
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
 
 The log-rank test has optimum power under the assumption of proportional hazard rates. This assumption posits that the ratio of hazards between groups remains constant over time.
-
 :::
-

@@ -1,5 +1,13 @@
 # Paired t-test {#sec-paired_t_test}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
 A paired t-test is used to estimate whether the means of two related measurements are significantly different from one another.
 
 Examples of paired study designs are:

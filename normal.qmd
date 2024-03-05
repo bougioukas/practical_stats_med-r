@@ -1,5 +1,13 @@
 # Normal distribution {#sec-normal}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
 There are several important probability distributions in statistics. However, the normal distribution might be the most important. This distribution is also referred to as "*Gaussian*" or "*Gauss*" distribution.
 
 When we have finished this chapter, we should be able to:

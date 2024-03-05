@@ -4,8 +4,8 @@
 #| include: false
 
 library(fontawesome)
+library(htmlwidgets)
 ```
-
 
 One-way analysis of variance, usually referred to as **one-way ANOVA**, is a statistical test used when we want to compare several means. We may think of it as an extension of Student's t-test to the case of more than two independent samples.
 
@@ -283,7 +283,6 @@ The output contains the following columns of interest:
 -   conf.low, conf.high: the lower and the upper end point of the confidence interval at 95% (default)
 -   p.adj: p-value after adjustment for the multiple comparisons.
 
-
 ```{r}
 #| warning: false
 
@@ -297,7 +296,6 @@ two_groups_unpaired.mean_diff <- mean_diff(two_groups_unpaired)
 dabest_plot(two_groups_unpaired.mean_diff)
 
 ```
-
 
 ## Bonferroni
 

@@ -2,7 +2,9 @@
 
 ```{r}
 #| include: false
+
 library(fontawesome)
+library(htmlwidgets)
 ```
 
 When we have finished this Chapter, we should be able to:

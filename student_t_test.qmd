@@ -3,6 +3,7 @@
 ```{r}
 #| include: false
 library(fontawesome)
+library(htmlwidgets)
 ```
 
 Two sample t-test (Student's t-test) can be used if we have two independent (unrelated) groups (e.g., males-females, treatment-non treatment) and one quantitative variable of interest.
@@ -120,7 +121,7 @@ We can visualize the distribution of HDRS for the two groups:
 
 ggplot(depression, aes(x= intervention, y = HDRS, fill = intervention)) +
   geom_rain(likert= TRUE, seed = 123, point.args = list(alpha = 0.3)) +
-  theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +
   labs(title = "Grouped Raincloud Plot: HDRS by intervention") +
   scale_fill_jco() +
   theme(legend.position = "none")
@@ -134,7 +135,7 @@ The above figure shows that the data are close to symmetry and the assumption of
 #| fig-cap: Normality Q-Q plot for HDRS for paroxetine and placebo.
 
 ggqqplot(depression, "HDRS", color = "intervention", conf.int = F) +
-  theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 20, base_line_size = 0.4, palette = "office") +
   scale_color_jco() +
   facet_wrap(~ intervention) + 
   theme(legend.position = "none")

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.322">
+<meta name="generator" content="quarto-1.5.23">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical Statistics in Medicine with R - 17&nbsp; Foundations for statistical inference</title>
+<title>Practical Statistics in Medicine with R – 17&nbsp; Foundations for statistical inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,12 +51,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -65,6 +66,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -74,6 +76,33 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -82,11 +111,11 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./inference.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -97,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
@@ -363,7 +392,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -372,6 +401,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#hypothesis-testsing" id="toc-hypothesis-testsing" class="nav-link active" data-scroll-target="#hypothesis-testsing"><span class="header-section-number">17.1</span> Hypothesis Testsing</a></li>
   <li><a href="#type-of-errors-in-hypothesis-testing" id="toc-type-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#type-of-errors-in-hypothesis-testing"><span class="header-section-number">17.2</span> Type of Errors in Hypothesis Testing</a></li>
+  <li><a href="#sampling-distribution" id="toc-sampling-distribution" class="nav-link" data-scroll-target="#sampling-distribution"><span class="header-section-number">17.3</span> Sampling distribution</a></li>
+  <li><a href="#sample-and-sampling-distributions" id="toc-sample-and-sampling-distributions" class="nav-link" data-scroll-target="#sample-and-sampling-distributions"><span class="header-section-number">17.4</span> Sample and sampling distributions</a></li>
   </ul>
 </nav>
     </div>
@@ -395,6 +426,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header>
+
 
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -444,9 +476,13 @@ Steps of Hypothesis Testsing
 <li>If p − value ≥ α, do not reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 </ul>
 <p>The <a href="#tbl-panel" class="quarto-xref">Table&nbsp;<span>17.1</span></a> demonstrates how to interpret the strength of the evidence. However, always keep in mind the size of the study being considered.</p>
-<div id="tbl-panel" class="anchored">
+<div id="tbl-panel" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.1: Strength of the evidence against <span class="math inline">\(H_{0}\)</span>.
+</figcaption>
+<div aria-describedby="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;17.1: Strength of the evidence against <span class="math inline">\(H_{0}\)</span>.</caption>
 <thead>
 <tr class="header">
 <th>p-value</th>
@@ -477,6 +513,8 @@ Steps of Hypothesis Testsing
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p><strong>Step 5:</strong> Interpret the results.</p>
 </div>
 </div>
@@ -487,14 +525,18 @@ Steps of Hypothesis Testsing
 <p>In the framework of hypothesis testing there are two types of errors: <strong>Type I error</strong> and <strong>type II error</strong> (<a href="#tbl-type_errors" class="quarto-xref">Table&nbsp;<span>17.2</span></a>).</p>
 <p><strong>Type I error:</strong> we reject the null hypothesis when it is true (false positive), and conclude that there is an effect when, in reality, there is none. The maximum chance (probability) of making a Type I error is denoted by α (alpha). This is the significance level of the test; we reject the null hypothesis if our p-value is less than the significance level, i.e.&nbsp;if p &lt; a.</p>
 <p><strong>Type II error:</strong> we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta); its compliment, (1 - β), is the power of the test.</p>
-<div id="tbl-type_errors" class="anchored">
+<div id="tbl-type_errors" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-type_errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.2: Types of error in hypothesis testing.
+</figcaption>
+<div aria-describedby="tbl-type_errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;17.2: Types of error in hypothesis testing.</caption>
 <colgroup>
-<col style="width: 18%">
-<col style="width: 22%">
-<col style="width: 29%">
-<col style="width: 29%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -526,11 +568,17 @@ Steps of Hypothesis Testsing
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>&nbsp;</p>
 <p>The power (<span class="math inline">\(1 - \beta\)</span>), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e.&nbsp;it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. <a href="#tbl-power" class="quarto-xref">Table&nbsp;<span>17.3</span></a> presents the main factors that can influence the power in a study.</p>
-<div id="tbl-power" class="anchored">
+<div id="tbl-power" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.3: Factors Influencing Power.
+</figcaption>
+<div aria-describedby="tbl-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;17.3: Factors Influencing Power.</caption>
 <colgroup>
 <col style="width: 36%">
 <col style="width: 63%">
@@ -561,6 +609,42 @@ Steps of Hypothesis Testsing
 </tbody>
 </table>
 </div>
+</figure>
+</div>
+<p>&nbsp; &nbsp;</p>
+</section>
+<section id="sampling-distribution" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="sampling-distribution"><span class="header-section-number">17.3</span> Sampling distribution</h2>
+</section>
+<section id="sample-and-sampling-distributions" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="sample-and-sampling-distributions"><span class="header-section-number">17.4</span> Sample and sampling distributions</h2>
+<p>The <strong>sample distribution</strong> represents the probability distribution of the observed values in a randomly selected sample from the population. Using the data from this sample, we can calculate sample statistics such as the sample mean. For example, a hospital is interested in finding out the average blood pressure (BP) of its diabetic patients, but measuring each patient is impractical. Instead, they randomly selected <em>n</em> patients from this group and measured their BP. The resulting average BP for this sample, let’s say <span class="math inline">\(\bar{x_1} = 130\)</span> mmHg, represents one sample mean .</p>
+<div id="fig-sample_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sample1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: The estimate of mean, <span class="math inline">\(\bar{x_1} =130\)</span>, represents an observed sample mean from an already collected sample.
+</figcaption>
+</figure>
+</div>
+<p>Consider repeating the sampling process by randomly selecting various samples, each consisting of <em>n</em> patients, and calculating their average blood pressure. This would yield a range of different sample means, such as <span class="math inline">\(\bar{x_1} = 130\)</span> mmHg, <span class="math inline">\(\bar{x_2} = 128\)</span> mmHg, <span class="math inline">\(\bar{x_3} = 133\)</span> mmHg, and so forth. This collection of multiple sample means (obtained from different samples) is the sampling distribution of the mean BP.</p>
+<div id="fig-sample_distr" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample_distr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/many_samples.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.2: The collection of sample means derived from repeated sampling forms a sampling distribution of mean with its own characteristics.
+</figcaption>
+</figure>
+</div>
+<div class="content-box-blue">
+<p>The <strong>sampling distribution</strong> is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.</p>
+</div>
+<p><span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(\sigma\)</span></p>
+<p><span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s^2\)</span>, <span class="math inline">\(s\)</span></p>
 
 
 </section>
@@ -645,6 +729,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -679,7 +786,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -694,15 +805,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -711,7 +835,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -753,6 +885,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -761,7 +916,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -821,30 +975,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./descriptive.html" class="pagination-link">
+      <a href="./descriptive.html" class="pagination-link" aria-label="Descriptive statistics">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./student_t_test.html" class="pagination-link">
+      <a href="./student_t_test.html" class="pagination-link" aria-label="Two-sample t-test (Student's t-test)">
         <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

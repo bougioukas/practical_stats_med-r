@@ -1,5 +1,13 @@
 # Correlation {#sec-correlation}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
 **Correlation** is a statistical method used to assess a possible **association** between two numeric variables, X and Y. There are several statistical coefficients that we can use to quantify correlation depending on the underlying relation of the data. In this chapter, we'll learn about four correlation coefficients:
 
 -   Pearson's $r$

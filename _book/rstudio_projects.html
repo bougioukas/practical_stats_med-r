@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.322">
+<meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 2&nbsp; Working with RStudio Projects and writing R scripts</title>
+<title>Practical Statistics in Medicine with R – 2&nbsp; Working with RStudio Projects and writing R scripts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -48,12 +48,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -62,6 +63,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -72,11 +74,11 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./rstudio_projects.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with RStudio Projects and writing R scripts</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -84,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -348,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -403,61 +405,90 @@ Learning objectives
 </ul>
 <p><strong>Create an RStudio Project</strong></p>
 <p>Let’s create our first RStudio Project to use for the rest of this textbook. From the RStudio menu select (<a href="#fig-project0" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>):</p>
-<div class="cell">
+<div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class="figure"></figure><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
   A(File) -.-&gt; B(New Project...)
 </pre>
 </div>
+<p></p>
 </div>
 </div>
 </div>
 <p>&nbsp;</p>
-<div id="fig-project0" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/project0.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.1: Create an RStudio Project using the RStudio’s menu</figcaption></figure>
+<div id="fig-project0" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-project0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/project0.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-project0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Create an RStudio Project using the RStudio’s menu
+</figcaption></figure>
 </div>
 <p>Alternatively, we can use the plus project icon <img src="images/project_icon.png" width="22" height="18"> or we can select <code>New Project...</code> from the top right Project menu (<a href="#fig-project1" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>):</p>
-<div id="fig-project1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/project1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.2: Create an RStudio Project using the RStudio’s Project menu</figcaption></figure>
+<div id="fig-project1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-project1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/project1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-project1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Create an RStudio Project using the RStudio’s Project menu
+</figcaption></figure>
 </div>
 <p>Then, we follow the steps in <a href="#fig-steps" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>:</p>
-<div id="fig-steps" class="cell quarto-layout-panel">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-steps-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/step1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps"></p>
-<figcaption class="figure-caption">(a) Step 1</figcaption></figure>
+<div id="fig-steps" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-steps" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-steps-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-steps-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/step1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-steps-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Step 1
+</figcaption></figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-steps-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/step2.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps"></p>
-<figcaption class="figure-caption">(b) Step 2</figcaption></figure>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-steps" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-steps-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-steps-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/step2.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-steps-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Step 2
+</figcaption></figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-steps-3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/step3.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps"></p>
-<figcaption class="figure-caption">(c) Step 3</figcaption></figure>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-steps" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-steps-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-steps-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/step3.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-steps">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-steps-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Step 3
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.3: Steps to create an RStudio Project.</figcaption><p></p>
-</figure>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Steps to create an RStudio Project.
+</figcaption></figure>
 </div>
 <p>In Step 3 (<a href="#fig-steps" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> c) the directory name that we type will be the project’s name. We call it whatever we want, for example “<em>my_first_project</em>”.</p>
 <p>Once we have completed this process, R session switches to the new RStudio Project with the name “<em>my_first_project</em>” (<a href="#fig-top_right_project_name" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>):</p>
-<div id="fig-top_right_project_name" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/top_right_project_name.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.4: The new RStudio Project has been created with the name “<em>my_first_project</em>”.</figcaption></figure>
+<div id="fig-top_right_project_name" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-top_right_project_name-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/top_right_project_name.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-top_right_project_name-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: The new RStudio Project has been created with the name “<em>my_first_project</em>”.
+</figcaption></figure>
 </div>
 <p>&nbsp;</p>
 <p><strong>RStudio Project folder structure</strong></p>
@@ -469,36 +500,55 @@ Learning objectives
 <li>
 <strong>figures:</strong> we save plots, diagrams, and other graphs</li>
 </ul>
-<div id="fig-schima_project_str" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/schima_project_str.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.5: Schematically presentation of the folder structure of a minimal RStudio project.</figcaption></figure>
+<div id="fig-schima_project_str" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-schima_project_str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/schima_project_str.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schima_project_str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: Schematically presentation of the folder structure of a minimal RStudio project.
+</figcaption></figure>
 </div>
 <p>We can create new folders (sub-folders) in the main RStudio Project folder using the <img src="images/new_folder.png" width="70" height="20"> (<a href="#fig-new_folders" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>).</p>
-<div id="fig-new_folders" class="cell quarto-layout-panel">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-new_folders-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/folder_data.png" class="img-fluid figure-img" style="width:14cm" data-ref-parent="fig-new_folders"></p>
-<figcaption class="figure-caption">(a) Create a sub-folder with the name ‘data’</figcaption></figure>
+<div id="fig-new_folders" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-new_folders-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-new_folders" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-new_folders-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-new_folders-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/folder_data.png" class="img-fluid figure-img" style="width:14cm" data-ref-parent="fig-new_folders">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-new_folders-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Create a sub-folder with the name ‘data’
+</figcaption></figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-new_folders-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/folder_figures.png" class="img-fluid figure-img" style="width:14cm" data-ref-parent="fig-new_folders"></p>
-<figcaption class="figure-caption">(b) Create a sub-folder with the name ‘figures’</figcaption></figure>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-new_folders" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-new_folders-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-new_folders-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/folder_figures.png" class="img-fluid figure-img" style="width:14cm" data-ref-parent="fig-new_folders">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-new_folders-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Create a sub-folder with the name ‘figures’
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.6: We can use the “New Folder” icon to add sub-folders into RStudio Project.</figcaption><p></p>
-</figure>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new_folders-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: We can use the “New Folder” icon to add sub-folders into RStudio Project.
+</figcaption></figure>
 </div>
 <p>Therefore, we end up to the following RStudio Project folder structure:</p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> The file named <code>my_first_project.Rproj</code>, which has been created by RStudio automatically, contains information of the project and can also be used as a shortcut for opening the project directly from the file system in our computer.</span></div></div>
-<div id="fig-my_project_str" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/my_project_str.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.7: A minimal RStudio Project folder structure.</figcaption></figure>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><strong>NOTE:</strong> The file named <code>my_first_project.Rproj</code>, which has been created by RStudio automatically, contains information of the project and can also be used as a shortcut for opening the project directly from the file system in our computer.</span></div></div>
+<div id="fig-my_project_str" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-my_project_str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/my_project_str.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-my_project_str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: A minimal RStudio Project folder structure.
+</figcaption></figure>
 </div>
 </section><section id="open-a-new-r-script" class="level2 page-columns page-full" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="open-a-new-r-script">
 <span class="header-section-number">2.2</span> Open a new R script</h2>
@@ -513,88 +563,127 @@ Learning objectives
 <li>We can share our script with others.</li>
 </ul>
 </div></div><p>In the RStudio menu, we go to:</p>
-<div class="cell">
+<div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class="figure"></figure><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
   A(File) -.-&gt; B(New File) -.-&gt; C(R Script)
 </pre>
 </div>
+<p></p>
 </div>
 </div>
 </div>
 <p><br></p>
-<div id="fig-rscript" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/open_rscript.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.8: Open a new R script from the Rstudio menu.</figcaption></figure>
+<div id="fig-rscript" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rscript-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/open_rscript.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
-<p>Alternatively, we can use the plus icon <img src="images/plus1.png" width="22" height="18"> from RStudio toolbar or the keyboard shortcut <kbd>Ctrl+Shift+N</kbd> for Windows/Linux or <kbd>Cmd+Shift+N</kbd> for Mac.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8: Open a new R script from the Rstudio menu.
+</figcaption></figure>
+</div>
+<p>Alternatively, we can use the plus icon <img src="images/plus1.png" width="22" height="18"> from RStudio toolbar or the keyboard shortcut <kbd aria-hidden="true">Ctrl+Shift+N</kbd><span class="visually-hidden">Ctrl+Shift+N</span> for Windows/Linux or <kbd aria-hidden="true">Cmd+Shift+N</kbd><span class="visually-hidden">Cmd+Shift+N</span> for Mac.</p>
 <p>Another pane, the <em>“Source Editor”</em>, is opened on the left above the Console pane (<a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>). In Source Editor, we can write a length script with lots of code chunks and save the file for future use (at present, the new unsaved R script is named <em>“Untitled 1”</em>).</p>
-<div id="fig-RStudio_4panes" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/RStudio_4panes.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.9: RStudio Screenshot with four panes.</figcaption></figure>
+<div id="fig-RStudio_4panes" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-RStudio_4panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/RStudio_4panes.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RStudio_4panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.9: RStudio Screenshot with four panes.
+</figcaption></figure>
 </div>
 <p>We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.</p>
 <p>The four panes might be placed in a different order that those in <a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>. If we would like, we can change where each pane appears within RStudio under the RStudio preferences. We select from RStudio menu (<a href="#fig-rtools12" class="quarto-xref">Figure&nbsp;<span>2.10</span></a>):</p>
-<div class="cell">
+<div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class="figure"></figure><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
   A(Tools) -.-&gt; B(Global Options) -.-&gt; C(Pane layout)
 </pre>
 </div>
+<p></p>
 </div>
 </div>
 </div>
 <p><br></p>
-<div id="fig-rtools12" class="cell quarto-layout-panel">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-rtools12-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/rtools1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools12"></p>
-<figcaption class="figure-caption">(a) Step 1: We select Tools -&gt; Global Options.</figcaption></figure>
+<div id="fig-rtools12" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rtools12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-rtools12" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-rtools12-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-rtools12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rtools1.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools12">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-rtools12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Step 1: We select Tools -&gt; Global Options.
+</figcaption></figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-rtools12-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/order_panes.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools12"></p>
-<figcaption class="figure-caption">(b) Step 2: We can change the order of panes and check which tabs we would like to appear within each pane.</figcaption></figure>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-rtools12" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-rtools12-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-rtools12-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/order_panes.png" class="img-fluid figure-img" style="width:12cm" data-ref-parent="fig-rtools12">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-rtools12-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Step 2: We can change the order of panes and check which tabs we would like to appear within each pane.
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2.10: Options for the apperance of RStudio panes.</figcaption><p></p>
-</figure>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rtools12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.10: Options for the apperance of RStudio panes.
+</figcaption></figure>
 </div>
 <p>Now, let’s type <code>14 + 16</code> at a new R script in the Source Editor pane and press the <img src="images/run.png" width="40" height="18"> button<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The result is printed in the Console (<a href="#fig-rscript1" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>):</p>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;In <code>.R</code> script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the code) and pressing the <strong>run</strong> button in the Source Editor. We can also run our selected code using the keywboard shortcut <kbd>Ctrl+Enter</kbd> for Windows/Linux or <kbd>Cmd+Enter</kbd> for Mac.</p></li></div><div id="fig-rscript1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/rscript1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.11: We can write our code in the source editor and get the output in the console.</figcaption></figure>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;In <code>.R</code> script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the code) and pressing the <strong>run</strong> button in the Source Editor. We can also run our selected code using the keywboard shortcut <kbd aria-hidden="true">Ctrl+Enter</kbd><span class="visually-hidden">Ctrl+Enter</span> for Windows/Linux or <kbd aria-hidden="true">Cmd+Enter</kbd><span class="visually-hidden">Cmd+Enter</span> for Mac.</p></div></div><div id="fig-rscript1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rscript1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rscript1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.11: We can write our code in the source editor and get the output in the console.
+</figcaption></figure>
 </div>
 <p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<a href="#fig-rscript2" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>).</p>
-<div id="fig-rscript2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/rscript2.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.12: The script pane with comments.</figcaption></figure>
+<div id="fig-rscript2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rscript2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rscript2.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.12: The script pane with comments.
+</figcaption></figure>
 </div>
 <p>Comments start with the <strong>hashtag symbol <code>#</code></strong>. When executing the R-code, R will ignore anything that starts with <code>#</code>. It is considered good practice to comment our code when working in an <code>.R</code> script.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Keyboard Shortcut for commenting in/out <strong>multiple lines</strong> at a time:</p>
 <ul>
-<li><p><kbd>Ctrl+Shift+C</kbd> for Windows/Linux</p></li>
-<li><p><kbd>Cmd+Shift+C</kbd> for Mac</p></li>
+<li><p><kbd aria-hidden="true">Ctrl+Shift+C</kbd><span class="visually-hidden">Ctrl+Shift+C</span> for Windows/Linux</p></li>
+<li><p><kbd aria-hidden="true">Cmd+Shift+C</kbd><span class="visually-hidden">Cmd+Shift+C</span> for Mac</p></li>
 </ul>
 </div></div><p>Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon <img src="images/save_icon.png" width="22" height="24">, give a file name to the script such as <em>“my_script”</em> and then press the “save” button to store it in <em>“my_first_project”</em> folder (<a href="#fig-save_script" class="quarto-xref">Figure&nbsp;<span>2.13</span></a>).</p>
-<div id="fig-save_script" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/save_script.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.13: Saving our R script in the RStudio Project folder.</figcaption></figure>
+<div id="fig-save_script" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-save_script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/save_script.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-save_script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.13: Saving our R script in the RStudio Project folder.
+</figcaption></figure>
 </div>
 <p>Now, the folder structure of our RStudio Project should include the following items (<a href="#fig-final_folder_structure" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>):</p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><strong>NOTE:</strong> The <code>.Rhistory</code> file contains a history of code that has been executed and has been created automatically by RStudio.</span></div></div>
-<div id="fig-final_folder_structure" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="images/final_folder_structure.png" class="img-fluid figure-img" style="width:55.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.14: Folder structure of our RStudio Project with sub-folders and R script.</figcaption></figure>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><strong>NOTE:</strong> The <code>.Rhistory</code> file contains a history of code that has been executed and has been created automatically by RStudio.</span></div></div>
+<div id="fig-final_folder_structure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-final_folder_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/final_folder_structure.png" class="img-fluid figure-img" style="width:55.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final_folder_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.14: Folder structure of our RStudio Project with sub-folders and R script.
+</figcaption></figure>
 </div>
 <p>Note that if we close the R script, we can re-open it by clicking on the <em>“my_script”</em> file from the “Files” tab.</p>
 
@@ -678,6 +767,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -712,7 +824,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -727,15 +843,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -744,7 +873,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -786,6 +923,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -794,7 +954,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -854,28 +1013,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./intro_rstudio.html" class="pagination-link">
+      <a href="./intro_rstudio.html" class="pagination-link" aria-label="R via RStudio">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./calculations.html" class="pagination-link">
+      <a href="./calculations.html" class="pagination-link" aria-label="R as calculator">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

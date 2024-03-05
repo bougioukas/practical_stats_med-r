@@ -1,5 +1,13 @@
 # Receiver Operating Characteristic (ROC) curve {#sec-roc}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
 When a diagnostic test result is measured in a **continuous scale**, sensitivity and specificity vary with different cut-off points (thresholds). Therefore, a **convenient** cut-off point[^roc-1] must be selected in order to calculate the measures of diagnostic accuracy of the test. **Receiver operating characteristic** (ROC) curve analysis can be used to help with this decision.
 
 [^roc-1]: **NOTE:** there is critique, however, that the binary diagnosis is problematic.

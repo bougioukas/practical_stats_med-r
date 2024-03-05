@@ -4,7 +4,9 @@
 #| include: false
 
 library(fontawesome)
+library(htmlwidgets)
 ```
+
 
 In this textbook, the `{ggplot2}` package is the preferred tool for creating plots. With this tool and its extensions, R users can produce elegant, sophisticated, and professional-looking types of graphs that communicate results efficiently to the desired audience.
 
@@ -990,8 +992,6 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
   guides(color = guide_legend(override.aes = list(size = 4)))
 ```
 
-
-
 ```{r}
 #| message: false
 #| warning: false
@@ -1024,9 +1024,3 @@ ggplot(dat, aes(x = gdp_capita, y = cases_per_100k)) +
         legend.title = element_text(face = "bold")) +
   guides(color = guide_legend(override.aes = list(size = 4)))
 ```
-
-
-
-
-
-

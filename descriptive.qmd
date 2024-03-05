@@ -1,5 +1,14 @@
 # Descriptive statistics {#sec-descriptive}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+library(htmlwidgets)
+```
+
+
+
 **Descriptive statistics** are used to describe and organize the **basic characteristics** of the data in a study. The classical descriptive statistics allow us to have a quick glance of the central tendency and the extent of dispersion of values. They are useful in understanding the **data distributions** and comparing them.
 
 When we have finished this Chapter, we should be able to:
