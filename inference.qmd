@@ -52,30 +52,25 @@ The @tbl-panel demonstrates how to interpret the strength of the evidence. Howev
 
  
 
-
 ## Type of Errors in Hypothesis Testing
 
-In the framework of hypothesis testing there are two types of errors: **Type I error** and **type II error** (@tbl-type_errors). 
+In the framework of hypothesis testing there are two types of errors: **Type I error** and **type II error** (@tbl-type_errors).
 
 **Type I error:** we reject the null hypothesis when it is true (false positive), and conclude that there is an effect when, in reality, there is none. The maximum chance (probability) of making a Type I error is denoted by α (alpha). This is the significance level of the test; we reject the null hypothesis if our p-value is less than the significance level, i.e. if p \< a.
 
-**Type II error:** we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta); its compliment, (1 - β), is the power of the test. 
+**Type II error:** we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta); its compliment, (1 - β), is the power of the test.
 
 |                                         |                         | In population $H_0$ is            |                                                      |
-|------------------|----------------------|----------------------------|----------------------------|
+|-----------------|-----------------|-------------------|-------------------|
 |                                         |                         | **True**                          | **False**                                            |
 | **Decision based on**<br>**the sample** | **Do Not Reject** $H_0$ | Correct decision:<br>$1 - \alpha$ | Type II error ($\beta$)                              |
 |                                         | **Reject** $H_0$        | Type I error ($\alpha$)           | Correct decision:<br>$1 - \beta$ (power of the test) |
-
 
 : Types of error in hypothesis testing. {#tbl-type_errors}
 
  
 
-
 The power ($1 - \beta$), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e. it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. @tbl-power presents the main factors that can influence the power in a study.
-
-
 
 | Factor                                                   | Influence on study's power                                                                                                                                                                         |
 |--------------------------|----------------------------------------------|
@@ -85,3 +80,33 @@ The power ($1 - \beta$), therefore, is the probability of (correctly) rejecting 
 | **Significance level α**                                 | As α goes up, power goes up (it would be easier to find statistical significance with a larger α, e.g. α=0.1, compared to a smaller α, e.g. α=0.05).                                               |
 
 : Factors Influencing Power. {#tbl-power}
+
+   
+
+## Sampling distribution
+
+
+## Sample and sampling distributions
+
+The **sample distribution** represents the probability distribution of the observed values in a randomly selected sample from the population. Using the data from this sample, we can calculate sample statistics such as the sample mean. For example, a hospital is interested in finding out the average blood pressure (BP) of its diabetic patients, but measuring each patient is impractical. Instead, they randomly selected *n* patients from this group and measured their BP. The resulting average BP for this sample, let's say $\bar{x_1} = 130$ mmHg, represents one sample mean .
+
+![The estimate of mean, $\bar{x_1} =130$, represents an observed sample mean from an already collected sample.](images/sample1.png){#fig-sample_1 fig-align="center" width="30%"}
+
+Consider repeating the sampling process by randomly selecting various samples, each consisting of *n* patients, and calculating their average blood pressure. This would yield a range of different sample means, such as $\bar{x_1} = 130$ mmHg, $\bar{x_2} = 128$ mmHg, $\bar{x_3} = 133$ mmHg, and so forth. This collection of multiple sample means (obtained from different samples) is the sampling distribution of the mean BP.
+
+![The collection of sample means derived from repeated sampling forms a sampling distribution of mean with its own characteristics.](images/many_samples.png){#fig-sample_distr fig-align="center" width="75%"}
+
+::: content-box-blue
+The **sampling distribution** is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.
+:::
+
+
+
+$\mu$, $\sigma^2$, $\sigma$
+
+$\bar{x}$, $s^2$, $s$
+
+
+
+
+
