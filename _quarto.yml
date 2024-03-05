@@ -32,6 +32,7 @@ book:
         - prob_distributions.qmd
         - normal.qmd
         - descriptive.qmd
+        - sampling.qmd
         - inference.qmd
         - student_t_test.qmd
         - wmw_test.qmd
@@ -57,7 +58,7 @@ book:
   page-footer: 
     left: "Copyright 2023, Konstantinos I. Bougioukas" 
   back-to-top-navigation: true
-  
+
 bibliography: references.bib
 reference-location: margin
 
