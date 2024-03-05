@@ -118,7 +118,7 @@ The scatter plot compares the GOAL1 and GOAL2 total scores. The solid blue diago
 
 ### True measurement and the measurement error
 
-The observed scores (X) from an instrument are thought to be composed of an underlying true score (T) and an error component (E) that is due to measurement error, such that:
+The observed scores (X) from an instrument are thought to be composed of the underlying true score (T) and the total (systematic and random) error of a measurement (E):
 
 $$
 X = True + Error
@@ -163,12 +163,6 @@ X = μ + ID + M + Residual
 $$
 
 where $μ$ is a constant (the mean value of X for the whole population), *ID* term is the difference due to subjects, *M* the difference due to measurements (in our case different time points), and the *Residual* is the random error.
-
-::: {.callout-tip icon="false"}
-## `r fa("comment", fill = "#1DC5CE")` Comment
-
-Based on the @eq-score the "true score" is μ + ID and the measurement error is M + Residual.
-:::
 
 The variance $\sigma^2_X$ for this model consists of three variance components:
 

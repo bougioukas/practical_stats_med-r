@@ -114,7 +114,7 @@ dat_TCH_long <- dat_TCH |>
 
 ggplot(dat_TCH_long, aes(x= time, y = cholesterol, fill = time)) +
   geom_rain(likert= TRUE, seed = 123, point.args = list(alpha = 0.3)) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   labs(title = "Grouped Raincloud Plot: Cholesterol by time point") +
   scale_fill_jco() +
   theme(legend.position = "none")
@@ -122,7 +122,7 @@ ggplot(dat_TCH_long, aes(x= time, y = cholesterol, fill = time)) +
 
 ```{r}
 ggqqplot(dat_TCH_long, "cholesterol", color = "time", conf.int = F) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   scale_color_jco() +
   facet_wrap(~ time) + 
   theme(legend.position = "none")
@@ -203,8 +203,6 @@ MauchlySphericityTest(dat_TCH)
 
 Here the assumption of sphericity has not been met (p \< 0.001). In this case, we have to correct the degrees of freedom in repeated ANOVA analysis.
 
-
-
 ## Run the one-way repeated ANOVA test
 
 First, let's run the repeated ANOVA test without any correction:
@@ -216,15 +214,10 @@ repeated_anova <- dat_TCH_long |>
 repeated_anova[1]
 ```
 
-
 However, we must adjust the results of the repeated ANOVA analysis. The correction involves multiplying the degrees of freedom DFn=2 and DFd=34 by a quantity *e*, which measures the extent to which the data deviates from ideal sphericity (*e* ranges between 0 and 1, where 1 indicates no departure from sphericity). Two methods are commonly used for calculating *e*:
 
-- the correction of Greenhouse-Geisser (GGe).  
-- the correction of Huynh-Feldt (HFe).
-
-
-
-
+-   the correction of Greenhouse-Geisser (GGe).\
+-   the correction of Huynh-Feldt (HFe).
 
 In R, we can calculate both GGe and HFe, as follows:
 
@@ -232,35 +225,26 @@ In R, we can calculate both GGe and HFe, as follows:
 repeated_anova[3]
 ```
 
-
 ::: content-box-green
-
 The general recommendation is to use the Greenhouse-Geisser correction when GGe is less than 0.75; otherwise, we should use the Huynh-Feldt correction HFe.
 :::
 
-
 As the GGe value is less than 0.75, we use the Greenhouse-Geisser adjustment of 0.618. The corrected degrees of freedom are:
 
-$DF[GG]_n=2*0.618=1.24$ 
+$DF[GG]_n=2*0.618=1.24$
 
-and 
+and
 
 $DF[GG]_d=34*0.618=21$.
 
-
-The new p-value (p[GG]) is available next to the corrected degrees of freedom (DF[GG]). In this example, as p<0.001 there is evidence of a difference between at least two time points.
-
+The new p-value (p\[GG\]) is available next to the corrected degrees of freedom (DF\[GG\]). In this example, as p\<0.001 there is evidence of a difference between at least two time points.
 
 ::: {#exercise-joins .callout-tip}
 ## `get_anova_table()`
 
-
 By utilizing the `get_anova_table()` function to extract the ANOVA table, the Greenhouse-Geisser sphericity correction is automatically applied when the assumption of sphericity is violated.
-
 
 ```{r}
 get_anova_table(repeated_anova)
 ```
 :::
-
-

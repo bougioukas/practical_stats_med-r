@@ -164,7 +164,7 @@ First, we plot the data in a scatter plot:
 
 ggplot(BirthWeight, aes(height, weight)) +
   geom_point(size = 2, alpha = 0.4) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   labs(x = "x = Height (cm)", y = "y = Weight (g)")
 ```
 
@@ -215,7 +215,7 @@ ggplot(dat, aes(x, y)) +
   geom_point() +
   geom_smooth(method = "lm", fill = NA, lwd = 2) +
   geom_path(data=dens[dens$type == "normal",], aes(x, y, group = section), color = "salmon", lwd = 1.1) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   geom_vline(xintercept = breaks, lty = 2) +
   scale_x_continuous(breaks = breaks) + 
   annotate("text", x = 60.2, y = 5100, label = bquote(widehat(y) == b[0] + b[1] * x), color = "blue", angle = 25.7, size = 5) +
@@ -292,7 +292,7 @@ ggplot(BirthWeight, aes(height, weight)) +
   annotate("text", x = 49.2, y = 6425, label = bquote(y[207] == 6330), color = "#EC7014", size = 5.5) +
   annotate("text", x = 53.4, y = 5730, label = bquote(e[207] == 1222), color = "purple", size = 5.5) +
   annotate("text", x = 51.5, y = 5730, label = "residual", color = "purple", size = 5.5, angle = 90) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   scale_x_continuous(expand = c(0, 0), limits = c(47.9, 63.1)) +
   labs(x = "X = Height (cm)", y = "Y = Weight (g)")
 ```
@@ -381,7 +381,7 @@ ggplot(BirthWeight, aes(x = height, y = weight)) +
   geom_hline(yintercept = 0, color = "black", linetype = "solid") +
   geom_vline(xintercept = 0, color = "black", linetype = "solid") +
   annotate("text", x = 19.0, y = -1000, label = bquote(paste (widehat(weight), "= -5412.14 + 178.31*height")), color = "blue", angle = 32, size = 5) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   labs(x = "x = Height (cm)", y = "y = Weight (g)")
 ```
 
@@ -407,7 +407,7 @@ Of greater importance is the slope of the fitted line, $b_1 = 178.31$, as this d
 ggplot(BirthWeight, aes(x = height, y = weight)) +
   geom_point(alpha = 0.3) +
   geom_smooth(method = "lm", se = FALSE, color = "blue", fullrange = TRUE) +
-  theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
+  #theme_prism(base_size = 14, base_line_size = 0.4, palette = "office") +
   labs(x = "x = Height (cm)", y = "y = Weight (g)") +
   geom_segment(
     x = 56, y = 4560,
