@@ -5,7 +5,9 @@
 
 library(fontawesome)
 library(ggh4x)
-#library(tagger)
+
+devtools::install_github("eliocamp/tagger")
+library(tagger)
 
 library(stevemisc)
 library(tidyverse)
@@ -214,7 +216,8 @@ ggplot(df, aes(x = value)) +
   xlab(expression(bar(x))) +
   theme(axis.title = element_text(hjust = 1),
         legend.position = "none") +
-  facet_grid(sample_size ~ No.samples, scales="free_y", labeller = label_both)
+  facet_grid(sample_size ~ No.samples, scales="free_y", labeller = label_both) +
+  tag_facets()
 
 ```
 
@@ -346,7 +349,8 @@ ggplot(df4, aes(x = value)) +
   geom_vline(xintercept = mu2, linetype = "dashed", color = "gray30", linewidth = 0.7) +
   xlab(expression(bar(x))) +
   theme(axis.title = element_text(hjust = 1)) +
-  facet_grid(sample_size ~ No.samples, scales="free_y", labeller = label_both)
+  facet_grid(sample_size ~ No.samples, scales="free_y", labeller = label_both) +
+  tag_facets()
 ```
 
 We observe that the distribution of sample means for sample size of five exhibits considerable variability (@fig-simulation a, b, c). As the sample size is increased to 30, the distributions become increasingly symmetric and tend toward approximate normality.
