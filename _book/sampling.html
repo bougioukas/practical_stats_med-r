@@ -465,8 +465,8 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Explain the difference between sample and sampling distributions</li>
-<li>Distinguish the point estimation from interval estimation</li>
+<li>Explain the difference between population, sample and sampling distributions</li>
+<li>Understand the properties of the distribution of sample means</li>
 <li>Understand the central limit theorem</li>
 </ul>
 </div>
@@ -499,7 +499,8 @@ Figure&nbsp;17.1: dfsfsd
 <p>Point estimation is a statistical method used to estimate an unknown parameter of a population based on data collected from a sample. The objective of point estimation is to find a single, best guess or <strong>estimate</strong> for the value of the parameter. Common point estimators include the sample mean for the population mean and sample variance for the population variance.</p>
 </div>
 </section><section id="error-in-the-estimate" class="level3"><h3 class="anchored" data-anchor-id="error-in-the-estimate">Error in the estimate</h3>
-<p>The difference between the point estimate and the population parameter is called the <strong>error</strong> in the estimate. Error consists of two aspects:</p>
+<p>The difference between the point estimate and the population parameter is called the <strong>error</strong> in the estimate. This error is a “total” error, and it consists of two components:</p>
+<p><span id="eq-total_error"><span class="math display">\[total \ error = bias + sampling \ error \tag{17.1}\]</span></span></p>
 <ul>
 <li><p><strong>Bias:</strong> This refers to a <em>systematic</em> tendency to overestimate or underestimate the true value of the population parameter (skews the results). There are numerous sources of bias including sampling bias, recall bias, response bias, and attrition bias. Bias can be minimized through careful and thoughtful data collection procedures.</p></li>
 <li><p><strong>Sampling error:</strong> This measures the extent to which an estimate tends to vary from one sample to another due to random chance. Our objective is frequently to quantify and understand this variability in estimates. The standard error and confidence intervals are common measures of sampling error and depend on the estimation method, the sample size, and the variability of the estimated characteristic.</p></li>
@@ -569,9 +570,9 @@ Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean
 <p>&nbsp;</p>
 </section><section id="standard-error-of-the-mean-sem" class="level3"><h3 class="anchored" data-anchor-id="standard-error-of-the-mean-sem">Standard Error of the mean (SEM)</h3>
 <p>The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. For example, the standard error of the mean (SEM) is the population σ divided by the square root of the sample size n:</p>
-<p><span id="eq-se"><span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \tag{17.1}\]</span></span></p>
+<p><span id="eq-se"><span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \tag{17.2}\]</span></span></p>
 <p>However, we usually do not know the population parameter σ; therefore, we use the sample standard deviation s, as it is an estimator of the population standard deviation.</p>
-<p><span id="eq-se2"><span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}} \tag{17.2}\]</span></span></p>
+<p><span id="eq-se2"><span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}} \tag{17.3}\]</span></span></p>
 <p>The <strong>Standard Error of the mean</strong> (SEM) is a metric that describes the variability of sample means within the <strong>sampling distribution</strong>. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.</p>
 <div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>

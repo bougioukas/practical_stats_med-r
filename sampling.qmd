@@ -4,12 +4,10 @@
 #| include: false
 
 library(fontawesome)
-library(ggh4x)
 
 devtools::install_github("eliocamp/tagger")
 library(tagger)
 
-library(stevemisc)
 library(tidyverse)
 ```
 
@@ -18,8 +16,8 @@ library(tidyverse)
 ::: {.callout-caution icon="false"}
 ## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
--   Explain the difference between sample and sampling distributions
--   Distinguish the point estimation from interval estimation
+-   Explain the difference between population, sample and sampling distributions
+-   Understand the properties of the distribution of sample means
 -   Understand the central limit theorem
 :::
 
@@ -59,7 +57,10 @@ Point estimation is a statistical method used to estimate an unknown parameter o
 
 ### Error in the estimate
 
-The difference between the point estimate and the population parameter is called the **error** in the estimate. Error consists of two aspects:
+The difference between the point estimate and the population parameter is called the **error** in the estimate. This error is a "total" error, and it consists of two components:
+
+$$total \ error = bias + sampling \ error$$  {#eq-total_error}
+
 
 -   **Bias:** This refers to a *systematic* tendency to overestimate or underestimate the true value of the population parameter (skews the results). There are numerous sources of bias including sampling bias, recall bias, response bias, and attrition bias. Bias can be minimized through careful and thoughtful data collection procedures.
 
