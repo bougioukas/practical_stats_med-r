@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -491,11 +525,17 @@ Figure&nbsp;17.2: The estimate of mean, <span class="math inline">\(\bar{x_1} =1
 <img src="images/many_samples.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-many_samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.3: The collection of sample means derived from repeated sampling forms a sampling distribution of the mean BP with its own characteristics.
+Figure&nbsp;17.3: The collection of sample means derived from repeated sampling forms a sampling distribution of the mean BP.
 </figcaption></figure>
 </div>
+<div class="content-box-blue">
+<p>The <strong>sampling distribution</strong> is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.</p>
+</div>
+<div id="tbl-symbols" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-symbols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean and standard deviation
+</figcaption><div aria-describedby="tbl-symbols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>dsadsd</caption>
 <colgroup>
 <col style="width: 24%">
 <col style="width: 24%">
@@ -523,15 +563,34 @@ Figure&nbsp;17.3: The collection of sample means derived from repeated sampling 
 </tr>
 </tbody>
 </table>
-<div class="content-box-blue">
-<p>The <strong>sampling distribution</strong> is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.</p>
 </div>
+</figure>
+</div>
+<p>&nbsp;</p>
 </section><section id="standard-error-of-the-mean-sem" class="level3"><h3 class="anchored" data-anchor-id="standard-error-of-the-mean-sem">Standard Error of the mean (SEM)</h3>
-<p>The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. The standard error of the mean is the population σ divided by the square root of the sample size n:</p>
+<p>The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. For example, the standard error of the mean (SEM) is the population σ divided by the square root of the sample size n:</p>
 <p><span id="eq-se"><span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \tag{17.1}\]</span></span></p>
 <p>However, we usually do not know the population parameter σ; therefore, we use the sample standard deviation s, as it is an estimator of the population standard deviation.</p>
 <p><span id="eq-se2"><span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}} \tag{17.2}\]</span></span></p>
-<p>The <strong>Standard Error of the mean</strong> (SEM) is a metric that describes the variability of sample means within the <strong>sampling distribution</strong>. It provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.</p>
+<p>The <strong>Standard Error of the mean</strong> (SEM) is a metric that describes the variability of sample means within the <strong>sampling distribution</strong>. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.</p>
+<div class="content-box-yellow">
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>The CD4 count of a sample of 64 healthy individuals has a mean of 850 <span class="math inline">\(counts/mm^3\)</span> with a standard deviation of 240 <span class="math inline">\(counts/mm^3\)</span>. The standard error of the mean for this population is calculated as follows:</p>
+<p><span class="math inline">\(SE_{\bar{x}} = \frac{s}{\sqrt{n}} = \frac{240}{\sqrt{64}} = \frac{240}{8} = 30 \ counts/mm^3\)</span></p>
+<p>The SEM provides a measure of the precision of our estimate of the population mean CD4 counts. If we were to repeat the sampling process numerous times and calculate the mean CD4 count each time, we would expect the calculated means to vary around the population mean by approximately 30 <span class="math inline">\(counts/mm^3\)</span>.</p>
+</div>
+<p><strong>In R:</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sem</span> <span class="op">&lt;-</span> <span class="fl">240</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">64</span><span class="op">)</span></span>
+<span><span class="va">sem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 30</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Noteworthy, the standard error is essential in constructing <strong>confidence intervals</strong> around point estimates, a process known as interval estimation.</p>
+</blockquote>
+<p>&nbsp;</p>
 </section><section id="properties-of-the-distribution-of-sample-means" class="level3"><h3 class="anchored" data-anchor-id="properties-of-the-distribution-of-sample-means">Properties of the distribution of sample means</h3>
 <p>Consider a population of 100,000 adults, characterized by a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10. Now, imagine that the distribution of their BP reveals an intriguing bimodal pattern, as visually depicted in <a href="#fig-pop0" class="quarto-xref">Figure&nbsp;<span>17.4</span></a>.</p>
 <div class="cell" data-layout-align="center">
@@ -546,7 +605,7 @@ Figure&nbsp;17.4: A hypothetical population of 100,000 observations. The dashed 
 </div>
 </div>
 </div>
-<p>Let’s consider sampling 5 individuals from the population and calculating their sample mean BP, denoted as <span class="math inline">\(\bar{x_1}\)</span>. Next, let’s repeat this process by collecting a second sample of 5 individuals and calculating the sample mean again, which we might denote as <span class="math inline">\(\bar{x_2}\)</span>. This process can be iterated 100 times (<span class="math inline">\(N = 100\)</span>) and generate the histogram of the sample means, <span class="math inline">\(\bar{x}\)</span> (<a href="#fig-simulation2" class="quarto-xref">Figure&nbsp;<span>17.5</span></a> a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (<a href="#fig-simulation2" class="quarto-xref">Figure&nbsp;<span>17.5</span></a> b, c, d, e).</p>
+<p>Let’s consider sampling five individuals from the population and calculating their sample mean BP, denoted as <span class="math inline">\(\bar{x_1}\)</span>. Next, let’s repeat this process by collecting a second sample of five individuals and calculating the sample mean again, which we might denote as <span class="math inline">\(\bar{x_2}\)</span>. This process can be iterated 100 times (<span class="math inline">\(N = 100\)</span>) and generate the histogram of the sample means, <span class="math inline">\(\bar{x}\)</span> (<a href="#fig-simulation2" class="quarto-xref">Figure&nbsp;<span>17.5</span></a> a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (<a href="#fig-simulation2" class="quarto-xref">Figure&nbsp;<span>17.5</span></a> b, c, d, e).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-simulation2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -564,7 +623,7 @@ Figure&nbsp;17.5: Distribution of sample means. Each panel represents a simulati
 <div class="content-box-blue">
 <p><strong>Properties of the distribution of sample means</strong></p>
 <ul>
-<li>As the sample size increases, the mean of a sufficiently number of sample means converges to the population mean. This property is known as the <strong>law of large numbers</strong>.</li>
+<li>As the sample size increases, the mean of a large number of sample means converges to the population mean. This property is known as the <strong>law of large numbers</strong>.</li>
 <li>The standard error of the mean (SEM) decreases as the sample size increases.</li>
 <li>As the sample size increases, the distribution of sample means tends to approximate a <strong>normal</strong> distribution.</li>
 </ul>
@@ -598,7 +657,7 @@ Figure&nbsp;17.7: Distribution of sample means. Each panel represents a simulati
 </div>
 </div>
 </div>
-<p>We observe that the distribution of sample means for sample size of five exhibits considerable variability (<a href="#fig-simulation" class="quarto-xref">Figure&nbsp;<span>17.7</span></a> a, b, c). As the sample size is increased to 30, the distributions become increasingly symmetric and tend toward approximate normality.</p>
+<p>We observe that the distribution of sample means for sample size of five exhibits considerable variability (<a href="#fig-simulation" class="quarto-xref">Figure&nbsp;<span>17.7</span></a> a, b, c). As we take a large number of sample means and the sample size is increased to 30, the distributions become increasingly symmetric, with less variability, and tend toward approximate normality (<a href="#fig-simulation" class="quarto-xref">Figure&nbsp;<span>17.7</span></a> f, i).</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

@@ -13,6 +13,8 @@ library(stevemisc)
 library(tidyverse)
 ```
 
+
+
 ::: {.callout-caution icon="false"}
 ## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
@@ -77,22 +79,27 @@ Suppose a hospital is interested in finding out the average blood pressure (BP) 
 
 Consider repeating the sampling process by randomly selecting various samples, each consisting of *n* patients, and calculating their average blood pressure. This would yield a range of different sample means, such as $\bar{x_1} = 130$ mmHg, $\bar{x_2} = 128$ mmHg, $\bar{x_3} = 133$ mmHg, and so forth. This collection of multiple sample means (obtained from different samples) is the sampling distribution of the mean BP (@fig-many_samples).
 
-![The collection of sample means derived from repeated sampling forms a sampling distribution of the mean BP with its own characteristics.](images/many_samples.png){#fig-many_samples fig-align="center" width="70%"}
+![The collection of sample means derived from repeated sampling forms a sampling distribution of the mean BP.](images/many_samples.png){#fig-many_samples fig-align="center" width="70%"}
+
+::: content-box-blue
+The **sampling distribution** is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.
+:::
+
 
 | Parameter              | Population |  Sample   | Sampling distribution of mean |
 |------------------|:----------------:|:----------------:|:-----------------:|
 | **Mean**               |   $\mu$    | $\bar{x}$ |        $\mu_{\bar{x}}$        |
 | **Standard deviation** |  $\sigma$  |    $s$    |      $\sigma_{\bar{x}}$       |
 
-: dsadsd
+: Notation of population, sample, and sampling distributions mean and standard deviation {#tbl-symbols}
 
-::: content-box-blue
-The **sampling distribution** is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.
-:::
+
+ 
+
 
 ### Standard Error of the mean (SEM)
 
-The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. The standard error of the mean is the population σ divided by the square root of the sample size n:
+The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. For example, the standard error of the mean (SEM) is the population σ divided by the square root of the sample size n:
 
 $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$ {#eq-se}
 
@@ -100,7 +107,32 @@ However, we usually do not know the population parameter σ; therefore, we use t
 
 $$SE_{\bar{x}} = \frac{s}{\sqrt{n}}$$ {#eq-se2}
 
-The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. It provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.
+The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small. 
+
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+The CD4 count of a sample of 64 healthy individuals has a mean of 850 $counts/mm^3$ with a standard deviation of 240 $counts/mm^3$. The standard error of the mean for this population is calculated as follows:
+
+$SE_{\bar{x}} = \frac{s}{\sqrt{n}} = \frac{240}{\sqrt{64}} = \frac{240}{8} = 30 \ counts/mm^3$
+
+
+The SEM provides a measure of the precision of our estimate of the population mean CD4 counts. If we were to repeat the sampling process numerous times and calculate the mean CD4 count each time, we would expect the calculated means to vary around the population mean by approximately 30 $counts/mm^3$.
+:::
+
+**In R:**
+
+```{r}
+sem <- 240 / sqrt(64)
+sem
+```
+
+
+> Noteworthy, the standard error is essential in constructing **confidence intervals** around point estimates, a process known as interval estimation.
+
+
+ 
 
 ### Properties of the distribution of sample means
 
@@ -144,7 +176,7 @@ ggplot(popdf, aes(x = pop)) + geom_histogram(color = "black", fill = "#894ae0", 
 
 ```
 
-Let's consider sampling 5 individuals from the population and calculating their sample mean BP, denoted as $\bar{x_1}$. Next, let's repeat this process by collecting a second sample of 5 individuals and calculating the sample mean again, which we might denote as $\bar{x_2}$. This process can be iterated 100 times ($N = 100$) and generate the histogram of the sample means, $\bar{x}$ (@fig-simulation2 a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (@fig-simulation2 b, c, d, e).
+Let's consider sampling five individuals from the population and calculating their sample mean BP, denoted as $\bar{x_1}$. Next, let's repeat this process by collecting a second sample of five individuals and calculating the sample mean again, which we might denote as $\bar{x_2}$. This process can be iterated 100 times ($N = 100$) and generate the histogram of the sample means, $\bar{x}$ (@fig-simulation2 a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (@fig-simulation2 b, c, d, e).
 
 ```{r}
 #| echo: false
@@ -228,7 +260,7 @@ From @fig-simulation2, it is evident that as the sample size increases, the dist
 ::: content-box-blue
 **Properties of the distribution of sample means**
 
--   As the sample size increases, the mean of a sufficiently number of sample means converges to the population mean. This property is known as the **law of large numbers**.
+-   As the sample size increases, the mean of a large number of sample means converges to the population mean. This property is known as the **law of large numbers**.
 -   The standard error of the mean (SEM) decreases as the sample size increases.
 -   As the sample size increases, the distribution of sample means tends to approximate a **normal** distribution.
 :::
@@ -353,4 +385,4 @@ ggplot(df4, aes(x = value)) +
   tag_facets()
 ```
 
-We observe that the distribution of sample means for sample size of five exhibits considerable variability (@fig-simulation a, b, c). As the sample size is increased to 30, the distributions become increasingly symmetric and tend toward approximate normality.
+We observe that the distribution of sample means for sample size of five exhibits considerable variability (@fig-simulation a, b, c). As we take a large number of sample means and the sample size is increased to 30, the distributions become increasingly symmetric, with less variability, and tend toward approximate normality (@fig-simulation f, i).
