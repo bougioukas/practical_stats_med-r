@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R – 21&nbsp; Paired t-test</title>
+<title>Practical Statistics in Medicine with R – 22&nbsp; Paired t-test</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./paired_t_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./paired_t_test.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -290,122 +290,128 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,13 +430,13 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">21.1</span> Research question</a></li>
-  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">21.2</span> Packages we need</a></li>
-  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">21.3</span> Preparing the data</a></li>
-  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">21.4</span> Assumptions</a></li>
-  <li><a href="#explore-the-characteristics-of-distribution-of-differences" id="toc-explore-the-characteristics-of-distribution-of-differences" class="nav-link" data-scroll-target="#explore-the-characteristics-of-distribution-of-differences"><span class="header-section-number">21.5</span> Explore the characteristics of distribution of differences</a></li>
+<li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">22.1</span> Research question</a></li>
+  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">22.2</span> Packages we need</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">22.3</span> Preparing the data</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">22.4</span> Assumptions</a></li>
+  <li><a href="#explore-the-characteristics-of-distribution-of-differences" id="toc-explore-the-characteristics-of-distribution-of-differences" class="nav-link" data-scroll-target="#explore-the-characteristics-of-distribution-of-differences"><span class="header-section-number">22.5</span> Explore the characteristics of distribution of differences</a></li>
   <li>
-<a href="#run-the-paired-t-test" id="toc-run-the-paired-t-test" class="nav-link" data-scroll-target="#run-the-paired-t-test"><span class="header-section-number">21.6</span> Run the paired t-test</a>
+<a href="#run-the-paired-t-test" id="toc-run-the-paired-t-test" class="nav-link" data-scroll-target="#run-the-paired-t-test"><span class="header-section-number">22.6</span> Run the paired t-test</a>
   <ul class="collapse">
 <li><a href="#present-the-results" id="toc-present-the-results" class="nav-link" data-scroll-target="#present-the-results">Present the results</a></li>
   </ul>
@@ -438,8 +444,8 @@ window.Quarto = {
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./paired_t_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-paired_t_test" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./paired_t_test.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-paired_t_test" class="quarto-section-identifier"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></h1>
 </div>
 
 
@@ -480,8 +486,8 @@ Learning objectives
 </ul>
 </div>
 </div>
-<section id="research-question" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">21.1</span> Research question</h2>
+<section id="research-question" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="research-question">
+<span class="header-section-number">22.1</span> Research question</h2>
 <p>The dataset <em>weight</em> contains the birth and discharge weight of 25 newborns. We might ask if the <strong>mean difference</strong> of the weight in birth and in discharge equals to zero or not. If the <strong>differences</strong> between the pairs of measurements are normally distributed, a paired t-test is the most appropriate statistical test.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -501,8 +507,8 @@ Null hypothesis and alternative hypothesis
 </ul>
 </div>
 </div>
-</section><section id="packages-we-need" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">21.2</span> Packages we need</h2>
+</section><section id="packages-we-need" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">22.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span>
@@ -511,8 +517,8 @@ Null hypothesis and alternative hypothesis
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/report/">report</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="preparing-the-data" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="preparing-the-data">
-<span class="header-section-number">21.3</span> Preparing the data</h2>
+</section><section id="preparing-the-data" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">22.3</span> Preparing the data</h2>
 <p>We import the data <em>weight</em> in R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
@@ -521,11 +527,11 @@ Null hypothesis and alternative hypothesis
 <div class="cell">
 <div id="fig-weight" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-weight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-775e7fb5350af9edad12" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-775e7fb5350af9edad12">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],[3250,2680,2960,3420,3210,2740,3250,3170,2970,3100,3087,2687,2860,3430,3210,3150,2680,2960,3440,3210,3150,2687,2960,3422,3210],[3220,2640,2940,3350,3140,2730,3220,3150,2890,2997,3003,2645,2875,3400,3220,3100,2660,2910,3400,3140,3115,2644,2880,3393,3240]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>birth_weight<\/th>\n      <th>discharge_weight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"birth_weight","targets":1},{"name":"discharge_weight","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-43ed660818c4d48a3d2b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-43ed660818c4d48a3d2b">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],[3250,2680,2960,3420,3210,2740,3250,3170,2970,3100,3087,2687,2860,3430,3210,3150,2680,2960,3440,3210,3150,2687,2960,3422,3210],[3220,2640,2940,3350,3140,2730,3220,3150,2890,2997,3003,2645,2875,3400,3220,3100,2660,2910,3400,3140,3115,2644,2880,3393,3240]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>birth_weight<\/th>\n      <th>discharge_weight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"birth_weight","targets":1},{"name":"discharge_weight","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.1: Table with data from “weight” file.
+Figure&nbsp;22.1: Table with data from “weight” file.
 </figcaption></figure>
 </div>
 </div>
@@ -545,8 +551,8 @@ $ discharge_weight &lt;dbl&gt; 3220, 2640, 2940, 3350, 3140, 2730, 3220, 3150, 2
 $ dif_weight       &lt;dbl&gt; -30, -40, -20, -70, -70, -10, -30, -20, -80, -103, -8…</code></pre>
 </div>
 </div>
-</section><section id="assumptions" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="assumptions">
-<span class="header-section-number">21.4</span> Assumptions</h2>
+</section><section id="assumptions" class="level2" data-number="22.4"><h2 data-number="22.4" class="anchored" data-anchor-id="assumptions">
+<span class="header-section-number">22.4</span> Assumptions</h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -560,8 +566,8 @@ Check if the following assumption is satisfied
 <p>The differences are <strong>normally</strong> distributed.</p>
 </div>
 </div>
-</section><section id="explore-the-characteristics-of-distribution-of-differences" class="level2" data-number="21.5"><h2 data-number="21.5" class="anchored" data-anchor-id="explore-the-characteristics-of-distribution-of-differences">
-<span class="header-section-number">21.5</span> Explore the characteristics of distribution of differences</h2>
+</section><section id="explore-the-characteristics-of-distribution-of-differences" class="level2" data-number="22.5"><h2 data-number="22.5" class="anchored" data-anchor-id="explore-the-characteristics-of-distribution-of-differences">
+<span class="header-section-number">22.5</span> Explore the characteristics of distribution of differences</h2>
 <p>The distribution of the differences can be explored with appropriate plots and summary statistics.</p>
 <p><strong>Graph</strong></p>
 <p>We can explore the distribution of differences visually for symmetry with a density plot (a smoothed version of the histogram):</p>
@@ -582,7 +588,7 @@ Check if the following assumption is satisfied
 <img src="paired_t_test_files/figure-html/fig-hist1-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21.2: Density plot of the weight differences.
+Figure&nbsp;22.2: Density plot of the weight differences.
 </figcaption></figure>
 </div>
 </div>
@@ -699,8 +705,8 @@ Summary statistics
 </div>
 </div>
 <p>The Shapiro-Wilk test suggests that the weight differences are normally distributed (p=0.74 &gt; 0.05).</p>
-</section><section id="run-the-paired-t-test" class="level2 page-columns page-full" data-number="21.6"><h2 data-number="21.6" class="anchored" data-anchor-id="run-the-paired-t-test">
-<span class="header-section-number">21.6</span> Run the paired t-test</h2>
+</section><section id="run-the-paired-t-test" class="level2 page-columns page-full" data-number="22.6"><h2 data-number="22.6" class="anchored" data-anchor-id="run-the-paired-t-test">
+<span class="header-section-number">22.6</span> Run the paired t-test</h2>
 <p>We will perform a paired t-test to test the null hypothesis that the mean differences of weight equals to zero. Under this <span class="math inline">\(H_o\)</span>, the test statistic is:</p>
 <p><span class="math display">\[
 t = \frac{\bar d}{SE_{\bar d}}
@@ -853,23 +859,23 @@ mean difference
 <span>                                  ci <span class="op">=</span> <span class="st">"-53.0, -26.3"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="xvvkznnsii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xvvkznnsii table {
+<div id="dngiyeukli" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dngiyeukli table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xvvkznnsii thead, #xvvkznnsii tbody, #xvvkznnsii tfoot, #xvvkznnsii tr, #xvvkznnsii td, #xvvkznnsii th {
+#dngiyeukli thead, #dngiyeukli tbody, #dngiyeukli tfoot, #dngiyeukli tr, #dngiyeukli td, #dngiyeukli th {
   border-style: none;
 }
 
-#xvvkznnsii p {
+#dngiyeukli p {
   margin: 0;
   padding: 0;
 }
 
-#xvvkznnsii .gt_table {
+#dngiyeukli .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -895,12 +901,12 @@ mean difference
   border-left-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_caption {
+#dngiyeukli .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xvvkznnsii .gt_title {
+#dngiyeukli .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -912,7 +918,7 @@ mean difference
   border-bottom-width: 0;
 }
 
-#xvvkznnsii .gt_subtitle {
+#dngiyeukli .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -924,7 +930,7 @@ mean difference
   border-top-width: 0;
 }
 
-#xvvkznnsii .gt_heading {
+#dngiyeukli .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -936,13 +942,13 @@ mean difference
   border-right-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_bottom_border {
+#dngiyeukli .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_col_headings {
+#dngiyeukli .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -957,7 +963,7 @@ mean difference
   border-right-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_col_heading {
+#dngiyeukli .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -977,7 +983,7 @@ mean difference
   overflow-x: hidden;
 }
 
-#xvvkznnsii .gt_column_spanner_outer {
+#dngiyeukli .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -989,15 +995,15 @@ mean difference
   padding-right: 4px;
 }
 
-#xvvkznnsii .gt_column_spanner_outer:first-child {
+#dngiyeukli .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xvvkznnsii .gt_column_spanner_outer:last-child {
+#dngiyeukli .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xvvkznnsii .gt_column_spanner {
+#dngiyeukli .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1009,11 +1015,11 @@ mean difference
   width: 100%;
 }
 
-#xvvkznnsii .gt_spanner_row {
+#dngiyeukli .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xvvkznnsii .gt_group_heading {
+#dngiyeukli .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1039,7 +1045,7 @@ mean difference
   text-align: left;
 }
 
-#xvvkznnsii .gt_empty_group_heading {
+#dngiyeukli .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1054,15 +1060,15 @@ mean difference
   vertical-align: middle;
 }
 
-#xvvkznnsii .gt_from_md > :first-child {
+#dngiyeukli .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xvvkznnsii .gt_from_md > :last-child {
+#dngiyeukli .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xvvkznnsii .gt_row {
+#dngiyeukli .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1081,7 +1087,7 @@ mean difference
   overflow-x: hidden;
 }
 
-#xvvkznnsii .gt_stub {
+#dngiyeukli .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1094,7 +1100,7 @@ mean difference
   padding-right: 5px;
 }
 
-#xvvkznnsii .gt_stub_row_group {
+#dngiyeukli .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1108,15 +1114,15 @@ mean difference
   vertical-align: top;
 }
 
-#xvvkznnsii .gt_row_group_first td {
+#dngiyeukli .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xvvkznnsii .gt_row_group_first th {
+#dngiyeukli .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xvvkznnsii .gt_summary_row {
+#dngiyeukli .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1126,16 +1132,16 @@ mean difference
   padding-right: 5px;
 }
 
-#xvvkznnsii .gt_first_summary_row {
+#dngiyeukli .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_first_summary_row.thick {
+#dngiyeukli .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xvvkznnsii .gt_last_summary_row {
+#dngiyeukli .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1145,7 +1151,7 @@ mean difference
   border-bottom-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_grand_summary_row {
+#dngiyeukli .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1155,7 +1161,7 @@ mean difference
   padding-right: 5px;
 }
 
-#xvvkznnsii .gt_first_grand_summary_row {
+#dngiyeukli .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1165,7 +1171,7 @@ mean difference
   border-top-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_last_grand_summary_row_top {
+#dngiyeukli .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1175,11 +1181,11 @@ mean difference
   border-bottom-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_striped {
+#dngiyeukli .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xvvkznnsii .gt_table_body {
+#dngiyeukli .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1188,7 +1194,7 @@ mean difference
   border-bottom-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_footnotes {
+#dngiyeukli .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1202,7 +1208,7 @@ mean difference
   border-right-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_footnote {
+#dngiyeukli .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1211,7 +1217,7 @@ mean difference
   padding-right: 5px;
 }
 
-#xvvkznnsii .gt_sourcenotes {
+#dngiyeukli .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1225,7 +1231,7 @@ mean difference
   border-right-color: #D3D3D3;
 }
 
-#xvvkznnsii .gt_sourcenote {
+#dngiyeukli .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1233,63 +1239,63 @@ mean difference
   padding-right: 5px;
 }
 
-#xvvkznnsii .gt_left {
+#dngiyeukli .gt_left {
   text-align: left;
 }
 
-#xvvkznnsii .gt_center {
+#dngiyeukli .gt_center {
   text-align: center;
 }
 
-#xvvkznnsii .gt_right {
+#dngiyeukli .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xvvkznnsii .gt_font_normal {
+#dngiyeukli .gt_font_normal {
   font-weight: normal;
 }
 
-#xvvkznnsii .gt_font_bold {
+#dngiyeukli .gt_font_bold {
   font-weight: bold;
 }
 
-#xvvkznnsii .gt_font_italic {
+#dngiyeukli .gt_font_italic {
   font-style: italic;
 }
 
-#xvvkznnsii .gt_super {
+#dngiyeukli .gt_super {
   font-size: 65%;
 }
 
-#xvvkznnsii .gt_footnote_marks {
+#dngiyeukli .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xvvkznnsii .gt_asterisk {
+#dngiyeukli .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xvvkznnsii .gt_indent_1 {
+#dngiyeukli .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xvvkznnsii .gt_indent_2 {
+#dngiyeukli .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xvvkznnsii .gt_indent_3 {
+#dngiyeukli .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xvvkznnsii .gt_indent_4 {
+#dngiyeukli .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xvvkznnsii .gt_indent_5 {
+#dngiyeukli .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1698,12 +1704,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./wmw_test.html" class="pagination-link" aria-label="Wilcoxon-Mann-Whitney (Mann-Whitney U) test">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./wilcoxon_test.html" class="pagination-link" aria-label="Wilcoxon Signed-Rank test">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

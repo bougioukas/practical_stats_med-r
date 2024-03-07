@@ -11,8 +11,6 @@ library(tagger)
 library(tidyverse)
 ```
 
-
-
 ::: {.callout-caution icon="false"}
 ## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
@@ -57,10 +55,9 @@ Point estimation is a statistical method used to estimate an unknown parameter o
 
 ### Error in the estimate
 
-The difference between the point estimate and the population parameter is called the **error** in the estimate. This error is a "total" error, and it consists of two components:
+The difference between the point estimate and the population parameter is referred to as the **error** in the estimate. This error constitutes a "total" error, comprised of two components:
 
-$$total \ error = bias + sampling \ error$$  {#eq-total_error}
-
+$$total \ error = bias + sampling \ error$$ {#eq-total_error}
 
 -   **Bias:** This refers to a *systematic* tendency to overestimate or underestimate the true value of the population parameter (skews the results). There are numerous sources of bias including sampling bias, recall bias, response bias, and attrition bias. Bias can be minimized through careful and thoughtful data collection procedures.
 
@@ -86,7 +83,6 @@ Consider repeating the sampling process by randomly selecting various samples, e
 The **sampling distribution** is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.
 :::
 
-
 | Parameter              | Population |  Sample   | Sampling distribution of mean |
 |------------------|:----------------:|:----------------:|:-----------------:|
 | **Mean**               |   $\mu$    | $\bar{x}$ |        $\mu_{\bar{x}}$        |
@@ -94,9 +90,7 @@ The **sampling distribution** is a theoretical probability distribution that rep
 
 : Notation of population, sample, and sampling distributions mean and standard deviation {#tbl-symbols}
 
-
  
-
 
 ### Standard Error of the mean (SEM)
 
@@ -108,8 +102,7 @@ However, we usually do not know the population parameter σ; therefore, we use t
 
 $$SE_{\bar{x}} = \frac{s}{\sqrt{n}}$$ {#eq-se2}
 
-The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small. 
-
+The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.
 
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   ***Example***
@@ -117,7 +110,6 @@ The **Standard Error of the mean** (SEM) is a metric that describes the variabil
 The CD4 count of a sample of 64 healthy individuals has a mean of 850 $counts/mm^3$ with a standard deviation of 240 $counts/mm^3$. The standard error of the mean for this population is calculated as follows:
 
 $SE_{\bar{x}} = \frac{s}{\sqrt{n}} = \frac{240}{\sqrt{64}} = \frac{240}{8} = 30 \ counts/mm^3$
-
 
 The SEM provides a measure of the precision of our estimate of the population mean CD4 counts. If we were to repeat the sampling process numerous times and calculate the mean CD4 count each time, we would expect the calculated means to vary around the population mean by approximately 30 $counts/mm^3$.
 :::
@@ -129,9 +121,7 @@ sem <- 240 / sqrt(64)
 sem
 ```
 
-
 > Noteworthy, the standard error is essential in constructing **confidence intervals** around point estimates, a process known as interval estimation.
-
 
  
 
@@ -172,12 +162,13 @@ popdf <- as.data.frame(pop)
 # histogram
 ggplot(popdf, aes(x = pop)) + geom_histogram(color = "black", fill = "#894ae0", alpha=0.3) + 
   geom_vline(xintercept = mu, linetype = "dashed", linewidth = 0.8) +
+  theme_classic() +
   ggtitle("Histogram of Population") + xlab("x") +
   theme(axis.title = element_text(hjust = 1))
 
 ```
 
-Let's consider sampling five individuals from the population and calculating their sample mean BP, denoted as $\bar{x_1}$. Next, let's repeat this process by collecting a second sample of five individuals and calculating the sample mean again, which we might denote as $\bar{x_2}$. This process can be iterated 100 times ($N = 100$) and generate the histogram of the sample means, $\bar{x}$ (@fig-simulation2 a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (@fig-simulation2 b, c, d, e).
+Let's consider sampling five individuals from the population and calculating their sample mean BP, denoted as $\bar{x_1}$. Next, let's repeat this process by collecting a second sample of five individuals and calculating the sample mean again, which we might denote as $\bar{x_2}$. This process can be iterated 100 times ($N = 100$) and generate the histogram of the sample means (@fig-simulation2 a). Next, we run this simulation a bunch of times with different sample size 10, 30, 50, 100 (@fig-simulation2 b, c, d, e).
 
 ```{r}
 #| echo: false

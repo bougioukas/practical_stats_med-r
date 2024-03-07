@@ -7,7 +7,6 @@ library(fontawesome)
 library(htmlwidgets)
 ```
 
-
 There are several important probability distributions in statistics. However, the normal distribution might be the most important. This distribution is also referred to as "*Gaussian*" or "*Gauss*" distribution.
 
 When we have finished this chapter, we should be able to:
@@ -48,6 +47,7 @@ where $\pi \approx 3.142$ and $e \approx 2.718$.
 
 ```{r}
 #| warning: false
+#| message: false
 #| label: fig-normal
 #| fig-height: 7.2
 #| fig-width: 12.5
@@ -71,6 +71,7 @@ ggplot(df, aes(x)) +
 
 ```{r}
 #| warning: false
+#| message: false
 #| label: fig-normal_auc
 #| fig-height: 7.2
 #| fig-width: 12.5
@@ -116,6 +117,8 @@ The skewness for a normal distribution is zero. In practice, approximate bell-sh
 :::
 
 ```{r}
+#| warning: false
+#| message: false
 #| code-fold: true
 #| code-summary: "Show the code"
 #| label: fig-skew2
@@ -203,6 +206,8 @@ The excess kurtosis for a normal distribution is zero. In practice, approximate 
 :::
 
 ```{r}
+#| warning: false
+#| message: false
 #| code-fold: true
 #| code-summary: "Show the code"
 #| label: fig-kurtosis

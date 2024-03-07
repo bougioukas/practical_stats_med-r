@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical Statistics in Medicine with R – 18&nbsp; Foundations for statistical inference</title>
+<title>Practical Statistics in Medicine with R – 19&nbsp; Foundations for statistical inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./student_t_test.html" rel="next">
-<link href="./sampling.html" rel="prev">
+<link href="./conf_intervals.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -114,7 +114,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./inference.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./inference.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -269,122 +269,128 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -405,19 +411,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hypothesis-testsing" id="toc-hypothesis-testsing" class="nav-link active" data-scroll-target="#hypothesis-testsing"><span class="header-section-number">18.1</span> Hypothesis Testsing</a></li>
-  <li><a href="#type-of-errors-in-hypothesis-testing" id="toc-type-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#type-of-errors-in-hypothesis-testing"><span class="header-section-number">18.2</span> Type of Errors in Hypothesis Testing</a></li>
-  <li><a href="#sampling-distribution" id="toc-sampling-distribution" class="nav-link" data-scroll-target="#sampling-distribution"><span class="header-section-number">18.3</span> Sampling distribution</a></li>
-  <li><a href="#sample-and-sampling-distributions" id="toc-sample-and-sampling-distributions" class="nav-link" data-scroll-target="#sample-and-sampling-distributions"><span class="header-section-number">18.4</span> Sample and sampling distributions</a></li>
+  <li><a href="#hypothesis-testsing" id="toc-hypothesis-testsing" class="nav-link active" data-scroll-target="#hypothesis-testsing"><span class="header-section-number">19.1</span> Hypothesis Testsing</a></li>
+  <li><a href="#type-of-errors-in-hypothesis-testing" id="toc-type-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#type-of-errors-in-hypothesis-testing"><span class="header-section-number">19.2</span> Type of Errors in Hypothesis Testing</a></li>
+  <li><a href="#sampling-distribution" id="toc-sampling-distribution" class="nav-link" data-scroll-target="#sampling-distribution"><span class="header-section-number">19.3</span> Sampling distribution</a></li>
+  <li><a href="#sample-and-sampling-distributions" id="toc-sample-and-sampling-distributions" class="nav-link" data-scroll-target="#sample-and-sampling-distributions"><span class="header-section-number">19.4</span> Sample and sampling distributions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./inference.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./inference.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-inference" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></h1>
+<h1 class="title"><span id="sec-inference" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></h1>
 </div>
 
 
@@ -450,8 +456,8 @@ Learning objectives
 </ul>
 </div>
 </div>
-<section id="hypothesis-testsing" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="hypothesis-testsing"><span class="header-section-number">18.1</span> Hypothesis Testsing</h2>
+<section id="hypothesis-testsing" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="hypothesis-testsing"><span class="header-section-number">19.1</span> Hypothesis Testsing</h2>
 <p>Hypothesis testing is a method of deciding whether the data are consistent with the null hypothesis. The calculation of the p-value is an important part of the procedure. Given a study with a single outcome measure and a statistical test, hypothesis testing can be summarized in five steps.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -481,11 +487,11 @@ Steps of Hypothesis Testsing
 <li>If p − value &lt; α, reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 <li>If p − value ≥ α, do not reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 </ul>
-<p>The <a href="#tbl-panel" class="quarto-xref">Table&nbsp;<span>18.1</span></a> demonstrates how to interpret the strength of the evidence. However, always keep in mind the size of the study being considered.</p>
+<p>The <a href="#tbl-panel" class="quarto-xref">Table&nbsp;<span>19.1</span></a> demonstrates how to interpret the strength of the evidence. However, always keep in mind the size of the study being considered.</p>
 <div id="tbl-panel" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;18.1: Strength of the evidence against <span class="math inline">\(H_{0}\)</span>.
+Table&nbsp;19.1: Strength of the evidence against <span class="math inline">\(H_{0}\)</span>.
 </figcaption>
 <div aria-describedby="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -526,15 +532,15 @@ Table&nbsp;18.1: Strength of the evidence against <span class="math inline">\(H_
 </div>
 <p>&nbsp;</p>
 </section>
-<section id="type-of-errors-in-hypothesis-testing" class="level2" data-number="18.2">
-<h2 data-number="18.2" class="anchored" data-anchor-id="type-of-errors-in-hypothesis-testing"><span class="header-section-number">18.2</span> Type of Errors in Hypothesis Testing</h2>
-<p>In the framework of hypothesis testing there are two types of errors: <strong>Type I error</strong> and <strong>type II error</strong> (<a href="#tbl-type_errors" class="quarto-xref">Table&nbsp;<span>18.2</span></a>).</p>
+<section id="type-of-errors-in-hypothesis-testing" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="type-of-errors-in-hypothesis-testing"><span class="header-section-number">19.2</span> Type of Errors in Hypothesis Testing</h2>
+<p>In the framework of hypothesis testing there are two types of errors: <strong>Type I error</strong> and <strong>type II error</strong> (<a href="#tbl-type_errors" class="quarto-xref">Table&nbsp;<span>19.2</span></a>).</p>
 <p><strong>Type I error:</strong> we reject the null hypothesis when it is true (false positive), and conclude that there is an effect when, in reality, there is none. The maximum chance (probability) of making a Type I error is denoted by α (alpha). This is the significance level of the test; we reject the null hypothesis if our p-value is less than the significance level, i.e.&nbsp;if p &lt; a.</p>
 <p><strong>Type II error:</strong> we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta); its compliment, (1 - β), is the power of the test.</p>
 <div id="tbl-type_errors" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-type_errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;18.2: Types of error in hypothesis testing.
+Table&nbsp;19.2: Types of error in hypothesis testing.
 </figcaption>
 <div aria-describedby="tbl-type_errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -577,11 +583,11 @@ Table&nbsp;18.2: Types of error in hypothesis testing.
 </figure>
 </div>
 <p>&nbsp;</p>
-<p>The power (<span class="math inline">\(1 - \beta\)</span>), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e.&nbsp;it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. <a href="#tbl-power" class="quarto-xref">Table&nbsp;<span>18.3</span></a> presents the main factors that can influence the power in a study.</p>
+<p>The power (<span class="math inline">\(1 - \beta\)</span>), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e.&nbsp;it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. <a href="#tbl-power" class="quarto-xref">Table&nbsp;<span>19.3</span></a> presents the main factors that can influence the power in a study.</p>
 <div id="tbl-power" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;18.3: Factors Influencing Power.
+Table&nbsp;19.3: Factors Influencing Power.
 </figcaption>
 <div aria-describedby="tbl-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -619,11 +625,11 @@ Table&nbsp;18.3: Factors Influencing Power.
 </div>
 <p>&nbsp; &nbsp;</p>
 </section>
-<section id="sampling-distribution" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="sampling-distribution"><span class="header-section-number">18.3</span> Sampling distribution</h2>
+<section id="sampling-distribution" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="sampling-distribution"><span class="header-section-number">19.3</span> Sampling distribution</h2>
 </section>
-<section id="sample-and-sampling-distributions" class="level2" data-number="18.4">
-<h2 data-number="18.4" class="anchored" data-anchor-id="sample-and-sampling-distributions"><span class="header-section-number">18.4</span> Sample and sampling distributions</h2>
+<section id="sample-and-sampling-distributions" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="sample-and-sampling-distributions"><span class="header-section-number">19.4</span> Sample and sampling distributions</h2>
 <p>The <strong>sample distribution</strong> represents the probability distribution of the observed values in a randomly selected sample from the population. Using the data from this sample, we can calculate sample statistics such as the sample mean. For example, a hospital is interested in finding out the average blood pressure (BP) of its diabetic patients, but measuring each patient is impractical. Instead, they randomly selected <em>n</em> patients from this group and measured their BP. The resulting average BP for this sample, let’s say <span class="math inline">\(\bar{x_1} = 130\)</span> mmHg, represents one sample mean .</p>
 <div id="fig-sample_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -631,7 +637,7 @@ Table&nbsp;18.3: Factors Influencing Power.
 <img src="images/sample1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.1: The estimate of mean, <span class="math inline">\(\bar{x_1} =130\)</span>, represents an observed sample mean from an already collected sample.
+Figure&nbsp;19.1: The estimate of mean, <span class="math inline">\(\bar{x_1} =130\)</span>, represents an observed sample mean from an already collected sample.
 </figcaption>
 </figure>
 </div>
@@ -642,7 +648,7 @@ Figure&nbsp;18.1: The estimate of mean, <span class="math inline">\(\bar{x_1} =1
 <img src="images/many_samples.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.2: The collection of sample means derived from repeated sampling forms a sampling distribution of mean with its own characteristics.
+Figure&nbsp;19.2: The collection of sample means derived from repeated sampling forms a sampling distribution of mean with its own characteristics.
 </figcaption>
 </figure>
 </div>
@@ -985,13 +991,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./sampling.html" class="pagination-link" aria-label="Populations and samples">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populations and samples</span></span>
+      <a href="./conf_intervals.html" class="pagination-link" aria-label="Confidence intervals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./student_t_test.html" class="pagination-link" aria-label="Two-sample t-test (Student's t-test)">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

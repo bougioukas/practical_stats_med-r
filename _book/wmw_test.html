@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R – 20&nbsp; Wilcoxon-Mann-Whitney (Mann-Whitney U) test</title>
+<title>Practical Statistics in Medicine with R – 21&nbsp; Wilcoxon-Mann-Whitney (Mann-Whitney U) test</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -290,122 +290,128 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,17 +430,17 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">20.1</span> Research question and Hypothesis Testing</a></li>
-  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">20.2</span> Packages we need</a></li>
-  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">20.3</span> Preparing the data</a></li>
-  <li><a href="#explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" id="toc-explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" class="nav-link" data-scroll-target="#explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality"><span class="header-section-number">20.4</span> Explore the characteristics of distribution for each group and check for normality</a></li>
-  <li><a href="#run-the-wilcoxon-mann-whitney-test" id="toc-run-the-wilcoxon-mann-whitney-test" class="nav-link" data-scroll-target="#run-the-wilcoxon-mann-whitney-test"><span class="header-section-number">20.5</span> Run the Wilcoxon-Mann-Whitney test</a></li>
-  <li><a href="#present-the-results" id="toc-present-the-results" class="nav-link" data-scroll-target="#present-the-results"><span class="header-section-number">20.6</span> Present the results</a></li>
+<li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">21.1</span> Research question and Hypothesis Testing</a></li>
+  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">21.2</span> Packages we need</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">21.3</span> Preparing the data</a></li>
+  <li><a href="#explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" id="toc-explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" class="nav-link" data-scroll-target="#explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality"><span class="header-section-number">21.4</span> Explore the characteristics of distribution for each group and check for normality</a></li>
+  <li><a href="#run-the-wilcoxon-mann-whitney-test" id="toc-run-the-wilcoxon-mann-whitney-test" class="nav-link" data-scroll-target="#run-the-wilcoxon-mann-whitney-test"><span class="header-section-number">21.5</span> Run the Wilcoxon-Mann-Whitney test</a></li>
+  <li><a href="#present-the-results" id="toc-present-the-results" class="nav-link" data-scroll-target="#present-the-results"><span class="header-section-number">21.6</span> Present the results</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-wmw" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-wmw" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></h1>
 </div>
 
 
@@ -467,8 +473,8 @@ Learning objectives
 </ul>
 </div>
 </div>
-<section id="research-question-and-hypothesis-testing" class="level2 page-columns page-full" data-number="20.1"><h2 data-number="20.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
-<span class="header-section-number">20.1</span> Research question and Hypothesis Testing</h2>
+<section id="research-question-and-hypothesis-testing" class="level2 page-columns page-full" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
+<span class="header-section-number">21.1</span> Research question and Hypothesis Testing</h2>
 <p>We consider the data in <em>thromboglobulin</em> dataset that contains the urinary <span class="math inline">\(\beta\)</span> thromboglobulin excretion (pg/ml) measured in 12 non-diabetic patients and 12 diabetic patients. The researchers used <span class="math inline">\(\alpha\)</span> = 0.05 significance level to test if the distribution of urinary <span class="math inline">\(\beta\)</span> thromboglobulin (b_TG) differs in the two groups.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -491,8 +497,8 @@ Null hypothesis and alternative hypothesis
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><strong>NOTE:</strong> The null hypothesis is that the observations from one group do not tend to have higher or lower ranks than observations from the other group. This test does not compare the medians of the data as is commonly thought, it tests the whole distribution. However, if the distributions of the two groups have similar shapes and spreads (i.e., differing only in location), the WMW test can address (in most cases) whether there are differences in the medians between the two groups.(ref.)</p>
-</div></div></section><section id="packages-we-need" class="level2" data-number="20.2"><h2 data-number="20.2" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">20.2</span> Packages we need</h2>
+</div></div></section><section id="packages-we-need" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">21.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># packages for graphs</span></span>
@@ -511,8 +517,8 @@ Null hypothesis and alternative hypothesis
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/report/">report</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="preparing-the-data" class="level2" data-number="20.3"><h2 data-number="20.3" class="anchored" data-anchor-id="preparing-the-data">
-<span class="header-section-number">20.3</span> Preparing the data</h2>
+</section><section id="preparing-the-data" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">21.3</span> Preparing the data</h2>
 <p>We import the data <em>thromboglobulin</em> in R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
@@ -521,11 +527,11 @@ Null hypothesis and alternative hypothesis
 <div class="cell">
 <div id="fig-depression" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-271a9ea9ec8293dad06f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-271a9ea9ec8293dad06f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],["non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic"],[4.1,6.3,7.8,8.5,8.9,10.4,11.5,12,13.8,17.6,24.3,37.2,27.5,28.1,26.1,23.8,25,29.8,33.9,37.7,31.3,43.2,28.7,46.2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>status<\/th>\n      <th>b_TG<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"status","targets":1},{"name":"b_TG","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-1e7579c57ee28172b385" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1e7579c57ee28172b385">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],["non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic"],[4.1,6.3,7.8,8.5,8.9,10.4,11.5,12,13.8,17.6,24.3,37.2,27.5,28.1,26.1,23.8,25,29.8,33.9,37.7,31.3,43.2,28.7,46.2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>status<\/th>\n      <th>b_TG<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"status","targets":1},{"name":"b_TG","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.1: Table with data from “depression” file.
+Figure&nbsp;21.1: Table with data from “depression” file.
 </figcaption></figure>
 </div>
 </div>
@@ -551,8 +557,8 @@ $ status &lt;fct&gt; non_diabetic, non_diabetic, non_diabetic, non_diabetic, non
 $ b_TG   &lt;dbl&gt; 4.1, 6.3, 7.8, 8.5, 8.9, 10.4, 11.5, 12.0, 13.8, 17.6, 24.3, 37…</code></pre>
 </div>
 </div>
-</section><section id="explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" class="level2" data-number="20.4"><h2 data-number="20.4" class="anchored" data-anchor-id="explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality">
-<span class="header-section-number">20.4</span> Explore the characteristics of distribution for each group and check for normality</h2>
+</section><section id="explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality">
+<span class="header-section-number">21.4</span> Explore the characteristics of distribution for each group and check for normality</h2>
 <p>The distributions can be explored visually with appropriate plots. Additionally, summary statistics and significance tests to check for normality (e.g., Shapiro-Wilk test) can be used.</p>
 <p>&nbsp;</p>
 <p><strong>Graph</strong></p>
@@ -571,7 +577,7 @@ $ b_TG   &lt;dbl&gt; 4.1, 6.3, 7.8, 8.5, 8.9, 10.4, 11.5, 12.0, 13.8, 17.6, 24.3
 <img src="wmw_test_files/figure-html/fig-raincloud_tg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-raincloud_tg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.2: Rain cloud plot.
+Figure&nbsp;21.2: Rain cloud plot.
 </figcaption></figure>
 </div>
 </div>
@@ -591,7 +597,7 @@ Figure&nbsp;20.2: Rain cloud plot.
 <img src="wmw_test_files/figure-html/fig-qq_tg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_tg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.3: Normality Q-Q plot for HDRS for paroxetine and placebo.
+Figure&nbsp;21.3: Normality Q-Q plot for HDRS for paroxetine and placebo.
 </figcaption></figure>
 </div>
 </div>
@@ -691,9 +697,9 @@ Summary statistics by group
 </div>
 <p>We can see that the data for the non-diabetic group is not normally distributed (p=0.015 &lt;0.05) according to the Shapiro-Wilk test.</p>
 <p>&nbsp;</p>
-</section><section id="run-the-wilcoxon-mann-whitney-test" class="level2 page-columns page-full" data-number="20.5"><h2 data-number="20.5" class="anchored" data-anchor-id="run-the-wilcoxon-mann-whitney-test">
-<span class="header-section-number">20.5</span> Run the Wilcoxon-Mann-Whitney test</h2>
-<p>The difference in location between two distributions with similar shapes (<a href="#fig-raincloud_tg" class="quarto-xref">Figure&nbsp;<span>20.2</span></a>) can be tested using the Wilcoxon-Mann-Whitney (WMW) test:</p>
+</section><section id="run-the-wilcoxon-mann-whitney-test" class="level2 page-columns page-full" data-number="21.5"><h2 data-number="21.5" class="anchored" data-anchor-id="run-the-wilcoxon-mann-whitney-test">
+<span class="header-section-number">21.5</span> Run the Wilcoxon-Mann-Whitney test</h2>
+<p>The difference in location between two distributions with similar shapes (<a href="#fig-raincloud_tg" class="quarto-xref">Figure&nbsp;<span>21.2</span></a>) can be tested using the Wilcoxon-Mann-Whitney (WMW) test:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -797,8 +803,8 @@ non_diabetic</td>
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="present-the-results" class="level2" data-number="20.6"><h2 data-number="20.6" class="anchored" data-anchor-id="present-the-results">
-<span class="header-section-number">20.6</span> Present the results</h2>
+</section><section id="present-the-results" class="level2" data-number="21.6"><h2 data-number="21.6" class="anchored" data-anchor-id="present-the-results">
+<span class="header-section-number">21.6</span> Present the results</h2>
 <p><strong>Summary table</strong></p>
 <p>It is common practice to report the median (IQR) for each group in summary tables.</p>
 <div class="cell">
@@ -813,23 +819,23 @@ non_diabetic</td>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_n.html">add_n</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="hjmctqpwca" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hjmctqpwca table {
+<div id="vzfcbstftp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vzfcbstftp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hjmctqpwca thead, #hjmctqpwca tbody, #hjmctqpwca tfoot, #hjmctqpwca tr, #hjmctqpwca td, #hjmctqpwca th {
+#vzfcbstftp thead, #vzfcbstftp tbody, #vzfcbstftp tfoot, #vzfcbstftp tr, #vzfcbstftp td, #vzfcbstftp th {
   border-style: none;
 }
 
-#hjmctqpwca p {
+#vzfcbstftp p {
   margin: 0;
   padding: 0;
 }
 
-#hjmctqpwca .gt_table {
+#vzfcbstftp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -855,12 +861,12 @@ non_diabetic</td>
   border-left-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_caption {
+#vzfcbstftp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hjmctqpwca .gt_title {
+#vzfcbstftp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -872,7 +878,7 @@ non_diabetic</td>
   border-bottom-width: 0;
 }
 
-#hjmctqpwca .gt_subtitle {
+#vzfcbstftp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -884,7 +890,7 @@ non_diabetic</td>
   border-top-width: 0;
 }
 
-#hjmctqpwca .gt_heading {
+#vzfcbstftp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -896,13 +902,13 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_bottom_border {
+#vzfcbstftp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_col_headings {
+#vzfcbstftp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -917,7 +923,7 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_col_heading {
+#vzfcbstftp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -937,7 +943,7 @@ non_diabetic</td>
   overflow-x: hidden;
 }
 
-#hjmctqpwca .gt_column_spanner_outer {
+#vzfcbstftp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -949,15 +955,15 @@ non_diabetic</td>
   padding-right: 4px;
 }
 
-#hjmctqpwca .gt_column_spanner_outer:first-child {
+#vzfcbstftp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hjmctqpwca .gt_column_spanner_outer:last-child {
+#vzfcbstftp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hjmctqpwca .gt_column_spanner {
+#vzfcbstftp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -969,11 +975,11 @@ non_diabetic</td>
   width: 100%;
 }
 
-#hjmctqpwca .gt_spanner_row {
+#vzfcbstftp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hjmctqpwca .gt_group_heading {
+#vzfcbstftp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -999,7 +1005,7 @@ non_diabetic</td>
   text-align: left;
 }
 
-#hjmctqpwca .gt_empty_group_heading {
+#vzfcbstftp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1014,15 +1020,15 @@ non_diabetic</td>
   vertical-align: middle;
 }
 
-#hjmctqpwca .gt_from_md > :first-child {
+#vzfcbstftp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hjmctqpwca .gt_from_md > :last-child {
+#vzfcbstftp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hjmctqpwca .gt_row {
+#vzfcbstftp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1041,7 +1047,7 @@ non_diabetic</td>
   overflow-x: hidden;
 }
 
-#hjmctqpwca .gt_stub {
+#vzfcbstftp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1054,7 +1060,7 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#hjmctqpwca .gt_stub_row_group {
+#vzfcbstftp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1068,15 +1074,15 @@ non_diabetic</td>
   vertical-align: top;
 }
 
-#hjmctqpwca .gt_row_group_first td {
+#vzfcbstftp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hjmctqpwca .gt_row_group_first th {
+#vzfcbstftp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hjmctqpwca .gt_summary_row {
+#vzfcbstftp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1086,16 +1092,16 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#hjmctqpwca .gt_first_summary_row {
+#vzfcbstftp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_first_summary_row.thick {
+#vzfcbstftp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hjmctqpwca .gt_last_summary_row {
+#vzfcbstftp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1105,7 +1111,7 @@ non_diabetic</td>
   border-bottom-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_grand_summary_row {
+#vzfcbstftp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1115,7 +1121,7 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#hjmctqpwca .gt_first_grand_summary_row {
+#vzfcbstftp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1125,7 +1131,7 @@ non_diabetic</td>
   border-top-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_last_grand_summary_row_top {
+#vzfcbstftp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1135,11 +1141,11 @@ non_diabetic</td>
   border-bottom-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_striped {
+#vzfcbstftp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hjmctqpwca .gt_table_body {
+#vzfcbstftp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1148,7 +1154,7 @@ non_diabetic</td>
   border-bottom-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_footnotes {
+#vzfcbstftp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1162,7 +1168,7 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_footnote {
+#vzfcbstftp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1171,7 +1177,7 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#hjmctqpwca .gt_sourcenotes {
+#vzfcbstftp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1185,7 +1191,7 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#hjmctqpwca .gt_sourcenote {
+#vzfcbstftp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1193,63 +1199,63 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#hjmctqpwca .gt_left {
+#vzfcbstftp .gt_left {
   text-align: left;
 }
 
-#hjmctqpwca .gt_center {
+#vzfcbstftp .gt_center {
   text-align: center;
 }
 
-#hjmctqpwca .gt_right {
+#vzfcbstftp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hjmctqpwca .gt_font_normal {
+#vzfcbstftp .gt_font_normal {
   font-weight: normal;
 }
 
-#hjmctqpwca .gt_font_bold {
+#vzfcbstftp .gt_font_bold {
   font-weight: bold;
 }
 
-#hjmctqpwca .gt_font_italic {
+#vzfcbstftp .gt_font_italic {
   font-style: italic;
 }
 
-#hjmctqpwca .gt_super {
+#vzfcbstftp .gt_super {
   font-size: 65%;
 }
 
-#hjmctqpwca .gt_footnote_marks {
+#vzfcbstftp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hjmctqpwca .gt_asterisk {
+#vzfcbstftp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hjmctqpwca .gt_indent_1 {
+#vzfcbstftp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hjmctqpwca .gt_indent_2 {
+#vzfcbstftp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hjmctqpwca .gt_indent_3 {
+#vzfcbstftp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hjmctqpwca .gt_indent_4 {
+#vzfcbstftp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hjmctqpwca .gt_indent_5 {
+#vzfcbstftp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1648,12 +1654,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./student_t_test.html" class="pagination-link" aria-label="Two-sample t-test (Student's t-test)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./paired_t_test.html" class="pagination-link" aria-label="Paired t-test">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

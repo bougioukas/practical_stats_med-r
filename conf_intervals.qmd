@@ -1,0 +1,204 @@
+# Confidence intervals {#sec-conf_intervals}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+
+library(gghighlight)
+library(tidyverse)
+```
+
+Obtaining an exact point estimate of the population parameter from just one random sample is almost unattainable. However, **interval estimation** allows us to provide a range of values where the parameter is expected to fall with a certain level of confidence. This can be achieved by constructing **confidence intervals**.
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Explain the difference between population, sample and sampling distributions
+-   Understand the properties of the distribution of sample means
+-   Understand the central limit theorem
+:::
+
+ 
+
+::: content-box-blue
+**Construction of a confidence interval**
+
+We will base the construction of a confidence interval on two key concepts:
+
+1.  The interval is **around the point estimate**, which represents our best estimate of the population parameter.
+
+2.  The **standard error (SE)** is utilized to quantify the extent of variability around the point estimate.
+:::
+
+## Confidence interval for the mean
+
+According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96$ SE from the point estimate (the empirical rule; @sec-normal).
+
+The formula for the confidence interval (CI) of mean equals:
+
+$$ 95\%CI=\bar{x} \ \pm 1.96 \ \sigma_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{\sigma}{\sqrt{n}} $$ {#eq-CI}
+
+and if the population standard deviation σ is unknown, the sample standard deviation, sd, is used in the @eq-CI:
+
+$$ 95\%CI=\bar{x} \ \pm 1.96 \ SE_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{sd}{\sqrt{n}} $$ {#eq-CI2}
+
+The intuitive meaning of "confidence" in a confidence interval might not be immediately clear. To understand what confidence truly represents, let's consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(46)
+
+# Create a non-uniform population of 100,000 numbers between 1 and 100
+# Create a non-uniform population of 100,000 numbers between 1 and 100
+pop1 <- rnorm(70000, mean = 120, sd = 3)
+pop2 <- rnorm(30000, mean = 140, sd = 6)
+pop <- c(pop1, pop2)
+
+mu <- mean(pop) #calculate the population mean
+sigma <- sd(pop) #calculate the population standard deviation
+
+popdf <- as.data.frame(pop)
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-pop01
+#| fig-cap: A hypothetical population of 100,000 observations. The dashed black line represents the population, μ.
+#| fig-width: 7.0
+#| fig-height: 3.5
+
+# histogram
+ggplot(popdf, aes(x = pop)) + geom_histogram(color = "black", fill = "#894ae0", alpha=0.3) + 
+  geom_vline(xintercept = mu, linetype = "dashed", linewidth = 0.8) +
+  theme_classic() +
+  ggtitle("Histogram of Population") + xlab("x") +
+  theme(axis.title = element_text(hjust = 1))
+
+```
+
+Next, we generate 100 random samples of size 10 from our population distribution and we construct a 95% confidence interval for each sample.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+sample_sizes <- c(10)
+
+Samps = list() 
+set.seed(47)
+for (j in sample_sizes) {
+   Samps[[paste0("Sample size: ", j)]] = data.frame(sampsize=j, samp=sapply(1:100, function(i){ x <- sample(pop, j, replace = TRUE) }))
+}
+
+Samps %>%
+  map_df(as_tibble) %>%
+  gather(samp, value, samp.1:samp.100) -> Samps
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-intervals1
+#| fig-cap: 100 Sample Means of Size 10 (with 95% Intervals) from the Population.
+#| fig-width: 9.5
+#| fig-height: 12.0
+
+
+Samps %>%
+  group_by(sampsize, samp) %>%
+  mutate(sampmean = mean(value),
+         se = sd(pop)/sqrt((sampsize)),
+         lb95 = sampmean - 1.96*se,
+         ub95 = sampmean + 1.96*se) %>%
+  distinct(sampsize, samp, sampmean, se, lb95, ub95) %>%
+  ungroup() %>%
+  mutate(sampsize = fct_inorder(paste0("Sample Size: ", sampsize)),
+         samp = as.numeric(str_replace(samp, "samp.", ""))) %>%
+  ggplot(aes(x = sampmean, y = as.factor(samp), xmax=ub95, xmin=lb95)) +
+  #theme_steve() + post_bg() +
+  geom_vline(xintercept = mean(pop), color = "black", linetype="dashed", size = 1) +
+  geom_pointrange(color = "red") +
+  gghighlight(lb95 > 126.002 | ub95 < 126.002,
+              unhighlighted_params = list(color = "steelblue")) +
+  scale_x_continuous(limits = c(112, 141)) +
+  labs(x = "Sample Mean (with 95% Intervals)",
+       y = "Sample Number [1:100]",
+       title = "100 Sample Means of Size 10 (with 95% Intervals) from the Population")
+
+```
+
+In @fig-intervals1, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; $\mu$ = 126 mmHg). This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.
+
+ 
+
+Next, we construct the confidence intervals of 100 randomly generated samples of size = 50 from our population (@fig-intervals2):
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+sample_sizes <- c(50)
+
+Samps = list() 
+set.seed(55)
+for (j in sample_sizes) {
+   Samps[[paste0("Sample size: ", j)]] = data.frame(sampsize=j, samp=sapply(1:100, function(i){ x <- sample(pop, j, replace = TRUE) }))
+}
+
+Samps %>%
+  map_df(as_tibble) %>%
+  gather(samp, value, samp.1:samp.100) -> Samps
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-intervals2
+#| fig-cap: 100 Sample Means of Size 50 (with 95% Intervals) from the Population.
+#| fig-width: 9.5
+#| fig-height: 12.0
+
+
+Samps %>%
+  group_by(sampsize, samp) %>%
+  mutate(sampmean = mean(value),
+         se = sd(pop)/sqrt((sampsize)),
+         lb95 = sampmean - 1.96*se,
+         ub95 = sampmean + 1.96*se) %>%
+  distinct(sampsize, samp, sampmean, se, lb95, ub95) %>%
+  ungroup() %>%
+  mutate(sampsize = fct_inorder(paste0("Sample Size: ", sampsize)),
+         samp = as.numeric(str_replace(samp, "samp.", ""))) %>%
+  ggplot(aes(x = sampmean, y = as.factor(samp), xmax=ub95, xmin=lb95)) +
+  #theme_steve() + post_bg() +
+  geom_vline(xintercept = mean(pop), color = "black", linetype="dashed", size = 1) +
+  geom_pointrange(color = "red") +
+  gghighlight(lb95 > 126.002 | ub95 < 126.002,
+              unhighlighted_params = list(color = "steelblue")) +
+  scale_x_continuous(limits = c(112, 141)) +
+  labs(x = "Sample Mean (with 95% Intervals)",
+       y = "Sample Number [1:100]",
+       title = "100 Sample Means of Size 50 (with 95% Intervals) from the Population")
+
+```
+
+::: content-box-blue
+As sample size increases, two key things happen:
+
+1.  The sample statistic (points) gets closer to the population parameter (black dashed line).
+2.  The uncertainty around the estimate shrinks (confidence intervals become narrower).
+:::

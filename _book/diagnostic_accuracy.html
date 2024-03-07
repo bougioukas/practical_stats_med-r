@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R – 35&nbsp; Measures of diagnostic test accuracy</title>
+<title>Practical Statistics in Medicine with R – 36&nbsp; Measures of diagnostic test accuracy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,7 +154,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./diagnostic_accuracy.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./diagnostic_accuracy.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -305,122 +305,128 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -439,12 +445,12 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-questions" id="toc-research-questions" class="nav-link active" data-scroll-target="#research-questions"><span class="header-section-number">35.1</span> Research questions</a></li>
-  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">35.2</span> Packages we need</a></li>
-  <li><a href="#contingency-2x2-table" id="toc-contingency-2x2-table" class="nav-link" data-scroll-target="#contingency-2x2-table"><span class="header-section-number">35.3</span> Contingency 2x2 table</a></li>
-  <li><a href="#diagnostic-accuracy-measures" id="toc-diagnostic-accuracy-measures" class="nav-link" data-scroll-target="#diagnostic-accuracy-measures"><span class="header-section-number">35.4</span> Diagnostic Accuracy Measures</a></li>
+<li><a href="#research-questions" id="toc-research-questions" class="nav-link active" data-scroll-target="#research-questions"><span class="header-section-number">36.1</span> Research questions</a></li>
+  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">36.2</span> Packages we need</a></li>
+  <li><a href="#contingency-2x2-table" id="toc-contingency-2x2-table" class="nav-link" data-scroll-target="#contingency-2x2-table"><span class="header-section-number">36.3</span> Contingency 2x2 table</a></li>
+  <li><a href="#diagnostic-accuracy-measures" id="toc-diagnostic-accuracy-measures" class="nav-link" data-scroll-target="#diagnostic-accuracy-measures"><span class="header-section-number">36.4</span> Diagnostic Accuracy Measures</a></li>
   <li>
-<a href="#likelihood-ratios-in-practice" id="toc-likelihood-ratios-in-practice" class="nav-link" data-scroll-target="#likelihood-ratios-in-practice"><span class="header-section-number">35.5</span> Likelihood ratios in practice</a>
+<a href="#likelihood-ratios-in-practice" id="toc-likelihood-ratios-in-practice" class="nav-link" data-scroll-target="#likelihood-ratios-in-practice"><span class="header-section-number">36.5</span> Likelihood ratios in practice</a>
   <ul class="collapse">
 <li><a href="#interpretation-of-lrs" id="toc-interpretation-of-lrs" class="nav-link" data-scroll-target="#interpretation-of-lrs">Interpretation of LRs</a></li>
   <li><a href="#application-of-lrs-revising-the-probability-of-disease" id="toc-application-of-lrs-revising-the-probability-of-disease" class="nav-link" data-scroll-target="#application-of-lrs-revising-the-probability-of-disease">Application of LRs (revising the probability of disease)</a></li>
@@ -453,8 +459,8 @@ window.Quarto = {
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./diagnostic_accuracy.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-diagnostic_accuracy" class="quarto-section-identifier"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./diagnostic_accuracy.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-diagnostic_accuracy" class="quarto-section-identifier"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></h1>
 </div>
 
 
@@ -487,13 +493,13 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-<section id="research-questions" class="level2" data-number="35.1"><h2 data-number="35.1" class="anchored" data-anchor-id="research-questions">
-<span class="header-section-number">35.1</span> Research questions</h2>
+<section id="research-questions" class="level2" data-number="36.1"><h2 data-number="36.1" class="anchored" data-anchor-id="research-questions">
+<span class="header-section-number">36.1</span> Research questions</h2>
 <ul>
 <li><p>To estimate the diagnostic accuracy of digital mammography (index test) in the detection of breast cancer, using histopathology as a “gold standard” in women aged over 40 years, who are undergoing mammography for the evaluation of different symptoms related to breast diseases.</p></li>
 <li><p>To estimate the post-test probability of breast cancer when the digital mammography is positive or negative given a pre-test probability.</p></li>
-</ul></section><section id="packages-we-need" class="level2" data-number="35.2"><h2 data-number="35.2" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">35.2</span> Packages we need</h2>
+</ul></section><section id="packages-we-need" class="level2" data-number="36.2"><h2 data-number="36.2" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">36.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/haleyjeppson/ggmosaic">ggmosaic</a></span><span class="op">)</span></span>
@@ -505,13 +511,13 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="contingency-2x2-table" class="level2" data-number="35.3"><h2 data-number="35.3" class="anchored" data-anchor-id="contingency-2x2-table">
-<span class="header-section-number">35.3</span> Contingency 2x2 table</h2>
+</section><section id="contingency-2x2-table" class="level2" data-number="36.3"><h2 data-number="36.3" class="anchored" data-anchor-id="contingency-2x2-table">
+<span class="header-section-number">36.3</span> Contingency 2x2 table</h2>
 <p>Generally, an individual’s disease status is a dichotomous variable; the individual either has the disease (<span class="math inline">\(Outcome+\)</span>) or hasn’t the disease (<span class="math inline">\(Outcome-\)</span>) as defined by the reference standard (or “gold” standard). The diagnostic test under evaluation (also named as index test) can be measured with a dichotomous variable (e.g.&nbsp;presence or absence of breast abnormalities using an X-ray) or a continuous variable (e.g.&nbsp;fasting glucose level for diabetes diagnosis), that can be transformed to a dichotomous variable by choosing an optimal cut-off value (threshold) which distinguishes positive (<span class="math inline">\(Test+\)</span>) from negative (<span class="math inline">\(Test-\)</span>) test results.</p>
 <p>If the index test gives a dichotomous result for each participant in a study, the data can be tabulated in a 2 x 2 table of test result (<span class="math inline">\(Test+\)</span>, <span class="math inline">\(Test-\)</span>) versus “true” disease status (<span class="math inline">\(Outcome+\)</span>, <span class="math inline">\(Outcome-\)</span>). For example, the result of digital mammography test to diagnose breast cancer compared to the “gold” standard biopsy/surgery and histopathology in 1220 women with suspected breast cancer are following:</p>
 <div id="tbl-tbl1" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;35.1: A 2 × 2 table reporting cross-classification of individuals by index and reference test result.
+Table&nbsp;36.1: A 2 × 2 table reporting cross-classification of individuals by index and reference test result.
 </figcaption><div aria-describedby="tbl-tbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
@@ -574,8 +580,8 @@ Table&nbsp;35.1: A 2 × 2 table reporting cross-classification of individuals by
 <p>FP = false positive; test positive and disease absent (Test+ ∩ Outcome-)</p>
 <p>FN = false negative; test negative and disease present (Test- ∩ Outcome+)</p>
 <p>TN = true negative; test negative and disease absent (Test- ∩ Outcome-)</p>
-</section><section id="diagnostic-accuracy-measures" class="level2" data-number="35.4"><h2 data-number="35.4" class="anchored" data-anchor-id="diagnostic-accuracy-measures">
-<span class="header-section-number">35.4</span> Diagnostic Accuracy Measures</h2>
+</section><section id="diagnostic-accuracy-measures" class="level2" data-number="36.4"><h2 data-number="36.4" class="anchored" data-anchor-id="diagnostic-accuracy-measures">
+<span class="header-section-number">36.4</span> Diagnostic Accuracy Measures</h2>
 <div class="content-box-green">
 <p><strong>Basic Diagnostic Accuracy Measures</strong></p>
 <p>The <strong>Sensitivity (Se)</strong> of a diagnostic test refers to the ability of the test to correctly identify those individuals with the disease. It is defined as the proportion of true positive test results among individuals who have the disease.</p>
@@ -735,8 +741,8 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <div class="cell">
 <div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/pubh/man/diag_test2.html">diag_test2</a></span><span class="op">(</span><span class="fl">890</span>, <span class="fl">110</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="likelihood-ratios-in-practice" class="level2" data-number="35.5"><h2 data-number="35.5" class="anchored" data-anchor-id="likelihood-ratios-in-practice">
-<span class="header-section-number">35.5</span> Likelihood ratios in practice</h2>
+</section><section id="likelihood-ratios-in-practice" class="level2" data-number="36.5"><h2 data-number="36.5" class="anchored" data-anchor-id="likelihood-ratios-in-practice">
+<span class="header-section-number">36.5</span> Likelihood ratios in practice</h2>
 <section id="interpretation-of-lrs" class="level3"><h3 class="anchored" data-anchor-id="interpretation-of-lrs">Interpretation of LRs</h3>
 <p>Likelihood ratio (LR), along with sensitivity and specificity, can be considered properties of the test itself that do not change with the prevalence of disease.</p>
 <p>In our example, LR+ = 2.756, meaning a positive result in digital mammography is approximately 2.8 times more likely to be a true positive test than a false positive test.</p>
@@ -787,7 +793,7 @@ Correctly classified proportion *      0.893 (0.875, 0.910)
 <img src="diagnostic_accuracy_files/figure-html/fig-nomogram1-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nomogram1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;35.1: The impact of a positive digital mammography result with LR+ of 2.76 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
+Figure&nbsp;36.1: The impact of a positive digital mammography result with LR+ of 2.76 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
 </figcaption></figure>
 </div>
 </div>
@@ -813,7 +819,7 @@ Figure&nbsp;35.1: The impact of a positive digital mammography result with LR+ o
 <img src="diagnostic_accuracy_files/figure-html/fig-nomogram2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nomogram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;35.2: The impact of a negative digital mammography result with LR- of 0.034 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
+Figure&nbsp;36.2: The impact of a negative digital mammography result with LR- of 0.034 on a patient’s post-test probability for breast cancer, starting from an initial pre-test probability of 78% on the Fagan Nomogram.
 </figcaption></figure>
 </div>
 </div>
@@ -841,7 +847,7 @@ Given a negative test result, the post-test probability of being outcome positiv
 <img src="diagnostic_accuracy_files/figure-html/fig-slope-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;35.3: The impact of a positive (blue line) and negative (red line) digital mammography result with LR+ of 2.76 and LR- of 0.034 on a patient’s post-test probability for breast cancer, respectively, starting from an initial pre-test probability of 78% on the Fagan Nomogram. The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.
+Figure&nbsp;36.3: The impact of a positive (blue line) and negative (red line) digital mammography result with LR+ of 2.76 and LR- of 0.034 on a patient’s post-test probability for breast cancer, respectively, starting from an initial pre-test probability of 78% on the Fagan Nomogram. The gray dashed line that goes from the prior probability through LR = 1 illustrates the posterior probability if it were to remain unchanged.
 </figcaption></figure>
 </div>
 </div>
@@ -1181,12 +1187,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./reliability.html" class="pagination-link" aria-label="Measures of relative and absolute reliability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./roc.html" class="pagination-link" aria-label="Receiver Operating Characteristic (ROC) curve">
-        <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

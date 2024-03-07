@@ -33,6 +33,7 @@ book:
         - normal.qmd
         - descriptive.qmd
         - sampling.qmd
+        - conf_intervals.qmd
         - inference.qmd
         - student_t_test.qmd
         - wmw_test.qmd

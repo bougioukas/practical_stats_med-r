@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.23">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Practical Statistics in Medicine with R – 38&nbsp; Sample size calculation</title>
+<title>Practical Statistics in Medicine with R – 18&nbsp; Confidence intervals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +19,6 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -30,8 +26,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./roc.html" rel="prev">
+<link href="./inference.html" rel="next">
+<link href="./sampling.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -44,8 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -71,34 +66,50 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./sample_size.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./conf_intervals.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Practical Statistics in Medicine with R</a> 
     </div>
@@ -110,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome!</span></a>
@@ -124,8 +135,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
@@ -192,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -201,8 +212,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
@@ -240,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
+  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
   </div>
 </li>
@@ -360,12 +371,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sample_size.html" class="sidebar-item-text sidebar-link active">
+  <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -373,19 +384,19 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#confidence-interval-for-the-mean" id="toc-confidence-interval-for-the-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-the-mean"><span class="header-section-number">18.1</span> Confidence interval for the mean</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./sample_size.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span id="sec-sample_size" class="quarto-section-identifier"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./conf_intervals.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-conf_intervals" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></h1>
 </div>
 
 
@@ -399,14 +410,91 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Obtaining an exact point estimate of the population parameter from just one random sample is almost unattainable. However, <strong>interval estimation</strong> allows us to provide a range of values where the parameter is expected to fall with a certain level of confidence. This can be achieved by constructing <strong>confidence intervals</strong>.</p>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:red;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"></path></svg> Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Explain the difference between population, sample and sampling distributions</li>
+<li>Understand the properties of the distribution of sample means</li>
+<li>Understand the central limit theorem</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="content-box-blue">
+<p><strong>Construction of a confidence interval</strong></p>
+<p>We will base the construction of a confidence interval on two key concepts:</p>
+<ol type="1">
+<li><p>The interval is <strong>around the point estimate</strong>, which represents our best estimate of the population parameter.</p></li>
+<li><p>The <strong>standard error (SE)</strong> is utilized to quantify the extent of variability around the point estimate.</p></li>
+</ol>
+</div>
+<section id="confidence-interval-for-the-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-the-mean">
+<span class="header-section-number">18.1</span> Confidence interval for the mean</h2>
+<p>According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (<a href="sampling.html" class="quarto-xref"><span>Chapter 17</span></a>). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within <span class="math inline">\(\pm 1.96\)</span> SE from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+<p>The formula for the confidence interval (CI) of mean equals:</p>
+<p><span id="eq-CI"><span class="math display">\[ 95\%CI=\bar{x} \ \pm 1.96 \ \sigma_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{\sigma}{\sqrt{n}}  \tag{18.1}\]</span></span></p>
+<p>and if the population standard deviation σ is unknown, the sample standard deviation, sd, is used in the <a href="#eq-CI" class="quarto-xref">Equation&nbsp;<span>18.1</span></a>:</p>
+<p><span id="eq-CI2"><span class="math display">\[ 95\%CI=\bar{x} \ \pm 1.96 \ SE_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{sd}{\sqrt{n}}  \tag{18.2}\]</span></span></p>
+<p>The intuitive meaning of “confidence” in a confidence interval might not be immediately clear. To understand what confidence truly represents, let’s consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pop01" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pop01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-pop01-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pop01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.1: A hypothetical population of 100,000 observations. The dashed black line represents the population, μ.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Next, we generate 100 random samples of size 10 from our population distribution and we construct a 95% confidence interval for each sample.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-intervals1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-intervals1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-intervals1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="912">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intervals1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.2: 100 Sample Means of Size 10 (with 95% Intervals) from the Population.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>In <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; <span class="math inline">\(\mu\)</span> = 126 mmHg). This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.</p>
+<p>&nbsp;</p>
+<p>Next, we construct the confidence intervals of 100 randomly generated samples of size = 50 from our population (<a href="#fig-intervals2" class="quarto-xref">Figure&nbsp;<span>18.3</span></a>):</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-intervals2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-intervals2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-intervals2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="912">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intervals2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.3: 100 Sample Means of Size 50 (with 95% Intervals) from the Population.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="content-box-blue">
+<p>As sample size increases, two key things happen:</p>
+<ol type="1">
+<li>The sample statistic (points) gets closer to the population parameter (black dashed line).</li>
+<li>The uncertainty around the estimate shrinks (confidence intervals become narrower).</li>
+</ol>
+</div>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -732,22 +820,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./roc.html" class="pagination-link" aria-label="Receiver Operating Characteristic (ROC) curve">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./sampling.html" class="pagination-link" aria-label="Populations and samples">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populations and samples</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./inference.html" class="pagination-link" aria-label="Foundations for statistical inference">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright 2023, Konstantinos I. Bougioukas</p>
 </div>   
@@ -758,9 +843,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer>
-<div class="page-columns page-rows-contents page-layout-article"><div class="social-share"><a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical Statistics in Medicine with R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical Statistics in Medicine with R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a></div></div>
-
+</footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share">
+<a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a>
+</div></div>
 
 
 

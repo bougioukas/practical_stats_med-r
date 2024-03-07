@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R – 19&nbsp; Two-sample t-test (Student’s t-test)</title>
+<title>Practical Statistics in Medicine with R – 20&nbsp; Two-sample t-test (Student’s t-test)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -290,122 +290,128 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,29 +430,29 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">19.1</span> Research question and Hypothesis Testing</a></li>
-  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">19.2</span> Packages we need</a></li>
-  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">19.3</span> Preparing the data</a></li>
+<li><a href="#research-question-and-hypothesis-testing" id="toc-research-question-and-hypothesis-testing" class="nav-link active" data-scroll-target="#research-question-and-hypothesis-testing"><span class="header-section-number">20.1</span> Research question and Hypothesis Testing</a></li>
+  <li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link" data-scroll-target="#packages-we-need"><span class="header-section-number">20.2</span> Packages we need</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">20.3</span> Preparing the data</a></li>
   <li>
-<a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">19.4</span> Assumptions</a>
+<a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">20.4</span> Assumptions</a>
   <ul class="collapse">
 <li><a href="#a.-explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" id="toc-a.-explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality" class="nav-link" data-scroll-target="#a.-explore-the-characteristics-of-distribution-for-each-group-and-check-for-normality">A. Explore the characteristics of distribution for each group and check for normality</a></li>
   <li><a href="#b.-check-levenes-test-for-equality-of-variances" id="toc-b.-check-levenes-test-for-equality-of-variances" class="nav-link" data-scroll-target="#b.-check-levenes-test-for-equality-of-variances">B. Check Levene’s test for equality of variances</a></li>
   </ul>
 </li>
   <li>
-<a href="#run-the-t-test" id="toc-run-the-t-test" class="nav-link" data-scroll-target="#run-the-t-test"><span class="header-section-number">19.5</span> Run the t-test</a>
+<a href="#run-the-t-test" id="toc-run-the-t-test" class="nav-link" data-scroll-target="#run-the-t-test"><span class="header-section-number">20.5</span> Run the t-test</a>
   <ul class="collapse">
 <li><a href="#formulas" id="toc-formulas" class="nav-link" data-scroll-target="#formulas">Formulas</a></li>
   <li><a href="#in-r" id="toc-in-r" class="nav-link" data-scroll-target="#in-r">In R:</a></li>
   </ul>
 </li>
-  <li><a href="#present-the-results" id="toc-present-the-results" class="nav-link" data-scroll-target="#present-the-results"><span class="header-section-number">19.6</span> Present the results</a></li>
+  <li><a href="#present-the-results" id="toc-present-the-results" class="nav-link" data-scroll-target="#present-the-results"><span class="header-section-number">20.6</span> Present the results</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-two_samples" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./student_t_test.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-two_samples" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></h1>
 </div>
 
 
@@ -479,8 +485,8 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-<section id="research-question-and-hypothesis-testing" class="level2" data-number="19.1"><h2 data-number="19.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
-<span class="header-section-number">19.1</span> Research question and Hypothesis Testing</h2>
+<section id="research-question-and-hypothesis-testing" class="level2" data-number="20.1"><h2 data-number="20.1" class="anchored" data-anchor-id="research-question-and-hypothesis-testing">
+<span class="header-section-number">20.1</span> Research question and Hypothesis Testing</h2>
 <p>We consider the data in <em>depression</em> dataset. In an experiment designed to test the effectiveness of paroxetine for treating bipolar depression, the participants were randomly assigned into two groups (paroxetine Vs placebo). The researchers used the Hamilton Depression Rating Scale (HDRS) to measure the depression state of the participants and wanted to find out if the HDRS score is different in paroxetine group as compared to placebo group at the end of the experiment. The significance level <span class="math inline">\(\alpha\)</span> was set to 0.05.</p>
 <p><strong>Note:</strong> A score of 0–7 in HDRS is generally accepted to be within the normal range, while a score of 20 or higher indicates at least moderate severity.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -501,8 +507,8 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-</section><section id="packages-we-need" class="level2" data-number="19.2"><h2 data-number="19.2" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">19.2</span> Packages we need</h2>
+</section><section id="packages-we-need" class="level2" data-number="20.2"><h2 data-number="20.2" class="anchored" data-anchor-id="packages-we-need">
+<span class="header-section-number">20.2</span> Packages we need</h2>
 <p>We need to load the following packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># packages for graphs</span></span>
@@ -522,8 +528,8 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/report/">report</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="preparing-the-data" class="level2" data-number="19.3"><h2 data-number="19.3" class="anchored" data-anchor-id="preparing-the-data">
-<span class="header-section-number">19.3</span> Preparing the data</h2>
+</section><section id="preparing-the-data" class="level2" data-number="20.3"><h2 data-number="20.3" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">20.3</span> Preparing the data</h2>
 <p>We import the data <em>depression</em> in R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
@@ -532,11 +538,11 @@ window.Quarto = {
 <div class="cell">
 <div id="fig-depression" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-4ad9346a5230c79e281f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4ad9346a5230c79e281f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76"],["placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine"],[19,21,28,22,22,28,23,17,19,20,26,23,23,22,19,28,23,14,24,20,17,21,18,19,19,15,25,22,17,26,23,20,25,25,25,24,24,21,20,20,19,21,17,18,19,26,21,21,27,22,15,18,19,25,22,22,21,18,27,22,13,23,19,16,20,16,18,18,14,24,21,16,25,22,19,24]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>intervention<\/th>\n      <th>HDRS<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"intervention","targets":1},{"name":"HDRS","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c13f8fc6e120ee941370" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c13f8fc6e120ee941370">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76"],["placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","placebo","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine","paroxetine"],[19,21,28,22,22,28,23,17,19,20,26,23,23,22,19,28,23,14,24,20,17,21,18,19,19,15,25,22,17,26,23,20,25,25,25,24,24,21,20,20,19,21,17,18,19,26,21,21,27,22,15,18,19,25,22,22,21,18,27,22,13,23,19,16,20,16,18,18,14,24,21,16,25,22,19,24]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>intervention<\/th>\n      <th>HDRS<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"intervention","targets":1},{"name":"HDRS","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.1: Table with data from “depression” file.
+Figure&nbsp;20.1: Table with data from “depression” file.
 </figcaption></figure>
 </div>
 </div>
@@ -563,8 +569,8 @@ $ intervention &lt;fct&gt; placebo, placebo, placebo, placebo, placebo, placebo,
 $ HDRS         &lt;dbl&gt; 19, 21, 28, 22, 22, 28, 23, 17, 19, 20, 26, 23, 23, 22, 1…</code></pre>
 </div>
 </div>
-</section><section id="assumptions" class="level2" data-number="19.4"><h2 data-number="19.4" class="anchored" data-anchor-id="assumptions">
-<span class="header-section-number">19.4</span> Assumptions</h2>
+</section><section id="assumptions" class="level2" data-number="20.4"><h2 data-number="20.4" class="anchored" data-anchor-id="assumptions">
+<span class="header-section-number">20.4</span> Assumptions</h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -598,7 +604,7 @@ $ HDRS         &lt;dbl&gt; 19, 21, 28, 22, 22, 28, 23, 17, 19, 20, 26, 23, 23, 2
 <img src="student_t_test_files/figure-html/fig-rainplot1-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rainplot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.2: Raincloud plot of HDRS variable stratified by intervention.
+Figure&nbsp;20.2: Raincloud plot of HDRS variable stratified by intervention.
 </figcaption></figure>
 </div>
 </div>
@@ -616,7 +622,7 @@ Figure&nbsp;19.2: Raincloud plot of HDRS variable stratified by intervention.
 <img src="student_t_test_files/figure-html/fig-qq_HDRS-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_HDRS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.3: Normality Q-Q plot for HDRS for paroxetine and placebo.
+Figure&nbsp;20.3: Normality Q-Q plot for HDRS for paroxetine and placebo.
 </figcaption></figure>
 </div>
 </div>
@@ -830,23 +836,23 @@ Normality tests frequently fail to be valuable indicators
 <p>If the assumption of equal variances is not satisfied (<span class="math inline">\(H_o\)</span> of Levene’s test is rejected), the <strong>Welch’s t-test</strong> can be applied. This statistical test assumes normality but does not assume equal variances.</p>
 </div>
 </div>
-</section></section><section id="run-the-t-test" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="run-the-t-test">
-<span class="header-section-number">19.5</span> Run the t-test</h2>
+</section></section><section id="run-the-t-test" class="level2" data-number="20.5"><h2 data-number="20.5" class="anchored" data-anchor-id="run-the-t-test">
+<span class="header-section-number">20.5</span> Run the t-test</h2>
 <section id="formulas" class="level3"><h3 class="anchored" data-anchor-id="formulas">Formulas</h3>
 <p>We will perform a pooled variance t-test (Student’s t-test) to test the null hypothesis that the mean HDRS score is the same for both groups (paroxetine and placebo).</p>
 <ul>
 <li>Under this <span class="math inline">\(H_o\)</span>, the test statistic is:</li>
 </ul>
-<p><span id="eq-t1"><span class="math display">\[t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}} \tag{19.1}\]</span></span></p>
+<p><span id="eq-t1"><span class="math display">\[t = \frac{\bar{x}_{1} - \bar{x}_{2}}{SE_{\bar{x}_{1} - \bar{x}_{2}}}= \frac{\bar{x}_{1} - \bar{x}_{2}}{s_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}} \tag{20.1}\]</span></span></p>
 <p>where <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes for paroxetine and placebo groups respectively, and <span class="math inline">\(s_{p}\)</span> is an estimate of the pooled standard deviation of the two groups which is calculated by the following equation:</p>
-<p><span id="eq-sp"><span class="math display">\[s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}} \tag{19.2}\]</span></span></p>
+<p><span id="eq-sp"><span class="math display">\[s_{p} = \sqrt{\frac{(n_{1}-1)s_{1}^2 + (n_{2}-1)s_{2}^2}{n_{1}+ n_{2}-2}} \tag{20.2}\]</span></span></p>
 <p>Under the null hypothesis, the t statistic follows the t-distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom (d.f.).</p>
 <ul>
 <li>The <strong>95% confidence interval</strong> of the mean difference is:</li>
 </ul>
 <p><span id="eq-ci"><span class="math display">\[
 95\% \ CI = \bar x_1 - \bar x_2 \pm t^{*}_{df;a/2} * SE_{\bar x_1 - \bar x_2}
-\tag{19.3}\]</span></span></p>
+\tag{20.3}\]</span></span></p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -985,8 +991,8 @@ mean in group paroxetine    mean in group placebo
 </div>
 </div>
 <p>The difference between means (20.33 - 21.49) equals -1.16 units and it is not significant (failed to reject <span class="math inline">\(H_0\)</span>; p = 0.16 &gt; 0.05).</p>
-</section></section><section id="present-the-results" class="level2" data-number="19.6"><h2 data-number="19.6" class="anchored" data-anchor-id="present-the-results">
-<span class="header-section-number">19.6</span> Present the results</h2>
+</section></section><section id="present-the-results" class="level2" data-number="20.6"><h2 data-number="20.6" class="anchored" data-anchor-id="present-the-results">
+<span class="header-section-number">20.6</span> Present the results</h2>
 <p><strong>Summary table</strong></p>
 <p>It is common practice to report the mean (sd) for each group in summary tables.</p>
 <div class="cell">
@@ -1003,23 +1009,23 @@ mean in group paroxetine    mean in group placebo
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_n.html">add_n</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="kzuksqhity" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kzuksqhity table {
+<div id="bpgbaoutqq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bpgbaoutqq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kzuksqhity thead, #kzuksqhity tbody, #kzuksqhity tfoot, #kzuksqhity tr, #kzuksqhity td, #kzuksqhity th {
+#bpgbaoutqq thead, #bpgbaoutqq tbody, #bpgbaoutqq tfoot, #bpgbaoutqq tr, #bpgbaoutqq td, #bpgbaoutqq th {
   border-style: none;
 }
 
-#kzuksqhity p {
+#bpgbaoutqq p {
   margin: 0;
   padding: 0;
 }
 
-#kzuksqhity .gt_table {
+#bpgbaoutqq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1045,12 +1051,12 @@ mean in group paroxetine    mean in group placebo
   border-left-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_caption {
+#bpgbaoutqq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kzuksqhity .gt_title {
+#bpgbaoutqq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1062,7 +1068,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-width: 0;
 }
 
-#kzuksqhity .gt_subtitle {
+#bpgbaoutqq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1074,7 +1080,7 @@ mean in group paroxetine    mean in group placebo
   border-top-width: 0;
 }
 
-#kzuksqhity .gt_heading {
+#bpgbaoutqq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1086,13 +1092,13 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_bottom_border {
+#bpgbaoutqq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_col_headings {
+#bpgbaoutqq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1107,7 +1113,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_col_heading {
+#bpgbaoutqq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1127,7 +1133,7 @@ mean in group paroxetine    mean in group placebo
   overflow-x: hidden;
 }
 
-#kzuksqhity .gt_column_spanner_outer {
+#bpgbaoutqq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1139,15 +1145,15 @@ mean in group paroxetine    mean in group placebo
   padding-right: 4px;
 }
 
-#kzuksqhity .gt_column_spanner_outer:first-child {
+#bpgbaoutqq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kzuksqhity .gt_column_spanner_outer:last-child {
+#bpgbaoutqq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kzuksqhity .gt_column_spanner {
+#bpgbaoutqq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1159,11 +1165,11 @@ mean in group paroxetine    mean in group placebo
   width: 100%;
 }
 
-#kzuksqhity .gt_spanner_row {
+#bpgbaoutqq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kzuksqhity .gt_group_heading {
+#bpgbaoutqq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1189,7 +1195,7 @@ mean in group paroxetine    mean in group placebo
   text-align: left;
 }
 
-#kzuksqhity .gt_empty_group_heading {
+#bpgbaoutqq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1204,15 +1210,15 @@ mean in group paroxetine    mean in group placebo
   vertical-align: middle;
 }
 
-#kzuksqhity .gt_from_md > :first-child {
+#bpgbaoutqq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kzuksqhity .gt_from_md > :last-child {
+#bpgbaoutqq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kzuksqhity .gt_row {
+#bpgbaoutqq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1231,7 +1237,7 @@ mean in group paroxetine    mean in group placebo
   overflow-x: hidden;
 }
 
-#kzuksqhity .gt_stub {
+#bpgbaoutqq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1244,7 +1250,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#kzuksqhity .gt_stub_row_group {
+#bpgbaoutqq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1258,15 +1264,15 @@ mean in group paroxetine    mean in group placebo
   vertical-align: top;
 }
 
-#kzuksqhity .gt_row_group_first td {
+#bpgbaoutqq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kzuksqhity .gt_row_group_first th {
+#bpgbaoutqq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kzuksqhity .gt_summary_row {
+#bpgbaoutqq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1276,16 +1282,16 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#kzuksqhity .gt_first_summary_row {
+#bpgbaoutqq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_first_summary_row.thick {
+#bpgbaoutqq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kzuksqhity .gt_last_summary_row {
+#bpgbaoutqq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1295,7 +1301,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_grand_summary_row {
+#bpgbaoutqq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1305,7 +1311,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#kzuksqhity .gt_first_grand_summary_row {
+#bpgbaoutqq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1315,7 +1321,7 @@ mean in group paroxetine    mean in group placebo
   border-top-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_last_grand_summary_row_top {
+#bpgbaoutqq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1325,11 +1331,11 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_striped {
+#bpgbaoutqq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kzuksqhity .gt_table_body {
+#bpgbaoutqq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1338,7 +1344,7 @@ mean in group paroxetine    mean in group placebo
   border-bottom-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_footnotes {
+#bpgbaoutqq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1352,7 +1358,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_footnote {
+#bpgbaoutqq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1361,7 +1367,7 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#kzuksqhity .gt_sourcenotes {
+#bpgbaoutqq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1375,7 +1381,7 @@ mean in group paroxetine    mean in group placebo
   border-right-color: #D3D3D3;
 }
 
-#kzuksqhity .gt_sourcenote {
+#bpgbaoutqq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1383,63 +1389,63 @@ mean in group paroxetine    mean in group placebo
   padding-right: 5px;
 }
 
-#kzuksqhity .gt_left {
+#bpgbaoutqq .gt_left {
   text-align: left;
 }
 
-#kzuksqhity .gt_center {
+#bpgbaoutqq .gt_center {
   text-align: center;
 }
 
-#kzuksqhity .gt_right {
+#bpgbaoutqq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kzuksqhity .gt_font_normal {
+#bpgbaoutqq .gt_font_normal {
   font-weight: normal;
 }
 
-#kzuksqhity .gt_font_bold {
+#bpgbaoutqq .gt_font_bold {
   font-weight: bold;
 }
 
-#kzuksqhity .gt_font_italic {
+#bpgbaoutqq .gt_font_italic {
   font-style: italic;
 }
 
-#kzuksqhity .gt_super {
+#bpgbaoutqq .gt_super {
   font-size: 65%;
 }
 
-#kzuksqhity .gt_footnote_marks {
+#bpgbaoutqq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kzuksqhity .gt_asterisk {
+#bpgbaoutqq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kzuksqhity .gt_indent_1 {
+#bpgbaoutqq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kzuksqhity .gt_indent_2 {
+#bpgbaoutqq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kzuksqhity .gt_indent_3 {
+#bpgbaoutqq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kzuksqhity .gt_indent_4 {
+#bpgbaoutqq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kzuksqhity .gt_indent_5 {
+#bpgbaoutqq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1850,12 +1856,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./inference.html" class="pagination-link" aria-label="Foundations for statistical inference">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./wmw_test.html" class="pagination-link" aria-label="Wilcoxon-Mann-Whitney (Mann-Whitney U) test">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
