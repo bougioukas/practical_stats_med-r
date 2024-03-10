@@ -581,7 +581,7 @@ Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean
 <p><span id="eq-se2"><span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}} \tag{17.3}\]</span></span></p>
 <p>The <strong>Standard Error of the mean</strong> (SEM) is a metric that describes the variability of sample means within the <strong>sampling distribution</strong>. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.</p>
 <div class="content-box-yellow">
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
 <p>The CD4 count of a sample of 64 healthy individuals has a mean of 850 <span class="math inline">\(counts/mm^3\)</span> with a standard deviation of 240 <span class="math inline">\(counts/mm^3\)</span>. The standard error of the mean for this population is calculated as follows:</p>
 <p><span class="math inline">\(SE_{\bar{x}} = \frac{s}{\sqrt{n}} = \frac{240}{\sqrt{64}} = \frac{240}{8} = 30 \ counts/mm^3\)</span></p>
 <p>The SEM provides a measure of the precision of our estimate of the population mean CD4 counts. If we were to repeat the sampling process numerous times and calculate the mean CD4 count each time, we would expect the calculated means to vary around the population mean by approximately 30 <span class="math inline">\(counts/mm^3\)</span>.</p>
@@ -637,7 +637,9 @@ Figure&nbsp;17.5: Distribution of sample means. Each panel represents a simulati
 </div>
 </section></section><section id="central-limit-theorem-clm-for-sample-means" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="central-limit-theorem-clm-for-sample-means">
 <span class="header-section-number">17.3</span> Central Limit Theorem (CLM) for sample means</h2>
+<div class="content-box-green">
 <p>The <strong>Central Limit Theorem</strong> (CLM) for sample means in statistics states that, given a sufficiently large sample size, the sampling distribution of the mean for a variable will approximate a normal distribution <strong>regardless</strong> of the variable’s underlying distribution of the population observations: <span class="math inline">\(\overline{X} \sim N(\mu, \sigma^2/n)\)</span>.</p>
+</div>
 <p>To illustrate this, let’s generate some data from a continuous uniform distribution (100,000 observations):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">

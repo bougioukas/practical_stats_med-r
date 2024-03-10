@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -391,7 +425,16 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#confidence-interval-for-the-mean" id="toc-confidence-interval-for-the-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-the-mean"><span class="header-section-number">18.1</span> Confidence interval for the mean</a></li>
+<li>
+<a href="#confidence-interval-for-the-mean" id="toc-confidence-interval-for-the-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-the-mean"><span class="header-section-number">18.1</span> Confidence interval for the mean</a>
+  <ul class="collapse">
+<li><a href="#constructing-a-confidence-interval" id="toc-constructing-a-confidence-interval" class="nav-link" data-scroll-target="#constructing-a-confidence-interval">Constructing a confidence interval</a></li>
+  <li><a href="#confidence-level" id="toc-confidence-level" class="nav-link" data-scroll-target="#confidence-level">Confidence level</a></li>
+  <li><a href="#understanding-the-condidence-interval" id="toc-understanding-the-condidence-interval" class="nav-link" data-scroll-target="#understanding-the-condidence-interval">Understanding the condidence interval</a></li>
+  <li><a href="#sample-size-and-condidence-interval" id="toc-sample-size-and-condidence-interval" class="nav-link" data-scroll-target="#sample-size-and-condidence-interval">Sample size and condidence interval</a></li>
+  </ul>
+</li>
+  <li><a href="#confidence-interval-for-proportion" id="toc-confidence-interval-for-proportion" class="nav-link" data-scroll-target="#confidence-interval-for-proportion"><span class="header-section-number">18.2</span> Confidence interval for proportion</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -422,28 +465,99 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Explain the difference between population, sample and sampling distributions</li>
-<li>Understand the properties of the distribution of sample means</li>
-<li>Understand the central limit theorem</li>
+<li>Understand the concept of confidence intervals</li>
+<li>Calculate and interpret confidence intervals for mean</li>
+<li>Calculate and interpret confidence intervals for proportion</li>
 </ul>
 </div>
 </div>
 <p>&nbsp;</p>
-<div class="content-box-blue">
-<p><strong>Construction of a confidence interval</strong></p>
+<section id="confidence-interval-for-the-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-the-mean">
+<span class="header-section-number">18.1</span> Confidence interval for the mean</h2>
+<section id="constructing-a-confidence-interval" class="level3"><h3 class="anchored" data-anchor-id="constructing-a-confidence-interval">Constructing a confidence interval</h3>
 <p>We will base the construction of a confidence interval on two key concepts:</p>
 <ol type="1">
 <li><p>The interval is <strong>around the point estimate</strong>, which represents our best estimate of the population parameter.</p></li>
 <li><p>The <strong>standard error (SE)</strong> is utilized to quantify the extent of variability around the point estimate.</p></li>
 </ol>
+<p>According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (<a href="sampling.html" class="quarto-xref"><span>Chapter 17</span></a>). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within <span class="math inline">\(\pm 1.96 \sigma_{\bar{x}}\)</span> from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-sample_distribution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
-<section id="confidence-interval-for-the-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-the-mean">
-<span class="header-section-number">18.1</span> Confidence interval for the mean</h2>
-<p>According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (<a href="sampling.html" class="quarto-xref"><span>Chapter 17</span></a>). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within <span class="math inline">\(\pm 1.96\)</span> SE from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
-<p>The formula for the confidence interval (CI) of mean equals:</p>
-<p><span id="eq-CI"><span class="math display">\[ 95\%CI=\bar{x} \ \pm 1.96 \ \sigma_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{\sigma}{\sqrt{n}}  \tag{18.1}\]</span></span></p>
-<p>and if the population standard deviation σ is unknown, the sample standard deviation, sd, is used in the <a href="#eq-CI" class="quarto-xref">Equation&nbsp;<span>18.1</span></a>:</p>
-<p><span id="eq-CI2"><span class="math display">\[ 95\%CI=\bar{x} \ \pm 1.96 \ SE_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{sd}{\sqrt{n}}  \tag{18.2}\]</span></span></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>In this case, the formula for the confidence interval (CI) of mean equals:</p>
+<p><span id="eq-CI"><span class="math display">\[ 95\%CI=\mu_{\bar{x}} \ \pm 1.96 \ \sigma_{\bar{x}} = \mu_{\bar{x}} \ \pm 1.96  \frac{\sigma}{\sqrt{n}}  \tag{18.1}\]</span></span></p>
+<p>When the sample size <em>n</em> is sufficiently large, the sample mean provides a good estimate of the population mean. Additionally, if the population standard deviation <em>σ</em> is unknown, we can estimate it by using the sample standard deviation <em>s</em>, and the formula becomes:</p>
+<p><span id="eq-CI2"><span class="math display">\[ 95\%CI=\bar{x} \ \pm 1.96 \ SE_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{s}{\sqrt{n}}  \tag{18.2}\]</span></span></p>
+<div class="content-box-yellow">
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
+<p>The serum creatinine of a sample of 121 elderly men has a mean of 1.15 mg/dl with a standard deviation of 0.3 mg/dl. The 95% confidence interval for the mean creatinine of this population is calculated as follows:</p>
+<p><strong>Lower limit of 95% CI</strong></p>
+<p><span class="math inline">\(LL = 1.15 \ - 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ - 1.96  \frac{0.3}{11} = 1.15 \ - 0.0534 = 1.096\)</span></p>
+<p><strong>Upper limit of 95% CI</strong></p>
+<p><span class="math inline">\(UL = 1.15 \ + 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ + 1.96  \frac{0.3}{11} = 1.15 \ + 0.0534 = 1.203\)</span></p>
+</div>
+<p><strong>In R:</strong></p>
+<p>For a 95% confidence interval, each of the grey areas in <a href="#fig-sample_distribution" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">121</span></span>
+<span><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fl">1.15</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fl">0.3</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.025</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute lower limit of 95% CI</span></span>
+<span><span class="va">lower_95CI</span> <span class="op">&lt;-</span> <span class="va">mean</span> <span class="op">-</span> <span class="va">z</span><span class="op">*</span><span class="op">(</span><span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">lower_95CI</span></span>
+<span></span>
+<span><span class="co"># compute upper limit of 95% CI</span></span>
+<span><span class="va">upper_95CI</span> <span class="op">&lt;-</span> <span class="va">mean</span> <span class="op">+</span> <span class="va">z</span><span class="op">*</span><span class="op">(</span><span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">upper_95CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 1.096546
+[1] 1.203454</code></pre>
+</div>
+</div>
+</section><section id="confidence-level" class="level3"><h3 class="anchored" data-anchor-id="confidence-level">Confidence level</h3>
+<p>However, there is no particular reason for choosing 95% other than convention, and confidence levels of 90% or 99% are sometimes used. For example, the 99% confidence interval for the mean creatinine is <span class="math inline">\(\pm 2.58 \sigma_{\bar{x}}\)</span> from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-sample_distribution2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.2: Sampling distribution of mean and 99% CI.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Now, each of the grey areas in <a href="#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>18.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.005</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute lower limit of 95% CI</span></span>
+<span><span class="va">lower_99CI</span> <span class="op">&lt;-</span> <span class="va">mean</span> <span class="op">-</span> <span class="va">z2</span><span class="op">*</span><span class="op">(</span><span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">lower_99CI</span></span>
+<span></span>
+<span><span class="co"># compute upper limit of 95% CI</span></span>
+<span><span class="va">upper_99CI</span> <span class="op">&lt;-</span> <span class="va">mean</span> <span class="op">+</span> <span class="va">z2</span><span class="op">*</span><span class="op">(</span><span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">upper_99CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 1.07975
+[1] 1.22025</code></pre>
+</div>
+</div>
+<p>We observe that a 99% CI (1.07-1.22) is wider compared to the 95% CI (1.09-1.20). This wider range reflects the greater certainty (99%) of capturing the population parameter. Nonetheless, this increased level of confidence comes at the expense of precision, especially with smaller datasets.</p>
+<p>&nbsp;</p>
+</section><section id="understanding-the-condidence-interval" class="level3"><h3 class="anchored" data-anchor-id="understanding-the-condidence-interval">Understanding the condidence interval</h3>
 <p>The intuitive meaning of “confidence” in a confidence interval might not be immediately clear. To understand what confidence truly represents, let’s consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -452,7 +566,7 @@ window.Quarto = {
 <img src="conf_intervals_files/figure-html/fig-pop01-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pop01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.1: A hypothetical population of 100,000 observations. The dashed black line represents the population, μ.
+Figure&nbsp;18.3: A hypothetical population of 100,000 observations. The dashed black line represents the population, μ.
 </figcaption></figure>
 </div>
 </div>
@@ -465,14 +579,15 @@ Figure&nbsp;18.1: A hypothetical population of 100,000 observations. The dashed 
 <img src="conf_intervals_files/figure-html/fig-intervals1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="912">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intervals1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.2: 100 Sample Means of Size 10 (with 95% Intervals) from the Population.
+Figure&nbsp;18.4: 100 Sample Means of Size 10 (with 95% Intervals) from the Population.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; <span class="math inline">\(\mu\)</span> = 126 mmHg). This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.</p>
+<p>In <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.4</span></a>, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; <span class="math inline">\(\mu\)</span> = 126 mmHg). <strong>This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.</strong></p>
 <p>&nbsp;</p>
-<p>Next, we construct the confidence intervals of 100 randomly generated samples of size = 50 from our population (<a href="#fig-intervals2" class="quarto-xref">Figure&nbsp;<span>18.3</span></a>):</p>
+</section><section id="sample-size-and-condidence-interval" class="level3"><h3 class="anchored" data-anchor-id="sample-size-and-condidence-interval">Sample size and condidence interval</h3>
+<p>Next, we construct the 95% confidence intervals of 100 randomly generated samples of size 50 from our population (<a href="#fig-intervals2" class="quarto-xref">Figure&nbsp;<span>18.5</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-intervals2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -480,17 +595,83 @@ Figure&nbsp;18.2: 100 Sample Means of Size 10 (with 95% Intervals) from the Popu
 <img src="conf_intervals_files/figure-html/fig-intervals2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="912">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intervals2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.3: 100 Sample Means of Size 50 (with 95% Intervals) from the Population.
+Figure&nbsp;18.5: 100 Sample Means of Size 50 (with 95% Intervals) from the Population.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<div class="content-box-blue">
-<p>As sample size increases, two key things happen:</p>
+<p>Comparing the <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.4</span></a> and <a href="#fig-intervals2" class="quarto-xref">Figure&nbsp;<span>18.5</span></a>, we notice two key trends as the sample size increases from 10 to 50:</p>
 <ol type="1">
 <li>The sample statistic (points) gets closer to the population parameter (black dashed line).</li>
 <li>The uncertainty around the estimate shrinks (confidence intervals become narrower).</li>
 </ol>
+<p>&nbsp;</p>
+<div class="content-box-green">
+<p>A confidence interval is typically expressed as a percentage (e.g., 90%, 95%, 99% CI) and reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.</p>
+<p>Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.</p>
+</div>
+</section></section><section id="confidence-interval-for-proportion" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="confidence-interval-for-proportion">
+<span class="header-section-number">18.2</span> Confidence interval for proportion</h2>
+<p>Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion <span class="math inline">\(\hat{p} = \frac{X}{n}\)</span>, where n is the sample size. If we were to repeatedly draw samples of size <em>n</em> from our population and visualize the sample proportions <span class="math inline">\(\hat{p_1} = \frac{X_1}{n}\)</span>, <span class="math inline">\(\hat{p_2} = \frac{X_2}{n}\)</span>, <span class="math inline">\(\hat{p_3} = \frac{X_3}{n}\)</span> and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies <span class="math inline">\(min(np, n(1-p)) \geq 5\)</span>, the sampling distribution of the proportion would approximate a normal distribution, <span class="math inline">\(N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-sample_distribution3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.6: Sampling distribution of proportion and 95% CI.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Similar to a confidence interval for the mean <a href="#eq-CI" class="quarto-xref">Equation&nbsp;<span>18.1</span></a>, a confidence interval for a proportion can be constructed as follows:</p>
+<p><span id="eq-CI3"><span class="math display">\[ 95\%CI= \mu_{\hat{p}} \ \pm 1.96 \ \sigma_{\hat{p}} = p \ \pm 1.96  \sqrt{\frac{p(1- p)}{n}}  \tag{18.3}\]</span></span></p>
+<p>and when the p and <span class="math inline">\(\sigma_{\hat{p}}\)</span> are unknown:</p>
+<p><span id="eq-CI4"><span class="math display">\[ 95\%CI= \hat{p} \ \pm 1.96 \ SE_{\hat{p}} = \hat{p} \ \pm 1.96  \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}  \tag{18.4}\]</span></span></p>
+<p>where the standard error for proportion is <span class="math inline">\(SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span>.</p>
+<div class="content-box-yellow">
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
+<p>Suppose a pulmonologist chooses a random sample of 317 patients from the patient register, and finds that 34 of them have a history of suffering from chronic obstructive pulmonary disease (COPD). The 95% confidence interval for the proportion of COPD is calculated as follows:</p>
+<p><span class="math inline">\(\hat{p} = \frac{X}{n} = \frac{34}{317}=0.107 \ or \ 10.7\%\)</span></p>
+<p>Additionally, the condition <span class="math inline">\(min(np, n(1-p)) \geq 5\)</span> is satisfied:</p>
+<p>np = 317 * 0.107 = 33.9 &gt; 5</p>
+<p>n(1-p) = 317 * (1 - 0.107) = 317 * 0.893 = 283 &gt; 5</p>
+<p><strong>Lower limit of 95% CI</strong></p>
+<p><span class="math inline">\(LL = 0.107 \ - 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ - 0.034 = 0.073\)</span></p>
+<p><strong>Upper limit of 95% CI</strong></p>
+<p><span class="math inline">\(UL = 0.107 \ + 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ + 0.034 = 0.141\)</span></p>
+</div>
+<p><strong>In R:</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">=</span> <span class="fl">317</span></span>
+<span><span class="va">x</span> <span class="op">=</span> <span class="fl">34</span></span>
+<span></span>
+<span><span class="co"># calculate the proportion</span></span>
+<span><span class="va">p_hat</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">/</span><span class="va">n</span></span>
+<span><span class="va">p_hat</span></span>
+<span></span>
+<span><span class="co"># check the assumption min(np, n(1-p)) ≥ 5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">n</span><span class="op">*</span><span class="va">p_hat</span>, <span class="va">n</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_hat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.025</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">p_hat</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_hat</span><span class="op">)</span><span class="op">/</span><span class="va">n</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute lower limit of 95% CI</span></span>
+<span><span class="va">lower_95CI</span> <span class="op">&lt;-</span> <span class="va">p_hat</span> <span class="op">-</span> <span class="va">z</span><span class="op">*</span><span class="va">se</span></span>
+<span><span class="va">lower_95CI</span></span>
+<span></span>
+<span><span class="co"># compute upper limit of 95% CI</span></span>
+<span><span class="va">upper_95CI</span> <span class="op">&lt;-</span> <span class="va">p_hat</span> <span class="op">+</span> <span class="va">z</span><span class="op">*</span><span class="va">se</span></span>
+<span><span class="va">upper_95CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.1072555
+[1] 34
+[1] 0.07319182
+[1] 0.1413192</code></pre>
+</div>
 </div>
 
 

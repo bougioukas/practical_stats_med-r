@@ -105,7 +105,7 @@ $$SE_{\bar{x}} = \frac{s}{\sqrt{n}}$$ {#eq-se2}
 The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.
 
 ::: content-box-yellow
-`r fa("arrow-right", fill = "orange")`   ***Example***
+`r fa("arrow-right", fill = "orange")`   **Example**
 
 The CD4 count of a sample of 64 healthy individuals has a mean of 850 $counts/mm^3$ with a standard deviation of 240 $counts/mm^3$. The standard error of the mean for this population is calculated as follows:
 
@@ -259,7 +259,12 @@ From @fig-simulation2, it is evident that as the sample size increases, the dist
 
 ## Central Limit Theorem (CLM) for sample means
 
+::: content-box-green
+
 The **Central Limit Theorem** (CLM) for sample means in statistics states that, given a sufficiently large sample size, the sampling distribution of the mean for a variable will approximate a normal distribution **regardless** of the variable's underlying distribution of the population observations: $\overline{X} \sim N(\mu, \sigma^2/n)$.
+
+:::
+
 
 To illustrate this, let's generate some data from a continuous uniform distribution (100,000 observations):
 

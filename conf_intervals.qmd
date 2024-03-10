@@ -14,34 +14,192 @@ Obtaining an exact point estimate of the population parameter from just one rand
 ::: {.callout-caution icon="false"}
 ## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
--   Explain the difference between population, sample and sampling distributions
--   Understand the properties of the distribution of sample means
--   Understand the central limit theorem
+-   Understand the concept of confidence intervals
+-   Calculate and interpret confidence intervals for mean
+-   Calculate and interpret confidence intervals for proportion
 :::
 
  
 
-::: content-box-blue
-**Construction of a confidence interval**
+
+
+## Confidence interval for the mean
+
+### Constructing a confidence interval
 
 We will base the construction of a confidence interval on two key concepts:
 
 1.  The interval is **around the point estimate**, which represents our best estimate of the population parameter.
 
 2.  The **standard error (SE)** is utilized to quantify the extent of variability around the point estimate.
+
+
+According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, $\sigma_{\bar{x}}$. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal).
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-sample_distribution
+#| fig-cap: Sampling distribution of mean and 95% CI.
+#| fig-width: 7.0
+#| fig-height: 5.0
+
+
+# Create a data frame
+df4 <- data.frame(x = seq(-3, 3, by = 0.01),
+                  y = dnorm(seq(-3, 3, by = 0.01), mean = 0, sd = 1))
+
+ggplot() +
+  geom_area(data = df4, mapping = aes(x = ifelse(x < -1.96, x, -3), y = y), 
+            fill = "grey70") +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x > 1.96, x, 3), y = y), 
+            fill = "grey70") +  # Area under the curve
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), linewidth = 1) +
+  scale_x_continuous(breaks = c(-3, -2, -1, 0, 1, 2, 3),                    
+                     labels = expression(-3*sigma[bar(x)], -2*sigma[bar(x)], -1*sigma[bar(x)],      
+                                         mu[bar(x)], +1*sigma[bar(x)], +2*sigma[bar(x)], +3*sigma[bar(x)])) +
+  annotate("text", x = 0, y = 0.42, 
+           label = "Sampling distribution", size = 5) +
+  annotate("text", x = 0, y = 0.2, 
+           label = "Central 95% of the distribution", size = 4) +
+  annotate("text", x = 0, y = 0.02, 
+           label = "95% CI", size = 3) +
+  annotate("text", x = -2.2, y = 0.02, 
+           label = "2.5%", size = 3) +
+  annotate("text", x = 2.2, y = 0.02, 
+           label = "2.5%", size = 3) +
+  geom_segment(aes(x = -1.96, y = 0.01, xend = 1.96, yend = 0.01),
+               arrow = arrow(length = unit(0.03, "npc"), ends = "both")) +
+  labs(y = "Probabiblity density") +
+  theme_classic(base_size = 14) +
+  theme(axis.title.x = element_blank())
+
+```
+
+In this case, the formula for the confidence interval (CI) of mean equals:
+
+$$ 95\%CI=\mu_{\bar{x}} \ \pm 1.96 \ \sigma_{\bar{x}} = \mu_{\bar{x}} \ \pm 1.96  \frac{\sigma}{\sqrt{n}} $$ {#eq-CI}
+
+When the sample size *n* is sufficiently large, the sample mean provides a good estimate of the population mean. Additionally, if the population standard deviation *σ* is unknown, we can estimate it by using the sample standard deviation *s*, and the formula becomes:
+
+$$ 95\%CI=\bar{x} \ \pm 1.96 \ SE_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{s}{\sqrt{n}} $$ {#eq-CI2}
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Example**
+
+The serum creatinine of a sample of 121 elderly men has a mean of 1.15 mg/dl with a standard deviation of 0.3 mg/dl. The 95% confidence interval for the mean creatinine of this population is calculated as follows:
+
+**Lower limit of 95% CI**
+
+$LL = 1.15 \ - 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ - 1.96  \frac{0.3}{11} = 1.15 \ - 0.0534 = 1.096$
+
+
+**Upper limit of 95% CI**
+
+$UL = 1.15 \ + 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ + 1.96  \frac{0.3}{11} = 1.15 \ + 0.0534 = 1.203$
+
+
 :::
 
-## Confidence interval for the mean
 
-According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96$ SE from the point estimate (the empirical rule; @sec-normal).
+**In R:**
 
-The formula for the confidence interval (CI) of mean equals:
+For a 95% confidence interval, each of the grey areas in @fig-sample_distribution equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.
 
-$$ 95\%CI=\bar{x} \ \pm 1.96 \ \sigma_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{\sigma}{\sqrt{n}} $$ {#eq-CI}
+```{r}
+#| results: hold
 
-and if the population standard deviation σ is unknown, the sample standard deviation, sd, is used in the @eq-CI:
+n <- 121
+mean <- 1.15
+s <- 0.3
+z <- qnorm(0.025, lower.tail = FALSE)
 
-$$ 95\%CI=\bar{x} \ \pm 1.96 \ SE_{\bar{x}} = \bar{x} \ \pm 1.96  \frac{sd}{\sqrt{n}} $$ {#eq-CI2}
+# compute lower limit of 95% CI
+lower_95CI <- mean - z*(s/sqrt(n))
+lower_95CI
+
+# compute upper limit of 95% CI
+upper_95CI <- mean + z*(s/sqrt(n))
+upper_95CI
+```
+
+
+### Confidence level
+
+However, there is no particular reason for choosing 95% other than convention, and confidence levels of 90% or 99% are sometimes used. For example, the 99% confidence interval for the mean creatinine is $\pm 2.58 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal).
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-sample_distribution2
+#| fig-cap: Sampling distribution of mean and 99% CI.
+#| fig-width: 7.0
+#| fig-height: 5.0
+
+
+# Create a data frame
+df4 <- data.frame(x = seq(-3, 3, by = 0.01),
+                  y = dnorm(seq(-3, 3, by = 0.01), mean = 0, sd = 1))
+
+ggplot() +
+  geom_area(data = df4, mapping = aes(x = ifelse(x < -2.58, x, -3), y = y), 
+            fill = "grey70") +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x > 2.58, x, 3), y = y), 
+            fill = "grey70") +  # Area under the curve
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), linewidth = 1) +
+  scale_x_continuous(breaks = c(-2.58, -2, -1, 0, 1, 2, 2.58),                    
+                     labels = expression(-2.58*sigma[bar(x)], -2*sigma[bar(x)],
+                                         -1*sigma[bar(x)],      
+                                         mu[bar(x)], +1*sigma[bar(x)],
+                                         +2*sigma[bar(x)], -2.58*sigma[bar(x)])) +
+  annotate("text", x = 0, y = 0.42, 
+           label = "Sampling distribution", size = 5) +
+  annotate("text", x = 0, y = 0.2, 
+           label = "Central 99% of the distribution", size = 4) +
+  annotate("text", x = 0, y = 0.02, 
+           label = "99% CI", size = 3) +
+  annotate("text", x = -2.7, y = 0.0038, 
+           label = "0.5%", size = 2.5) +
+  annotate("text", x = 2.7, y = 0.0038, 
+           label = "0.5%", size = 2.5) +  
+  geom_segment(aes(x = -2.58, y = 0.01, xend = 2.58, yend = 0.01),
+               arrow = arrow(length = unit(0.03, "npc"), ends = "both")) +
+  labs(y = "Probabiblity density") +
+  theme_classic(base_size = 14) +
+  theme(axis.title.x = element_blank())
+
+```
+
+
+Now, each of the grey areas in @fig-sample_distribution2 equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore: 
+
+```{r}
+#| results: hold
+
+z2 <- qnorm(0.005, lower.tail = FALSE)
+
+# compute lower limit of 95% CI
+lower_99CI <- mean - z2*(s/sqrt(n))
+lower_99CI
+
+# compute upper limit of 95% CI
+upper_99CI <- mean + z2*(s/sqrt(n))
+upper_99CI
+
+```
+
+
+We observe that a 99% CI (1.07-1.22) is wider compared to the 95% CI (1.09-1.20). This wider range reflects the greater certainty (99%) of capturing the population parameter. Nonetheless, this increased level of confidence comes at the expense of precision, especially with smaller datasets.
+
+
+ 
+
+### Understanding the condidence interval
 
 The intuitive meaning of "confidence" in a confidence interval might not be immediately clear. To understand what confidence truly represents, let's consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.
 
@@ -138,11 +296,13 @@ Samps %>%
 
 ```
 
-In @fig-intervals1, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; $\mu$ = 126 mmHg). This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.
+In @fig-intervals1, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; $\mu$ = 126 mmHg). **This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.**
 
  
 
-Next, we construct the confidence intervals of 100 randomly generated samples of size = 50 from our population (@fig-intervals2):
+### Sample size and condidence interval
+
+Next, we construct the 95% confidence intervals of 100 randomly generated samples of size 50 from our population (@fig-intervals2):
 
 ```{r}
 #| echo: false
@@ -196,9 +356,151 @@ Samps %>%
 
 ```
 
-::: content-box-blue
-As sample size increases, two key things happen:
+
+Comparing the @fig-intervals1 and @fig-intervals2, we notice two key trends as the sample size increases from 10 to 50:
 
 1.  The sample statistic (points) gets closer to the population parameter (black dashed line).
 2.  The uncertainty around the estimate shrinks (confidence intervals become narrower).
+
+ 
+
+::: content-box-green
+
+A confidence interval is typically expressed as a percentage (e.g., 90%, 95%, 99% CI) and reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.
+
+Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.
 :::
+
+
+
+
+## Confidence interval for proportion
+
+Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion $\hat{p} = \frac{X}{n}$, where n is the sample size. 
+If we were to repeatedly draw samples of size *n* from our population and visualize the sample proportions $\hat{p_1} = \frac{X_1}{n}$, $\hat{p_2} = \frac{X_2}{n}$, $\hat{p_3} = \frac{X_3}{n}$ and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies $min(np, n(1-p)) \geq 5$, the sampling distribution of the proportion would approximate a normal distribution, $N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})$.
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-sample_distribution3
+#| fig-cap: Sampling distribution of proportion and 95% CI.
+#| fig-width: 7.0
+#| fig-height: 5.0
+
+
+# Create a data frame
+df4 <- data.frame(x = seq(-3, 3, by = 0.01),
+                  y = dnorm(seq(-3, 3, by = 0.01), mean = 0, sd = 1))
+
+ggplot() +
+  geom_area(data = df4, mapping = aes(x = ifelse(x < -1.96, x, -3), y = y), 
+            fill = "grey70") +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x > 1.96, x, 3), y = y), 
+            fill = "grey70") +  # Area under the curve
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), linewidth = 1) +
+  scale_x_continuous(breaks = c(-3, -2, -1, 0, 1, 2, 3),                    
+                     labels = expression(-3*sigma[hat(p)], -2*sigma[hat(p)], -1*sigma[hat(p)],      
+                                         mu[hat(p)], +1*sigma[hat(p)], +2*sigma[hat(p)], +3*sigma[hat(p)])) +
+  annotate("text", x = 0, y = 0.42, 
+           label = "Sampling distribution", size = 5) +
+  annotate("text", x = 0, y = 0.2, 
+           label = "Central 95% of the distribution", size = 4) +
+  annotate("text", x = 0, y = 0.02, 
+           label = "95% CI", size = 3) +
+  annotate("text", x = -2.2, y = 0.02, 
+           label = "2.5%", size = 3) +
+  annotate("text", x = 2.2, y = 0.02, 
+           label = "2.5%", size = 3) +
+  geom_segment(aes(x = -1.96, y = 0.01, xend = 1.96, yend = 0.01),
+               arrow = arrow(length = unit(0.03, "npc"), ends = "both")) +
+  labs(y = "Probabiblity density") +
+  theme_classic(base_size = 14) +
+  theme(axis.title.x = element_blank())
+
+```
+
+
+Similar to a confidence interval for the mean @eq-CI, a confidence interval for a proportion can be constructed as follows:
+
+$$ 95\%CI= \mu_{\hat{p}} \ \pm 1.96 \ \sigma_{\hat{p}} = p \ \pm 1.96  \sqrt{\frac{p(1- p)}{n}} $$ {#eq-CI3}
+
+
+and when the p and $\sigma_{\hat{p}}$ are unknown:
+
+$$ 95\%CI= \hat{p} \ \pm 1.96 \ SE_{\hat{p}} = \hat{p} \ \pm 1.96  \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} $$ {#eq-CI4}
+
+where the standard error for proportion is $SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$.
+
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Example**
+
+Suppose a pulmonologist chooses a random sample of 317 patients
+from the patient register, and finds that 34 of them have a history of suffering from chronic obstructive pulmonary disease (COPD). The 95% confidence interval for the proportion of COPD is calculated as follows:
+
+$\hat{p} = \frac{X}{n} = \frac{34}{317}=0.107 \ or \ 10.7\%$
+
+Additionally, the condition $min(np, n(1-p)) \geq 5$ is satisfied:
+
+np = 317 * 0.107 = 33.9 > 5
+
+n(1-p) = 317 * (1 - 0.107) = 317 * 0.893 = 283 > 5
+
+
+**Lower limit of 95% CI**
+
+$LL = 0.107 \ - 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ - 0.034 = 0.073$
+
+
+**Upper limit of 95% CI**
+
+$UL = 0.107 \ + 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ + 0.034 = 0.141$
+
+:::
+
+
+
+**In R:**
+
+
+
+```{r}
+#| results: hold
+
+n = 317
+x = 34
+
+# calculate the proportion
+p_hat <- x/n
+p_hat
+
+# check the assumption min(np, n(1-p)) ≥ 5
+min(c(n*p_hat, n*(1 - p_hat))) 
+
+
+
+z <- qnorm(0.025, lower.tail = FALSE)
+se <- sqrt(p_hat*(1 - p_hat)/n)
+
+# compute lower limit of 95% CI
+lower_95CI <- p_hat - z*se
+lower_95CI
+
+# compute upper limit of 95% CI
+upper_95CI <- p_hat + z*se
+upper_95CI
+
+```
+
+
+
+
+
+
+
+
+
