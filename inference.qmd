@@ -1,34 +1,46 @@
-# Foundations for statistical inference {#sec-inference}
+# Hypothesis testing {#sec-inference}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+
+library(tidyverse)
+```
+
+Hypothesis testing is a widely used method in research to make inferences about population parameters based on sample data. In the context of health sciences, it is often used to evaluate the effectiveness of interventions, compare treatment outcomes, assess the significance of risk factors, and investigate various health-related phenomena.
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Understand the hypothesis testing
 -   Understand the type of errors
 :::
 
-## Hypothesis Testsing
+## Foundations of hypothesis testing
 
-Hypothesis testing is a method of deciding whether the data are consistent with the null hypothesis. The calculation of the p-value is an important part of the procedure. Given a study with a single outcome measure and a statistical test, hypothesis testing can be summarized in five steps.
+Hypothesis testing is a statistical method used to assess whether the data are consistent with the null hypothesis ($H_0$). The null hypothesis typically states **no significant effect or difference**, while the alternative hypothesis ($H_1$) represents the assertion being tested. We analyze the data to determine whether they provide enough evidence to reject the null hypothesis. A crucial step involves calculating the p-value. For a single outcome measure in a study, hypothesis testing framework can be summarized in **five steps**.
 
-::: {.callout-tip icon="false"}
-## Steps of Hypothesis Testsing
+
+### Steps of hypothesis testing
+
+::: content-box-blue
 
 **Step 1:** State the null hypothesis, $H_{0}$, and alternative hypothesis, $H_{1}$, based on the research question.
 
-> NOTE: We decide a non-directional $H_{1}$ (also known as two-sided hypothesis) whether we test for effects in both directions (most common), otherwise a directional (also known as one-sided) hypothesis.
+*NOTE: We decide a non-directional* $H_{a}$ (also known as two-sided hypothesis) whether we test for effects in both directions (most common), otherwise a directional (also known as one-sided) hypothesis.
 
-**Step 2:** Set the level of significance, α (usually 0.05).
+**Step 2:** Set a level of significance, α (usually 0.05).
 
-**Step 3:** Identify the appropriate test statistic and check the assumptions. Calculate the test statistic using the data.
+**Step 3:** Determine an appropriate statistical test, check for any assumptions that may exist, and calculate the test statistic.
 
-> NOTE: There are two basic types of statistical tests and they are described as parametric and non-parametric. The parametric tests (e.g., t-test, ANOVA), make certain assumptions about the distribution of the unknown parameter of interest and thus the test statistic is valid under these assumptions. For non-parametric tests (e.g., Mann-Whitney U test, Kruskal-Wallis test), there are no such assumptions. Most nonparametric tests use some way of ranking the measurements. Non-parametric tests are about 95% as powerful as parametric tests.
+*NOTE: There are two basic types of statistical tests and they are described as parametric and non-parametric. The parametric tests (e.g., t-test, ANOVA), make certain assumptions about the distribution of the unknown parameter of interest and thus the test statistic is valid under these assumptions. For non-parametric tests (e.g., Mann-Whitney U test, Kruskal-Wallis test), there are no such assumptions. Most nonparametric tests use some way of ranking the measurements. Non-parametric tests are about 95% as powerful as parametric tests.*
 
-**Step 4:** Decide whether or not the result is statistically significant.
+**Step 4:** Decide whether or not the result is "statistically" significant according to the calcualted p-value.
 
-> The p-value is the **probability of obtaining the observed results, or something more extreme, if the null hypothesis is true**.
+***The p-value is the probability of obtaining the observed results, or something more extreme, if the null hypothesis is true***.
 
-Using the known distribution of the test statistic and according to the result of our statistical test, we calculate the corresponding p-value. Then we compare the p-value to the significance level α:
+Using the known sampling distribution of the test statistic and according to the result of our statistical test, we calculate the corresponding p-value. Then we compare the p-value to the significance level α:
 
 -   If p − value \< α, reject the null hypothesis, $H_{0}$.
 -   If p − value ≥ α, do not reject the null hypothesis, $H_{0}$.
@@ -47,21 +59,23 @@ The @tbl-panel demonstrates how to interpret the strength of the evidence. Howev
 : Strength of the evidence against $H_{0}$.
 :::
 
-**Step 5:** Interpret the results.
+**Step 5:** Interpret the results and draw a "real world" conclusion.
+
+_NOTE: Even if a result is statistically significant, it may not be **clinically significant** if the effect size is small or if the findings do not have practical implications for patient care._
+
 :::
 
- 
 
-## Type of Errors in Hypothesis Testing
+## Types of errors in hypothesis testing
 
-In the framework of hypothesis testing there are two types of errors: **Type I error** and **type II error** (@tbl-type_errors).
+In the framework of hypothesis testing there are two types of errors: **Type I error**  (False Positive) and **Type II error** (False Negative) (@tbl-type_errors).
 
-**Type I error:** we reject the null hypothesis when it is true (false positive), and conclude that there is an effect when, in reality, there is none. The maximum chance (probability) of making a Type I error is denoted by α (alpha). This is the significance level of the test; we reject the null hypothesis if our p-value is less than the significance level, i.e. if p \< a.
+**Type I error:** we reject the null hypothesis when it is true (false positive), leading us to conclude that there is an effect when, in reality, there is none. The maximum chance (probability) of making a Type I error is denoted by α (alpha), which represents the significance level of the test and is typically set at 0.05 (5%); we reject the null hypothesis if our p-value is less than the significance level, i.e. if p \< a.
 
-**Type II error:** we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta); its compliment, (1 - β), is the power of the test.
+**Type II error:** we do not reject the null hypothesis when it is false (false negative), and conclude that there is no effect when one really exists. The chance of making a Type II error is denoted by β (beta) and should be no more than 0.20 (20%); its compliment, (1 - β), is the power of the test.
 
 |                                         |                         | In population $H_0$ is            |                                                      |
-|-----------------|-----------------|-------------------|-------------------|
+|------------------|------------------|------------------|------------------|
 |                                         |                         | **True**                          | **False**                                            |
 | **Decision based on**<br>**the sample** | **Do Not Reject** $H_0$ | Correct decision:<br>$1 - \alpha$ | Type II error ($\beta$)                              |
 |                                         | **Reject** $H_0$        | Type I error ($\alpha$)           | Correct decision:<br>$1 - \beta$ (power of the test) |
@@ -69,6 +83,8 @@ In the framework of hypothesis testing there are two types of errors: **Type I e
 : Types of error in hypothesis testing. {#tbl-type_errors}
 
  
+
+## Factors that influence the power in a study
 
 The power ($1 - \beta$), therefore, is the probability of (correctly) rejecting the null hypothesis when it is false; i.e. it is the chance (usually expressed as a percentage) of detecting, as statistically significant, a real treatment effect of a given size. @tbl-power presents the main factors that can influence the power in a study.
 
@@ -81,30 +97,20 @@ The power ($1 - \beta$), therefore, is the probability of (correctly) rejecting 
 
 : Factors Influencing Power. {#tbl-power}
 
-   
-
-## Sampling distribution
 
 
-## Sample and sampling distributions
+## Hypothesis testing for one parameter
 
-The **sample distribution** represents the probability distribution of the observed values in a randomly selected sample from the population. Using the data from this sample, we can calculate sample statistics such as the sample mean. For example, a hospital is interested in finding out the average blood pressure (BP) of its diabetic patients, but measuring each patient is impractical. Instead, they randomly selected *n* patients from this group and measured their BP. The resulting average BP for this sample, let's say $\bar{x_1} = 130$ mmHg, represents one sample mean .
+Let's explore the hypothesis testing procedure through a simple example such as the one sample mean.
 
-![The estimate of mean, $\bar{x_1} =130$, represents an observed sample mean from an already collected sample.](images/sample1.png){#fig-sample_1 fig-align="center" width="30%"}
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   **Example**
 
-Consider repeating the sampling process by randomly selecting various samples, each consisting of *n* patients, and calculating their average blood pressure. This would yield a range of different sample means, such as $\bar{x_1} = 130$ mmHg, $\bar{x_2} = 128$ mmHg, $\bar{x_3} = 133$ mmHg, and so forth. This collection of multiple sample means (obtained from different samples) is the sampling distribution of the mean BP.
+Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl with standard deviation 0.25 mg/dl. Research was conducted to examine the serum creatinine in patients with diabetes. Twenty-five patients were randomly enrolled with a mean of 0.96 and a standard deviation 0.3 bpm. Assuming that the serum creatinine follows a normal distribution, is the mean serum creatinine in diabetic patients different from that in healthy adults for level of significant $a = 0.05$?
 
-![The collection of sample means derived from repeated sampling forms a sampling distribution of mean with its own characteristics.](images/many_samples.png){#fig-sample_distr fig-align="center" width="75%"}
-
-::: content-box-blue
-The **sampling distribution** is a theoretical probability distribution that represents the possible values of a sample statistic, such as the sample mean, obtained from all possible samples of a specific size drawn from a population.
 :::
 
 
-
-$\mu$, $\sigma^2$, $\sigma$
-
-$\bar{x}$, $s^2$, $s$
 
 
 

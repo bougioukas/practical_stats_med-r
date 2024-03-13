@@ -292,7 +292,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -426,7 +426,7 @@ window.Quarto = {
    
   <ul>
 <li>
-<a href="#confidence-interval-for-the-mean" id="toc-confidence-interval-for-the-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-the-mean"><span class="header-section-number">18.1</span> Confidence interval for the mean</a>
+<a href="#confidence-interval-for-mean" id="toc-confidence-interval-for-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-mean"><span class="header-section-number">18.1</span> Confidence interval for mean</a>
   <ul class="collapse">
 <li><a href="#constructing-a-confidence-interval" id="toc-constructing-a-confidence-interval" class="nav-link" data-scroll-target="#constructing-a-confidence-interval">Constructing a confidence interval</a></li>
   <li><a href="#confidence-level" id="toc-confidence-level" class="nav-link" data-scroll-target="#confidence-level">Confidence level</a></li>
@@ -434,7 +434,7 @@ window.Quarto = {
   <li><a href="#sample-size-and-condidence-interval" id="toc-sample-size-and-condidence-interval" class="nav-link" data-scroll-target="#sample-size-and-condidence-interval">Sample size and condidence interval</a></li>
   </ul>
 </li>
-  <li><a href="#confidence-interval-for-proportion" id="toc-confidence-interval-for-proportion" class="nav-link" data-scroll-target="#confidence-interval-for-proportion"><span class="header-section-number">18.2</span> Confidence interval for proportion</a></li>
+  <li><a href="#confidence-interval-for-proportion-normal-approximation-method" id="toc-confidence-interval-for-proportion-normal-approximation-method" class="nav-link" data-scroll-target="#confidence-interval-for-proportion-normal-approximation-method"><span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation method)</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -472,8 +472,8 @@ window.Quarto = {
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="confidence-interval-for-the-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-the-mean">
-<span class="header-section-number">18.1</span> Confidence interval for the mean</h2>
+<section id="confidence-interval-for-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-mean">
+<span class="header-section-number">18.1</span> Confidence interval for mean</h2>
 <section id="constructing-a-confidence-interval" class="level3"><h3 class="anchored" data-anchor-id="constructing-a-confidence-interval">Constructing a confidence interval</h3>
 <p>We will base the construction of a confidence interval on two key concepts:</p>
 <ol type="1">
@@ -501,9 +501,10 @@ Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
 <p>The serum creatinine of a sample of 121 elderly men has a mean of 1.15 mg/dl with a standard deviation of 0.3 mg/dl. The 95% confidence interval for the mean creatinine of this population is calculated as follows:</p>
 <p><strong>Lower limit of 95% CI</strong></p>
-<p><span class="math inline">\(LL = 1.15 \ - 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ - 1.96  \frac{0.3}{11} = 1.15 \ - 0.0534 = 1.096\)</span></p>
+<p><span class="math inline">\(LL = 1.15 \ - 1.96 \frac{0.3}{\sqrt{121}} = 1.15 \ - 1.96 \frac{0.3}{11} = 1.15 \ - 0.0534 = 1.096\)</span></p>
 <p><strong>Upper limit of 95% CI</strong></p>
-<p><span class="math inline">\(UL = 1.15 \ + 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ + 1.96  \frac{0.3}{11} = 1.15 \ + 0.0534 = 1.203\)</span></p>
+<p><span class="math inline">\(UL = 1.15 \ + 1.96 \frac{0.3}{\sqrt{121}} = 1.15 \ + 1.96 \frac{0.3}{11} = 1.15 \ + 0.0534 = 1.203\)</span></p>
+<p>We are 95% confident that the mean serum creatinine is between 1.1 mg/dl and 1.2 mg/dl.</p>
 </div>
 <p><strong>In R:</strong></p>
 <p>For a 95% confidence interval, each of the grey areas in <a href="#fig-sample_distribution" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.</p>
@@ -610,8 +611,8 @@ Figure&nbsp;18.5: 100 Sample Means of Size 50 (with 95% Intervals) from the Popu
 <p>A confidence interval is typically expressed as a percentage (e.g., 90%, 95%, 99% CI) and reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.</p>
 <p>Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.</p>
 </div>
-</section></section><section id="confidence-interval-for-proportion" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="confidence-interval-for-proportion">
-<span class="header-section-number">18.2</span> Confidence interval for proportion</h2>
+</section></section><section id="confidence-interval-for-proportion-normal-approximation-method" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="confidence-interval-for-proportion-normal-approximation-method">
+<span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation method)</h2>
 <p>Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion <span class="math inline">\(\hat{p} = \frac{X}{n}\)</span>, where n is the sample size. If we were to repeatedly draw samples of size <em>n</em> from our population and visualize the sample proportions <span class="math inline">\(\hat{p_1} = \frac{X_1}{n}\)</span>, <span class="math inline">\(\hat{p_2} = \frac{X_2}{n}\)</span>, <span class="math inline">\(\hat{p_3} = \frac{X_3}{n}\)</span> and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies <span class="math inline">\(min(np, n(1-p)) \geq 5\)</span>, the sampling distribution of the proportion would approximate a normal distribution, <span class="math inline">\(N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -638,9 +639,10 @@ Figure&nbsp;18.6: Sampling distribution of proportion and 95% CI.
 <p>np = 317 * 0.107 = 33.9 &gt; 5</p>
 <p>n(1-p) = 317 * (1 - 0.107) = 317 * 0.893 = 283 &gt; 5</p>
 <p><strong>Lower limit of 95% CI</strong></p>
-<p><span class="math inline">\(LL = 0.107 \ - 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ - 0.034 = 0.073\)</span></p>
+<p><span class="math inline">\(LL = 0.107 \ - 1.96 \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ - 0.034 = 0.073 \ or \ 7.3\%\)</span></p>
 <p><strong>Upper limit of 95% CI</strong></p>
-<p><span class="math inline">\(UL = 0.107 \ + 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ + 0.034 = 0.141\)</span></p>
+<p><span class="math inline">\(UL = 0.107 \ + 1.96 \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ + 0.034 = 0.141 \ or \ 14.1\%\)</span></p>
+<p>Based on our random sample, we are 95% confident that the percentage of patients with COPD falls within the range of 7.3% to 14.1%.</p>
 </div>
 <p><strong>In R:</strong></p>
 <div class="cell">
@@ -652,11 +654,14 @@ Figure&nbsp;18.6: Sampling distribution of proportion and 95% CI.
 <span><span class="va">p_hat</span></span>
 <span></span>
 <span><span class="co"># check the assumption min(np, n(1-p)) ≥ 5</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">n</span><span class="op">*</span><span class="va">p_hat</span>, <span class="va">n</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_hat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
-<span></span>
-<span></span>
-<span></span>
-<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.025</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">n</span><span class="op">*</span><span class="va">p_hat</span>, <span class="va">n</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_hat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.1072555
+[1] 34</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.025</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">p_hat</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_hat</span><span class="op">)</span><span class="op">/</span><span class="va">n</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># compute lower limit of 95% CI</span></span>
@@ -667,9 +672,7 @@ Figure&nbsp;18.6: Sampling distribution of proportion and 95% CI.
 <span><span class="va">upper_95CI</span> <span class="op">&lt;-</span> <span class="va">p_hat</span> <span class="op">+</span> <span class="va">z</span><span class="op">*</span><span class="va">se</span></span>
 <span><span class="va">upper_95CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.1072555
-[1] 34
-[1] 0.07319182
+<pre data-code-line-numbers=""><code>[1] 0.07319182
 [1] 0.1413192</code></pre>
 </div>
 </div>
@@ -1007,8 +1010,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./inference.html" class="pagination-link" aria-label="Foundations for statistical inference">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Foundations for statistical inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./inference.html" class="pagination-link" aria-label="Hypothesis testing">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

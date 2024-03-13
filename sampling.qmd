@@ -260,11 +260,11 @@ From @fig-simulation2, it is evident that as the sample size increases, the dist
 ## Central Limit Theorem (CLM) for sample means
 
 ::: content-box-green
-
 The **Central Limit Theorem** (CLM) for sample means in statistics states that, given a sufficiently large sample size, the sampling distribution of the mean for a variable will approximate a normal distribution **regardless** of the variable's underlying distribution of the population observations: $\overline{X} \sim N(\mu, \sigma^2/n)$.
 
-:::
+_NOTE: The CLM can be applied in inferential statistics for various test statistics, such as difference in means, difference in proportions, and the slope of a linear regression model, under the assumption of large samples._
 
+:::
 
 To illustrate this, let's generate some data from a continuous uniform distribution (100,000 observations):
 

@@ -21,9 +21,7 @@ Obtaining an exact point estimate of the population parameter from just one rand
 
  
 
-
-
-## Confidence interval for the mean
+## Confidence interval for mean
 
 ### Constructing a confidence interval
 
@@ -32,7 +30,6 @@ We will base the construction of a confidence interval on two key concepts:
 1.  The interval is **around the point estimate**, which represents our best estimate of the population parameter.
 
 2.  The **standard error (SE)** is utilized to quantify the extent of variability around the point estimate.
-
 
 According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, $\sigma_{\bar{x}}$. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal).
 
@@ -93,16 +90,14 @@ The serum creatinine of a sample of 121 elderly men has a mean of 1.15 mg/dl wit
 
 **Lower limit of 95% CI**
 
-$LL = 1.15 \ - 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ - 1.96  \frac{0.3}{11} = 1.15 \ - 0.0534 = 1.096$
-
+$LL = 1.15 \ - 1.96 \frac{0.3}{\sqrt{121}} = 1.15 \ - 1.96 \frac{0.3}{11} = 1.15 \ - 0.0534 = 1.096$
 
 **Upper limit of 95% CI**
 
-$UL = 1.15 \ + 1.96  \frac{0.3}{\sqrt{121}} = 1.15 \ + 1.96  \frac{0.3}{11} = 1.15 \ + 0.0534 = 1.203$
+$UL = 1.15 \ + 1.96 \frac{0.3}{\sqrt{121}} = 1.15 \ + 1.96 \frac{0.3}{11} = 1.15 \ + 0.0534 = 1.203$
 
-
+We are 95% confident that the mean serum creatinine is between 1.1 mg/dl and 1.2 mg/dl.
 :::
-
 
 **In R:**
 
@@ -125,11 +120,9 @@ upper_95CI <- mean + z*(s/sqrt(n))
 upper_95CI
 ```
 
-
 ### Confidence level
 
 However, there is no particular reason for choosing 95% other than convention, and confidence levels of 90% or 99% are sometimes used. For example, the 99% confidence interval for the mean creatinine is $\pm 2.58 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal).
-
 
 ```{r}
 #| echo: false
@@ -175,8 +168,7 @@ ggplot() +
 
 ```
 
-
-Now, each of the grey areas in @fig-sample_distribution2 equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore: 
+Now, each of the grey areas in @fig-sample_distribution2 equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore:
 
 ```{r}
 #| results: hold
@@ -193,9 +185,7 @@ upper_99CI
 
 ```
 
-
 We observe that a 99% CI (1.07-1.22) is wider compared to the 95% CI (1.09-1.20). This wider range reflects the greater certainty (99%) of capturing the population parameter. Nonetheless, this increased level of confidence comes at the expense of precision, especially with smaller datasets.
-
 
  
 
@@ -356,7 +346,6 @@ Samps %>%
 
 ```
 
-
 Comparing the @fig-intervals1 and @fig-intervals2, we notice two key trends as the sample size increases from 10 to 50:
 
 1.  The sample statistic (points) gets closer to the population parameter (black dashed line).
@@ -365,21 +354,14 @@ Comparing the @fig-intervals1 and @fig-intervals2, we notice two key trends as t
  
 
 ::: content-box-green
-
 A confidence interval is typically expressed as a percentage (e.g., 90%, 95%, 99% CI) and reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.
 
 Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.
 :::
 
+## Confidence interval for proportion (normal approximation method)
 
-
-
-## Confidence interval for proportion
-
-Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion $\hat{p} = \frac{X}{n}$, where n is the sample size. 
-If we were to repeatedly draw samples of size *n* from our population and visualize the sample proportions $\hat{p_1} = \frac{X_1}{n}$, $\hat{p_2} = \frac{X_2}{n}$, $\hat{p_3} = \frac{X_3}{n}$ and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies $min(np, n(1-p)) \geq 5$, the sampling distribution of the proportion would approximate a normal distribution, $N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})$.
-
-
+Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion $\hat{p} = \frac{X}{n}$, where n is the sample size. If we were to repeatedly draw samples of size *n* from our population and visualize the sample proportions $\hat{p_1} = \frac{X_1}{n}$, $\hat{p_2} = \frac{X_2}{n}$, $\hat{p_3} = \frac{X_3}{n}$ and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies $min(np, n(1-p)) \geq 5$, the sampling distribution of the proportion would approximate a normal distribution, $N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})$.
 
 ```{r}
 #| echo: false
@@ -423,11 +405,9 @@ ggplot() +
 
 ```
 
-
 Similar to a confidence interval for the mean @eq-CI, a confidence interval for a proportion can be constructed as follows:
 
 $$ 95\%CI= \mu_{\hat{p}} \ \pm 1.96 \ \sigma_{\hat{p}} = p \ \pm 1.96  \sqrt{\frac{p(1- p)}{n}} $$ {#eq-CI3}
-
 
 and when the p and $\sigma_{\hat{p}}$ are unknown:
 
@@ -435,38 +415,31 @@ $$ 95\%CI= \hat{p} \ \pm 1.96 \ SE_{\hat{p}} = \hat{p} \ \pm 1.96  \sqrt{\frac{\
 
 where the standard error for proportion is $SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$.
 
-
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   **Example**
 
-Suppose a pulmonologist chooses a random sample of 317 patients
-from the patient register, and finds that 34 of them have a history of suffering from chronic obstructive pulmonary disease (COPD). The 95% confidence interval for the proportion of COPD is calculated as follows:
+Suppose a pulmonologist chooses a random sample of 317 patients from the patient register, and finds that 34 of them have a history of suffering from chronic obstructive pulmonary disease (COPD). The 95% confidence interval for the proportion of COPD is calculated as follows:
 
 $\hat{p} = \frac{X}{n} = \frac{34}{317}=0.107 \ or \ 10.7\%$
 
 Additionally, the condition $min(np, n(1-p)) \geq 5$ is satisfied:
 
-np = 317 * 0.107 = 33.9 > 5
+np = 317 \* 0.107 = 33.9 \> 5
 
-n(1-p) = 317 * (1 - 0.107) = 317 * 0.893 = 283 > 5
-
+n(1-p) = 317 \* (1 - 0.107) = 317 \* 0.893 = 283 \> 5
 
 **Lower limit of 95% CI**
 
-$LL = 0.107 \ - 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ - 0.034 = 0.073$
-
+$LL = 0.107 \ - 1.96 \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ - 0.034 = 0.073 \ or \ 7.3\%$
 
 **Upper limit of 95% CI**
 
-$UL = 0.107 \ + 1.96  \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ + 0.034 = 0.141$
+$UL = 0.107 \ + 1.96 \sqrt{\frac{0.107(1-0.107)}{317}} = 0.107 \ + 0.034 = 0.141 \ or \ 14.1\%$
 
+Based on our random sample, we are 95% confident that the percentage of patients with COPD falls within the range of 7.3% to 14.1%.
 :::
 
-
-
 **In R:**
-
-
 
 ```{r}
 #| results: hold
@@ -480,8 +453,10 @@ p_hat
 
 # check the assumption min(np, n(1-p)) ≥ 5
 min(c(n*p_hat, n*(1 - p_hat))) 
+```
 
-
+```{r}
+#| results: hold
 
 z <- qnorm(0.025, lower.tail = FALSE)
 se <- sqrt(p_hat*(1 - p_hat)/n)
@@ -495,12 +470,3 @@ upper_95CI <- p_hat + z*se
 upper_95CI
 
 ```
-
-
-
-
-
-
-
-
-
