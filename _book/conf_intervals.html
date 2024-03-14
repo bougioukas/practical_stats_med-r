@@ -507,7 +507,7 @@ Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 <p>We are 95% confident that the mean serum creatinine is between 1.1 mg/dl and 1.2 mg/dl.</p>
 </div>
 <p><strong>In R:</strong></p>
-<p>For a 95% confidence interval, each of the grey areas in <a href="#fig-sample_distribution" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.</p>
+<p>For a 95% confidence interval, each of the grey areas in <a href="inference.html#fig-sample_distribution" class="quarto-xref">Figure&nbsp;<span>19.1</span></a> equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">121</span></span>
 <span><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fl">1.15</span></span>
@@ -540,7 +540,7 @@ Figure&nbsp;18.2: Sampling distribution of mean and 99% CI.
 </div>
 </div>
 </div>
-<p>Now, each of the grey areas in <a href="#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>18.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore:</p>
+<p>Now, each of the grey areas in <a href="inference.html#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>19.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.005</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>

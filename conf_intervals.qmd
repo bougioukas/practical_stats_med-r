@@ -54,9 +54,13 @@ ggplot() +
   geom_area(data = df4, mapping = aes(x = ifelse(x > 1.96, x, 3), y = y), 
             fill = "grey70") +  # Area under the curve
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), linewidth = 1) +
-  scale_x_continuous(breaks = c(-3, -2, -1, 0, 1, 2, 3),                    
-                     labels = expression(-3*sigma[bar(x)], -2*sigma[bar(x)], -1*sigma[bar(x)],      
-                                         mu[bar(x)], +1*sigma[bar(x)], +2*sigma[bar(x)], +3*sigma[bar(x)])) +
+  scale_x_continuous(expand = c(0.01, 0), 
+                     breaks = c(-3, -2, -1, 0, 1, 2, 3),                   
+                     labels = expression(-3*sigma[bar(x)], -2*sigma[bar(x)], 
+                                         -1*sigma[bar(x)], mu[bar(x)], 
+                                         +1*sigma[bar(x)], +2*sigma[bar(x)], 
+                                         +3*sigma[bar(x)])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 0.45)) +
   annotate("text", x = 0, y = 0.42, 
            label = "Sampling distribution", size = 5) +
   annotate("text", x = 0, y = 0.2, 
@@ -145,22 +149,24 @@ ggplot() +
   geom_area(data = df4, mapping = aes(x = ifelse(x > 2.58, x, 3), y = y), 
             fill = "grey70") +  # Area under the curve
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), linewidth = 1) +
-  scale_x_continuous(breaks = c(-2.58, -2, -1, 0, 1, 2, 2.58),                    
+  scale_x_continuous(expand = c(0, 0),
+                     breaks = c(-2.58, -2, -1, 0, 1, 2, 2.58),                    
                      labels = expression(-2.58*sigma[bar(x)], -2*sigma[bar(x)],
                                          -1*sigma[bar(x)],      
                                          mu[bar(x)], +1*sigma[bar(x)],
                                          +2*sigma[bar(x)], -2.58*sigma[bar(x)])) +
+  scale_y_continuous(expand = c(0, 0.003), limits = c(0, 0.45)) +
   annotate("text", x = 0, y = 0.42, 
            label = "Sampling distribution", size = 5) +
   annotate("text", x = 0, y = 0.2, 
            label = "Central 99% of the distribution", size = 4) +
   annotate("text", x = 0, y = 0.02, 
            label = "99% CI", size = 3) +
-  annotate("text", x = -2.7, y = 0.0038, 
-           label = "0.5%", size = 2.5) +
-  annotate("text", x = 2.7, y = 0.0038, 
-           label = "0.5%", size = 2.5) +  
-  geom_segment(aes(x = -2.58, y = 0.01, xend = 2.58, yend = 0.01),
+  annotate("text", x = -2.7, y = 0.006, 
+           label = "0.5%", size = 2.7) +
+  annotate("text", x = 2.7, y = 0.006, 
+           label = "0.5%", size = 2.7) +  
+  geom_segment(aes(x = -2.58, y = 0.005, xend = 2.58, yend = 0.005),
                arrow = arrow(length = unit(0.03, "npc"), ends = "both")) +
   labs(y = "Probabiblity density") +
   theme_classic(base_size = 14) +
@@ -384,9 +390,10 @@ ggplot() +
   geom_area(data = df4, mapping = aes(x = ifelse(x > 1.96, x, 3), y = y), 
             fill = "grey70") +  # Area under the curve
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), linewidth = 1) +
-  scale_x_continuous(breaks = c(-3, -2, -1, 0, 1, 2, 3),                    
+  scale_x_continuous(expand = c(0, 0), breaks = c(-3, -2, -1, 0, 1, 2, 3),                    
                      labels = expression(-3*sigma[hat(p)], -2*sigma[hat(p)], -1*sigma[hat(p)],      
                                          mu[hat(p)], +1*sigma[hat(p)], +2*sigma[hat(p)], +3*sigma[hat(p)])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 0.45)) +
   annotate("text", x = 0, y = 0.42, 
            label = "Sampling distribution", size = 5) +
   annotate("text", x = 0, y = 0.2, 

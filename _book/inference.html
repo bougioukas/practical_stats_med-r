@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -399,7 +433,8 @@ window.Quarto = {
 </li>
   <li><a href="#types-of-errors-in-hypothesis-testing" id="toc-types-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#types-of-errors-in-hypothesis-testing"><span class="header-section-number">19.2</span> Types of errors in hypothesis testing</a></li>
   <li><a href="#factors-that-influence-the-power-in-a-study" id="toc-factors-that-influence-the-power-in-a-study" class="nav-link" data-scroll-target="#factors-that-influence-the-power-in-a-study"><span class="header-section-number">19.3</span> Factors that influence the power in a study</a></li>
-  <li><a href="#hypothesis-testing-for-one-parameter" id="toc-hypothesis-testing-for-one-parameter" class="nav-link" data-scroll-target="#hypothesis-testing-for-one-parameter"><span class="header-section-number">19.4</span> Hypothesis testing for one parameter</a></li>
+  <li><a href="#hypothesis-testing-for-a-single-sample" id="toc-hypothesis-testing-for-a-single-sample" class="nav-link" data-scroll-target="#hypothesis-testing-for-a-single-sample"><span class="header-section-number">19.4</span> Hypothesis testing for a single sample</a></li>
+  <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals"><span class="header-section-number">19.5</span> Hypothesis testing and confidence intervals</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -441,13 +476,16 @@ window.Quarto = {
 <section id="steps-of-hypothesis-testing" class="level3"><h3 class="anchored" data-anchor-id="steps-of-hypothesis-testing">Steps of hypothesis testing</h3>
 <div class="content-box-blue">
 <p><strong>Step 1:</strong> State the null hypothesis, <span class="math inline">\(H_{0}\)</span>, and alternative hypothesis, <span class="math inline">\(H_{1}\)</span>, based on the research question.</p>
-<p><em>NOTE: We decide a non-directional</em> <span class="math inline">\(H_{a}\)</span> (also known as two-sided hypothesis) whether we test for effects in both directions (most common), otherwise a directional (also known as one-sided) hypothesis.</p>
+<p><em>NOTE: We decide a non-directional</em> <span class="math inline">\(H_{1}\)</span> (also known as two-sided hypothesis) whether we test for effects in both directions (most common), otherwise a directional (also known as one-sided) hypothesis.</p>
 <p><strong>Step 2:</strong> Set a level of significance, α (usually 0.05).</p>
 <p><strong>Step 3:</strong> Determine an appropriate statistical test, check for any assumptions that may exist, and calculate the test statistic.</p>
 <p><em>NOTE: There are two basic types of statistical tests and they are described as parametric and non-parametric. The parametric tests (e.g., t-test, ANOVA), make certain assumptions about the distribution of the unknown parameter of interest and thus the test statistic is valid under these assumptions. For non-parametric tests (e.g., Mann-Whitney U test, Kruskal-Wallis test), there are no such assumptions. Most nonparametric tests use some way of ranking the measurements. Non-parametric tests are about 95% as powerful as parametric tests.</em></p>
-<p><strong>Step 4:</strong> Decide whether or not the result is “statistically” significant according to the calcualted p-value.</p>
+<p><strong>Step 4:</strong> Decide whether or not the result is “statistically” significant according to (a) the rejection region or (b) the p-value.</p>
+<p><strong><em>(a) The rejection region approach</em></strong></p>
+<p>Based on the known sampling distribution of the test statistic, the rejection region is a set of values for the test statistic for which the null hypothesis is rejected. If the observed test statistic falls within the rejection region, then we reject the null hypothesis.</p>
+<p><strong><em>(b) The p-value approach</em></strong></p>
 <p><strong><em>The p-value is the probability of obtaining the observed results, or something more extreme, if the null hypothesis is true</em></strong>.</p>
-<p>Using the known sampling distribution of the test statistic and according to the result of our statistical test, we calculate the corresponding p-value. Then we compare the p-value to the significance level α:</p>
+<p>We compare the calculated p-value to the significance level α:</p>
 <ul>
 <li>If p − value &lt; α, reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
 <li>If p − value ≥ α, do not reject the null hypothesis, <span class="math inline">\(H_{0}\)</span>.</li>
@@ -589,13 +627,118 @@ Table&nbsp;19.3: Factors Influencing Power.
 </div>
 </figure>
 </div>
-</section><section id="hypothesis-testing-for-one-parameter" class="level2" data-number="19.4"><h2 data-number="19.4" class="anchored" data-anchor-id="hypothesis-testing-for-one-parameter">
-<span class="header-section-number">19.4</span> Hypothesis testing for one parameter</h2>
-<p>Let’s explore the hypothesis testing procedure through a simple example such as the one sample mean.</p>
+</section><section id="hypothesis-testing-for-a-single-sample" class="level2" data-number="19.4"><h2 data-number="19.4" class="anchored" data-anchor-id="hypothesis-testing-for-a-single-sample">
+<span class="header-section-number">19.4</span> Hypothesis testing for a single sample</h2>
+<p>Let’s explore the hypothesis testing procedure through a simple example such as the one sample t-test.</p>
 <div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
-<p>Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl with standard deviation 0.25 mg/dl. Research was conducted to examine the serum creatinine in patients with diabetes. Twenty-five patients were randomly enrolled with a mean of 0.96 and a standard deviation 0.3 bpm. Assuming that the serum creatinine follows a normal distribution, is the mean serum creatinine in diabetic patients different from that in healthy adults for level of significant <span class="math inline">\(a = 0.05\)</span>?</p>
+<p>Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl. A research study was conducted to examine the serum creatinine levels in female patients with diabetes. Twenty female patients were randomly enrolled, with a mean serum creatinine level of 0.96 mg/dl and a standard deviation of 0.35 mg/dl. Assuming that the serum creatinine follows a normal distribution, is the mean serum creatinine in diabetic patients significantly different from that in healthy adults, with a level of significance of <span class="math inline">\(α = 0.05\)</span>?</p>
 </div>
+<p><strong>1. State the null and alternative hypotheses</strong></p>
+<p>In our example, the null hypothesis <span class="math inline">\(H_{0}\)</span> is that the mean serum creatinine in female patients with diabetes, <span class="math inline">\(μ\)</span>, is the same as the mean serum creatinine in healthy adult women, <span class="math inline">\(μ_{0}\)</span>; here μ is unknown and <span class="math inline">\(μ_{0}\)</span> is known (<span class="math inline">\(μ_{0} = 75\)</span> mg/dl); Conversely, the alternative hypothesis <span class="math inline">\(H_{1}\)</span> suggests a difference between the mean serum creatinine levels in these two groups. Note that <span class="math inline">\(H_{1}\)</span> may have multiple options (more than, less than, or not the same as).</p>
+<ul>
+<li>
+<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{0}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ&gt;<span class="math inline">\(μ_{0}\)</span> (one-sided hypothesis; right-tailed)</li>
+<li>
+<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{0}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ&lt;<span class="math inline">\(μ_{0}\)</span> (one-sided hypothesis; left-tailed)</li>
+<li>
+<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{0}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ <span class="math inline">\(\neq\)</span> <span class="math inline">\(μ_{0}\)</span> (two-sided hypothesis)</li>
+</ul>
+<p>In our example, we adopt a two-sided hypothesis, implying that the mean serum creatinine in female patients with diabetes may differ from <span class="math inline">\(μ_{0} = 75\)</span> mg/dl in either direction. That is:</p>
+<ul>
+<li>
+<span class="math inline">\(H_{0}\)</span> : μ = 75, <span class="math inline">\(H_{1}\)</span> : μ <span class="math inline">\(\neq\)</span> 75</li>
+</ul>
+<p><strong>Step 2: Set the level of significance, α</strong></p>
+<p>We set the significance level (type I error) as α=0.05.</p>
+<p><strong>Step 3: Determine an appropriate statistical test, check for any assumptions that may exist, and calculate the test statistic.</strong></p>
+<p>We choose a <strong>t-test</strong>, a statistical method utilized to assess whether the mean of a single sample differs significantly from a known population mean. This statistical test is particularly effective when dealing with small sample sizes (N &lt; 30) and when the population standard deviation is unknown. The main assumption underlying the t-test is that the data being analyzed follows a normal distribution.</p>
+<p>The formula for the test statistic t is:</p>
+<p><span id="eq-t1"><span class="math display">\[t = \frac{\bar{x} - \mu_{o}}{SE_{\bar{x}}} \tag{19.1}\]</span></span></p>
+<p>so,</p>
+<p><span class="math display">\[t = \frac{\bar{x} - \mu_{o}}{SE_{\bar{x}}}= \frac{\bar{x} - \mu_{o}}{s/ \sqrt{n}}=\frac{0.96 - 0.75}{0.35/ \sqrt{20}}=\frac{0.21}{0.35/ 4.472}=\frac{0.21}{0.0783}= 2.68\]</span></p>
+<p><strong>In R:</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
+<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">0.75</span></span>
+<span><span class="va">x_bar</span> <span class="op">&lt;-</span> <span class="fl">0.96</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fl">0.35</span></span>
+<span></span>
+<span></span>
+<span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x_bar</span><span class="op">-</span><span class="va">mu</span><span class="op">)</span><span class="op">/</span><span class="va">se</span></span>
+<span><span class="va">t</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 2.683282</code></pre>
+</div>
+</div>
+<p><strong>Step 4:</strong> Decide whether or not the result is “statistically” significant.</p>
+<p><strong>(a) The rejection region approach</strong></p>
+<p>Next, we utilize the t-distribution with n-1 degrees of freedom (df = 20-1 = 19), encompassing all possible values of the test statistic t and their associated probabilities. The area under the curve is divided into one central non-rejection region and two-sided, grey rejection regions defined by the presepcified level of significance <span class="math inline">\(\alpha\)</span>. These shaded regions denote ‘extreme’ values of the test statistic, indicating significant deviations from the null hypothesis. When an observed value t falls within these rejection regions, it suggests that the null hypothesis is less likely to be true, prompting rejection in favor of the alternative hypothesis.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="inference_files/figure-html/fig-sample_distribution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.1: T-distribution for df=19.The area under the curve is divided into one central non-rejection region and two-sided, grey rejection regions defined by the level of significance <span class="math inline">\(\alpha\)</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>In our example, the observed value of the test statistic, t = 2.68, falls within the upper grey rejection region, leading us to reject the null hypothesis <span class="math inline">\(H_{0}\)</span>.</p>
+<p>&nbsp;</p>
+<p><strong>(b) The p-value approach</strong></p>
+<p>The second approach involves assigning a probability to the value of the test statistic. Particularly, if the test statistic is exceptionally extreme under the assumption that the null hypothesis holds true, it is given a low probability. Conversely, if the test statistic is less unusual, it receives a higher probability.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="inference_files/figure-html/fig-sample_distribution2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The corresponding probability for the test statistic t can be calculated by summing the two cumulative probabilities P(T ≤ -t) and P(T ≥ t). Therefore, the <strong>p-value</strong> is computed as 2*P(T ≥ t), given that we are conducting a two-tailed test and there is symmetry in the t-distribution with df = n-1 (<a href="#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>19.2</span></a>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">t</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p_value</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">P</span></span>
+<span><span class="va">p_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.01470991</code></pre>
+</div>
+</div>
+<p>The resulting p-value is 0.0147 which is less than 0.05, so we reject the null hypothesis.</p>
+<p><strong>Step 5: Interpret the results and draw a “real world” conclusion.</strong></p>
+<p>At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 &lt; 0.05). The mean serum creatinine (0.96 mg/dl) in patients with diabetes is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).</p>
+<p>&nbsp;</p>
+</section><section id="hypothesis-testing-and-confidence-intervals" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="hypothesis-testing-and-confidence-intervals">
+<span class="header-section-number">19.5</span> Hypothesis testing and confidence intervals</h2>
+<p>Hypothesis testing and confidence intervals are two sides of the same statistical coin. While closely linked, they serve distinct purposes. Particularly, hypothesis testing provides a statistical decision based on the p-value, whereas confidence intervals offer an interval estimate of the effect size and its associated precision.</p>
+<p>The 95% CI for the meanusing the t-distribution is:</p>
+<p><span class="math display">\[95\% \ CI = \bar{x} \  \pm \ t_{n-1; a/2}^* * SE_{\bar{x}}\]</span></p>
+<p>where <span class="math inline">\(t_{n-1; a/2}^*\)</span> is the critical value for the t-distribution with df = n-1 for a specific level of significance α.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t_star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.025</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute lower limit of 95% CI</span></span>
+<span><span class="va">lower_95CI</span> <span class="op">&lt;-</span> <span class="va">x_bar</span> <span class="op">-</span> <span class="va">t_star</span><span class="op">*</span><span class="va">se</span></span>
+<span><span class="va">lower_95CI</span></span>
+<span></span>
+<span><span class="co"># compute upper limit of 95% CI</span></span>
+<span><span class="va">upper_95CI</span> <span class="op">&lt;-</span> <span class="va">x_bar</span> <span class="op">+</span> <span class="va">t_star</span><span class="op">*</span><span class="va">se</span></span>
+<span><span class="va">upper_95CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.796195
+[1] 1.123805</code></pre>
+</div>
+</div>
+<p>We observe that the value of null hypothesis, <span class="math inline">\(\mu = 0.75\)</span>, is not included in the 95% confidence interval [0.796, 1.124].</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
