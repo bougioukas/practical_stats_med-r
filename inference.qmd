@@ -109,7 +109,7 @@ Let's explore the hypothesis testing procedure through a simple example such as 
 Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl. A research study was conducted to examine the serum creatinine levels in female patients with diabetes. Twenty female patients were randomly enrolled, with a mean serum creatinine level of 0.96 mg/dl and a standard deviation of 0.35 mg/dl. Assuming that the serum creatinine follows a normal distribution, is the mean serum creatinine in diabetic patients significantly different from that in healthy adults, with a level of significance of $α = 0.05$?
 :::
 
-**1. State the null and alternative hypotheses**
+**Step 1: State the null and alternative hypotheses**
 
 In our example, the null hypothesis $H_{0}$ is that the mean serum creatinine in female patients with diabetes, $μ$, is the same as the mean serum creatinine in healthy adult women, $μ_{0}$; here μ is unknown and $μ_{0}$ is known ($μ_{0} = 75$ mg/dl); Conversely, the alternative hypothesis $H_{1}$ suggests a difference between the mean serum creatinine levels in these two groups. Note that $H_{1}$ may have multiple options (more than, less than, or not the same as).
 
@@ -155,7 +155,7 @@ t
 
 **(a) The rejection region approach**
 
-Next, we utilize the t-distribution with n-1 degrees of freedom (df = 20-1 = 19), encompassing all possible values of the test statistic t and their associated probabilities. The area under the curve is divided into one central non-rejection region and two-sided, grey rejection regions defined by the presepcified level of significance $\alpha$. These shaded regions denote 'extreme' values of the test statistic, indicating significant deviations from the null hypothesis. When an observed value t falls within these rejection regions, it suggests that the null hypothesis is less likely to be true, prompting rejection in favor of the alternative hypothesis.
+Next, we utilize the t-distribution with n-1 degrees of freedom (df = 20-1 = 19), encompassing all possible values of the test statistic t and their associated probabilities. The area under the curve is divided into one central non-rejection region and two-sided, grey rejection regions defined by the presepcified level of significance $\alpha$ (@fig-sample_distribution). These shaded regions denote 'extreme' values of the test statistic, indicating significant deviations from the null hypothesis. When an observed value t falls within these rejection regions, it suggests that the null hypothesis is less likely to be true, prompting rejection in favor of the alternative hypothesis.
 
 ```{r}
 #| echo: false
@@ -230,8 +230,8 @@ The second approach involves assigning a probability to the value of the test st
 
 
 ggplot() +
-  geom_area(data = df4, mapping = aes(x = ifelse(x < -t_star, x, -t_star), y = y), fill = "grey70") +  # Area under the curve
-  geom_area(data = df4, mapping = aes(x = ifelse(x > t_star, x, t_star), y = y), fill = "grey70") +  # Area under the curve
+  #geom_area(data = df4, mapping = aes(x = ifelse(x < -t_star, x, -t_star), y = y), fill = "grey70") +  # Area under the curve
+  #geom_area(data = df4, mapping = aes(x = ifelse(x > t_star, x, t_star), y = y), fill = "grey70") +  # Area under the curve
   stat_function(fun = dt, args = list(df = n-1), linewidth = 0.5) +
   geom_area(data = df4, mapping = aes(x = ifelse(x < -t, x, -t), y = y), 
             fill = "red", alpha = 0.3) +  # Area under the curve
@@ -242,12 +242,12 @@ ggplot() +
   annotate("text", x = 0, y = 0.41, 
            label = "Ho", size = 4) +  
   annotate("text", x = t + 0.2, y = 0.07, 
-           label = "P(T ≥ t) = p/2", size = 3, color = "red") + 
+           label = "P(T ≥ t) = p/2", size = 3.2, color = "red") + 
   annotate(geom = "curve", x = t + 0.2, y = 0.06, xend = t + 0.1, yend = 0.005,
            curvature = 0, arrow = arrow(length = unit(2, "mm")),
            linewidth = 0.5, color = "red") +
-  annotate("text", x = -t - 0.2, y = 0.07, 
-           label = "P(T ≤ -t) = p/2", size = 3, color = "red") + 
+  annotate("text", x = -t - 0.1, y = 0.07, 
+           label = "P(T ≤ -t) = p/2", size = 3.2, color = "red") + 
   annotate(geom = "curve", x = -t - 0.2, y = 0.06, xend = -t - 0.1, yend = 0.005,
            curvature = 0, arrow = arrow(length = unit(2, "mm")),
            linewidth = 0.5, color = "red") +  
@@ -281,7 +281,7 @@ At the 5% significance level, the test result provides evidence against the null
 Hypothesis testing and confidence intervals are two sides of the same statistical coin. While closely linked, they serve distinct purposes. 
 Particularly, hypothesis testing provides a statistical decision based on the p-value, whereas confidence intervals offer an interval estimate of the effect size and its associated precision.
 
-The 95% CI for the meanusing the t-distribution is:
+The 95% CI for the mean using the t-distribution is:
 
 $$95\% \ CI = \bar{x} \  \pm \ t_{n-1; a/2}^* * SE_{\bar{x}}$$
 

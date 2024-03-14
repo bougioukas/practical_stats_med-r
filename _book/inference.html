@@ -634,7 +634,7 @@ Table&nbsp;19.3: Factors Influencing Power.
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
 <p>Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl. A research study was conducted to examine the serum creatinine levels in female patients with diabetes. Twenty female patients were randomly enrolled, with a mean serum creatinine level of 0.96 mg/dl and a standard deviation of 0.35 mg/dl. Assuming that the serum creatinine follows a normal distribution, is the mean serum creatinine in diabetic patients significantly different from that in healthy adults, with a level of significance of <span class="math inline">\(α = 0.05\)</span>?</p>
 </div>
-<p><strong>1. State the null and alternative hypotheses</strong></p>
+<p><strong>Step 1: State the null and alternative hypotheses</strong></p>
 <p>In our example, the null hypothesis <span class="math inline">\(H_{0}\)</span> is that the mean serum creatinine in female patients with diabetes, <span class="math inline">\(μ\)</span>, is the same as the mean serum creatinine in healthy adult women, <span class="math inline">\(μ_{0}\)</span>; here μ is unknown and <span class="math inline">\(μ_{0}\)</span> is known (<span class="math inline">\(μ_{0} = 75\)</span> mg/dl); Conversely, the alternative hypothesis <span class="math inline">\(H_{1}\)</span> suggests a difference between the mean serum creatinine levels in these two groups. Note that <span class="math inline">\(H_{1}\)</span> may have multiple options (more than, less than, or not the same as).</p>
 <ul>
 <li>
@@ -674,7 +674,7 @@ Table&nbsp;19.3: Factors Influencing Power.
 </div>
 <p><strong>Step 4:</strong> Decide whether or not the result is “statistically” significant.</p>
 <p><strong>(a) The rejection region approach</strong></p>
-<p>Next, we utilize the t-distribution with n-1 degrees of freedom (df = 20-1 = 19), encompassing all possible values of the test statistic t and their associated probabilities. The area under the curve is divided into one central non-rejection region and two-sided, grey rejection regions defined by the presepcified level of significance <span class="math inline">\(\alpha\)</span>. These shaded regions denote ‘extreme’ values of the test statistic, indicating significant deviations from the null hypothesis. When an observed value t falls within these rejection regions, it suggests that the null hypothesis is less likely to be true, prompting rejection in favor of the alternative hypothesis.</p>
+<p>Next, we utilize the t-distribution with n-1 degrees of freedom (df = 20-1 = 19), encompassing all possible values of the test statistic t and their associated probabilities. The area under the curve is divided into one central non-rejection region and two-sided, grey rejection regions defined by the presepcified level of significance <span class="math inline">\(\alpha\)</span> (<a href="#fig-sample_distribution" class="quarto-xref">Figure&nbsp;<span>19.1</span></a>). These shaded regions denote ‘extreme’ values of the test statistic, indicating significant deviations from the null hypothesis. When an observed value t falls within these rejection regions, it suggests that the null hypothesis is less likely to be true, prompting rejection in favor of the alternative hypothesis.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-sample_distribution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -720,7 +720,7 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 </section><section id="hypothesis-testing-and-confidence-intervals" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="hypothesis-testing-and-confidence-intervals">
 <span class="header-section-number">19.5</span> Hypothesis testing and confidence intervals</h2>
 <p>Hypothesis testing and confidence intervals are two sides of the same statistical coin. While closely linked, they serve distinct purposes. Particularly, hypothesis testing provides a statistical decision based on the p-value, whereas confidence intervals offer an interval estimate of the effect size and its associated precision.</p>
-<p>The 95% CI for the meanusing the t-distribution is:</p>
+<p>The 95% CI for the mean using the t-distribution is:</p>
 <p><span class="math display">\[95\% \ CI = \bar{x} \  \pm \ t_{n-1; a/2}^* * SE_{\bar{x}}\]</span></p>
 <p>where <span class="math inline">\(t_{n-1; a/2}^*\)</span> is the critical value for the t-distribution with df = n-1 for a specific level of significance α.</p>
 <div class="cell">
