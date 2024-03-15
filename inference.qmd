@@ -448,7 +448,7 @@ upper_95CI <- x_bar + t_star*se
 upper_95CI
 ```
 
-We observe that the 95% confidence interval is wider \[0.796, 1.124\] and includes the value of null hypothesis, $\mu = 0.75$.
+We observe that the 95% confidence interval is wider \[0.709, 1.21\] and includes the value of null hypothesis, $\mu = 0.75$.
 
  
 
