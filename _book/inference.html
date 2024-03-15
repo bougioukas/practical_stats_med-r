@@ -434,7 +434,8 @@ window.Quarto = {
   <li><a href="#types-of-errors-in-hypothesis-testing" id="toc-types-of-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#types-of-errors-in-hypothesis-testing"><span class="header-section-number">19.2</span> Types of errors in hypothesis testing</a></li>
   <li><a href="#factors-that-influence-the-power-in-a-study" id="toc-factors-that-influence-the-power-in-a-study" class="nav-link" data-scroll-target="#factors-that-influence-the-power-in-a-study"><span class="header-section-number">19.3</span> Factors that influence the power in a study</a></li>
   <li><a href="#hypothesis-testing-for-a-single-sample" id="toc-hypothesis-testing-for-a-single-sample" class="nav-link" data-scroll-target="#hypothesis-testing-for-a-single-sample"><span class="header-section-number">19.4</span> Hypothesis testing for a single sample</a></li>
-  <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals"><span class="header-section-number">19.5</span> Hypothesis testing and confidence intervals</a></li>
+  <li><a href="#confidence-interval-for-a-single-sample" id="toc-confidence-interval-for-a-single-sample" class="nav-link" data-scroll-target="#confidence-interval-for-a-single-sample"><span class="header-section-number">19.5</span> Confidence interval for a single sample</a></li>
+  <li><a href="#the-influence-of-sample-size" id="toc-the-influence-of-sample-size" class="nav-link" data-scroll-target="#the-influence-of-sample-size"><span class="header-section-number">19.6</span> The influence of sample size</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -717,10 +718,10 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 <p><strong>Step 5: Interpret the results and draw a “real world” conclusion.</strong></p>
 <p>At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 &lt; 0.05). The mean serum creatinine (0.96 mg/dl) in patients with diabetes is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).</p>
 <p>&nbsp;</p>
-</section><section id="hypothesis-testing-and-confidence-intervals" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="hypothesis-testing-and-confidence-intervals">
-<span class="header-section-number">19.5</span> Hypothesis testing and confidence intervals</h2>
-<p>Hypothesis testing and confidence intervals are two sides of the same statistical coin. While closely linked, they serve distinct purposes. Particularly, hypothesis testing provides a statistical decision based on the p-value, whereas confidence intervals offer an interval estimate of the effect size and its associated precision.</p>
-<p>The 95% CI for the mean using the t-distribution is:</p>
+</section><section id="confidence-interval-for-a-single-sample" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="confidence-interval-for-a-single-sample">
+<span class="header-section-number">19.5</span> Confidence interval for a single sample</h2>
+<p>Hypothesis testing and confidence intervals are both inferential methods based on the concept of sampling distribution. Although closely related, they serve distinct purposes. Specifically, hypothesis testing involves a statistical decision (reject or not reject a pre-defined hypothesis) based on the p-value, while confidence intervals provide an interval estimate of the effect size and its associated precision.</p>
+<p>Let’s calculate the 95% CI for the mean using the t-distribution:</p>
 <p><span class="math display">\[95\% \ CI = \bar{x} \  \pm \ t_{n-1; a/2}^* * SE_{\bar{x}}\]</span></p>
 <p>where <span class="math inline">\(t_{n-1; a/2}^*\)</span> is the critical value for the t-distribution with df = n-1 for a specific level of significance α.</p>
 <div class="cell">
@@ -738,7 +739,82 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 [1] 1.123805</code></pre>
 </div>
 </div>
-<p>We observe that the value of null hypothesis, <span class="math inline">\(\mu = 0.75\)</span>, is not included in the 95% confidence interval [0.796, 1.124].</p>
+<p>We observe that the value of null hypothesis, <span class="math inline">\(\mu = 0.75\)</span>, is not included in the 95% confidence interval [0.796, 1.124]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of <span class="math inline">\(H_0\)</span>).</p>
+</section><section id="the-influence-of-sample-size" class="level2" data-number="19.6"><h2 data-number="19.6" class="anchored" data-anchor-id="the-influence-of-sample-size">
+<span class="header-section-number">19.6</span> The influence of sample size</h2>
+<p>To explore the effect of sample size, let’s consider the scenario of the previous example, but this time with only 10 patients. First, we calculate the new value of the t test statistic:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span></span>
+<span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x_bar</span><span class="op">-</span><span class="va">mu</span><span class="op">)</span><span class="op">/</span><span class="va">se</span></span>
+<span><span class="va">t</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 1.897367</code></pre>
+</div>
+</div>
+<p>Next, we will graphically present the two approaches, illustrating the rejection region and p-value methods.</p>
+<p><strong>(a) The rejection region approach</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="inference_files/figure-html/fig-sample_distribution3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.3: T-distribution for df=9. The rejection region approach.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>In this instance, the observed test statistic value, t = 1.897, falls within the non-rejection region, thus indicating that we do not reject the null hypothesis <span class="math inline">\(H_{0}\)</span>.</p>
+<p><strong>(b) The p-value approach</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sample_distribution4" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="inference_files/figure-html/fig-sample_distribution4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.4: T-distribution for df=9. The p-value approach.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The <strong>p-value</strong> is computed as 2*P(T ≥ t) (<a href="#fig-sample_distribution3" class="quarto-xref">Figure&nbsp;<span>19.3</span></a>):</p>
+<div class="cell">
+<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">t</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p_value</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">P</span></span>
+<span><span class="va">p_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.09026733</code></pre>
+</div>
+</div>
+<p>The resulting p-value is 0.09 which is greater than <span class="math inline">\(\alpha = 0.05\)</span>, so we do not reject the <span class="math inline">\(H_0\)</span>.</p>
+<p>&nbsp;</p>
+<p>Additionally, the 95% confidence interval is following:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># compute lower limit of 95% CI</span></span>
+<span><span class="va">lower_95CI</span> <span class="op">&lt;-</span> <span class="va">x_bar</span> <span class="op">-</span> <span class="va">t_star</span><span class="op">*</span><span class="va">se</span></span>
+<span><span class="va">lower_95CI</span></span>
+<span></span>
+<span><span class="co"># compute upper limit of 95% CI</span></span>
+<span><span class="va">upper_95CI</span> <span class="op">&lt;-</span> <span class="va">x_bar</span> <span class="op">+</span> <span class="va">t_star</span><span class="op">*</span><span class="va">se</span></span>
+<span><span class="va">upper_95CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 0.7096251
+[1] 1.210375</code></pre>
+</div>
+</div>
+<p>We observe that the 95% confidence interval is wider [0.796, 1.124] and includes the value of null hypothesis, <span class="math inline">\(\mu = 0.75\)</span>.</p>
+<p>&nbsp;</p>
+<div class="content-box-green">
+<ul>
+<li><p>Even when a difference appears substantial, a study with small sample size may lack sufficient statistical power to attribute the difference to factors other than random chance.</p></li>
+<li><p>Smaller samples lead to wider confidence intervals.</p></li>
+</ul>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

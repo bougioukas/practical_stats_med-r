@@ -187,8 +187,10 @@ ggplot() +
            label = "Rejection \nregion", size = 3) +
   annotate("text", x = 0, y = 0.46, 
            label = "Non-rejection region", size = 3) +
+  annotate("text", x = 0, y = 0.37, 
+           label = "Ho", size = 4) + 
   annotate("text", x = 0, y = 0.41, 
-           label = "Ho", size = 4) +  
+           label = "t(24)", size = 4) +    
   annotate("text", x = 0, y = 0.25, 
            label = "1-a", size = 4) +    
   annotate("text", x = -2.3, y = 0.02, 
@@ -239,8 +241,10 @@ ggplot() +
             fill = "red", alpha = 0.3) +  # Area under the curve
   scale_x_continuous(expand = c(0.01, 0), breaks = c(-3, -2, -1, 0, 1, 2, 3)) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.45)) +
+  annotate("text", x = 0, y = 0.37, 
+           label = "Ho", size = 4) + 
   annotate("text", x = 0, y = 0.41, 
-           label = "Ho", size = 4) +  
+           label = "t(24)", size = 4) +    
   annotate("text", x = t + 0.2, y = 0.07, 
            label = "P(T ≥ t) = p/2", size = 3.2, color = "red") + 
   annotate(geom = "curve", x = t + 0.2, y = 0.06, xend = t + 0.1, yend = 0.005,
@@ -268,25 +272,21 @@ p_value
 
 The resulting p-value is 0.0147 which is less than 0.05, so we reject the null hypothesis.
 
+**Step 5: Interpret the results and draw a "real world" conclusion.**
 
-
-**Step 5: Interpret the results and draw a “real world” conclusion.**
-
-At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 < 0.05). The mean serum creatinine (0.96 mg/dl) in patients with diabetes is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).
+At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 \< 0.05). The mean serum creatinine (0.96 mg/dl) in patients with diabetes is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).
 
  
 
-## Hypothesis testing and confidence intervals
+## Confidence interval for a single sample
 
-Hypothesis testing and confidence intervals are two sides of the same statistical coin. While closely linked, they serve distinct purposes. 
-Particularly, hypothesis testing provides a statistical decision based on the p-value, whereas confidence intervals offer an interval estimate of the effect size and its associated precision.
+Hypothesis testing and confidence intervals are both inferential methods based on the concept of sampling distribution. Although closely related, they serve distinct purposes. Specifically, hypothesis testing involves a statistical decision (reject or not reject a pre-defined hypothesis) based on the p-value, while confidence intervals provide an interval estimate of the effect size and its associated precision.
 
-The 95% CI for the mean using the t-distribution is:
+Let's calculate the 95% CI for the mean using the t-distribution:
 
 $$95\% \ CI = \bar{x} \  \pm \ t_{n-1; a/2}^* * SE_{\bar{x}}$$
 
 where $t_{n-1; a/2}^*$ is the critical value for the t-distribution with df = n-1 for a specific level of significance α.
-
 
 ```{r}
 #| results: hold
@@ -302,6 +302,158 @@ upper_95CI <- x_bar + t_star*se
 upper_95CI
 ```
 
-We observe that the value of null hypothesis, $\mu = 0.75$, is not included in the 95% confidence interval [0.796, 1.124].
+We observe that the value of null hypothesis, $\mu = 0.75$, is not included in the 95% confidence interval \[0.796, 1.124\]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of $H_0$).
+
+## The influence of sample size
+
+To explore the effect of sample size, let's consider the scenario of the previous example, but this time with only 10 patients. First, we calculate the new value of the t test statistic:
+
+```{r}
+n <- 10
+
+se <- s/sqrt(n)
+t <- (x_bar-mu)/se
+t
+```
 
 
+Next, we will graphically present the two approaches, illustrating the rejection region and p-value methods.
+
+**(a) The rejection region approach**
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-sample_distribution3
+#| fig-cap: T-distribution for df=9. The rejection region approach.
+#| fig-width: 7.0
+#| fig-height: 4.0
+
+
+# Create a data frame
+df4 <- data.frame(x = seq(-3.2, 3.2, by = 0.01),
+                  y = dt(seq(-3.2, 3.2, by = 0.01), df = n-1))
+
+t_star <- qt(0.025, df = n-1, lower.tail = F)
+
+
+ggplot() +
+  geom_area(data = df4, mapping = aes(x = ifelse(x < -t_star, x, -t_star), y = y), 
+            fill = "grey70") +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x > t_star, x, t_star), y = y), 
+            fill = "grey70") +  # Area under the curve
+  stat_function(fun = dt, args = list(df = n-1), linewidth = 0.5) +
+  scale_x_continuous(expand = c(0.01, 0), breaks = c(-3, -2, -1, 0, 1, 2, 3)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 0.5)) +
+  annotate("text", x = -2.6, y = 0.45, 
+           label = "Rejection \nregion", size = 3) +
+  annotate("text", x = 0, y = 0.46, 
+           label = "Non-rejection region", size = 3) +
+  annotate("text", x = 0, y = 0.37, 
+           label = "Ho", size = 4) +
+  annotate("text", x = 0, y = 0.41, 
+           label = "t(9)", size = 4) +    
+  annotate("text", x = 0, y = 0.25, 
+           label = "1-a", size = 4) +    
+  annotate("text", x = -2.5, y = 0.015, 
+           label = "a/2", size = 3) +
+  annotate("text", x = 2.6, y = 0.45, 
+           label = "Rejection \nregion", size = 3) +
+  annotate("text", x = 2.5, y = 0.015, 
+           label = "a/2", size = 3) +
+  annotate("text", x = t, y = 0.07, 
+           label = "t = 1.897", size = 3, color = "red") + 
+  annotate(geom = "curve", x = t, y = 0.06, xend = t, yend = 0.002,
+           curvature = 0, arrow = arrow(length = unit(2, "mm")),
+           linewidth = 0.5, color = "red") +
+  geom_vline(xintercept = -t_star, linetype = 2, color = "grey50") +
+  geom_vline(xintercept = t_star, linetype = 2, color = "grey50") +
+  labs(x = "t-value", y = "Probabiblity density") +
+  theme_classic(base_size = 14) +
+  theme()
+
+```
+
+In this instance, the observed test statistic value, t = 1.897, falls within the non-rejection region, thus indicating that we do not reject the null hypothesis $H_{0}$.
+
+**(b) The p-value approach**
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| label: fig-sample_distribution4
+#| fig-cap: T-distribution for df=9. The p-value approach.
+#| fig-width: 7.0
+#| fig-height: 4.0
+
+
+ggplot() +
+  #geom_area(data = df4, mapping = aes(x = ifelse(x < -t_star, x, -t_star), y = y), fill = "grey70") +  # Area under the curve
+  #geom_area(data = df4, mapping = aes(x = ifelse(x > t_star, x, t_star), y = y), fill = "grey70") +  # Area under the curve
+  stat_function(fun = dt, args = list(df = n-1), linewidth = 0.5) +
+  geom_area(data = df4, mapping = aes(x = ifelse(x < -t, x, -t), y = y), 
+            fill = "red", alpha = 0.3) +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x > t, x, t), y = y), 
+            fill = "red", alpha = 0.3) +  # Area under the curve
+  scale_x_continuous(expand = c(0.01, 0), breaks = c(-3, -2, -1, 0, 1, 2, 3)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 0.45)) +
+  annotate("text", x = 0, y = 0.37, 
+           label = "Ho", size = 4) +
+  annotate("text", x = 0, y = 0.41, 
+           label = "t(9)", size = 4) +      
+  annotate("text", x = t + 0.7, y = 0.1, 
+           label = "P(T ≥ t) = p/2", size = 3.2, color = "red") + 
+  annotate(geom = "curve", x = t + 0.7, y = 0.08, xend = t + 0.5, yend = 0.02,
+           curvature = 0, arrow = arrow(length = unit(2, "mm")),
+           linewidth = 0.5, color = "red") +
+  annotate("text", x = -t - 0.7, y = 0.1, 
+           label = "P(T ≤ -t) = p/2", size = 3.2, color = "red") + 
+  annotate(geom = "curve", x = -t - 0.7, y = 0.08, xend = -t - 0.5, yend = 0.02,
+           curvature = 0, arrow = arrow(length = unit(2, "mm")),
+           linewidth = 0.5, color = "red") +  
+  labs(x = "t-value", y = "Probabiblity density") +
+  theme_classic(base_size = 14) +
+  theme()
+
+```
+
+The **p-value** is computed as 2\*P(T ≥ t) (@fig-sample_distribution3):
+
+```{r}
+P <- pt(t, df = n-1, lower.tail = F)
+
+p_value <- 2*P
+p_value
+```
+
+The resulting p-value is 0.09 which is greater than $\alpha = 0.05$, so we do not reject the $H_0$.
+
+ 
+
+Additionally, the 95% confidence interval is following:
+
+```{r}
+#| results: hold
+
+# compute lower limit of 95% CI
+lower_95CI <- x_bar - t_star*se
+lower_95CI
+
+# compute upper limit of 95% CI
+upper_95CI <- x_bar + t_star*se
+upper_95CI
+```
+
+We observe that the 95% confidence interval is wider \[0.796, 1.124\] and includes the value of null hypothesis, $\mu = 0.75$.
+
+ 
+
+::: content-box-green
+-   Even when a difference appears substantial, a study with small sample size may lack sufficient statistical power to attribute the difference to factors other than random chance.
+
+-   Smaller samples lead to wider confidence intervals.
+:::
