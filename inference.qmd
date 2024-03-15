@@ -111,7 +111,7 @@ Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl. A resear
 
 **Step 1: State the null and alternative hypotheses**
 
-In our example, the null hypothesis $H_{0}$ is that the mean serum creatinine in female patients with diabetes, $μ$, is the same as the mean serum creatinine in healthy adult women, $μ_{0}$; here μ is unknown and $μ_{0}$ is known ($μ_{0} = 75$ mg/dl); Conversely, the alternative hypothesis $H_{1}$ suggests a difference between the mean serum creatinine levels in these two groups. Note that $H_{1}$ may have multiple options (more than, less than, or not the same as).
+In our example, the null hypothesis $H_{0}$ is that the mean serum creatinine in female patients with diabetes, $μ$, is the same as the mean serum creatinine in healthy adult women, $μ_{0}$; here μ is unknown and $μ_{0}$ is known ($μ_{0} = 0.75$ mg/dl); Conversely, the alternative hypothesis $H_{1}$ suggests a difference between the mean serum creatinine levels in these two groups. Note that $H_{1}$ may have multiple options (more than, less than, or not the same as).
 
 -   $H_{0}$ : μ=$μ_{0}$, $H_{1}$ : μ\>$μ_{0}$ (one-sided hypothesis; right-tailed)
 -   $H_{0}$ : μ=$μ_{0}$, $H_{1}$ : μ\<$μ_{0}$ (one-sided hypothesis; left-tailed)
@@ -119,7 +119,7 @@ In our example, the null hypothesis $H_{0}$ is that the mean serum creatinine in
 
 In our example, we adopt a two-sided hypothesis, implying that the mean serum creatinine in female patients with diabetes may differ from $μ_{0} = 75$ mg/dl in either direction. That is:
 
--   $H_{0}$ : μ = 75, $H_{1}$ : μ $\neq$ 75
+-   $H_{0}$ : μ = 0.75, $H_{1}$ : μ $\neq$ 0.75
 
 **Step 2: Set the level of significance, α**
 
@@ -190,7 +190,7 @@ ggplot() +
   annotate("text", x = 0, y = 0.37, 
            label = "Ho", size = 4) + 
   annotate("text", x = 0, y = 0.41, 
-           label = "t(24)", size = 4) +    
+           label = "t(19)", size = 4) +    
   annotate("text", x = 0, y = 0.25, 
            label = "1-a", size = 4) +    
   annotate("text", x = -2.3, y = 0.02, 
@@ -244,7 +244,7 @@ ggplot() +
   annotate("text", x = 0, y = 0.37, 
            label = "Ho", size = 4) + 
   annotate("text", x = 0, y = 0.41, 
-           label = "t(24)", size = 4) +    
+           label = "t(19)", size = 4) +    
   annotate("text", x = t + 0.2, y = 0.07, 
            label = "P(T ≥ t) = p/2", size = 3.2, color = "red") + 
   annotate(geom = "curve", x = t + 0.2, y = 0.06, xend = t + 0.1, yend = 0.005,
@@ -315,7 +315,6 @@ se <- s/sqrt(n)
 t <- (x_bar-mu)/se
 t
 ```
-
 
 Next, we will graphically present the two approaches, illustrating the rejection region and p-value methods.
 
