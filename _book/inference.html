@@ -406,7 +406,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size calculation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size estimation</span></span></a>
   </div>
 </li>
       </ul>
@@ -435,7 +435,7 @@ window.Quarto = {
   <li><a href="#factors-that-influence-the-power-in-a-study" id="toc-factors-that-influence-the-power-in-a-study" class="nav-link" data-scroll-target="#factors-that-influence-the-power-in-a-study"><span class="header-section-number">19.3</span> Factors that influence the power in a study</a></li>
   <li><a href="#hypothesis-testing-for-a-single-sample" id="toc-hypothesis-testing-for-a-single-sample" class="nav-link" data-scroll-target="#hypothesis-testing-for-a-single-sample"><span class="header-section-number">19.4</span> Hypothesis testing for a single sample</a></li>
   <li><a href="#confidence-interval-for-a-single-sample" id="toc-confidence-interval-for-a-single-sample" class="nav-link" data-scroll-target="#confidence-interval-for-a-single-sample"><span class="header-section-number">19.5</span> Confidence interval for a single sample</a></li>
-  <li><a href="#the-influence-of-sample-size" id="toc-the-influence-of-sample-size" class="nav-link" data-scroll-target="#the-influence-of-sample-size"><span class="header-section-number">19.6</span> The influence of sample size</a></li>
+  <li><a href="#the-impact-of-sample-size" id="toc-the-impact-of-sample-size" class="nav-link" data-scroll-target="#the-impact-of-sample-size"><span class="header-section-number">19.6</span> The impact of sample size</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -636,24 +636,24 @@ Table&nbsp;19.3: Factors Influencing Power.
 <p>Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl. A research study was conducted to examine the serum creatinine levels in female patients with diabetes. Twenty female patients were randomly enrolled, with a mean serum creatinine level of 0.96 mg/dl and a standard deviation of 0.35 mg/dl. Assuming that the serum creatinine follows a normal distribution, is the mean serum creatinine in diabetic patients significantly different from that in healthy adults, with a level of significance of <span class="math inline">\(α = 0.05\)</span>?</p>
 </div>
 <p><strong>Step 1: State the null and alternative hypotheses</strong></p>
-<p>In our example, the null hypothesis <span class="math inline">\(H_{0}\)</span> is that the mean serum creatinine in female patients with diabetes, <span class="math inline">\(μ\)</span>, is the same as the mean serum creatinine in healthy adult women, <span class="math inline">\(μ_{0}\)</span>; here μ is unknown and <span class="math inline">\(μ_{0}\)</span> is known (<span class="math inline">\(μ_{0} = 0.75\)</span> mg/dl); Conversely, the alternative hypothesis <span class="math inline">\(H_{1}\)</span> suggests a difference between the mean serum creatinine levels in these two groups. Note that <span class="math inline">\(H_{1}\)</span> may have multiple options (more than, less than, or not the same as).</p>
+<p>In our example, the null hypothesis <span class="math inline">\(H_{0}\)</span> is that the mean serum creatinine in female patients with diabetes, <span class="math inline">\(μ\)</span>, is the same as the mean serum creatinine in healthy adult women, <span class="math inline">\(μ_{o}\)</span>; here μ is unknown and <span class="math inline">\(μ_{o}\)</span> is known (0.75 mg/dl); Conversely, the alternative hypothesis <span class="math inline">\(H_{1}\)</span> suggests a difference between the mean serum creatinine levels in these two groups. Note that <span class="math inline">\(H_{1}\)</span> may have multiple options (more than, less than, or not the same as).</p>
 <ul>
 <li>
-<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{0}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ&gt;<span class="math inline">\(μ_{0}\)</span> (one-sided hypothesis; right-tailed)</li>
+<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{o}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ&gt;<span class="math inline">\(μ_{o}\)</span> (one-sided hypothesis; right-tailed)</li>
 <li>
-<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{0}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ&lt;<span class="math inline">\(μ_{0}\)</span> (one-sided hypothesis; left-tailed)</li>
+<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{o}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ&lt;<span class="math inline">\(μ_{o}\)</span> (one-sided hypothesis; left-tailed)</li>
 <li>
-<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{0}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ <span class="math inline">\(\neq\)</span> <span class="math inline">\(μ_{0}\)</span> (two-sided hypothesis)</li>
+<span class="math inline">\(H_{0}\)</span> : μ=<span class="math inline">\(μ_{o}\)</span>, <span class="math inline">\(H_{1}\)</span> : μ <span class="math inline">\(\neq\)</span> <span class="math inline">\(μ_{o}\)</span> (two-sided hypothesis)</li>
 </ul>
-<p>In our example, we adopt a two-sided hypothesis, implying that the mean serum creatinine in female patients with diabetes may differ from <span class="math inline">\(μ_{0} = 75\)</span> mg/dl in either direction. That is:</p>
+<p>In our example, we adopt a two-sided hypothesis, implying that the mean serum creatinine in female patients with diabetes may differ from <span class="math inline">\(μ_{o}\)</span> = 75 mg/dl in either direction. That is:</p>
 <ul>
 <li>
 <span class="math inline">\(H_{0}\)</span> : μ = 0.75, <span class="math inline">\(H_{1}\)</span> : μ <span class="math inline">\(\neq\)</span> 0.75</li>
 </ul>
 <p><strong>Step 2: Set the level of significance, α</strong></p>
-<p>We set the significance level (type I error) as α=0.05.</p>
+<p>We set the significance level (type I error) as α = 0.05.</p>
 <p><strong>Step 3: Determine an appropriate statistical test, check for any assumptions that may exist, and calculate the test statistic.</strong></p>
-<p>We choose a <strong>t-test</strong>, a statistical method utilized to assess whether the mean of a single sample differs significantly from a known population mean. This statistical test is particularly effective when dealing with small sample sizes (N &lt; 30) and when the population standard deviation is unknown. The main assumption underlying the t-test is that the data being analyzed follows a normal distribution.</p>
+<p>We choose a <strong>t-test</strong>, a statistical method utilized to assess whether the mean of a single sample differs significantly from a known population mean. This statistical test is particularly effective when dealing with small sample sizes and when the population standard deviation is unknown. The main assumption underlying the t-test is that the data being analyzed follows a normal distribution.</p>
 <p>The formula for the test statistic t is:</p>
 <p><span id="eq-t1"><span class="math display">\[t = \frac{\bar{x} - \mu_{o}}{SE_{\bar{x}}} \tag{19.1}\]</span></span></p>
 <p>so,</p>
@@ -716,7 +716,7 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 </div>
 <p>The resulting p-value is 0.0147 which is less than 0.05, so we reject the null hypothesis.</p>
 <p><strong>Step 5: Interpret the results and draw a “real world” conclusion.</strong></p>
-<p>At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 &lt; 0.05). The mean serum creatinine (0.96 mg/dl) in patients with diabetes is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).</p>
+<p>At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 &lt; 0.05). The mean serum creatinine in women with diabetes (0.96 mg/dl) is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).</p>
 <p>&nbsp;</p>
 </section><section id="confidence-interval-for-a-single-sample" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="confidence-interval-for-a-single-sample">
 <span class="header-section-number">19.5</span> Confidence interval for a single sample</h2>
@@ -739,10 +739,11 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 [1] 1.123805</code></pre>
 </div>
 </div>
-<p>We observe that the value of null hypothesis, <span class="math inline">\(\mu = 0.75\)</span>, is not included in the 95% confidence interval [0.796, 1.124]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of <span class="math inline">\(H_0\)</span>).</p>
-</section><section id="the-influence-of-sample-size" class="level2" data-number="19.6"><h2 data-number="19.6" class="anchored" data-anchor-id="the-influence-of-sample-size">
-<span class="header-section-number">19.6</span> The influence of sample size</h2>
-<p>To explore the effect of sample size, let’s consider the scenario of the previous example, but this time with only 10 patients. First, we calculate the new value of the t test statistic:</p>
+<p>We observe that the value of null hypothesis, <span class="math inline">\(μ_{o}\)</span>= 0.75, is not included in the 95% confidence interval [0.796, 1.124]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of <span class="math inline">\(H_0\)</span>).</p>
+</section><section id="the-impact-of-sample-size" class="level2" data-number="19.6"><h2 data-number="19.6" class="anchored" data-anchor-id="the-impact-of-sample-size">
+<span class="header-section-number">19.6</span> The impact of sample size</h2>
+<p>The impact of study design decisions, such as the size of the sample, on research outcomes and conclusions is a crucial aspect that researchers must carefully consider before conducting the study. Let’s return to the example provided earlier, but this time the researchers designed a study with only 10 patients (we suppose everything else is the same).</p>
+<p>First, we calculate the new value of the t test statistic:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span></span>
@@ -791,7 +792,7 @@ Figure&nbsp;19.4: T-distribution for df=9. The p-value approach.
 <pre data-code-line-numbers=""><code>[1] 0.09026733</code></pre>
 </div>
 </div>
-<p>The resulting p-value is 0.09 which is greater than <span class="math inline">\(\alpha = 0.05\)</span>, so we do not reject the <span class="math inline">\(H_0\)</span>.</p>
+<p>The resulting p-value is 0.09 which is greater than <span class="math inline">\(\alpha\)</span>= 0.05, so we do not reject the <span class="math inline">\(H_0\)</span>.</p>
 <p>&nbsp;</p>
 <p>Additionally, the 95% confidence interval is following:</p>
 <div class="cell">
@@ -807,14 +808,12 @@ Figure&nbsp;19.4: T-distribution for df=9. The p-value approach.
 [1] 1.210375</code></pre>
 </div>
 </div>
-<p>We observe that the 95% confidence interval is wider [0.709, 1.21] and includes the value of null hypothesis, <span class="math inline">\(\mu = 0.75\)</span>.</p>
+<p>We observe that the 95% confidence interval is wider [0.709, 1.21] and includes the value of null hypothesis, <span class="math inline">\(μ_{o}\)</span>= 0.75.</p>
 <p>&nbsp;</p>
 <div class="content-box-green">
-<ul>
-<li><p>Even when a difference appears substantial, a study with small sample size may lack sufficient statistical power to attribute the difference to factors other than random chance.</p></li>
-<li><p>Smaller samples lead to wider confidence intervals.</p></li>
-</ul>
+<p>Even when a difference appears substantial, a study designed with insufficient sample size might not have enough statistical power to attribute the difference to factors other than random chance.</p>
 </div>
+<p>As we highlighted, the sample size is a crucial aspect of research design, and we will delve into this topic in <a href="sample_size.html" class="quarto-xref"><span>Chapter 38</span></a>.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

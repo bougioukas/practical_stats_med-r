@@ -111,23 +111,23 @@ Suppose the mean serum creatinine in healthy adult women is 0.75 mg/dl. A resear
 
 **Step 1: State the null and alternative hypotheses**
 
-In our example, the null hypothesis $H_{0}$ is that the mean serum creatinine in female patients with diabetes, $μ$, is the same as the mean serum creatinine in healthy adult women, $μ_{0}$; here μ is unknown and $μ_{0}$ is known ($μ_{0} = 0.75$ mg/dl); Conversely, the alternative hypothesis $H_{1}$ suggests a difference between the mean serum creatinine levels in these two groups. Note that $H_{1}$ may have multiple options (more than, less than, or not the same as).
+In our example, the null hypothesis $H_{0}$ is that the mean serum creatinine in female patients with diabetes, $μ$, is the same as the mean serum creatinine in healthy adult women, $μ_{o}$; here μ is unknown and $μ_{o}$ is known (0.75 mg/dl); Conversely, the alternative hypothesis $H_{1}$ suggests a difference between the mean serum creatinine levels in these two groups. Note that $H_{1}$ may have multiple options (more than, less than, or not the same as).
 
--   $H_{0}$ : μ=$μ_{0}$, $H_{1}$ : μ\>$μ_{0}$ (one-sided hypothesis; right-tailed)
--   $H_{0}$ : μ=$μ_{0}$, $H_{1}$ : μ\<$μ_{0}$ (one-sided hypothesis; left-tailed)
--   $H_{0}$ : μ=$μ_{0}$, $H_{1}$ : μ $\neq$ $μ_{0}$ (two-sided hypothesis)
+-   $H_{0}$ : μ=$μ_{o}$, $H_{1}$ : μ\>$μ_{o}$ (one-sided hypothesis; right-tailed)
+-   $H_{0}$ : μ=$μ_{o}$, $H_{1}$ : μ\<$μ_{o}$ (one-sided hypothesis; left-tailed)
+-   $H_{0}$ : μ=$μ_{o}$, $H_{1}$ : μ $\neq$ $μ_{o}$ (two-sided hypothesis)
 
-In our example, we adopt a two-sided hypothesis, implying that the mean serum creatinine in female patients with diabetes may differ from $μ_{0} = 75$ mg/dl in either direction. That is:
+In our example, we adopt a two-sided hypothesis, implying that the mean serum creatinine in female patients with diabetes may differ from $μ_{o}$ = 75 mg/dl in either direction. That is:
 
 -   $H_{0}$ : μ = 0.75, $H_{1}$ : μ $\neq$ 0.75
 
 **Step 2: Set the level of significance, α**
 
-We set the significance level (type I error) as α=0.05.
+We set the significance level (type I error) as α = 0.05.
 
 **Step 3: Determine an appropriate statistical test, check for any assumptions that may exist, and calculate the test statistic.**
 
-We choose a **t-test**, a statistical method utilized to assess whether the mean of a single sample differs significantly from a known population mean. This statistical test is particularly effective when dealing with small sample sizes (N \< 30) and when the population standard deviation is unknown. The main assumption underlying the t-test is that the data being analyzed follows a normal distribution.
+We choose a **t-test**, a statistical method utilized to assess whether the mean of a single sample differs significantly from a known population mean. This statistical test is particularly effective when dealing with small sample sizes and when the population standard deviation is unknown. The main assumption underlying the t-test is that the data being analyzed follows a normal distribution.
 
 The formula for the test statistic t is:
 
@@ -274,7 +274,7 @@ The resulting p-value is 0.0147 which is less than 0.05, so we reject the null h
 
 **Step 5: Interpret the results and draw a "real world" conclusion.**
 
-At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 \< 0.05). The mean serum creatinine (0.96 mg/dl) in patients with diabetes is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).
+At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 \< 0.05). The mean serum creatinine  in women with diabetes (0.96 mg/dl) is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).
 
  
 
@@ -302,11 +302,13 @@ upper_95CI <- x_bar + t_star*se
 upper_95CI
 ```
 
-We observe that the value of null hypothesis, $\mu = 0.75$, is not included in the 95% confidence interval \[0.796, 1.124\]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of $H_0$).
+We observe that the value of null hypothesis, $μ_{o}$= 0.75, is not included in the 95% confidence interval \[0.796, 1.124\]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of $H_0$).
 
-## The influence of sample size
+## The impact of sample size
 
-To explore the effect of sample size, let's consider the scenario of the previous example, but this time with only 10 patients. First, we calculate the new value of the t test statistic:
+The impact of study design decisions, such as the size of the sample, on research outcomes and conclusions is a crucial aspect that researchers must carefully consider before conducting the study. Let's return to the example provided earlier, but this time the researchers designed a study with only 10 patients (we suppose everything else is the same).
+
+First, we calculate the new value of the t test statistic:
 
 ```{r}
 n <- 10
@@ -429,7 +431,7 @@ p_value <- 2*P
 p_value
 ```
 
-The resulting p-value is 0.09 which is greater than $\alpha = 0.05$, so we do not reject the $H_0$.
+The resulting p-value is 0.09 which is greater than $\alpha$= 0.05, so we do not reject the $H_0$.
 
  
 
@@ -447,12 +449,15 @@ upper_95CI <- x_bar + t_star*se
 upper_95CI
 ```
 
-We observe that the 95% confidence interval is wider \[0.709, 1.21\] and includes the value of null hypothesis, $\mu = 0.75$.
+We observe that the 95% confidence interval is wider \[0.709, 1.21\] and includes the value of null hypothesis, $μ_{o}$= 0.75.
 
  
 
 ::: content-box-green
--   Even when a difference appears substantial, a study with small sample size may lack sufficient statistical power to attribute the difference to factors other than random chance.
 
--   Smaller samples lead to wider confidence intervals.
+Even when a difference appears substantial, a study designed with insufficient sample size might not have enough statistical power to attribute the difference to factors other than random chance.
+
 :::
+
+As we highlighted, the sample size is a crucial aspect of research design, and we will delve into this topic in @sec-sample_size. 
+

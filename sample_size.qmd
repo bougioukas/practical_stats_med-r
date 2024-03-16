@@ -1,1 +1,4 @@
-# Sample size calculation {#sec-sample_size}
+# Sample size estimation {#sec-sample_size}
+
+
+Sample size estimation refers to the process of determining the necessary sample size **before** conducting a study, based on statistical considerations and the desired level of precision and power. 
