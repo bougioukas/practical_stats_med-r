@@ -23,7 +23,7 @@ Obtaining an exact point estimate of the population parameter from just one rand
 
 ## Confidence interval for mean
 
-### Constructing a confidence interval
+### The logic behind constructing a confidence interval
 
 We will base the construction of a confidence interval on two key concepts:
 
@@ -31,7 +31,7 @@ We will base the construction of a confidence interval on two key concepts:
 
 2.  The **standard error (SE)** is utilized to quantify the extent of variability around the point estimate.
 
-According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, $\sigma_{\bar{x}}$. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal).
+According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, $\sigma_{\bar{x}}$. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal). This multiple of the standard error, such as $\pm 1.96 \sigma_{\bar{x}}$, is referred to as the **margin of error** in a confidence interval. 
 
 ```{r}
 #| echo: false

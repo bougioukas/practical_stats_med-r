@@ -31,4 +31,4 @@ To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
 The **online version** of the textbook is **free to use** for **non-commercial** purposes, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. ![](images/license.png){width="120" height="40"}
 
-{{< qrcode https://bougioukas-medstats-r.netlify.app width=100 height=100 colorDark='#0011bb' >}}
+{{< qrcode https://practical-stats-med-r.netlify.app width=100 height=100 colorDark='#0011bb' >}}

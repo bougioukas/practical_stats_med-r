@@ -428,7 +428,7 @@ window.Quarto = {
 <li>
 <a href="#confidence-interval-for-mean" id="toc-confidence-interval-for-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-mean"><span class="header-section-number">18.1</span> Confidence interval for mean</a>
   <ul class="collapse">
-<li><a href="#constructing-a-confidence-interval" id="toc-constructing-a-confidence-interval" class="nav-link" data-scroll-target="#constructing-a-confidence-interval">Constructing a confidence interval</a></li>
+<li><a href="#the-logic-behind-constructing-a-confidence-interval" id="toc-the-logic-behind-constructing-a-confidence-interval" class="nav-link" data-scroll-target="#the-logic-behind-constructing-a-confidence-interval">The logic behind constructing a confidence interval</a></li>
   <li><a href="#confidence-level" id="toc-confidence-level" class="nav-link" data-scroll-target="#confidence-level">Confidence level</a></li>
   <li><a href="#understanding-the-condidence-interval" id="toc-understanding-the-condidence-interval" class="nav-link" data-scroll-target="#understanding-the-condidence-interval">Understanding the condidence interval</a></li>
   <li><a href="#sample-size-and-condidence-interval" id="toc-sample-size-and-condidence-interval" class="nav-link" data-scroll-target="#sample-size-and-condidence-interval">Sample size and condidence interval</a></li>
@@ -474,13 +474,13 @@ window.Quarto = {
 <p>&nbsp;</p>
 <section id="confidence-interval-for-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-mean">
 <span class="header-section-number">18.1</span> Confidence interval for mean</h2>
-<section id="constructing-a-confidence-interval" class="level3"><h3 class="anchored" data-anchor-id="constructing-a-confidence-interval">Constructing a confidence interval</h3>
+<section id="the-logic-behind-constructing-a-confidence-interval" class="level3"><h3 class="anchored" data-anchor-id="the-logic-behind-constructing-a-confidence-interval">The logic behind constructing a confidence interval</h3>
 <p>We will base the construction of a confidence interval on two key concepts:</p>
 <ol type="1">
 <li><p>The interval is <strong>around the point estimate</strong>, which represents our best estimate of the population parameter.</p></li>
 <li><p>The <strong>standard error (SE)</strong> is utilized to quantify the extent of variability around the point estimate.</p></li>
 </ol>
-<p>According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (<a href="sampling.html" class="quarto-xref"><span>Chapter 17</span></a>). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within <span class="math inline">\(\pm 1.96 \sigma_{\bar{x}}\)</span> from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+<p>According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (<a href="sampling.html" class="quarto-xref"><span>Chapter 17</span></a>). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within <span class="math inline">\(\pm 1.96 \sigma_{\bar{x}}\)</span> from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>). This multiple of the standard error, such as <span class="math inline">\(\pm 1.96 \sigma_{\bar{x}}\)</span>, is referred to as the <strong>margin of error</strong> in a confidence interval.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-sample_distribution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">

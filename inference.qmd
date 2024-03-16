@@ -274,7 +274,7 @@ The resulting p-value is 0.0147 which is less than 0.05, so we reject the null h
 
 **Step 5: Interpret the results and draw a "real world" conclusion.**
 
-At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 \< 0.05). The mean serum creatinine  in women with diabetes (0.96 mg/dl) is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).
+At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 \< 0.05). The mean serum creatinine in women with diabetes (0.96 mg/dl) is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).
 
  
 
@@ -304,7 +304,7 @@ upper_95CI
 
 We observe that the value of null hypothesis, $μ_{o}$= 0.75, is not included in the 95% confidence interval \[0.796, 1.124\]. Consequently, the conclusion aligns with that of the hypothesis testing (rejection of $H_0$).
 
-## The impact of sample size
+## The impact of study design: sample size
 
 The impact of study design decisions, such as the size of the sample, on research outcomes and conclusions is a crucial aspect that researchers must carefully consider before conducting the study. Let's return to the example provided earlier, but this time the researchers designed a study with only 10 patients (we suppose everything else is the same).
 
@@ -454,10 +454,7 @@ We observe that the 95% confidence interval is wider \[0.709, 1.21\] and include
  
 
 ::: content-box-green
-
-Even when a difference appears substantial, a study designed with insufficient sample size might not have enough statistical power to attribute the difference to factors other than random chance.
-
+Even when a difference appears substantial, a study designed with a small sample size might not have enough statistical power to attribute the difference to factors other than random chance.
 :::
 
-As we highlighted, the sample size is a crucial aspect of research design, and we will delve into this topic in @sec-sample_size. 
-
+As we highlighted, the sample size is a crucial aspect of research design, and we will delve into this topic in @sec-sample_size.
