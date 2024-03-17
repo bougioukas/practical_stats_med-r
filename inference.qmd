@@ -32,7 +32,7 @@ Hypothesis testing is a statistical method used to assess whether the data are c
 
 **Step 3:** Determine an appropriate statistical test, check for any assumptions that may exist, and calculate the test statistic.
 
-*NOTE: There are two basic types of statistical tests and they are described as parametric and non-parametric. The parametric tests (e.g., t-test, ANOVA), make certain assumptions about the distribution of the unknown parameter of interest and thus the test statistic is valid under these assumptions. For non-parametric tests (e.g., Mann-Whitney U test, Kruskal-Wallis test), there are no such assumptions. Most nonparametric tests use some way of ranking the measurements. Non-parametric tests are about 95% as powerful as parametric tests.*
+*NOTE: There are two basic types of statistical tests, parametric and non-parametric. Parametric tests (e.g., t-test, ANOVA), depend on assumptions about the distribution of the parameter being studied. Non-parametric tests (e.g., Mann-Whitney U test, Kruskal-Wallis test), use some way of ranking the measurements and do not require such assumptions. However, non-parametric tests are typically about 95% as powerful as parametric tests.*
 
 **Step 4:** Decide whether or not the result is "statistically" significant according to (a) the rejection region or (b) the p-value.
 

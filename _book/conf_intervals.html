@@ -527,7 +527,7 @@ Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 </div>
 </div>
 </section><section id="confidence-level" class="level3"><h3 class="anchored" data-anchor-id="confidence-level">Confidence level</h3>
-<p>However, there is no particular reason for choosing 95% other than convention, and confidence levels of 90% or 99% are sometimes used. For example, the 99% confidence interval for the mean creatinine is <span class="math inline">\(\pm 2.58 \sigma_{\bar{x}}\)</span> from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+<p>However, there is no particular reason for choosing a 95% confidence level for constructing confidence intervals other than convention; confidence levels of 90% or 99% are sometimes preferred depending on the context. For example, when a 99% confidence level is chosen, the margin of error for the mean becomes <span class="math inline">\(\pm 2.58 \sigma_{\bar{x}}\)</span> (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-sample_distribution2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -540,7 +540,7 @@ Figure&nbsp;18.2: Sampling distribution of mean and 99% CI.
 </div>
 </div>
 </div>
-<p>Now, each of the grey areas in <a href="inference.html#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>19.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. Therefore:</p>
+<p>Now, each of the grey areas in <a href="inference.html#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>19.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. In this instance, the 99% CI for the mean is:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.005</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -608,7 +608,7 @@ Figure&nbsp;18.5: 100 Sample Means of Size 50 (with 95% Intervals) from the Popu
 </ol>
 <p>&nbsp;</p>
 <div class="content-box-green">
-<p>A confidence interval is typically expressed as a percentage (e.g., 90%, 95%, 99% CI) and reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.</p>
+<p>A confidence interval is commonly expressed as 90%, 95%, or 99% CI, indicating the level of confidence associated with the estimate. The percentage reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.</p>
 <p>Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.</p>
 </div>
 </section></section><section id="confidence-interval-for-proportion-normal-approximation-method" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="confidence-interval-for-proportion-normal-approximation-method">

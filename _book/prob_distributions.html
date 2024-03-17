@@ -436,7 +436,7 @@ window.Quarto = {
   </ul>
 </li>
   <li>
-<a href="#probability-distributions-for-continuous-outcomes" id="toc-probability-distributions-for-continuous-outcomes" class="nav-link" data-scroll-target="#probability-distributions-for-continuous-outcomes"><span class="header-section-number">14.4</span> Probability distributions for Continuous Outcomes</a>
+<a href="#probability-distributions-for-continuous-outcomes" id="toc-probability-distributions-for-continuous-outcomes" class="nav-link" data-scroll-target="#probability-distributions-for-continuous-outcomes"><span class="header-section-number">14.4</span> Probability distributions for continuous outcomes</a>
   <ul class="collapse">
 <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
   <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution">Standard Normal distribution</a></li>
@@ -560,8 +560,13 @@ Figure&nbsp;14.1: Blood types matching for a safe transfusion.
 <p>The probability distribution of a discrete random variable X is defined by the <strong>probability mass function</strong> (pmf) as:</p>
 <p><span id="eq-pdfdiscrete"><span class="math display">\[  P(X = x) = P(x) \tag{14.1}\]</span></span></p>
 <p>where:</p>
-<p><span class="math inline">\(P(X = x)\)</span> is the probability that the random variable X takes the value x</p>
+<p><span class="math inline">\(P(X = x)\)</span> is the probability that the random variable X takes the value x and</p>
 <p><span class="math inline">\(P(x)\)</span> is the probability of the specific outcome x occurring.</p>
+<p>The pmf has two properties:</p>
+<ul>
+<li><span class="math inline">\(P(x) \geq 0\)</span></li>
+<li><span class="math inline">\(\sum_{x} P(x) = 1\)</span></li>
+</ul>
 <p>&nbsp;</p>
 <p>Additionally, the <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to x and is usually denoted as F(x):</p>
 <p><span id="eq-cdfdiscrete"><span class="math display">\[F(x) = P(X \le x)= \sum_{x_i\le x} P(x_i) \tag{14.2}\]</span></span></p>
@@ -582,7 +587,7 @@ Figure&nbsp;14.1: Blood types matching for a safe transfusion.
 </div>
 <p><strong>Standard deviation</strong></p>
 <div class="content-box-green">
-<p>The standard deviation is the square root of the variance. It is often preferred over the variance because it is in the same units as the random variable.</p>
+<p>The standard deviation is the square root of the variance.</p>
 <p><span class="math inline">\(\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}\)</span></p>
 </div>
 <section id="bernoulli-distribution" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="bernoulli-distribution">Bernoulli distribution</h3>
@@ -614,7 +619,7 @@ Note
 <p>&nbsp;</p>
 <p>The <strong>expected value</strong> of random variable, X, with Bernoulli(p) distribution is:</p>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><strong>NOTE:</strong> In this case, the mean can be interpreted as the proportion of the population who has the outcome (success).</span></div></div>
-<p><span id="eq-bernouli4"><span class="math display">\[E(X) = μ = p \tag{14.6}\]</span></span></p>
+<p><span id="eq-bernouli4"><span class="math display">\[μ = E(X)= p \tag{14.6}\]</span></span></p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -629,7 +634,7 @@ Proof:
 </div>
 </div>
 <p>The <strong>variance</strong> is:</p>
-<p><span id="eq-bernouli5"><span class="math display">\[Var(X) = \sigma^2= p(1-p) \tag{14.7}\]</span></span></p>
+<p><span id="eq-bernouli5"><span class="math display">\[\sigma^2 = Var(X) =  p(1-p) \tag{14.7}\]</span></span></p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -644,11 +649,13 @@ Proof:
 </div>
 </div>
 <p>and the standard deviation is:</p>
-<p><span id="eq-bernouli6"><span class="math display">\[ \sqrt{Var(X)} = σ = \sqrt{p(1-p)} \tag{14.8}\]</span></span></p>
+<p><span id="eq-bernouli6"><span class="math display">\[ σ = \sqrt{Var(X)} = \sqrt{p(1-p)} \tag{14.8}\]</span></span></p>
 <p>&nbsp;</p>
+<div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Let X be a random variable of the result of a surgical procedure, where X = 1 if the surgery was successful and X = 0 if it was unsuccessful. Suppose that the probability of success is p = 0.7. Then X has a Bernoulli distribution with parameter p = 0.7 :</p>
-<p><span class="math display">\[X ∼ Bernoulli(0.7)\]</span></p>
+<p>Let X be a random variable representing the result of a surgical procedure, where X = 1 if the surgery was successful and X = 0 if it was unsuccessful. Suppose that the probability of success is 0.7; then X follows a Bernoulli distribution with parameter p = 0.7: <span class="math inline">\(X ∼ Bernoulli(0.7)\)</span>.</p>
+<p>Find the main characteristics of this distribution.</p>
+</div>
 <ul>
 <li>The pmf for this distribution is:</li>
 </ul>
@@ -722,6 +729,10 @@ Figure&nbsp;14.3: Plot of the cdf for Bernoulli(0.7) distribution.
 </div>
 </div>
 <p>&nbsp;</p>
+<ul>
+<li>The mean is <span class="math inline">\(\mu\)</span> = p = 0.7 and the variance is <span class="math inline">\(\sigma^2\)</span> = 0.7(1-0.7)= 0.7<span class="math inline">\(\cdot\)</span> 0.3 = 0.21.</li>
+</ul>
+<p>&nbsp;</p>
 </section><section id="binomial-distribution" class="level3"><h3 class="anchored" data-anchor-id="binomial-distribution">Binomial distribution</h3>
 <p>The binomial probability distribution can be used for modeling the number of times a particular event occurs (successes) in a sequence of <em>n</em> repeated and independent Bernoulli trials, each with probability <em>p</em> of success.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -746,7 +757,7 @@ The binomial setting
 <li>The probability mass function (pmf) of X is given by:</li>
 </ul>
 <p><span id="eq-binom0"><span class="math display">\[ P(X=x) = {{n}\choose{x}} \cdot p^x \cdot (1-p)^{n-x} \tag{14.10}\]</span></span></p>
-<p>where x = 0, 1, … , n, <span class="math inline">\(\binom{n}{x} = \frac{n!}{x!(n-x)!}\)</span>, and <span class="math inline">\({0\leq p\leq 1}\)</span>.</p>
+<p>where x = 0, 1, … , n and <span class="math inline">\(\binom{n}{x} = \frac{n!}{x!(n-x)!}\)</span></p>
 <p>Note that: <span class="math inline">\(n! = 1\cdot 2 \cdot 3\cdot \ldots \cdot (n-2)\cdot (n-1)\cdot n\)</span></p>
 <p>&nbsp;</p>
 <ul>
@@ -755,23 +766,27 @@ The binomial setting
 <p><span id="eq-binom0.1"><span class="math display">\[F(x) = P(X \le x)=  {\begin{cases}0,&amp;for\ x &lt;0\\\sum_{k=0}^{x}{\left( \begin{array}{c} n \\ k \end{array}
 \right) p^{k}(1 - p)^{n-k}},&amp;for\ 0\leq x &lt; n\\1,&amp;for\ x \geq n \end{cases}} \tag{14.11}\]</span></span></p>
 <p>&nbsp;</p>
-<ul>
-<li>The mean of random variable, X, with Binomial(n, p) distribution is:</li>
-</ul>
+<p>The mean of random variable, X, with Binomial(n, p) distribution is:</p>
 <p><span id="eq-binom1"><span class="math display">\[μ = np \tag{14.12}\]</span></span></p>
 <p>the variance is:</p>
 <p><span id="eq-binom2"><span class="math display">\[σ^2 = np(1-p) \tag{14.13}\]</span></span></p>
 <p>and the standard deviation:</p>
 <p><span id="eq-binom3"><span class="math display">\[σ = \sqrt{np(1-p)} \tag{14.14}\]</span></span></p>
 <p>&nbsp;</p>
+<div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Let the random variable X be the number of successful surgical procedures and suppose that a new surgery is successful 70% of the time (p = 0.7). If the results of 10 surgeries are randomly sampled, the X has a Binomial distribution <span class="math inline">\(X ∼ Binomial(10, 0.7)\)</span>.</p>
+<p>Let the random variable X be the number of successful surgical procedures and suppose that a new surgery method is successful 70% of the time (p = 0.7). If the results of 10 surgeries are randomly sampled, and X follows a Binomial distribution <span class="math inline">\(X ∼ Binomial(10, 0.7)\)</span>, find the main characteristics of this distribution.</p>
+</div>
 <ul>
 <li>So, the pmf for this distribution is:</li>
 </ul>
 <p><span id="eq-binom4"><span class="math display">\[ P(X=x) = {{10}\choose{x}} \cdot 0.7^x \cdot (1-0.7)^{10-x} \tag{14.15}\]</span></span></p>
 <p>The pmf of Binomial(10, 0.7) distribution specifies the probability of 0 through 10 successful surgical procedures.</p>
 <p>According to <a href="#eq-binom4" class="quarto-xref">Equation&nbsp;<span>14.15</span></a> we have:</p>
+<div id="tbl-table_binomial" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table_binomial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.1: Probability table for <span class="math inline">\(X ∼ Poisson(2.5)\)</span>.
+</figcaption><div aria-describedby="tbl-table_binomial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
 <col style="width: 15%">
@@ -809,6 +824,9 @@ The binomial setting
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>We can easily compute the above probabilities using the <code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code> function in R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -886,6 +904,10 @@ Figure&nbsp;14.5: Plot of the cdf for Binomial(10, 0.7) distribution.
 </div>
 </div>
 </div>
+<p>&nbsp;</p>
+<ul>
+<li>The mean is <span class="math inline">\(\mu\)</span> = n p = 10 <span class="math inline">\(\cdot\)</span> 0.7 = 7 successful surgeries and the variance is <span class="math inline">\(\sigma^2\)</span> = n p (1-p) = 10 <span class="math inline">\(\cdot\)</span> 0.7 <span class="math inline">\(\cdot\)</span> 0.3 = 2.1</li>
+</ul>
 <p><br></p>
 <p><strong>What is the probability that more than 8 of 10 surgical procedures are successful?</strong></p>
 <p>We want to calculate the P(X &gt; 8):</p>
@@ -944,12 +966,31 @@ The Poisson setting
 </ul>
 <p><span id="eq-poisson1"><span class="math display">\[ P(X=x)={\frac {\lambda ^{x}e^{-\lambda }}{x!}}  \tag{14.17}\]</span></span></p>
 <p>where x = 0, 1, … +∞, λ &gt; 0.</p>
-<p>The mean and variance of a random variable with Poisson(λ) distribution are the same and equal to λ. That is, μ = λ and <span class="math inline">\(σ^2 = λ\)</span>.</p>
+<ul>
+<li>The cumulative distribution function (cdf) of X is given by:</li>
+</ul>
+<p><span id="eq-poisson0.1"><span class="math display">\[F(x) = P(X \le x)=  {\begin{cases}0,&amp;for\ x &lt;0\\\sum_{k=0}^{x}{ \begin{array}{c}
+\frac {\lambda ^{k}e^{-\lambda }}{k!}
+\end{array}},&amp;for\ x\geq 0 \end{cases}} \tag{14.18}\]</span></span></p>
+<p>The mean and variance of a random variable that follows the Poisson(λ) distribution are the same and equal to λ:</p>
+<ul>
+<li>μ = λ</li>
+<li>
+<span class="math inline">\(σ^2\)</span> = λ</li>
+</ul>
+<div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>For instance, let’s say we’re analyzing the number of successful heart transplant surgeries per week in a specialized cardiac center. We assume that the average rate of successful surgeries per week is 2.5 (<span class="math inline">\(λ = 2.5\)</span>).</p>
-<p><span class="math display">\[X ∼ Poisson(2.5)\]</span></p>
-<p>Therefore, the population mean and variance of this variable is 2.5.</p>
-<p>According to <a href="#eq-poisson1" class="quarto-xref">Equation&nbsp;<span>14.17</span></a> the resulting probability table is:</p>
+<p>Let X be a random variable of the number of successful heart transplant surgeries per week in a specialized cardiac center. We assume that the average rate of successful surgeries per week is 2.5 (<span class="math inline">\(λ = 2.5\)</span>), and X follows a Poisson distribution: <span class="math inline">\(X ∼ Poisson(2.5)\)</span></p>
+</div>
+<ul>
+<li>According to <a href="#eq-poisson1" class="quarto-xref">Equation&nbsp;<span>14.17</span></a>, the probability mass function (pmf) of X is:</li>
+</ul>
+<p><span class="math display">\[ P(X=x)={\frac {2.5 ^{x}e^{-2.5 }}{x!}} \]</span></p>
+<p>The resulting probability table is:</p>
+<div id="tbl-table_poisson" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table_poisson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.2: Probability table for <span class="math inline">\(X ∼ Poisson(2.5)\)</span>.
+</figcaption><div aria-describedby="tbl-table_poisson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
 <col style="width: 12%">
@@ -993,6 +1034,9 @@ The Poisson setting
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>We can compute the above probabilities using the <code><a href="https://rdrr.io/r/stats/Poisson.html">dpois()</a></code> function in R:</p>
 <div class="cell">
 <div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>, lambda <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1028,7 +1072,10 @@ Figure&nbsp;14.6: Plot of the pmf for Poisson(2.5) distribution.
 </div>
 </div>
 <p>For this example, the probability of none successful heart transplant surgery in a week is P(X = 0) = 0.08, while the probability of exactly two successful surgeries per week increases to P(X = 2) = 0.257.</p>
-<p>In R, we can calculate the cumulative probabilities for all the possible outcomes using the <code><a href="https://rdrr.io/r/stats/Poisson.html">ppois()</a></code> as follows:</p>
+<p>&nbsp;</p>
+<ul>
+<li>In R, we can calculate the cumulative probabilities for all the possible outcomes using the <code><a href="https://rdrr.io/r/stats/Poisson.html">ppois()</a></code> as follows:</li>
+</ul>
 <div class="cell">
 <div class="sourceCode" id="cb22" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># find the cumulative probabilities</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>, lambda <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1063,8 +1110,14 @@ Figure&nbsp;14.7: Plot of the pmf for Poisson(2.5) distribution.
 </div>
 </div>
 </div>
+<p>&nbsp;</p>
+<ul>
+<li>The mean and variance of this variable are <span class="math inline">\(\mu\)</span>= 2.5 and <span class="math inline">\(\sigma^2\)</span> = 2.5, respectively.</li>
+</ul>
+<p>&nbsp;</p>
 <p><strong>What is the probability of up to four successful heart transplant surgeries per week?</strong></p>
-<p>We want to calculate the probability P(X ≤ 4). In this instance, we add the individual probabilities for the corresponding outcomes: P(X ≤ 4) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4) = 0.082 + 0.205 + 0.257 + 0.214 + 0.134 = 0.892.</p>
+<p>We want to calculate the cumulative probability <span class="math inline">\(P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}\)</span>. In practice, we can add the individual probabilities from the <a href="#tbl-table_poisson" class="quarto-xref">Table&nbsp;<span>14.2</span></a> for the corresponding outcomes:</p>
+<p>P(X ≤ 4) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4) = 0.082 + 0.205 + 0.257 + 0.214 + 0.134 = 0.892.</p>
 <p>In R, we can calculate this probability by applying the function <code><a href="https://rdrr.io/r/stats/Poisson.html">ppois()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">4</span>, lambda <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1075,10 +1128,15 @@ Figure&nbsp;14.7: Plot of the pmf for Poisson(2.5) distribution.
 <p>So, the probability of up to four successful heart transplant surgeries per week in the specialized cardiac center is approximately 0.89 or 89%.</p>
 <p>&nbsp;</p>
 </section></section><section id="probability-distributions-for-continuous-outcomes" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="probability-distributions-for-continuous-outcomes">
-<span class="header-section-number">14.4</span> Probability distributions for Continuous Outcomes</h2>
-<p>Unlike discrete random variables, which have a probability mass function (pmf) that assigns probabilities to individual values, <strong>continuous random variables</strong> have a <strong>probability density function</strong> (pdf). In this case, we are interested in the probability that the value of the random variable X is within a specific interval from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span>, denoted as <span class="math inline">\(P(x_1 ≤ X ≤ x_2)\)</span> (<a href="#fig-contdistrib" class="quarto-xref">Figure&nbsp;<span>14.8</span></a>).</p>
-<p><span id="eq-continuous1"><span class="math display">\[ P(x_1\leq X \leq x_2)=\int_{x_1}^{x_2}f(x)dx  \tag{14.18}\]</span></span></p>
-<p>where f(x) is the probability density functions (pdf) of X .</p>
+<span class="header-section-number">14.4</span> Probability distributions for continuous outcomes</h2>
+<p>Unlike discrete random variables, which have a probability mass function (pmf) that assigns probabilities to individual values, <strong>continuous random variables</strong> have a <strong>probability density function</strong> (pdf), denoted as f(x), which satisfies the following properties:</p>
+<ul>
+<li><span class="math inline">\(f(x) \geq 0\)</span></li>
+<li><span class="math inline">\(\int_{-\infty}^{+\infty} f(x) \, dx = 1\)</span></li>
+</ul>
+<p>In this case, we are interested in the probability that the value of the random variable X is within a specific interval from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span>, denoted as <span class="math inline">\(P(x_1 ≤ X ≤ x_2)\)</span>.</p>
+<p><span id="eq-continuous1"><span class="math display">\[ P(x_1\leq X \leq x_2)=\int_{x_1}^{x_2}f(x)dx  \tag{14.19}\]</span></span></p>
+<p>The graphical representation of the probability density function referred to as a density plot (<a href="#fig-contdistrib" class="quarto-xref">Figure&nbsp;<span>14.8</span></a>). In this plot, the x-axis represents the possible values of the variable X, while the y-axis represents the probability density.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
@@ -1090,42 +1148,43 @@ Figure&nbsp;14.7: Plot of the pmf for Poisson(2.5) distribution.
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df1</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_area</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">170</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">173</span> , <span class="va">x</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"#0073CF"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_area</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">170</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">175</span> , <span class="va">x</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"#0073CF"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">210</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"f(x)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div id="fig-contdistrib" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-contdistrib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="prob_distributions_files/figure-html/fig-contdistrib-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-contdistrib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.8: Plot of the distribution.
+Figure&nbsp;14.8: Density plot.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>Additionally, from the pdf we can find the <strong>cumulative probability</strong> by calculating the likelihood from -∞ to a specific value <span class="math inline">\(x_o\)</span> (shaded blue area in <a href="#fig-contdistrib2" class="quarto-xref">Figure&nbsp;<span>14.9</span></a>):</p>
+<p>Additionally, from the pdf we can find the <strong>cumulative probability</strong> by calculating the area from -∞ to a specific value <span class="math inline">\(x_o\)</span> (shaded blue area in <a href="#fig-contdistrib2" class="quarto-xref">Figure&nbsp;<span>14.9</span></a>). The <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to <span class="math inline">\(x_o\)</span> and is usually denoted as:</p>
+<p><span id="eq-continuous2"><span class="math display">\[ F(x_o) = P(X\leq x_o)=\int_{- \infty }^{x_o}f(x)dx  \tag{14.20}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df1</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_area</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="op">-</span><span class="cn">Inf</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">173</span> , <span class="va">x</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"#0073CF"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">210</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"f(x)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div id="fig-contdistrib2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-contdistrib2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="prob_distributions_files/figure-html/fig-contdistrib2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-contdistrib2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.9: Plot of the cumulative distribution.
+Figure&nbsp;14.9: Plot of the cumulative probability.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>The <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to <span class="math inline">\(x_o\)</span> and is usually denoted as:</p>
-<p><span id="eq-continuous2"><span class="math display">\[ F(x_o) = P(X\leq x_o)=\int_{- \infty }^{x_o}f(x)dx  \tag{14.19}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1139,18 +1198,34 @@ Note
 <p>The probability of a certain point value in X is zero, and the area under the probability density curve of the interval (−∞, +∞) should be 1.</p>
 </div>
 </div>
+<p>The expected value, variance, and standard deviation for a continuous random variable X are as follows:</p>
+<p><strong>Expected Value</strong></p>
+<div class="content-box-green">
+<p>The expected value, denoted as <strong>μ</strong> or <strong>E(X)</strong>, is calculated by integrating over the entire range of possible values:</p>
+<p><span class="math inline">\(\mu =E(X) = \int_{-\infty}^{+\infty} x \cdot f(x) \, dx\)</span></p>
+</div>
+<p><strong>Variance</strong></p>
+<div class="content-box-green">
+<p>We can also calculate the variance of the variable X.</p>
+<p><span class="math inline">\(\sigma^2=\text{Var}(X) = E[(X - \mu)^2] = \int_{-\infty}^{+\infty} (x - \mu)^2 \cdot f(x) \, dx\)</span></p>
+</div>
+<p><strong>Standard deviation</strong></p>
+<div class="content-box-green">
+<p>The standard deviation is often preferred over the variance because it is in the same units as the random variable.</p>
+<p><span class="math inline">\(\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}\)</span></p>
+</div>
 <p>&nbsp;</p>
 <section id="normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
 <p>A normal distribution, also known as a Gaussian distribution, is a fundamental concept in statistics and probability theory and is defined by two parameters: the mean (μ) and the standard deviation (σ) (see <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 <ul>
 <li>The probability density function (pdf) of <span class="math inline">\(X ∼ Normal(μ, σ^2)\)</span> is given by:</li>
 </ul>
-<p><span id="eq-gauss"><span class="math display">\[ f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}  \tag{14.20}\]</span></span></p>
+<p><span id="eq-gauss"><span class="math display">\[ f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}  \tag{14.21}\]</span></span></p>
 <p>where <span class="math inline">\(\pi \approx 3.14\)</span> and <span class="math inline">\(e \approx 2.718\)</span>.</p>
 <ul>
 <li>The cumulative distribution function (cdf) of X sums from negative infinity up to the value of <span class="math inline">\(x_o\)</span>, which is <span class="math inline">\((-∞, x_o]\)</span> in interval notation:</li>
 </ul>
-<p><span id="eq-continuous3"><span class="math display">\[ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx  \tag{14.21}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
+<p><span id="eq-continuous3"><span class="math display">\[ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx  \tag{14.22}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let’s say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm. The pdf for this distribution is shown below (<a href="#fig-normal1" class="quarto-xref">Figure&nbsp;<span>14.10</span></a>):</p>
 <div class="cell" data-layout-align="center">
@@ -1298,9 +1373,9 @@ Figure&nbsp;14.14: Plot of the distribution.
 <p>&nbsp;</p>
 </section><section id="standard-normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="standard-normal-distribution">Standard Normal distribution</h3>
 <p>If X is a random variable with a normal distribution having a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span>, then the standardized Normal deviate can be expressed as:</p>
-<p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{14.22}\]</span></span></p>
-<p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>14.20</span></a> is transformed as follows:</p>
-<p><span id="eq-zd"><span class="math display">\[ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2}  \tag{14.23}\]</span></span></p>
+<p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{14.23}\]</span></span></p>
+<p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>14.21</span></a> is transformed as follows:</p>
+<p><span id="eq-zd"><span class="math display">\[ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2}  \tag{14.24}\]</span></span></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb40" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1320,11 +1395,11 @@ Figure&nbsp;14.15: The Standard Normal Distribution
 </div>
 </div>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Z-scores are commonly used in medical settings to assess how an individual’s measurement compares to the average value of the entire population. For example, let’s assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual’s diastolic blood pressure is recorded as 110 mmHg, the z-score (<a href="#eq-z" class="quarto-xref">Equation&nbsp;<span>14.22</span></a>) can be calculated to quantify the number of standard deviations by which his blood pressure differs from the population mean:</p>
+<p>Z-scores are commonly used in medical settings to assess how an individual’s measurement compares to the average value of the entire population. For example, let’s assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual’s diastolic blood pressure is recorded as 110 mmHg, the z-score (<a href="#eq-z" class="quarto-xref">Equation&nbsp;<span>14.23</span></a>) can be calculated to quantify the number of standard deviations by which his blood pressure differs from the population mean:</p>
 <p><span class="math inline">\(z = \frac{(110 – 80)}{15} = 2\)</span></p>
 <p>So this man has a diastolic blood pressure that is 2 standard deviations above the population mean.</p>
-<p>To find the area under the curve between two z-scores, <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>, we have to integrate the pdf <a href="#eq-zd" class="quarto-xref">Equation&nbsp;<span>14.23</span></a> as follows:</p>
-<p><span id="eq-integral"><span class="math display">\[ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz  \tag{14.24}\]</span></span></p>
+<p>To find the area under the curve between two z-scores, <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>, we have to integrate the pdf <a href="#eq-zd" class="quarto-xref">Equation&nbsp;<span>14.24</span></a> as follows:</p>
+<p><span id="eq-integral"><span class="math display">\[ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz  \tag{14.25}\]</span></span></p>
 <p>For example, let’s calculate the area under the curve in <a href="#fig-z2" class="quarto-xref">Figure&nbsp;<span>14.16</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
