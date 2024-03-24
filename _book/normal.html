@@ -749,20 +749,41 @@ Figure&nbsp;15.4: Types of distribution according to the summetry.
 </section><section id="normal-q-q-plots" class="level2 page-columns page-full" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="normal-q-q-plots">
 <span class="header-section-number">15.5</span> Normal Q-Q plots</h2>
 <p>The <strong>normal Q–Q plot</strong>, or normal quantile-quantile plot, provides an easy way to visually check whether or not a data set is normally distributed. The values in the plot are the <strong>quantiles</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of the variable distribution (sample quantiles) plotted against the quantiles of a standard normal distribution (theoretical quantiles). If the points fall close to a <strong>straight</strong> line at a 45-degree angle, then the data are normally distributed (although the ends of the Q-Q plot often deviate from the straight line).</p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br><strong>Quartiles</strong>: Three quartiles (Q1, median, Q3) split the data into four parts. <br><strong>Percentiles</strong>: 99 percentiles split the data into 100 parts.</p></div></div><div class="cell">
-<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
-<span><span class="va">arrhythmia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"arrhythmia.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br><strong>Quartiles</strong>: Three quartiles (Q1, median, Q3) split the data into four parts. <br><strong>Percentiles</strong>: 99 percentiles split the data into 100 parts.</p></div></div><ul>
+<li><strong>Normal distribution</strong></li>
+</ul>
 <div id="exercise-joins" class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Normal q-q plot of age
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">48</span><span class="op">)</span></span>
+<span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">20</span>, <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">1000</span>, shape <span class="op">=</span> <span class="fl">2</span>, rate <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># density plot of age</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"steelblue4"</span>, color<span class="op">=</span><span class="st">"#8fb4d9"</span>, </span>
+<span>               adjust <span class="op">=</span> <span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-norm_x1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-norm_x1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-norm_x1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm_x1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.5: Density plot of a normal distribution.
+</figcaption></figure>
+</div>
+</div>
+</div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Base R</a></li>
@@ -771,15 +792,15 @@ Normal q-q plot of age
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">arrhythmia</span><span class="op">$</span><span class="va">age</span>, pch <span class="op">=</span> <span class="fl">1</span>, frame <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">arrhythmia</span><span class="op">$</span><span class="va">age</span>, col <span class="op">=</span> <span class="st">"steelblue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x1</span>, pch <span class="op">=</span> <span class="fl">1</span>, frame <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x1</span>, col <span class="op">=</span> <span class="st">"steelblue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-qq_age1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_age1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal_files/figure-html/fig-qq_age1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
+<div id="fig-qq_x1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_x1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-qq_x1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_age1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15.5: Q-Q plot of age.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_x1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.6: Q-Q plot of a normal distribution.
 </figcaption></figure>
 </div>
 </div>
@@ -787,15 +808,15 @@ Figure&nbsp;15.5: Q-Q plot of age.
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">arrhythmia</span>, <span class="st">"age"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">df3</span>, <span class="st">"x1"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-qq_age2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_age2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal_files/figure-html/fig-qq_age2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
+<div id="fig-qq_x11" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_x11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-qq_x11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_age2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15.6: Q-Q plot of age.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_x11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.7: Q-Q plot of a normal distribution.
 </figcaption></figure>
 </div>
 </div>
@@ -805,16 +826,36 @@ Figure&nbsp;15.6: Q-Q plot of age.
 </div>
 </div>
 </div>
+<ul>
+<li><strong>Skewed distribution</strong></li>
+</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Normal q-q plot of QRS
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># density plot of age</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"steelblue4"</span>, color<span class="op">=</span><span class="st">"#8fb4d9"</span>, </span>
+<span>               adjust <span class="op">=</span> <span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-norm_x2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-norm_x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-norm_x2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm_x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.8: Density plot of a skewed distribution.
+</figcaption></figure>
+</div>
+</div>
+</div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Base R</a></li>
@@ -823,15 +864,15 @@ Normal q-q plot of QRS
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">arrhythmia</span><span class="op">$</span><span class="va">QRS</span>, pch <span class="op">=</span> <span class="fl">1</span>, frame <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">arrhythmia</span><span class="op">$</span><span class="va">QRS</span>, col <span class="op">=</span> <span class="st">"steelblue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x2</span>, pch <span class="op">=</span> <span class="fl">1</span>, frame <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">df3</span><span class="op">$</span><span class="va">x2</span>, col <span class="op">=</span> <span class="st">"steelblue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-qq_QRS1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_QRS1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal_files/figure-html/fig-qq_QRS1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
+<div id="fig-qq_x2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-qq_x2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_QRS1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15.7: Normal Q-Q plot of QRS.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.9: Q-Q plot of a skewed distribution.
 </figcaption></figure>
 </div>
 </div>
@@ -839,15 +880,15 @@ Figure&nbsp;15.7: Normal Q-Q plot of QRS.
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">arrhythmia</span>, <span class="st">"QRS"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggqqplot.html">ggqqplot</a></span><span class="op">(</span><span class="va">df3</span>, <span class="st">"x2"</span>, conf.int <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-qq_QRS2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_QRS2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal_files/figure-html/fig-qq_QRS2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
+<div id="fig-qq_x22" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-qq_x22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="normal_files/figure-html/fig-qq_x22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_QRS2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15.8: Normal Q-Q plot of QRS.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq_x22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.10: Q-Q plot of a skewed distribution.
 </figcaption></figure>
 </div>
 </div>

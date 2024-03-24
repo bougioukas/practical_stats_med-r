@@ -106,12 +106,10 @@ $P(X = x)$ is the probability that the random variable X takes the value x and
 
 $P(x)$ is the probability of the specific outcome x occurring.
 
-
 The pmf has two properties:
 
-- $P(x) \geq 0$
-- $\sum_{x} P(x) = 1$
-
+-   $P(x) \geq 0$
+-   $\sum_{x} P(x) = 1$
 
  
 
@@ -206,15 +204,12 @@ $$ σ = \sqrt{Var(X)} = \sqrt{p(1-p)}$$ {#eq-bernouli6}
  
 
 ::: content-box-yellow
-
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 Let X be a random variable representing the result of a surgical procedure, where X = 1 if the surgery was successful and X = 0 if it was unsuccessful. Suppose that the probability of success is 0.7; then X follows a Bernoulli distribution with parameter p = 0.7: $X ∼ Bernoulli(0.7)$.
 
 Find the main characteristics of this distribution.
-
 :::
-
 
 -   The pmf for this distribution is:
 
@@ -281,8 +276,7 @@ theme_classic(base_size = 14) +
 
  
 
-- The mean is $\mu$ = p = 0.7 and the variance is $\sigma^2$ = 0.7(1-0.7)= 0.7$\cdot$ 0.3 = 0.21.
-
+-   The mean is $\mu$ = p = 0.7 and the variance is $\sigma^2$ = 0.7(1-0.7)= 0.7$\cdot$ 0.3 = 0.21.
 
  
 
@@ -329,7 +323,6 @@ and the standard deviation:
 
 $$σ = \sqrt{np(1-p)}$$ {#eq-binom3}
 
-
  
 
 ::: content-box-yellow
@@ -337,7 +330,6 @@ $$σ = \sqrt{np(1-p)}$$ {#eq-binom3}
 
 Let the random variable X be the number of successful surgical procedures and suppose that a new surgery method is successful 70% of the time (p = 0.7). If the results of 10 surgeries are randomly sampled, and X follows a Binomial distribution $X ∼ Binomial(10, 0.7)$, find the main characteristics of this distribution.
 :::
-
 
 -   So, the pmf for this distribution is:
 
@@ -353,7 +345,6 @@ According to @eq-binom4 we have:
 | **P(X)** |  0  | 0.0001 | 0.0014 | 0.009 | ... | 0.233 | 0.121 | 0.028 |
 
 : Probability table for $X ∼ Poisson(2.5)$. {#tbl-table_binomial}
-
 
 We can easily compute the above probabilities using the `dbinom()` function in R:
 
@@ -424,10 +415,7 @@ ggplot(dat4, aes(x=x, y=y)) +
 
  
 
-- The mean is $\mu$ = n p = 10 $\cdot$ 0.7 = 7 successful surgeries and the variance is $\sigma^2$ = n p (1-p) = 10 $\cdot$ 0.7 $\cdot$ 0.3 = 2.1
-
-
-
+-   The mean is $\mu$ = n p = 10 $\cdot$ 0.7 = 7 successful surgeries and the variance is $\sigma^2$ = n p (1-p) = 10 $\cdot$ 0.7 $\cdot$ 0.3 = 2.1
 
 <br>
 
@@ -485,33 +473,26 @@ $$ P(X=x)={\frac {\lambda ^{x}e^{-\lambda }}{x!}} $$ {#eq-poisson1}
 
 where x = 0, 1, ... +∞, λ \> 0.
 
-
 -   The cumulative distribution function (cdf) of X is given by:
 
 $$F(x) = P(X \le x)=  {\begin{cases}0,&for\ x <0\\\sum_{k=0}^{x}{ \begin{array}{c} 
 \frac {\lambda ^{k}e^{-\lambda }}{k!}
 \end{array}},&for\ x\geq 0 \end{cases}}$$ {#eq-poisson0.1}
 
+The mean and variance of a random variable that follows the Poisson(λ) distribution are the same and equal to λ:
 
-
-The mean and variance of a random variable that follows the Poisson(λ) distribution are the same and equal to λ: 
-
-- μ = λ 
-- $σ^2$ = λ
-
+-   μ = λ
+-   $σ^2$ = λ
 
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 Let X be a random variable of the number of successful heart transplant surgeries per week in a specialized cardiac center. We assume that the average rate of successful surgeries per week is 2.5 ($λ = 2.5$), and X follows a Poisson distribution: $X ∼ Poisson(2.5)$
-
 :::
 
-
-- According to @eq-poisson1, the probability mass function (pmf) of X is:
+-   According to @eq-poisson1, the probability mass function (pmf) of X is:
 
 $$ P(X=x)={\frac {2.5 ^{x}e^{-2.5 }}{x!}} $$
-
 
 The resulting probability table is:
 
@@ -521,8 +502,6 @@ The resulting probability table is:
 | **P(X)** | 0.082 | 0.205 | 0.257 | 0.214 | 0.134 | 0.067 | 0.028 | 0.01 | 0.003 | ... |
 
 : Probability table for $X ∼ Poisson(2.5)$. {#tbl-table_poisson}
-
-
 
 We can compute the above probabilities using the `dpois()` function in R:
 
@@ -558,7 +537,7 @@ For this example, the probability of none successful heart transplant surgery in
 
  
 
-- In R, we can calculate the cumulative probabilities for all the possible outcomes using the `ppois()` as follows:
+-   In R, we can calculate the cumulative probabilities for all the possible outcomes using the `ppois()` as follows:
 
 ```{r}
 # find the cumulative probabilities
@@ -591,14 +570,13 @@ ggplot(dat6, aes(x=x, y=y)) +
 
  
 
-- The mean and variance of this variable are $\mu$= 2.5 and $\sigma^2$ = 2.5, respectively.
-
+-   The mean and variance of this variable are $\mu$= 2.5 and $\sigma^2$ = 2.5, respectively.
 
  
 
 **What is the probability of up to four successful heart transplant surgeries per week?**
 
-We want to calculate the cumulative probability $P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}$. In practice, we can add the individual probabilities from the @tbl-table_poisson for the corresponding outcomes: 
+We want to calculate the cumulative probability $P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}$. In practice, we can add the individual probabilities from the @tbl-table_poisson for the corresponding outcomes:
 
 P(X ≤ 4) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4) = 0.082 + 0.205 + 0.257 + 0.214 + 0.134 = 0.892.
 
@@ -616,9 +594,8 @@ So, the probability of up to four successful heart transplant surgeries per week
 
 Unlike discrete random variables, which have a probability mass function (pmf) that assigns probabilities to individual values, **continuous random variables** have a **probability density function** (pdf), denoted as f(x), which satisfies the following properties:
 
-- $f(x) \geq 0$
-- $\int_{-\infty}^{+\infty} f(x) \, dx = 1$
-
+-   $f(x) \geq 0$
+-   $\int_{-\infty}^{+\infty} f(x) \, dx = 1$
 
 In this case, we are interested in the probability that the value of the random variable X is within a specific interval from $x_1$ to $x_2$, denoted as $P(x_1 ≤ X ≤ x_2)$.
 
@@ -652,8 +629,7 @@ ggplot(df1, mapping = aes(x = x, y = y)) +
   theme_classic(base_size = 14)
 ```
 
-Additionally, from the pdf we can find the **cumulative probability** by calculating the area from -∞ to a specific value $x_o$ (shaded blue area in @fig-contdistrib2).
-The **cumulative distribution function** (cdf) gives the probability that the random variable X is less than or equal to $x_o$ and is usually denoted as:
+Additionally, from the pdf we can find the **cumulative probability** by calculating the area from -∞ to a specific value $x_o$ (shaded blue area in @fig-contdistrib2). The **cumulative distribution function** (cdf) gives the probability that the random variable X is less than or equal to $x_o$ and is usually denoted as:
 
 $$ F(x_o) = P(X\leq x_o)=\int_{- \infty }^{x_o}f(x)dx $$ {#eq-continuous2} where $-\infty \leq x_o \leq + \infty$
 
@@ -675,14 +651,11 @@ ggplot(df1, mapping = aes(x = x, y = y)) +
   theme_classic(base_size = 14)
 ```
 
-
 ::: callout-note
 The probability of a certain point value in X is zero, and the area under the probability density curve of the interval (−∞, +∞) should be 1.
 :::
 
-
 The expected value, variance, and standard deviation for a continuous random variable X are as follows:
-
 
 **Expected Value**
 
@@ -690,7 +663,6 @@ The expected value, variance, and standard deviation for a continuous random var
 The expected value, denoted as **μ** or **E(X)**, is calculated by integrating over the entire range of possible values:
 
 $\mu =E(X) = \int_{-\infty}^{+\infty} x \cdot f(x) \, dx$
-
 :::
 
 **Variance**
@@ -699,7 +671,6 @@ $\mu =E(X) = \int_{-\infty}^{+\infty} x \cdot f(x) \, dx$
 We can also calculate the variance of the variable X.
 
 $\sigma^2=\text{Var}(X) = E[(X - \mu)^2] = \int_{-\infty}^{+\infty} (x - \mu)^2 \cdot f(x) \, dx$
-
 :::
 
 **Standard deviation**
@@ -709,8 +680,6 @@ The standard deviation is often preferred over the variance because it is in the
 
 $\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}$
 :::
-
-
 
  
 
@@ -728,9 +697,15 @@ where $\pi \approx 3.14$ and $e \approx 2.718$.
 
 $$ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx $$ {#eq-continuous3} where $-\infty \leq x_o \leq + \infty$
 
+
+::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-Let's say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm. The pdf for this distribution is shown below (@fig-normal1):
+Let's say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm. 
+:::
+
+
+The pdf for this distribution is shown below (@fig-normal1):
 
 ```{r}
 #| warning: false
@@ -743,10 +718,11 @@ Let's say that in a population the random variable of height, X, for adult peopl
 ggplot() +
   geom_function(fun = dnorm, args = list(mean = 170, sd = 10), 
                 color= "gray20", linewidth = 1) +
-  xlim(140, 200) +
+  xlim(135, 205) +
   labs(x = "X", y = "Probabiblity Density, f(x)",
        title = "The Normal Distribution, N~(170, 10^2)") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 The @fig-cdfnormal illustrates the normal cumulative distribution function. Note that continuous variables generate a smooth curve, while discrete variables produce a stepped line plot.
@@ -760,13 +736,14 @@ The @fig-cdfnormal illustrates the normal cumulative distribution function. Note
 
 
 # Create a data frame
-dat7 <- data.frame(x = seq(140, 200, by = 0.1), 
-                   y = pnorm(seq(140, 200, by = 0.1), mean=170, sd=10))
+dat7 <- data.frame(x = seq(135, 205, by = 0.1), 
+                   y = pnorm(seq(135, 205, by = 0.1), mean=170, sd=10))
 # Plot
 ggplot(dat7, aes(x=x, y=y)) +
   geom_step() +
   labs(x = "X", y = "Cumulative Probabiblity, F(x)") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
  
@@ -785,18 +762,19 @@ $$ P(160\leq X \leq 180)=\int_{160}^{180}f(x)dx $$
 #| fig-cap: Plot of the distribution.
 
 # Create a data frame
-df2 <- data.frame(x = seq(140, 200, by = 0.1),
-                   y = dnorm(seq(140, 200, by = 0.1), mean=170, sd=10))
+df2 <- data.frame(x = seq(135, 205, by = 0.1),
+                   y = dnorm(seq(135, 205, by = 0.1), mean=170, sd=10))
 
 # Create the plot
 ggplot(df2, aes(x = x, y = y)) +
   geom_function(fun = dnorm, args = list(mean = 170, sd = 10), 
                 color= "gray20", linewidth = 1) +
   geom_area(mapping = aes(x = ifelse(x > 160 & x < 180, x, 0)), fill = "#0073CF", alpha = 0.4) +  # Area under the curve
-  xlim(140, 200) +
-  labs(x ="x", y = "Density",
+  xlim(135, 205) +
+  labs(x ="x", y = "Probability density",
        title = "Area Under the Normal Distribution Curve") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 Using the properties of integrals we have:
@@ -823,11 +801,12 @@ $$ P(X \leq 180)=\int_{-\infty}^{180}f(x)dx $$
 ggplot(df2, aes(x = x, y = y)) +
   geom_function(fun = dnorm, args = list(mean = 170, sd = 10), 
                 color= "gray20", linewidth = 1) +
-  geom_area(mapping = aes(x = ifelse(x > 140 & x < 180, x, 0)), fill = "#0073CF", alpha = 0.4) +  # Area under the curve
-  xlim(140, 200) +
-  labs(x = "X", y = "Density",
+  geom_area(mapping = aes(x = ifelse(x > 135 & x < 180, x, 0)), fill = "#0073CF", alpha = 0.4) +  # Area under the curve
+  xlim(135, 200) +
+  labs(x = "X", y = "Probability density",
        title = "Area Under the Normal Distribution Curve") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 ```{r}
@@ -854,11 +833,12 @@ $$ P(X \leq 160)=\int_{-\infty}^{160}f(x)dx $$
 ggplot(df2, aes(x = x, y = y)) +
   geom_function(fun = dnorm, args = list(mean = 170, sd = 10), 
                 color= "gray20", linewidth = 1) +
-  geom_area(mapping = aes(x = ifelse(x > 140 & x < 160, x, 0)), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
-  xlim(140, 200) +
-  labs(x = "X", y = "Density",
+  geom_area(mapping = aes(x = ifelse(x > 135 & x < 160, x, 0)), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
+  xlim(135, 200) +
+  labs(x = "X", y = "Probability density",
        title = "Area Under the Normal Distribution Curve") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 ```{r}
@@ -896,24 +876,33 @@ $$ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2} $$ {#eq-zd}
 ggplot() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
   scale_x_continuous(limits = c(-3, 3), breaks = seq(-3, 3, 1)) +
-  labs(x = "Z", y = "Probabiblity Density, f(z)",
+  labs(x = "Z", y = "Probabiblity density, f(z)",
        title = "The Standard Normal Distribution, N~(0, 1^2)") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
+
+
+Z-scores are commonly used in medical settings to assess how an individual's measurement compares to the average value of the entire population. 
+
+::: content-box-yellow
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-Z-scores are commonly used in medical settings to assess how an individual's measurement compares to the average value of the entire population. For example, let's assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual's diastolic blood pressure is recorded as 110 mmHg, the z-score (@eq-z) can be calculated to quantify the number of standard deviations by which his blood pressure differs from the population mean:
+Let's assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual's diastolic blood pressure is recorded as 110 mmHg, how many standard deviations differs from the population mean?
+:::
+
+The z-score @eq-z is:
 
 $z = \frac{(110 – 80)}{15} = 2$
 
-So this man has a diastolic blood pressure that is 2 standard deviations above the population mean.
+So this person has a diastolic blood pressure that is 2 standard deviations above the population mean.
 
 To find the area under the curve between two z-scores, $z_1$ and $z_2$, we have to integrate the pdf @eq-zd as follows:
 
 $$ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz $$ {#eq-integral}
 
-For example, let's calculate the area under the curve in @fig-z2:
+For example, let's calculate the area under the curve in @fig-z2, for $z_1$ = 0 and $z_2$ = 2:
 
 ```{r}
 #| code-fold: true
@@ -933,9 +922,10 @@ ggplot(df3, aes(x = x, y = y)) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
   geom_area(mapping = aes(x = ifelse(x > 0 & x < 2, x, 0)), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
   scale_x_continuous(limits = c(-3, 3), breaks = seq(-3, 3, 1)) +
-  labs(x = "Z", y = "Probabiblity Density, f(z)",
+  labs(x = "Z", y = "Probabiblity density, f(z)",
        title = "The Standard Normal Distribution, N~(0, 1^2)") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 In R, we can easily calculate the above area using the cdf of the normal distribution:
@@ -961,22 +951,23 @@ The distribution's mean is μ = 0, and the variance is determined by the degrees
 
 > Degrees of freedom, often represented by df, is the number of independent pieces of information used to calculate a statistic. It's calculated as the sample size minus the number of constraints.
 
-Suppose we take a random sample of 10 adults and measure their daily calcium intake. Let's say we find that the sample mean is 820 mg.
+Suppose we randomly select 10 adults and measure their daily calcium intake. Let's say we find that the sample mean is 820 mg.
 
-For example, assume that the nine of the ten people in the sample have daily calcium intakes of 410, 1230, 870, 1110, 570, 390, 1030, 1080, and 630 mg. The sum of these values is:
+For instance, consider nine of the ten individuals in the sample whose daily calcium intakes are as follows: 410 mg, 1230 mg, 870 mg, 1110 mg, 570 mg, 390 mg, 1030 mg, 1080 mg, and 630 mg. The sum of these values would be:
 
 ```{r}
 sum9 <- 410 + 1230 + 870 + 1110 + 570 + 390 + 1030 + 1080 + 630
 sum9
 ```
 
-The tenth individual must have a daily calcium intake of 880 mg for the sample to have a mean of 820 mg. We can calculate this value by subtracting the sum of the nine values from the sum of all values, as demonstrated below:
+To maintain a sample mean of 820 mg, the tenth individual's daily calcium intake would need to be 880 mg. We can derive this value by subtracting the sum of the nine known values from the sum of all ten values:
 
 ```{r}
 820*10 - sum9
 ```
 
-Because of the constraint, only nine values in the sample are free to vary. Consequently, the final value isn't free to vary; it only has one possible value. In this case, the degrees of freedom are df = 10-1 = 9.
+Due to this constraint, only nine values in the sample can vary freely. As a result, the final value is not free to vary; it has only one possible value. In this instance, the degrees of freedom are calculated as df = 10-1 = 9.
+
 :::
 
  
@@ -998,7 +989,8 @@ ggplot() +
   annotate("text", x = 0, y = 0.41, label = "standard normal") +
   annotate("text", x = 0, y = 0.38, label = "t(3)", color = "blue") +
   labs(x = "t", y = "Probabiblity Density") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 Just like the standard normal distribution, the probability density curve of a t-distribution is bell-shaped and symmetric around its mean (μ = 0). However, the probability density curve of the t-distribution decreases more slowly than that of the standard normal distribution (t-distribution has "heavier" tails than the standard normal distribution).
@@ -1022,13 +1014,14 @@ df4 <- data.frame(x = seq(-5, 5, by = 0.01),
 ggplot() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
   stat_function(fun = dt, args = list(df = 3), color  = "blue") +
-  geom_area(data = df4, mapping = aes(x = ifelse(x < -3, x, -3.182), y = y), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
-  geom_area(data = df4, mapping = aes(x = ifelse(x > 3, x, 3.182), y = y), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x < -3, x, -3), y = y), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
+  geom_area(data = df4, mapping = aes(x = ifelse(x > 3, x, 3), y = y), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
   scale_x_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 1)) +
   annotate("text", x = 0, y = 0.41, label = "standard normal") +
   annotate("text", x = 0, y = 0.38, label = "t(3)", color = "blue") +
   labs(x = "t", y = "Probabiblity Density") +
-  theme_minimal(base_size = 16)
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14)
 ```
 
 ```{r}

@@ -264,77 +264,115 @@ The **normal Q--Q plot**, or normal quantile-quantile plot, provides an easy way
 
 [^normal-2]: Quantiles are values that split sorted data or a probability distribution into equal parts. The most commonly used quantiles have special names. <br>**Quartiles**: Three quartiles (Q1, median, Q3) split the data into four parts. <br>**Percentiles**: 99 percentiles split the data into 100 parts.
 
-```{r}
-#| message: false
-#| warning: false
 
-library(readxl)
-arrhythmia <- read_excel(here("data", "arrhythmia.xlsx"))
-```
+- **Normal distribution**
 
 ::: {#exercise-joins .callout-tip}
-## Normal q-q plot of age
+
+```{r}
+#| warning: false
+#| label: fig-norm_x1
+#| fig-height: 6.0
+#| fig-width: 8.0
+#| fig-align: "center"
+#| fig-cap: Density plot of a normal distribution.
+
+set.seed(48)
+x1 <- rnorm(1000, 20, 0.05)
+x2 <- rgamma(1000, shape = 2, rate = 2)
+df3 <- data.frame(x1, x2)
+
+# density plot of age
+ggplot(df3, aes(x = x1)) +
+  geom_density(fill="steelblue4", color="#8fb4d9", 
+               adjust = 1.5, alpha=0.6) +
+  theme_minimal(base_size = 20)
+
+```
+
 
 ::: panel-tabset
 ## Base R
 
 ```{r}
 #| warning: false
-#| label: fig-qq_age1
+#| label: fig-qq_x1
 #| fig-height: 6.0
 #| fig-width: 8.0
 #| fig-align: "center"
-#| fig-cap: Q-Q plot of age.
+#| fig-cap: Q-Q plot of a normal distribution.
 
-qqnorm(arrhythmia$age, pch = 1, frame = FALSE)
-qqline(arrhythmia$age, col = "steelblue", lwd = 2)
+qqnorm(df3$x1, pch = 1, frame = FALSE)
+qqline(df3$x1, col = "steelblue", lwd = 2)
 ```
 
 ## ggpubr
 
 ```{r}
 #| warning: false
-#| label: fig-qq_age2
+#| label: fig-qq_x11
 #| fig-height: 6.0
 #| fig-width: 8.0
 #| fig-align: "center"
-#| fig-cap: Q-Q plot of age.
+#| fig-cap: Q-Q plot of a normal distribution.
 
-ggqqplot(arrhythmia, "age", conf.int = F) +
+ggqqplot(df3, "x1", conf.int = F) +
   stat_qq_line(color="blue")
 ```
 :::
 :::
 
+
+
+- **Skewed distribution**
+
+
 ::: callout-tip
-## Normal q-q plot of QRS
+
+```{r}
+#| warning: false
+#| label: fig-norm_x2
+#| fig-height: 6.0
+#| fig-width: 8.0
+#| fig-align: "center"
+#| fig-cap: Density plot of a skewed distribution.
+
+# density plot of age
+ggplot(df3, aes(x = x2)) +
+  geom_density(fill="steelblue4", color="#8fb4d9", 
+               adjust = 1.5, alpha=0.6) +
+  theme_minimal(base_size = 20)
+
+```
+
+
 
 ::: panel-tabset
 ## Base R
 
 ```{r}
 #| warning: false
-#| label: fig-qq_QRS1
+#| label: fig-qq_x2
 #| fig-height: 6.0
 #| fig-width: 8.0
 #| fig-align: "center"
-#| fig-cap: Normal Q-Q plot of QRS.
+#| fig-cap: Q-Q plot of a skewed distribution.
 
-qqnorm(arrhythmia$QRS, pch = 1, frame = FALSE)
-qqline(arrhythmia$QRS, col = "steelblue", lwd = 2)
+qqnorm(df3$x2, pch = 1, frame = FALSE)
+qqline(df3$x2, col = "steelblue", lwd = 2)
 ```
 
 ## ggpubr
 
 ```{r}
 #| warning: false
-#| label: fig-qq_QRS2
+#| label: fig-qq_x22
 #| fig-height: 6.0
 #| fig-width: 8.0
 #| fig-align: "center"
-#| fig-cap: Normal Q-Q plot of QRS.
+#| fig-cap: Q-Q plot of a skewed distribution.
 
-ggqqplot(arrhythmia, "QRS", conf.int = F) +
+ggqqplot(df3, "x2", conf.int = F) +
   stat_qq_line(color="blue")
 ```
 :::
