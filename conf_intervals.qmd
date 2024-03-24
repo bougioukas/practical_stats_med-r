@@ -126,8 +126,7 @@ upper_95CI
 
 ### Confidence level
 
-However, there is no particular reason for choosing a 95% confidence level for constructing confidence intervals other than convention; confidence levels of 90% or 99% are sometimes preferred depending on the context.
-For example, when a 99% confidence level is chosen, the margin of error for the mean becomes $\pm 2.58 \sigma_{\bar{x}}$ (the empirical rule; @sec-normal).
+However, there is no particular reason for choosing a 95% confidence level for constructing confidence intervals other than convention; confidence levels of 90% or 99% are sometimes preferred depending on the context. For example, when a 99% confidence level is chosen, the margin of error for the mean becomes $\pm 2.58 \sigma_{\bar{x}}$ (the empirical rule; @sec-normal).
 
 ```{r}
 #| echo: false
@@ -192,7 +191,9 @@ upper_99CI
 
 ```
 
-We observe that a 99% CI (1.07-1.22) is wider compared to the 95% CI (1.09-1.20). This wider range reflects the greater certainty (99%) of capturing the population parameter. Nonetheless, this increased level of confidence comes at the expense of precision, especially with smaller datasets.
+We observe that a 99% CI provides a higher level of confidence but comes with a wider range (1.07-1.22), while a 95% confidence interval offers a narrower range (1.09-1.20) but with slightly less certainty. Therefore, the increased level of confidence comes at the expense of precision, especially with smaller datasets.
+
+
 
  
 
@@ -362,7 +363,7 @@ Comparing the @fig-intervals1 and @fig-intervals2, we notice two key trends as t
 
 ::: content-box-green
 
-A confidence interval is commonly expressed as 90%, 95%, or 99% CI, indicating the level of confidence associated with the estimate. The percentage reflects the proportion of intervals, constructed from repeated samples, that would contain the population parameter.
+A confidence interval is commonly expressed as 90% CI, 95% CI, or 99% CI, indicating the level of confidence associated with the estimate. The percentage reflects the proportion of intervals, constructed from repeated experiments, that would contain the population parameter (long-run interpretation).
 
 Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.
 :::

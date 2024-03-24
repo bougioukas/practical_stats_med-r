@@ -61,10 +61,7 @@ $$total \ error = bias + sampling \ error$$ {#eq-total_error}
 
 -   **Bias:** This refers to a tendency to overestimate or underestimate the true value of the population parameter. There are numerous sources of bias in a study, including measurement bias (i.e., errors in measuring exposure or disease), sampling bias (i.e., some members of a population are systematically more likely to be selected in a sample than others), recall bias (i.e., when participants in a research study do not accurately remember a past event or experience), and attrition bias (i.e., systematic differences between study groups in the number and the way participants are lost from a study). Bias can be minimized through thoughtful design of the study (i.e., a comprehensive protocol) and careful data collection procedures.
 
-
 -   **Sampling error:** This measures the extent to which an estimate tends to vary from one sample to another due to random chance. Our objective is frequently to quantify and understand this variability in estimates. Standard error and confidence intervals, common measures of sampling error, are primarily influenced by both the sample size and the variability of the estimated characteristic.
-
-
 
 ::: content-box-blue
 The sampling error is the error caused by observing a sample instead of the whole population. There is no sampling error in a census because the calculations are based on the entire population.
@@ -265,7 +262,7 @@ From @fig-simulation2, it is evident that as the sample size increases, the dist
 ::: content-box-green
 The **Central Limit Theorem** (CLM) for sample means in statistics states that, given a sufficiently large sample size, the sampling distribution of the mean for a variable will approximate a normal distribution **regardless** of the variable's underlying distribution of the population observations: $\overline{X} \sim N(\mu, \sigma^2/n)$.
 
-*NOTE: The CLM can be applied in inferential statistics for various test statistics, such as difference in means, difference in proportions, and the slope of a linear regression model, under the assumption of large samples.*
+*NOTE: The CLM can be applied in inferential statistics for various test statistics, such as difference in means, difference in proportions, and the slope of a linear regression model, under the assumption of large samples and the absence of extreme skewness.*
 :::
 
 To illustrate this, let's generate some data from a continuous uniform distribution (100,000 observations):
