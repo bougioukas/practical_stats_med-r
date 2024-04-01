@@ -698,13 +698,12 @@ Data frame
 <p>We will create a small fictional dataframe with eight rows based on the following information:</p>
 <div class="content-box-gray">
 <ul>
-<li>id: row identifier</li>
 <li>age: age of the patient (in years)</li>
-<li>sex: sex of the patient (M: male, F: female)</li>
-<li>blood_type: blood type of the patient (A, B, AB, O)</li>
-<li>sbp: systolic blood pressure (in mmHg)</li>
-<li>bmi: Body Mass Index (BMI) category of the patient (1=underweight, 2=normal, 3=overweight, 4=obese)</li>
-<li>adm_date: admission date</li>
+<li>smoking: smoking status of the patient (0=non-smoker, 1=smoker)</li>
+<li>ABO: blood type of the patient based on the ABO blood group system (A, B, AB, O)</li>
+<li>bmi: Body Mass Index (BMI) category of the patient (1=underweight, 2=healthy weight, 3=overweight, 4=obesity)</li>
+<li>occupation: occupation of the patient</li>
+<li>adm_date: admission date to the hospital</li>
 </ul>
 </div>
 <p>A data frame can be created using the <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> function in base R, the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> function in the <a href="https://tidyverse.tidyverse.org">tidyverse</a> package, or the <a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html"><code>data.table()</code></a> function in the <a href="https://r-datatable.com">data.table</a> package. Let’s try the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> :</p>
@@ -713,31 +712,29 @@ Data frame
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,</span>
 <span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">65</span>, <span class="fl">35</span>, <span class="fl">25</span>, <span class="fl">45</span>, <span class="fl">55</span>, <span class="fl">40</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span>  sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span><span class="op">)</span>,</span>
-<span>  blood_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"O"</span>, <span class="st">"O"</span>, <span class="st">"O"</span>, <span class="st">"B"</span>, <span class="st">"O"</span>, <span class="st">"A"</span>, <span class="st">"A"</span><span class="op">)</span>,</span>
-<span>  sbp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">125</span>, <span class="fl">150</span>, <span class="fl">128</span>, <span class="fl">120</span>, <span class="fl">135</span>, <span class="fl">140</span>, <span class="fl">130</span>, <span class="fl">110</span><span class="op">)</span>,</span>
+<span>  smoking <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  ABO <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"O"</span>, <span class="st">"O"</span>, <span class="st">"O"</span>, <span class="st">"B"</span>, <span class="st">"O"</span>, <span class="st">"A"</span>, <span class="st">"A"</span><span class="op">)</span>,</span>
 <span>  bmi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  occupation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Journalist"</span>, <span class="st">"Marketing Manager"</span>, <span class="st">"Doctor"</span>, <span class="st">"Teacher"</span>,</span>
-<span>                  <span class="st">"Lawyer"</span>, <span class="st">"Musician"</span>, <span class="st">"Graphic Designer"</span>, <span class="st">"Nurse"</span><span class="op">)</span>,</span>
+<span>  occupation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Journalist"</span>, <span class="st">"Chef"</span>, <span class="st">"Doctor"</span>, <span class="st">"Teacher"</span>,</span>
+<span>                  <span class="st">"Lawyer"</span>, <span class="st">"Musician"</span>, <span class="st">"Pharmacist"</span>, <span class="st">"Nurse"</span><span class="op">)</span>,</span>
 <span>  adm_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"10-09-2023"</span>, <span class="st">"10-12-2023"</span>, <span class="st">"10-18-2023"</span>, <span class="st">"10-27-2023"</span>,</span>
 <span>               <span class="st">"11-04-2023"</span>, <span class="st">"11-09-2024"</span>, <span class="st">"11-22-2023"</span>, <span class="st">"12-02-2023"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 8 × 8
-     id   age sex   blood_type   sbp   bmi occupation        adm_date  
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;     
-1     1    30 F     A            125     2 Journalist        10-09-2023
-2     2    65 M     O            150     3 Marketing Manager 10-12-2023
-3     3    35 F     O            128     2 Doctor            10-18-2023
-4     4    25 M     O            120     2 Teacher           10-27-2023
-5     5    45 M     B            135     4 Lawyer            11-04-2023
-6     6    55 M     O            140     4 Musician          11-09-2024
-7     7    40 F     A            130     3 Graphic Designer  11-22-2023
-8     8    20 F     A            110     1 Nurse             12-02-2023</code></pre>
+<pre data-code-line-numbers=""><code># A tibble: 8 × 6
+    age smoking ABO     bmi occupation adm_date  
+  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
+1    30       0 A         2 Journalist 10-09-2023
+2    65       1 O         3 Chef       10-12-2023
+3    35       1 O         2 Doctor     10-18-2023
+4    25       0 O         2 Teacher    10-27-2023
+5    45       1 B         4 Lawyer     11-04-2023
+6    55       0 O         4 Musician   11-09-2024
+7    40       0 A         3 Pharmacist 11-22-2023
+8    20       1 A         1 Nurse      12-02-2023</code></pre>
 </div>
 </div>
 <p>We can find the <strong>type</strong>, <strong>class</strong> and <strong>dim</strong> for the created object <code>dat</code>:</p>
@@ -748,7 +745,7 @@ Data frame
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "list"
 [1] "tbl_df"     "tbl"        "data.frame"
-[1] 8 8</code></pre>
+[1] 8 6</code></pre>
 </div>
 </div>
 <p>The type is a <em>list</em> but the class is a <code>tbl</code> <em>(tibble)</em> object which is a “tidy” data frame (tibbles work better in the tidyverse). The dimensions are 8x8.</p>
@@ -763,8 +760,8 @@ $row.names
 [1] 1 2 3 4 5 6 7 8
 
 $names
-[1] "id"         "age"        "sex"        "blood_type" "sbp"       
-[6] "bmi"        "occupation" "adm_date"  </code></pre>
+[1] "age"        "smoking"    "ABO"        "bmi"        "occupation"
+[6] "adm_date"  </code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
@@ -775,7 +772,7 @@ $names
 <span><span class="va">dat</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 30 65 35 25 45 55 40 20
-[1] 30 65 35 25 45 55 40 20</code></pre>
+[1] 0 1 1 0 1 0 0 1</code></pre>
 </div>
 </div>
 <p>or by using the <strong>dollar sign (<code>$</code>)</strong> :</p>
@@ -806,14 +803,12 @@ $names
 <div class="sourceCode" id="cb65" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>Rows: 8
-Columns: 8
-$ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8
+Columns: 6
 $ age        &lt;dbl&gt; 30, 65, 35, 25, 45, 55, 40, 20
-$ sex        &lt;chr&gt; "F", "M", "F", "M", "M", "M", "F", "F"
-$ blood_type &lt;chr&gt; "A", "O", "O", "O", "B", "O", "A", "A"
-$ sbp        &lt;dbl&gt; 125, 150, 128, 120, 135, 140, 130, 110
+$ smoking    &lt;dbl&gt; 0, 1, 1, 0, 1, 0, 0, 1
+$ ABO        &lt;chr&gt; "A", "O", "O", "O", "B", "O", "A", "A"
 $ bmi        &lt;dbl&gt; 2, 3, 2, 2, 4, 4, 3, 1
-$ occupation &lt;chr&gt; "Journalist", "Marketing Manager", "Doctor", "Teacher", "La…
+$ occupation &lt;chr&gt; "Journalist", "Chef", "Doctor", "Teacher", "Lawyer", "Music…
 $ adm_date   &lt;chr&gt; "10-09-2023", "10-12-2023", "10-18-2023", "10-27-2023", "11…</code></pre>
 </div>
 </div>
@@ -824,9 +819,9 @@ Table&nbsp;9.1: Tibble abbreviations that describe the type of data in columns o
 </figcaption><div aria-describedby="tbl-data_types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 58%">
-<col style="width: 20%">
+<col style="width: 23%">
+<col style="width: 52%">
+<col style="width: 23%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: center;"><strong>Data Type</strong></th>
@@ -870,79 +865,88 @@ Table&nbsp;9.1: Tibble abbreviations that describe the type of data in columns o
 <td>categorical variables with fixed and known set of possible values (e.g., male/female)</td>
 <td style="text-align: center;"><code>&lt;fct&gt;</code></td>
 </tr>
+<tr class="even">
+<td style="text-align: center;">ordered factor</td>
+<td>categorical variable with ordered fixed and known set of possible values</td>
+<td style="text-align: center;"><code>&lt;ord&gt;</code></td>
+</tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
 <p>&nbsp;</p>
-<p>We can convert the categorical variables <code>sex</code>, <code>blood_type</code>, and <code>bmi</code> which are of character <code>&lt;chr&gt;</code> type, into factors <code>&lt;fct&gt;</code> because they take fixed and known values.</p>
+<p>We can convert the categorical variables <code>smoking</code>, <code>ABO</code>, and <code>bmi</code> from <code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code>, <code>&lt;dbl&gt;</code> types, respectively, into factors <code>&lt;fct&gt;</code> since they have fixed and known values.</p>
 <p>&nbsp;</p>
 <ul>
-<li><strong>Variable: sex</strong></li>
+<li>
+<strong>Variable: smoking</strong> (numeric coded values → factor)</li>
 </ul>
+<p>converts a numeric variable representing smoking status into a factor variable with more meaningful labels and then displays the updated dataframe along with the levels of the newly converted factor variable.</p>
 <div class="cell">
-<div class="sourceCode" id="cb67" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sex</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"M"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"female"</span>, <span class="st">"male"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb67" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">smoking</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">smoking</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>                  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"non-smoker"</span>, <span class="st">"smoker"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 8 × 8
-     id   age sex    blood_type   sbp   bmi occupation        adm_date  
-  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;     
-1     1    30 female A            125     2 Journalist        10-09-2023
-2     2    65 male   O            150     3 Marketing Manager 10-12-2023
-3     3    35 female O            128     2 Doctor            10-18-2023
-4     4    25 male   O            120     2 Teacher           10-27-2023
-5     5    45 male   B            135     4 Lawyer            11-04-2023
-6     6    55 male   O            140     4 Musician          11-09-2024
-7     7    40 female A            130     3 Graphic Designer  11-22-2023
-8     8    20 female A            110     1 Nurse             12-02-2023</code></pre>
+<pre data-code-line-numbers=""><code># A tibble: 8 × 6
+    age smoking    ABO     bmi occupation adm_date  
+  &lt;dbl&gt; &lt;fct&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
+1    30 non-smoker A         2 Journalist 10-09-2023
+2    65 smoker     O         3 Chef       10-12-2023
+3    35 smoker     O         2 Doctor     10-18-2023
+4    25 non-smoker O         2 Teacher    10-27-2023
+5    45 smoker     B         4 Lawyer     11-04-2023
+6    55 non-smoker O         4 Musician   11-09-2024
+7    40 non-smoker A         3 Pharmacist 11-22-2023
+8    20 smoker     A         1 Nurse      12-02-2023</code></pre>
 </div>
-<div class="sourceCode" id="cb69" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">smoking</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] "female" "male"  </code></pre>
+<pre data-code-line-numbers=""><code>[1] "non-smoker" "smoker"    </code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
 <ul>
-<li><strong>Variable: blood_type</strong></li>
+<li>
+<strong>Variable: ABO</strong> (chr → factor)</li>
 </ul>
-<p>It’s important to note that not all potential values may be present in a given dataset. For example, if we tabulate the variable <code>blood_type</code> (e.g.&nbsp;using the <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> function) we will get counts of the categories in the data:</p>
+<p>It’s important to note that not all potential values may be present in a given dataset. For example, if we tabulate the variable <code>ABO</code> (e.g.&nbsp;using the <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> function) we will get counts of the categories in the data:</p>
 <div class="cell">
 <div class="sourceCode" id="cb71" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create a count table</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">blood_type</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">ABO</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>
 A B O 
 3 1 4 </code></pre>
 </div>
 </div>
-<p>We observe that the blood type “AB” is absent from our data. In such cases, we can use the factor and create a list of all the valid levels:</p>
+<p>The blood type “AB” of the ABO blood group system is absent from our data. In such cases, we can use the factor and create a list of all the valid levels:</p>
 <div class="cell">
 <div class="sourceCode" id="cb73" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create a vector containing the blood types A, B, AB, and O</span></span>
-<span><span class="va">blood_type_levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"AB"</span>, <span class="st">"O"</span><span class="op">)</span></span>
+<span><span class="va">ABO_levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"AB"</span>, <span class="st">"O"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">blood_type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">blood_type</span>, levels <span class="op">=</span> <span class="va">blood_type_levels</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">ABO</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">ABO</span>, levels <span class="op">=</span> <span class="va">ABO_levels</span><span class="op">)</span></span>
 <span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 8 × 8
-     id   age sex    blood_type   sbp   bmi occupation        adm_date  
-  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;     
-1     1    30 female A            125     2 Journalist        10-09-2023
-2     2    65 male   O            150     3 Marketing Manager 10-12-2023
-3     3    35 female O            128     2 Doctor            10-18-2023
-4     4    25 male   O            120     2 Teacher           10-27-2023
-5     5    45 male   B            135     4 Lawyer            11-04-2023
-6     6    55 male   O            140     4 Musician          11-09-2024
-7     7    40 female A            130     3 Graphic Designer  11-22-2023
-8     8    20 female A            110     1 Nurse             12-02-2023</code></pre>
+<pre data-code-line-numbers=""><code># A tibble: 8 × 6
+    age smoking    ABO     bmi occupation adm_date  
+  &lt;dbl&gt; &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
+1    30 non-smoker A         2 Journalist 10-09-2023
+2    65 smoker     O         3 Chef       10-12-2023
+3    35 smoker     O         2 Doctor     10-18-2023
+4    25 non-smoker O         2 Teacher    10-27-2023
+5    45 smoker     B         4 Lawyer     11-04-2023
+6    55 non-smoker O         4 Musician   11-09-2024
+7    40 non-smoker A         3 Pharmacist 11-22-2023
+8    20 smoker     A         1 Nurse      12-02-2023</code></pre>
 </div>
 <div class="sourceCode" id="cb75" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># show the levels of status variable</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">blood_type</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">ABO</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "A"  "B"  "AB" "O" </code></pre>
 </div>
 <div class="sourceCode" id="cb77" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create a count table</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">blood_type</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">ABO</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>
  A  B AB  O 
@@ -951,73 +955,101 @@ A B O
 </div>
 <p>&nbsp;</p>
 <ul>
-<li><strong>Variable: bmi</strong></li>
+<li>
+<strong>Variable: bmi</strong> (numeric coded values → ordered factor)</li>
 </ul>
-<p>We might have noticed that the categorical variable <code>bmi</code> takes numerically coded values (1, 2, 3, 4) in our dataset, so it is recognized as a double <code>&lt;dbl&gt;</code> type. We can convert this variable into factor <code>&lt;fct&gt;</code> with levels (1=underweight, 2=normal, 3=overweight, 4=obese), as follows:</p>
+<p>We might have noticed that the categorical variable <code>bmi</code> takes numerically coded values (1, 2, 3, 4) in our dataset, so it is recognized as a double <code>&lt;dbl&gt;</code> type. We can convert this variable into factor <code>&lt;fct&gt;</code> with levels (1=underweight, 2=healthy, 3=overweight, 4=obesity). Instead of overwriting the existing variable, we prefer to create a new variable <code>bmi1</code>, as follows:”</p>
 <div class="cell">
-<div class="sourceCode" id="cb79" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># recode the values</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_match.html">case_match</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span>, </span>
-<span>                      <span class="fl">1</span> <span class="op">~</span> <span class="st">"underweight"</span>,</span>
-<span>                      <span class="fl">2</span> <span class="op">~</span> <span class="st">"normal"</span>,</span>
-<span>                      <span class="fl">3</span> <span class="op">~</span> <span class="st">"overweight"</span>,</span>
-<span>                      <span class="fl">4</span> <span class="op">~</span> <span class="st">"obese"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># create a vector containing the four bmi categories</span></span>
-<span><span class="va">bmi_levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>, <span class="st">"obese"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb79" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create a vector containing the four bmi categories</span></span>
+<span><span class="va">bmi1_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"underweight"</span>, <span class="st">"healthy"</span>, <span class="st">"overweight"</span>, <span class="st">"obesity"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># convert the variable to factor</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span>, levels <span class="op">=</span> <span class="va">bmi_levels</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, </span>
+<span>                   labels <span class="op">=</span> <span class="va">bmi1_labels</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] normal      overweight  normal      normal      obese       obese      
+<pre data-code-line-numbers=""><code>[1] healthy     overweight  healthy     healthy     obesity     obesity    
 [7] overweight  underweight
-Levels: underweight &lt; normal &lt; overweight &lt; obese</code></pre>
+Levels: underweight &lt; healthy &lt; overweight &lt; obesity</code></pre>
 </div>
 <div class="sourceCode" id="cb81" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 8 × 8
-     id   age sex    blood_type   sbp bmi         occupation        adm_date  
-  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;      &lt;dbl&gt; &lt;ord&gt;       &lt;chr&gt;             &lt;chr&gt;     
-1     1    30 female A            125 normal      Journalist        10-09-2023
-2     2    65 male   O            150 overweight  Marketing Manager 10-12-2023
-3     3    35 female O            128 normal      Doctor            10-18-2023
-4     4    25 male   O            120 normal      Teacher           10-27-2023
-5     5    45 male   B            135 obese       Lawyer            11-04-2023
-6     6    55 male   O            140 obese       Musician          11-09-2024
-7     7    40 female A            130 overweight  Graphic Designer  11-22-2023
-8     8    20 female A            110 underweight Nurse             12-02-2023</code></pre>
+<pre data-code-line-numbers=""><code># A tibble: 8 × 7
+    age smoking    ABO     bmi occupation adm_date   bmi1       
+  &lt;dbl&gt; &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;ord&gt;      
+1    30 non-smoker A         2 Journalist 10-09-2023 healthy    
+2    65 smoker     O         3 Chef       10-12-2023 overweight 
+3    35 smoker     O         2 Doctor     10-18-2023 healthy    
+4    25 non-smoker O         2 Teacher    10-27-2023 healthy    
+5    45 smoker     B         4 Lawyer     11-04-2023 obesity    
+6    55 non-smoker O         4 Musician   11-09-2024 obesity    
+7    40 non-smoker A         3 Pharmacist 11-22-2023 overweight 
+8    20 smoker     A         1 Nurse      12-02-2023 underweight</code></pre>
 </div>
 </div>
 <p>Now we can use, for example, the comparison operators <code>&gt;</code> to check whether one element of the ordered vector is larger than the other.</p>
 <div class="cell">
-<div class="sourceCode" id="cb83" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">dat</span><span class="op">$</span><span class="va">bmi</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">bmi1</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">dat</span><span class="op">$</span><span class="va">bmi1</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>However, the use of these operators on factors is much less common compared to numeric vectors. Therefore, we typically omit the <code>ordered = TRUE</code> argument, especially when we provide the order of categories explicitly in the <code>levels</code> argument.</p>
 <p>&nbsp;</p>
+<p>Now, let’s merge the “overweight” and “obesity” categories into a single category named “overweight/obesity” within a new variable called <code>bmi2</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb85" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># recode the values</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_match.html">case_match</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi</span>, </span>
+<span>                      <span class="fl">1</span> <span class="op">~</span> <span class="st">"underweight"</span>,</span>
+<span>                      <span class="fl">2</span> <span class="op">~</span> <span class="st">"healthy"</span>,</span>
+<span>                      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">~</span> <span class="st">"overweight/obesity"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># convert the variable to factor</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] healthy            overweight/obesity healthy            healthy           
+[5] overweight/obesity overweight/obesity overweight/obesity underweight       
+Levels: healthy &lt; overweight/obesity &lt; underweight</code></pre>
+</div>
+<div class="sourceCode" id="cb87" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 8 × 8
+    age smoking    ABO     bmi occupation adm_date   bmi1        bmi2           
+  &lt;dbl&gt; &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;ord&gt;       &lt;ord&gt;          
+1    30 non-smoker A         2 Journalist 10-09-2023 healthy     healthy        
+2    65 smoker     O         3 Chef       10-12-2023 overweight  overweight/obe…
+3    35 smoker     O         2 Doctor     10-18-2023 healthy     healthy        
+4    25 non-smoker O         2 Teacher    10-27-2023 healthy     healthy        
+5    45 smoker     B         4 Lawyer     11-04-2023 obesity     overweight/obe…
+6    55 non-smoker O         4 Musician   11-09-2024 obesity     overweight/obe…
+7    40 non-smoker A         3 Pharmacist 11-22-2023 overweight  overweight/obe…
+8    20 smoker     A         1 Nurse      12-02-2023 underweight underweight    </code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
 <ul>
-<li><strong>Variable: date</strong></li>
+<li>
+<strong>Variable: adm_date</strong> (chr → date)</li>
 </ul>
 <p>In R, by default, values of class Date are displayed as YYYY-MM-DD. Therefore, to represent the date “10-12-2023” (assuming it’s in month-day-year format), we can use the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb85" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">adm_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">adm_date</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb89" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">adm_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">adm_date</span><span class="op">)</span></span>
 <span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code># A tibble: 8 × 8
-     id   age sex    blood_type   sbp bmi         occupation        adm_date  
-  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;      &lt;dbl&gt; &lt;ord&gt;       &lt;chr&gt;             &lt;date&gt;    
-1     1    30 female A            125 normal      Journalist        2023-10-09
-2     2    65 male   O            150 overweight  Marketing Manager 2023-10-12
-3     3    35 female O            128 normal      Doctor            2023-10-18
-4     4    25 male   O            120 normal      Teacher           2023-10-27
-5     5    45 male   B            135 obese       Lawyer            2023-11-04
-6     6    55 male   O            140 obese       Musician          2024-11-09
-7     7    40 female A            130 overweight  Graphic Designer  2023-11-22
-8     8    20 female A            110 underweight Nurse             2023-12-02</code></pre>
+    age smoking    ABO     bmi occupation adm_date   bmi1        bmi2           
+  &lt;dbl&gt; &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;date&gt;     &lt;ord&gt;       &lt;ord&gt;          
+1    30 non-smoker A         2 Journalist 2023-10-09 healthy     healthy        
+2    65 smoker     O         3 Chef       2023-10-12 overweight  overweight/obe…
+3    35 smoker     O         2 Doctor     2023-10-18 healthy     healthy        
+4    25 non-smoker O         2 Teacher    2023-10-27 healthy     healthy        
+5    45 smoker     B         4 Lawyer     2023-11-04 obesity     overweight/obe…
+6    55 non-smoker O         4 Musician   2024-11-09 obesity     overweight/obe…
+7    40 non-smoker A         3 Pharmacist 2023-11-22 overweight  overweight/obe…
+8    20 smoker     A         1 Nurse      2023-12-02 underweight underweight    </code></pre>
 </div>
-<div class="sourceCode" id="cb87" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">adm_date</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb91" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">adm_date</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "Date"</code></pre>
 </div>

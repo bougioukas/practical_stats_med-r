@@ -438,7 +438,8 @@ window.Quarto = {
   <li>
 <a href="#probability-distributions-for-continuous-outcomes" id="toc-probability-distributions-for-continuous-outcomes" class="nav-link" data-scroll-target="#probability-distributions-for-continuous-outcomes"><span class="header-section-number">14.4</span> Probability distributions for continuous outcomes</a>
   <ul class="collapse">
-<li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
+<li><a href="#uniform-distribution" id="toc-uniform-distribution" class="nav-link" data-scroll-target="#uniform-distribution">Uniform distribution</a></li>
+  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
   <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution">Standard Normal distribution</a></li>
   <li><a href="#t-distribution" id="toc-t-distribution" class="nav-link" data-scroll-target="#t-distribution">t-distribution</a></li>
   </ul>
@@ -1215,24 +1216,178 @@ Note
 <p><span class="math inline">\(\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}\)</span></p>
 </div>
 <p>&nbsp;</p>
-<section id="normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
+<section id="uniform-distribution" class="level3"><h3 class="anchored" data-anchor-id="uniform-distribution">Uniform distribution</h3>
+<p>The simplest continuous probability distribution is the uniform distribution.<br>
+Let X be a continuous random variable that follows the uniform distribution with parameters the minimum value <span class="math inline">\(a\)</span> and the maximum value <span class="math inline">\(b\)</span> (<span class="math inline">\(a &lt; b\)</span>), <span class="math inline">\(X ∼ Uniform(\alpha,b)\)</span></p>
+<ul>
+<li>The probability density function (pdf) of X is given by:</li>
+</ul>
+<p><span id="eq-uniform1"><span class="math display">\[f(x) = \begin{cases}
+\frac{1}{b - a} &amp; \text{for } a \leq x \leq b \\
+0 &amp; \text{otherwise}
+\end{cases} \tag{14.21}\]</span></span></p>
+<ul>
+<li>The cumulative distribution function (cdf) of X is:</li>
+</ul>
+<p><span id="eq-uniform2"><span class="math display">\[F(x) = \begin{cases}
+0 &amp; \text{for } x &lt; a \\
+\frac{x - a}{b - a} &amp; \text{for } a \leq x \leq b \\
+1 &amp; \text{for } x &gt; b
+\end{cases}  \tag{14.22}\]</span></span></p>
+<p>The mean of X is given by:</p>
+<p><span class="math display">\[\mu = \frac{a + b}{2}\]</span></p>
+<p>The variance of the X is given by: <span class="math display">\[\sigma^2 = \frac{(b - a)^2}{12}\]</span></p>
+<p>The uniform distribution, with a=0 and b=1, is highly useful as a random number generator. Let’s see an example of simple randomization in a clinical trial.</p>
+<p>&nbsp;</p>
+<div class="content-box-yellow">
+<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p>Let X be a random variable that follows the uniform distribution Uniform(0, 1). Find the main characteristics of this distribution.</p>
+<p>Then utilize this distribution to randomize 100 individuals between treatments A and B in a clinical trial.</p>
+<p><strong>NOTE:</strong> The simple randomization with the Uniform(0,1) distribution ensures that each individual in the study has an equal chance of being assigned to either treatment group.</p>
+</div>
+<ul>
+<li>The pdf for this distribution is:</li>
+</ul>
+<p><span class="math display">\[f(x) = \begin{cases}
+1 &amp; \text{for } 0 \leq x \leq 1 \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define the range of x values (including values outside the range)</span></span>
+<span><span class="va">x_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate the PDF values for the uniform distribution</span></span>
+<span><span class="va">pdf_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">dunif</a></span><span class="op">(</span><span class="va">x_values</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a data frame for the PDF plot</span></span>
+<span><span class="va">pdf_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_values</span>, PDF <span class="op">=</span> <span class="va">pdf_values</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot the PDF</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pdf_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">PDF</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"pdf Uniform(0, 1)"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"P(x)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-uniformpdf" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-uniformpdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_distributions_files/figure-html/fig-uniformpdf-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniformpdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.10: Plot of the pdf for Uniform(0, 1) distribution.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<ul>
+<li>The cdf for this distribution is:</li>
+</ul>
+<p><span class="math display">\[F(x) = \begin{cases}
+0 &amp; \text{for } x &lt; 0 \\
+x &amp; \text{for } 0 \leq x \leq 1 \\
+1 &amp; \text{for } x &gt; 1
+\end{cases} \]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the CDF values for the uniform distribution</span></span>
+<span><span class="va">cdf_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">punif</a></span><span class="op">(</span><span class="va">x_values</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a data frame for the CDF plot</span></span>
+<span><span class="va">cdf_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_values</span>, CDF <span class="op">=</span> <span class="va">cdf_values</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot the CDF</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">cdf_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">CDF</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"cdf Uniform(0, 1)"</span>,</span>
+<span>         x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"F(x)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-uniformcdf" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-uniformcdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_distributions_files/figure-html/fig-uniformcdf-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniformcdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.11: Plot of the cdf for Poisson(2.5) distribution.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The mean and variance of a random variable that follows the Uniform(0, 1) distribution are:</p>
+<ul>
+<li><span class="math inline">\(μ = \frac{0 + 1}{2} = \frac{1}{2}\)</span></li>
+<li><span class="math inline">\(σ^2 = \frac{(1 - 0)^2}{12} = \frac{1}{12}\)</span></li>
+</ul>
+<p>Next, we use the Uniform(0, 1) to randomize individuals between treatments A and B in a clinical trial:</p>
+<div class="cell">
+<div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Set seed for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">235</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define the sample size of the clinical trial</span></span>
+<span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span></span>
+<span><span class="co"># Create a data frame to store the information</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">N</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>, trt <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Simulate 100 uniform random variables from (0-1)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span></span>
+<span><span class="co"># Display the first 10 values</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code> [1] 0.98373365 0.79328881 0.60725184 0.12093957 0.24990178 0.52147467
+ [7] 0.96265857 0.92370588 0.45026693 0.07862284</code></pre>
+</div>
+<div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Make treatment assignments, if x &lt; 0.5 treatment A else B</span></span>
+<span><span class="va">data</span><span class="op">$</span><span class="va">trt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0.5</span>, <span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data</span>, <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>     id trt
+1   id1   B
+2   id2   B
+3   id3   B
+4   id4   A
+5   id5   A
+6   id6   B
+7   id7   B
+8   id8   B
+9   id9   A
+10 id10   A</code></pre>
+</div>
+<div class="sourceCode" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Display the counts and proportions of each treatment</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">trt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>
+ A  B 
+48 52 </code></pre>
+</div>
+<div class="sourceCode" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">trt</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>
+   A    B 
+0.48 0.52 </code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section><section id="normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
 <p>A normal distribution, also known as a Gaussian distribution, is a fundamental concept in statistics and probability theory and is defined by two parameters: the mean (μ) and the standard deviation (σ) (see <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 <ul>
 <li>The probability density function (pdf) of <span class="math inline">\(X ∼ Normal(μ, σ^2)\)</span> is given by:</li>
 </ul>
-<p><span id="eq-gauss"><span class="math display">\[ f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}  \tag{14.21}\]</span></span></p>
+<p><span id="eq-gauss"><span class="math display">\[ f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}  \tag{14.23}\]</span></span></p>
 <p>where <span class="math inline">\(\pi \approx 3.14\)</span> and <span class="math inline">\(e \approx 2.718\)</span>.</p>
 <ul>
 <li>The cumulative distribution function (cdf) of X sums from negative infinity up to the value of <span class="math inline">\(x_o\)</span>, which is <span class="math inline">\((-∞, x_o]\)</span> in interval notation:</li>
 </ul>
-<p><span id="eq-continuous3"><span class="math display">\[ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx  \tag{14.22}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
+<p><span id="eq-continuous3"><span class="math display">\[ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx  \tag{14.24}\]</span></span> where <span class="math inline">\(-\infty \leq x_o \leq + \infty\)</span></p>
 <div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let’s say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm.</p>
 </div>
-<p>The pdf for this distribution is shown below (<a href="#fig-normal1" class="quarto-xref">Figure&nbsp;<span>14.10</span></a>):</p>
+<p>The pdf for this distribution is shown below (<a href="#fig-normal1" class="quarto-xref">Figure&nbsp;<span>14.12</span></a>):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, </span>
 <span>                color<span class="op">=</span> <span class="st">"gray20"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">135</span>, <span class="fl">205</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1246,14 +1401,14 @@ Note
 <img src="prob_distributions_files/figure-html/fig-normal1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1200">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.10: The Normal Distribution
+Figure&nbsp;14.12: The Normal Distribution
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>The <a href="#fig-cdfnormal" class="quarto-xref">Figure&nbsp;<span>14.11</span></a> illustrates the normal cumulative distribution function. Note that continuous variables generate a smooth curve, while discrete variables produce a stepped line plot.</p>
+<p>The <a href="#fig-cdfnormal" class="quarto-xref">Figure&nbsp;<span>14.13</span></a> illustrates the normal cumulative distribution function. Note that continuous variables generate a smooth curve, while discrete variables produce a stepped line plot.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
+<div class="sourceCode" id="cb40" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">dat7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">135</span>, <span class="fl">205</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
 <span>                   y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">135</span>, <span class="fl">205</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, mean<span class="op">=</span><span class="fl">170</span>, sd<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Plot</span></span>
@@ -1268,7 +1423,7 @@ Figure&nbsp;14.10: The Normal Distribution
 <img src="prob_distributions_files/figure-html/fig-cdfnormal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdfnormal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.11: The normal cumulative distribution function.
+Figure&nbsp;14.13: The normal cumulative distribution function.
 </figcaption></figure>
 </div>
 </div>
@@ -1277,7 +1432,7 @@ Figure&nbsp;14.11: The normal cumulative distribution function.
 <p><strong>Let’s assume that we want to calculate the area under the curve between 160 cm and 180 cm, that is:</strong></p>
 <p><span class="math display">\[ P(160\leq X \leq 180)=\int_{160}^{180}f(x)dx \]</span></p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">135</span>, <span class="fl">205</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,</span>
 <span>                   y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">135</span>, <span class="fl">205</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, mean<span class="op">=</span><span class="fl">170</span>, sd<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1297,7 +1452,7 @@ Figure&nbsp;14.11: The normal cumulative distribution function.
 <img src="prob_distributions_files/figure-html/fig-aucnormal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aucnormal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.12: Plot of the distribution.
+Figure&nbsp;14.14: Plot of the distribution.
 </figcaption></figure>
 </div>
 </div>
@@ -1310,7 +1465,7 @@ Figure&nbsp;14.12: Plot of the distribution.
 </ul>
 <p><span class="math display">\[ P(X \leq 180)=\int_{-\infty}^{180}f(x)dx \]</span></p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the plot</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb42" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the plot</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, </span>
 <span>                color<span class="op">=</span> <span class="st">"gray20"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1326,13 +1481,13 @@ Figure&nbsp;14.12: Plot of the distribution.
 <img src="prob_distributions_files/figure-html/fig-cdfnormal3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdfnormal3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.13: Plot of the distribution.
+Figure&nbsp;14.15: Plot of the distribution.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">180</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">180</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.8413447</code></pre>
 </div>
@@ -1343,7 +1498,7 @@ Figure&nbsp;14.13: Plot of the distribution.
 </ul>
 <p><span class="math display">\[ P(X \leq 160)=\int_{-\infty}^{160}f(x)dx \]</span></p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the plot</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb45" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the plot</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, </span>
 <span>                color<span class="op">=</span> <span class="st">"gray20"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1359,13 +1514,13 @@ Figure&nbsp;14.13: Plot of the distribution.
 <img src="prob_distributions_files/figure-html/fig-cdfnormal4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdfnormal4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.14: Plot of the distribution.
+Figure&nbsp;14.16: Plot of the distribution.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb36" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">160</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">160</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.1586553</code></pre>
 </div>
@@ -1373,7 +1528,7 @@ Figure&nbsp;14.14: Plot of the distribution.
 <p>&nbsp;</p>
 <p>Finally, we subtract the two values (shaded blue areas) as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb38" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">180</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">160</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">180</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">160</span>, mean <span class="op">=</span> <span class="fl">170</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.6826895</code></pre>
 </div>
@@ -1381,11 +1536,11 @@ Figure&nbsp;14.14: Plot of the distribution.
 <p>&nbsp;</p>
 </section><section id="standard-normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="standard-normal-distribution">Standard Normal distribution</h3>
 <p>If X is a random variable with a normal distribution having a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span>, then the standardized Normal deviate can be expressed as:</p>
-<p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{14.23}\]</span></span></p>
-<p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>14.21</span></a> is transformed as follows:</p>
-<p><span id="eq-zd"><span class="math display">\[ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2}  \tag{14.24}\]</span></span></p>
+<p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{14.25}\]</span></span></p>
+<p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>14.23</span></a> is transformed as follows:</p>
+<p><span id="eq-zd"><span class="math display">\[ f(z)={\frac {1}{{\sqrt {2\pi }}}}e^{-{\frac {1}{2}}z^2}  \tag{14.26}\]</span></span></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb40" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb50" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Z"</span>, y <span class="op">=</span> <span class="st">"Probabiblity density, f(z)"</span>,</span>
@@ -1398,7 +1553,7 @@ Figure&nbsp;14.14: Plot of the distribution.
 <img src="prob_distributions_files/figure-html/fig-z1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1200">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.15: The Standard Normal Distribution
+Figure&nbsp;14.17: The Standard Normal Distribution
 </figcaption></figure>
 </div>
 </div>
@@ -1408,14 +1563,14 @@ Figure&nbsp;14.15: The Standard Normal Distribution
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Let’s assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual’s diastolic blood pressure is recorded as 110 mmHg, how many standard deviations differs from the population mean?</p>
 </div>
-<p>The z-score <a href="#eq-z" class="quarto-xref">Equation&nbsp;<span>14.23</span></a> is:</p>
+<p>The z-score <a href="#eq-z" class="quarto-xref">Equation&nbsp;<span>14.25</span></a> is:</p>
 <p><span class="math inline">\(z = \frac{(110 – 80)}{15} = 2\)</span></p>
 <p>So this person has a diastolic blood pressure that is 2 standard deviations above the population mean.</p>
-<p>To find the area under the curve between two z-scores, <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>, we have to integrate the pdf <a href="#eq-zd" class="quarto-xref">Equation&nbsp;<span>14.24</span></a> as follows:</p>
-<p><span id="eq-integral"><span class="math display">\[ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz  \tag{14.25}\]</span></span></p>
-<p>For example, let’s calculate the area under the curve in <a href="#fig-z2" class="quarto-xref">Figure&nbsp;<span>14.16</span></a>, for <span class="math inline">\(z_1\)</span> = 0 and <span class="math inline">\(z_2\)</span> = 2:</p>
+<p>To find the area under the curve between two z-scores, <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>, we have to integrate the pdf <a href="#eq-zd" class="quarto-xref">Equation&nbsp;<span>14.26</span></a> as follows:</p>
+<p><span id="eq-integral"><span class="math display">\[ P(z_1\leq Z\leq z_2)={\frac {1}{{\sqrt {2\pi }}}}\int_{z_1}^{z_2}e^{-{\frac {1}{2}}z^2}dz  \tag{14.27}\]</span></span></p>
+<p>For example, let’s calculate the area under the curve in <a href="#fig-z2" class="quarto-xref">Figure&nbsp;<span>14.18</span></a>, for <span class="math inline">\(z_1\)</span> = 0 and <span class="math inline">\(z_2\)</span> = 2:</p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb51" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
 <span>                   y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1433,7 +1588,7 @@ Figure&nbsp;14.15: The Standard Normal Distribution
 <img src="prob_distributions_files/figure-html/fig-z2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1200">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.16: The Standard Normal Distribution
+Figure&nbsp;14.18: The Standard Normal Distribution
 </figcaption></figure>
 </div>
 </div>
@@ -1441,7 +1596,7 @@ Figure&nbsp;14.16: The Standard Normal Distribution
 <p>In R, we can easily calculate the above area using the cdf of the normal distribution:</p>
 <p><span class="math display">\[P(0\leq Z\leq 2) = P(Z\leq 2) - P(Z\leq 0)\]</span></p>
 <div class="cell">
-<div class="sourceCode" id="cb42" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0.4772499</code></pre>
 </div>
@@ -1467,7 +1622,7 @@ Example-Degrees of freedom
 <p>Suppose we randomly select 10 adults and measure their daily calcium intake. Let’s say we find that the sample mean is 820 mg.</p>
 <p>For instance, consider nine of the ten individuals in the sample whose daily calcium intakes are as follows: 410 mg, 1230 mg, 870 mg, 1110 mg, 570 mg, 390 mg, 1030 mg, 1080 mg, and 630 mg. The sum of these values would be:</p>
 <div class="cell">
-<div class="sourceCode" id="cb44" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sum9</span> <span class="op">&lt;-</span> <span class="fl">410</span> <span class="op">+</span> <span class="fl">1230</span> <span class="op">+</span> <span class="fl">870</span> <span class="op">+</span> <span class="fl">1110</span> <span class="op">+</span> <span class="fl">570</span> <span class="op">+</span> <span class="fl">390</span> <span class="op">+</span> <span class="fl">1030</span> <span class="op">+</span> <span class="fl">1080</span> <span class="op">+</span> <span class="fl">630</span></span>
+<div class="sourceCode" id="cb54" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sum9</span> <span class="op">&lt;-</span> <span class="fl">410</span> <span class="op">+</span> <span class="fl">1230</span> <span class="op">+</span> <span class="fl">870</span> <span class="op">+</span> <span class="fl">1110</span> <span class="op">+</span> <span class="fl">570</span> <span class="op">+</span> <span class="fl">390</span> <span class="op">+</span> <span class="fl">1030</span> <span class="op">+</span> <span class="fl">1080</span> <span class="op">+</span> <span class="fl">630</span></span>
 <span><span class="va">sum9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 7320</code></pre>
@@ -1475,7 +1630,7 @@ Example-Degrees of freedom
 </div>
 <p>To maintain a sample mean of 820 mg, the tenth individual’s daily calcium intake would need to be 880 mg. We can derive this value by subtracting the sum of the nine known values from the sum of all ten values:</p>
 <div class="cell">
-<div class="sourceCode" id="cb46" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">820</span><span class="op">*</span><span class="fl">10</span> <span class="op">-</span> <span class="va">sum9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">820</span><span class="op">*</span><span class="fl">10</span> <span class="op">-</span> <span class="va">sum9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 880</code></pre>
 </div>
@@ -1484,9 +1639,9 @@ Example-Degrees of freedom
 </div>
 </div>
 <p>&nbsp;</p>
-<p>Given that the shape of the t-distribution changes with different sample sizes (signified by degrees of freedom), it’s essential to indicate the df value. In <a href="#fig-t" class="quarto-xref">Figure&nbsp;<span>14.17</span></a> we define our curve by setting df = 3:</p>
+<p>Given that the shape of the t-distribution changes with different sample sizes (signified by degrees of freedom), it’s essential to indicate the df value. In <a href="#fig-t" class="quarto-xref">Figure&nbsp;<span>14.19</span></a> we define our curve by setting df = 3:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb48" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb58" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dt</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, color  <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1501,15 +1656,15 @@ Example-Degrees of freedom
 <img src="prob_distributions_files/figure-html/fig-t-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1200">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.17: t-distribution with df=3 Vs Standard Normal distribution
+Figure&nbsp;14.19: t-distribution with df=3 Vs Standard Normal distribution
 </figcaption></figure>
 </div>
 </div>
 </div>
 <p>Just like the standard normal distribution, the probability density curve of a t-distribution is bell-shaped and symmetric around its mean (μ = 0). However, the probability density curve of the t-distribution decreases more slowly than that of the standard normal distribution (t-distribution has “heavier” tails than the standard normal distribution).</p>
-<p>If the area of the curve is known, it is possible to calculate the corresponding t-value. For example, in <a href="#fig-t2" class="quarto-xref">Figure&nbsp;<span>14.18</span></a>, if each of the shaded light blue areas equal to 0.025, we can find the t-value using the <code><a href="https://rdrr.io/r/stats/TDist.html">qt()</a></code> function in R:</p>
+<p>If the area of the curve is known, it is possible to calculate the corresponding t-value. For example, in <a href="#fig-t2" class="quarto-xref">Figure&nbsp;<span>14.20</span></a>, if each of the shaded light blue areas equal to 0.025, we can find the t-value using the <code><a href="https://rdrr.io/r/stats/TDist.html">qt()</a></code> function in R:</p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb49" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb59" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame</span></span>
 <span><span class="va">df4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
 <span>                  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>, df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1530,19 +1685,19 @@ Figure&nbsp;14.17: t-distribution with df=3 Vs Standard Normal distribution
 <img src="prob_distributions_files/figure-html/fig-t2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1200">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.18: t-distribution with df=3 Vs Standard Normal distribution
+Figure&nbsp;14.20: t-distribution with df=3 Vs Standard Normal distribution
 </figcaption></figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb50" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.025</span>, df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb60" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.025</span>, df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] -3.182446</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb52" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>, df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>, df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 3.182446</code></pre>
 </div>

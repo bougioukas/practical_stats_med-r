@@ -683,6 +683,159 @@ $\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}$
 
  
 
+### Uniform distribution
+
+The simplest continuous probability distribution is the uniform distribution.  
+Let X be a continuous random variable that follows the uniform distribution with parameters the minimum value $a$ and the maximum value $b$ ($a < b$), $X ∼ Uniform(\alpha,b)$ 
+
+-   The probability density function (pdf) of X is given by:
+
+$$f(x) = \begin{cases}
+\frac{1}{b - a} & \text{for } a \leq x \leq b \\
+0 & \text{otherwise}
+\end{cases}$$ {#eq-uniform1}
+
+
+
+-   The cumulative distribution function (cdf) of X is:
+
+$$F(x) = \begin{cases}
+0 & \text{for } x < a \\
+\frac{x - a}{b - a} & \text{for } a \leq x \leq b \\
+1 & \text{for } x > b
+\end{cases} $$ {#eq-uniform2}
+
+
+The mean of X is given by:
+
+$$\mu = \frac{a + b}{2}$$
+
+The variance of the X is given by:
+$$\sigma^2 = \frac{(b - a)^2}{12}$$
+
+The uniform distribution, with a=0 and b=1, is highly useful as a random number generator. Let's see an example of simple randomization in a clinical trial.
+
+
+ 
+
+::: content-box-yellow
+`r fa("arrow-right", fill = "orange")`   ***Example***
+
+Let X be a random variable that follows the uniform distribution 
+Uniform(0, 1). Find the main characteristics of this distribution.
+
+Then utilize this distribution to randomize 100 individuals between treatments A and B in a clinical trial.
+
+**NOTE:** The simple randomization with the Uniform(0,1) distribution ensures that each individual in the study has an equal chance of being assigned to either treatment group.
+:::
+
+
+- The pdf for this distribution is:
+
+$$f(x) = \begin{cases}
+1 & \text{for } 0 \leq x \leq 1 \\
+0 & \text{otherwise}
+\end{cases}$$
+
+
+
+```{r}
+#| warning: false
+#| label: fig-uniformpdf
+#| fig-width: 6
+#| fig-height: 4
+#| fig-align: "center"
+#| fig-cap: Plot of the pdf for Uniform(0, 1) distribution.
+
+
+# Define the range of x values (including values outside the range)
+x_values <- seq(-0.5, 1.5, by = 0.01)
+
+# Calculate the PDF values for the uniform distribution
+pdf_values <- dunif(x_values, min = 0, max = 1)
+
+# Create a data frame for the PDF plot
+pdf_data <- data.frame(x = x_values, PDF = pdf_values)
+
+# Plot the PDF
+ggplot(pdf_data, aes(x = x, y = PDF)) +
+  geom_line() +
+  xlim(-0.5, 1.5) +
+  labs(title = "pdf Uniform(0, 1)",
+       x = "X", y = "P(x)") +
+  theme(axis.text = element_text(size = 14))
+```
+
+
+- The cdf for this distribution is:
+
+$$F(x) = \begin{cases}
+0 & \text{for } x < 0 \\
+x & \text{for } 0 \leq x \leq 1 \\
+1 & \text{for } x > 1
+\end{cases} $$
+
+
+```{r}
+#| warning: false
+#| label: fig-uniformcdf
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-cap: Plot of the cdf for Poisson(2.5) distribution.
+
+# Calculate the CDF values for the uniform distribution
+cdf_values <- punif(x_values, min = 0, max = 1)
+
+# Create a data frame for the CDF plot
+cdf_data <- data.frame(x = x_values, CDF = cdf_values)
+
+# Plot the CDF
+ggplot(cdf_data, aes(x = x, y = CDF)) +
+  geom_line() +
+  xlim(-0.5, 1.5) +
+    labs(title = "cdf Uniform(0, 1)",
+         x = "X", y = "F(x)") +
+  theme(axis.text = element_text(size = 14))
+```
+
+
+The mean and variance of a random variable that follows the Uniform(0, 1) distribution are:
+
+-   $μ = \frac{0 + 1}{2} = \frac{1}{2}$
+-   $σ^2 = \frac{(1 - 0)^2}{12} = \frac{1}{12}$
+
+
+Next, we use the Uniform(0, 1) to randomize individuals between treatments A and B in a clinical trial:
+
+```{r}
+# Set seed for reproducibility
+set.seed(235)
+
+# Define the sample size of the clinical trial
+N <- 100
+
+# Create a data frame to store the information
+data <- data.frame(id = paste("id", 1:N, sep = ""), trt = NA)
+
+# Simulate 100 uniform random variables from (0-1)
+x <- runif(N)
+# Display the first 10 values
+x[1:10]
+
+# Make treatment assignments, if x < 0.5 treatment A else B
+data$trt <- ifelse(x < 0.5, "A", "B")
+
+# Display the first few rows of the data frame
+head(data, 10)
+
+# Display the counts and proportions of each treatment
+table(data$trt)
+prop.table(table(data$trt))
+```
+
+
+ 
+
 ### Normal distribution
 
 A normal distribution, also known as a Gaussian distribution, is a fundamental concept in statistics and probability theory and is defined by two parameters: the mean (μ) and the standard deviation (σ) (see @sec-normal).
@@ -697,13 +850,11 @@ where $\pi \approx 3.14$ and $e \approx 2.718$.
 
 $$ F(x_o) = P(X\leq x_o)={\frac {1}{\sigma {\sqrt {2\pi }}}} \int_{- \infty }^{x_o}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}dx $$ {#eq-continuous3} where $-\infty \leq x_o \leq + \infty$
 
-
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-Let's say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm. 
+Let's say that in a population the random variable of height, X, for adult people approximates a normal distribution with a mean μ = 170 cm and a standard deviation σ = 10 cm.
 :::
-
 
 The pdf for this distribution is shown below (@fig-normal1):
 
@@ -882,11 +1033,9 @@ ggplot() +
   theme_classic(base_size = 14)
 ```
 
-
-Z-scores are commonly used in medical settings to assess how an individual's measurement compares to the average value of the entire population. 
+Z-scores are commonly used in medical settings to assess how an individual's measurement compares to the average value of the entire population.
 
 ::: content-box-yellow
-
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 Let's assume that the diastolic blood pressure distribution among men has a normal distribution with mean 80 mmHg and standard deviation 15 mmHg. If an individual's diastolic blood pressure is recorded as 110 mmHg, how many standard deviations differs from the population mean?
@@ -967,7 +1116,6 @@ To maintain a sample mean of 820 mg, the tenth individual's daily calcium intake
 ```
 
 Due to this constraint, only nine values in the sample can vary freely. As a result, the final value is not free to vary; it has only one possible value. In this instance, the degrees of freedom are calculated as df = 10-1 = 9.
-
 :::
 
  

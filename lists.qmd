@@ -188,23 +188,20 @@ A data frame is the most common way of organizing and storing data in R and is g
 
 In R, rectangular data is often referred to as a "data frame." It consists of rows and columns, where each column can be of a different data type (e.g., numeric, character). Therefore, a **data frame** is a special type of list with **equal-length** atomic vectors as its items.
 
-Various disciplines have different terms for the rows and columns in a dataset, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms **"observations"** and **"variables"**. Data in variables can be either categorical (categorical variables) or numerical (numerical variables)  (see also the @sec-introduction).
-
+Various disciplines have different terms for the rows and columns in a dataset, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms **"observations"** and **"variables"**. Data in variables can be either categorical (categorical variables) or numerical (numerical variables) (see also the @sec-introduction).
 :::
-
 
 ### Creating a data frame with `tibble()`
 
 We will create a small fictional dataframe with eight rows based on the following information:
 
 ::: content-box-gray
--   id: row identifier
 -   age: age of the patient (in years)
--   sex: sex of the patient (M: male, F: female)
--   blood_type: blood type of the patient (A, B, AB, O)
--   sbp: systolic blood pressure (in mmHg)
--   bmi: Body Mass Index (BMI) category of the patient (1=underweight, 2=normal, 3=overweight, 4=obese)
--   adm_date: admission date
+-   smoking: smoking status of the patient (0=non-smoker, 1=smoker)
+-   ABO: blood type of the patient based on the ABO blood group system (A, B, AB, O)
+-   bmi: Body Mass Index (BMI) category of the patient (1=underweight, 2=healthy weight, 3=overweight, 4=obesity)
+-   occupation: occupation of the patient
+-   adm_date: admission date to the hospital
 :::
 
 A data frame can be created using the `data.frame()` function in base R, the `tibble()` function in the `{tidyverse}` package, or the [`data.table()`](https://rdatatable.gitlab.io/data.table/reference/data.table.html) function in the `{data.table}` package. Let's try the `tibble()` :
@@ -217,14 +214,12 @@ library(tidyverse)   # load the tidyverse package
 library(rstatix)
 
 dat <- tibble(
-  id = c(1, 2, 3, 4, 5, 6, 7, 8),
   age = c(30, 65, 35, 25, 45, 55, 40, 20),
-  sex = c("F", "M", "F", "M", "M", "M", "F", "F"),
-  blood_type = c("A", "O", "O", "O", "B", "O", "A", "A"),
-  sbp = c(125, 150, 128, 120, 135, 140, 130, 110),
+  smoking = c(0, 1, 1, 0, 1, 0, 0, 1),
+  ABO = c("A", "O", "O", "O", "B", "O", "A", "A"),
   bmi = c(2, 3, 2, 2, 4, 4, 3, 1),
-  occupation = c("Journalist", "Marketing Manager", "Doctor", "Teacher",
-                  "Lawyer", "Musician", "Graphic Designer", "Nurse"),
+  occupation = c("Journalist", "Chef", "Doctor", "Teacher",
+                  "Lawyer", "Musician", "Pharmacist", "Nurse"),
   adm_date = c("10-09-2023", "10-12-2023", "10-18-2023", "10-27-2023",
                "11-04-2023", "11-09-2024", "11-22-2023", "12-02-2023")
 )
@@ -244,7 +239,6 @@ dim(dat)
 
 The type is a *list* but the class is a `tbl` *(tibble)* object which is a "tidy" data frame (tibbles work better in the tidyverse). The dimensions are 8x8.
 
-
 The `attribute()` function help us to explore the characteristics/attributes of our tibble:
 
 ```{r}
@@ -253,11 +247,9 @@ attributes(dat)
 
  
 
-
 ### Accessing variables in a data frame
 
 In R, we can access variables in a data frame just like items in a list by using their names or indices. For example:
-
 
 ```{r}
 #| results: hold
@@ -266,20 +258,17 @@ dat[["age"]]
 dat[[2]]
 ```
 
-
 or by using the **dollar sign (`$`)** :
 
 ```{r}
 dat$age
 ```
 
+We can also extract individual elements out of a specific variable as follows:
 
-We can also extract individual elements out of a specific variable as follows: 
 ```{r}
 dat$age[2:5]
 ```
-
-
 
 Another easy way of selecting one variable, similar to `$`, is by utilizing the `pull()` function from the {dplyr} package. For example:
 
@@ -297,100 +286,116 @@ It's critical to investigate the column's data type and convert it to the approp
 glimpse(dat)
 ```
 
-
 Observe the series of three letter abbreviations in angle brackets (`<dbl>`, `<chr>`). The abbreviations used in tibbles serve to describe the type of data in each column and are presented in (@tbl-data_types):
 
-| **Data Type** | **Description**                                                 | **Abbreviation** |
-|:-------------:|-------------------------------------------|:-------------:|
-|   character   | strings: letters, numbers, symbols, and spaces                  |     `<chr>`      |
-|    integer    | numerical values: integer numbers                               |     `<int>`      |
-|    double     | numerical values: real numbers                                  |     `<dbl>`      |
-|    logical    | logical data, typically representing `TRUE` or `FALSE`          |     `<lgl>`      |
-|     date      | date (e.g, 2020-10-09)                                          |     `<date>`     |
-|   date+time   | date plus time (e.g., 2020-10-09 10:03:25 UTC)                  |     `<dttm>`     |
-|    factor     | categorical variables with fixed and known set of possible values (e.g., male/female) |     `<fct>`      |
+| **Data Type**  | **Description**                                                                       | **Abbreviation** |
+|:---------------:|--------------------------------------|:---------------:|
+|   character    | strings: letters, numbers, symbols, and spaces                                        |     `<chr>`      |
+|    integer     | numerical values: integer numbers                                                     |     `<int>`      |
+|     double     | numerical values: real numbers                                                        |     `<dbl>`      |
+|    logical     | logical data, typically representing `TRUE` or `FALSE`                                |     `<lgl>`      |
+|      date      | date (e.g, 2020-10-09)                                                                |     `<date>`     |
+|   date+time    | date plus time (e.g., 2020-10-09 10:03:25 UTC)                                        |     `<dttm>`     |
+|     factor     | categorical variables with fixed and known set of possible values (e.g., male/female) |     `<fct>`      |
+| ordered factor | categorical variable with ordered fixed and known set of possible values              |     `<ord>`      |
 
 : Tibble abbreviations that describe the type of data in columns of a data frame {#tbl-data_types}
 
  
 
-We can convert the categorical variables `sex`, `blood_type`, and `bmi` which are of character `<chr>` type, into factors `<fct>` because they take fixed and known values.
+We can convert the categorical variables `smoking`, `ABO`, and `bmi` from `<dbl>`,  `<chr>`, `<dbl>` types, respectively, into factors `<fct>` since they have fixed and known values.
 
  
 
-- **Variable: sex**
+-   **Variable: smoking** (numeric coded values → factor)
+
+converts a numeric variable representing smoking status into a factor variable with more meaningful labels and then displays the updated dataframe along with the levels of the newly converted factor variable.
+
+
 
 ```{r}
-dat$sex <- factor(dat$sex, levels = c("F", "M"), labels = c("female", "male"))
+dat$smoking <- factor(dat$smoking, levels = c(0, 1), 
+                  labels = c("non-smoker", "smoker"))
 dat
-levels(dat$sex)
+levels(dat$smoking)
 ```
 
  
 
-- **Variable: blood_type**
+-   **Variable: ABO** (chr → factor)
 
-It's important to note that not all potential values may be present in a given dataset. For example, if we tabulate the variable `blood_type` (e.g. using the `table()` function) we will get counts of the categories in the data:
+It's important to note that not all potential values may be present in a given dataset. For example, if we tabulate the variable `ABO` (e.g. using the `table()` function) we will get counts of the categories in the data:
 
 ```{r}
 # create a count table
-table(dat$blood_type)
+table(dat$ABO)
 ```
 
-We observe that the blood type "AB" is absent from our data. In such cases, we can use the factor and create a list of all the valid levels:
+The blood type "AB" of the ABO blood group system is absent from our data. In such cases, we can use the factor and create a list of all the valid levels:
 
 ```{r}
 
 # create a vector containing the blood types A, B, AB, and O
-blood_type_levels <- c("A", "B", "AB", "O")
+ABO_levels <- c("A", "B", "AB", "O")
 
-dat$blood_type <- factor(dat$blood_type, levels = blood_type_levels)
+dat$ABO <- factor(dat$ABO, levels = ABO_levels)
 dat
 # show the levels of status variable
-levels(dat$blood_type)
+levels(dat$ABO)
 # create a count table
-table(dat$blood_type)
+table(dat$ABO)
 ```
 
  
 
-- **Variable: bmi**
+-   **Variable: bmi** (numeric coded values → ordered factor)
 
-We might have noticed that the categorical variable `bmi` takes numerically coded values (1, 2, 3, 4) in our dataset, so it is recognized as a double `<dbl>` type. We can convert this variable into factor `<fct>` with levels (1=underweight, 2=normal, 3=overweight, 4=obese), as follows:
-
+We might have noticed that the categorical variable `bmi` takes numerically coded values (1, 2, 3, 4) in our dataset, so it is recognized as a double `<dbl>` type. We can convert this variable into factor `<fct>` with levels (1=underweight, 2=healthy, 3=overweight, 4=obesity). Instead of overwriting the existing variable, we prefer to create a new variable `bmi1`, as follows:"
 
 ```{r}
-# recode the values
-dat$bmi <- case_match(dat$bmi, 
-                      1 ~ "underweight",
-                      2 ~ "normal",
-                      3 ~ "overweight",
-                      4 ~ "obese")
-
 # create a vector containing the four bmi categories
-bmi_levels <- c("underweight", "normal", "overweight", "obese")
+bmi1_labels <- c("underweight", "healthy", "overweight", "obesity")
 
 # convert the variable to factor
-dat$bmi <- factor(dat$bmi, levels = bmi_levels, ordered = TRUE)
-dat$bmi
+dat$bmi1 <- factor(dat$bmi, levels = c(1, 2, 3, 4), 
+                   labels = bmi1_labels, ordered = TRUE)
+dat$bmi1
 
 dat
 ```
 
-
-Now we can use, for example, the comparison operators `>` to check whether one element of the ordered vector is larger than the other. 
+Now we can use, for example, the comparison operators `>` to check whether one element of the ordered vector is larger than the other.
 
 ```{r}
-dat$bmi[2] > dat$bmi[6]
+dat$bmi1[2] > dat$bmi1[6]
 ```
 
 However, the use of these operators on factors is much less common compared to numeric vectors. Therefore, we typically omit the `ordered = TRUE` argument, especially when we provide the order of categories explicitly in the `levels` argument.
 
 
+ 
+
+Now, let's merge the "overweight" and "obesity" categories into a single category named "overweight/obesity" within a new variable called `bmi2`:
+
+```{r}
+# recode the values
+dat$bmi2 <- case_match(dat$bmi, 
+                      1 ~ "underweight",
+                      2 ~ "healthy",
+                      c(3, 4) ~ "overweight/obesity")
+
+# convert the variable to factor
+dat$bmi2 <- factor(dat$bmi2, ordered = TRUE)
+dat$bmi2
+
+dat
+```
+
+
 
  
 
-- **Variable: date**
+-   **Variable: adm_date** (chr → date)
 
 In R, by default, values of class Date are displayed as YYYY-MM-DD. Therefore, to represent the date "10-12-2023" (assuming it's in month-day-year format), we can use the following code:
 
@@ -399,5 +404,3 @@ dat$adm_date <- mdy(dat$adm_date)
 dat
 class(dat$adm_date)
 ```
-
-
