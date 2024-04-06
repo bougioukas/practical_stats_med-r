@@ -23,7 +23,7 @@ We need to load the following packages:
 #| warning: false
 
 # graphs
-library(ggplot2)
+library(tidyverse)
 library(igraph)
 ```
 
@@ -92,7 +92,11 @@ $$ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 
 
 Hence, there is a 55% chance that a randomly selected person in our population can donate blood to someone with type B blood.
 
+ 
+
 There are several types of probability distributions, and they can be broadly categorized into two main groups: **discrete probability distributions** and **continuous probability distributions**.
+
+**NOTE:** Degrees of freedom (i.e., the number of parameters that are free to vary) are intrinsic to these distributions, influencing their shapes, properties, and applications in statistical analysis. For instance, in the chi-square, t, and F distributions, degrees of freedom determine their characteristics.
 
 ## Discrete Probability Distributions
 
@@ -126,7 +130,7 @@ When dealing with a random variable, it is common to calculate three important s
 **Expected Value**
 
 ::: content-box-green
-The expected value, denoted as **μ** or **E(X)**, is defined as the weighted average of the values that X can take on, with each possible value being weighted by its respective probability, P(x).
+The expected value or mean, denoted as **E(X)** or **μ**, is defined as the weighted average of the values that X can take on, with each possible value being weighted by its respective probability, P(x).
 
 $\mu = E(X)= \sum\limits_i x_i \cdot P(x_i)$
 :::
@@ -660,7 +664,7 @@ The expected value, variance, and standard deviation for a continuous random var
 **Expected Value**
 
 ::: content-box-green
-The expected value, denoted as **μ** or **E(X)**, is calculated by integrating over the entire range of possible values:
+The expected value or mean, denoted as **E(X)** or **μ**, is calculated by integrating over the entire range of possible values:
 
 $\mu =E(X) = \int_{-\infty}^{+\infty} x \cdot f(x) \, dx$
 :::
@@ -685,8 +689,8 @@ $\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}$
 
 ### Uniform distribution
 
-The simplest continuous probability distribution is the uniform distribution.  
-Let X be a continuous random variable that follows the uniform distribution with parameters the minimum value $a$ and the maximum value $b$ ($a < b$), $X ∼ Uniform(\alpha,b)$ 
+The simplest continuous probability distribution is the uniform distribution.\
+Let X be a continuous random variable that follows the uniform distribution with parameters the minimum value $a$ and the maximum value $b$ ($a < b$), $X ∼ Uniform(\alpha,b)$
 
 -   The probability density function (pdf) of X is given by:
 
@@ -694,8 +698,6 @@ $$f(x) = \begin{cases}
 \frac{1}{b - a} & \text{for } a \leq x \leq b \\
 0 & \text{otherwise}
 \end{cases}$$ {#eq-uniform1}
-
-
 
 -   The cumulative distribution function (cdf) of X is:
 
@@ -705,39 +707,32 @@ $$F(x) = \begin{cases}
 1 & \text{for } x > b
 \end{cases} $$ {#eq-uniform2}
 
-
 The mean of X is given by:
 
 $$\mu = \frac{a + b}{2}$$
 
-The variance of the X is given by:
-$$\sigma^2 = \frac{(b - a)^2}{12}$$
+The variance of the X is given by: $$\sigma^2 = \frac{(b - a)^2}{12}$$
 
 The uniform distribution, with a=0 and b=1, is highly useful as a random number generator. Let's see an example of simple randomization in a clinical trial.
-
 
  
 
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
-Let X be a random variable that follows the uniform distribution 
-Uniform(0, 1). Find the main characteristics of this distribution.
+Let X be a random variable that follows the uniform distribution Uniform(0, 1). Find the main characteristics of this distribution.
 
 Then utilize this distribution to randomize 100 individuals between treatments A and B in a clinical trial.
 
 **NOTE:** The simple randomization with the Uniform(0,1) distribution ensures that each individual in the study has an equal chance of being assigned to either treatment group.
 :::
 
-
-- The pdf for this distribution is:
+-   The pdf for this distribution is:
 
 $$f(x) = \begin{cases}
 1 & \text{for } 0 \leq x \leq 1 \\
 0 & \text{otherwise}
 \end{cases}$$
-
-
 
 ```{r}
 #| warning: false
@@ -766,15 +761,13 @@ ggplot(pdf_data, aes(x = x, y = PDF)) +
   theme(axis.text = element_text(size = 14))
 ```
 
-
-- The cdf for this distribution is:
+-   The cdf for this distribution is:
 
 $$F(x) = \begin{cases}
 0 & \text{for } x < 0 \\
 x & \text{for } 0 \leq x \leq 1 \\
 1 & \text{for } x > 1
 \end{cases} $$
-
 
 ```{r}
 #| warning: false
@@ -798,12 +791,10 @@ ggplot(cdf_data, aes(x = x, y = CDF)) +
   theme(axis.text = element_text(size = 14))
 ```
 
-
 The mean and variance of a random variable that follows the Uniform(0, 1) distribution are:
 
 -   $μ = \frac{0 + 1}{2} = \frac{1}{2}$
 -   $σ^2 = \frac{(1 - 0)^2}{12} = \frac{1}{12}$
-
 
 Next, we use the Uniform(0, 1) to randomize individuals between treatments A and B in a clinical trial:
 
@@ -832,7 +823,6 @@ head(data, 10)
 table(data$trt)
 prop.table(table(data$trt))
 ```
-
 
  
 
@@ -1029,7 +1019,7 @@ ggplot() +
   scale_x_continuous(limits = c(-3, 3), breaks = seq(-3, 3, 1)) +
   labs(x = "Z", y = "Probabiblity density, f(z)",
        title = "The Standard Normal Distribution, N~(0, 1^2)") +
-  scale_y_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0.005)) +
   theme_classic(base_size = 14)
 ```
 
@@ -1087,58 +1077,93 @@ pnorm(2, mean = 0, sd = 1) - pnorm(0, mean = 0, sd = 1)
 
  
 
+### Chi-square distribution
+
+The chi-square distribution arises in various contexts, such as the chi-square test for independence in @sec-chi_square.
+
+Let $Z_1, Z_2,..., Z_{\nu}$ be independent random variables that follow the standard normal distribution N(0,1). Then, the sum of the squares of these standard normal random variables, $U=\sum_{i=1}^n Z_i^2$, follows the chi-squared distribution with $\nu$ degrees of freedom, $U \sim\chi_\nu^2$.
+
+Therefore, the chi-squared distribution is determined by a single parameter, $\nu$, which specifies the degrees of freedom (the number of random variables Z being summed). For example, the square of a standard normal variable follows the chi-square distribution with one degree of freedom, $U = Z_{1}^2 \sim \chi_1^2$.
+
+The mean and variance of a random variable that follows the chi-square distribution with $\nu$ degrees of freedom are:
+
+-   $μ = \nu$
+-   $σ^2 = 2\nu$
+
+The shape of the chi-square distribution depends on the degrees of freedom, $\nu$.
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| label: fig-chi
+#| fig-height: 7.2
+#| fig-width: 12.5
+#| fig-align: "center"
+#| fig-cap: Family of chi-Square distributions
+
+
+ggplot(data = data.frame(x = c(0, 20)), aes(x = x)) +
+  stat_function(fun = function(x) dchisq(x, df = 3), aes(color = "Chi-square (df = 3)"), size = 0.8) +
+  stat_function(fun = function(x) dchisq(x, df = 5), aes(color = "Chi-square (df = 5)"), size = 0.8) +
+  stat_function(fun = function(x) dchisq(x, df = 9), aes(color = "Chi-square (df = 9)"), size = 0.8) +
+  scale_x_continuous(limits = c(0, 20), breaks = seq(0, 20, 1)) +
+  scale_color_manual(values = c("purple", "orange", "cyan"),
+                     labels = c("ν = 3", "ν = 5", "ν = 9")) +
+  labs(x = "Chi-square", y = "Probability Density") +
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14) +
+  theme(legend.title = element_blank())
+```
+
+
+**NOTE:** When $\nu$ is large, the shape of the chi-square distribution becomes increasingly similar to that of a normal distribution. 
+
+
+ 
+
 ### t-distribution
 
 The t-distribution, also known as the Student's t-distribution, is very similar to standard normal distribution and is used in statistics when the sample size is small or when the population standard deviation is unknown.
 
-The t-distribution is specified by a parameter called the degrees of freedom (df). The degrees of freedom are related to the sample size (df \> 0) and determine the shape of the t-distribution. As the degrees of freedom increase (df \> 30), the t-distribution approaches the normal distribution more closely.
+The Student's t statistic is defined from the formula:
 
-The distribution's mean is μ = 0, and the variance is determined by the degrees of freedom, $σ^2 = df/(df −2)$.
+$$ T = \frac{Z}{\sqrt\frac{{U_\nu}}{\nu}} $$
 
-::: {.callout-note icon="false"}
-## Example-Degrees of freedom
+where Z∼N(0,1) and U∼$\chi_\nu^2$ are independent.
 
-> Degrees of freedom, often represented by df, is the number of independent pieces of information used to calculate a statistic. It's calculated as the sample size minus the number of constraints.
+The t statistic follows the t-distribution with $\nu$ degrees of freedom. As the degrees of freedom increase ($\nu$\> 30), the t-distribution approaches the normal distribution more closely.
 
-Suppose we randomly select 10 adults and measure their daily calcium intake. Let's say we find that the sample mean is 820 mg.
 
-For instance, consider nine of the ten individuals in the sample whose daily calcium intakes are as follows: 410 mg, 1230 mg, 870 mg, 1110 mg, 570 mg, 390 mg, 1030 mg, 1080 mg, and 630 mg. The sum of these values would be:
+The mean and variance of a random variable that follows the t-distribution with $\nu$ degrees of freedom are:
 
+- $\mu= 0$, $\nu \geq 2$
+- $σ^2 = \nu/(\nu −2)$ , $\nu \geq 3$
+
+
+The shape of the t-distribution depends on the degrees of freedom, $\nu$ (@fig-t).
 ```{r}
-sum9 <- 410 + 1230 + 870 + 1110 + 570 + 390 + 1030 + 1080 + 630
-sum9
-```
-
-To maintain a sample mean of 820 mg, the tenth individual's daily calcium intake would need to be 880 mg. We can derive this value by subtracting the sum of the nine known values from the sum of all ten values:
-
-```{r}
-820*10 - sum9
-```
-
-Due to this constraint, only nine values in the sample can vary freely. As a result, the final value is not free to vary; it has only one possible value. In this instance, the degrees of freedom are calculated as df = 10-1 = 9.
-:::
-
- 
-
-Given that the shape of the t-distribution changes with different sample sizes (signified by degrees of freedom), it's essential to indicate the df value. In @fig-t we define our curve by setting df = 3:
-
-```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 #| warning: false
 #| label: fig-t
 #| fig-height: 7.2
 #| fig-width: 12.5
 #| fig-align: "center"
-#| fig-cap: t-distribution with df=3 Vs Standard Normal distribution 
+#| fig-cap: t-distribution family with ν=3, 5, 9 Vs Standard Normal distribution 
 
-ggplot() +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
-  stat_function(fun = dt, args = list(df = 3), color  = "blue") +
+
+ggplot(data = data.frame(x = c(-5, 5)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), aes(color = "a"), size = 0.8) +
+  stat_function(fun = function(x) dt(x, df = 3), aes(color = "b = 3"), size = 0.8) +
+  stat_function(fun = function(x) dt(x, df = 5), aes(color = "c = 5"), size = 0.8) +
+  stat_function(fun = function(x) dt(x, df = 9), aes(color = "d = 9"), size = 0.8) +
   scale_x_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 1)) +
-  annotate("text", x = 0, y = 0.41, label = "standard normal") +
-  annotate("text", x = 0, y = 0.38, label = "t(3)", color = "blue") +
+  scale_color_manual(values = c("black", "purple", "orange", "cyan"),
+                     labels = c("Standard Normal", "ν = 3", "ν = 5", "ν = 9")) +
   labs(x = "t", y = "Probabiblity Density") +
   scale_y_continuous(expand = c(0,0)) +
-  theme_classic(base_size = 14)
+  theme_classic(base_size = 14) +
+  theme(legend.title = element_blank())
 ```
 
 Just like the standard normal distribution, the probability density curve of a t-distribution is bell-shaped and symmetric around its mean (μ = 0). However, the probability density curve of the t-distribution decreases more slowly than that of the standard normal distribution (t-distribution has "heavier" tails than the standard normal distribution).
@@ -1161,12 +1186,12 @@ df4 <- data.frame(x = seq(-5, 5, by = 0.01),
 
 ggplot() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
-  stat_function(fun = dt, args = list(df = 3), color  = "blue") +
+  stat_function(fun = dt, args = list(df = 3), color  = "purple") +
   geom_area(data = df4, mapping = aes(x = ifelse(x < -3, x, -3), y = y), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
   geom_area(data = df4, mapping = aes(x = ifelse(x > 3, x, 3), y = y), fill = "#0073CF", alpha = 0.3) +  # Area under the curve
   scale_x_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 1)) +
   annotate("text", x = 0, y = 0.41, label = "standard normal") +
-  annotate("text", x = 0, y = 0.38, label = "t(3)", color = "blue") +
+  annotate("text", x = 0, y = 0.38, label = "t(3)", color = "purple") +
   labs(x = "t", y = "Probabiblity Density") +
   scale_y_continuous(expand = c(0,0)) +
   theme_classic(base_size = 14)
@@ -1179,3 +1204,54 @@ qt(0.025, df = 3)
 ```{r}
 qt(0.975, df = 3)
 ```
+
+ 
+
+
+### F-distribution
+
+Let U and V be independent random variables that follow the 
+$\chi_{\nu_1}^2$ and $\chi_{\nu_2}^2$, respectively. Then, the random variable:
+
+$$F = \frac{U / \nu_1}{V / \nu_2} $$
+
+follows the F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom, $F \sim F_{\nu_1, \nu_2}$.
+
+
+
+The shape of an F-distribution depends on the values of $\nu_1$ and $\nu_2$, the numerator and denominator degrees of freedom, respectively (@fig-f_distr):
+
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| warning: false
+#| label: fig-f_distr
+#| fig-height: 7.2
+#| fig-width: 12.5
+#| fig-align: "center"
+#| fig-cap: F-distribution family
+
+ggplot(data = data.frame(x = c(0, 5)), aes(x = x)) +
+  stat_function(fun = function(x) df(x, df1 = 2, df2 = 1), aes(color = "v1 = 2, v2 = 1"), size = 0.8) +
+  stat_function(fun = function(x) df(x, df1 = 3, df2 = 5), aes(color = "v1 = 3, v2 = 5"), size = 0.8) +
+  stat_function(fun = function(x) df(x, df1 = 10, df2 = 8), aes(color = "v1 = 10, v2 = 8"), size = 0.8) +
+  scale_x_continuous(limits = c(0, 5), breaks = seq(0, 5, 1)) +
+  scale_color_manual(values = c("purple", "orange", "cyan"),
+                     labels = c("v1 = 2, v2 = 1", "v1 = 3, v2 = 5", "v1 = 10, v2 = 8")) +
+  labs(x = "F", y = "Probability Density") +
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic(base_size = 14) +
+  theme(legend.title = element_blank())
+```
+
+
+The mean and variance of a random variable that follows the F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom are:
+
+- $\mu = \frac{\nu_2}{\nu_2 - 2}$
+
+
+- $\sigma^2 = \frac{2 \nu_2^2 (\nu_1 + \nu_2 - 2)}{\nu_1 (\nu_2 - 2)^2 (\nu_2 - 4)}$
+
+
+

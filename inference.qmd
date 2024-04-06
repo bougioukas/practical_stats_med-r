@@ -278,6 +278,30 @@ At the 5% significance level, the test result provides evidence against the null
 
  
 
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+> Degrees of freedom, often represented by df, is the number of independent pieces of information used to calculate a statistic. It's calculated as the sample size minus the number of constraints.
+
+For instance, consider 19 of the 20 patients in the sample whose serum creatinine levels are as follows: 0.97, 1.27, 0.93, 0.95, 0.84, 1.27, 0.47, 0.61, 1.07, 1.23, 0.81, 1.19, 1.01, 0.49, 0.90, 0.53, 0.45, 1.88, 1.23. The sum of these values would be:
+
+```{r}
+sum19 <- 0.97 + 1.27 + 0.93 + 0.95 + 0.84 + 1.27 + 0.47 + 0.61 + 1.07 +
+  1.23 + 0.81 + 1.19 + 1.01 + 0.49 + 0.90 + 0.53 + 0.45 + 1.88 + 1.23
+sum19
+```
+
+To maintain a sample mean of 0.96 mg/dl, the twentieth patient's serum creatinine would need to be 1.1 mg/dl. We can derive this value by subtracting the sum of the 19 known values from the sum of all 20 values:
+
+```{r}
+0.96*20 - sum19
+```
+
+Due to this constraint, only 19 values in the sample can vary freely. As a result, the final value is not free to vary; it has only one possible value. In this instance, the degrees of freedom are calculated as df = 20-1 = 19.
+:::
+
+ 
+
 ## Confidence interval for a single sample
 
 Hypothesis testing and confidence intervals are both inferential methods based on the concept of sampling distribution. Although closely related, they serve distinct purposes. Specifically, hypothesis testing involves a statistical decision (reject or not reject a pre-defined hypothesis) based on the p-value, while confidence intervals provide an interval estimate of the effect size and its associated precision.

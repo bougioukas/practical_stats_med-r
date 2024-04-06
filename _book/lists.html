@@ -819,9 +819,9 @@ Table&nbsp;9.1: Tibble abbreviations that describe the type of data in columns o
 </figcaption><div aria-describedby="tbl-data_types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 52%">
-<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 50%">
+<col style="width: 24%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: center;"><strong>Data Type</strong></th>
@@ -1004,13 +1004,16 @@ Levels: underweight &lt; healthy &lt; overweight &lt; obesity</code></pre>
 <span>                      <span class="fl">2</span> <span class="op">~</span> <span class="st">"healthy"</span>,</span>
 <span>                      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">~</span> <span class="st">"overweight/obesity"</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># set the levels in a order</span></span>
+<span><span class="va">bmi2_levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"underweight"</span>, <span class="st">"healthy"</span>, <span class="st">"overweight/obesity"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># convert the variable to factor</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span>, levels <span class="op">=</span> <span class="va">bmi2_levels</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">bmi2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] healthy            overweight/obesity healthy            healthy           
 [5] overweight/obesity overweight/obesity overweight/obesity underweight       
-Levels: healthy &lt; overweight/obesity &lt; underweight</code></pre>
+Levels: underweight &lt; healthy &lt; overweight/obesity</code></pre>
 </div>
 <div class="sourceCode" id="cb87" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

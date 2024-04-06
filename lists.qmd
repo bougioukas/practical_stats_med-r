@@ -289,7 +289,7 @@ glimpse(dat)
 Observe the series of three letter abbreviations in angle brackets (`<dbl>`, `<chr>`). The abbreviations used in tibbles serve to describe the type of data in each column and are presented in (@tbl-data_types):
 
 | **Data Type**  | **Description**                                                                       | **Abbreviation** |
-|:---------------:|--------------------------------------|:---------------:|
+|:----------------:|-------------------------------------|:----------------:|
 |   character    | strings: letters, numbers, symbols, and spaces                                        |     `<chr>`      |
 |    integer     | numerical values: integer numbers                                                     |     `<int>`      |
 |     double     | numerical values: real numbers                                                        |     `<dbl>`      |
@@ -303,15 +303,13 @@ Observe the series of three letter abbreviations in angle brackets (`<dbl>`, `<c
 
  
 
-We can convert the categorical variables `smoking`, `ABO`, and `bmi` from `<dbl>`,  `<chr>`, `<dbl>` types, respectively, into factors `<fct>` since they have fixed and known values.
+We can convert the categorical variables `smoking`, `ABO`, and `bmi` from `<dbl>`, `<chr>`, `<dbl>` types, respectively, into factors `<fct>` since they have fixed and known values.
 
  
 
 -   **Variable: smoking** (numeric coded values → factor)
 
 converts a numeric variable representing smoking status into a factor variable with more meaningful labels and then displays the updated dataframe along with the levels of the newly converted factor variable.
-
-
 
 ```{r}
 dat$smoking <- factor(dat$smoking, levels = c(0, 1), 
@@ -372,7 +370,6 @@ dat$bmi1[2] > dat$bmi1[6]
 
 However, the use of these operators on factors is much less common compared to numeric vectors. Therefore, we typically omit the `ordered = TRUE` argument, especially when we provide the order of categories explicitly in the `levels` argument.
 
-
  
 
 Now, let's merge the "overweight" and "obesity" categories into a single category named "overweight/obesity" within a new variable called `bmi2`:
@@ -384,14 +381,15 @@ dat$bmi2 <- case_match(dat$bmi,
                       2 ~ "healthy",
                       c(3, 4) ~ "overweight/obesity")
 
+# set the levels in a order
+bmi2_levels <- c("underweight", "healthy", "overweight/obesity")
+
 # convert the variable to factor
-dat$bmi2 <- factor(dat$bmi2, ordered = TRUE)
+dat$bmi2 <- factor(dat$bmi2, levels = bmi2_levels, ordered = TRUE)
 dat$bmi2
 
 dat
 ```
-
-
 
  
 

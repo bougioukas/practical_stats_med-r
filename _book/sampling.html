@@ -51,7 +51,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -508,7 +528,7 @@ Figure&nbsp;17.1: dfsfsd
 <p>The difference between the point estimate and the population parameter is referred to as the <strong>error</strong> in the estimate. This error constitutes a “total” error, comprised of two components:</p>
 <p><span id="eq-total_error"><span class="math display">\[total \ error = bias + sampling \ error \tag{17.1}\]</span></span></p>
 <ul>
-<li><p><strong>Bias:</strong> This refers to a tendency to overestimate or underestimate the true value of the population parameter. There are numerous sources of bias in a study, including measurement bias (i.e., errors in measuring exposure or disease), sampling bias (i.e., some members of a population are systematically more likely to be selected in a sample than others), recall bias (i.e., when participants in a research study do not accurately remember a past event or experience), and attrition bias (i.e., systematic differences between study groups in the number and the way participants are lost from a study). Bias can be minimized through thoughtful design of the study (i.e., a comprehensive protocol) and careful data collection procedures.</p></li>
+<li><p><strong>Bias:</strong> This refers to a tendency to overestimate or underestimate the true value of the population parameter. There are numerous sources of bias in a study, including measurement bias (i.e., errors in measuring exposure or disease), sampling bias (i.e., some members of a population are systematically more likely to be selected in a sample than others), recall bias (i.e., when participants in a research study do not accurately remember a past event or experience), and attrition bias (i.e., systematic differences between study groups in the number and the way participants are lost from a study). Bias can be minimized through thoughtful design of the study (i.e., a comprehensive protocol), careful data collection procedures, and the application of suitable statistical techniques <span class="citation" data-cites="brown2024">(<a href="references.html#ref-brown2024" role="doc-biblioref">Brown et al. 2024</a>)</span>.</p></li>
 <li><p><strong>Sampling error:</strong> This measures the extent to which an estimate tends to vary from one sample to another due to random chance. Our objective is frequently to quantify and understand this variability in estimates. Standard error and confidence intervals, common measures of sampling error, are primarily influenced by both the sample size and the variability of the estimated characteristic.</p></li>
 </ul>
 <div class="content-box-blue">
@@ -670,6 +690,11 @@ Figure&nbsp;17.7: Distribution of sample means. Each panel represents a simulati
 <p>We observe that the distribution of sample means for sample size of five exhibits considerable variability (<a href="#fig-simulation" class="quarto-xref">Figure&nbsp;<span>17.7</span></a> a, b, c). As we take a large number of sample means and the sample size is increased to 30, the distributions become increasingly symmetric, with less variability, and tend toward approximate normality (<a href="#fig-simulation" class="quarto-xref">Figure&nbsp;<span>17.7</span></a> f, i).</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-brown2024" class="csl-entry" role="listitem">
+Brown, Jeremy P, Jacob N Hunnicutt, M Sanni Ali, Krishnan Bhaskaran, Ashley Cole, Sinead M Langan, Dorothea Nitsch, et al. 2024. <span>“Quantifying Possible Bias in Clinical and Epidemiological Studies with Quantitative Bias Analysis: Common Approaches and Limitations.”</span> <em>BMJ</em>, April, e076365. <a href="https://doi.org/10.1136/bmj-2023-076365">https://doi.org/10.1136/bmj-2023-076365</a>.
+</div>
+</div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

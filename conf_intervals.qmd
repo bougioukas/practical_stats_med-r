@@ -29,7 +29,7 @@ We will base the construction of a confidence interval on two key concepts:
 
 1.  The interval is **around the point estimate**, which represents our best estimate of the population parameter.
 
-2.  The **standard error (SE)** is utilized to quantify the extent of variability around the point estimate.
+2.  The **standard error** is utilized to quantify the extent of variability around the point estimate.
 
 According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (@sec-sampling). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, $\sigma_{\bar{x}}$. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within $\pm 1.96 \sigma_{\bar{x}}$ from the point estimate (the empirical rule; @sec-normal). This multiple of the standard error, such as $\pm 1.96 \sigma_{\bar{x}}$, is referred to as the **margin of error** in a confidence interval.
 
@@ -192,8 +192,6 @@ upper_99CI
 ```
 
 We observe that a 99% CI provides a higher level of confidence but comes with a wider range (1.07-1.22), while a 95% confidence interval offers a narrower range (1.09-1.20) but with slightly less certainty. Therefore, the increased level of confidence comes at the expense of precision, especially with smaller datasets.
-
-
 
  
 
@@ -362,7 +360,6 @@ Comparing the @fig-intervals1 and @fig-intervals2, we notice two key trends as t
  
 
 ::: content-box-green
-
 A confidence interval is commonly expressed as 90% CI, 95% CI, or 99% CI, indicating the level of confidence associated with the estimate. The percentage reflects the proportion of intervals, constructed from repeated experiments, that would contain the population parameter (long-run interpretation).
 
 Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.

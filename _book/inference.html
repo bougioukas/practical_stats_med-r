@@ -718,6 +718,39 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 <p><strong>Step 5: Interpret the results and draw a “real world” conclusion.</strong></p>
 <p>At the 5% significance level, the test result provides evidence against the null hypothesis (p = 0.014 &lt; 0.05). The mean serum creatinine in women with diabetes (0.96 mg/dl) is significantly higher than the serum creatinine in healthy adult women (0.75 mg/dl).</p>
 <p>&nbsp;</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"></path></svg> INFO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>Degrees of freedom, often represented by df, is the number of independent pieces of information used to calculate a statistic. It’s calculated as the sample size minus the number of constraints.</p>
+</blockquote>
+<p>For instance, consider 19 of the 20 patients in the sample whose serum creatinine levels are as follows: 0.97, 1.27, 0.93, 0.95, 0.84, 1.27, 0.47, 0.61, 1.07, 1.23, 0.81, 1.19, 1.01, 0.49, 0.90, 0.53, 0.45, 1.88, 1.23. The sum of these values would be:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sum19</span> <span class="op">&lt;-</span> <span class="fl">0.97</span> <span class="op">+</span> <span class="fl">1.27</span> <span class="op">+</span> <span class="fl">0.93</span> <span class="op">+</span> <span class="fl">0.95</span> <span class="op">+</span> <span class="fl">0.84</span> <span class="op">+</span> <span class="fl">1.27</span> <span class="op">+</span> <span class="fl">0.47</span> <span class="op">+</span> <span class="fl">0.61</span> <span class="op">+</span> <span class="fl">1.07</span> <span class="op">+</span></span>
+<span>  <span class="fl">1.23</span> <span class="op">+</span> <span class="fl">0.81</span> <span class="op">+</span> <span class="fl">1.19</span> <span class="op">+</span> <span class="fl">1.01</span> <span class="op">+</span> <span class="fl">0.49</span> <span class="op">+</span> <span class="fl">0.90</span> <span class="op">+</span> <span class="fl">0.53</span> <span class="op">+</span> <span class="fl">0.45</span> <span class="op">+</span> <span class="fl">1.88</span> <span class="op">+</span> <span class="fl">1.23</span></span>
+<span><span class="va">sum19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 18.1</code></pre>
+</div>
+</div>
+<p>To maintain a sample mean of 0.96 mg/dl, the twentieth patient’s serum creatinine would need to be 1.1 mg/dl. We can derive this value by subtracting the sum of the 19 known values from the sum of all 20 values:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.96</span><span class="op">*</span><span class="fl">20</span> <span class="op">-</span> <span class="va">sum19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>[1] 1.1</code></pre>
+</div>
+</div>
+<p>Due to this constraint, only 19 values in the sample can vary freely. As a result, the final value is not free to vary; it has only one possible value. In this instance, the degrees of freedom are calculated as df = 20-1 = 19.</p>
+</div>
+</div>
+<p>&nbsp;</p>
 </section><section id="confidence-interval-for-a-single-sample" class="level2" data-number="19.5"><h2 data-number="19.5" class="anchored" data-anchor-id="confidence-interval-for-a-single-sample">
 <span class="header-section-number">19.5</span> Confidence interval for a single sample</h2>
 <p>Hypothesis testing and confidence intervals are both inferential methods based on the concept of sampling distribution. Although closely related, they serve distinct purposes. Specifically, hypothesis testing involves a statistical decision (reject or not reject a pre-defined hypothesis) based on the p-value, while confidence intervals provide an interval estimate of the effect size and its associated precision.</p>
@@ -725,7 +758,7 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 <p><span class="math display">\[95\% \ CI = \bar{x} \  \pm \ t_{n-1; a/2}^* * SE_{\bar{x}}\]</span></p>
 <p>where <span class="math inline">\(t_{n-1; a/2}^*\)</span> is the critical value for the t-distribution with df = n-1 for a specific level of significance α.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t_star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.025</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t_star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.025</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># compute lower limit of 95% CI</span></span>
 <span><span class="va">lower_95CI</span> <span class="op">&lt;-</span> <span class="va">x_bar</span> <span class="op">-</span> <span class="va">t_star</span><span class="op">*</span><span class="va">se</span></span>
@@ -745,7 +778,7 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 <p>The impact of study design decisions, such as the size of the sample, on research outcomes and conclusions is a crucial aspect that researchers must carefully consider before conducting the study. Let’s return to the example provided earlier, but this time the researchers designed a study with only 10 patients (we suppose everything else is the same).</p>
 <p>First, we calculate the new value of the t test statistic:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span></span>
 <span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">s</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
 <span><span class="va">t</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x_bar</span><span class="op">-</span><span class="va">mu</span><span class="op">)</span><span class="op">/</span><span class="va">se</span></span>
@@ -784,7 +817,7 @@ Figure&nbsp;19.4: T-distribution for df=9. The p-value approach.
 </div>
 <p>The <strong>p-value</strong> is computed as 2*P(T ≥ t) (<a href="#fig-sample_distribution3" class="quarto-xref">Figure&nbsp;<span>19.3</span></a>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">t</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">t</span>, df <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p_value</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">P</span></span>
 <span><span class="va">p_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -796,7 +829,7 @@ Figure&nbsp;19.4: T-distribution for df=9. The p-value approach.
 <p>&nbsp;</p>
 <p>Additionally, the 95% confidence interval is following:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># compute lower limit of 95% CI</span></span>
+<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># compute lower limit of 95% CI</span></span>
 <span><span class="va">lower_95CI</span> <span class="op">&lt;-</span> <span class="va">x_bar</span> <span class="op">-</span> <span class="va">t_star</span><span class="op">*</span><span class="va">se</span></span>
 <span><span class="va">lower_95CI</span></span>
 <span></span>
