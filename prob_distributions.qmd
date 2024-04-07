@@ -1127,7 +1127,7 @@ The t-distribution, also known as the Student's t-distribution, is very similar 
 
 The Student's t statistic is defined from the formula:
 
-$$ T = \frac{Z}{\sqrt\frac{{U_\nu}}{\nu}} $$
+$$ T = \frac{Z}{\sqrt\frac{{U}}{\nu}} $$
 
 where Z∼N(0,1) and U∼$\chi_\nu^2$ are independent.
 

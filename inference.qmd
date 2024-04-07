@@ -281,9 +281,9 @@ At the 5% significance level, the test result provides evidence against the null
 ::: {.callout-tip icon="false"}
 ## `r fa("circle-info", fill = "#1DC5CE")` INFO
 
-> Degrees of freedom, often represented by df, is the number of independent pieces of information used to calculate a statistic. It's calculated as the sample size minus the number of constraints.
+> Degrees of freedom (df) represents the number of independent pieces of information or parameters that can vary within the constraints of a statistical model or test. 
 
-For instance, consider 19 of the 20 patients in the sample whose serum creatinine levels are as follows: 0.97, 1.27, 0.93, 0.95, 0.84, 1.27, 0.47, 0.61, 1.07, 1.23, 0.81, 1.19, 1.01, 0.49, 0.90, 0.53, 0.45, 1.88, 1.23. The sum of these values would be:
+In the context of the provided example, the calculation of degrees of freedom is based on the sample size minus any constraints imposed by the analysis. For instance, let's consider 19 of the 20 patients in the sample, whose serum creatinine levels are as follows: 0.97, 1.27, 0.93, 0.95, 0.84, 1.27, 0.47, 0.61, 1.07, 1.23, 0.81, 1.19, 1.01, 0.49, 0.90, 0.53, 0.45, 1.88, 1.23. The sum of these values would be:
 
 ```{r}
 sum19 <- 0.97 + 1.27 + 0.93 + 0.95 + 0.84 + 1.27 + 0.47 + 0.61 + 1.07 +

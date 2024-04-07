@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.23">
+<meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R – 19&nbsp; Hypothesis testing</title>
+<title>Practical Statistics in Medicine with R - 19&nbsp; Hypothesis testing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -729,9 +729,9 @@ Figure&nbsp;19.2: T-distribution for df=19. The p-value approach.
 </div>
 <div class="callout-body-container callout-body">
 <blockquote class="blockquote">
-<p>Degrees of freedom, often represented by df, is the number of independent pieces of information used to calculate a statistic. It’s calculated as the sample size minus the number of constraints.</p>
+<p>Degrees of freedom (df) represents the number of independent pieces of information or parameters that can vary within the constraints of a statistical model or test.</p>
 </blockquote>
-<p>For instance, consider 19 of the 20 patients in the sample whose serum creatinine levels are as follows: 0.97, 1.27, 0.93, 0.95, 0.84, 1.27, 0.47, 0.61, 1.07, 1.23, 0.81, 1.19, 1.01, 0.49, 0.90, 0.53, 0.45, 1.88, 1.23. The sum of these values would be:</p>
+<p>In the context of the provided example, the calculation of degrees of freedom is based on the sample size minus any constraints imposed by the analysis. For instance, let’s consider 19 of the 20 patients in the sample, whose serum creatinine levels are as follows: 0.97, 1.27, 0.93, 0.95, 0.84, 1.27, 0.47, 0.61, 1.07, 1.23, 0.81, 1.19, 1.01, 0.49, 0.90, 0.53, 0.45, 1.88, 1.23. The sum of these values would be:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sum19</span> <span class="op">&lt;-</span> <span class="fl">0.97</span> <span class="op">+</span> <span class="fl">1.27</span> <span class="op">+</span> <span class="fl">0.93</span> <span class="op">+</span> <span class="fl">0.95</span> <span class="op">+</span> <span class="fl">0.84</span> <span class="op">+</span> <span class="fl">1.27</span> <span class="op">+</span> <span class="fl">0.47</span> <span class="op">+</span> <span class="fl">0.61</span> <span class="op">+</span> <span class="fl">1.07</span> <span class="op">+</span></span>
 <span>  <span class="fl">1.23</span> <span class="op">+</span> <span class="fl">0.81</span> <span class="op">+</span> <span class="fl">1.19</span> <span class="op">+</span> <span class="fl">1.01</span> <span class="op">+</span> <span class="fl">0.49</span> <span class="op">+</span> <span class="fl">0.90</span> <span class="op">+</span> <span class="fl">0.53</span> <span class="op">+</span> <span class="fl">0.45</span> <span class="op">+</span> <span class="fl">1.88</span> <span class="op">+</span> <span class="fl">1.23</span></span>

@@ -6,14 +6,14 @@ This is the website for the work-in-progress "Practical Statistics in Medicine w
 
 ### Who this textbook is for
 
-This textbook is based on my notes from a series of lectures and practicals given for a few years at the Aristotle University of Thessaloniki, Greece.
+This introductory textbook is based on lectures and practical sessions delivered over several years at Aristotle University of Thessaloniki in Greece.
 
-The textbook can be used as support material for practical labs on basic statistics in medicine using R. It can also be used as a support for self-teaching for students and researchers in biomedical field. Additionally, it may be useful for (under)graduate students with a science background (engineering, mathematics) who wants to move towards biomedical sciences.
+Designed to complement hands-on labs, the primary emphasis of this textbook is to introduce students to the basic ideas of medical statistics using R. It can also be used as a support for self-directed learning for students and researchers in biomedical field to analyze data. Additionally, bridging the gap between theory and practice, it may be useful for (under)graduate students with a science background (engineering, mathematics) who want to move towards biomedical sciences and develop essential R skills.
 
-I have paid particular attention to the form of the textbook which includes two major parts: "Part 1: R basics" and "Part 2: Statistics". **Part 1** provides an overview of base R, commonly used approaches to manipulate data with pipe-friendly functions from `{dplyr}` package, and step-by-step guidance to visualize data using the `{ggplot2}` package and its extensions. **Part 2** covers the most common statistical tests with examples from bio-medical field. Statistical functions from Base R and `{rstatix}` add-on package are presented in parallel in most examples to engage the reader and enrich the coding experience.
+The textbook is organized in two primary parts: "Part 1: R basics" and "Part 2: Statistics". In **Part 1**, readers are introduced to the fundamentals of base R, along with practical methods for data manipulation using pipe-friendly functions from the `{dplyr}` package. It also provides step-by-step guidance on visualizing data using the `{ggplot2}` package and its extensions. **Part 2** covers the most common statistical tests with examples from bio-medical field. Statistical functions from Base R and the `{rstatix}` add-on package are presented side-by-side, fostering engagement and enriching reader's coding experience.
 
 ::: callout-tip
-This textbook is intended to be self-contained and is not expected any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If you want to learn in more detail this programming language and statistics, we recommend the books below:
+This textbook is intended to be self-contained and is not expected any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If the reader wants to learn in more detail this programming language and statistics, we recommend the books below:
 
 -   [Using R for Introductory Statistics](https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731)
 -   [R for Data Science](https://r4ds.had.co.nz/)
