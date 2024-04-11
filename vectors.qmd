@@ -664,7 +664,7 @@ mean(v_seq2, na.rm = TRUE)
 
 ## Subsetting vectors
 
-It's often useful to extract a single element, or a set of specific elements from a vector. In the following examples, we will use the built-in `month.name` vector:
+It's often useful to select a single element, or a set of specific elements from a vector. In the following examples, we use the built-in `month.name` vector:
 
 ```{r}
 month.name
@@ -672,18 +672,18 @@ month.name
 
  
 
-### Subsetting with the extract operator `[ ]` (indexing by position)
+### Select elements by indexing position within square brackets
 
-**A. Extract specific elements of a vector**
+**A. Select specific elements of a vector**
 
-We can extract parts of the vector with the extract `[ ]` operator. For example:
+We can select parts of the vector with square brackets `[ ]` (also called extraction operator). For example:
 
 ```{r}
-month.name[3]           # extract the 3rd month
-month.name[3:5]         # extract the 3rd, 4th, and 5th months
+month.name[3]           # select the 3rd month
+month.name[3:5]         # select the 3rd, 4th, and 5th months
 ```
 
-So, in the second code example, the vector `3:5` created the sequence of indices `3, 4, 5` which passed to the extract operator `[ ]`.
+So, in the second code example, the vector `3:5` created the sequence of indices `3, 4, 5` which passed to the extraction operator `[ ]`.
 
 We can also get the previous result using the vector `c(3, 4, 5)`:
 
@@ -702,13 +702,13 @@ In R, the **first** element of a vector starts at **index of 1**. In many other 
 Note that the values are returned in the order that we specify with the indices. For example:
 
 ```{r}
-month.name[5:3]       # extract the 5th, 4th, 3rd elements
+month.name[5:3]       # select the 5th, 4th, 3rd elements
 ```
 
-We can also extract the same elements of a vector multiple times:
+We can also select the same elements of a vector multiple times:
 
 ```{r}
-month.name[c(1, 2, 3, 3, 4)]     # the 3rd element is extracted twice
+month.name[c(1, 2, 3, 3, 4)]     # the 3rd element is selected twice
 ```
 
  
@@ -768,9 +768,9 @@ month.name[-(1:5)]            # skip the 1st to 5th element
 
  
 
-### Subsetting with logical vectors (indexing by condition)
+### Select elements using boolean indices (TRUE/FALSE) within square brackets
 
-We can also pass a *logical vector* to the `[]` operator indicating with `TRUE` the indices we want to select. For example, let's say that we want to select only the first four months of the year:
+We can also pass a *logical vector* to the `[ ]` operator indicating with `TRUE` the indices we want to select and `FALSE` all others. For example, let's say that we want to select only the first four months of the year:
 
 ```{r}
 fourmonths <- month.name[c(TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, 
@@ -796,7 +796,7 @@ fourmonths          # call the "fourmonths" vector
 fourmonths[c(TRUE, FALSE)]    # we provide a vector with only two elements
 ```
 
-This illustrates the idea of **vector recycling**. The `[ ]` extract operator silently "recycled" the values of the shorter vector `c(TRUE, FALSE)` in order to make the length compatible to the `fourmonths` vector:
+This illustrates the idea of **vector recycling**. The `[ ]` extraction operator silently "recycled" the values of the shorter vector `c(TRUE, FALSE)` in order to make the length compatible to the `fourmonths` vector:
 
 ```{r}
 fourmonths[c(TRUE,FALSE,TRUE,FALSE)]

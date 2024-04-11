@@ -182,6 +182,16 @@ X[1, 4]  # select the element in the 1st row, 4th column
 X[1, c(4, 5)]  # select the elements in the 1st row, 4th and 5th column 
 ```
 
+
+
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+Just like with vectors, we utilize square brackets [ ] to select individual or multiple elements from a matrix. While vectors are one-dimensional, matrices extend to two dimensions. To specify the desired rows and columns, we use a **comma as a separator** [row, column].
+
+:::
+
+
  
 
 ## Special types of matrices
@@ -896,7 +906,6 @@ The eigenvalues are always returned in decreasing order and are 17, 8, and 7.
 
 ## Arrays
 
-
 ### Creating an array
 
 Arrays are similar to matrices but can have **more than two dimensions**. They're created with an `array()` function from base R:
@@ -917,27 +926,21 @@ class(my_array)
 dim(my_array)
 ```
 
-
 ### Indexing in an array
 
-To access a particular matrix of the array, for example the 3rd matrix, we type: 
+To access a particular matrix of the array, for example the 3rd matrix, we type:
 
 ```{r}
 # access the 3rd matrix of the array
 my_array[, , 3]
 ```
 
-
-
 ```{r}
 # access the 2nd row of the 3rd matrix of the array.
 my_array[2, , 3]
 ```
 
-
-
 ```{r}
 # access the element in the 1st row and 3rd column of the 3rd matrix
 my_array[1, 3, 3]
 ```
-

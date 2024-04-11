@@ -227,7 +227,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data import, manipulation, and transformation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -462,8 +462,8 @@ window.Quarto = {
   <li>
 <a href="#subsetting-vectors" id="toc-subsetting-vectors" class="nav-link" data-scroll-target="#subsetting-vectors"><span class="header-section-number">7.7</span> Subsetting vectors</a>
   <ul class="collapse">
-<li><a href="#subsetting-with-the-extract-operator-indexing-by-position" id="toc-subsetting-with-the-extract-operator-indexing-by-position" class="nav-link" data-scroll-target="#subsetting-with-the-extract-operator-indexing-by-position">Subsetting with the extract operator <code>[ ]</code> (indexing by position)</a></li>
-  <li><a href="#subsetting-with-logical-vectors-indexing-by-condition" id="toc-subsetting-with-logical-vectors-indexing-by-condition" class="nav-link" data-scroll-target="#subsetting-with-logical-vectors-indexing-by-condition">Subsetting with logical vectors (indexing by condition)</a></li>
+<li><a href="#select-elements-by-indexing-position-within-square-brackets" id="toc-select-elements-by-indexing-position-within-square-brackets" class="nav-link" data-scroll-target="#select-elements-by-indexing-position-within-square-brackets">Select elements by indexing position within square brackets</a></li>
+  <li><a href="#select-elements-using-boolean-indices-truefalse-within-square-brackets" id="toc-select-elements-using-boolean-indices-truefalse-within-square-brackets" class="nav-link" data-scroll-target="#select-elements-using-boolean-indices-truefalse-within-square-brackets">Select elements using boolean indices (TRUE/FALSE) within square brackets</a></li>
   </ul>
 </li>
   <li><a href="#vector-recycling" id="toc-vector-recycling" class="nav-link" data-scroll-target="#vector-recycling"><span class="header-section-number">7.8</span> Vector recycling</a></li>
@@ -1275,7 +1275,7 @@ NOTE: Operator ||
 <p>&nbsp;</p>
 </section><section id="subsetting-vectors" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="subsetting-vectors">
 <span class="header-section-number">7.7</span> Subsetting vectors</h2>
-<p>It’s often useful to extract a single element, or a set of specific elements from a vector. In the following examples, we will use the built-in <code>month.name</code> vector:</p>
+<p>It’s often useful to select a single element, or a set of specific elements from a vector. In the following examples, we use the built-in <code>month.name</code> vector:</p>
 <div class="cell">
 <div class="sourceCode" id="cb181" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1284,20 +1284,20 @@ NOTE: Operator ||
 </div>
 </div>
 <p>&nbsp;</p>
-<section id="subsetting-with-the-extract-operator-indexing-by-position" class="level3"><h3 class="anchored" data-anchor-id="subsetting-with-the-extract-operator-indexing-by-position">Subsetting with the extract operator <code>[ ]</code> (indexing by position)</h3>
-<p><strong>A. Extract specific elements of a vector</strong></p>
-<p>We can extract parts of the vector with the extract <code>[ ]</code> operator. For example:</p>
+<section id="select-elements-by-indexing-position-within-square-brackets" class="level3"><h3 class="anchored" data-anchor-id="select-elements-by-indexing-position-within-square-brackets">Select elements by indexing position within square brackets</h3>
+<p><strong>A. Select specific elements of a vector</strong></p>
+<p>We can select parts of the vector with square brackets <code>[ ]</code> (also called extraction operator). For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb183" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>           <span class="co"># extract the 3rd month</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb183" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>           <span class="co"># select the 3rd month</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "March"</code></pre>
 </div>
-<div class="sourceCode" id="cb185" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>         <span class="co"># extract the 3rd, 4th, and 5th months</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb185" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>         <span class="co"># select the 3rd, 4th, and 5th months</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "March" "April" "May"  </code></pre>
 </div>
 </div>
-<p>So, in the second code example, the vector <code>3:5</code> created the sequence of indices <code>3, 4, 5</code> which passed to the extract operator <code>[ ]</code>.</p>
+<p>So, in the second code example, the vector <code>3:5</code> created the sequence of indices <code>3, 4, 5</code> which passed to the extraction operator <code>[ ]</code>.</p>
 <p>We can also get the previous result using the vector <code>c(3, 4, 5)</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb187" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1321,14 +1321,14 @@ The first element of a vector
 <p>&nbsp;</p>
 <p>Note that the values are returned in the order that we specify with the indices. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb189" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>       <span class="co"># extract the 5th, 4th, 3rd elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb189" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>       <span class="co"># select the 5th, 4th, 3rd elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "May"   "April" "March"</code></pre>
 </div>
 </div>
-<p>We can also extract the same elements of a vector multiple times:</p>
+<p>We can also select the same elements of a vector multiple times:</p>
 <div class="cell">
-<div class="sourceCode" id="cb191" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span>     <span class="co"># the 3rd element is extracted twice</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb191" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">month.name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span>     <span class="co"># the 3rd element is selected twice</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] "January"  "February" "March"    "March"    "April"   </code></pre>
 </div>
@@ -1399,8 +1399,8 @@ Missing data (NA) in vectors
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="subsetting-with-logical-vectors-indexing-by-condition" class="level3"><h3 class="anchored" data-anchor-id="subsetting-with-logical-vectors-indexing-by-condition">Subsetting with logical vectors (indexing by condition)</h3>
-<p>We can also pass a <em>logical vector</em> to the <code>[]</code> operator indicating with <code>TRUE</code> the indices we want to select. For example, let’s say that we want to select only the first four months of the year:</p>
+</section><section id="select-elements-using-boolean-indices-truefalse-within-square-brackets" class="level3"><h3 class="anchored" data-anchor-id="select-elements-using-boolean-indices-truefalse-within-square-brackets">Select elements using boolean indices (TRUE/FALSE) within square brackets</h3>
+<p>We can also pass a <em>logical vector</em> to the <code>[ ]</code> operator indicating with <code>TRUE</code> the indices we want to select and <code>FALSE</code> all others. For example, let’s say that we want to select only the first four months of the year:</p>
 <div class="cell">
 <div class="sourceCode" id="cb206" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fourmonths</span> <span class="op">&lt;-</span> <span class="va">month.name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, </span>
 <span>                           <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1427,7 +1427,7 @@ Missing data (NA) in vectors
 <pre data-code-line-numbers=""><code>[1] "January" "March"  </code></pre>
 </div>
 </div>
-<p>This illustrates the idea of <strong>vector recycling</strong>. The <code>[ ]</code> extract operator silently “recycled” the values of the shorter vector <code>c(TRUE, FALSE)</code> in order to make the length compatible to the <code>fourmonths</code> vector:</p>
+<p>This illustrates the idea of <strong>vector recycling</strong>. The <code>[ ]</code> extraction operator silently “recycled” the values of the shorter vector <code>c(TRUE, FALSE)</code> in order to make the length compatible to the <code>fourmonths</code> vector:</p>
 <div class="cell">
 <div class="sourceCode" id="cb213" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fourmonths</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

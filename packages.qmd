@@ -16,7 +16,6 @@ When we have finished this chapter, we should be able to:
 -   Understand the concept of packages in R.
 -   Know to install and load a package in R.
 -   Get familiar with the `tidyverse` and other packages.
--   Create a reproducible example (reprex).
 :::
 
  
@@ -145,8 +144,7 @@ The command `install.packages("tidyverse")` will **install** the complete tidyve
 tidyverse_packages()
 ```
 
-When we **load** the tidyverse package with the command `library(tidyverse)`, R will load the **nine core packages** namely
-`dplyr`,`forcats`, `ggplot2`, `lubridate`, `purrr`, `readr`, `stringr`, `tibble`, and `tidyr`, and make them available in our current R session.
+When we **load** the tidyverse package with the command `library(tidyverse)`, R will load the **nine core packages** namely `dplyr`,`forcats`, `ggplot2`, `lubridate`, `purrr`, `readr`, `stringr`, `tibble`, and `tidyr`, and make them available in our current R session.
 
 ::: callout-important
 ## Non-core tidyverse packages
@@ -196,13 +194,3 @@ dat <- read_excel(here("data", "covid19.xlsx"))
 ```
 
 In this case, `here()` tells R that the folder structure starts at the project-level. The relative path from inside the project folder (`data/covid19.xlsx`) is the same on both computers; any code that uses relative paths will work on both computers.
-
-## The `{reprex}` package
-
-If we are looking for help with an rstats problem, it is recommend that we:
-
-`r fa("arrow-right", fill = "orange")`  do *not* email an individual author or open source software (OSS) maintainer
-
-`r fa("arrow-right", fill = "orange")`   create a minimum reproducible example (a reprex) demonstrating your problem
-
-`r fa("arrow-right", fill = "orange")`   post on a public forum like RStudio Community or Stack Overflow

@@ -7,8 +7,6 @@ library(fontawesome)
 library(htmlwidgets)
 ```
 
-
-
 **Descriptive statistics** are used to describe and organize the **basic characteristics** of the data in a study. The classical descriptive statistics allow us to have a quick glance of the central tendency and the extent of dispersion of values. They are useful in understanding the **data distributions** and comparing them.
 
 When we have finished this Chapter, we should be able to:
@@ -52,13 +50,6 @@ library(tidyverse)
 
 We will use the dataset named `arrhythmia` which is a `.xlsx` file. It is supposed that we work with RStudio Projects and the dataset is stored in the subfolder with the name "*data*" inside the RStudio Project folder. If this is the case, we can read the data using a *relative path* with the following code:
 
-::: column-margin
-**NOTE:** The path of a file/directory is its location/address in the file system. There are two kinds of paths: absolute path such as "`C:/My_name/../my_project/data/arrhythmia.xlsx`" and relative path such as "`data/arrhythmia.xlsx`".
-
- 
-
-The function `here()` allows us to navigate throughout each of the subfolders and files within a given RStudio Project using *relative paths* .
-:::
 
 ```{r}
 #| message: false

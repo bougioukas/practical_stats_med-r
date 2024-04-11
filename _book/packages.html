@@ -202,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data import, manipulation, and transformation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -411,7 +411,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#package-loading" id="toc-package-loading" class="nav-link" data-scroll-target="#package-loading"><span class="header-section-number">5.3</span> Package loading</a></li>
   <li><a href="#the-tidyverse-package" id="toc-the-tidyverse-package" class="nav-link" data-scroll-target="#the-tidyverse-package"><span class="header-section-number">5.4</span> The <code>{tidyverse}</code> package</a></li>
   <li><a href="#the-here-package" id="toc-the-here-package" class="nav-link" data-scroll-target="#the-here-package"><span class="header-section-number">5.5</span> The <code>{here}</code> package</a></li>
-  <li><a href="#the-reprex-package" id="toc-the-reprex-package" class="nav-link" data-scroll-target="#the-reprex-package"><span class="header-section-number">5.6</span> The <code>{reprex}</code> package</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -445,7 +444,6 @@ Learning objectives
 <li>Understand the concept of packages in R.</li>
 <li>Know to install and load a package in R.</li>
 <li>Get familiar with the <code>tidyverse</code> and other packages.</li>
-<li>Create a reproducible example (reprex).</li>
 </ul>
 </div>
 </div>
@@ -602,12 +600,6 @@ Non-core tidyverse packages
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"covid19.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this case, <code>here()</code> tells R that the folder structure starts at the project-level. The relative path from inside the project folder (<code>data/covid19.xlsx</code>) is the same on both computers; any code that uses relative paths will work on both computers.</p>
-</section><section id="the-reprex-package" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="the-reprex-package">
-<span class="header-section-number">5.6</span> The <code>{reprex}</code> package</h2>
-<p>If we are looking for help with an rstats problem, it is recommend that we:</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp;do <em>not</em> email an individual author or open source software (OSS) maintainer</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; create a minimum reproducible example (a reprex) demonstrating your problem</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; post on a public forum like RStudio Community or Stack Overflow</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

@@ -23,7 +23,8 @@ When we have finished this chapter, we should be able to:
 
 ## Creating a list
 
-In R, a list enables us to organize diverse objects (e.g., 1-D vectors, matrices, even other lists) under a single data structure. There is no requirement for these objects to be related to each other in any way. Essentially, a list can be considered a kind of super data type, allowing us to store practically any piece of information in it!
+In R, a list enables us to organize diverse objects (e.g., 1-D vectors, matrices, even other lists) under a single data structure. There is no requirement for these objects to be associated or related to each other in any way. Essentially, a list can be considered an advanced data type, allowing us to store practically any kind of information within it.
+
 
 We construct a list using the `list()` function. For example:
 
@@ -32,7 +33,8 @@ my_list <- list(1:5, c("apple", "carrot"), c(TRUE, TRUE, FALSE))
 my_list
 ```
 
-This list consists of three components (items) that are atomic vectors of different types of data (numeric, characters, and logical).
+This list consists of three elements referred to as "list items" or "items", which are atomic vectors of different types of data (numeric, character, and logical).
+
 
 We can assign names to the list items:
 
@@ -56,7 +58,7 @@ class(my_list)
 
 ### Subset list and preserve output as a list
 
-We can use the `[ ]` operator to extract one or more list items while preserving the output in list format:
+We can use the  extraction operator `[ ]` to extract one or more list items while preserving the output in list format:
 
 ```{r}
 my_list[2]    # extract the second list item (indexing by position)
@@ -69,7 +71,7 @@ my_list["fruits"]   # same as above but using the item's name
 ```
 
 ```{r}
-my_list[c(FALSE, TRUE, FALSE)]    # same as above but using logical vectors (indexing by condition)
+my_list[c(FALSE, TRUE, FALSE)]    # same as above but using boolean indices (TRUE/FALSE)
 ```
 
  
@@ -186,9 +188,9 @@ A data frame is the most common way of organizing and storing data in R and is g
 ::: {.callout-tip icon="false"}
 ## Data frame
 
-In R, rectangular data is often referred to as a "data frame." It consists of rows and columns, where each column can be of a different data type (e.g., numeric, character). Therefore, a **data frame** is a special type of list with **equal-length** atomic vectors as its items.
+In R, rectangular data is often referred to as a "data frame" consisting of rows and columns. While all elements within a column must have the same data type (e.g., numeric, character, or logical), it's possible for different columns to have different data types. Therefore, a **data frame** is a special type of list with **equal-length** atomic vectors as its items.
 
-Various disciplines have different terms for the rows and columns in a dataset, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms **"observations"** and **"variables"**. Data in variables can be either categorical (categorical variables) or numerical (numerical variables) (see also the @sec-introduction).
+Various disciplines have different terms for the rows and columns in a data frame, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms **"observations"** and **"variables"**. Data in variables can be either categorical (categorical variables) or numerical (numerical variables) (see also the @sec-introduction).
 :::
 
 ### Creating a data frame with `tibble()`
@@ -289,7 +291,7 @@ glimpse(dat)
 Observe the series of three letter abbreviations in angle brackets (`<dbl>`, `<chr>`). The abbreviations used in tibbles serve to describe the type of data in each column and are presented in (@tbl-data_types):
 
 | **Data Type**  | **Description**                                                                       | **Abbreviation** |
-|:----------------:|-------------------------------------|:----------------:|
+|:----------------:|------------------------------------|:----------------:|
 |   character    | strings: letters, numbers, symbols, and spaces                                        |     `<chr>`      |
 |    integer     | numerical values: integer numbers                                                     |     `<int>`      |
 |     double     | numerical values: real numbers                                                        |     `<dbl>`      |

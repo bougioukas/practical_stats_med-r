@@ -202,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data import, manipulation, and transformation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>&nbsp;</p>
 <section id="creating-a-list" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="creating-a-list">
 <span class="header-section-number">9.1</span> Creating a list</h2>
-<p>In R, a list enables us to organize diverse objects (e.g., 1-D vectors, matrices, even other lists) under a single data structure. There is no requirement for these objects to be related to each other in any way. Essentially, a list can be considered a kind of super data type, allowing us to store practically any piece of information in it!</p>
+<p>In R, a list enables us to organize diverse objects (e.g., 1-D vectors, matrices, even other lists) under a single data structure. There is no requirement for these objects to be associated or related to each other in any way. Essentially, a list can be considered an advanced data type, allowing us to store practically any kind of information within it.</p>
 <p>We construct a list using the <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> function. For example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"carrot"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
@@ -476,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1]  TRUE  TRUE FALSE</code></pre>
 </div>
 </div>
-<p>This list consists of three components (items) that are atomic vectors of different types of data (numeric, characters, and logical).</p>
+<p>This list consists of three elements referred to as “list items” or “items”, which are atomic vectors of different types of data (numeric, character, and logical).</p>
 <p>We can assign names to the list items:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
@@ -506,7 +506,7 @@ $TF
 </section><section id="subsetting-a-list" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="subsetting-a-list">
 <span class="header-section-number">9.2</span> Subsetting a list</h2>
 <section id="subset-list-and-preserve-output-as-a-list" class="level3"><h3 class="anchored" data-anchor-id="subset-list-and-preserve-output-as-a-list">Subset list and preserve output as a list</h3>
-<p>We can use the <code>[ ]</code> operator to extract one or more list items while preserving the output in list format:</p>
+<p>We can use the extraction operator <code>[ ]</code> to extract one or more list items while preserving the output in list format:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>    <span class="co"># extract the second list item (indexing by position)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -526,7 +526,7 @@ $TF
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span>    <span class="co"># same as above but using logical vectors (indexing by condition)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span>    <span class="co"># same as above but using boolean indices (TRUE/FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>$fruits
 [1] "apple"  "carrot"</code></pre>
@@ -689,8 +689,8 @@ Data frame
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In R, rectangular data is often referred to as a “data frame.” It consists of rows and columns, where each column can be of a different data type (e.g., numeric, character). Therefore, a <strong>data frame</strong> is a special type of list with <strong>equal-length</strong> atomic vectors as its items.</p>
-<p>Various disciplines have different terms for the rows and columns in a dataset, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms <strong>“observations”</strong> and <strong>“variables”</strong>. Data in variables can be either categorical (categorical variables) or numerical (numerical variables) (see also the <a href="introduction.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
+<p>In R, rectangular data is often referred to as a “data frame” consisting of rows and columns. While all elements within a column must have the same data type (e.g., numeric, character, or logical), it’s possible for different columns to have different data types. Therefore, a <strong>data frame</strong> is a special type of list with <strong>equal-length</strong> atomic vectors as its items.</p>
+<p>Various disciplines have different terms for the rows and columns in a data frame, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms <strong>“observations”</strong> and <strong>“variables”</strong>. Data in variables can be either categorical (categorical variables) or numerical (numerical variables) (see also the <a href="introduction.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
 </div>
 </div>
 <section id="creating-a-data-frame-with-tibble" class="level3"><h3 class="anchored" data-anchor-id="creating-a-data-frame-with-tibble">Creating a data frame with <code>tibble()</code>
@@ -819,9 +819,9 @@ Table&nbsp;9.1: Tibble abbreviations that describe the type of data in columns o
 </figcaption><div aria-describedby="tbl-data_types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
-<col style="width: 24%">
+<col style="width: 25%">
 <col style="width: 50%">
-<col style="width: 24%">
+<col style="width: 25%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: center;"><strong>Data Type</strong></th>
@@ -1391,8 +1391,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./transformation.html" class="pagination-link" aria-label="Data transformation">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data transformation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./transformation.html" class="pagination-link" aria-label="Data import, manipulation, and transformation">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data import, manipulation, and transformation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

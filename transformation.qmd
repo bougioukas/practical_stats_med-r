@@ -1,1 +1,381 @@
-# Data transformation {#sec-transformation}
+# Data import, manipulation, and transformation {#sec-transformation}
+
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+Thus far, our focus has been on utilizing data objects generated through functions. However, in real-world scenarios, we often interact with externally stored data. In this chapter, we will learn how to insert, transform, and manipulate data in R.
+
+When we have finished this chapter, we should be able to:
+
+::: {.callout-caution icon="false"}
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
+
+-   Import the data from spreadsheets in R.
+-   Select rows in a data frame according to filtering conditions.
+-   Select columns in a data frame.
+-   Direct the output of one dplyr function to the input of another function with the native "pipe" operator `|>`.
+-   Create new variables to a data frame that are functions of existing columns with `mutate()`.
+:::
+
+ 
+
+## Importing data
+
+Spreadsheets are frequently used to organize structured rectangular data (see also @sec-introduction), available in formats like Excel, CSV, or Google Sheets. Each format offers unique features, from Excel's comprehensive capabilities to CSV's simplicity and Google Sheets' collaborative editing. In this textbook, data utilized are stored in Excel files (.xlsx) and, generally, have the following basic characteristics:
+
+-   The first line in the file is a *header* row indicating the names of the columns/variables.
+-   Each value has its own cell.
+-   Missing values are represented as empty cells.
+
+For example, @fig-excel illustrates data in a single sheet from an Excel file.
+
+![Screenshot of an Excel file](images/excel.png){#fig-excel width="80%"}
+
+The dataset `shock_index` includes data regarding the characteristics of 30 adult patients with suspected pulmonary embolism. The following variables were recorded:
+
+-   **sex:** F for females and M for males
+-   **age:** age of the patients in years
+-   **sbp:** systolic blood pressure in mmHg
+-   **HR:** resting heart rate in beats/min
+
+### A. Importing data from Excel using the RStudio interface
+
+To import data using the RStudio interface, we navigate to the Environment pane, where we'll find the "Import Dataset" button. Clicking this button will prompt a dropdown menu with options to import data from various file formats such as CSV, Excel, or other common formats. We select "From Excel..." (@fig-import).
+
+![Import data using the RStudio interface](images/import.png){#fig-import width="80%"}
+
+A dialog box then appears, enabling us to navigate our file system and select the desired dataset. Once selected, we confirm the import by clicking "Open". Finally, we proceed by clicking the "Import" button, which imports the selected dataset into our RStudio session."
+
+![Import data using the RStudio interface](images/wizard.png){#fig-wizard width="100%"}
+
+Upon successful import, the dataset will appear in the Environment pane, ready for analysis and manipulation using R's powerful data analysis tools and functions.
+
+### B. Importing data from Excel into R with commands
+
+Alternatively, if the dataset is saved in the subfolder named "data" of our RStudio project (see @sec-rstudio_projects), we can read it with the `read_excel()` function from `{readxl}` package as follows:
+
+```{r}
+#| message: false
+
+library(here)
+library(readxl)
+
+dat <- read_excel(here("data", "shock_index.xlsx"))
+```
+
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+The path of a file/directory is its location/address in the file system. There are two kinds of paths:
+
+-   absolute paths such as "`C:/My_name/../my_project/data/shock_index.xlsx`" and
+-   relative paths such as "`data/shock_index.xlsx`".
+
+The function `here()` allows us to navigate throughout each of the subfolders and files within a given RStudio Project using *relative paths* (see also @sec-packages).
+:::
+
+ 
+
+Using `head()` is a convenient way to get a quick overview of our dataset and check for any obvious issues before proceeding with further analysis or data manipulation.
+
+```{r}
+head(dat)
+```
+
+R displays the **first six** rows of the data frame by default. If we want to view a different number of rows (e.g., the first ten rows), we can specify the desired number as an argument as follows:
+
+```{r}
+head(dat, 10)
+```
+
+When working with large datasets in R, it's often useful to inspect the last few rows of a data frame. The `tail(`) function is used for this purpose:
+
+```{r}
+tail(dat)
+```
+
+Now, R displays the **last six** rows of the data frame by default.
+
+ 
+
+## Basic data manipulations
+
+### Adding an unique identifier for each observation
+
+A unique identifier for each observation is often useful for various data manipulation and analysis tasks. In R, we can add row numbers starting from 1 to the number of rows in our data frame using the `rowid_to_column()` function from the `{tibble}` package:
+
+```{r}
+library(tibble)
+dat <- rowid_to_column(dat)
+dat
+```
+
+### Renaming variables and cleaning names
+
+```{r}
+#| message: false
+
+library(dplyr)
+dat <- rename(dat, 
+               patient_ID = rowid,
+               Heart.Rate = HR)
+dat
+```
+
+```{r}
+#| message: false
+
+library(janitor)
+dat <- clean_names(dat)
+dat
+```
+
+### Converting to the appropriate data type
+
+We might have noticed that the categorical variable `sex` is coded as F (for females) and M (for males), so it is recognized of `character` type. We can use the `factor()` function to encode a variable as a factor:
+
+```{r}
+dat$sex <- factor(dat$sex, levels = c("F", "M"), 
+                  labels = c("female", "male"))
+dat
+```
+
+ 
+
+## Basic data transformations
+
+### Subsetting observations (rows)
+
+**A. Select observations by indexing position within square brackets**
+
+Just as we use square brackets \[row, column\] to select elements from matrices, we employ the same approach to pick out elements from a data frame. For example, by specifying the row indices \[5:10, \] within the brackets, we can efficiently access the required data for rows 5 through 10:
+
+```{r}
+dat1 <- dat[5:10, ]
+dat1
+```
+
+**B. Select observations by indexing with conditions within the square brackets**
+
+```{r}
+dat2 <- dat[which(dat$age > 55), ]
+dat2
+```
+
+```{r}
+dat3 <- dat[which(dat$age > 55 & dat$sex == "female"), ]
+dat3
+```
+
+**C. Select observations using the `subset()` function**
+
+```{r}
+dat4 <- subset(dat, age > 55)
+dat4
+```
+
+```{r}
+dat5 <- subset(dat, age > 55 & sex == "female")
+dat5
+```
+
+**D. Select observations using the `filter()` function from `{dplyr}` package**
+
+We pass the data frame first and then one or more conditions separated by a comma:
+
+```{r}
+dat6 <- filter(dat, age > 55)
+dat6
+```
+
+If we want to select only female patients with age \> 55:
+
+```{r}
+dat7 <- filter(dat, age > 55, sex == "female")
+dat7
+```
+
+ 
+
+### Reordering observations (rows)
+
+We can also sort observations in ascending or descending order of one or more variables (columns). When multiple column names are provided, each additional column helps resolve ties in preceding columns' values. For example, we can arrange the rows of our data based on the values of `sbp` (in ascending order which is the default) as follows:
+
+```{r}
+dat8 <- arrange(dat, sbp)
+head(dat8, 10)
+```
+
+We can use `desc()` to re-arrange in descending order. For example:
+
+```{r}
+dat9 <- arrange(dat, desc(sbp))
+head(dat9, 10)
+```
+
+```{r}
+dat10 <- arrange(dat, sbp, heart_rate)
+head(dat10, 10)
+```
+
+ 
+
+### Subsetting variables (columns)
+
+**A. Select or exclude variables by indexing their name within square brackets**
+
+We can select only the `sex`, `age`, `heart_rate`, variables from the data frame:
+
+```{r}
+dat11 <- dat[, c("sex", "age" , "heart_rate")]
+head(dat11)
+```
+
+```{r}
+dat12 <- dat[, !names(dat) %in% c("patient_id", "sbp")]
+head(dat12)
+```
+
+**B. Select or exclude variables by indexing position within square brackets** (not recommended)
+
+By specifying the column indices, such as `c(2, 3, 5)`, within brackets, we can select the data in columns 2, 3, and 5 as follows:
+
+```{r}
+dat13 <- dat[, c(2, 3, 5)]
+head(dat13)
+```
+
+```{r}
+dat14 <- dat[-c(1, 4)]
+head(dat14)
+```
+
+**C. Select variables using the `subset()` function**
+
+```{r}
+dat15 <- subset(dat, select = c("sex", "age" , "heart_rate"))
+head(dat15)
+```
+
+```{r}
+dat16 <- subset(dat, select = c(2, 3, 5))
+head(dat16)
+```
+
+The `select` argument allows the selection by indexing the columns of interest in.
+
+**D. Select variables using the `select()` function from `{dplyr}` package**
+
+In `select()` function we pass the data frame first and then the variables separated by commas:
+
+```{r}
+dat17 <- select(dat, sex, age, heart_rate)
+head(dat17)
+```
+
+### Creating new variables
+
+Suppose we want to create a new variable representing the ratio of heart rate to systolic blood pressure (HR/sbp), which we will call shock index. We can achieve this by using the `mutate()` function as follows:
+
+```{r}
+dat18 <- mutate(dat, shock_index = round(heart_rate / sbp, digits = 2))
+
+dat18
+```
+
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+By default, the `mutate()` function adds the new variable as the last column in the data frame.
+:::
+
+Next, we want to categorize the new variable considering that normal values of this index range from 0.5 to 0.7 (beats/mmHg\*min).
+
+```{r}
+dat19 <- mutate(dat18,
+                shock_index2 = cut(shock_index, breaks = c(-Inf, 0.5, 0.7, Inf),
+                                   labels = c("low","normal","high"))
+               )
+dat19
+```
+
+### Using the native pipe operator in a sequence of commands
+
+Given that each verb in `{dplyr}` specializes in a particular task, addressing complex queries often typically involves integrating several verbs, a process simplified by using the native pipe operator, `|>`. For example, we want to filter the original dataset to include only rows where the shock index category is "low" or "high", using a sequence of dplyr verbs.
+
+```{r}
+sub_dat <- dat |> 
+  mutate(shock_index = round(heart_rate / sbp, digits = 2),
+         shock_index2 = cut(shock_index, breaks = c(-Inf, 0.5, 0.7, Inf),
+                            labels = c("low","normal","high"))
+  ) |> 
+  filter(shock_index2 == "low" | shock_index2 == "high")
+```
+
+We would read this sequence as:
+
+1.  Begin with the dataset `dat` **then**
+
+2.  Use it as input to the `mutate()` function to calculate the `shock_index` variable and create the `shock_index2` categorical variable, **then**
+
+3.  Use this output as the input to the `filter()` function to select patients with "low" or "high" value of shock index.
+
+```{r}
+print(sub_dat, n = Inf)
+```
+
+Alternatively we can use the `%in%` operator. This operator helps us to easily create multiple `OR` arguments:
+
+```{r}
+dat |> 
+  mutate(shock_index = round(heart_rate / sbp, digits = 2),
+         shock_index2 = cut(shock_index, breaks = c(-Inf, 0.5, 0.7, Inf),
+                            labels = c("low","normal","high"))
+  ) |> 
+  filter(shock_index2 %in% c("low", "high"))
+```
+
+## Reshaping data
+
+Eighteen participants used margarine for 12 weeks. Their blood total cholesterol (TCH; in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.
+
+```{r}
+dat_TCH <- read_excel(here("data", "cholesterol.xlsx"))
+```
+
+```{r}
+dat_TCH <- dat_TCH |> 
+  rowid_to_column()
+dat_TCH
+```
+
+
+
+### Lengthening data
+
+```{r}
+library(tidyr)
+
+dat_TCH2_long <- dat_TCH |> 
+  pivot_longer(
+    cols = starts_with("week"), 
+    names_to = "week",
+    values_to = "total_cholesterol"
+  )
+dat_TCH2_long
+```
+
+
+
+### Widening data
+
+```{r}
+dat_TCH2_long |> 
+  pivot_wider(
+    names_from = week,
+    values_from = total_cholesterol  
+    )
+```
