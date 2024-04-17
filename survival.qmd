@@ -22,9 +22,7 @@ Survival analysis is a class of statistical methods. One approach to estimate th
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## `r fa("circle-dot", prefer_type = "regular", fill = "red")`
-
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Understand the basic concepts of the Kaplan-Meier analysis of time-to-event data
 -   Compare different survival curves
@@ -416,7 +414,7 @@ Hazard ratios (HRs) differ from relative risks (RRs) and odds ratio (OR) in that
 
 After computing the number of observed events (deaths) in each group ($O_A$ for observed number of events in group A and $O_B$ for observed number of events in group B), and the expected number of events assuming a null hypothesis of no difference in survival ($E_A$ for expected number of events in group A and $E_B$ for expected number of events in group B) using the log-rank approach, we can calculate the hazard ratio:
 
-$$ Hazard \ Ratio = HR = \frac{\frac{O_A}{E_A}}{\frac{O_B}{E_B}} = \frac{\frac{9}{17.65}}{\frac{18}{9.35}} =\frac{0.51}{0.193} = 0.26$$
+$$ Hazard \ Ratio = HR = \frac{\frac{O_A}{E_A}}{\frac{O_B}{E_B}} = \frac{\frac{9}{17.65}}{\frac{18}{9.35}} =\frac{0.51}{1.94} = 0.26$$
 
 We also can compute the 95% confidence interval for the HR. First, we compute the standard error of the natural logarithm of the hazard ratio:
 
@@ -424,17 +422,22 @@ $$SE_{lnHR} = \sqrt{\frac{1}{E_A} + \frac{1}{E_B}} = \sqrt{\frac{1}{17.65} + \fr
 
 Second, we calculate the 95% CI of the natural logarithm of the hazard ratio. The lower limit is:
 
-$$LL_{lnHR} = lnHR - 1.96 \cdot SE_{lnHR}$$
+$$LL_{lnHR} = lnHR - 1.96 \cdot SE_{lnHR} = ln(0.26) - 1.96*0.404 = -1.33 - 0.79 = - 2.12$$
 
 and the upper limit:
 
-$$UL_{lnHR} = lnHR + 1.96 \cdot SE_{lnHR}$$
+$$UL_{lnHR} = lnHR + 1.96 \cdot SE_{lnHR} = ln(0.26) + 1.96*0.404 = -1.33 + 0.79 = - 0.54$$
 
 Finally, we convert each of these values back to HR using:
 
-$$LL_{HR} = exp(LL_{lnHR})$$ and
+$$LL_{HR} = exp(LL_{lnHR}) = exp(- 2.12) = 0.12$$ and
 
-$$UL_{HR} = exp(UL_{lnHR})$$
+$$UL_{HR} = exp(UL_{lnHR}) = exp(-0.54) = 0.58$$
+
+
+The hazard of dying is 74% lower (0.26 - 1 = -0.74) in the new treatment than in the standard treatment (HR=0.26; 95% CI: 0.12, 0.58).
+
+
 
 **In R:**
 

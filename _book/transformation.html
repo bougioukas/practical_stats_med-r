@@ -428,8 +428,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#reshaping-data" id="toc-reshaping-data" class="nav-link" data-scroll-target="#reshaping-data"><span class="header-section-number">10.4</span> Reshaping data</a>
   <ul class="collapse">
-<li><a href="#lengthening-data" id="toc-lengthening-data" class="nav-link" data-scroll-target="#lengthening-data">Lengthening data</a></li>
-  <li><a href="#widening-data" id="toc-widening-data" class="nav-link" data-scroll-target="#widening-data">Widening data</a></li>
+<li><a href="#from-wide-to-long-format" id="toc-from-wide-to-long-format" class="nav-link" data-scroll-target="#from-wide-to-long-format">From wide to long format</a></li>
+  <li><a href="#from-long-to-wide-format" id="toc-from-long-to-wide-format" class="nav-link" data-scroll-target="#from-long-to-wide-format">From long to wide format</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -597,7 +597,6 @@ Figure&nbsp;10.3: Import data using the RStudio interface
 </div>
 </div>
 <p>Now, R displays the <strong>last six</strong> rows of the data frame by default.</p>
-<p>&nbsp;</p>
 </section></section><section id="basic-data-manipulations" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="basic-data-manipulations">
 <span class="header-section-number">10.2</span> Basic data manipulations</h2>
 <section id="adding-an-unique-identifier-for-each-observation" class="level3"><h3 class="anchored" data-anchor-id="adding-an-unique-identifier-for-each-observation">Adding an unique identifier for each observation</h3>
@@ -691,7 +690,6 @@ Figure&nbsp;10.3: Import data using the RStudio interface
 # ℹ 20 more rows</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
 </section></section><section id="basic-data-transformations" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="basic-data-transformations">
 <span class="header-section-number">10.3</span> Basic data transformations</h2>
 <section id="subsetting-observations-rows" class="level3"><h3 class="anchored" data-anchor-id="subsetting-observations-rows">Subsetting observations (rows)</h3>
@@ -1127,69 +1125,100 @@ Figure&nbsp;10.3: Import data using the RStudio interface
 </div>
 </section></section><section id="reshaping-data" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="reshaping-data">
 <span class="header-section-number">10.4</span> Reshaping data</h2>
-<p>Eighteen participants used margarine for 12 weeks. Their blood total cholesterol (TCH; in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.</p>
+<p>In a pre-post test study investigating the effects of margarine consumption on blood total cholesterol (TCH) levels, eighteen participants completed a 12-week dietary intervention. Before beginning the specialized diet, baseline measurements of blood total cholesterol (in mmol/L) were recorded for each participant (week 0). Follow-up evaluations took place at the 6-week and 12-week intervals, enabling the assessment of changes in cholesterol levels during the intervention period. The collected data were organized and stored within an Excel spreadsheet, structured as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb59" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"cholesterol.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb60" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH</span> <span class="op">&lt;-</span> <span class="va">dat_TCH</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rowid_to_column</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">dat_TCH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"cholesterol.xlsx"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dat_TCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 18 × 4
-   rowid week0 week6 week12
-   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
- 1     1  6.42  5.83   5.75
- 2     2  6.76  6.2    6.13
- 3     3  6.56  5.83   5.71
- 4     4  4.8   4.27   4.15
- 5     5  8.43  7.71   7.67
- 6     6  7.49  7.12   7.05
- 7     7  8.05  7.25   7.1 
- 8     8  5.05  4.63   4.67
- 9     9  5.77  5.31   5.33
-10    10  3.91  3.7    3.66
-11    11  6.77  6.15   5.96
-12    12  6.44  5.59   5.64
-13    13  6.17  5.56   5.51
-14    14  7.67  7.11   6.96
-15    15  7.34  6.84   6.82
-16    16  6.85  6.4    6.29
-17    17  5.13  4.52   4.45
-18    18  5.73  5.13   5.17</code></pre>
+<pre data-code-line-numbers=""><code># A tibble: 6 × 3
+  week0 week6 week12
+  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1  6.42  5.83   5.75
+2  6.76  6.2    6.13
+3  6.56  5.83   5.71
+4  4.8   4.27   4.15
+5  8.43  7.71   7.67
+6  7.49  7.12   7.05</code></pre>
 </div>
 </div>
-<section id="lengthening-data" class="level3"><h3 class="anchored" data-anchor-id="lengthening-data">Lengthening data</h3>
+<p>We observe that the data set is structured in what is commonly referred to as a “wide” format. The <strong>wide format</strong> of the data is particularly suited for a repeated measures design, also known as a longitudinal or within-subject design. In such a design, the same individuals are measured multiple times over a period, with each measurement representing a different time point.</p>
+<p><strong>Ensuring that every row has a unique identifier</strong></p>
+<p>Before proceeding with data manipulation and analysis tasks, we create a new column in the data set that assigns a unique identifier to each row using the <code><a href="https://tibble.tidyverse.org/reference/rownames.html">rowid_to_column()</a></code> function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb62" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
-<span></span>
+<div class="sourceCode" id="cb61" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH</span> <span class="op">&lt;-</span> <span class="va">dat_TCH</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rowid_to_column</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dat_TCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code># A tibble: 6 × 4
+  rowid week0 week6 week12
+  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1     1  6.42  5.83   5.75
+2     2  6.76  6.2    6.13
+3     3  6.56  5.83   5.71
+4     4  4.8   4.27   4.15
+5     5  8.43  7.71   7.67
+6     6  7.49  7.12   7.05</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<section id="from-wide-to-long-format" class="level3"><h3 class="anchored" data-anchor-id="from-wide-to-long-format">From wide to long format</h3>
+<p>Wide format data may not always be the most suitable data shape for certain types of statistical analyses or visualizations compared to <strong>“long” format</strong> data. In long format, each row typically represents a single observation, while another variable denotes different time points or conditions.</p>
+<p>Now, let’s reshape the dataset from a wide format to a long format.</p>
+<div class="cell">
+<div class="sourceCode" id="cb63" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
 <span><span class="va">dat_TCH2_long</span> <span class="op">&lt;-</span> <span class="va">dat_TCH</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"week"</span><span class="op">)</span>, </span>
 <span>    names_to <span class="op">=</span> <span class="st">"week"</span>,</span>
 <span>    values_to <span class="op">=</span> <span class="st">"total_cholesterol"</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="va">dat_TCH2_long</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dat_TCH2_long</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 54 × 3
-   rowid week   total_cholesterol
-   &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
- 1     1 week0               6.42
- 2     1 week6               5.83
- 3     1 week12              5.75
- 4     2 week0               6.76
- 5     2 week6               6.2 
- 6     2 week12              6.13
- 7     3 week0               6.56
- 8     3 week6               5.83
- 9     3 week12              5.71
-10     4 week0               4.8 
-# ℹ 44 more rows</code></pre>
+<pre data-code-line-numbers=""><code># A tibble: 6 × 3
+  rowid week   total_cholesterol
+  &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
+1     1 week0               6.42
+2     1 week6               5.83
+3     1 week12              5.75
+4     2 week0               6.76
+5     2 week6               6.2 
+6     2 week12              6.13</code></pre>
 </div>
 </div>
-</section><section id="widening-data" class="level3"><h3 class="anchored" data-anchor-id="widening-data">Widening data</h3>
+<p>To understand how the reshaping process works, it’s helpful to break down the <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function with its arguments:</p>
+<p>The argument <code>cols = starts_with("week")</code> specifies which columns in the original data should be pivoted. In this instance, we select the columns that start with the prefix “week”, such as “week0”, “week6”, and “week12”.</p>
+<p>First, the values within the identifier column (rowid) of wide format need to be repeated in the long format as many times as the number of columns being pivoted, which in this case is three (<a href="#fig-reshape01" class="quarto-xref">Figure&nbsp;<span>10.4</span></a>).</p>
+<div id="fig-reshape01" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/reshape01.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshape01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.4: Columns in the original data that should be reshaped.
+</figcaption></figure>
+</div>
+<p>&nbsp;</p>
+<p>By using the argument <code>names_to = "week"</code>, the column names being pivoted (i.e., week0, week6, and week12) become values within a newly defined variable in the long format with the name <code>week</code>. They are repeated as many times as the number of rows in the wide format, which in this case is two (<a href="#fig-reshape02" class="quarto-xref">Figure&nbsp;<span>10.5</span></a>).</p>
+<div id="fig-reshape02" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/reshape02.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshape02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.5: Columns in the original data that should be reshaped.
+</figcaption></figure>
+</div>
+<p>&nbsp;</p>
+<p>Finally, by using the argument <code>values_to = "total_cholesterol"</code>, the cell values from the pivoted variables are placed into a newly defined variable in the long format with the name <code>total_cholesterol</code> (<a href="#fig-reshape03" class="quarto-xref">Figure&nbsp;<span>10.6</span></a>).</p>
+<div id="fig-reshape03" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/reshape03.png" class="img-fluid figure-img" style="width:78.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshape03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.6: Columns in the original data that should be reshaped.
+</figcaption></figure>
+</div>
+</section><section id="from-long-to-wide-format" class="level3"><h3 class="anchored" data-anchor-id="from-long-to-wide-format">From long to wide format</h3>
 <div class="cell">
-<div class="sourceCode" id="cb64" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH2_long</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb65" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_TCH2_long</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span></span>
 <span>    names_from <span class="op">=</span> <span class="va">week</span>,</span>
 <span>    values_from <span class="op">=</span> <span class="va">total_cholesterol</span>  </span>

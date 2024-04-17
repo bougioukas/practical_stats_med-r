@@ -1,10 +1,14 @@
 /*-- scss:defaults --*/
 
-$h3-font-size: 1.3rem;
+
+$h1-font-size: 2.0rem;
+$h2-font-size: 1.4rem;
+$h3-font-size: 1.2rem;
 $h4-font-size: 1.1rem;
 
+
 // Base document colors
-$link-color: #0C5DFE;
+$link-color: #288BAB;
 $code-block-bg: #EDEFF1;
 
 $callout-border-scale: 1%;
@@ -20,6 +24,48 @@ $callout-color-important: #FCE762;
 $callout-color-tip: #540375;
 $callout-color-note: #540375;
 
+
+
+/*-- scss:rules --*/
+
+
+.sidebar-title {
+  color: #288BAB;;
+}
+
+div.sidebar-item-container .active {
+  font-weight: bold;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active{
+  font-weight: bold;
+}
+
+img.quarto-cover-image {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+
+
+
+/* Headings ------------------------------------------------------ */
+
+#title-block-header.quarto-title-block.default .quarto-title h1.title {
+  margin-bottom: 0.5rem;
+}
+
+
+h2{
+  margin-top: 2em;
+  margin-bottom: 1rem;
+}
+
+
+
+.quarto-section-identifier {
+  color: #288BAB;
+  font-weight: normal;
+}
 
 
 /* Content Boxes
@@ -65,4 +111,6 @@ $callout-color-note: #540375;
     background-color: #fef5c4;
     border: 1px solid #fadf98;
 }
+
+
 

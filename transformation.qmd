@@ -99,7 +99,6 @@ tail(dat)
 
 Now, R displays the **last six** rows of the data frame by default.
 
- 
 
 ## Basic data manipulations
 
@@ -143,7 +142,6 @@ dat$sex <- factor(dat$sex, levels = c("F", "M"),
 dat
 ```
 
- 
 
 ## Basic data transformations
 
@@ -340,37 +338,65 @@ dat |>
 
 ## Reshaping data
 
-Eighteen participants used margarine for 12 weeks. Their blood total cholesterol (TCH; in mmol/L) was measured before the special diet, after 6 weeks and after 12 weeks.
+In a pre-post test study investigating the effects of margarine consumption on blood total cholesterol (TCH) levels, eighteen participants completed a 12-week dietary intervention. Before beginning the specialized diet, baseline measurements of blood total cholesterol (in mmol/L) were recorded for each participant (week 0). Follow-up evaluations took place at the 6-week and 12-week intervals, enabling the assessment of changes in cholesterol levels during the intervention period. The collected data were organized and stored within an Excel spreadsheet, structured as follows:
 
 ```{r}
 dat_TCH <- read_excel(here("data", "cholesterol.xlsx"))
+head(dat_TCH)
 ```
+
+We observe that the data set is structured in what is commonly referred to as a "wide" format. The **wide format** of the data is particularly suited for a repeated measures design, also known as a longitudinal or within-subject design. In such a design, the same individuals are measured multiple times over a period, with each measurement representing a different time point.
+
+**Ensuring that every row has a unique identifier**
+
+Before proceeding with data manipulation and analysis tasks, we create a new column in the data set that assigns a unique identifier to each row using the `rowid_to_column()` function:
 
 ```{r}
 dat_TCH <- dat_TCH |> 
   rowid_to_column()
-dat_TCH
+head(dat_TCH)
 ```
 
+ 
 
+### From wide to long format
 
-### Lengthening data
+Wide format data may not always be the most suitable data shape for certain types of statistical analyses or visualizations compared to **"long" format** data. In long format, each row typically represents a single observation, while another variable denotes different time points or conditions.
+
+Now, let's reshape the dataset from a wide format to a long format.
 
 ```{r}
 library(tidyr)
-
 dat_TCH2_long <- dat_TCH |> 
   pivot_longer(
     cols = starts_with("week"), 
     names_to = "week",
     values_to = "total_cholesterol"
   )
-dat_TCH2_long
+head(dat_TCH2_long)
 ```
 
+To understand how the reshaping process works, it's helpful to break down the `pivot_longer()` function with its arguments:
 
+The argument `cols = starts_with("week")` specifies which columns in the original data should be pivoted. In this instance, we select the columns that start with the prefix "week", such as "week0", "week6", and "week12".
 
-### Widening data
+First, the values within the identifier column (rowid) of wide format need to be repeated in the long format as many times as the number of columns being pivoted, which in this case is three (@fig-reshape01).
+
+![Columns in the original data that should be reshaped.](images/reshape01.png){#fig-reshape01 width="90%"}
+
+ 
+
+By using the argument `names_to = "week"`, the column names being pivoted (i.e., week0, week6, and week12) become values within a newly defined variable in the long format with the name `week`. They are repeated as many times as the number of rows in the wide format, which in this case is two (@fig-reshape02).
+
+![Columns in the original data that should be reshaped.](images/reshape02.png){#fig-reshape02 width="90%"}
+
+ 
+
+Finally, by using the argument `values_to = "total_cholesterol"`, the cell values from the pivoted variables are placed into a newly defined variable in the long format with the name `total_cholesterol` (@fig-reshape03).
+
+![Columns in the original data that should be reshaped.](images/reshape03.png){#fig-reshape03 width="78%"}
+
+### From long to wide format
 
 ```{r}
 dat_TCH2_long |> 
