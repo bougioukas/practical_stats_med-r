@@ -429,42 +429,42 @@ window.Quarto = {
   <li>
 <a href="#covid-19-data" id="toc-covid-19-data" class="nav-link" data-scroll-target="#covid-19-data"><span class="header-section-number">11.2</span> Covid-19 data</a>
   <ul class="collapse">
-<li><a href="#data-preparation-for-the-plots" id="toc-data-preparation-for-the-plots" class="nav-link" data-scroll-target="#data-preparation-for-the-plots">Data preparation for the plots</a></li>
+<li><a href="#data-preparation-for-the-plots" id="toc-data-preparation-for-the-plots" class="nav-link" data-scroll-target="#data-preparation-for-the-plots"><span class="header-section-number">11.2.1</span> Data preparation for the plots</a></li>
   </ul>
 </li>
   <li>
 <a href="#basic-steps-for-creating-a-ggplot-graph" id="toc-basic-steps-for-creating-a-ggplot-graph" class="nav-link" data-scroll-target="#basic-steps-for-creating-a-ggplot-graph"><span class="header-section-number">11.3</span> Basic steps for creating a ggplot graph</a>
   <ul class="collapse">
-<li><a href="#step-0-start-with-a-default-blank-ggplot-object" id="toc-step-0-start-with-a-default-blank-ggplot-object" class="nav-link" data-scroll-target="#step-0-start-with-a-default-blank-ggplot-object">Step 0: Start with a default blank ggplot object</a></li>
-  <li><a href="#step-1-add-the-dataset-and-define-the-x-and-y" id="toc-step-1-add-the-dataset-and-define-the-x-and-y" class="nav-link" data-scroll-target="#step-1-add-the-dataset-and-define-the-x-and-y">Step 1: Add the dataset and define the x and y</a></li>
-  <li><a href="#step-2-add-geometry" id="toc-step-2-add-geometry" class="nav-link" data-scroll-target="#step-2-add-geometry">Step 2: Add geometry</a></li>
-  <li><a href="#step-3-add-aesthetics-to-geometry" id="toc-step-3-add-aesthetics-to-geometry" class="nav-link" data-scroll-target="#step-3-add-aesthetics-to-geometry">Step 3: Add aesthetics to geometry</a></li>
+<li><a href="#step-0-start-with-a-default-blank-ggplot-object" id="toc-step-0-start-with-a-default-blank-ggplot-object" class="nav-link" data-scroll-target="#step-0-start-with-a-default-blank-ggplot-object"><span class="header-section-number">11.3.1</span> Step 0: Start with a default blank ggplot object</a></li>
+  <li><a href="#step-1-add-the-dataset-and-define-the-x-and-y" id="toc-step-1-add-the-dataset-and-define-the-x-and-y" class="nav-link" data-scroll-target="#step-1-add-the-dataset-and-define-the-x-and-y"><span class="header-section-number">11.3.2</span> Step 1: Add the dataset and define the x and y</a></li>
+  <li><a href="#step-2-add-geometry" id="toc-step-2-add-geometry" class="nav-link" data-scroll-target="#step-2-add-geometry"><span class="header-section-number">11.3.3</span> Step 2: Add geometry</a></li>
+  <li><a href="#step-3-add-aesthetics-to-geometry" id="toc-step-3-add-aesthetics-to-geometry" class="nav-link" data-scroll-target="#step-3-add-aesthetics-to-geometry"><span class="header-section-number">11.3.4</span> Step 3: Add aesthetics to geometry</a></li>
   </ul>
 </li>
   <li><a href="#add-a-new-geom-text-information-for-each-point" id="toc-add-a-new-geom-text-information-for-each-point" class="nav-link" data-scroll-target="#add-a-new-geom-text-information-for-each-point"><span class="header-section-number">11.4</span> Add a new geom (text information for each point)</a></li>
   <li>
 <a href="#change-the-default-properties-of-the-plot-with-scales" id="toc-change-the-default-properties-of-the-plot-with-scales" class="nav-link" data-scroll-target="#change-the-default-properties-of-the-plot-with-scales"><span class="header-section-number">11.5</span> Change the default properties of the plot with <em>scales</em></a>
   <ul class="collapse">
-<li><a href="#change-the-scale-of-the-y-axis" id="toc-change-the-scale-of-the-y-axis" class="nav-link" data-scroll-target="#change-the-scale-of-the-y-axis">Change the scale of the y axis</a></li>
-  <li><a href="#change-the-default-point-shapes" id="toc-change-the-default-point-shapes" class="nav-link" data-scroll-target="#change-the-default-point-shapes">Change the default point shapes</a></li>
-  <li><a href="#change-the-default-colors" id="toc-change-the-default-colors" class="nav-link" data-scroll-target="#change-the-default-colors">Change the default colors</a></li>
+<li><a href="#change-the-scale-of-the-y-axis" id="toc-change-the-scale-of-the-y-axis" class="nav-link" data-scroll-target="#change-the-scale-of-the-y-axis"><span class="header-section-number">11.5.1</span> Change the scale of the y axis</a></li>
+  <li><a href="#change-the-default-point-shapes" id="toc-change-the-default-point-shapes" class="nav-link" data-scroll-target="#change-the-default-point-shapes"><span class="header-section-number">11.5.2</span> Change the default point shapes</a></li>
+  <li><a href="#change-the-default-colors" id="toc-change-the-default-colors" class="nav-link" data-scroll-target="#change-the-default-colors"><span class="header-section-number">11.5.3</span> Change the default colors</a></li>
   </ul>
 </li>
   <li><a href="#modify-axis-legend-and-plot-labels-with-labs" id="toc-modify-axis-legend-and-plot-labels-with-labs" class="nav-link" data-scroll-target="#modify-axis-legend-and-plot-labels-with-labs"><span class="header-section-number">11.6</span> Modify axis, legend, and plot labels with <em>labs</em></a></li>
   <li>
 <a href="#modify-theme-elements-with-theme" id="toc-modify-theme-elements-with-theme" class="nav-link" data-scroll-target="#modify-theme-elements-with-theme"><span class="header-section-number">11.7</span> Modify theme elements with <em>theme</em></a>
   <ul class="collapse">
-<li><a href="#a.-element_line" id="toc-a.-element_line" class="nav-link" data-scroll-target="#a.-element_line">A. element_line()</a></li>
-  <li><a href="#b.-element_text" id="toc-b.-element_text" class="nav-link" data-scroll-target="#b.-element_text">B. element_text()</a></li>
-  <li><a href="#c.-element_rect" id="toc-c.-element_rect" class="nav-link" data-scroll-target="#c.-element_rect">C. element_rect()</a></li>
+<li><a href="#a.-element_line" id="toc-a.-element_line" class="nav-link" data-scroll-target="#a.-element_line"><span class="header-section-number">11.7.1</span> A. element_line()</a></li>
+  <li><a href="#b.-element_text" id="toc-b.-element_text" class="nav-link" data-scroll-target="#b.-element_text"><span class="header-section-number">11.7.2</span> B. element_text()</a></li>
+  <li><a href="#c.-element_rect" id="toc-c.-element_rect" class="nav-link" data-scroll-target="#c.-element_rect"><span class="header-section-number">11.7.3</span> C. element_rect()</a></li>
   </ul>
 </li>
   <li>
 <a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="header-section-number">11.8</span> Themes</a>
   <ul class="collapse">
-<li><a href="#default-ggplot-theme" id="toc-default-ggplot-theme" class="nav-link" data-scroll-target="#default-ggplot-theme">Default ggplot theme</a></li>
-  <li><a href="#predefined-theme" id="toc-predefined-theme" class="nav-link" data-scroll-target="#predefined-theme">Predefined theme</a></li>
-  <li><a href="#publication-quality-figure" id="toc-publication-quality-figure" class="nav-link" data-scroll-target="#publication-quality-figure">Publication Quality Figure</a></li>
+<li><a href="#default-ggplot-theme" id="toc-default-ggplot-theme" class="nav-link" data-scroll-target="#default-ggplot-theme"><span class="header-section-number">11.8.1</span> Default ggplot theme</a></li>
+  <li><a href="#predefined-theme" id="toc-predefined-theme" class="nav-link" data-scroll-target="#predefined-theme"><span class="header-section-number">11.8.2</span> Predefined theme</a></li>
+  <li><a href="#publication-quality-figure" id="toc-publication-quality-figure" class="nav-link" data-scroll-target="#publication-quality-figure"><span class="header-section-number">11.8.3</span> Publication Quality Figure</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -571,7 +571,8 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 <li><p><strong>life_expectancy</strong> Average life expectancy at birth of country citizens in years as reported by the World Bank (original identifier ‘SP.DYN.LE00.IN’, time-stable)</p></li>
 <li><p><strong>gdp_capita:</strong> Country gross domestic product (GDP) per capita, measured in 2010 US-<span class="math inline">\(\$\)</span> as reported by the World Bank (original identifier ‘NY.GDP.PCAP.KD’, time-stable)</p></li>
 </ul>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;JHU CSSE: Johns Hopkins Coronavirus Resource Center</p></div></div><section id="data-preparation-for-the-plots" class="level3"><h3 class="anchored" data-anchor-id="data-preparation-for-the-plots">Data preparation for the plots</h3>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;JHU CSSE: Johns Hopkins Coronavirus Resource Center</p></div></div><section id="data-preparation-for-the-plots" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="data-preparation-for-the-plots">
+<span class="header-section-number">11.2.1</span> Data preparation for the plots</h3>
 <p>The data cover a period from 1/1/2020 to 9/9/2021. Suppose we are interested in investigating countries with population more than 1 million up to June, 12 2021 and we want also to calculate the cases per 100000 inhabitants and tests per capita:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">covid_data</span> <span class="op">|&gt;</span> </span>
@@ -585,7 +586,8 @@ $ gdp_capita      &lt;dbl&gt; 26631.5, 26631.5, 26631.5, 26631.5, 26631.5, 26631
 </section></section><section id="basic-steps-for-creating-a-ggplot-graph" class="level2 page-columns page-full" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="basic-steps-for-creating-a-ggplot-graph">
 <span class="header-section-number">11.3</span> Basic steps for creating a ggplot graph</h2>
 <p>The <a href="https://ggplot2.tidyverse.org">ggplot2</a> is contained within the <a href="https://tidyverse.tidyverse.org">tidyverse</a> package, so it is installed automatically when we install the tidyverse “meta” package. Furthermore, it is one of the core packages of the tidyverse that are loaded at R session when we run the command <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>.</p>
-<section id="step-0-start-with-a-default-blank-ggplot-object" class="level3"><h3 class="anchored" data-anchor-id="step-0-start-with-a-default-blank-ggplot-object">Step 0: Start with a default blank ggplot object</h3>
+<section id="step-0-start-with-a-default-blank-ggplot-object" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="step-0-start-with-a-default-blank-ggplot-object">
+<span class="header-section-number">11.3.1</span> Step 0: Start with a default blank ggplot object</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -599,7 +601,8 @@ Figure&nbsp;11.2: A default blank ggplot object.
 </div>
 </div>
 </div>
-</section><section id="step-1-add-the-dataset-and-define-the-x-and-y" class="level3"><h3 class="anchored" data-anchor-id="step-1-add-the-dataset-and-define-the-x-and-y">Step 1: Add the dataset and define the x and y</h3>
+</section><section id="step-1-add-the-dataset-and-define-the-x-and-y" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="step-1-add-the-dataset-and-define-the-x-and-y">
+<span class="header-section-number">11.3.2</span> Step 1: Add the dataset and define the x and y</h3>
 <p>The <code>ggplot()</code> function has <strong>two basic named arguments</strong>. The first argument, <code>data</code>, specifies the dataset that we are going to use for the plot. The second argument, <code>mapping</code>, defines which variables are mapped to x and y aesthetics of position.</p>
 <p>Let’s provide the dataset “dat” to the first argument of <code>ggplot()</code> and mapp the variable <code>gdp_capita</code> to the x position and the variable <code>cases_per_100K</code> to the y position inside the <code>aes()</code>:</p>
 <div class="cell" data-layout-align="center">
@@ -620,7 +623,8 @@ Figure&nbsp;11.3: Variables are mapped to x and y axes on a canvas with grid lin
 <div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As we can observe, only a grey canvas is created when running the code. This is because we also need to provide a geometry!</p>
-</section><section id="step-2-add-geometry" class="level3"><h3 class="anchored" data-anchor-id="step-2-add-geometry">Step 2: Add geometry</h3>
+</section><section id="step-2-add-geometry" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="step-2-add-geometry">
+<span class="header-section-number">11.3.3</span> Step 2: Add geometry</h3>
 <p>Geoms are the geometric objects that make up ggplot2 visualizations. Each geom is called with a function that begins with “<strong>geom_</strong>” and ends with the name of the geometric object (e.g., point, bar, line) (<a href="#tbl-geometry" class="quarto-xref">Table&nbsp;<span>11.1</span></a>).</p>
 <div id="tbl-geometry" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -680,7 +684,8 @@ Table&nbsp;11.1: Common geometries used in ggplot graphs.
 </div>
 </div>
 </div>
-</section><section id="step-3-add-aesthetics-to-geometry" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="step-3-add-aesthetics-to-geometry">Step 3: Add aesthetics to geometry</h3>
+</section><section id="step-3-add-aesthetics-to-geometry" class="level3 page-columns page-full" data-number="11.3.4"><h3 data-number="11.3.4" class="anchored" data-anchor-id="step-3-add-aesthetics-to-geometry">
+<span class="header-section-number">11.3.4</span> Step 3: Add aesthetics to geometry</h3>
 <p>Each “geom” has a number of aesthetics that define its visual properties. We can map our data to anything that our “geom” supports. For example, <code>geom_point()</code> understands the following aesthetics (required aesthetics are in bold): <strong>x</strong>, <strong>y</strong>, alpha, color, fill, group, shape, size, stroke.</p>
 <p>So, if we want to add more variables to a plot, we can use aesthetics like color, shape, and size.</p>
 <p><strong>A. <code>color</code> aesthetics</strong></p>
@@ -926,7 +931,8 @@ Important
 </section><section id="change-the-default-properties-of-the-plot-with-scales" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="change-the-default-properties-of-the-plot-with-scales">
 <span class="header-section-number">11.5</span> Change the default properties of the plot with <em>scales</em>
 </h2>
-<section id="change-the-scale-of-the-y-axis" class="level3"><h3 class="anchored" data-anchor-id="change-the-scale-of-the-y-axis">Change the scale of the y axis</h3>
+<section id="change-the-scale-of-the-y-axis" class="level3" data-number="11.5.1"><h3 data-number="11.5.1" class="anchored" data-anchor-id="change-the-scale-of-the-y-axis">
+<span class="header-section-number">11.5.1</span> Change the scale of the y axis</h3>
 <div class="cell" data-source-line-numbers="4">
 <div class="sourceCode" id="cb17" data-source-line-numbers="4" data-code-line-numbers="4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -940,7 +946,8 @@ Important
 </div>
 </div>
 <p>Continuous variable <code>tests_per_capital</code> mapped to size and categorical variable <code>region</code> mapped to color.</p>
-</section><section id="change-the-default-point-shapes" class="level3"><h3 class="anchored" data-anchor-id="change-the-default-point-shapes">Change the default point shapes</h3>
+</section><section id="change-the-default-point-shapes" class="level3" data-number="11.5.2"><h3 data-number="11.5.2" class="anchored" data-anchor-id="change-the-default-point-shapes">
+<span class="header-section-number">11.5.2</span> Change the default point shapes</h3>
 <div class="sourceCode" id="cb18" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># default</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span>, shape<span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -985,7 +992,8 @@ Figure&nbsp;11.8: Change the default point shapes
 </figcaption></figure>
 </div>
 <p>However, when a variable is mapped to size (here, <code>test_per_capital</code>), it’s a good idea to not map a variable to shape (here, <code>region</code>). This is because it is difficult to compare the sizes of different shapes (e.g., a size 4 square with a size 4 triangle).</p>
-</section><section id="change-the-default-colors" class="level3"><h3 class="anchored" data-anchor-id="change-the-default-colors">Change the default colors</h3>
+</section><section id="change-the-default-colors" class="level3" data-number="11.5.3"><h3 data-number="11.5.3" class="anchored" data-anchor-id="change-the-default-colors">
+<span class="header-section-number">11.5.3</span> Change the default colors</h3>
 <div class="sourceCode" id="cb19" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># default</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">tests_per_capita</span>, color <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1116,7 +1124,8 @@ Figure&nbsp;11.11: Main compartments in a ggplot graph.
 </div>
 <p>&nbsp;</p>
 <p>Next, we present some examples for each element function to help understanding of the previous concepts.</p>
-<section id="a.-element_line" class="level3"><h3 class="anchored" data-anchor-id="a.-element_line">A. element_line()</h3>
+<section id="a.-element_line" class="level3" data-number="11.7.1"><h3 data-number="11.7.1" class="anchored" data-anchor-id="a.-element_line">
+<span class="header-section-number">11.7.1</span> A. element_line()</h3>
 <p>With <code>element_line()</code>, we can customize all the lines of the plot that are not part of data. The <a href="#fig-element_line" class="quarto-xref">Figure&nbsp;<span>11.12</span></a> shows the basic line elements (axes, ticks, and grids) that we can control in a simple ggplot graph.</p>
 <div id="fig-element_line" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-element_line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1246,7 +1255,8 @@ Figure&nbsp;11.14: fgdfgdfg.
 </div>
 </div>
 </div>
-</section><section id="b.-element_text" class="level3"><h3 class="anchored" data-anchor-id="b.-element_text">B. element_text()</h3>
+</section><section id="b.-element_text" class="level3" data-number="11.7.2"><h3 data-number="11.7.2" class="anchored" data-anchor-id="b.-element_text">
+<span class="header-section-number">11.7.2</span> B. element_text()</h3>
 <div id="fig-element_text" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-element_text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/element_text.png" class="img-fluid figure-img" style="width:100.0%">
@@ -1364,7 +1374,8 @@ Figure&nbsp;11.19: fgdfgdfg.
 </div>
 </div>
 </div>
-</section><section id="c.-element_rect" class="level3"><h3 class="anchored" data-anchor-id="c.-element_rect">C. element_rect()</h3>
+</section><section id="c.-element_rect" class="level3" data-number="11.7.3"><h3 data-number="11.7.3" class="anchored" data-anchor-id="c.-element_rect">
+<span class="header-section-number">11.7.3</span> C. element_rect()</h3>
 <div id="fig-element_rect" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-element_rect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/element_rect.png" class="img-fluid figure-img" style="width:100.0%">
@@ -1471,7 +1482,8 @@ Figure&nbsp;11.24: fgdfgdfg.
 </div>
 </section></section><section id="themes" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="themes">
 <span class="header-section-number">11.8</span> Themes</h2>
-<section id="default-ggplot-theme" class="level3"><h3 class="anchored" data-anchor-id="default-ggplot-theme">Default ggplot theme</h3>
+<section id="default-ggplot-theme" class="level3" data-number="11.8.1"><h3 data-number="11.8.1" class="anchored" data-anchor-id="default-ggplot-theme">
+<span class="header-section-number">11.8.1</span> Default ggplot theme</h3>
 <p>The default theme of ggplot is the <code>theme_gray</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1498,7 +1510,8 @@ Figure&nbsp;11.25: fgdfgdfg.
 </div>
 </div>
 </div>
-</section><section id="predefined-theme" class="level3"><h3 class="anchored" data-anchor-id="predefined-theme">Predefined theme</h3>
+</section><section id="predefined-theme" class="level3" data-number="11.8.2"><h3 data-number="11.8.2" class="anchored" data-anchor-id="predefined-theme">
+<span class="header-section-number">11.8.2</span> Predefined theme</h3>
 <p>We can customize the theme elements of our graph by applying a predefined theme rather than changing everything by hand. There are ready to use themes from the <a href="https://ggplot2.tidyverse.org">ggplot2</a> and <a href="https://jrnold.github.io/ggthemes/">ggthemes</a> packages.</p>
 <p>Examples of in-build theme from “ggplot2”:</p>
 <ul>
@@ -1554,7 +1567,8 @@ Figure&nbsp;11.26: fgdfgdfg.
 </div>
 </div>
 <p>If we take a look at the code for <code>theme_fivethirtyeight</code> (we just run <code>theme_fivethirtyeight</code> in our console to see the code), we’ll observe that <code>axis.title</code> is set to <code>element_blank()</code>. So this theme has no axis titles by default. We’ll need to change this if we want to set X and Y axis titles. You can turn them back on with theme(axis.title = element_text()) you need to change some of the theme settings that are the defaults in theme_fivethirtyeight.</p>
-</section><section id="publication-quality-figure" class="level3"><h3 class="anchored" data-anchor-id="publication-quality-figure">Publication Quality Figure</h3>
+</section><section id="publication-quality-figure" class="level3" data-number="11.8.3"><h3 data-number="11.8.3" class="anchored" data-anchor-id="publication-quality-figure">
+<span class="header-section-number">11.8.3</span> Publication Quality Figure</h3>
 <p>More customization of plot</p>
 <div class="cell" data-layout-align="center" data-source-line-numbers="2,3,8,16-20">
 <div class="sourceCode" id="cb36" data-source-line-numbers="2,3,8,16-20" data-code-line-numbers="2,3,8,16-20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dat</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdp_capita</span>, y <span class="op">=</span> <span class="va">cases_per_100k</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>

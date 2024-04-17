@@ -428,7 +428,7 @@ window.Quarto = {
 <li>
 <a href="#arithmetic-operators-in-r" id="toc-arithmetic-operators-in-r" class="nav-link active" data-scroll-target="#arithmetic-operators-in-r"><span class="header-section-number">3.1</span> Arithmetic Operators in R</a>
   <ul class="collapse">
-<li><a href="#parentheses" id="toc-parentheses" class="nav-link" data-scroll-target="#parentheses">Parentheses</a></li>
+<li><a href="#parentheses" id="toc-parentheses" class="nav-link" data-scroll-target="#parentheses"><span class="header-section-number">3.1.1</span> Parentheses</a></li>
   </ul>
 </li>
   <li><a href="#relational-operators-in-r" id="toc-relational-operators-in-r" class="nav-link" data-scroll-target="#relational-operators-in-r"><span class="header-section-number">3.2</span> Relational Operators in R</a></li>
@@ -436,10 +436,10 @@ window.Quarto = {
   <li>
 <a href="#special-values-in-r" id="toc-special-values-in-r" class="nav-link" data-scroll-target="#special-values-in-r"><span class="header-section-number">3.4</span> Special values in R</a>
   <ul class="collapse">
-<li><a href="#missing-values-na" id="toc-missing-values-na" class="nav-link" data-scroll-target="#missing-values-na">Missing values (NA)</a></li>
-  <li><a href="#infinitive--inf-or-inf" id="toc-infinitive--inf-or-inf" class="nav-link" data-scroll-target="#infinitive--inf-or-inf">Infinitive: -Inf or Inf</a></li>
-  <li><a href="#not-a-number-nan" id="toc-not-a-number-nan" class="nav-link" data-scroll-target="#not-a-number-nan">Not A Number (NaN)</a></li>
-  <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null">NULL</a></li>
+<li><a href="#missing-values-na" id="toc-missing-values-na" class="nav-link" data-scroll-target="#missing-values-na"><span class="header-section-number">3.4.1</span> Missing values (NA)</a></li>
+  <li><a href="#infinitive--inf-or-inf" id="toc-infinitive--inf-or-inf" class="nav-link" data-scroll-target="#infinitive--inf-or-inf"><span class="header-section-number">3.4.2</span> Infinitive: -Inf or Inf</a></li>
+  <li><a href="#not-a-number-nan" id="toc-not-a-number-nan" class="nav-link" data-scroll-target="#not-a-number-nan"><span class="header-section-number">3.4.3</span> Not A Number (NaN)</a></li>
+  <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null"><span class="header-section-number">3.4.4</span> NULL</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -566,7 +566,8 @@ Table&nbsp;3.1: Basic arithmetic operators in R
 <p><strong>NOTE:</strong> To obtain additional information on how R prioritizes operators, we can access the R help section by using the following command:</p>
 <p><code><a href="https://rdrr.io/r/base/Syntax.html">?Syntax</a></code></p>
 </div></div><p>&nbsp;</p>
-<section id="parentheses" class="level3"><h3 class="anchored" data-anchor-id="parentheses">Parentheses</h3>
+<section id="parentheses" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="parentheses">
+<span class="header-section-number">3.1.1</span> Parentheses</h3>
 <p>Use parentheses to group operations in order to force the order of evaluation if it differs from the default, or to make clear what we intend.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -726,7 +727,8 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 </section><section id="special-values-in-r" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="special-values-in-r">
 <span class="header-section-number">3.4</span> Special values in R</h2>
 <p>There are a few special values that are used in R.</p>
-<section id="missing-values-na" class="level3"><h3 class="anchored" data-anchor-id="missing-values-na">Missing values (NA)</h3>
+<section id="missing-values-na" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="missing-values-na">
+<span class="header-section-number">3.4.1</span> Missing values (NA)</h3>
 <p>In the real world, missing data may occur when recording medical information (e.g., patients lost to follow-up, incomplete medical records). R uses a special numeric value <code>NA</code> standing for “Not Available” and represents a missing value. Arithmetic operations using <code>NA</code> produces <code>NA</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -741,7 +743,8 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="infinitive--inf-or-inf" class="level3"><h3 class="anchored" data-anchor-id="infinitive--inf-or-inf">Infinitive: -Inf or Inf</h3>
+</section><section id="infinitive--inf-or-inf" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="infinitive--inf-or-inf">
+<span class="header-section-number">3.4.2</span> Infinitive: -Inf or Inf</h3>
 <p>There is also a special number <code>Inf</code> which represents infinity. Fortunately, R has special numbers for this.</p>
 <p>This allows us to represent entities like:</p>
 <div class="cell">
@@ -758,7 +761,8 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="not-a-number-nan" class="level3"><h3 class="anchored" data-anchor-id="not-a-number-nan">Not A Number (NaN)</h3>
+</section><section id="not-a-number-nan" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="not-a-number-nan">
+<span class="header-section-number">3.4.3</span> Not A Number (NaN)</h3>
 <p>The value NaN (stands for “not a number”) represents an undefined value and it is usually the product of some arithmetic operations. For example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb34" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">/</span> <span class="cn">Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -779,7 +783,8 @@ because 150000000 = 1.5 × 100000000 = 1.5 × <span class="math inline">\(10^{8}
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="null" class="level3"><h3 class="anchored" data-anchor-id="null">NULL</h3>
+</section><section id="null" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="null">
+<span class="header-section-number">3.4.4</span> NULL</h3>
 <p>Additionally, there is a null object in R, represented by the symbol NULL. (The symbol NULL always points to the same object.) NULL is often used as an argument in functions to mean that no value was assigned to the argument. Additionally, some functions may return NULL. Note that NULL is not the same as NA, Inf, -Inf, or NaN.</p>
 
 

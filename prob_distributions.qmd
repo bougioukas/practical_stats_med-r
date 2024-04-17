@@ -36,11 +36,14 @@ A random variable assigns a numerical quantity to every possible outcome of a ra
 
 For example, a random variable representing the ABO blood system (A, B, AB, or O blood type) would be discrete, while a random variable representing the height of a person in centimeters would be continuous.
 
+::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
 Suppose the X random variable for blood type is explicitly defined as follows:
 
 $$X={\begin{cases}1, &for\ blood\ type\ A\\2, &for\ blood\ type\ B\\3, &for\ blood\ type\ AB\\4, &for\ blood\ type\ O\end{cases}}$$
+:::
+
 
 That is, X is the discrete random variable that has four possible outcomes; it takes the value 1 if the person has blood type A, 2 if the person has blood type B, 3 if the person has blood type AB, and 4 if the person has blood type O.
 
@@ -58,11 +61,7 @@ $$P(X=x)={\begin{cases}0.41,&for\ x=1\\0.10,&for\ x=2\\0.04,&for\ x=3\\0.45,&for
 
 Here, x denotes a specific value (i.e. 1, 2, 3, or 4) of the random variable X. Then, instead of saying P(A) = 0.41, i.e., the blood type is A with probability 0.41, we can say that P(X = 1) = 0.41, i.e., X is equal to 1 with probability of 0.41.
 
-<br>
-
-We can use the probability distribution to answer probability questions:
-
-**What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?**
+We can use the probability distribution to answer probability questions. For example, what is the probability that a randomly selected person from the population can donate blood to someone with type B blood?
 
 We know that individuals with blood type B or O can donate to a person with blood type B (@fig-bloodtypes).
 
@@ -92,11 +91,17 @@ $$ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 
 
 Hence, there is a 55% chance that a randomly selected person in our population can donate blood to someone with type B blood.
 
- 
-
+::: content-box-blue
 There are several types of probability distributions, and they can be broadly categorized into two main groups: **discrete probability distributions** and **continuous probability distributions**.
+:::
 
-**NOTE:** Degrees of freedom (i.e., the number of parameters that are free to vary) are intrinsic to these distributions, influencing their shapes, properties, and applications in statistical analysis. For instance, in the chi-square, t, and F distributions, degrees of freedom determine their characteristics.
+
+
+::: {.callout-tip icon="false"}
+## `r fa("circle-info", fill = "#1DC5CE")` INFO
+
+Degrees of freedom (i.e., the number of parameters that are free to vary) are intrinsic to probability distributions, influencing their shapes, properties, and applications in statistical analysis. For instance, in the chi-square, t, and F distributions, degrees of freedom determine their characteristics.
+:::
 
 ## Discrete Probability Distributions
 
@@ -282,7 +287,6 @@ theme_classic(base_size = 14) +
 
 -   The mean is $\mu$ = p = 0.7 and the variance is $\sigma^2$ = 0.7(1-0.7)= 0.7$\cdot$ 0.3 = 0.21.
 
- 
 
 ### Binomial distribution
 
@@ -421,17 +425,12 @@ ggplot(dat4, aes(x=x, y=y)) +
 
 -   The mean is $\mu$ = n p = 10 $\cdot$ 0.7 = 7 successful surgeries and the variance is $\sigma^2$ = n p (1-p) = 10 $\cdot$ 0.7 $\cdot$ 0.3 = 2.1
 
-<br>
 
-**What is the probability that more than 8 of 10 surgical procedures are successful?**
-
-We want to calculate the P(X \> 8):
+Let's calculate the probability of having having more than 8 successful surgical procedures out of a total of 10. Therefore, we want to calculate the probability P(X \> 8):
 
 $$ P(X > 8)= P(X = 9) + P(X = 10) = {{10}\choose{9}} \cdot 0.7^9 \cdot 0.3^1 + {{10}\choose{10}} \cdot 0.7^{10} \cdot 0.3^0 \Rightarrow $$
 
 $$ P(X > 8)= 10 \cdot 0.04035 \cdot 0.3 + 1 \cdot 0.02824 = 0.12105 + 0.02825 = 0.1493$$
-
- 
 
 In R, we can calculate the probabilities P(X = 9) and P(X = 10) by applying the function `dbinom()` and adding the results:
 
@@ -445,7 +444,6 @@ p10
 p9 + p10
 ```
 
- 
 
 Of note, another way to find the above probability is to calculate the 1-P(X ≤ 8):
 
@@ -576,11 +574,9 @@ ggplot(dat6, aes(x=x, y=y)) +
 
 -   The mean and variance of this variable are $\mu$= 2.5 and $\sigma^2$ = 2.5, respectively.
 
- 
 
-**What is the probability of up to four successful heart transplant surgeries per week?**
 
-We want to calculate the cumulative probability $P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}$. In practice, we can add the individual probabilities from the @tbl-table_poisson for the corresponding outcomes:
+Let's calculate the probability of up to four successful heart transplant surgeries per week. Therefore, we want to calculate the cumulative probability $P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}$. In practice, we can add the individual probabilities from the @tbl-table_poisson for the corresponding outcomes:
 
 P(X ≤ 4) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4) = 0.082 + 0.205 + 0.257 + 0.214 + 0.134 = 0.892.
 
@@ -592,7 +588,6 @@ ppois(4, lambda = 2.5)
 
 So, the probability of up to four successful heart transplant surgeries per week in the specialized cardiac center is approximately 0.89 or 89%.
 
- 
 
 ## Probability distributions for continuous outcomes
 
@@ -685,7 +680,6 @@ The standard deviation is often preferred over the variance because it is in the
 $\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}$
 :::
 
- 
 
 ### Uniform distribution
 
@@ -824,7 +818,6 @@ table(data$trt)
 prop.table(table(data$trt))
 ```
 
- 
 
 ### Normal distribution
 
@@ -994,7 +987,6 @@ Finally, we subtract the two values (shaded blue areas) as follows:
 pnorm(180, mean = 170, sd = 10) - pnorm(160, mean = 170, sd = 10)
 ```
 
- 
 
 ### Standard Normal distribution
 
@@ -1075,7 +1067,6 @@ $$P(0\leq Z\leq 2) = P(Z\leq 2) - P(Z\leq 0)$$
 pnorm(2, mean = 0, sd = 1) - pnorm(0, mean = 0, sd = 1)
 ```
 
- 
 
 ### Chi-square distribution
 
@@ -1091,6 +1082,7 @@ The mean and variance of a random variable that follows the chi-square distribut
 -   $σ^2 = 2\nu$
 
 The shape of the chi-square distribution depends on the degrees of freedom, $\nu$.
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1115,11 +1107,8 @@ ggplot(data = data.frame(x = c(0, 20)), aes(x = x)) +
   theme(legend.title = element_blank())
 ```
 
+**NOTE:** When $\nu$ is large, the shape of the chi-square distribution becomes increasingly similar to that of a normal distribution.
 
-**NOTE:** When $\nu$ is large, the shape of the chi-square distribution becomes increasingly similar to that of a normal distribution. 
-
-
- 
 
 ### t-distribution
 
@@ -1133,14 +1122,13 @@ where Z∼N(0,1) and U∼$\chi_\nu^2$ are independent.
 
 The t statistic follows the t-distribution with $\nu$ degrees of freedom. As the degrees of freedom increase ($\nu$\> 30), the t-distribution approaches the normal distribution more closely.
 
-
 The mean and variance of a random variable that follows the t-distribution with $\nu$ degrees of freedom are:
 
-- $\mu= 0$, $\nu \geq 2$
-- $σ^2 = \nu/(\nu −2)$ , $\nu \geq 3$
-
+-   $\mu= 0$, $\nu \geq 2$
+-   $σ^2 = \nu/(\nu −2)$ , $\nu \geq 3$
 
 The shape of the t-distribution depends on the degrees of freedom, $\nu$ (@fig-t).
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1205,22 +1193,16 @@ qt(0.025, df = 3)
 qt(0.975, df = 3)
 ```
 
- 
-
 
 ### F-distribution
 
-Let U and V be independent random variables that follow the 
-$\chi_{\nu_1}^2$ and $\chi_{\nu_2}^2$, respectively. Then, the random variable:
+Let U and V be independent random variables that follow the $\chi_{\nu_1}^2$ and $\chi_{\nu_2}^2$, respectively. Then, the random variable:
 
 $$F = \frac{U / \nu_1}{V / \nu_2} $$
 
 follows the F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom, $F \sim F_{\nu_1, \nu_2}$.
 
-
-
 The shape of an F-distribution depends on the values of $\nu_1$ and $\nu_2$, the numerator and denominator degrees of freedom, respectively (@fig-f_distr):
-
 
 ```{r}
 #| code-fold: true
@@ -1245,13 +1227,8 @@ ggplot(data = data.frame(x = c(0, 5)), aes(x = x)) +
   theme(legend.title = element_blank())
 ```
 
-
 The mean and variance of a random variable that follows the F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom are:
 
-- $\mu = \frac{\nu_2}{\nu_2 - 2}$
+-   $\mu = \frac{\nu_2}{\nu_2 - 2}$
 
-
-- $\sigma^2 = \frac{2 \nu_2^2 (\nu_1 + \nu_2 - 2)}{\nu_1 (\nu_2 - 2)^2 (\nu_2 - 4)}$
-
-
-
+-   $\sigma^2 = \frac{2 \nu_2^2 (\nu_1 + \nu_2 - 2)}{\nu_1 (\nu_2 - 2)^2 (\nu_2 - 4)}$

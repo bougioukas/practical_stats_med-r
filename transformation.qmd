@@ -20,7 +20,6 @@ When we have finished this chapter, we should be able to:
 -   Create new variables to a data frame that are functions of existing columns with `mutate()`.
 :::
 
- 
 
 ## Importing data
 
@@ -41,7 +40,7 @@ The dataset `shock_index` includes data regarding the characteristics of 30 adul
 -   **sbp:** systolic blood pressure in mmHg
 -   **HR:** resting heart rate in beats/min
 
-### A. Importing data from Excel using the RStudio interface
+### Importing data from Excel using the RStudio interface
 
 To import data using the RStudio interface, we navigate to the Environment pane, where we'll find the "Import Dataset" button. Clicking this button will prompt a dropdown menu with options to import data from various file formats such as CSV, Excel, or other common formats. We select "From Excel..." (@fig-import).
 
@@ -53,7 +52,7 @@ A dialog box then appears, enabling us to navigate our file system and select th
 
 Upon successful import, the dataset will appear in the Environment pane, ready for analysis and manipulation using R's powerful data analysis tools and functions.
 
-### B. Importing data from Excel into R with commands
+### Importing data from Excel into R with commands
 
 Alternatively, if the dataset is saved in the subfolder named "data" of our RStudio project (see @sec-rstudio_projects), we can read it with the `read_excel()` function from `{readxl}` package as follows:
 
@@ -77,7 +76,6 @@ The path of a file/directory is its location/address in the file system. There a
 The function `here()` allows us to navigate throughout each of the subfolders and files within a given RStudio Project using *relative paths* (see also @sec-packages).
 :::
 
- 
 
 Using `head()` is a convenient way to get a quick overview of our dataset and check for any obvious issues before proceeding with further analysis or data manipulation.
 
@@ -98,7 +96,6 @@ tail(dat)
 ```
 
 Now, R displays the **last six** rows of the data frame by default.
-
 
 ## Basic data manipulations
 
@@ -142,12 +139,11 @@ dat$sex <- factor(dat$sex, levels = c("F", "M"),
 dat
 ```
 
-
 ## Basic data transformations
 
 ### Subsetting observations (rows)
 
-**A. Select observations by indexing position within square brackets**
+#### _A. Select observations by indexing position within square brackets_
 
 Just as we use square brackets \[row, column\] to select elements from matrices, we employ the same approach to pick out elements from a data frame. For example, by specifying the row indices \[5:10, \] within the brackets, we can efficiently access the required data for rows 5 through 10:
 
@@ -156,7 +152,7 @@ dat1 <- dat[5:10, ]
 dat1
 ```
 
-**B. Select observations by indexing with conditions within the square brackets**
+#### _B. Select observations by indexing with conditions within the square brackets_
 
 ```{r}
 dat2 <- dat[which(dat$age > 55), ]
@@ -168,7 +164,7 @@ dat3 <- dat[which(dat$age > 55 & dat$sex == "female"), ]
 dat3
 ```
 
-**C. Select observations using the `subset()` function**
+#### _C. Select observations using the `subset()` function_
 
 ```{r}
 dat4 <- subset(dat, age > 55)
@@ -180,7 +176,7 @@ dat5 <- subset(dat, age > 55 & sex == "female")
 dat5
 ```
 
-**D. Select observations using the `filter()` function from `{dplyr}` package**
+#### _D. Select observations using the `filter()` function from `{dplyr}` package_
 
 We pass the data frame first and then one or more conditions separated by a comma:
 
@@ -196,7 +192,7 @@ dat7 <- filter(dat, age > 55, sex == "female")
 dat7
 ```
 
- 
+
 
 ### Reordering observations (rows)
 
@@ -219,11 +215,10 @@ dat10 <- arrange(dat, sbp, heart_rate)
 head(dat10, 10)
 ```
 
- 
 
 ### Subsetting variables (columns)
 
-**A. Select or exclude variables by indexing their name within square brackets**
+#### _A. Select or exclude variables by indexing their name within square brackets_
 
 We can select only the `sex`, `age`, `heart_rate`, variables from the data frame:
 
@@ -237,7 +232,7 @@ dat12 <- dat[, !names(dat) %in% c("patient_id", "sbp")]
 head(dat12)
 ```
 
-**B. Select or exclude variables by indexing position within square brackets** (not recommended)
+#### _B. Select or exclude variables by indexing position within square brackets (not recommended)_
 
 By specifying the column indices, such as `c(2, 3, 5)`, within brackets, we can select the data in columns 2, 3, and 5 as follows:
 
@@ -251,7 +246,7 @@ dat14 <- dat[-c(1, 4)]
 head(dat14)
 ```
 
-**C. Select variables using the `subset()` function**
+#### _C. Select variables using the `subset()` function_
 
 ```{r}
 dat15 <- subset(dat, select = c("sex", "age" , "heart_rate"))
@@ -265,7 +260,7 @@ head(dat16)
 
 The `select` argument allows the selection by indexing the columns of interest in.
 
-**D. Select variables using the `select()` function from `{dplyr}` package**
+#### _D. Select variables using the `select()` function from `{dplyr}` package_
 
 In `select()` function we pass the data frame first and then the variables separated by commas:
 
@@ -300,7 +295,7 @@ dat19 <- mutate(dat18,
 dat19
 ```
 
-### Using the native pipe operator in a sequence of commands
+## Using the native pipe operator in a sequence of commands
 
 Given that each verb in `{dplyr}` specializes in a particular task, addressing complex queries often typically involves integrating several verbs, a process simplified by using the native pipe operator, `|>`. For example, we want to filter the original dataset to include only rows where the shock index category is "low" or "high", using a sequence of dplyr verbs.
 
@@ -347,7 +342,7 @@ head(dat_TCH)
 
 We observe that the data set is structured in what is commonly referred to as a "wide" format. The **wide format** of the data is particularly suited for a repeated measures design, also known as a longitudinal or within-subject design. In such a design, the same individuals are measured multiple times over a period, with each measurement representing a different time point.
 
-**Ensuring that every row has a unique identifier**
+### Ensuring that every row has a unique identifier
 
 Before proceeding with data manipulation and analysis tasks, we create a new column in the data set that assigns a unique identifier to each row using the `rowid_to_column()` function:
 
@@ -357,7 +352,6 @@ dat_TCH <- dat_TCH |>
 head(dat_TCH)
 ```
 
- 
 
 ### From wide to long format
 
@@ -384,13 +378,11 @@ First, the values within the identifier column (rowid) of wide format need to be
 
 ![Columns in the original data that should be reshaped.](images/reshape01.png){#fig-reshape01 width="90%"}
 
- 
 
 By using the argument `names_to = "week"`, the column names being pivoted (i.e., week0, week6, and week12) become values within a newly defined variable in the long format with the name `week`. They are repeated as many times as the number of rows in the wide format, which in this case is two (@fig-reshape02).
 
 ![Columns in the original data that should be reshaped.](images/reshape02.png){#fig-reshape02 width="90%"}
 
- 
 
 Finally, by using the argument `values_to = "total_cholesterol"`, the cell values from the pivoted variables are placed into a newly defined variable in the long format with the name `total_cholesterol` (@fig-reshape03).
 

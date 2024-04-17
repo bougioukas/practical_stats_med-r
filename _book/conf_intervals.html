@@ -428,10 +428,10 @@ window.Quarto = {
 <li>
 <a href="#confidence-interval-for-mean" id="toc-confidence-interval-for-mean" class="nav-link active" data-scroll-target="#confidence-interval-for-mean"><span class="header-section-number">18.1</span> Confidence interval for mean</a>
   <ul class="collapse">
-<li><a href="#the-logic-behind-constructing-a-confidence-interval" id="toc-the-logic-behind-constructing-a-confidence-interval" class="nav-link" data-scroll-target="#the-logic-behind-constructing-a-confidence-interval">The logic behind constructing a confidence interval</a></li>
-  <li><a href="#confidence-level" id="toc-confidence-level" class="nav-link" data-scroll-target="#confidence-level">Confidence level</a></li>
-  <li><a href="#understanding-the-condidence-interval" id="toc-understanding-the-condidence-interval" class="nav-link" data-scroll-target="#understanding-the-condidence-interval">Understanding the condidence interval</a></li>
-  <li><a href="#sample-size-and-condidence-interval" id="toc-sample-size-and-condidence-interval" class="nav-link" data-scroll-target="#sample-size-and-condidence-interval">Sample size and condidence interval</a></li>
+<li><a href="#the-logic-behind-constructing-a-confidence-interval" id="toc-the-logic-behind-constructing-a-confidence-interval" class="nav-link" data-scroll-target="#the-logic-behind-constructing-a-confidence-interval"><span class="header-section-number">18.1.1</span> The logic behind constructing a confidence interval</a></li>
+  <li><a href="#confidence-level" id="toc-confidence-level" class="nav-link" data-scroll-target="#confidence-level"><span class="header-section-number">18.1.2</span> Confidence level</a></li>
+  <li><a href="#understanding-the-condidence-interval" id="toc-understanding-the-condidence-interval" class="nav-link" data-scroll-target="#understanding-the-condidence-interval"><span class="header-section-number">18.1.3</span> Understanding the condidence interval</a></li>
+  <li><a href="#sample-size-and-condidence-interval" id="toc-sample-size-and-condidence-interval" class="nav-link" data-scroll-target="#sample-size-and-condidence-interval"><span class="header-section-number">18.1.4</span> Sample size and condidence interval</a></li>
   </ul>
 </li>
   <li><a href="#confidence-interval-for-proportion-normal-approximation-method" id="toc-confidence-interval-for-proportion-normal-approximation-method" class="nav-link" data-scroll-target="#confidence-interval-for-proportion-normal-approximation-method"><span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation method)</a></li>
@@ -474,7 +474,8 @@ window.Quarto = {
 <p>&nbsp;</p>
 <section id="confidence-interval-for-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-mean">
 <span class="header-section-number">18.1</span> Confidence interval for mean</h2>
-<section id="the-logic-behind-constructing-a-confidence-interval" class="level3"><h3 class="anchored" data-anchor-id="the-logic-behind-constructing-a-confidence-interval">The logic behind constructing a confidence interval</h3>
+<section id="the-logic-behind-constructing-a-confidence-interval" class="level3" data-number="18.1.1"><h3 data-number="18.1.1" class="anchored" data-anchor-id="the-logic-behind-constructing-a-confidence-interval">
+<span class="header-section-number">18.1.1</span> The logic behind constructing a confidence interval</h3>
 <p>We will base the construction of a confidence interval on two key concepts:</p>
 <ol type="1">
 <li><p>The interval is <strong>around the point estimate</strong>, which represents our best estimate of the population parameter.</p></li>
@@ -526,7 +527,8 @@ Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 [1] 1.203454</code></pre>
 </div>
 </div>
-</section><section id="confidence-level" class="level3"><h3 class="anchored" data-anchor-id="confidence-level">Confidence level</h3>
+</section><section id="confidence-level" class="level3" data-number="18.1.2"><h3 data-number="18.1.2" class="anchored" data-anchor-id="confidence-level">
+<span class="header-section-number">18.1.2</span> Confidence level</h3>
 <p>However, there is no particular reason for choosing a 95% confidence level for constructing confidence intervals other than convention; confidence levels of 90% or 99% are sometimes preferred depending on the context. For example, when a 99% confidence level is chosen, the margin of error for the mean becomes <span class="math inline">\(\pm 2.58 \sigma_{\bar{x}}\)</span> (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -558,7 +560,8 @@ Figure&nbsp;18.2: Sampling distribution of mean and 99% CI.
 </div>
 <p>We observe that a 99% CI provides a higher level of confidence but comes with a wider range (1.07-1.22), while a 95% confidence interval offers a narrower range (1.09-1.20) but with slightly less certainty. Therefore, the increased level of confidence comes at the expense of precision, especially with smaller datasets.</p>
 <p>&nbsp;</p>
-</section><section id="understanding-the-condidence-interval" class="level3"><h3 class="anchored" data-anchor-id="understanding-the-condidence-interval">Understanding the condidence interval</h3>
+</section><section id="understanding-the-condidence-interval" class="level3" data-number="18.1.3"><h3 data-number="18.1.3" class="anchored" data-anchor-id="understanding-the-condidence-interval">
+<span class="header-section-number">18.1.3</span> Understanding the condidence interval</h3>
 <p>The intuitive meaning of “confidence” in a confidence interval might not be immediately clear. To understand what confidence truly represents, let’s consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -587,7 +590,8 @@ Figure&nbsp;18.4: 100 Sample Means of Size 10 (with 95% Intervals) from the Popu
 </div>
 <p>In <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.4</span></a>, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; <span class="math inline">\(\mu\)</span> = 126 mmHg). <strong>This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.</strong></p>
 <p>&nbsp;</p>
-</section><section id="sample-size-and-condidence-interval" class="level3"><h3 class="anchored" data-anchor-id="sample-size-and-condidence-interval">Sample size and condidence interval</h3>
+</section><section id="sample-size-and-condidence-interval" class="level3" data-number="18.1.4"><h3 data-number="18.1.4" class="anchored" data-anchor-id="sample-size-and-condidence-interval">
+<span class="header-section-number">18.1.4</span> Sample size and condidence interval</h3>
 <p>Next, we construct the 95% confidence intervals of 100 randomly generated samples of size 50 from our population (<a href="#fig-intervals2" class="quarto-xref">Figure&nbsp;<span>18.5</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">

@@ -430,20 +430,20 @@ window.Quarto = {
   <li>
 <a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">14.3</span> Discrete Probability Distributions</a>
   <ul class="collapse">
-<li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution">Bernoulli distribution</a></li>
-  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution">Binomial distribution</a></li>
-  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution">Poisson distribution</a></li>
+<li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution"><span class="header-section-number">14.3.1</span> Bernoulli distribution</a></li>
+  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution"><span class="header-section-number">14.3.2</span> Binomial distribution</a></li>
+  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution"><span class="header-section-number">14.3.3</span> Poisson distribution</a></li>
   </ul>
 </li>
   <li>
 <a href="#probability-distributions-for-continuous-outcomes" id="toc-probability-distributions-for-continuous-outcomes" class="nav-link" data-scroll-target="#probability-distributions-for-continuous-outcomes"><span class="header-section-number">14.4</span> Probability distributions for continuous outcomes</a>
   <ul class="collapse">
-<li><a href="#uniform-distribution" id="toc-uniform-distribution" class="nav-link" data-scroll-target="#uniform-distribution">Uniform distribution</a></li>
-  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
-  <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution">Standard Normal distribution</a></li>
-  <li><a href="#chi-square-distribution" id="toc-chi-square-distribution" class="nav-link" data-scroll-target="#chi-square-distribution">Chi-square distribution</a></li>
-  <li><a href="#t-distribution" id="toc-t-distribution" class="nav-link" data-scroll-target="#t-distribution">t-distribution</a></li>
-  <li><a href="#f-distribution" id="toc-f-distribution" class="nav-link" data-scroll-target="#f-distribution">F-distribution</a></li>
+<li><a href="#uniform-distribution" id="toc-uniform-distribution" class="nav-link" data-scroll-target="#uniform-distribution"><span class="header-section-number">14.4.1</span> Uniform distribution</a></li>
+  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution"><span class="header-section-number">14.4.2</span> Normal distribution</a></li>
+  <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution"><span class="header-section-number">14.4.3</span> Standard Normal distribution</a></li>
+  <li><a href="#chi-square-distribution" id="toc-chi-square-distribution" class="nav-link" data-scroll-target="#chi-square-distribution"><span class="header-section-number">14.4.4</span> Chi-square distribution</a></li>
+  <li><a href="#t-distribution" id="toc-t-distribution" class="nav-link" data-scroll-target="#t-distribution"><span class="header-section-number">14.4.5</span> t-distribution</a></li>
+  <li><a href="#f-distribution" id="toc-f-distribution" class="nav-link" data-scroll-target="#f-distribution"><span class="header-section-number">14.4.6</span> F-distribution</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -496,9 +496,11 @@ window.Quarto = {
 <li>continuous if it takes any value in some interval on the real numbers</li>
 </ul>
 <p>For example, a random variable representing the ABO blood system (A, B, AB, or O blood type) would be discrete, while a random variable representing the height of a person in centimeters would be continuous.</p>
+<div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
 <p>Suppose the X random variable for blood type is explicitly defined as follows:</p>
 <p><span class="math display">\[X={\begin{cases}1, &amp;for\ blood\ type\ A\\2, &amp;for\ blood\ type\ B\\3, &amp;for\ blood\ type\ AB\\4, &amp;for\ blood\ type\ O\end{cases}}\]</span></p>
+</div>
 <p>That is, X is the discrete random variable that has four possible outcomes; it takes the value 1 if the person has blood type A, 2 if the person has blood type B, 3 if the person has blood type AB, and 4 if the person has blood type O.</p>
 <p>We can also find the <strong>probability distribution</strong> that describes the probability of different possible values of random variable X. Note that the probability axioms and properties that we discussed earlier are also applied to random variables (e.g., the total probability for all possible values of a random variable equals to one).</p>
 <p>Probability distributions are often presented using probability tables or graphs. For example, assume that the individual probabilities for different blood types in a population are P(A) = 0.41, P(B) = 0.10, P(AB) = 0.04, and P(O) = 0.45 (Note that: P(A) + P(B) + P(AB) + P(O) = 0.41 + 0.10 + 0.04 + 0.45 = 1).</p>
@@ -527,9 +529,7 @@ window.Quarto = {
 </tr>
 </tbody></table>
 <p>Here, x denotes a specific value (i.e.&nbsp;1, 2, 3, or 4) of the random variable X. Then, instead of saying P(A) = 0.41, i.e., the blood type is A with probability 0.41, we can say that P(X = 1) = 0.41, i.e., X is equal to 1 with probability of 0.41.</p>
-<p><br></p>
-<p>We can use the probability distribution to answer probability questions:</p>
-<p><strong>What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?</strong></p>
+<p>We can use the probability distribution to answer probability questions. For example, what is the probability that a randomly selected person from the population can donate blood to someone with type B blood?</p>
 <p>We know that individuals with blood type B or O can donate to a person with blood type B (<a href="#fig-bloodtypes" class="quarto-xref">Figure&nbsp;<span>14.1</span></a>).</p>
 <div class="cell">
 <details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data in a form of a matrix</span></span>
@@ -557,9 +557,22 @@ Figure&nbsp;14.1: Blood types matching for a safe transfusion.
 <p>Therefore, we need to find the probability P(blood type B OR blood type O). Since the events blood type B or blood type O are mutually exclusive, we can use the addition rule for mutually exclusive events to get:</p>
 <p><span class="math display">\[ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 0.55}\]</span></p>
 <p>Hence, there is a 55% chance that a randomly selected person in our population can donate blood to someone with type B blood.</p>
-<p>&nbsp;</p>
+<div class="content-box-blue">
 <p>There are several types of probability distributions, and they can be broadly categorized into two main groups: <strong>discrete probability distributions</strong> and <strong>continuous probability distributions</strong>.</p>
-<p><strong>NOTE:</strong> Degrees of freedom (i.e., the number of parameters that are free to vary) are intrinsic to these distributions, influencing their shapes, properties, and applications in statistical analysis. For instance, in the chi-square, t, and F distributions, degrees of freedom determine their characteristics.</p>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"></path></svg> INFO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Degrees of freedom (i.e., the number of parameters that are free to vary) are intrinsic to probability distributions, influencing their shapes, properties, and applications in statistical analysis. For instance, in the chi-square, t, and F distributions, degrees of freedom determine their characteristics.</p>
+</div>
+</div>
 </section><section id="discrete-probability-distributions" class="level2 page-columns page-full" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="discrete-probability-distributions">
 <span class="header-section-number">14.3</span> Discrete Probability Distributions</h2>
 <p>The probability distribution of a discrete random variable X is defined by the <strong>probability mass function</strong> (pmf) as:</p>
@@ -595,7 +608,8 @@ Figure&nbsp;14.1: Blood types matching for a safe transfusion.
 <p>The standard deviation is the square root of the variance.</p>
 <p><span class="math inline">\(\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}\)</span></p>
 </div>
-<section id="bernoulli-distribution" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="bernoulli-distribution">Bernoulli distribution</h3>
+<section id="bernoulli-distribution" class="level3 page-columns page-full" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="bernoulli-distribution">
+<span class="header-section-number">14.3.1</span> Bernoulli distribution</h3>
 <p>A random experiment with two possible outcomes, generally referred to as success (x = 1) and failure (x = 0), is called a <strong>Bernoulli trial</strong>.</p>
 <p>Let X be a binary random variable of a Bernoulli trial which takes the value 1 (success) with probability p and 0 (failure) with probability 1-p.&nbsp;The distribution of the X variable is called Bernoulli distribution with parameter p, denoted as <span class="math inline">\(X ∼ Bernoulli(p)\)</span>, where <span class="math inline">\({0\leq p\leq 1}\)</span>.</p>
 <ul>
@@ -736,9 +750,8 @@ Figure&nbsp;14.3: Plot of the cdf for Bernoulli(0.7) distribution.
 <p>&nbsp;</p>
 <ul>
 <li>The mean is <span class="math inline">\(\mu\)</span> = p = 0.7 and the variance is <span class="math inline">\(\sigma^2\)</span> = 0.7(1-0.7)= 0.7<span class="math inline">\(\cdot\)</span> 0.3 = 0.21.</li>
-</ul>
-<p>&nbsp;</p>
-</section><section id="binomial-distribution" class="level3"><h3 class="anchored" data-anchor-id="binomial-distribution">Binomial distribution</h3>
+</ul></section><section id="binomial-distribution" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="binomial-distribution">
+<span class="header-section-number">14.3.2</span> Binomial distribution</h3>
 <p>The binomial probability distribution can be used for modeling the number of times a particular event occurs (successes) in a sequence of <em>n</em> repeated and independent Bernoulli trials, each with probability <em>p</em> of success.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -913,12 +926,9 @@ Figure&nbsp;14.5: Plot of the cdf for Binomial(10, 0.7) distribution.
 <ul>
 <li>The mean is <span class="math inline">\(\mu\)</span> = n p = 10 <span class="math inline">\(\cdot\)</span> 0.7 = 7 successful surgeries and the variance is <span class="math inline">\(\sigma^2\)</span> = n p (1-p) = 10 <span class="math inline">\(\cdot\)</span> 0.7 <span class="math inline">\(\cdot\)</span> 0.3 = 2.1</li>
 </ul>
-<p><br></p>
-<p><strong>What is the probability that more than 8 of 10 surgical procedures are successful?</strong></p>
-<p>We want to calculate the P(X &gt; 8):</p>
+<p>Let’s calculate the probability of having having more than 8 successful surgical procedures out of a total of 10. Therefore, we want to calculate the probability P(X &gt; 8):</p>
 <p><span class="math display">\[ P(X &gt; 8)= P(X = 9) + P(X = 10) = {{10}\choose{9}} \cdot 0.7^9 \cdot 0.3^1 + {{10}\choose{10}} \cdot 0.7^{10} \cdot 0.3^0 \Rightarrow \]</span></p>
 <p><span class="math display">\[ P(X &gt; 8)= 10 \cdot 0.04035 \cdot 0.3 + 1 \cdot 0.02824 = 0.12105 + 0.02825 = 0.1493\]</span></p>
-<p>&nbsp;</p>
 <p>In R, we can calculate the probabilities P(X = 9) and P(X = 10) by applying the function <code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code> and adding the results:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p9</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">9</span>, size<span class="op">=</span><span class="fl">10</span>, prob<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span>
@@ -936,7 +946,6 @@ Figure&nbsp;14.5: Plot of the cdf for Binomial(10, 0.7) distribution.
 <pre data-code-line-numbers=""><code>[1] 0.1493083</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
 <p>Of note, another way to find the above probability is to calculate the 1-P(X ≤ 8):</p>
 <div class="cell">
 <div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">8</span>, size<span class="op">=</span><span class="fl">10</span>, prob<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -944,7 +953,8 @@ Figure&nbsp;14.5: Plot of the cdf for Binomial(10, 0.7) distribution.
 <pre data-code-line-numbers=""><code>[1] 0.1493083</code></pre>
 </div>
 </div>
-</section><section id="poisson-distribution" class="level3"><h3 class="anchored" data-anchor-id="poisson-distribution">Poisson distribution</h3>
+</section><section id="poisson-distribution" class="level3" data-number="14.3.3"><h3 data-number="14.3.3" class="anchored" data-anchor-id="poisson-distribution">
+<span class="header-section-number">14.3.3</span> Poisson distribution</h3>
 <p>While a random variable with a Binomial distribution describes a count variable (e.g., number of successful surgeries), its range is restricted to whole numbers from 0 to <em>n</em>. For example, in a set of 10 surgical procedures (n = 10), the number of successful surgeries cannot surpass 10.</p>
 <p>Now, let’s suppose that we are are interested in the number of successful surgeries per month in a particular specialty within a hospital. Theoretically, in this case, it is possible for the values to extend indefinitely without a predetermined upper limit.</p>
 <p>Therefore, using the Poisson distribution, we can estimate the probability of observing a certain number of successful surgeries in a given month.</p>
@@ -1119,9 +1129,7 @@ Figure&nbsp;14.7: Plot of the pmf for Poisson(2.5) distribution.
 <ul>
 <li>The mean and variance of this variable are <span class="math inline">\(\mu\)</span>= 2.5 and <span class="math inline">\(\sigma^2\)</span> = 2.5, respectively.</li>
 </ul>
-<p>&nbsp;</p>
-<p><strong>What is the probability of up to four successful heart transplant surgeries per week?</strong></p>
-<p>We want to calculate the cumulative probability <span class="math inline">\(P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}\)</span>. In practice, we can add the individual probabilities from the <a href="#tbl-table_poisson" class="quarto-xref">Table&nbsp;<span>14.2</span></a> for the corresponding outcomes:</p>
+<p>Let’s calculate the probability of up to four successful heart transplant surgeries per week. Therefore, we want to calculate the cumulative probability <span class="math inline">\(P(X \le 4)= \sum_{k=0}^4 \frac {\lambda ^{k}e^{-\lambda }}{k!}\)</span>. In practice, we can add the individual probabilities from the <a href="#tbl-table_poisson" class="quarto-xref">Table&nbsp;<span>14.2</span></a> for the corresponding outcomes:</p>
 <p>P(X ≤ 4) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4) = 0.082 + 0.205 + 0.257 + 0.214 + 0.134 = 0.892.</p>
 <p>In R, we can calculate this probability by applying the function <code><a href="https://rdrr.io/r/stats/Poisson.html">ppois()</a></code>:</p>
 <div class="cell">
@@ -1131,7 +1139,6 @@ Figure&nbsp;14.7: Plot of the pmf for Poisson(2.5) distribution.
 </div>
 </div>
 <p>So, the probability of up to four successful heart transplant surgeries per week in the specialized cardiac center is approximately 0.89 or 89%.</p>
-<p>&nbsp;</p>
 </section></section><section id="probability-distributions-for-continuous-outcomes" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="probability-distributions-for-continuous-outcomes">
 <span class="header-section-number">14.4</span> Probability distributions for continuous outcomes</h2>
 <p>Unlike discrete random variables, which have a probability mass function (pmf) that assigns probabilities to individual values, <strong>continuous random variables</strong> have a <strong>probability density function</strong> (pdf), denoted as f(x), which satisfies the following properties:</p>
@@ -1219,8 +1226,8 @@ Note
 <p>The standard deviation is often preferred over the variance because it is in the same units as the random variable.</p>
 <p><span class="math inline">\(\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}\)</span></p>
 </div>
-<p>&nbsp;</p>
-<section id="uniform-distribution" class="level3"><h3 class="anchored" data-anchor-id="uniform-distribution">Uniform distribution</h3>
+<section id="uniform-distribution" class="level3" data-number="14.4.1"><h3 data-number="14.4.1" class="anchored" data-anchor-id="uniform-distribution">
+<span class="header-section-number">14.4.1</span> Uniform distribution</h3>
 <p>The simplest continuous probability distribution is the uniform distribution.<br>
 Let X be a continuous random variable that follows the uniform distribution with parameters the minimum value <span class="math inline">\(a\)</span> and the maximum value <span class="math inline">\(b\)</span> (<span class="math inline">\(a &lt; b\)</span>), <span class="math inline">\(X ∼ Uniform(\alpha,b)\)</span></p>
 <ul>
@@ -1373,8 +1380,8 @@ Figure&nbsp;14.11: Plot of the cdf for Poisson(2.5) distribution.
 0.48 0.52 </code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
-</section><section id="normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
+</section><section id="normal-distribution" class="level3" data-number="14.4.2"><h3 data-number="14.4.2" class="anchored" data-anchor-id="normal-distribution">
+<span class="header-section-number">14.4.2</span> Normal distribution</h3>
 <p>A normal distribution, also known as a Gaussian distribution, is a fundamental concept in statistics and probability theory and is defined by two parameters: the mean (μ) and the standard deviation (σ) (see <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 <ul>
 <li>The probability density function (pdf) of <span class="math inline">\(X ∼ Normal(μ, σ^2)\)</span> is given by:</li>
@@ -1537,8 +1544,8 @@ Figure&nbsp;14.16: Plot of the distribution.
 <pre data-code-line-numbers=""><code>[1] 0.6826895</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
-</section><section id="standard-normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="standard-normal-distribution">Standard Normal distribution</h3>
+</section><section id="standard-normal-distribution" class="level3" data-number="14.4.3"><h3 data-number="14.4.3" class="anchored" data-anchor-id="standard-normal-distribution">
+<span class="header-section-number">14.4.3</span> Standard Normal distribution</h3>
 <p>If X is a random variable with a normal distribution having a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span>, then the standardized Normal deviate can be expressed as:</p>
 <p><span id="eq-z"><span class="math display">\[ z= \frac{x-\mu}{\sigma}  \tag{14.25}\]</span></span></p>
 <p>The z (often called z-score) is a random variable that has a Standard Normal distribution, also called a z-distribution, i.e.&nbsp;a special normal distribution where <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. In this case, <a href="#eq-gauss" class="quarto-xref">Equation&nbsp;<span>14.23</span></a> is transformed as follows:</p>
@@ -1605,8 +1612,8 @@ Figure&nbsp;14.18: The Standard Normal Distribution
 <pre data-code-line-numbers=""><code>[1] 0.4772499</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
-</section><section id="chi-square-distribution" class="level3"><h3 class="anchored" data-anchor-id="chi-square-distribution">Chi-square distribution</h3>
+</section><section id="chi-square-distribution" class="level3" data-number="14.4.4"><h3 data-number="14.4.4" class="anchored" data-anchor-id="chi-square-distribution">
+<span class="header-section-number">14.4.4</span> Chi-square distribution</h3>
 <p>The chi-square distribution arises in various contexts, such as the chi-square test for independence in <a href="chi_square.html" class="quarto-xref"><span>Chapter 30</span></a>.</p>
 <p>Let <span class="math inline">\(Z_1, Z_2,..., Z_{\nu}\)</span> be independent random variables that follow the standard normal distribution N(0,1). Then, the sum of the squares of these standard normal random variables, <span class="math inline">\(U=\sum_{i=1}^n Z_i^2\)</span>, follows the chi-squared distribution with <span class="math inline">\(\nu\)</span> degrees of freedom, <span class="math inline">\(U \sim\chi_\nu^2\)</span>.</p>
 <p>Therefore, the chi-squared distribution is determined by a single parameter, <span class="math inline">\(\nu\)</span>, which specifies the degrees of freedom (the number of random variables Z being summed). For example, the square of a standard normal variable follows the chi-square distribution with one degree of freedom, <span class="math inline">\(U = Z_{1}^2 \sim \chi_1^2\)</span>.</p>
@@ -1640,8 +1647,8 @@ Figure&nbsp;14.19: Family of chi-Square distributions
 </div>
 </div>
 <p><strong>NOTE:</strong> When <span class="math inline">\(\nu\)</span> is large, the shape of the chi-square distribution becomes increasingly similar to that of a normal distribution.</p>
-<p>&nbsp;</p>
-</section><section id="t-distribution" class="level3"><h3 class="anchored" data-anchor-id="t-distribution">t-distribution</h3>
+</section><section id="t-distribution" class="level3" data-number="14.4.5"><h3 data-number="14.4.5" class="anchored" data-anchor-id="t-distribution">
+<span class="header-section-number">14.4.5</span> t-distribution</h3>
 <p>The t-distribution, also known as the Student’s t-distribution, is very similar to standard normal distribution and is used in statistics when the sample size is small or when the population standard deviation is unknown.</p>
 <p>The Student’s t statistic is defined from the formula:</p>
 <p><span class="math display">\[ T = \frac{Z}{\sqrt\frac{{U}}{\nu}} \]</span></p>
@@ -1722,8 +1729,8 @@ Figure&nbsp;14.21: t-distribution with df=3 Vs Standard Normal distribution
 <pre data-code-line-numbers=""><code>[1] 3.182446</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
-</section><section id="f-distribution" class="level3"><h3 class="anchored" data-anchor-id="f-distribution">F-distribution</h3>
+</section><section id="f-distribution" class="level3" data-number="14.4.6"><h3 data-number="14.4.6" class="anchored" data-anchor-id="f-distribution">
+<span class="header-section-number">14.4.6</span> F-distribution</h3>
 <p>Let U and V be independent random variables that follow the <span class="math inline">\(\chi_{\nu_1}^2\)</span> and <span class="math inline">\(\chi_{\nu_2}^2\)</span>, respectively. Then, the random variable:</p>
 <p><span class="math display">\[F = \frac{U / \nu_1}{V / \nu_2} \]</span></p>
 <p>follows the F-distribution with <span class="math inline">\(\nu_1\)</span> and <span class="math inline">\(\nu_2\)</span> degrees of freedom, <span class="math inline">\(F \sim F_{\nu_1, \nu_2}\)</span>.</p>

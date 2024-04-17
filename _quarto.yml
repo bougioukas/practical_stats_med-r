@@ -85,12 +85,12 @@ format:
       sidebar-width: 270px
       body-width: 840px
       margin-width: 250px
-    fontsize: 1.25em
-    linestretch: 1.8
+    fontsize: 1.22em
+    linestretch: 1.5
     toc-title: "On this page"
     link-external-newwindow: true
     code-link: true
-    number-depth: 2
+    number-depth: 3
     code-overflow: scroll
     html-math-method: mathjax
   

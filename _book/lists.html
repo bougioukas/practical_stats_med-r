@@ -404,9 +404,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#subsetting-a-list" id="toc-subsetting-a-list" class="nav-link" data-scroll-target="#subsetting-a-list"><span class="header-section-number">9.2</span> Subsetting a list</a>
   <ul class="collapse">
-<li><a href="#subset-list-and-preserve-output-as-a-list" id="toc-subset-list-and-preserve-output-as-a-list" class="nav-link" data-scroll-target="#subset-list-and-preserve-output-as-a-list">Subset list and preserve output as a list</a></li>
-  <li><a href="#subset-list-and-simplify-the-output" id="toc-subset-list-and-simplify-the-output" class="nav-link" data-scroll-target="#subset-list-and-simplify-the-output">Subset list and simplify the output</a></li>
-  <li><a href="#subset-list-to-get-individual-elements-out-of-a-list-item" id="toc-subset-list-to-get-individual-elements-out-of-a-list-item" class="nav-link" data-scroll-target="#subset-list-to-get-individual-elements-out-of-a-list-item">Subset list to get individual elements out of a list item</a></li>
+<li><a href="#subset-list-and-preserve-output-as-a-list" id="toc-subset-list-and-preserve-output-as-a-list" class="nav-link" data-scroll-target="#subset-list-and-preserve-output-as-a-list"><span class="header-section-number">9.2.1</span> Subset list and preserve output as a list</a></li>
+  <li><a href="#subset-list-and-simplify-the-output" id="toc-subset-list-and-simplify-the-output" class="nav-link" data-scroll-target="#subset-list-and-simplify-the-output"><span class="header-section-number">9.2.2</span> Subset list and simplify the output</a></li>
+  <li><a href="#subset-list-to-get-individual-elements-out-of-a-list-item" id="toc-subset-list-to-get-individual-elements-out-of-a-list-item" class="nav-link" data-scroll-target="#subset-list-to-get-individual-elements-out-of-a-list-item"><span class="header-section-number">9.2.3</span> Subset list to get individual elements out of a list item</a></li>
   </ul>
 </li>
   <li><a href="#unlist-a-list" id="toc-unlist-a-list" class="nav-link" data-scroll-target="#unlist-a-list"><span class="header-section-number">9.3</span> Unlist a list</a></li>
@@ -414,9 +414,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">9.5</span> Data frames</a>
   <ul class="collapse">
-<li><a href="#creating-a-data-frame-with-tibble" id="toc-creating-a-data-frame-with-tibble" class="nav-link" data-scroll-target="#creating-a-data-frame-with-tibble">Creating a data frame with <code>tibble()</code></a></li>
-  <li><a href="#accessing-variables-in-a-data-frame" id="toc-accessing-variables-in-a-data-frame" class="nav-link" data-scroll-target="#accessing-variables-in-a-data-frame">Accessing variables in a data frame</a></li>
-  <li><a href="#converting-to-the-appropriate-data-type" id="toc-converting-to-the-appropriate-data-type" class="nav-link" data-scroll-target="#converting-to-the-appropriate-data-type">Converting to the appropriate data type</a></li>
+<li><a href="#creating-a-data-frame-with-tibble" id="toc-creating-a-data-frame-with-tibble" class="nav-link" data-scroll-target="#creating-a-data-frame-with-tibble"><span class="header-section-number">9.5.1</span> Creating a data frame with <code>tibble()</code></a></li>
+  <li><a href="#accessing-variables-in-a-data-frame" id="toc-accessing-variables-in-a-data-frame" class="nav-link" data-scroll-target="#accessing-variables-in-a-data-frame"><span class="header-section-number">9.5.2</span> Accessing variables in a data frame</a></li>
+  <li><a href="#converting-to-the-appropriate-data-type" id="toc-converting-to-the-appropriate-data-type" class="nav-link" data-scroll-target="#converting-to-the-appropriate-data-type"><span class="header-section-number">9.5.3</span> Converting to the appropriate data type</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -505,7 +505,8 @@ $TF
 <p>&nbsp;</p>
 </section><section id="subsetting-a-list" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="subsetting-a-list">
 <span class="header-section-number">9.2</span> Subsetting a list</h2>
-<section id="subset-list-and-preserve-output-as-a-list" class="level3"><h3 class="anchored" data-anchor-id="subset-list-and-preserve-output-as-a-list">Subset list and preserve output as a list</h3>
+<section id="subset-list-and-preserve-output-as-a-list" class="level3" data-number="9.2.1"><h3 data-number="9.2.1" class="anchored" data-anchor-id="subset-list-and-preserve-output-as-a-list">
+<span class="header-section-number">9.2.1</span> Subset list and preserve output as a list</h3>
 <p>We can use the extraction operator <code>[ ]</code> to extract one or more list items while preserving the output in list format:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>    <span class="co"># extract the second list item (indexing by position)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -533,7 +534,8 @@ $TF
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="subset-list-and-simplify-the-output" class="level3"><h3 class="anchored" data-anchor-id="subset-list-and-simplify-the-output">Subset list and simplify the output</h3>
+</section><section id="subset-list-and-simplify-the-output" class="level3" data-number="9.2.2"><h3 data-number="9.2.2" class="anchored" data-anchor-id="subset-list-and-simplify-the-output">
+<span class="header-section-number">9.2.2</span> Subset list and simplify the output</h3>
 <p>We can use the <code>[[ ]]</code> to extract one or more list items while simplifying the output:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>   <span class="co"># extract the second list item and simplify it to a vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -571,7 +573,8 @@ Simplifying Vs Preserving subsetting
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="subset-list-to-get-individual-elements-out-of-a-list-item" class="level3"><h3 class="anchored" data-anchor-id="subset-list-to-get-individual-elements-out-of-a-list-item">Subset list to get individual elements out of a list item</h3>
+</section><section id="subset-list-to-get-individual-elements-out-of-a-list-item" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="subset-list-to-get-individual-elements-out-of-a-list-item">
+<span class="header-section-number">9.2.3</span> Subset list to get individual elements out of a list item</h3>
 <p>To extract individual elements out of a specific list item combine the <code>[[ ]]</code> (or $) operator with the <code>[ ]</code> operator:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_list</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>          <span class="co"># using the index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -693,7 +696,8 @@ Data frame
 <p>Various disciplines have different terms for the rows and columns in a data frame, such as observations and variables, records and fields, or examples and attributes. In this textbook, we will consistently use the terms <strong>“observations”</strong> and <strong>“variables”</strong>. Data in variables can be either categorical (categorical variables) or numerical (numerical variables) (see also the <a href="introduction.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
 </div>
 </div>
-<section id="creating-a-data-frame-with-tibble" class="level3"><h3 class="anchored" data-anchor-id="creating-a-data-frame-with-tibble">Creating a data frame with <code>tibble()</code>
+<section id="creating-a-data-frame-with-tibble" class="level3" data-number="9.5.1"><h3 data-number="9.5.1" class="anchored" data-anchor-id="creating-a-data-frame-with-tibble">
+<span class="header-section-number">9.5.1</span> Creating a data frame with <code>tibble()</code>
 </h3>
 <p>We will create a small fictional dataframe with eight rows based on the following information:</p>
 <div class="content-box-gray">
@@ -765,7 +769,8 @@ $names
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="accessing-variables-in-a-data-frame" class="level3"><h3 class="anchored" data-anchor-id="accessing-variables-in-a-data-frame">Accessing variables in a data frame</h3>
+</section><section id="accessing-variables-in-a-data-frame" class="level3" data-number="9.5.2"><h3 data-number="9.5.2" class="anchored" data-anchor-id="accessing-variables-in-a-data-frame">
+<span class="header-section-number">9.5.2</span> Accessing variables in a data frame</h3>
 <p>In R, we can access variables in a data frame just like items in a list by using their names or indices. For example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb57" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">[[</span><span class="st">"age"</span><span class="op">]</span><span class="op">]</span></span>
@@ -797,7 +802,8 @@ $names
 </div>
 </div>
 <p>&nbsp;</p>
-</section><section id="converting-to-the-appropriate-data-type" class="level3"><h3 class="anchored" data-anchor-id="converting-to-the-appropriate-data-type">Converting to the appropriate data type</h3>
+</section><section id="converting-to-the-appropriate-data-type" class="level3" data-number="9.5.3"><h3 data-number="9.5.3" class="anchored" data-anchor-id="converting-to-the-appropriate-data-type">
+<span class="header-section-number">9.5.3</span> Converting to the appropriate data type</h3>
 <p>It’s critical to investigate the column’s data type and convert it to the appropriate type for analysis if necessary. Often we use the <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function in order to have a quick look at the structure of the data frame:</p>
 <div class="cell">
 <div class="sourceCode" id="cb65" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -1,12 +1,6 @@
 /*-- scss:defaults --*/
 
 
-$h1-font-size: 2.0rem;
-$h2-font-size: 1.4rem;
-$h3-font-size: 1.2rem;
-$h4-font-size: 1.1rem;
-
-
 // Base document colors
 $link-color: #288BAB;
 $code-block-bg: #EDEFF1;
@@ -55,11 +49,15 @@ img.quarto-cover-image {
 }
 
 
-h2{
-  margin-top: 2em;
+h2 {
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
-
+h3 { margin-top: 1.5em; font-size: 1.2rem; font-weight: 500; }
+h4 { margin-top: 1.5em; font-size: 1.1rem; font-weight: 500; }
+h5 { margin-top: 1.5em; font-size: 1rem; }
 
 
 .quarto-section-identifier {

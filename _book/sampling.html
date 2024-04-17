@@ -448,17 +448,17 @@ window.Quarto = {
 <li>
 <a href="#population-sample-and-point-estimation" id="toc-population-sample-and-point-estimation" class="nav-link active" data-scroll-target="#population-sample-and-point-estimation"><span class="header-section-number">17.1</span> Population, sample, and point estimation</a>
   <ul class="collapse">
-<li><a href="#population-and-parameters" id="toc-population-and-parameters" class="nav-link" data-scroll-target="#population-and-parameters">Population and parameters</a></li>
-  <li><a href="#sample-and-sample-statistics" id="toc-sample-and-sample-statistics" class="nav-link" data-scroll-target="#sample-and-sample-statistics">Sample and sample statistics</a></li>
-  <li><a href="#error-in-the-estimate" id="toc-error-in-the-estimate" class="nav-link" data-scroll-target="#error-in-the-estimate">Error in the estimate</a></li>
+<li><a href="#population-and-parameters" id="toc-population-and-parameters" class="nav-link" data-scroll-target="#population-and-parameters"><span class="header-section-number">17.1.1</span> Population and parameters</a></li>
+  <li><a href="#sample-and-sample-statistics" id="toc-sample-and-sample-statistics" class="nav-link" data-scroll-target="#sample-and-sample-statistics"><span class="header-section-number">17.1.2</span> Sample and sample statistics</a></li>
+  <li><a href="#error-in-the-estimate" id="toc-error-in-the-estimate" class="nav-link" data-scroll-target="#error-in-the-estimate"><span class="header-section-number">17.1.3</span> Error in the estimate</a></li>
   </ul>
 </li>
   <li>
 <a href="#sampling-distribution" id="toc-sampling-distribution" class="nav-link" data-scroll-target="#sampling-distribution"><span class="header-section-number">17.2</span> Sampling distribution</a>
   <ul class="collapse">
-<li><a href="#what-is-a-sampling-distribution" id="toc-what-is-a-sampling-distribution" class="nav-link" data-scroll-target="#what-is-a-sampling-distribution">What is a Sampling Distribution?</a></li>
-  <li><a href="#standard-error-of-the-mean-sem" id="toc-standard-error-of-the-mean-sem" class="nav-link" data-scroll-target="#standard-error-of-the-mean-sem">Standard Error of the mean (SEM)</a></li>
-  <li><a href="#properties-of-the-distribution-of-sample-means" id="toc-properties-of-the-distribution-of-sample-means" class="nav-link" data-scroll-target="#properties-of-the-distribution-of-sample-means">Properties of the distribution of sample means</a></li>
+<li><a href="#what-is-a-sampling-distribution" id="toc-what-is-a-sampling-distribution" class="nav-link" data-scroll-target="#what-is-a-sampling-distribution"><span class="header-section-number">17.2.1</span> What is a Sampling Distribution?</a></li>
+  <li><a href="#standard-error-of-the-mean-sem" id="toc-standard-error-of-the-mean-sem" class="nav-link" data-scroll-target="#standard-error-of-the-mean-sem"><span class="header-section-number">17.2.2</span> Standard Error of the mean (SEM)</a></li>
+  <li><a href="#properties-of-the-distribution-of-sample-means" id="toc-properties-of-the-distribution-of-sample-means" class="nav-link" data-scroll-target="#properties-of-the-distribution-of-sample-means"><span class="header-section-number">17.2.3</span> Properties of the distribution of sample means</a></li>
   </ul>
 </li>
   <li><a href="#central-limit-theorem-clm-for-sample-means" id="toc-central-limit-theorem-clm-for-sample-means" class="nav-link" data-scroll-target="#central-limit-theorem-clm-for-sample-means"><span class="header-section-number">17.3</span> Central Limit Theorem (CLM) for sample means</a></li>
@@ -500,11 +500,13 @@ window.Quarto = {
 <p>&nbsp;</p>
 <section id="population-sample-and-point-estimation" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="population-sample-and-point-estimation">
 <span class="header-section-number">17.1</span> Population, sample, and point estimation</h2>
-<section id="population-and-parameters" class="level3"><h3 class="anchored" data-anchor-id="population-and-parameters">Population and parameters</h3>
+<section id="population-and-parameters" class="level3" data-number="17.1.1"><h3 data-number="17.1.1" class="anchored" data-anchor-id="population-and-parameters">
+<span class="header-section-number">17.1.1</span> Population and parameters</h3>
 <p>In statistics, a <strong>population</strong> refers to a theoretical concept representing the complete collection of individuals (which may not necessarily be people) sharing specific defining characteristics. Examples are the population of all patients with diabetes mellitus, all people with depression, or the population of all middle-aged women.</p>
 <p>Researchers are particularly interested in quantities such as the population mean and population variance of random variables (characteristics) within these populations. These values are typically not directly observable and are denoted as <strong>parameters</strong> in statistical analysis. We use Greek lowercase letters for parameters, such as <span class="math inline">\(μ\)</span> and <span class="math inline">\(σ^2\)</span>, to represent the population mean and variance, respectively. For example, researchers want to know what the mean depression score for the population would be if all people with depression were treated with a new anti-depression treatment.</p>
 <p>&nbsp;</p>
-</section><section id="sample-and-sample-statistics" class="level3"><h3 class="anchored" data-anchor-id="sample-and-sample-statistics">Sample and sample statistics</h3>
+</section><section id="sample-and-sample-statistics" class="level3" data-number="17.1.2"><h3 data-number="17.1.2" class="anchored" data-anchor-id="sample-and-sample-statistics">
+<span class="header-section-number">17.1.2</span> Sample and sample statistics</h3>
 <p>In practice, researchers encounter constraints in resources and time, particularly when dealing with large or inaccessible populations, making it impractical to study each individual within the population (e.g., every individual with depression in the world). As a result, obtaining an exact value of a population parameter is typically unattainable. Instead, researchers analyze a <strong>sample</strong>, a subset of the population intended to be representative. In such cases, a point estimator is utilized to calculate an estimate of the unknown parameter based on the measurements obtained from the sample. For example, a <strong>sample statistic</strong> such as the sample mean can serve as an estimator for the population mean.</p>
 <div class="content-box-blue">
 <p><strong>Random sample</strong></p>
@@ -524,7 +526,8 @@ Figure&nbsp;17.1: dfsfsd
 <p><strong>Point estimation</strong></p>
 <p>Point estimation is a statistical method used to estimate an unknown parameter of a population based on data collected from a sample. The objective of point estimation is to find a single, best guess or <strong>estimate</strong> for the value of the parameter. Common point estimators include the sample mean for the population mean and sample variance for the population variance.</p>
 </div>
-</section><section id="error-in-the-estimate" class="level3"><h3 class="anchored" data-anchor-id="error-in-the-estimate">Error in the estimate</h3>
+</section><section id="error-in-the-estimate" class="level3" data-number="17.1.3"><h3 data-number="17.1.3" class="anchored" data-anchor-id="error-in-the-estimate">
+<span class="header-section-number">17.1.3</span> Error in the estimate</h3>
 <p>The difference between the point estimate and the population parameter is referred to as the <strong>error</strong> in the estimate. This error constitutes a “total” error, comprised of two components:</p>
 <p><span id="eq-total_error"><span class="math display">\[total \ error = bias + sampling \ error \tag{17.1}\]</span></span></p>
 <ul>
@@ -536,7 +539,8 @@ Figure&nbsp;17.1: dfsfsd
 </div>
 </section></section><section id="sampling-distribution" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="sampling-distribution">
 <span class="header-section-number">17.2</span> Sampling distribution</h2>
-<section id="what-is-a-sampling-distribution" class="level3"><h3 class="anchored" data-anchor-id="what-is-a-sampling-distribution">What is a Sampling Distribution?</h3>
+<section id="what-is-a-sampling-distribution" class="level3" data-number="17.2.1"><h3 data-number="17.2.1" class="anchored" data-anchor-id="what-is-a-sampling-distribution">
+<span class="header-section-number">17.2.1</span> What is a Sampling Distribution?</h3>
 <p>Suppose a hospital is interested in finding out the average blood pressure (BP) of its diabetic patients, but measuring each patient is impractical. Instead, they randomly selected <em>n</em> patients from this group and measured their BP. The resulting average BP for this sample, let’s say <span class="math inline">\(\bar{x_1} = 130\)</span> mmHg, represents one sample mean (<a href="#fig-sample1" class="quarto-xref">Figure&nbsp;<span>17.2</span></a>).</p>
 <div id="fig-sample1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -594,7 +598,8 @@ Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean
 </figure>
 </div>
 <p>&nbsp;</p>
-</section><section id="standard-error-of-the-mean-sem" class="level3"><h3 class="anchored" data-anchor-id="standard-error-of-the-mean-sem">Standard Error of the mean (SEM)</h3>
+</section><section id="standard-error-of-the-mean-sem" class="level3" data-number="17.2.2"><h3 data-number="17.2.2" class="anchored" data-anchor-id="standard-error-of-the-mean-sem">
+<span class="header-section-number">17.2.2</span> Standard Error of the mean (SEM)</h3>
 <p>The standard deviation of the sampling distribution is known as the standard error (SE). There are multiple formulas for standard error depending on what is our sampling distribution. For example, the standard error of the mean (SEM) is the population σ divided by the square root of the sample size n:</p>
 <p><span id="eq-se"><span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \tag{17.2}\]</span></span></p>
 <p>However, we usually do not know the population parameter σ; therefore, we use the sample standard deviation s, as it is an estimator of the population standard deviation.</p>
@@ -618,7 +623,8 @@ Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean
 <p>Noteworthy, the standard error is essential in constructing <strong>confidence intervals</strong> around point estimates, a process known as interval estimation.</p>
 </blockquote>
 <p>&nbsp;</p>
-</section><section id="properties-of-the-distribution-of-sample-means" class="level3"><h3 class="anchored" data-anchor-id="properties-of-the-distribution-of-sample-means">Properties of the distribution of sample means</h3>
+</section><section id="properties-of-the-distribution-of-sample-means" class="level3" data-number="17.2.3"><h3 data-number="17.2.3" class="anchored" data-anchor-id="properties-of-the-distribution-of-sample-means">
+<span class="header-section-number">17.2.3</span> Properties of the distribution of sample means</h3>
 <p>Consider a population of 100,000 adults, characterized by a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10. Now, imagine that the distribution of their BP reveals an intriguing bimodal pattern, as visually depicted in <a href="#fig-pop0" class="quarto-xref">Figure&nbsp;<span>17.4</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">

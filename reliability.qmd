@@ -23,9 +23,9 @@ When we have finished this Chapter, we should be able to:
 
 Two distinct types of reliability are used: the relative and absolute reliability (agreement) [@kottner2011].
 
--   **Relative Reliability** is defined as the ratio of variability between scores of the same subjects (e.g., by different raters or at different times) to the total variability of all scores in the sample. Reliability coefficients, such as the intra-class correlation coefficient for numerical data or Cohen's kappa for dichotomous data, are employed as suitable metrics for this purpose.
+-   **Relative Reliability** is defined as the ratio of variability between scores of the same subjects (e.g., by different raters or at different times) to the total variability of all scores in the sample. Reliability coefficients, such as the intra-class correlation coefficient for numerical data or Cohen's kappa for categorical data, are employed as suitable metrics for this purpose.
 
--   **Absolute Reliability (or Agreement)** pertains to the assessment of whether scores, or judgments are identical or comparable, as well as the extent to which they might differ. Typical statistical measures employed to quantify this degree of error are the standard error of measurement (SEM) and the limits of agreement (LOA) for numerical data, or percent in agreement for numerical data.
+-   **Absolute Reliability (or Agreement)** pertains to the assessment of whether scores, or judgments are identical or comparable, as well as the extent to which they might differ. Typical statistical measures employed to quantify this degree of error are the standard error of measurement (SEM) and the limits of agreement (LOA) for numerical data.
 
 ## Packages we need
 
@@ -59,7 +59,7 @@ library(tidyverse)
 
 The parent version of Gait Outcomes Assessment List questionnaire (GOAL) is a parent-reported outcome assessment of family priorities and functional mobility for ambulatory children with cerebral palsy. We aim to examine the test--retest reliability of the GOAL questionnaire for the total score (score range: 0 - 100) which is an indicator of the stability of the questionnaire.
 
-::: content-box-yellow
+::: content-box-blue
 **Test-Retest Reliability**
 
 Test-retest reliability is used to assess the consistency and stability of a measurement tool (e.g. self-report survey instrument) over time on the same subjects under the same conditions. Specifically, assessing test-retest reliability involves administering the measurement tool to a group of individuals initially (time 1), subsequently reapplying it to the same group at a later time (time 2), and finally examining the correlation between the two sets of scores obtained.
@@ -417,7 +417,7 @@ In our example, the mean of the differences (bias) is -0.73 (i.e. the scores at 
 
 -   **The Bland-Altman method**
 
-::: content-box-yellow
+::: content-box-blue
 The Bland-Altman method uses a scatter plot to quantify the measurement bias and a range of agreement by constructing 95% limits of agreement (LOA). The basic assumption of Bland-Altman is that the differences are normally distributed .
 :::
 
@@ -489,7 +489,9 @@ ggMarginal(BA_plot2, type = "density", margins = 'y',
            yparams = list(fill = "#61D04F"))
 ```
 
-::: content-box-blue
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
 If many data points in the Bland-Altman plot are close to the zero dashed line, it indicates that there is a good level of agreement between the two measurements.
 :::
 
@@ -535,7 +537,6 @@ bland.altman.plot(goal$GOAL1, goal$GOAL2, graph.sys = "ggplot2", conf.int=0.95) 
 :::
 :::
 
- 
 
 ## Reliability for categorical measurements
 
@@ -602,7 +603,9 @@ The **Marginal totals** (f1, f2, g1, g2) provide important summary information a
 -   **Imbalance:** The proportion of the total number of objects in f1 and g1 is not equal to 0.5
 :::
 
-### Cohen's kappa (unweighted)
+### Reliability coefficients for categorical data
+
+#### _Cohen's kappa (unweighted)_
 
 The Cohen's kappa (κ), also known as the Kappa statistic, is used to measure relative reliability for categorical items. It quantifies the degree of agreement beyond what would be expected due to chance alone [@cohen1960].
 
@@ -626,7 +629,7 @@ Kappa can range form negative values (no agreement) to +1 (perfect agreement).
 
 : Interpretation of Cohen's kappa statistic. {#tbl-kappa}
 
-### Gwet's AC1
+#### _Gwet's AC1_
 
 Gwet's AC1 is another measurement of relative reliability [@gwet2008]. The AC1 statistic is given by the formula:
 
@@ -639,8 +642,6 @@ $p_o$ remains the same, but $p_{eAC1} = 2q \cdot (1 - q)$ is the proportion of a
  
 
 ### Examples
-
- 
 
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   **Q1: Do you have trouble buttoning buttons?** (symmetrical and balanced distribution of marginal totals)
