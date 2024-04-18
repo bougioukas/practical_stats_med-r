@@ -434,7 +434,7 @@ window.Quarto = {
   <li><a href="#sample-size-and-condidence-interval" id="toc-sample-size-and-condidence-interval" class="nav-link" data-scroll-target="#sample-size-and-condidence-interval"><span class="header-section-number">18.1.4</span> Sample size and condidence interval</a></li>
   </ul>
 </li>
-  <li><a href="#confidence-interval-for-proportion-normal-approximation-method" id="toc-confidence-interval-for-proportion-normal-approximation-method" class="nav-link" data-scroll-target="#confidence-interval-for-proportion-normal-approximation-method"><span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation method)</a></li>
+  <li><a href="#confidence-interval-for-proportion-normal-approximation" id="toc-confidence-interval-for-proportion-normal-approximation" class="nav-link" data-scroll-target="#confidence-interval-for-proportion-normal-approximation"><span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation)</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -471,7 +471,6 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-<p>&nbsp;</p>
 <section id="confidence-interval-for-mean" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="confidence-interval-for-mean">
 <span class="header-section-number">18.1</span> Confidence interval for mean</h2>
 <section id="the-logic-behind-constructing-a-confidence-interval" class="level3" data-number="18.1.1"><h3 data-number="18.1.1" class="anchored" data-anchor-id="the-logic-behind-constructing-a-confidence-interval">
@@ -484,11 +483,11 @@ window.Quarto = {
 <p>According to the Central Limit Theorem, the sampling distribution of the mean approaches a normal distribution (<a href="sampling.html" class="quarto-xref"><span>Chapter 17</span></a>). Furthermore, the standard deviation of this sampling distribution is the standard error of the mean, <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Consequently, it can be inferred that approximately 95% of the distribution of sample means lies within <span class="math inline">\(\pm 1.96 \sigma_{\bar{x}}\)</span> from the point estimate (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>). This multiple of the standard error, such as <span class="math inline">\(\pm 1.96 \sigma_{\bar{x}}\)</span>, is referred to as the <strong>margin of error</strong> in a confidence interval.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sample_distribution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="conf_intervals_files/figure-html/fig-sample_distribution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+<div id="fig-sample_distribution95" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution95-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-sample_distribution95-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution95-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 </figcaption></figure>
 </div>
@@ -508,7 +507,7 @@ Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 <p>We are 95% confident that the mean serum creatinine is between 1.1 mg/dl and 1.2 mg/dl.</p>
 </div>
 <p><strong>In R:</strong></p>
-<p>For a 95% confidence interval, each of the grey areas in <a href="inference.html#fig-sample_distribution" class="quarto-xref">Figure&nbsp;<span>19.1</span></a> equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.</p>
+<p>For a 95% confidence interval, each of the grey areas in <a href="#fig-sample_distribution95" class="quarto-xref">Figure&nbsp;<span>18.1</span></a> equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">121</span></span>
 <span><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fl">1.15</span></span>
@@ -532,17 +531,17 @@ Figure&nbsp;18.1: Sampling distribution of mean and 95% CI.
 <p>However, there is no particular reason for choosing a 95% confidence level for constructing confidence intervals other than convention; confidence levels of 90% or 99% are sometimes preferred depending on the context. For example, when a 99% confidence level is chosen, the margin of error for the mean becomes <span class="math inline">\(\pm 2.58 \sigma_{\bar{x}}\)</span> (the empirical rule; <a href="normal.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sample_distribution2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="conf_intervals_files/figure-html/fig-sample_distribution2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+<div id="fig-sample_distribution99" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution99-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-sample_distribution99-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution99-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.2: Sampling distribution of mean and 99% CI.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>Now, each of the grey areas in <a href="inference.html#fig-sample_distribution2" class="quarto-xref">Figure&nbsp;<span>19.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. In this instance, the 99% CI for the mean is:</p>
+<p>Now, each of the grey areas in <a href="#fig-sample_distribution99" class="quarto-xref">Figure&nbsp;<span>18.2</span></a> equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. In this instance, the 99% CI for the mean is:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.005</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -559,10 +558,9 @@ Figure&nbsp;18.2: Sampling distribution of mean and 99% CI.
 </div>
 </div>
 <p>We observe that a 99% CI provides a higher level of confidence but comes with a wider range (1.07-1.22), while a 95% confidence interval offers a narrower range (1.09-1.20) but with slightly less certainty. Therefore, the increased level of confidence comes at the expense of precision, especially with smaller datasets.</p>
-<p>&nbsp;</p>
 </section><section id="understanding-the-condidence-interval" class="level3" data-number="18.1.3"><h3 data-number="18.1.3" class="anchored" data-anchor-id="understanding-the-condidence-interval">
 <span class="header-section-number">18.1.3</span> Understanding the condidence interval</h3>
-<p>The intuitive meaning of “confidence” in a confidence interval might not be immediately clear. To understand what confidence truly represents, let’s consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.</p>
+<p>The intuitive meaning of “confidence” in a confidence interval might not be immediately clear. To understand what confidence truly represents, let’s consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10 (<a href="#fig-pop01" class="quarto-xref">Figure&nbsp;<span>18.3</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-pop01" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -575,7 +573,7 @@ Figure&nbsp;18.3: A hypothetical population of 100,000 observations. The dashed 
 </div>
 </div>
 </div>
-<p>Next, we generate 100 random samples of size 10 from our population distribution and we construct a 95% confidence interval for each sample.</p>
+<p>We proceed by generating 100 random samples of size 10 from our population distribution and construct a 95% confidence interval for the mean of each sample.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-intervals1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -588,8 +586,7 @@ Figure&nbsp;18.4: 100 Sample Means of Size 10 (with 95% Intervals) from the Popu
 </div>
 </div>
 </div>
-<p>In <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.4</span></a>, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; <span class="math inline">\(\mu\)</span> = 126 mmHg). <strong>This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.</strong></p>
-<p>&nbsp;</p>
+<p>In <a href="#fig-intervals1" class="quarto-xref">Figure&nbsp;<span>18.4</span></a>, each blue horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; <span class="math inline">\(\mu\)</span> = 126 mmHg). <strong>This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.</strong></p>
 </section><section id="sample-size-and-condidence-interval" class="level3" data-number="18.1.4"><h3 data-number="18.1.4" class="anchored" data-anchor-id="sample-size-and-condidence-interval">
 <span class="header-section-number">18.1.4</span> Sample size and condidence interval</h3>
 <p>Next, we construct the 95% confidence intervals of 100 randomly generated samples of size 50 from our population (<a href="#fig-intervals2" class="quarto-xref">Figure&nbsp;<span>18.5</span></a>):</p>
@@ -610,21 +607,20 @@ Figure&nbsp;18.5: 100 Sample Means of Size 50 (with 95% Intervals) from the Popu
 <li>The sample statistic (points) gets closer to the population parameter (black dashed line).</li>
 <li>The uncertainty around the estimate shrinks (confidence intervals become narrower).</li>
 </ol>
-<p>&nbsp;</p>
 <div class="content-box-green">
 <p>A confidence interval is commonly expressed as 90% CI, 95% CI, or 99% CI, indicating the level of confidence associated with the estimate. The percentage reflects the proportion of intervals, constructed from repeated experiments, that would contain the population parameter (long-run interpretation).</p>
 <p>Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.</p>
 </div>
-</section></section><section id="confidence-interval-for-proportion-normal-approximation-method" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="confidence-interval-for-proportion-normal-approximation-method">
-<span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation method)</h2>
-<p>Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion <span class="math inline">\(\hat{p} = \frac{X}{n}\)</span>, where n is the sample size. If we were to repeatedly draw samples of size <em>n</em> from our population and visualize the sample proportions <span class="math inline">\(\hat{p_1} = \frac{X_1}{n}\)</span>, <span class="math inline">\(\hat{p_2} = \frac{X_2}{n}\)</span>, <span class="math inline">\(\hat{p_3} = \frac{X_3}{n}\)</span> and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies <span class="math inline">\(min(np, n(1-p)) \geq 5\)</span>, the sampling distribution of the proportion would approximate a normal distribution, <span class="math inline">\(N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})\)</span>.</p>
+</section></section><section id="confidence-interval-for-proportion-normal-approximation" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="confidence-interval-for-proportion-normal-approximation">
+<span class="header-section-number">18.2</span> Confidence interval for proportion (normal approximation)</h2>
+<p>Let X be a random variable representing the observed number of individuals in a sample with a binary characteristic, such as having a disease. Our best estimate of the population proportion, p, is given by the sample proportion <span class="math inline">\(\hat{p} = \frac{X}{n}\)</span>, where n is the sample size. If we repeatedly draw samples of size <em>n</em> from our population and calculate the sample proportions <span class="math inline">\(\hat{p_1} = \frac{X_1}{n}\)</span>, <span class="math inline">\(\hat{p_2} = \frac{X_2}{n}\)</span>, <span class="math inline">\(\hat{p_3} = \frac{X_3}{n}\)</span>, and so forth, then, under the assumption that the sample size is sufficiently large and satisfies the condition <span class="math inline">\(min(np, n(1-p)) \geq 5\)</span>, the sampling distribution of the proportion would approximate a normal distribution, <span class="math inline">\(N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})\)</span> (<a href="#fig-sample_distribution_pop" class="quarto-xref">Figure&nbsp;<span>18.6</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sample_distribution3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="conf_intervals_files/figure-html/fig-sample_distribution3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+<div id="fig-sample_distribution_pop" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sample_distribution_pop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="conf_intervals_files/figure-html/fig-sample_distribution_pop-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_distribution_pop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.6: Sampling distribution of proportion and 95% CI.
 </figcaption></figure>
 </div>
@@ -632,7 +628,7 @@ Figure&nbsp;18.6: Sampling distribution of proportion and 95% CI.
 </div>
 <p>Similar to a confidence interval for the mean <a href="#eq-CI" class="quarto-xref">Equation&nbsp;<span>18.1</span></a>, a confidence interval for a proportion can be constructed as follows:</p>
 <p><span id="eq-CI3"><span class="math display">\[ 95\%CI= \mu_{\hat{p}} \ \pm 1.96 \ \sigma_{\hat{p}} = p \ \pm 1.96  \sqrt{\frac{p(1- p)}{n}}  \tag{18.3}\]</span></span></p>
-<p>and when the p and <span class="math inline">\(\sigma_{\hat{p}}\)</span> are unknown:</p>
+<p>and when the value of p is unknown, it is replaced with the sample proportion <span class="math inline">\(\hat{p}\)</span>:</p>
 <p><span id="eq-CI4"><span class="math display">\[ 95\%CI= \hat{p} \ \pm 1.96 \ SE_{\hat{p}} = \hat{p} \ \pm 1.96  \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}  \tag{18.4}\]</span></span></p>
 <p>where the standard error for proportion is <span class="math inline">\(SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span>.</p>
 <div class="content-box-yellow">

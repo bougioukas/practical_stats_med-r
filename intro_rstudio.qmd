@@ -1,9 +1,17 @@
 # R via RStudio {#sec-intro_rstudio}
 
+```{r}
+#| include: false
+
+library(fontawesome)
+```
+
+In this chapter, we introduce the RStudio Integrated Development Environment (IDE), a powerful tool widely used by R users. RStudio provides a user-friendly interface that makes it easier for both beginners and experienced users to write, debug, and execute R code.
+
 When we have finished this Chapter, we should be able to:
 
 ::: {.callout-caution icon="false"}
-## Learning objectives
+## `r fa("circle-dot", prefer_type = "regular", fill = "red")` Learning objectives
 
 -   Describe the purpose and use of each pane in the RStudio IDE.
 -   Understand the differences between errors, warnings, and messages in R.

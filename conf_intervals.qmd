@@ -19,7 +19,6 @@ Obtaining an exact point estimate of the population parameter from just one rand
 -   Calculate and interpret confidence intervals for proportion
 :::
 
- 
 
 ## Confidence interval for mean
 
@@ -38,7 +37,7 @@ According to the Central Limit Theorem, the sampling distribution of the mean ap
 #| message: false
 #| warning: false
 #| fig-align: center
-#| label: fig-sample_distribution
+#| label: fig-sample_distribution95
 #| fig-cap: Sampling distribution of mean and 95% CI.
 #| fig-width: 7.0
 #| fig-height: 5.0
@@ -105,7 +104,7 @@ We are 95% confident that the mean serum creatinine is between 1.1 mg/dl and 1.2
 
 **In R:**
 
-For a 95% confidence interval, each of the grey areas in @fig-sample_distribution equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.
+For a 95% confidence interval, each of the grey areas in @fig-sample_distribution95 equals 2.5% of the distribution because the total percentage of 5% (100-95) is equally divided between both sides of the normal distribution.
 
 ```{r}
 #| results: hold
@@ -133,7 +132,7 @@ However, there is no particular reason for choosing a 95% confidence level for c
 #| message: false
 #| warning: false
 #| fig-align: center
-#| label: fig-sample_distribution2
+#| label: fig-sample_distribution99
 #| fig-cap: Sampling distribution of mean and 99% CI.
 #| fig-width: 7.0
 #| fig-height: 5.0
@@ -174,7 +173,7 @@ ggplot() +
 
 ```
 
-Now, each of the grey areas in @fig-sample_distribution2 equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. In this instance, the 99% CI for the mean is:
+Now, each of the grey areas in @fig-sample_distribution99 equals 0.5% of the distribution because the total percentage of 1% (100-99) is equally divided between both sides of the normal distribution. In this instance, the 99% CI for the mean is:
 
 ```{r}
 #| results: hold
@@ -193,11 +192,10 @@ upper_99CI
 
 We observe that a 99% CI provides a higher level of confidence but comes with a wider range (1.07-1.22), while a 95% confidence interval offers a narrower range (1.09-1.20) but with slightly less certainty. Therefore, the increased level of confidence comes at the expense of precision, especially with smaller datasets.
 
- 
 
 ### Understanding the condidence interval
 
-The intuitive meaning of "confidence" in a confidence interval might not be immediately clear. To understand what confidence truly represents, let's consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10.
+The intuitive meaning of "confidence" in a confidence interval might not be immediately clear. To understand what confidence truly represents, let's consider once more the example of a population consisting of 100,000 adults, with a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10 (@fig-pop01).
 
 ```{r}
 #| echo: false
@@ -238,7 +236,7 @@ ggplot(popdf, aes(x = pop)) + geom_histogram(color = "black", fill = "#894ae0", 
 
 ```
 
-Next, we generate 100 random samples of size 10 from our population distribution and we construct a 95% confidence interval for each sample.
+We proceed by generating 100 random samples of size 10 from our population distribution and construct a 95% confidence interval for the mean of each sample.
 
 ```{r}
 #| echo: false
@@ -292,9 +290,8 @@ Samps %>%
 
 ```
 
-In @fig-intervals1, each steel blue colored horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; $\mu$ = 126 mmHg). **This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.**
+In @fig-intervals1, each blue horizontal bar is a confidence interval (CI), centered on a sample mean (point). The intervals all have the same length, but are centered on different sample means as a result of random sampling from the population. The five red confidence intervals do not cover the population mean (the vertical dashed line; $\mu$ = 126 mmHg). **This aligns with our expectations under a 95% confidence level, where roughly 95% of the intervals should include the population parameter.**
 
- 
 
 ### Sample size and condidence interval
 
@@ -357,7 +354,6 @@ Comparing the @fig-intervals1 and @fig-intervals2, we notice two key trends as t
 1.  The sample statistic (points) gets closer to the population parameter (black dashed line).
 2.  The uncertainty around the estimate shrinks (confidence intervals become narrower).
 
- 
 
 ::: content-box-green
 A confidence interval is commonly expressed as 90% CI, 95% CI, or 99% CI, indicating the level of confidence associated with the estimate. The percentage reflects the proportion of intervals, constructed from repeated experiments, that would contain the population parameter (long-run interpretation).
@@ -365,16 +361,16 @@ A confidence interval is commonly expressed as 90% CI, 95% CI, or 99% CI, indica
 Choosing an appropriate confidence level and sample size depend on the specific needs of the analysis and the trade-offs between certainty and precision.
 :::
 
-## Confidence interval for proportion (normal approximation method)
+## Confidence interval for proportion (normal approximation)
 
-Let X be a random variable of the observed number of individuals in the sample with a binary characteristic (e.g., having a disease). Our best estimate of the population proportion, p, is given by the sample proportion $\hat{p} = \frac{X}{n}$, where n is the sample size. If we were to repeatedly draw samples of size *n* from our population and visualize the sample proportions $\hat{p_1} = \frac{X_1}{n}$, $\hat{p_2} = \frac{X_2}{n}$, $\hat{p_3} = \frac{X_3}{n}$ and so forth with a histogram, then, under the condition that the sample size is sufficiently large and satisfies $min(np, n(1-p)) \geq 5$, the sampling distribution of the proportion would approximate a normal distribution, $N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})$.
+Let X be a random variable representing the observed number of individuals in a sample with a binary characteristic, such as having a disease. Our best estimate of the population proportion, p, is given by the sample proportion $\hat{p} = \frac{X}{n}$, where n is the sample size. If we repeatedly draw samples of size *n* from our population and calculate the sample proportions $\hat{p_1} = \frac{X_1}{n}$, $\hat{p_2} = \frac{X_2}{n}$, $\hat{p_3} = \frac{X_3}{n}$, and so forth, then, under the assumption that the sample size is sufficiently large and satisfies the condition $min(np, n(1-p)) \geq 5$, the sampling distribution of the proportion would approximate a normal distribution, $N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^2 = \frac{p(1-p)}{n})$ (@fig-sample_distribution_pop).
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 #| fig-align: center
-#| label: fig-sample_distribution3
+#| label: fig-sample_distribution_pop
 #| fig-cap: Sampling distribution of proportion and 95% CI.
 #| fig-width: 7.0
 #| fig-height: 5.0
@@ -416,7 +412,7 @@ Similar to a confidence interval for the mean @eq-CI, a confidence interval for 
 
 $$ 95\%CI= \mu_{\hat{p}} \ \pm 1.96 \ \sigma_{\hat{p}} = p \ \pm 1.96  \sqrt{\frac{p(1- p)}{n}} $$ {#eq-CI3}
 
-and when the p and $\sigma_{\hat{p}}$ are unknown:
+and when the value of p is unknown, it is replaced with the sample proportion $\hat{p}$:
 
 $$ 95\%CI= \hat{p} \ \pm 1.96 \ SE_{\hat{p}} = \hat{p} \ \pm 1.96  \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} $$ {#eq-CI4}
 
