@@ -1,4 +1,4 @@
-# Wilcoxon-Mann-Whitney (Mann-Whitney U) test {#sec-wmw}
+# Wilcoxon-Mann-Whitney test {#sec-wmw}
 
 ```{r}
 #| include: false
@@ -6,7 +6,6 @@
 library(fontawesome)
 library(htmlwidgets)
 ```
-
 
 The Wilcoxon-Mann-Whitney (WMW) test (sometimes called Mann-Whitney U test or Wilcoxon Rank Sum test) is used to compare two independent samples and is often considered the non-parametric alternative to the Student's t-test when there is violation of normality or for small sample sizes. However, if the samples are very small (both smaller than four observations) then statistical significance is impossible.
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 9&nbsp; Data structures in R: lists and data frames</title>
+<title>Practical Statistics in Medicine with R - 9&nbsp; Lists and data frames</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./lists.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./lists.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rstudio_projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with RStudio Projects and writing R scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">RStudio Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -184,19 +184,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Atomic vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matrices and arrays</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lists.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,13 +273,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -422,8 +422,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./lists.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-lists" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_rstudio.html">Part 1: R Basics</a></li><li class="breadcrumb-item"><a href="./lists.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-lists" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></h1>
 </div>
 
 
@@ -826,7 +826,7 @@ Table&nbsp;9.1: Tibble abbreviations that describe the type of data in columns o
 <table class="table">
 <colgroup>
 <col style="width: 25%">
-<col style="width: 50%">
+<col style="width: 49%">
 <col style="width: 25%">
 </colgroup>
 <thead><tr class="header">
@@ -1392,8 +1392,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./matrices.html" class="pagination-link" aria-label="Data structures in R: matrices and arrays">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span>
+      <a href="./matrices.html" class="pagination-link" aria-label="Matrices and arrays">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matrices and arrays</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -1,4 +1,4 @@
-# Data structures in R: 1-Dimensional Vectors {#sec-vectors}
+# Atomic vectors {#sec-vectors}
 
 ```{r}
 #| include: false
@@ -16,12 +16,11 @@ When we have finished this chapter, we should be able to:
 -   Extract elements from an 1-dimensional vector.
 :::
 
-
 ## Introduction to vectors in R
 
 The most fundamental concept in R are the **vectors**. Vectors come in two broad types: **atomic vectors** and **generic vectors (lists)** . The atomic vectors must have all elements of the same basic type (e.g., numeric, characters). On the contrary, in the lists different elements can have different basic types (e.g., some elements may be numeric and some characters).
 
-The R language supports many types of data structures that we can use to organize and store information. We will see that complex structures such as **matrices, arrays, and data frames** can be created. Each data structure type serves a specific purpose and might differ in terms of the type of data it can hold and its structural complexity. These data structures are schematically illustrated in @fig-str. 
+The R language supports many types of data structures that we can use to organize and store information. We will see that complex structures such as **matrices, arrays, and data frames** can be created. Each data structure type serves a specific purpose and might differ in terms of the type of data it can hold and its structural complexity. These data structures are schematically illustrated in @fig-str.
 
 ```{r}
 #| label: fig-str
@@ -33,14 +32,11 @@ The R language supports many types of data structures that we can use to organiz
 knitr::include_graphics(here::here("images", "str.png"))
 ```
 
-
 ## Atomic vectors
 
 Atomic vectors in R are one-dimensional data structures. This means that they consist of a single sequence of elements of the same data type arranged along a single dimension. Each element within the vector is uniquely identified by its position within this sequence.
 
-
 ::: content-box-green
-
 There are four primary types of atomic vectors (also known as "atomic" classes):
 
 -   logical
@@ -51,17 +47,15 @@ There are four primary types of atomic vectors (also known as "atomic" classes):
 As a group integer and double vectors are considered **numeric** vectors.
 
 There are also two rare types: complex and raw but we won't discuss them further because they are not used in this textbook.
-
 :::
 
 Let's start by understanding one-element vectors, the most basic form of atomic vectors in R. Afterward, we'll explore longer vectors to gain insight into their properties and practical uses.
-
 
 ### One-element atomic vectors
 
 Individual numbers or strings are one dimensional (1-D) vectors of length one and in some instances we call them scalars. Therefore, **an one-element vector (oev) is just a single value** like a number and they can be used to construct more complex objects (longer vectors). We present some examples of one-element vectors for each of the four primary types (in order from least to most general type).
 
-#### _Logical one-element vector_
+#### *Logical one-element vector*
 
 Logical values are boolean values of `TRUE` or `FALSE` which can be abbreviated, when we type them as `T` or `F` (not recommended). Examples of logical one-element vectors (oev) follows:
 
@@ -77,9 +71,7 @@ oev_d <- F
 oev_d
 ```
 
-
-
-#### _Integer one-element vector_
+#### *Integer one-element vector*
 
 Even when we observe numbers like 1 or 2 in the console, internally, R may store them as 1.00 or 2.00. To explicitly specify integer numbers,in R, we need to append an "L" suffix, as demonstrated in the following examples:
 
@@ -91,10 +83,9 @@ oev_f <- 100L
 oev_f
 ```
 
-#### _Double one-element vector_
+#### *Double one-element vector*
 
-Doubles, which represent real numbers, can be expressed either in decimal format (e.g., 0.000017) or in scientific notation (e.g.,  1.7e-5).
-
+Doubles, which represent real numbers, can be expressed either in decimal format (e.g., 0.000017) or in scientific notation (e.g., 1.7e-5).
 
 ```{r}
 
@@ -104,11 +95,9 @@ oev_scientific <- 1.7e-5
 oev_scientific              
 ```
 
+#### *Character one-element vector*
 
-#### _Character one-element vector_
-
-One-element vectors can also be characters (also known as `strings`). In R, we denote characters using single `''` or double `""` quotation marks. Internally R stores every string within double quotes, even we have created them with single quotation marks.
-Here, we present some examples of character one-element vectors:
+One-element vectors can also be characters (also known as `strings`). In R, we denote characters using single `''` or double `""` quotation marks. Internally R stores every string within double quotes, even we have created them with single quotation marks. Here, we present some examples of character one-element vectors:
 
 ```{r}
 
@@ -143,10 +132,9 @@ It's very rare that single values (one-element vectors) will be the center of an
 
 ### Longer atomic vectors
 
-Atomic vectors can consisted of more than one element. In this case, **the vector elements are ordered, and they must all be of the same type of data**. Common example types of "long" atomic vectors are numeric (whole numbers and fractions), logical (e.g., TRUE or FALSE), and character (e.g., letters or words).
-Let's see how we can create "long" atomic vectors and some usefull vector properties through examples.
+Atomic vectors can consisted of more than one element. In this case, **the vector elements are ordered, and they must all be of the same type of data**. Common example types of "long" atomic vectors are numeric (whole numbers and fractions), logical (e.g., TRUE or FALSE), and character (e.g., letters or words). Let's see how we can create "long" atomic vectors and some usefull vector properties through examples.
 
-#### _The colon operator `:`_ 
+#### *The colon operator `:`*
 
 This operator **`:`** generates sequences of consecutive values. For example:
 
@@ -188,8 +176,7 @@ length(x_seq)
 -3:4
 ```
 
-
-#### _The function `seq()`_
+#### *The function `seq()`*
 
 We have already explore in @sec-functions the **`seq()`** function which creates vectors of consecutive values (seq stands for sequence):
 
@@ -197,8 +184,7 @@ We have already explore in @sec-functions the **`seq()`** function which creates
 seq(1, 5)    # increment by 1
 ```
 
-
-#### _The `c()` function_
+#### *The `c()` function*
 
 We can also create atomic vectors "by hand" using the **`c()`** function (or concatenate command) which *combines* values into a vector. Let's create a vector of values `2`, `4.5`, and `1`:
 
@@ -226,7 +212,6 @@ and an atomic vector with character elements:
 c("male", "female", "female", "male")
 ```
 
-
 ::: {.callout-tip icon="false"}
 ## `r fa("comment", fill = "#1DC5CE")` Comment
 
@@ -238,7 +223,7 @@ c(y_seq, 2, 4.5, -1)  # y_seq is an element of a vector
 ```
 :::
 
-#### _Repeating vectors_
+#### *Repeating vectors*
 
 The `rep()` function in R provides a convenient way to repeat either the complete vector or individual elements of a vector. Let's see some examples:
 
@@ -252,7 +237,6 @@ rep(c(0, 4, 7), times = 3)        # 3 times to repeat the complete vector
 rep(c("a", "b", "c"), times = 2)  # 2 times to repeat the complete vector
 ```
 
-
 *B. Repeating each element of the vector*
 
 ```{r}
@@ -264,10 +248,9 @@ rep(c("a", "b", "c"), each = 2)  # each element is repeated 2 times
 
 ```
 
+#### *Default vectors*
 
-#### _Default vectors_
-
-R comes with a few built-in vectors providing useful data for various tasks. 
+R comes with a few built-in vectors providing useful data for various tasks.
 
 ```{r}
 #| results: hold
@@ -286,9 +269,7 @@ month.abb
 
 ```
 
-
 We will use some of these built-in vectors in the examples that follow.
-
 
 ## Mixing things in a vector - Coercion
 
@@ -368,7 +349,6 @@ We can turn the characters back to numbers using the **`as.numeric()`** function
 as.numeric(g)
 ```
 
-
 This function in R is particularly valuable in practice, because many public datasets that include numbers, include them in a form that makes them appear to be character strings.
 
 Next, suppose the object `q` of character strings "1", "2", "3", "**d**", "5" and we want to convert them to numbers using the `as.numeric()` function:
@@ -388,14 +368,13 @@ x_abcde <- c("a", "b", "c", "d", "e")
 as.numeric(x_abcde)
 ```
 
-
 ## Operators applied between two vectors
 
 ### Arithmetic Operators
 
 Let's go through some examples of basic arithmetic operators `(+, -, *, /, ^)` applied between two vectors.
 
-#### _Comparison between a long vector and a scalar_
+#### *Comparison between a long vector and a scalar*
 
 When we add a scalar to a vector, the scalar is added to each element of the vector (vectorization):
 
@@ -411,8 +390,7 @@ Multiplying a vector by a scalar results in each element of the vector being mul
 v * 3
 ```
 
-
-#### _Comparison between two long vectors_
+#### *Comparison between two long vectors*
 
 The arithmetic operations can be performed element-wise between corresponding elements of the vectors (vectorization). In simple terms, each element of one vector interacts with the corresponding element of the other vector. Let's consider two vectors, denoted as `v` and `t`, each holding a series of numerical values, and let's apply some arithmetic operators.
 
@@ -457,7 +435,6 @@ round(sqrt(z_seq), digits = 2)
 ```
 :::
 
-
 ### Dot (inner) product operator
 
 The dot product, also known as the inner product, is a mathematical operation between two numeric vectors, v and t. This operation is commonly represented using a dot placed between the vectors: $\nu \cdot t$.
@@ -472,13 +449,11 @@ v %*% t
 
 The inner product of two vectors is an important operation in multiplication of matrices (see @sec-matrices).
 
-
 ### Relational Operators
 
 Let’s go through some examples of basic relational operators (\>, \<, ==, \<=, \>=, !=) applied between two vectors.
 
-
-#### _Comparison between a long vector and a scalar_
+#### *Comparison between a long vector and a scalar*
 
 For relational operators applied between a long vector and a scalar, each element of the vector is compared with a defined value (scalar). The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
 
@@ -495,8 +470,7 @@ m == 3
 m != 3
 ```
 
-
-#### _Comparison between two long vectors_
+#### *Comparison between two long vectors*
 
 In the case of two long vectors, each element of the first vector is compared with the corresponding element of the second vector (element-wise comparison). The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
 
@@ -514,7 +488,6 @@ w == z
 w >= z
 w != z
 ```
-
 
 ### Logical Operators are applied to vectors
 
@@ -553,8 +526,7 @@ u
 
 *Logicals*: `TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE`
 
-
-#### _AND Operators (`&`, `&&`)_
+#### *AND Operators (`&`, `&&`)*
 
 The `&` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **both** elements are TRUE.
 
@@ -582,7 +554,7 @@ s && u
 `r kableExtra::text_spec("Error in s && u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
 :::
 
-#### _OR operators (`|`, `||`)_
+#### *OR operators (`|`, `||`)*
 
 The `|` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **at least one of the elements** is TRUE.
 
@@ -610,7 +582,7 @@ s || u
 `r kableExtra::text_spec("Error in s || u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
 :::
 
-#### _NOT operator (`!`)_
+#### *NOT operator (`!`)*
 
 The `!` operator takes each element of the vector and gives the opposite logical value.
 
@@ -618,7 +590,6 @@ The `!` operator takes each element of the vector and gives the opposite logical
 ! s
 ! u
 ```
-
 
 ## Statistical functions applied to vectors
 
@@ -638,7 +609,6 @@ sd(v_seq)      # calculate the standard deviation
 
 range(v_seq)   # returns the minimum and maximum values
 ```
-
 
 Next, we add a missing value `NA` in the `v_seq` vector:
 
@@ -661,10 +631,9 @@ Therefore, if some of the values in a numeric vector are missing, then the `mean
 mean(v_seq2, na.rm = TRUE)
 ```
 
-
 ## Subsetting vectors
 
-We can select elements from a vector using single square brackets `[ ]`, which is also referred to as the extraction operator. The index within these brackets can be specified as a numeric vector, a logical vector, or a character vector, offering flexibility in element selection. In the examples that follow, we demonstrate this concept using the built-in `month.name` vector that contains the names of all twelve months, with January being the first element, February the second, and so on. 
+We can select elements from a vector using single square brackets `[ ]`, which is also referred to as the extraction operator. The index within these brackets can be specified as a numeric vector, a logical vector, or a character vector, offering flexibility in element selection. In the examples that follow, we demonstrate this concept using the built-in `month.name` vector that contains the names of all twelve months, with January being the first element, February the second, and so on.
 
 ```{r}
 month.name
@@ -672,7 +641,7 @@ month.name
 
 ### Selecting elements by indexing position
 
-#### _Select specific elements of a vector_
+#### *Select specific elements of a vector*
 
 We can select parts of a vector with square brackets `[ ]` using the indices of the elements. For example:
 
@@ -682,7 +651,6 @@ month.name[3:5]         # select the 3rd, 4th, and 5th months
 ```
 
 In the second code example, the vector `3:5` generates the sequence of indices `3, 4, 5`, which is then passed to the extraction operator `[ ]`. Consequently, the command returns a new subset vector containing only the months March, April, and May.
-
 
 ![Select elements by indexing position](images/indexing01.png){#fig-indexing01 width="65%"}
 
@@ -697,7 +665,6 @@ month.name[c(3, 4, 5)]
 
 In R, the **first** element of a vector starts at **index of 1**. In many other programming languages (e.g., C, Python, and Java), the first element in a sequence has an index of 0.
 :::
-
 
 Note that the values are returned in the order that we specify with the indices. For example:
 
@@ -723,9 +690,7 @@ month.name[10:15]
 ```
 :::
 
-
-
-#### _Skip specific elements of vectors_
+#### *Skip specific elements of vectors*
 
 A negative index skip the element at the specified index position. For example:
 
@@ -746,7 +711,6 @@ which is equivalent to:
 month.name[-c(3, 7)]       # skip the 3rd and 7th elements
 ```
 
-
 A common error occurs when trying to skip certain parts of a vector. For example, suppose we want to skip the first five elements form the `month.name` vector. First, we may try the following:
 
 ```{r, error=TRUE, eval=FALSE}
@@ -764,7 +728,6 @@ A way of solving the problem is to wrap the sequence in parentheses, so that the
 -(1:5)
 month.name[-(1:5)]            # skip the 1st to 5th element
 ```
-
 
 ### Selecting elements using boolean indices (T/F)
 
@@ -803,7 +766,6 @@ fourmonths2[c("month_1", "month_2", "month_4")]
 Initially, a vector named `nm` is created, containing month names such as "month_1", "month_2", "month_3", and "month_4". By applying the `setNames()` function, these month names are then assigned to the elements of the vector `fourmonths`, thereby transforming it into a named vector. Subsequently, specific elements are selected from `fourmonths` based on their assigned names.
 
 ![Select elements by indexing names](images/indexing03.png){#fig-indexing03 width="70%"}
-
 
 ## Vector recycling
 

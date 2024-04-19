@@ -1,4 +1,4 @@
-# Data structures in R: matrices and arrays {#sec-matrices}
+# Matrices and arrays {#sec-matrices}
 
 ```{r}
 #| include: false
@@ -182,15 +182,11 @@ X[1, 4]  # select the element in the 1st row, 4th column
 X[1, c(4, 5)]  # select the elements in the 1st row, 4th and 5th column 
 ```
 
-
-
 ::: {.callout-tip icon="false"}
 ## `r fa("circle-info", fill = "#1DC5CE")` INFO
 
-Just like with vectors, we utilize square brackets [ ] to select individual or multiple elements from a matrix. While vectors are one-dimensional, matrices extend to two dimensions. To specify the desired rows and columns, we use a **comma as a separator** [row, column].
-
+Just like with vectors, we utilize square brackets \[ \] to select individual or multiple elements from a matrix. While vectors are one-dimensional, matrices extend to two dimensions. To specify the desired rows and columns, we use a **comma as a separator** \[row, column\].
 :::
-
 
  
 

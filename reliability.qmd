@@ -1,4 +1,4 @@
-# Measures of relative and absolute reliability {#sec-reliability}
+# Measures of reliability {#sec-reliability}
 
 ```{r}
 #| include: false
@@ -537,7 +537,6 @@ bland.altman.plot(goal$GOAL1, goal$GOAL2, graph.sys = "ggplot2", conf.int=0.95) 
 :::
 :::
 
-
 ## Reliability for categorical measurements
 
 ### Research question
@@ -605,7 +604,7 @@ The **Marginal totals** (f1, f2, g1, g2) provide important summary information a
 
 ### Reliability coefficients for categorical data
 
-#### _Cohen's kappa (unweighted)_
+#### *Cohen's kappa (unweighted)*
 
 The Cohen's kappa (κ), also known as the Kappa statistic, is used to measure relative reliability for categorical items. It quantifies the degree of agreement beyond what would be expected due to chance alone [@cohen1960].
 
@@ -629,7 +628,7 @@ Kappa can range form negative values (no agreement) to +1 (perfect agreement).
 
 : Interpretation of Cohen's kappa statistic. {#tbl-kappa}
 
-#### _Gwet's AC1_
+#### *Gwet's AC1*
 
 Gwet's AC1 is another measurement of relative reliability [@gwet2008]. The AC1 statistic is given by the formula:
 

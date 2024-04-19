@@ -75,14 +75,17 @@ h5 { margin-top: 1.5em; font-size: 1rem; }
 .content-box-purple,
 .content-box-red,
 .content-box-yellow {
-    margin: 0 0 60px;
+    margin: 0 0 40px;
     overflow: hidden;
-    padding: 20px;
+    padding: 15px;
 }
  
 .content-box-blue {
     background-color: #d8ecf7;
     border: 1px solid #afcde3;
+    margin: 0 0 40px;
+    overflow: hidden;
+    padding: 15px;
 }
  
 .content-box-gray {
@@ -93,6 +96,9 @@ h5 { margin-top: 1.5em; font-size: 1rem; }
 .content-box-green {
     background-color: #d9edc2;
     border: 1px solid #b2ce96;
+    margin: 0 0 40px;
+    overflow: hidden;
+    padding: 15px;
 }
  
 .content-box-purple {

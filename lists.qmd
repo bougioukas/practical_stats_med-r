@@ -1,4 +1,4 @@
-# Data structures in R: lists and data frames {#sec-lists}
+# Lists and data frames {#sec-lists}
 
 ```{r}
 #| include: false
@@ -25,7 +25,6 @@ When we have finished this chapter, we should be able to:
 
 In R, a list enables us to organize diverse objects (e.g., 1-D vectors, matrices, even other lists) under a single data structure. There is no requirement for these objects to be associated or related to each other in any way. Essentially, a list can be considered an advanced data type, allowing us to store practically any kind of information within it.
 
-
 We construct a list using the `list()` function. For example:
 
 ```{r}
@@ -34,7 +33,6 @@ my_list
 ```
 
 This list consists of three elements referred to as "list items" or "items", which are atomic vectors of different types of data (numeric, character, and logical).
-
 
 We can assign names to the list items:
 
@@ -58,7 +56,7 @@ class(my_list)
 
 ### Subset list and preserve output as a list
 
-We can use the  extraction operator `[ ]` to extract one or more list items while preserving the output in list format:
+We can use the extraction operator `[ ]` to extract one or more list items while preserving the output in list format:
 
 ```{r}
 my_list[2]    # extract the second list item (indexing by position)
@@ -291,7 +289,7 @@ glimpse(dat)
 Observe the series of three letter abbreviations in angle brackets (`<dbl>`, `<chr>`). The abbreviations used in tibbles serve to describe the type of data in each column and are presented in (@tbl-data_types):
 
 | **Data Type**  | **Description**                                                                       | **Abbreviation** |
-|:----------------:|------------------------------------|:----------------:|
+|:----------------:|-----------------------------------|:----------------:|
 |   character    | strings: letters, numbers, symbols, and spaces                                        |     `<chr>`      |
 |    integer     | numerical values: integer numbers                                                     |     `<int>`      |
 |     double     | numerical values: real numbers                                                        |     `<dbl>`      |

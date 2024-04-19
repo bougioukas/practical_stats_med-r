@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 21&nbsp; Wilcoxon-Mann-Whitney (Mann-Whitney U) test</title>
+<title>Practical Statistics in Medicine with R - 21&nbsp; Wilcoxon-Mann-Whitney test</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -184,7 +184,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rstudio_projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with RStudio Projects and writing R scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">RStudio Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -214,19 +214,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Atomic vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matrices and arrays</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lists.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,13 +303,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,7 +393,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -439,8 +439,8 @@ window.Quarto = {
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-wmw" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./wmw_test.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-wmw" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></span></h1>
 </div>
 
 
@@ -527,8 +527,8 @@ Null hypothesis and alternative hypothesis
 <div class="cell">
 <div id="fig-depression" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-763711141392a5133266" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-763711141392a5133266">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],["non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic"],[4.1,6.3,7.8,8.5,8.9,10.4,11.5,12,13.8,17.6,24.3,37.2,27.5,28.1,26.1,23.8,25,29.8,33.9,37.7,31.3,43.2,28.7,46.2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>status<\/th>\n      <th>b_TG<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"status","targets":1},{"name":"b_TG","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-febafbb3827bf4324ac1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-febafbb3827bf4324ac1">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],["non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","non_diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic","diabetic"],[4.1,6.3,7.8,8.5,8.9,10.4,11.5,12,13.8,17.6,24.3,37.2,27.5,28.1,26.1,23.8,25,29.8,33.9,37.7,31.3,43.2,28.7,46.2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>status<\/th>\n      <th>b_TG<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"status","targets":1},{"name":"b_TG","targets":2}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-depression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;21.1: Table with data from “depression” file.
@@ -819,23 +819,23 @@ non_diabetic</td>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_n.html">add_n</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="wxrutsftsg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wxrutsftsg table {
+<div id="tcuskbkuof" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tcuskbkuof table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wxrutsftsg thead, #wxrutsftsg tbody, #wxrutsftsg tfoot, #wxrutsftsg tr, #wxrutsftsg td, #wxrutsftsg th {
+#tcuskbkuof thead, #tcuskbkuof tbody, #tcuskbkuof tfoot, #tcuskbkuof tr, #tcuskbkuof td, #tcuskbkuof th {
   border-style: none;
 }
 
-#wxrutsftsg p {
+#tcuskbkuof p {
   margin: 0;
   padding: 0;
 }
 
-#wxrutsftsg .gt_table {
+#tcuskbkuof .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -861,12 +861,12 @@ non_diabetic</td>
   border-left-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_caption {
+#tcuskbkuof .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wxrutsftsg .gt_title {
+#tcuskbkuof .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -878,7 +878,7 @@ non_diabetic</td>
   border-bottom-width: 0;
 }
 
-#wxrutsftsg .gt_subtitle {
+#tcuskbkuof .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -890,7 +890,7 @@ non_diabetic</td>
   border-top-width: 0;
 }
 
-#wxrutsftsg .gt_heading {
+#tcuskbkuof .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -902,13 +902,13 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_bottom_border {
+#tcuskbkuof .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_col_headings {
+#tcuskbkuof .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -923,7 +923,7 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_col_heading {
+#tcuskbkuof .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -943,7 +943,7 @@ non_diabetic</td>
   overflow-x: hidden;
 }
 
-#wxrutsftsg .gt_column_spanner_outer {
+#tcuskbkuof .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -955,15 +955,15 @@ non_diabetic</td>
   padding-right: 4px;
 }
 
-#wxrutsftsg .gt_column_spanner_outer:first-child {
+#tcuskbkuof .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wxrutsftsg .gt_column_spanner_outer:last-child {
+#tcuskbkuof .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wxrutsftsg .gt_column_spanner {
+#tcuskbkuof .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -975,11 +975,11 @@ non_diabetic</td>
   width: 100%;
 }
 
-#wxrutsftsg .gt_spanner_row {
+#tcuskbkuof .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wxrutsftsg .gt_group_heading {
+#tcuskbkuof .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1005,7 +1005,7 @@ non_diabetic</td>
   text-align: left;
 }
 
-#wxrutsftsg .gt_empty_group_heading {
+#tcuskbkuof .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1020,15 +1020,15 @@ non_diabetic</td>
   vertical-align: middle;
 }
 
-#wxrutsftsg .gt_from_md > :first-child {
+#tcuskbkuof .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wxrutsftsg .gt_from_md > :last-child {
+#tcuskbkuof .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wxrutsftsg .gt_row {
+#tcuskbkuof .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1047,7 +1047,7 @@ non_diabetic</td>
   overflow-x: hidden;
 }
 
-#wxrutsftsg .gt_stub {
+#tcuskbkuof .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1060,7 +1060,7 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#wxrutsftsg .gt_stub_row_group {
+#tcuskbkuof .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1074,15 +1074,15 @@ non_diabetic</td>
   vertical-align: top;
 }
 
-#wxrutsftsg .gt_row_group_first td {
+#tcuskbkuof .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wxrutsftsg .gt_row_group_first th {
+#tcuskbkuof .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wxrutsftsg .gt_summary_row {
+#tcuskbkuof .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1092,16 +1092,16 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#wxrutsftsg .gt_first_summary_row {
+#tcuskbkuof .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_first_summary_row.thick {
+#tcuskbkuof .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wxrutsftsg .gt_last_summary_row {
+#tcuskbkuof .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1111,7 +1111,7 @@ non_diabetic</td>
   border-bottom-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_grand_summary_row {
+#tcuskbkuof .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1121,7 +1121,7 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#wxrutsftsg .gt_first_grand_summary_row {
+#tcuskbkuof .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1131,7 +1131,7 @@ non_diabetic</td>
   border-top-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_last_grand_summary_row_top {
+#tcuskbkuof .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1141,11 +1141,11 @@ non_diabetic</td>
   border-bottom-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_striped {
+#tcuskbkuof .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wxrutsftsg .gt_table_body {
+#tcuskbkuof .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1154,7 +1154,7 @@ non_diabetic</td>
   border-bottom-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_footnotes {
+#tcuskbkuof .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1168,7 +1168,7 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_footnote {
+#tcuskbkuof .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1177,7 +1177,7 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#wxrutsftsg .gt_sourcenotes {
+#tcuskbkuof .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1191,7 +1191,7 @@ non_diabetic</td>
   border-right-color: #D3D3D3;
 }
 
-#wxrutsftsg .gt_sourcenote {
+#tcuskbkuof .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1199,63 +1199,63 @@ non_diabetic</td>
   padding-right: 5px;
 }
 
-#wxrutsftsg .gt_left {
+#tcuskbkuof .gt_left {
   text-align: left;
 }
 
-#wxrutsftsg .gt_center {
+#tcuskbkuof .gt_center {
   text-align: center;
 }
 
-#wxrutsftsg .gt_right {
+#tcuskbkuof .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wxrutsftsg .gt_font_normal {
+#tcuskbkuof .gt_font_normal {
   font-weight: normal;
 }
 
-#wxrutsftsg .gt_font_bold {
+#tcuskbkuof .gt_font_bold {
   font-weight: bold;
 }
 
-#wxrutsftsg .gt_font_italic {
+#tcuskbkuof .gt_font_italic {
   font-style: italic;
 }
 
-#wxrutsftsg .gt_super {
+#tcuskbkuof .gt_super {
   font-size: 65%;
 }
 
-#wxrutsftsg .gt_footnote_marks {
+#tcuskbkuof .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wxrutsftsg .gt_asterisk {
+#tcuskbkuof .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wxrutsftsg .gt_indent_1 {
+#tcuskbkuof .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wxrutsftsg .gt_indent_2 {
+#tcuskbkuof .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wxrutsftsg .gt_indent_3 {
+#tcuskbkuof .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wxrutsftsg .gt_indent_4 {
+#tcuskbkuof .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wxrutsftsg .gt_indent_5 {
+#tcuskbkuof .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1653,8 +1653,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./student_t_test.html" class="pagination-link" aria-label="Two-sample t-test (Student's t-test)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span>
+      <a href="./student_t_test.html" class="pagination-link" aria-label="Two-sample t-test">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

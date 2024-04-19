@@ -67,7 +67,6 @@ For each experiment, two events always exist:
 2.  the **empty set = ∅**, that contains no outcomes and it is called the impossible event.
 :::
 
- 
 
 ## Operations of events using set theory and Venn diagrams
 
@@ -99,7 +98,6 @@ venn("A + B", zcolor = "#7F7FFF", opacity = 1, ggplot = TRUE) +
   annotate("text", x = 500, y = 750, label = "AUB")
 ```
 
- 
 
 ### Intersection of Events: A∩B
 
@@ -127,7 +125,6 @@ venn("A B", zcolor = "#7F7FFF", opacity = 1,  ggplot = TRUE) +
   annotate("text", x = 500, y = 530, label = "A∩B")
 ```
 
- 
 
 ### Complement Events
 
@@ -162,7 +159,6 @@ theme(panel.background = element_rect(fill = "#7F7FFF")) +
 
 ```
 
- 
 
 ### Mutually exclusive events
 
@@ -197,7 +193,6 @@ ggvenn(x2, fill_alpha = 1, auto_scale = T, show_percentage = FALSE) +
         plot.background = element_rect(fill = "white"))
 ```
 
- 
 
 ## Probability
 
@@ -211,11 +206,10 @@ The concept of probability is used in everyday life which stands for the likelih
 3.  If A and B are two mutually exclusive events (also known as disjoint events), then **P(A ∪ B) = P(A) + P(B)** and **P(A ∩ B) = 0**.
 :::
 
- 
 
 ### Definition of Probability
 
-**A. Theoretical probability (theoretical approach)**
+#### _A. Theoretical probability (theoretical approach)_
 
 Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the **equally probable** outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:
 
@@ -223,7 +217,6 @@ $$P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{To
 
 Note that the @eq-theoretical_probability only works for experiments that are considered **"fair"**; this means that there must be no bias involved so that all outcomes are **equally likely** to occur.
 
- 
 
 `r fa("arrow-right", fill = "orange")`   ***Example 1***
 
@@ -241,7 +234,6 @@ dice_tbl
 sum(dice_tbl$success)/length(dice_tbl$result)
 ```
 
- 
 
 `r fa("arrow-right", fill = "orange")`   ***Example 2***
 
@@ -265,7 +257,7 @@ $$\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/
 
  
 
-**B. Experimental probability (frequentist approach)**
+#### _B. Experimental probability (frequentist approach)_
 
 The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the **relative frequency** of occurrence of the event over a total number of experiments:
 
@@ -321,8 +313,6 @@ $$ P(\textrm{rolling a 5}) =\frac{\textrm{1684 times the number “5” occured}
 
 that is very close to the theoretical probability 16.67%.
 
- 
-
 ::: callout-note
 ## Law of Large Numbers
 
@@ -331,7 +321,7 @@ The more times the experiment is performed, the closer the experimental probabil
 
  
 
-**C. "Subjective" probability (Bayesian approach)**
+#### _C. "Subjective" probability (Bayesian approach)_
 
 The probability assigned to an event represents the **degree of belief** that the event will occur in a given try of the experiment, and it implies an element of subjectivity.
 
@@ -341,7 +331,6 @@ In the die roll experiment, the determination of the subjective probability for 
 
 Nonetheless, if some individuals were aware that the die was biased, such as favoring the number six, their viewpoint would undergo a substantial change.
 
- 
 
 The following **properties** are useful to assign and manipulate event probabilities.
 
@@ -359,7 +348,6 @@ $$P(A') = 1 − P(A)$$ {#eq-complementary}
 $$P(A ∪ B) = P(A) + P(B) − P(A ∩ B)$$ {#eq-union}
 :::
 
- 
 
 ### The Conditional Probability
 
@@ -371,7 +359,6 @@ or
 
 $$ P(A|B)=  \frac{P(A ∩ B)}{P(B)}$$ {#eq-conditional2}
 
- 
 
 `r fa("arrow-right", fill = "orange")`   ***Example***
 
@@ -427,7 +414,6 @@ $$P(A|B) = \frac{P(A ∩ B)}{P(B)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1
 
 Therefore, the "knowledge" that the sum of two rolls is 8 has **updated** the probability of A from P(A) = 1/6 = 0.167 to P(A\|B) = 1/5 = 0.2.
 
- 
 
 ### Bayes' theorem
 

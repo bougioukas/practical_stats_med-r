@@ -1,4 +1,4 @@
-# Working with RStudio Projects and writing R scripts {#sec-rstudio_projects}
+# RStudio Projects {#sec-rstudio_projects}
 
 ```{r}
 #| include: false
@@ -16,7 +16,6 @@ When we have finished this Chapter, we should be able to:
 -   Document the code using comments.
 -   Save our code in an R script.
 :::
-
 
 ## Working with RStudio Projects
 
@@ -68,24 +67,20 @@ Once we have completed this process, R session switches to the new RStudio Proje
 
 ![The new RStudio Project has been created with the name "*my_first_project*".](images/top_right_project_name.png){#fig-top_right_project_name width="80%"}
 
-
 ### Organizing our RStudio Project folder
 
-Files on our computer are organized into folders. Similarly, RStudio project folders and files can be managed in the same manner as we typically handle folders and files on our computer.
-For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following sub-folders (@fig-schima_project_str):
+Files on our computer are organized into folders. Similarly, RStudio project folders and files can be managed in the same manner as we typically handle folders and files on our computer. For our purpose, it is sufficient to consider a simple RStudio Project folder that contains the following sub-folders (@fig-schima_project_str):
 
 -   **data:** we save data files of any kind, such as `.csv`, `.xlsx`, `.txt`, etc.
 -   **figures:** we save plots, diagrams, and other graphs
 
 ![Schematically presentation of the folder structure of a minimal RStudio project.](images/schima_project_str.png){#fig-schima_project_str width="40%"}
 
-
 ::: {.callout-tip icon="false"}
 ## `r fa("circle-info", fill = "#1DC5CE")` INFO
 
 The file named `my_first_project.Rproj`, which has been created by RStudio automatically in our project folder, contains information of the project and can also be used as a shortcut for opening the project directly from the file system in our computer.
 :::
-
 
 We can create new folders (sub-folders) in the main RStudio Project folder using the ![](images/new_folder.png){width="70" height="20"} (@fig-new_folders).
 
@@ -107,7 +102,6 @@ knitr::include_graphics(here::here("images", "folder_figures.png"))
 
 Therefore, we end up to the following RStudio Project folder structure:
 
-
 ![A minimal RStudio Project folder structure.](images/my_project_str.png){#fig-my_project_str width="70%"}
 
 ## Opening a new R script
@@ -120,7 +114,6 @@ To open an R script in RStudio, we navigate to the menu bar at the top of the RS
 flowchart LR
   A(File) -.-> B(New File) -.-> C(R Script)
 ```
-
 
 ![Open a new R script from the Rstudio menu.](images/open_rscript.png){#fig-rscript width="70%"}
 
@@ -138,7 +131,6 @@ The four panes might be placed in a different order that those in @fig-RStudio_4
 flowchart LR
   A(Tools) -.-> B(Global Options) -.-> C(Pane layout)
 ```
-
 
 ```{r}
 #| warning: false
@@ -161,7 +153,6 @@ Now, let's type `14 + 16` at a new R script in the Source Editor pane and press 
 [^rstudio_projects-1]: In `.R` script, we can execute our code line by line (by putting the cursor on the line) or selecting a chunk of lines (by highlighting the code) and pressing the **run** button in the Source Editor. We can also run our selected code using the keywboard shortcut {{< kbd Ctrl+Enter >}} for Windows/Linux or {{< kbd Cmd+Enter >}} for Mac.
 
 ![We can write our code in the source editor and get the output in the console.](images/rscript1.png){#fig-rscript1 width="80%"}
-
 
 ## Adding comments to a script
 

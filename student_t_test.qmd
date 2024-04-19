@@ -1,4 +1,4 @@
-# Two-sample t-test (Student's t-test) {#sec-two_samples}
+# Two-sample t-test {#sec-two_samples}
 
 ```{r}
 #| include: false

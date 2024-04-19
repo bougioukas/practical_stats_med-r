@@ -19,7 +19,6 @@ library(tidyverse)
 -   Understand the central limit theorem
 :::
 
- 
 
 ## Population, sample, and point estimation
 
@@ -29,25 +28,22 @@ In statistics, a **population** refers to a theoretical concept representing the
 
 Researchers are particularly interested in quantities such as the population mean and population variance of random variables (characteristics) within these populations. These values are typically not directly observable and are denoted as **parameters** in statistical analysis. We use Greek lowercase letters for parameters, such as $μ$ and $σ^2$, to represent the population mean and variance, respectively. For example, researchers want to know what the mean depression score for the population would be if all people with depression were treated with a new anti-depression treatment.
 
- 
 
 ### Sample and sample statistics
 
 In practice, researchers encounter constraints in resources and time, particularly when dealing with large or inaccessible populations, making it impractical to study each individual within the population (e.g., every individual with depression in the world). As a result, obtaining an exact value of a population parameter is typically unattainable. Instead, researchers analyze a **sample**, a subset of the population intended to be representative. In such cases, a point estimator is utilized to calculate an estimate of the unknown parameter based on the measurements obtained from the sample. For example, a **sample statistic** such as the sample mean can serve as an estimator for the population mean.
 
 ::: content-box-blue
-**Random sample**
-
 In most cases, the best way to get a sample that accurately represents the population is by taking a **random sample** from the population. When selecting a random sample, each individual in the population has **equal** and **independent** chance of being included in the sample.
 :::
 
 The statistical framework in @fig-sample_frame illustrates the process of inferring population parameters using sample statistics.
 
-![dfsfsd](images/sample_frame.png){#fig-sample_frame fig-align="center" width="80%"}
+![The statistical framework for population parameter estimation.](images/sample_frame.png){#fig-sample_frame fig-align="center" width="80%"}
 
  
 
-::: content-box-blue
+::: content-box-green
 **Point estimation**
 
 Point estimation is a statistical method used to estimate an unknown parameter of a population based on data collected from a sample. The objective of point estimation is to find a single, best guess or **estimate** for the value of the parameter. Common point estimators include the sample mean for the population mean and sample variance for the population variance.
@@ -63,7 +59,10 @@ $$total \ error = bias + sampling \ error$$ {#eq-total_error}
 
 -   **Sampling error:** This measures the extent to which an estimate tends to vary from one sample to another due to random chance. Our objective is frequently to quantify and understand this variability in estimates. Standard error and confidence intervals, common measures of sampling error, are primarily influenced by both the sample size and the variability of the estimated characteristic.
 
-::: content-box-blue
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
 The sampling error is the error caused by observing a sample instead of the whole population. There is no sampling error in a census because the calculations are based on the entire population.
 :::
 
@@ -104,6 +103,15 @@ $$SE_{\bar{x}} = \frac{s}{\sqrt{n}}$$ {#eq-se2}
 
 The **Standard Error of the mean** (SEM) is a metric that describes the variability of sample means within the **sampling distribution**. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.
 
+
+::: {.callout-tip icon="false"}
+## `r fa("comment", fill = "#1DC5CE")` Comment
+
+The standard error is essential in constructing **confidence intervals** around point estimates, a process known as interval estimation (@sec-conf_intervals).
+:::
+
+ 
+
 ::: content-box-yellow
 `r fa("arrow-right", fill = "orange")`   **Example**
 
@@ -121,9 +129,7 @@ sem <- 240 / sqrt(64)
 sem
 ```
 
-> Noteworthy, the standard error is essential in constructing **confidence intervals** around point estimates, a process known as interval estimation.
 
- 
 
 ### Properties of the distribution of sample means
 
@@ -247,8 +253,6 @@ ggplot(df, aes(x = value)) +
 
 From @fig-simulation2, it is evident that as the sample size increases, the distribution of sample means tends to approximate a normal distribution, with the mean of this distribution,$\mu_{\bar{x}}$, approaching the population mean, $\mu$.
 
- 
-
 ::: content-box-blue
 **Properties of the distribution of sample means**
 
@@ -256,6 +260,8 @@ From @fig-simulation2, it is evident that as the sample size increases, the dist
 -   The standard error of the mean (SEM) decreases as the sample size increases.
 -   As the sample size increases, the distribution of sample means tends to approximate a **normal** distribution.
 :::
+
+ 
 
 ## Central Limit Theorem (CLM) for sample means
 

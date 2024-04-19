@@ -199,7 +199,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rstudio_projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with RStudio Projects and writing R scripts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">RStudio Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -229,19 +229,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data structures in R: 1-Dimensional Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Atomic vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data structures in R: matrices and arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matrices and arrays</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lists.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data structures in R: lists and data frames</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -318,13 +318,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test (Student’s t-test)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney (Mann-Whitney U) test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -408,7 +408,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of relative and absolute reliability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of reliability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,19 +497,16 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-<p>&nbsp;</p>
 <section id="population-sample-and-point-estimation" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="population-sample-and-point-estimation">
 <span class="header-section-number">17.1</span> Population, sample, and point estimation</h2>
 <section id="population-and-parameters" class="level3" data-number="17.1.1"><h3 data-number="17.1.1" class="anchored" data-anchor-id="population-and-parameters">
 <span class="header-section-number">17.1.1</span> Population and parameters</h3>
 <p>In statistics, a <strong>population</strong> refers to a theoretical concept representing the complete collection of individuals (which may not necessarily be people) sharing specific defining characteristics. Examples are the population of all patients with diabetes mellitus, all people with depression, or the population of all middle-aged women.</p>
 <p>Researchers are particularly interested in quantities such as the population mean and population variance of random variables (characteristics) within these populations. These values are typically not directly observable and are denoted as <strong>parameters</strong> in statistical analysis. We use Greek lowercase letters for parameters, such as <span class="math inline">\(μ\)</span> and <span class="math inline">\(σ^2\)</span>, to represent the population mean and variance, respectively. For example, researchers want to know what the mean depression score for the population would be if all people with depression were treated with a new anti-depression treatment.</p>
-<p>&nbsp;</p>
 </section><section id="sample-and-sample-statistics" class="level3" data-number="17.1.2"><h3 data-number="17.1.2" class="anchored" data-anchor-id="sample-and-sample-statistics">
 <span class="header-section-number">17.1.2</span> Sample and sample statistics</h3>
 <p>In practice, researchers encounter constraints in resources and time, particularly when dealing with large or inaccessible populations, making it impractical to study each individual within the population (e.g., every individual with depression in the world). As a result, obtaining an exact value of a population parameter is typically unattainable. Instead, researchers analyze a <strong>sample</strong>, a subset of the population intended to be representative. In such cases, a point estimator is utilized to calculate an estimate of the unknown parameter based on the measurements obtained from the sample. For example, a <strong>sample statistic</strong> such as the sample mean can serve as an estimator for the population mean.</p>
 <div class="content-box-blue">
-<p><strong>Random sample</strong></p>
 <p>In most cases, the best way to get a sample that accurately represents the population is by taking a <strong>random sample</strong> from the population. When selecting a random sample, each individual in the population has <strong>equal</strong> and <strong>independent</strong> chance of being included in the sample.</p>
 </div>
 <p>The statistical framework in <a href="#fig-sample_frame" class="quarto-xref">Figure&nbsp;<span>17.1</span></a> illustrates the process of inferring population parameters using sample statistics.</p>
@@ -518,11 +515,11 @@ window.Quarto = {
 <img src="images/sample_frame.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_frame-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.1: dfsfsd
+Figure&nbsp;17.1: The statistical framework for population parameter estimation.
 </figcaption></figure>
 </div>
 <p>&nbsp;</p>
-<div class="content-box-blue">
+<div class="content-box-green">
 <p><strong>Point estimation</strong></p>
 <p>Point estimation is a statistical method used to estimate an unknown parameter of a population based on data collected from a sample. The objective of point estimation is to find a single, best guess or <strong>estimate</strong> for the value of the parameter. Common point estimators include the sample mean for the population mean and sample variance for the population variance.</p>
 </div>
@@ -534,8 +531,18 @@ Figure&nbsp;17.1: dfsfsd
 <li><p><strong>Bias:</strong> This refers to a tendency to overestimate or underestimate the true value of the population parameter. There are numerous sources of bias in a study, including measurement bias (i.e., errors in measuring exposure or disease), sampling bias (i.e., some members of a population are systematically more likely to be selected in a sample than others), recall bias (i.e., when participants in a research study do not accurately remember a past event or experience), and attrition bias (i.e., systematic differences between study groups in the number and the way participants are lost from a study). Bias can be minimized through thoughtful design of the study (i.e., a comprehensive protocol), careful data collection procedures, and the application of suitable statistical techniques <span class="citation" data-cites="brown2024">(<a href="references.html#ref-brown2024" role="doc-biblioref">Brown et al. 2024</a>)</span>.</p></li>
 <li><p><strong>Sampling error:</strong> This measures the extent to which an estimate tends to vary from one sample to another due to random chance. Our objective is frequently to quantify and understand this variability in estimates. Standard error and confidence intervals, common measures of sampling error, are primarily influenced by both the sample size and the variability of the estimated characteristic.</p></li>
 </ul>
-<div class="content-box-blue">
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg> Comment
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The sampling error is the error caused by observing a sample instead of the whole population. There is no sampling error in a census because the calculations are based on the entire population.</p>
+</div>
 </div>
 </section></section><section id="sampling-distribution" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="sampling-distribution">
 <span class="header-section-number">17.2</span> Sampling distribution</h2>
@@ -605,6 +612,20 @@ Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean
 <p>However, we usually do not know the population parameter σ; therefore, we use the sample standard deviation s, as it is an estimator of the population standard deviation.</p>
 <p><span id="eq-se2"><span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}} \tag{17.3}\]</span></span></p>
 <p>The <strong>Standard Error of the mean</strong> (SEM) is a metric that describes the variability of sample means within the <strong>sampling distribution</strong>. In practice, it provides insight into the uncertainty associated with estimating the population mean when working with a sample, particularly when the sample size is small.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1DC5CE;overflow:visible;position:relative;"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg> Comment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The standard error is essential in constructing <strong>confidence intervals</strong> around point estimates, a process known as interval estimation (<a href="conf_intervals.html" class="quarto-xref"><span>Chapter 18</span></a>).</p>
+</div>
+</div>
+<p>&nbsp;</p>
 <div class="content-box-yellow">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong>Example</strong></p>
 <p>The CD4 count of a sample of 64 healthy individuals has a mean of 850 <span class="math inline">\(counts/mm^3\)</span> with a standard deviation of 240 <span class="math inline">\(counts/mm^3\)</span>. The standard error of the mean for this population is calculated as follows:</p>
@@ -619,10 +640,6 @@ Table&nbsp;17.1: Notation of population, sample, and sampling distributions mean
 <pre data-code-line-numbers=""><code>[1] 30</code></pre>
 </div>
 </div>
-<blockquote class="blockquote">
-<p>Noteworthy, the standard error is essential in constructing <strong>confidence intervals</strong> around point estimates, a process known as interval estimation.</p>
-</blockquote>
-<p>&nbsp;</p>
 </section><section id="properties-of-the-distribution-of-sample-means" class="level3" data-number="17.2.3"><h3 data-number="17.2.3" class="anchored" data-anchor-id="properties-of-the-distribution-of-sample-means">
 <span class="header-section-number">17.2.3</span> Properties of the distribution of sample means</h3>
 <p>Consider a population of 100,000 adults, characterized by a mean blood pressure (BP) of μ = 126 mmHg and a standard deviation of σ = 10. Now, imagine that the distribution of their BP reveals an intriguing bimodal pattern, as visually depicted in <a href="#fig-pop0" class="quarto-xref">Figure&nbsp;<span>17.4</span></a>.</p>
@@ -652,7 +669,6 @@ Figure&nbsp;17.5: Distribution of sample means. Each panel represents a simulati
 </div>
 </div>
 <p>From <a href="#fig-simulation2" class="quarto-xref">Figure&nbsp;<span>17.5</span></a>, it is evident that as the sample size increases, the distribution of sample means tends to approximate a normal distribution, with the mean of this distribution,<span class="math inline">\(\mu_{\bar{x}}\)</span>, approaching the population mean, <span class="math inline">\(\mu\)</span>.</p>
-<p>&nbsp;</p>
 <div class="content-box-blue">
 <p><strong>Properties of the distribution of sample means</strong></p>
 <ul>
@@ -661,6 +677,7 @@ Figure&nbsp;17.5: Distribution of sample means. Each panel represents a simulati
 <li>As the sample size increases, the distribution of sample means tends to approximate a <strong>normal</strong> distribution.</li>
 </ul>
 </div>
+<p>&nbsp;</p>
 </section></section><section id="central-limit-theorem-clm-for-sample-means" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="central-limit-theorem-clm-for-sample-means">
 <span class="header-section-number">17.3</span> Central Limit Theorem (CLM) for sample means</h2>
 <div class="content-box-green">
