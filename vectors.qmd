@@ -526,7 +526,7 @@ u
 
 *Logicals*: `TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE`
 
-#### *AND Operators (`&`, `&&`)*
+#### *AND Operators* (`&`, `&&`)
 
 The `&` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **both** elements are TRUE.
 
@@ -554,7 +554,7 @@ s && u
 `r kableExtra::text_spec("Error in s && u : 'length = 7' in coercion to 'logical(1)'", color = "#8676F8")`
 :::
 
-#### *OR operators (`|`, `||`)*
+#### *OR operators* (`|`, `||`)
 
 The `|` operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if **at least one of the elements** is TRUE.
 
@@ -763,7 +763,7 @@ fourmonths2[c("month_1", "month_2", "month_4")]
 
 ```
 
-Initially, a vector named `nm` is created, containing month names such as "month_1", "month_2", "month_3", and "month_4". By applying the `setNames()` function, these month names are then assigned to the elements of the vector `fourmonths`, thereby transforming it into a named vector. Subsequently, specific elements are selected from `fourmonths` based on their assigned names.
+Initially, a vector named `nm` is created, containing month names such as "month_1", "month_2", "month_3", and "month_4". Then, the `setNames()` function assigns these names to the elements of the vector `fourmonths`, transforming it into a named vector called `fourmonths2`. Subsequently, specific elements are selected from `fourmonths2` based on their assigned names.
 
 ![Select elements by indexing names](images/indexing03.png){#fig-indexing03 width="70%"}
 

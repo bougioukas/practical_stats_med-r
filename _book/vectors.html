@@ -1101,7 +1101,8 @@ Caution
 </div>
 </div>
 <p><em>Logicals</em>: <code>TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></p>
-<section id="and-operators" class="level4"><h4 class="anchored" data-anchor-id="and-operators"><em>AND Operators (<code>&amp;</code>, <code>&amp;&amp;</code>)</em></h4>
+<section id="and-operators" class="level4"><h4 class="anchored" data-anchor-id="and-operators">
+<em>AND Operators</em> (<code>&amp;</code>, <code>&amp;&amp;</code>)</h4>
 <p>The <code>&amp;</code> operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if <strong>both</strong> elements are TRUE.</p>
 <div class="cell">
 <div class="sourceCode" id="cb136" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&amp;</span> <span class="va">u</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1133,7 +1134,8 @@ Operator &amp;&amp;
 <p><span style="     color: rgba(134, 118, 248, 255) !important;">Error in s &amp;&amp; u : ‘length = 7’ in coercion to ‘logical(1)’</span></p>
 </div>
 </div>
-</section><section id="or-operators" class="level4"><h4 class="anchored" data-anchor-id="or-operators"><em>OR operators (<code>|</code>, <code>||</code>)</em></h4>
+</section><section id="or-operators" class="level4"><h4 class="anchored" data-anchor-id="or-operators">
+<em>OR operators</em> (<code>|</code>, <code>||</code>)</h4>
 <p>The <code>|</code> operator combines each element of the first vector with the corresponding element of the second vector (element-wise comparison) and gives an output TRUE if <strong>at least one of the elements</strong> is TRUE.</p>
 <div class="cell">
 <div class="sourceCode" id="cb141" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">|</span> <span class="va">u</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1403,7 +1405,7 @@ Figure&nbsp;7.3: Select elements by using TRUE or FALSE indices
  "January" "February"    "April" </code></pre>
 </div>
 </div>
-<p>Initially, a vector named <code>nm</code> is created, containing month names such as “month_1”, “month_2”, “month_3”, and “month_4”. By applying the <code><a href="https://rdrr.io/r/stats/setNames.html">setNames()</a></code> function, these month names are then assigned to the elements of the vector <code>fourmonths</code>, thereby transforming it into a named vector. Subsequently, specific elements are selected from <code>fourmonths</code> based on their assigned names.</p>
+<p>Initially, a vector named <code>nm</code> is created, containing month names such as “month_1”, “month_2”, “month_3”, and “month_4”. Then, the <code><a href="https://rdrr.io/r/stats/setNames.html">setNames()</a></code> function assigns these names to the elements of the vector <code>fourmonths</code>, transforming it into a named vector called <code>fourmonths2</code>. Subsequently, specific elements are selected from <code>fourmonths2</code> based on their assigned names.</p>
 <div id="fig-indexing03" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-indexing03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/indexing03.png" class="img-fluid figure-img" style="width:70.0%">
