@@ -3,95 +3,68 @@ project:
   output-dir: _book
 book:
   title: "Practical Statistics in Medicine with R"
-  subtitle: "1st Edition"
+  subtitle: "Understanding Fundamental Concepts through Examples"
   author: 
     - name: "Konstantinos I. Bougioukas, PhD"
       orcid: "0000-0002-6533-1391"
   date: today
   cover-image: images/cover.png
   favicon: images/cover.png
+  #sidebar:
+    #logo: "images/lollipop2.png"
   chapters:
     - index.qmd
-    - part: "Part 1: R Basics"
-      chapters:
-        - intro_rstudio.qmd
-        - rstudio_projects.qmd
-        - calculations.qmd
-        - functions.qmd
-        - packages.qmd
-        - objects.qmd
-        - vectors.qmd
-        - matrices.qmd
-        - lists.qmd
-        - transformation.qmd 
-        - ggplot2.qmd
-    - part: "Part 2: Statistics"
-      chapters:
-        - introduction.qmd
-        - probability.qmd
-        - prob_distributions.qmd
-        - normal.qmd
-        - descriptive.qmd
-        - sampling.qmd
-        - conf_intervals.qmd
-        - inference.qmd
-        - student_t_test.qmd
-        - wmw_test.qmd
-        - paired_t_test.qmd
-        - wilcoxon_test.qmd
-        - anova.qmd
-        - kruskal_wallis.qmd
-        - repeated_anova.qmd
-        - friedman.qmd
-        - correlation.qmd
-        - simple_regression.qmd        
-        - chi_square.qmd
-        - fisher_exact.qmd
-        - mcnemar.qmd
-        - cochran.qmd
-        - survival.qmd
-        - reliability.qmd
-        - diagnostic_accuracy.qmd
-        - roc.qmd
-        - sample_size.qmd
+    - preface.qmd
+    - author.qmd
+    - rstudio.qmd
+    - rproject.qmd
+    - rcalculator.qmd
+    - rfunctions.qmd
+    - rpackages.qmd
+    - robjects.qmd
+    - rvectors.qmd
+    - rmatrices.qmd
+    - rlists.qmd
+    - rtransformations.qmd
+    - ggplot2.qmd
+    - intro.qmd
+    - probability.qmd
     - references.qmd
     
   page-footer: 
-    left: "Copyright 2023, Konstantinos I. Bougioukas" 
+    left: "Copyright 2025, Konstantinos I. Bougioukas" 
   back-to-top-navigation: true
 
+crossref:
+  fig-title: "**FIGURE**"
+  fig-prefix: "FIGURE"
+  tbl-title: "**TABLE**"
+  tbl-prefix: "TABLE"
+  title-delim: ""
+  
 bibliography: references.bib
 reference-location: margin
 
 filters:
-  - social-share
-  - lightbox
   - line-highlight
 
 code-annotations: none
-
-share:
-  permalink: "https://practical-stats-med-r.netlify.app/"
-  description: "Practical Statistics in Medicine with R"
-  twitter: true
-  facebook: true
-  linkedin: true
 
 format:
   html:
     theme:
       light: [cosmo, custom.scss]
     grid:
-      sidebar-width: 270px
-      body-width: 840px
+      sidebar-width: 250px
+      body-width: 890px
       margin-width: 250px
-    fontsize: 1.22em
+    fontsize: 1.20em
     linestretch: 1.5
     toc-title: "On this page"
     link-external-newwindow: true
     code-link: true
-    number-depth: 3
+    number-depth: 4
     code-overflow: scroll
     html-math-method: mathjax
-  
+
 editor: visual

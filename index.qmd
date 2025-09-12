@@ -1,32 +1,21 @@
 # Welcome! {.unnumbered}
 
-**This is a working draft.**
+Welcome to the online version of the 1st edition of "*Practical Statistics in Medicine with R: Understanding Fundamental Concepts through Examples*". Whether you're new to statistical analysis or looking to enhance your analytical skills with the R programming language, this introductory textbook provides comprehensive and practical guidance for understanding fundamental statistical concepts through healthcare examples in R. 
 
-This is the website for the work-in-progress "Practical Statistics in Medicine with R". If you'd like a physical copy of the book or an eBook, you can wait until mid-2024 for the 1st edition; it will be published by **CRC Press/Taylor & Francis Group**.
+**This is a work-in-progress draft.**
 
-### Who this textbook is for
+If you'd like a physical copy of the book or an eBook, you can wait until 2026 for the 1st edition; it will be published by **CRC Press/Taylor & Francis Group**.
 
-This introductory textbook is based on lectures and practical sessions delivered over several years at Aristotle University of Thessaloniki in Greece.
+ 
 
-Designed to complement hands-on labs, the primary emphasis of this textbook is to introduce students to the basic ideas of medical statistics using R. It can also be used as a support for self-directed learning for students and researchers in biomedical field to analyze data. Additionally, bridging the gap between theory and practice, it may be useful for (under)graduate students with a science background (engineering, mathematics) who want to move towards biomedical sciences and develop essential R skills.
+### License
 
-The textbook is organized in two primary parts: "Part 1: R basics" and "Part 2: Statistics". In **Part 1**, readers are introduced to the fundamentals of base R, along with practical methods for data import and manipulation using pipe-friendly functions from the [tidyverse](https://www.tidyverse.org/) collection packages. It also provides step-by-step guidance on visualizing data using the [ggplot2](https://ggplot2.tidyverse.org/) package and its extensions. **Part 2** covers the most common statistical tests with examples from bio-medical field. Statistical functions from Base R and the [rstatix](https://rpkgs.datanovia.com/rstatix/) add-on package are presented side-by-side, fostering engagement and enriching reader's coding experience.
-
-::: callout-tip
-This textbook is intended to be self-contained and is not expected any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If the reader wants to learn in more detail this programming language and statistics, we recommend the books below:
-
--   [Using R for Introductory Statistics (2nd Edition)](https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731)
--   [R for Data Science (2nd Edition)](https://r4ds.hadley.nz/)
--   [ggplot2: Elegant Graphics for Data Analysis (3rd edition)](https://ggplot2-book.org/)
--   [Practical Statistics for Medical Research](https://www.routledge.com/Practical-Statistics-for-Medical-Research/Altman/p/book/9780412276309)
-:::
-
-### Reproducibility and License
-
-This textbook was made using ![](images/quarto.png){width="24" height="22"} [Quarto](https://quarto.org/)^®^ which is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/). To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-The **online version** of the textbook is hosted by [Netlify](https://www.netlify.com) and the material is **free to use** for **non-commercial** purposes, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. ![](images/license.png){width="120" height="40"}
+This website is and will always be free, licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. ![](images/license.png){width="120" height="40"}.
 
 {{< qrcode https://practical-stats-med-r.netlify.app width=100 height=100 colorDark='#0011bb' >}}
+
+
+
+
 
 

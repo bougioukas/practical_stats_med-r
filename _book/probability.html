@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Practical Statistics in Medicine with R - 13&nbsp; Basic concepts of Probability</title>
+<title>13&nbsp; Basic concepts of probability – Practical Statistics in Medicine with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -80,8 +80,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prob_distributions.html" rel="next">
-<link href="./introduction.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./intro.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -92,11 +92,7 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/social-share.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/social-share-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -122,7 +118,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -153,13 +149,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./probability.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of probability</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -183,255 +179,95 @@ window.Quarto = {
  <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Part 1: R Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./author.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Author</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R via RStudio</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio_projects.html" class="sidebar-item-text sidebar-link">
+  <a href="./rproject.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">RStudio Projects</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./calculations.html" class="sidebar-item-text sidebar-link">
+  <a href="./rcalculator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+  <a href="./rfunctions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+  <a href="./rpackages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R packages</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./objects.html" class="sidebar-item-text sidebar-link">
+  <a href="./robjects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R objects</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vectors.html" class="sidebar-item-text sidebar-link">
+  <a href="./rvectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Atomic vectors</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./matrices.html" class="sidebar-item-text sidebar-link">
+  <a href="./rmatrices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matrices and arrays</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lists.html" class="sidebar-item-text sidebar-link">
+  <a href="./rlists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data import, manipulation, and transformation</span></span></a>
+  <a href="./rtransformations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data import, pre-processing, and transformation</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data visualization with ggplot2</span></span></a>
   </div>
 </li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Part 2: Statistics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to Statistics</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./probability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of probability</span></span></a>
   </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Normal distribution</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive statistics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Populations and samples</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conf_intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Confidence intervals</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./student_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two-sample t-test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./wmw_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Wilcoxon-Mann-Whitney test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./paired_t_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Paired t-test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./wilcoxon_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wilcoxon Signed-Rank test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">One-way ANOVA test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./kruskal_wallis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./repeated_anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">One-way Repeated Measures ANOVA</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./friedman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Friedman test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./simple_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chi_square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Chi-sqaure test of independence</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fisher_exact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Fisher’s exact test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./mcnemar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">McNemar’s test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cochran.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Cochran’s Q Test</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./survival.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Measures of reliability</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./diagnostic_accuracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./roc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Receiver Operating Characteristic (ROC) curve</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Sample size estimation</span></span></a>
-  </div>
-</li>
-      </ul>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -447,31 +283,25 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#packages-we-need" id="toc-packages-we-need" class="nav-link active" data-scroll-target="#packages-we-need"><span class="header-section-number">13.1</span> Packages we need</a></li>
-  <li><a href="#sample-space-and-random-events" id="toc-sample-space-and-random-events" class="nav-link" data-scroll-target="#sample-space-and-random-events"><span class="header-section-number">13.2</span> Sample Space and Random Events</a></li>
+<li><a href="#sample-space-and-random-events" id="toc-sample-space-and-random-events" class="nav-link active" data-scroll-target="#sample-space-and-random-events"><span class="header-section-number">13.1</span> Sample space and random events</a></li>
   <li>
-<a href="#operations-of-events-using-set-theory-and-venn-diagrams" id="toc-operations-of-events-using-set-theory-and-venn-diagrams" class="nav-link" data-scroll-target="#operations-of-events-using-set-theory-and-venn-diagrams"><span class="header-section-number">13.3</span> Operations of events using set theory and Venn diagrams</a>
+<a href="#operations-of-events-using-set-theory-and-venn-diagrams" id="toc-operations-of-events-using-set-theory-and-venn-diagrams" class="nav-link" data-scroll-target="#operations-of-events-using-set-theory-and-venn-diagrams"><span class="header-section-number">13.2</span> Operations of events using set theory and Venn diagrams</a>
   <ul class="collapse">
-<li><a href="#union-of-events-ab" id="toc-union-of-events-ab" class="nav-link" data-scroll-target="#union-of-events-ab"><span class="header-section-number">13.3.1</span> Union of Events: A∪B</a></li>
-  <li><a href="#intersection-of-events-ab" id="toc-intersection-of-events-ab" class="nav-link" data-scroll-target="#intersection-of-events-ab"><span class="header-section-number">13.3.2</span> Intersection of Events: A∩B</a></li>
-  <li><a href="#complement-events" id="toc-complement-events" class="nav-link" data-scroll-target="#complement-events"><span class="header-section-number">13.3.3</span> Complement Events</a></li>
-  <li><a href="#mutually-exclusive-events" id="toc-mutually-exclusive-events" class="nav-link" data-scroll-target="#mutually-exclusive-events"><span class="header-section-number">13.3.4</span> Mutually exclusive events</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="header-section-number">13.4</span> Probability</a>
-  <ul class="collapse">
-<li><a href="#definition-of-probability" id="toc-definition-of-probability" class="nav-link" data-scroll-target="#definition-of-probability"><span class="header-section-number">13.4.1</span> Definition of Probability</a></li>
-  <li><a href="#the-conditional-probability" id="toc-the-conditional-probability" class="nav-link" data-scroll-target="#the-conditional-probability"><span class="header-section-number">13.4.2</span> The Conditional Probability</a></li>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">13.4.3</span> Bayes’ theorem</a></li>
-  <li><a href="#independence-of-events" id="toc-independence-of-events" class="nav-link" data-scroll-target="#independence-of-events"><span class="header-section-number">13.4.4</span> Independence of events</a></li>
+<li><a href="#union-of-events-ab" id="toc-union-of-events-ab" class="nav-link" data-scroll-target="#union-of-events-ab"><span class="header-section-number">13.2.1</span> Union of events: A<span class="math inline">\(∪\)</span>B</a></li>
+  <li><a href="#intersection-of-events-ab" id="toc-intersection-of-events-ab" class="nav-link" data-scroll-target="#intersection-of-events-ab"><span class="header-section-number">13.2.2</span> Intersection of events: A<span class="math inline">\(∩\)</span>B</a></li>
+  <li><a href="#complement-events" id="toc-complement-events" class="nav-link" data-scroll-target="#complement-events"><span class="header-section-number">13.2.3</span> Complement events</a></li>
+  <li><a href="#mutually-exclusive-events" id="toc-mutually-exclusive-events" class="nav-link" data-scroll-target="#mutually-exclusive-events"><span class="header-section-number">13.2.4</span> Mutually exclusive events</a></li>
+  <li><a href="#definitions-of-probability" id="toc-definitions-of-probability" class="nav-link" data-scroll-target="#definitions-of-probability"><span class="header-section-number">13.2.5</span> Definitions of probability</a></li>
+  <li><a href="#the-conditional-probability" id="toc-the-conditional-probability" class="nav-link" data-scroll-target="#the-conditional-probability"><span class="header-section-number">13.2.6</span> The conditional probability</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">13.2.7</span> Bayes’ theorem</a></li>
+  <li><a href="#independence-of-events" id="toc-independence-of-events" class="nav-link" data-scroll-target="#independence-of-events"><span class="header-section-number">13.2.8</span> Independence of events</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Part 2: Statistics</a></li><li class="breadcrumb-item"><a href="./probability.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-probability" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of Probability</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-probability" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of probability</span></span></h1>
 </div>
 
 
@@ -485,329 +315,205 @@ window.Quarto = {
   
 
 
-</header><p>When we have finished this Chapter, we should be able to:</p>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:red;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"></path></svg> Learning objectives
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Understand and use the terminology of probability</li>
-</ul>
-</div>
-</div>
-<section id="packages-we-need" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="packages-we-need">
-<span class="header-section-number">13.1</span> Packages we need</h2>
-<p>We need to load the following packages:</p>
+</header><p>The foundation of statistical inference is primarily grounded in probability theory. In this chapter, we begin by defining sample space and random events, then explore operations on events using set theory and Venn diagrams. We also cover the definitions of probability, conditional probability, and Bayes’ theorem.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dice graphs</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rolkra/tidydice">tidydice</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># venn diagrams</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ggvenn</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dusadrian/venn">venn</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TeachingDemos</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Required packages for this chapter</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rolkra/tidydice">tidydice</a></span><span class="op">)</span>     </span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="sample-space-and-random-events" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="sample-space-and-random-events">
-<span class="header-section-number">13.2</span> Sample Space and Random Events</h2>
+<p>&nbsp;</p>
+<section id="sample-space-and-random-events" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sample-space-and-random-events">
+<span class="header-section-number">13.1</span> Sample space and random events</h2>
 <p>Both deterministic and stochastic phenomena drive the everyday life.</p>
 <ul>
 <li><p>A <strong>deterministic</strong> phenomenon (process or experiment) always produce the same outcome each time it is repeated under the same conditions.</p></li>
 <li><p>A <strong>random</strong> phenomenon (process or experiment) is characterized by conditions under which the result cannot be determined with certainty before it occurs, that is, one of several possible outcomes is observed each time the process or experiment is repeated. For example, when a coin is tossed, the outcome is either heads H or tails T, but unknown before the coin is tossed.</p></li>
 </ul>
-<p>The <strong>sample space Ω</strong> is defined as the set of <strong>all</strong> possible outcomes of a random experiment. For example, if we roll a 6-sided die, the sample space is the set of the six possible outcomes, Ω ={1, 2, 3, 4, 5, 6} (<a href="#fig-die_space" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>).</p>
-<div class="cell">
-<div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/force_dice.html">force_dice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/plot_dice.html">plot_dice</a></span><span class="op">(</span>detailed <span class="op">=</span> <span class="cn">TRUE</span>, fill_success <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <strong>sample space Ω</strong> is defined as the set of <strong>all</strong> possible outcomes of a random experiment. For example, if we roll a six-sided die, the sample space is the set of the six possible outcomes, Ω ={1, 2, 3, 4, 5, 6}.</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-die_space" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-die_space-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-die_space-1.png" class="img-fluid figure-img" style="width:7cm">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die_space-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.1: Sample space for rolling a 6-sided die.
-</figcaption></figure>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/diespace.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:25.0%" data-fig-pos="H"></p>
+</figure>
 </div>
 </div>
 </div>
 <p>Different random experiments have different sample spaces that can be denoted in an equivalent way (flipping a coin: Ω ={H, T}, flipping two coins: Ω ={HH, HT, TH, TT}, testing for possible genotypes of a bi-allelic gene A: Ω ={AA, Aa, aa}).</p>
-<p>A <strong>random event</strong> (henceforth called event) is denoted by a capital letter such as A, B, or C and is a sub-set of sample space Ω, including a number of possible outcomes of the experiment. For the example of the rolling die, the event “even number” may be represented by A = {2, 4, 6} which is a sub-set of Ω (A ⊂ Ω), and the event “odd number” by B = {1, 3, 5} which is also a sub-set of Ω (B ⊂ Ω). In the case of flipping two coins, an event could be that exactly one of the coins lands Heads, A = {HT, TH} or the event could be that at least one of the coins lands heads, B = {HH, HT, TH}.</p>
+<p>A <strong>random event</strong> (henceforth called event) is denoted by a capital letter such as A, B, or C and is a sub-set of sample space Ω, including a number of possible outcomes of the experiment. For example, in the case of rolling a die, the event “even number” may be represented by A = {2, 4, 6}, which is a subset of Ω (A<span class="math inline">\(⊂\)</span>Ω), and the event “odd number” by B = {1, 3, 5}, which is also a subset of Ω (B<span class="math inline">\(⊂\)</span>Ω). In the case of flipping two coins, an event could be that “exactly one of the coins lands heads”, A = {HT, TH} or the event could be that “at least one of the coins lands heads”, B = {HH, HT, TH}.</p>
 <p>If an event consists of a single outcome from the sample space, it is termed a <strong>simple event</strong>. For example, the event of getting the number 1 on rolling a die, denoted as A = {1}. If an event consists of more than a single outcome from the sample space, it is called a <strong>compound event</strong> such as rolling a die and getting an even number, A = {2, 4, 6}.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="content-box-purple">
+<p><strong>IMPORTANT</strong></p>
 <p>For each experiment, two events always exist:</p>
 <ol type="1">
-<li><p>the <strong>sample space</strong>, Ω, which comprises all possible outcomes.</p></li>
-<li><p>the <strong>empty set = ∅</strong>, that contains no outcomes and it is called the impossible event.</p></li>
+<li><p>the <strong>ample space</strong>, Ω, which comprises all possible outcomes.</p></li>
+<li><p>the <strong>empty set = <span class="math inline">\(\varnothing\)</span></strong>, that contains no outcomes and it is called the impossible event.<br></p></li>
 </ol>
 </div>
-</div>
-</section><section id="operations-of-events-using-set-theory-and-venn-diagrams" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="operations-of-events-using-set-theory-and-venn-diagrams">
-<span class="header-section-number">13.3</span> Operations of events using set theory and Venn diagrams</h2>
-<section id="union-of-events-ab" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="union-of-events-ab">
-<span class="header-section-number">13.3.1</span> Union of Events: A∪B</h3>
-<p>The union of the events A and B, denoted by <strong>A∪B</strong>, is the collection of all outcomes that are in A or in B or in both of them and it is also an event. It will occur if either A or B occurs (the symbol ∪ is equivalent to <strong>OR</strong> operator).</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>In the experiment of rolling a die, let’s consider the events A = “the number rolled is even” and B = “the number rolled is less than three”.</p>
+<p>&nbsp;</p>
+</section><section id="operations-of-events-using-set-theory-and-venn-diagrams" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="operations-of-events-using-set-theory-and-venn-diagrams">
+<span class="header-section-number">13.2</span> Operations of events using set theory and Venn diagrams</h2>
+<section id="union-of-events-ab" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="union-of-events-ab">
+<span class="header-section-number">13.2.1</span> Union of events: A<span class="math inline">\(∪\)</span>B</h3>
+<p>The union of the events A and B, denoted by A<span class="math inline">\(∪\)</span>B, is the collection of all outcomes that are in A or in B or in both of them and it is also an event. It will occur if either A or B occurs (the symbol <span class="math inline">\(∪\)</span> is equivalent to <strong>OR</strong> operator).</p>
+<p><strong><em>Example</em></strong></p>
+<p>In the experiment of rolling a die, let’s consider the events <strong>A</strong> = “the number rolled is even” and <strong>B</strong> = “the number rolled is less than three”.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>      <span class="co"># A = {2, 4, 6}</span></span>
+<div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>      <span class="co"># A = {2, 4, 6}</span></span>
 <span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>         <span class="co"># B = {1, 2}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span>          <span class="co"># A∪B = {2, 4, 6, 1} </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span>          <span class="co"># AUB = {2, 4, 6, 1} </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 2 4 6 1</code></pre>
 </div>
 </div>
-<div class="cell">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/venn/man/venn.html">venn</a></span><span class="op">(</span><span class="st">"A + B"</span>, zcolor <span class="op">=</span> <span class="st">"#7F7FFF"</span>, opacity <span class="op">=</span> <span class="fl">1</span>, ggplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">35</span>, y <span class="op">=</span> <span class="fl">950</span>, label <span class="op">=</span> <span class="st">"Ω"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">500</span>, y <span class="op">=</span> <span class="fl">750</span>, label <span class="op">=</span> <span class="st">"AUB"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div id="fig-union" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-union-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-union-1.png" class="img-fluid figure-img" style="width:14cm">
+<div id="fig-unionAB" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-unionAB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/unionAB.png" class="img-fluid figure-img" style="width:35.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-union-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.2: The union of the events A and B as represented in a Venn diagram.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unionAB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;13.1 The union of the events A and B as represented in a Venn diagram (blue area).
 </figcaption></figure>
 </div>
-</div>
-</div>
-</section><section id="intersection-of-events-ab" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="intersection-of-events-ab">
-<span class="header-section-number">13.3.2</span> Intersection of Events: A∩B</h3>
-<p>The intersection of A and B, denoted by <strong>A∩B</strong>, consists of all outcomes that are in both A and B (the symbol ∩ is equivalent to <strong>AND</strong> operator). That is, the events A and B must occur simultaneously.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+</section><section id="intersection-of-events-ab" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="intersection-of-events-ab">
+<span class="header-section-number">13.2.2</span> Intersection of events: A<span class="math inline">\(∩\)</span>B</h3>
+<p>The intersection of A and B, denoted by A<span class="math inline">\(∩\)</span>B, consists of all outcomes that are in both A and B (the symbol <span class="math inline">\(∩\)</span> is equivalent to <strong>AND</strong> operator). That is, the events A and B must occur simultaneously.</p>
+<p><strong><em>Example</em></strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A = {2, 4, 6}</span></span>
+<div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A = {2, 4, 6}</span></span>
 <span><span class="co"># B = {1, 2}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 2</code></pre>
 </div>
 </div>
-<div class="cell">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/venn/man/venn.html">venn</a></span><span class="op">(</span><span class="st">"A B"</span>, zcolor <span class="op">=</span> <span class="st">"#7F7FFF"</span>, opacity <span class="op">=</span> <span class="fl">1</span>,  ggplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">35</span>, y <span class="op">=</span> <span class="fl">950</span>, label <span class="op">=</span> <span class="st">"Ω"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">500</span>, y <span class="op">=</span> <span class="fl">530</span>, label <span class="op">=</span> <span class="st">"A∩B"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div id="fig-intersection" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-intersection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-intersection-1.png" class="img-fluid figure-img" style="width:14cm">
+<div id="fig-intersectionAB" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-intersectionAB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/intersectionAB.png" class="img-fluid figure-img" style="width:35.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intersection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.3: The intersection of the events A and B as represented in a Venn diagram.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intersectionAB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;13.2 The intersection of the events A and B as represented in a Venn diagram (blue area).
 </figcaption></figure>
 </div>
-</div>
-</div>
-</section><section id="complement-events" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="complement-events">
-<span class="header-section-number">13.3.3</span> Complement Events</h3>
-<p>For example, the complement of the union of A and B, denoted by <span class="math inline">\((A∪B)^c\)</span> (sometimes denoted as <span class="math inline">\((A∪B)'\)</span>), is also an event and consists of all outcomes of the sample space Ω that don’t belong to A∪B.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+</section><section id="complement-events" class="level3" data-number="13.2.3"><h3 data-number="13.2.3" class="anchored" data-anchor-id="complement-events">
+<span class="header-section-number">13.2.3</span> Complement events</h3>
+<p>As an example, consider the complement of the union of events A and B, denoted by <span class="math inline">\((A∪B)'\)</span> or <span class="math inline">\((A∪B)^c\)</span>. This complement is also an event and consists of all outcomes of the sample space Ω that do not belong to A<span class="math inline">\(∪\)</span>B.</p>
+<p><strong><em>Example</em></strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A = {2, 4, 6}</span></span>
+<div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A = {2, 4, 6}</span></span>
 <span><span class="co"># B = {1, 2}</span></span>
-<span></span>
-<span><span class="va">AUB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span>                     <span class="co"># A∪B = {2, 4, 6, 1} </span></span>
-<span></span>
-<span></span>
+<span><span class="va">AUB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span>                     <span class="co"># AUB = {2, 4, 6, 1} </span></span>
 <span><span class="va">sample_space</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>    <span class="co"># sample_space = {1, 2, 3, 4, 5, 6}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">sample_space</span>, <span class="va">AUB</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">sample_space</span>, <span class="va">AUB</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 3 5</code></pre>
 </div>
 </div>
-<div class="cell">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/venn/man/venn.html">venn</a></span><span class="op">(</span><span class="st">"A + B"</span>, zcolor <span class="op">=</span> <span class="st">"white"</span>, opacity <span class="op">=</span> <span class="fl">1</span>, box <span class="op">=</span> <span class="cn">FALSE</span>, ggplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#7F7FFF"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">5</span>, y <span class="op">=</span> <span class="fl">1000</span>, label <span class="op">=</span> <span class="st">"Ω"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">500</span>, y <span class="op">=</span> <span class="fl">950</span>, label <span class="op">=</span> <span class="st">"(AUB)^{C}"</span>, parse <span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div id="fig-complement" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-complement" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-complement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-complement-1.png" class="img-fluid figure-img" style="width:14cm">
+<img src="images/complement.png" class="img-fluid figure-img" style="width:35.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-complement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.4: The complement of the union of A and B as represented in a Venn diagram.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-complement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;13.3 The complement of the union of A and B as represented in a Venn diagram (blue area).
 </figcaption></figure>
 </div>
-</div>
-</div>
-</section><section id="mutually-exclusive-events" class="level3" data-number="13.3.4"><h3 data-number="13.3.4" class="anchored" data-anchor-id="mutually-exclusive-events">
-<span class="header-section-number">13.3.4</span> Mutually exclusive events</h3>
-<p>Let’s consider the events A = “the number rolled is even” and C = “the number rolled is odd”.</p>
-<p>The events A and C are mutually exclusive (also known as incompatible or disjoint) if they <strong>cannot</strong> occur simultaneously. This means that they do not share any outcomes and A∩C =∅.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+</section><section id="mutually-exclusive-events" class="level3" data-number="13.2.4"><h3 data-number="13.2.4" class="anchored" data-anchor-id="mutually-exclusive-events">
+<span class="header-section-number">13.2.4</span> Mutually exclusive events</h3>
+<p>Let’s consider the events A = “the number rolled is even” and C = “the number rolled is odd”. The events A and C are mutually exclusive (also known as incompatible or disjoint) if they <strong>cannot</strong> occur simultaneously. This means that they do not share any outcomes and <span class="math inline">\(A∩C =∅\)</span>.</p>
+<p><strong><em>Example</em></strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>      </span>
+<div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>      </span>
 <span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>         </span>
-<span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">C</span><span class="op">)</span>         </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">C</span><span class="op">)</span>         </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>numeric(0)</code></pre>
 </div>
 </div>
-<div class="cell">
-<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># List of items</span></span>
-<span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"A"</span> <span class="op">=</span> <span class="va">A</span>, <span class="st">"C"</span> <span class="op">=</span> <span class="va">C</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggvenn/man/ggvenn.html">ggvenn</a></span><span class="op">(</span><span class="va">x2</span>, fill_alpha <span class="op">=</span> <span class="fl">1</span>, auto_scale <span class="op">=</span> <span class="cn">T</span>, show_percentage <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ω"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#7F7FFF"</span>, <span class="st">"#7F7FFF"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,</span>
-<span>        plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div id="fig-exclusive" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-exclusive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-exclusive-1.png" class="img-fluid figure-img" style="width:10cm">
+<div id="fig-empty" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-empty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/empty.png" class="img-fluid figure-img" style="width:45.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exclusive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.5: Venn Diagram of two mutually exclusive events.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-empty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;13.4 Venn Diagram of two mutually exclusive events.
 </figcaption></figure>
 </div>
-</div>
-</div>
-</section></section><section id="probability" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="probability">
-<span class="header-section-number">13.4</span> Probability</h2>
 <p>The concept of probability is used in everyday life which stands for the likelihood of occurring or non-occurring of random events. The first step towards determining the probability of an event is to establish a number of <strong>basic rules</strong> that capture the meaning of probability. The probability of an event should fulfill three <strong>axioms</strong> defined by <strong>Kolmogorov</strong>:</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The Kolmogorov Axioms
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="content-box-purple">
+<p><strong>The Kolmogorov Axioms</strong></p>
 <ol type="1">
-<li>The probability of an event A is a non-negative number, <strong>P(A) ≥ 0</strong>
-</li>
-<li>The probability of all possible outcomes, or sample space Ω, equals to one, <strong>P(Ω) = 1</strong>
-</li>
-<li>If A and B are two mutually exclusive events (also known as disjoint events), then <strong>P(A ∪ B) = P(A) + P(B)</strong> and <strong>P(A ∩ B) = 0</strong>.</li>
+<li><p>The probability of an event A is a non-negative number, <span class="math inline">\(P(A) ≥ 0\)</span>.</p></li>
+<li><p>The probability of all possible outcomes, or sample space Ω, equals one, <span class="math inline">\(P(Ω) = 1\)</span>.</p></li>
+<li><p>If A and B are mutually exclusive (disjoint) events, meaning <span class="math inline">\(A ∩ B = ∅\)</span>, then <span class="math inline">\(P(A ∩ B) = 0\)</span>. As a result, the probability of their union is <span class="math inline">\(P(A ∪ B) = P(A) + P(B)\)</span>.</p></li>
 </ol>
 </div>
-</div>
-<section id="definition-of-probability" class="level3" data-number="13.4.1"><h3 data-number="13.4.1" class="anchored" data-anchor-id="definition-of-probability">
-<span class="header-section-number">13.4.1</span> Definition of Probability</h3>
-<section id="a.-theoretical-probability-theoretical-approach" class="level4"><h4 class="anchored" data-anchor-id="a.-theoretical-probability-theoretical-approach"><em>A. Theoretical probability (theoretical approach)</em></h4>
+<p>&nbsp;</p>
+</section><section id="definitions-of-probability" class="level3" data-number="13.2.5"><h3 data-number="13.2.5" class="anchored" data-anchor-id="definitions-of-probability">
+<span class="header-section-number">13.2.5</span> Definitions of probability</h3>
+<section id="theoretical-probability-theoretical-approach" class="level4" data-number="13.2.5.1"><h4 data-number="13.2.5.1" class="anchored" data-anchor-id="theoretical-probability-theoretical-approach">
+<span class="header-section-number">13.2.5.1</span> <em>Theoretical probability (theoretical approach)</em>
+</h4>
 <p>Theoretical probability describes the behavior we expect to happen if we give a precise description of the experiment (but without conducting any experiments). Theoretically, we can list out all the <strong>equally probable</strong> outcomes of an experiment, and determine how many of them are favorable for the event A to occur. Then, the probability of an event A to occur is defined as:</p>
-<p><span id="eq-theoretical_probability"><span class="math display">\[P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}} \tag{13.1}\]</span></span></p>
-<p>Note that the <a href="#eq-theoretical_probability" class="quarto-xref">Equation&nbsp;<span>13.1</span></a> only works for experiments that are considered <strong>“fair”</strong>; this means that there must be no bias involved so that all outcomes are <strong>equally likely</strong> to occur.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example 1</em></strong></p>
-<p>What is the theoretical probability of rolling the number “5” when we roll a six-sided fair die once?</p>
+<p><span id="eq-theoreticalprobability"><span class="math display">\[
+P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}}
+\tag{13.1}\]</span></span></p>
+<p>Note that the <a href="#eq-theoreticalprobability" class="quarto-xref">Equation&nbsp;<span>13.1</span></a> only works for experiments that are considered <strong>“fair”</strong>; this means that there must be no bias involved so that all outcomes are <strong>equally likely</strong> to occur.</p>
+<p><strong><em>Example 1</em></strong></p>
+<p>What is the theoretical probability of rolling <img src="images/five.png" width="13" height="13"> when we roll a six-sided fair die once?</p>
 <p>The theoretical probability is:</p>
 <p><span class="math display">\[P(\textrm{rolling 5}) = \frac{\textrm{1 outcome favourable to the event}}{\textrm{6 possible outcomes}} = \frac{1}{6} \approx 0.167\]</span></p>
-<p>This is because only one outcome (die showing: <i class="fa-solid fa-dice-five fa-1x" aria-label="dice-five"></i>) is favorable out of the six equally likely outcomes (die showing: <i class="fa-solid fa-dice-one fa-1x" aria-label="dice-one"></i>, <i class="fa-solid fa-dice-two fa-1x" aria-label="dice-two"></i>, <i class="fa-solid fa-dice-three fa-1x" aria-label="dice-three"></i>, <i class="fa-solid fa-dice-four fa-1x" aria-label="dice-four"></i>, <i class="fa-solid fa-dice-five fa-1x" aria-label="dice-five"></i>, <i class="fa-solid fa-dice-six fa-1x" aria-label="dice-six"></i>).</p>
-<div class="cell">
-<div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/force_dice.html">force_dice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, success <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">dice_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 6 × 5
-  experiment round    nr result success
-       &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;  
-1          1     1     1      1 FALSE  
-2          1     1     2      2 FALSE  
-3          1     1     3      3 FALSE  
-4          1     1     4      4 FALSE  
-5          1     1     5      5 TRUE   
-6          1     1     6      6 FALSE  </code></pre>
-</div>
-<div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dice_tbl</span><span class="op">$</span><span class="va">success</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dice_tbl</span><span class="op">$</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.1666667</code></pre>
-</div>
-</div>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example 2</em></strong></p>
-<p>What is the probability of rolling either a “5” or a “6” when we roll a six-sided fair die once?</p>
+<p>This is because only one outcome (die showing <img src="images/five.png" width="13" height="13"> ) is favorable out of the six equally likely outcomes.</p>
+<p><br></p>
+<p><strong><em>Example 2</em></strong></p>
+<p>What is the probability of rolling either <img src="images/five.png" width="13" height="13"> or <img src="images/six.png" width="12" height="12"> when we roll a six-sided fair die once?</p>
 <p>The theoretical probability is:</p>
 <p><span class="math display">\[P(\textrm{rolling 5 OR 6}) = \frac{\textrm{2 outcomes favourable to the event}}{\textrm{6 possible outcomes}} = \frac{2}{6} = \frac{1}{3}\approx 0.33\]</span></p>
-<div class="cell">
-<div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/force_dice.html">force_dice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, success <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">dice_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code># A tibble: 6 × 5
-  experiment round    nr result success
-       &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;  
-1          1     1     1      1 FALSE  
-2          1     1     2      2 FALSE  
-3          1     1     3      3 FALSE  
-4          1     1     4      4 FALSE  
-5          1     1     5      5 TRUE   
-6          1     1     6      6 TRUE   </code></pre>
-</div>
-<div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dice_tbl</span><span class="op">$</span><span class="va">success</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dice_tbl</span><span class="op">$</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] 0.3333333</code></pre>
-</div>
-</div>
-<p>This is because two outcomes (die showing: <i class="fa-solid fa-dice-five fa-1x" aria-label="dice-five"></i> or <i class="fa-solid fa-dice-six fa-1x" aria-label="dice-six"></i>) is favorable out of the six equally likely outcomes (die showing: <i class="fa-solid fa-dice-one fa-1x" aria-label="dice-one"></i>, <i class="fa-solid fa-dice-two fa-1x" aria-label="dice-two"></i>, <i class="fa-solid fa-dice-three fa-1x" aria-label="dice-three"></i>, <i class="fa-solid fa-dice-four fa-1x" aria-label="dice-four"></i>, <i class="fa-solid fa-dice-five fa-1x" aria-label="dice-five"></i>, <i class="fa-solid fa-dice-six fa-1x" aria-label="dice-six"></i>).</p>
+<p>This is because two outcomes (die showing <img src="images/five.png" width="12" height="12"> or <img src="images/six.png" width="13" height="13"> ) are favorable out of the six equally likely outcomes.</p>
 <p>We can also use the probability’s axioms. The probability of rolling a 6 is 1/6 and the probability of rolling a 5 is also 1/6. We cannot take a 5 and 6 at the same time (these events are mutually exclusive) so:</p>
-<p><span class="math display">\[\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/6 = 1/3}\]</span></p>
-<p>&nbsp;</p>
-</section><section id="b.-experimental-probability-frequentist-approach" class="level4"><h4 class="anchored" data-anchor-id="b.-experimental-probability-frequentist-approach"><em>B. Experimental probability (frequentist approach)</em></h4>
+<p><span class="math display">\[\textrm{P(rolling a 5 OR 6) = P(rolling a 5) + P(rolling a 6) = 1/6 + 1/6 = 2/6 = 1/3}\]</span> &nbsp;</p>
+</section><section id="experimental-probability-frequentist-approach" class="level4" data-number="13.2.5.2"><h4 data-number="13.2.5.2" class="anchored" data-anchor-id="experimental-probability-frequentist-approach">
+<span class="header-section-number">13.2.5.2</span> <em>Experimental probability (frequentist approach)</em>
+</h4>
 <p>The experimental probability is based on data from repetitions of the same experiment. According to this approach, the probability of an event A, denoted by P(A), is the <strong>relative frequency</strong> of occurrence of the event over a total number of experiments:</p>
-<p><span id="eq-probability"><span class="math display">\[ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of experiments}} \tag{13.2}\]</span></span></p>
-<p>Yet, this definition seems less clear, as it does not specify the exact interpretation of “repetitions of the same experiment” <span class="citation" data-cites="finetti2008e">(<a href="references.html#ref-finetti2008e" role="doc-biblioref">Finetti et al. 2008</a>)</span>.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>We rolled a six-sided die 100 times and we recorded how often each outcome occurred (<a href="#fig-die100" class="quarto-xref">Figure&nbsp;<span>13.6</span></a>). What is the experimental probability of getting the number “5”?</p>
-<div class="cell">
-<div class="sourceCode" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">348</span><span class="op">)</span></span>
+<p><span id="eq-probability"><span class="math display">\[
+P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of experiments}}
+\tag{13.2}\]</span></span></p>
+<p>Yet, this definition seems less clear, as it does not specify the exact interpretation of “repetitions of the same experiment” <span class="citation" data-cites="finetti2008">(<a href="references.html#ref-finetti2008" role="doc-biblioref">Finetti et al. 2008</a>)</span>.</p>
+<p><strong><em>Example</em></strong></p>
+<p>We rolled a six-sided die 100 times and we recorded how often each outcome occurred (<a href="#fig-die100" class="quarto-xref">FIGURE&nbsp;<span>13.5</span></a>). What is the experimental probability of getting <img src="images/five.png" width="12" height="12"> ?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">348</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/roll_dice.html">roll_dice</a></span><span class="op">(</span>times <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">result</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#0071BF"</span>, width <span class="op">=</span> <span class="fl">0.65</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"count"</span>, </span>
-<span>            vjust <span class="op">=</span> <span class="fl">1.5</span>, colour <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            size <span class="op">=</span> <span class="fl">3.5</span>, vjust <span class="op">=</span> <span class="fl">1.5</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Outcome"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-die100" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-die100" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-die100-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-die100-1.png" class="img-fluid figure-img" width="672">
+<img src="probability_files/figure-html/fig-die100-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" data-fig-pos="H">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die100-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.6: Bar plot shows the counts for each outcome.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die100-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;13.5 Bar plot showing the counts for each outcome from 100 rolls of a six-sided die.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <p>The experimental probability is:</p>
-<p><span class="math display">\[ P(\textrm{rolling a 5}) =\frac{\textrm{20 times the number “5” occured}}{\textrm{ 100 experiments}}=  \frac{20}{100} = 0.20\ or\ 20\%\]</span> In 20% of the cases we got a <i class="fa-solid fa-dice-five fa-1x" aria-label="dice-five"></i> that is greater than the expected value of <span class="math inline">\(100/6 \approx 16.67\%\)</span>.</p>
-<p>However, if the die is rolled numerous times, for example 10000 times, the experimental probability should approximate the theoretical probability of that outcome (<strong>Law of Large Numbers</strong>), as shown in <a href="#fig-die10000" class="quarto-xref">Figure&nbsp;<span>13.7</span></a>:</p>
-<div class="cell">
-<div class="sourceCode" id="cb24" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">128</span><span class="op">)</span></span>
+<p><span class="math display">\[ P(\textrm{rolling a 5}) =\frac{\textrm{20 times the number “5” occured}}{\textrm{100 experiments}}=  \frac{20}{100} = 0.20\ or\ 20\%\]</span></p>
+<p>In 20% of the cases we got a <img src="images/five.png" width="13" height="13"> that is greater than the expected value of <span class="math inline">\(100/6 \approx 16.67\%\)</span>.</p>
+<p>However, if the die is rolled numerous times, for example 10000 times, the experimental probability should approximate the theoretical probability of that outcome (<strong>Law of Large Numbers</strong>), as shown in <a href="#fig-die1000" class="quarto-xref">FIGURE&nbsp;<span>13.6</span></a>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">128</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/roll_dice.html">roll_dice</a></span><span class="op">(</span>times <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">result</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#0071BF"</span>, width <span class="op">=</span> <span class="fl">0.65</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"count"</span>, </span>
-<span>            vjust <span class="op">=</span> <span class="fl">1.5</span>, colour <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            size <span class="op">=</span> <span class="fl">3.5</span>, vjust <span class="op">=</span> <span class="fl">1.5</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Outcome"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-die10000" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-die10000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="probability_files/figure-html/fig-die10000-1.png" class="img-fluid figure-img" width="672">
+<div id="fig-die1000" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-die1000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="probability_files/figure-html/fig-die1000-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" data-fig-pos="H">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die10000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.7: Bar plot shows the counts for each outcome.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-die1000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;13.6 Bar plot showing the counts for each outcome from 10000 rolls of a six-sided die.
 </figcaption></figure>
 </div>
 </div>
@@ -815,173 +521,151 @@ Figure&nbsp;13.7: Bar plot shows the counts for each outcome.
 <p>Now, the experimental probability is:</p>
 <p><span class="math display">\[ P(\textrm{rolling a 5}) =\frac{\textrm{1684 times the number “5” occured}}{\textrm{ 10000 experiments}}=  \frac{1684}{10000} = 0.1684\ or\ 16.84\%\]</span></p>
 <p>that is very close to the theoretical probability 16.67%.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Law of Large Numbers
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The more times the experiment is performed, the closer the experimental probability approaches the theoretical probability.</p>
-</div>
+<div class="content-box-purple">
+<p><strong>Law of Large Numbers</strong></p>
+<p>The <strong>more times</strong> the experiment is performed, the <strong>closer</strong> the experimental probability approaches the theoretical probability.</p>
 </div>
 <p>&nbsp;</p>
-</section><section id="c.-subjective-probability-bayesian-approach" class="level4"><h4 class="anchored" data-anchor-id="c.-subjective-probability-bayesian-approach"><em>C. “Subjective” probability (Bayesian approach)</em></h4>
+</section><section id="subjective-probability-bayesian-approach" class="level4" data-number="13.2.5.3"><h4 data-number="13.2.5.3" class="anchored" data-anchor-id="subjective-probability-bayesian-approach">
+<span class="header-section-number">13.2.5.3</span> <em>Subjective probability (Bayesian approach)</em>
+</h4>
 <p>The probability assigned to an event represents the <strong>degree of belief</strong> that the event will occur in a given try of the experiment, and it implies an element of subjectivity.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>In the die roll experiment, the determination of the subjective probability for events <i class="fa-solid fa-dice-one fa-1x" aria-label="dice-one"></i>, <i class="fa-solid fa-dice-two fa-1x" aria-label="dice-two"></i>, <i class="fa-solid fa-dice-three fa-1x" aria-label="dice-three"></i>, <i class="fa-solid fa-dice-four fa-1x" aria-label="dice-four"></i>, <i class="fa-solid fa-dice-five fa-1x" aria-label="dice-five"></i>, <i class="fa-solid fa-dice-six fa-1x" aria-label="dice-six"></i> relies on the belief that the die is <strong>unbiased</strong>, and therefore it must be true that P(1) = P(2) = P(3) = P(4) = P(5) = P(6). With this information, we can then simply use the Kolmogorov axioms to state that P(1) + P(2) + P(3) + P(4) + P(5) + P(6) = 1, and therefore obtain the intuitive result that P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6.</p>
+<p><strong><em>Example</em></strong></p>
+<p>In the die roll experiment, the determination of the subjective probability for events <img src="images/one.png" width="13" height="13"> , <img src="images/two.png" width="13" height="13"> , <img src="images/three.png" width="13" height="13">, ,<img src="images/four.png" width="13" height="13">, <img src="images/five.png" width="13" height="13">, <img src="images/six.png" width="13" height="13"> relies on the belief that the die is <strong>unbiased</strong>, and therefore it must be true that P(1) = P(2) = P(3) = P(4) = P(5) = P(6). With this information, we can then simply use the Kolmogorov axioms to state that P(1) + P(2) + P(3) + P(4) + P(5) + P(6) = 1, and therefore obtain the intuitive result that P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6.</p>
 <p>Nonetheless, if some individuals were aware that the die was biased, such as favoring the number six, their viewpoint would undergo a substantial change.</p>
+<p>&nbsp;</p>
 <p>The following <strong>properties</strong> are useful to assign and manipulate event probabilities.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Fundamental Properties of Probability
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="content-box-purple">
+<p><strong>Fundamental Properties of Probability</strong></p>
 <ol type="1">
-<li><p>The probability of the null event is zero, <strong>P(∅) = 0</strong>.</p></li>
+<li><p>The probability of the null event is zero, <span class="math inline">\(P(∅) = 0\)</span>.</p></li>
 <li><p>The probability of the complement event A satisfies the property:</p></li>
 </ol>
-<p><span id="eq-complementary"><span class="math display">\[P(A') = 1 − P(A) \tag{13.3}\]</span></span></p>
+<p><span id="eq-complement"><span class="math display">\[
+P(A') = 1 − P(A)
+\tag{13.3}\]</span></span></p>
 <ol start="3" type="1">
-<li>The probability of the union of two events satisfies the general property that (<strong>Addition Rule of Probability</strong>) :</li>
+<li>(Addition Rule of Probability) The probability of the union of two events satisfies the general property that :</li>
 </ol>
-<p><span id="eq-union"><span class="math display">\[P(A ∪ B) = P(A) + P(B) − P(A ∩ B) \tag{13.4}\]</span></span></p>
+<p><span id="eq-addrule"><span class="math display">\[
+P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+\tag{13.4}\]</span></span></p>
 </div>
-</div>
-</section></section><section id="the-conditional-probability" class="level3" data-number="13.4.2"><h3 data-number="13.4.2" class="anchored" data-anchor-id="the-conditional-probability">
-<span class="header-section-number">13.4.2</span> The Conditional Probability</h3>
-<p>The conditional probability is indicated as <strong>P(A|B)</strong> (or A <strong>given</strong> B) and the outcome of event A depends on the outcome of event B. The following formula defines the conditional probability:</p>
-<p><span id="eq-conditional"><span class="math display">\[P(A ∩ B) = P(A|B) · P(B) \tag{13.5}\]</span></span></p>
-<p>or</p>
-<p><span id="eq-conditional2"><span class="math display">\[ P(A|B)=  \frac{P(A ∩ B)}{P(B)} \tag{13.6}\]</span></span></p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Suppose we roll two fair six-sided dice. What is the probability that the first roll is a 3, given that the sum of two rolls is 8?</p>
-<p>The sample space of the experiment consists of all ordered pairs of numbers from 1 to 6. That is, Ω = {(1, 1), (1, 2),… , (1, 6), (2, 1),… , (6, 6)}.</p>
-<p>It is useful to define the following two events:</p>
+<p>&nbsp;</p>
+</section></section><section id="the-conditional-probability" class="level3" data-number="13.2.6"><h3 data-number="13.2.6" class="anchored" data-anchor-id="the-conditional-probability">
+<span class="header-section-number">13.2.6</span> The conditional probability</h3>
+<p>Conditional probability, denoted as <strong>P(A|B)</strong> (i.e., the probability of A <strong>given</strong> B), represents the probability of event A occurring given that event B has already occurred. The following formula defines the conditional probability:</p>
+<p><span id="eq-conditional2"><span class="math display">\[
+P(A|B)=  \frac{P(A∩B)}{P(B)}, \quad P(B) &gt; 0
+\tag{13.5}\]</span></span></p>
+<p>It is important to note that by conditioning on event B, we modify the sample space to include only the outcomes where event B occurs.</p>
+<p>Using this definition, we can express the probability that both A and B occurring in terms of conditional probability as follows:</p>
+<p><span id="eq-conditional"><span class="math display">\[
+P(A ∩ B) = P(A|B)·P(B)
+\tag{13.6}\]</span></span></p>
+<p>This is known as the <strong>multiplication rule of probability</strong>.</p>
+<p><strong><em>Example</em></strong></p>
+<p>Suppose we roll two fair six-sided dice. What is the probability that the first die is a 3, given that the sum of two dice is 8?</p>
+<p>The sample space of the experiment consists of all ordered pairs of numbers from 1 to 6. That is, Ω = {(1, 1), (1, 2), … , (1, 6), (2, 1), … , (6, 6)}. It is useful to define the following two events:</p>
 <ul>
-<li><p><strong>A</strong> = {The first roll shows 3, and the second any number}.</p></li>
-<li><p><strong>B</strong> = {The sum of two rolls is 8}.</p></li>
+<li><p><strong>A</strong> = {The first die shows <img src="images/three.png" width="13" height="13">, and the second any number}.</p></li>
+<li><p><strong>B</strong> = {The sum of two dice is 8}.</p></li>
 </ul>
-<p>We are interested in finding the conditional probability: <span class="math display">\[P(A|B) = \frac{P(A ∩ B)}{P(B)}\]</span></p>
-<p><br></p>
+<p>We are interested in finding the conditional probability: <span class="math display">\[P(A|B) = \frac{P(A∩B)}{P(B)}\]</span></p>
 <ul>
 <li>
-<strong>Event A</strong> (the first roll shows 3, and the second any number) is given by outcomes A = {(3,1), (3,2), (3,3), (3,4), (3,5), (3, 6)}.</li>
+<strong>Event A</strong> (the first die shows 3, and the second any number) is given by outcomes A = {(3,1), (3,2), (3,3), (3,4), (3,5), (3, 6)}.</li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/dice_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="images/dice_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" data-fig-pos="H"></p>
 </figure>
+</div>
+</div>
 </div>
 <p>Therefore, the probability of event A is:</p>
-<p><span class="math display">\[P(A) = \frac{\textrm{6}}{\textrm{36}} =\frac{\textrm{1}}{\textrm{6}} \]</span></p>
+<p><span class="math display">\[P(A) = \frac{6}{36} =\frac{1}{6}\]</span></p>
 <ul>
 <li>
-<strong>Event B</strong> (the sum of two rolls is 8) is given by outcomes B = {(2,6), (3,5), (4,4), (5,3), (6,2)} :</li>
+<strong>Event B</strong> (the sum of two dice is 8) is given by outcomes B = {(2,6), (3,5), (4,4), (5,3), (6,2)}.</li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/dice_sum.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="images/dice_sum.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" data-fig-pos="H"></p>
 </figure>
+</div>
+</div>
 </div>
 <p>Therefore, the probability of event B to occur is:</p>
-<p><span class="math display">\[P(B) = \frac{\textrm{5}}{\textrm{36}} \]</span></p>
-<p><br></p>
+<p><span class="math display">\[P(B) = \frac{5}{36}\]</span></p>
 <ul>
-<li>Also, the <strong>event A∩B</strong> occurs if the first die shows 3 and the sum is 8, which can clearly occur only if a sequence of <strong>(3,5)</strong> takes place:</li>
+<li>Also, the event A<span class="math inline">\(∩\)</span>B occurs if the first die shows 3 and the sum of dice is 8, which can clearly occur only if a sequence of <strong>(3,5)</strong> takes place:</li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/dice_8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="images/dice_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" data-fig-pos="H"></p>
 </figure>
 </div>
-<table class="table"><tbody>
-<tr class="odd">
-<td><strong>1st roll</strong></td>
-<td>2</td>
-<td><span class="math inline">\(\color{red}{3}\)</span></td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td><strong>2nd roll</strong></td>
-<td>6</td>
-<td><span class="math inline">\(\color{red}{5}\)</span></td>
-<td>4</td>
-<td>3</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td><strong>Sum</strong></td>
-<td>8</td>
-<td><span class="math inline">\(\color{red}{8}\)</span></td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
-</tr>
-</tbody></table>
-<p>Thus, the probability of intersection of the two events is <strong>P(A∩B) = 1/36</strong>.</p>
-<p><br></p>
+</div>
+</div>
+<p>Thus, the joint probability (i.e., the probability of two events occurring together) is:</p>
+<p><span class="math display">\[P(A∩B) = \frac{1}{36}\]</span></p>
 <ul>
-<li>Finally, according to the definition of conditional probability <a href="#eq-conditional2" class="quarto-xref">Equation&nbsp;<span>13.6</span></a>, the probability of interest is:</li>
+<li>Finally, according to the definition of conditional probability <a href="#eq-conditional2" class="quarto-xref">Equation&nbsp;<span>13.5</span></a>, the probability of interest is calculated as follows:</li>
 </ul>
 <p><span class="math display">\[P(A|B) = \frac{P(A ∩ B)}{P(B)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1}{5}\]</span></p>
-<p>Therefore, the “knowledge” that the sum of two rolls is 8 has <strong>updated</strong> the probability of A from P(A) = 1/6 = 0.167 to P(A|B) = 1/5 = 0.2.</p>
-</section><section id="bayes-theorem" class="level3" data-number="13.4.3"><h3 data-number="13.4.3" class="anchored" data-anchor-id="bayes-theorem">
-<span class="header-section-number">13.4.3</span> Bayes’ theorem</h3>
-<p>Bayes’ theorem is based on this concept of “revisiting probability” when new information is available.</p>
-<p>The <a href="#eq-conditional" class="quarto-xref">Equation&nbsp;<span>13.5</span></a> states that <span class="math inline">\(P(A ∩ B) = P(A|B) · P(B)\)</span>. Note that the <span class="math inline">\(P(A ∩ B)\)</span> is the probability of both events A and B occurring, so we can also state that <span class="math inline">\(P(A ∩ B) = P(B|A) · P(A)\)</span>.</p>
-<p>Now, replacing the P(A ∩ B) with P(B|A) · P(A) in the <a href="#eq-conditional2" class="quarto-xref">Equation&nbsp;<span>13.6</span></a> we get the <strong>Bayes’ theorem</strong>:</p>
-<p><span id="eq-bayes"><span class="math display">\[P(A|B) = \frac{P(B|A)· P(A)}{P(B)} \tag{13.7}\]</span></span></p>
+<p>Therefore, the “knowledge” that the sum of two dice is 8 has <strong>updated</strong> the probability of A from P(A) = 1/6 = 0.167 to P(A|B) = 1/5 = 0.2.</p>
+</section><section id="bayes-theorem" class="level3" data-number="13.2.7"><h3 data-number="13.2.7" class="anchored" data-anchor-id="bayes-theorem">
+<span class="header-section-number">13.2.7</span> Bayes’ theorem</h3>
+<p>Bayes’ theorem provides a way to express <span class="math inline">\(P(A|B)\)</span> in terms of <span class="math inline">\(P(B|A)\)</span>, while incorporating prior knowledge.</p>
+<p>The multiplication rule (<a href="#eq-conditional" class="quarto-xref">Equation&nbsp;<span>13.6</span></a>) states that <span class="math inline">\(P(A∩B) = P(A|B)·P(B)\)</span>. Since <span class="math inline">\(P(A∩B)\)</span> represents the probability of both events A and B occurring, we can also express it as <span class="math inline">\(P(A∩B) = P(Β∩Α) = P(B|A) · P(A)\)</span>.</p>
+<p>Now, substituting <span class="math inline">\(P(A∩B)\)</span> with <span class="math inline">\(P(B|A) · P(A)\)</span> in <a href="#eq-conditional2" class="quarto-xref">Equation&nbsp;<span>13.5</span></a>, we derive the <strong>Bayes’ theorem</strong>:</p>
+<p><span id="eq-bayes"><span class="math display">\[
+P(A|B) = \frac{P(B|A)·P(A)}{P(B)}
+\tag{13.7}\]</span></span></p>
 <p>where <span class="math inline">\(P(B)\neq 0\)</span>.</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
+<p><strong><em>Example</em></strong></p>
 <p>We are interested in calculating the probability of developing lung cancer if a person smokes tobacco for a long time, P(Cancer|Smoker).</p>
 <p>Suppose that 8% of the population has lung cancer, P(Cancer) = 0.08, and 30% of the population are chronic smokers, P(Smoker) = 0.30. Also, suppose that we know that 60% of all people who have lung cancer are smokers, P(Smoker|Cancer) = 0.6.</p>
 <p>Using the Bayes’ theorem we have:</p>
-<p><span class="math display">\[ \textrm{P(Cancer|Smoker) = }\frac{\textrm{P(Smoker|Cancer)· P(Cancer)}}{\textrm{P(Smoker)}} = \frac{0.6 \times 0.08}{0.3}= \frac{0.048}{0.3}= 0.16\]</span> &nbsp;</p>
-</section><section id="independence-of-events" class="level3" data-number="13.4.4"><h3 data-number="13.4.4" class="anchored" data-anchor-id="independence-of-events">
-<span class="header-section-number">13.4.4</span> Independence of events</h3>
-<p>If the knowledge of occurrence of an event <strong>does not influence</strong> the occurrence of another event, the two events are called independent. In fact, if A and B are independent, then the conditional probability is P(A|B) = P(A), i.e.&nbsp;the occurrence of B has no influence on the occurrence of A and P(B|A) = P(B), i.e.&nbsp;the occurrence of A has no influence on the occurrence of A. Consider, for example, rolling two dice consecutively: the outcome of the first die is independent of the outcome of the other die.</p>
-<p>Two events A and B are said to be <strong>independent</strong> if:</p>
-<p><span id="eq-independent"><span class="math display">\[P(A ∩ B) = P(A) · P(B) \tag{13.8}\]</span></span></p>
-<p>This is known as <strong>Multiplication Rule of Probability</strong> and follows directly from <a href="#eq-conditional" class="quarto-xref">Equation&nbsp;<span>13.5</span></a> because P(A|B) = P(A).</p>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:orange;overflow:visible;position:relative;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg> &nbsp; <strong><em>Example</em></strong></p>
-<p>Determine the probability of obtaining two 3s when rolling two six-sided fair dice consecutively. This event can be decomposed in two events:</p>
+<p><span class="math display">\[ \textrm{P(Cancer|Smoker) = }\frac{\textrm{P(Smoker|Cancer)· P(Cancer)}}{\textrm{P(Smoker)}} = \frac{0.6 \times 0.08}{0.3}= \frac{0.048}{0.3}= 0.16\]</span></p>
+</section><section id="independence-of-events" class="level3" data-number="13.2.8"><h3 data-number="13.2.8" class="anchored" data-anchor-id="independence-of-events">
+<span class="header-section-number">13.2.8</span> Independence of events</h3>
+<p>If the occurrence of an event <strong>does not influence</strong> the occurrence of another, the two events are said to be independent. For example, when rolling two dice, the outcome of the first die is independent of the outcome of the second die.</p>
+<p>When events A and B are independent, the conditional probability of A given B equals the probability of A: P(A|B) = P(A). This means that the occurrence of event B does not affect the probability of event A. Similarly, P(B|A) = P(B), indicating that the occurrence of event A has no effect on the probability of event B.</p>
+<p>Two events, A and B, are <strong>statistically independent</strong> if and only if their joint probability equals the product of their individual probabilities:</p>
+<p><span id="eq-independent"><span class="math display">\[
+P(A ∩ B) = P(A)·P(B)
+\tag{13.8}\]</span></span></p>
+<p>This is a special case of the multiplication rule of probability, derived from <a href="#eq-conditional" class="quarto-xref">Equation&nbsp;<span>13.6</span></a> when the events are independent.</p>
+<p><strong><em>Example</em></strong></p>
+<p>Determine the probability of obtaining two 3s when rolling two six-sided fair dice.</p>
 <ul>
-<li>
-<strong>A</strong> = {die 1 shows <i class="fa-solid fa-dice-three fa-1x" aria-label="dice-three"></i>, and die 2 shows any number}.</li>
+<li>Let A represent the event of getting a 3 on the first die: <strong>A</strong> = {die 1 shows <img src="images/three.png" width="13" height="13"> }. The probability of event A is:</li>
 </ul>
+<p><span class="math display">\[P(A) = \frac{1}{6}\]</span></p>
+<ul>
+<li>Let B represent the event of getting a 3 on the second die: <strong>B</strong> = {die 2 shows <img src="images/three.png" width="13" height="13"> }. The probability of event B is:</li>
+</ul>
+<p><span class="math display">\[P(B) = \frac{1}{6}\]</span></p>
+<p>Since the outcome of one die does not affect the other (i.e., the rolls of the dice are independent events), we can calculate the probability of both events occurring, <span class="math inline">\(P(A∩B)\)</span>, using the multiplication rule for independent events (<a href="#eq-independent" class="quarto-xref">Equation&nbsp;<span>13.8</span></a>):</p>
+<p><span class="math display">\[P(A \cap B) = P(A)·P(B) = \frac{1}{6}·\frac{1}{6} = \frac{1}{36}\]</span></p>
+<p>This result can be verified by directly counting all possible outcomes when rolling two dice. As shown below, out of the 36 possible outcomes, only one combination results in both dice showing 3s.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/dice_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="images/dice_33.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" data-fig-pos="H"></p>
 </figure>
 </div>
-<p><span class="math display">\[P(A) = \frac{\textrm{6}}{\textrm{36}} = \frac{\textrm{1 }}{\textrm{6}}\]</span></p>
-<ul>
-<li>
-<strong>B</strong> = {die 1 shows any number, and die 2 shows <i class="fa-solid fa-dice-three fa-1x" aria-label="dice-three"></i> }.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/dice_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
 </div>
-<p><span class="math display">\[P(B) = \frac{\textrm{6}}{\textrm{36}} = \frac{\textrm{1}}{\textrm{6}}\]</span></p>
-<p>We can state that the two events A and B are independent by nature, since each event involves a different die, which has no knowledge of the outcome of the other one. The event of interest is A ∩ B, and the definition of probability of two independent events leads to:</p>
-<p><span class="math display">\[ {\textrm{P(A ∩ B) = P(A) · P(B) =} \frac{1}{6} · \frac{1}{6} = \frac{1}{36}}\]</span></p>
-<p>This result can be verified by a direct count of all possible outcomes in the roll of two dice, and the fact that there is only one combination out of 36 that gives rise to two consecutive 3s.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/dice_12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-finetti2008e" class="csl-entry" role="listitem">
+<div id="ref-finetti2008" class="csl-entry" role="listitem">
 Finetti, Bruno de, Maria Carla Galavotti, Hykel Hosni, and Alberto Mura. 2008. <span>“Introductory Lecture.”</span> In, 1–14. Springer Netherlands. <a href="https://doi.org/10.1007/978-1-4020-8202-3_1">https://doi.org/10.1007/978-1-4020-8202-3_1</a>.
 </div>
 </div>
@@ -1020,18 +704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1063,7 +736,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1071,7 +766,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1312,20 +1007,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction to Statistics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prob_distributions.html" class="pagination-link" aria-label="Probability Distributions">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2023, Konstantinos I. Bougioukas</p>
+<p>Copyright 2025, Konstantinos I. Bougioukas</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -1334,10 +1029,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><div class="page-columns page-rows-contents page-layout-article"><div class="social-share">
-<a href="https://twitter.com/share?url=https://practical-stats-med-r.netlify.app/&amp;text=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="twitter"><i class="fab fa-twitter fa-fw fa-lg"></i></a><a href="https://www.linkedin.com/shareArticle?url=https://practical-stats-med-r.netlify.app/&amp;title=Practical%20Statistics%20in%20Medicine%20with%20R" target="_blank" class="linkedin"><i class="fa-brands fa-linkedin-in fa-fw fa-lg"></i></a><a href="https://www.facebook.com/sharer.php?u=https://practical-stats-med-r.netlify.app/" target="_blank" class="facebook"><i class="fab fa-facebook-f fa-fw fa-lg"></i></a>
-</div></div>
-
+</footer>
 
 
 <script src="site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>

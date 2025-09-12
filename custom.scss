@@ -106,6 +106,8 @@ h5 { margin-top: 1.5em; font-size: 1rem; }
 .content-box-purple {
     background-color: #e2e2f9;
     border: 1px solid #bebde9;
+    margin: 0 0 20px;
+    padding: 5px
 }
  
 .content-box-red {
@@ -113,8 +115,39 @@ h5 { margin-top: 1.5em; font-size: 1rem; }
     border: 1px solid #e9b3b3;
 }
  
-.content-box-yellow {
-    background-color: #fef5c4;
-    border: 1px solid #fadf98;
+.content-box-white {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    margin: 0 0 20px;
+    padding: 5px
 }
+
+
+
+// create a reusable class for all LaTeX-style tables
+.latex-table {
+  table {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-right: none;
+    border-collapse: collapse;
+  }
+  
+  th {
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 8px 12px;
+  }
+  
+  td {
+    border: none;
+    padding: 6px 12px;
+  }
+}
+
+
+
 

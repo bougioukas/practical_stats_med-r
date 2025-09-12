@@ -1,0 +1,739 @@
+# Matrices and arrays {#sec-rmatrices}
+
+```{r setup_rmatrices, include=FALSE}
+
+options(width=85)
+knitr::opts_chunk$set(fig.pos = 'H')
+```
+
+Matrices and arrays are fundamental data structures in R that enable efficient storage and manipulation of multi-dimensional data. Throughout this chapter, we explore how to create, manipulate, and perform operations on matrices and arrays.
+
+ 
+
+## Definition of a matrix
+
+In mathematics, a matrix is a rectangular array of elements arranged in rows and columns. A matrix is defined by its dimensions, which specify the number of rows and columns it contains. For example:
+
+$$
+  X = 
+  \begin{bmatrix}
+    x_{11} & x_{12} & x_{13} & x_{14}\\
+    x_{21} & x_{22} & x_{23} & x_{24}\\
+    x_{31} & x_{32} & x_{33} & x_{34}
+  \end{bmatrix}_{3\times 4}
+$$
+
+The matrix $\mathbf{X}$ is a $3 \times 4$ matrix because it has 3 rows and 4 columns. For example, the element in the first row and second column is denoted as $x_{12}$, and the element in the second row and third column is denoted as $x_{23}$.
+
+Then $3 \times 1$ matrices $\begin{bmatrix} x_{11} \\ x_{21} \\ x_{31} \end{bmatrix}$, $\begin{bmatrix} x_{12} \\ x_{22} \\ x_{32} \end{bmatrix}$, $\begin{bmatrix} x_{13} \\ x_{23} \\ x_{33} \end{bmatrix}$, $\begin{bmatrix} x_{14} \\ x_{24} \\ x_{34} \end{bmatrix}$ are called **column** vectors of the matrix.
+
+Also $1 \times 4$ matrices such that $\begin{bmatrix} x_{11} & x_{12} & x_{13} & x_{14} \end{bmatrix}$, $\begin{bmatrix} x_{21} & x_{22} & x_{23} & x_{24} \end{bmatrix}$, $\begin{bmatrix} x_{31} & x_{32} & x_{33} & x_{34} \end{bmatrix}$ are called **row** vectors of the matrix.
+
+The main diagonal of a matrix refers to the collection of elements that run from the top-left corner to the bottom-right corner of the matrix. In other words, it is a sequence of elements where the row index and the column index are the same ($x_{ij}$ where i=j). In the above example, the elements of the main diagonal are: $x_{11}, x_{22}, and\ x_{33}$.
+
+ 
+
+***Example***
+
+$$
+  X= 
+  \begin{bmatrix}
+    4 & 0 & 2 & 1\\
+    3 & 1 & 4 & 2\\
+    2 & 0 & 1 & 3
+  \end{bmatrix}_{3\times 4} 
+$$
+
+ 
+
+-   The column vectors are: $\begin{bmatrix} 4 \\ 3 \\ 2 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 2 \\ 4 \\ 1 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$
+
+-   The row vectors are: $\begin{bmatrix} 4 & 0 & 2 & 1 \end{bmatrix}$, $\begin{bmatrix} 3 & 1 & 4 & 2 \end{bmatrix}$, $\begin{bmatrix} 2 & 0 & 1 & 3 \end{bmatrix}$
+
+-   The main diagonal consisted of the numbers 4, 1, and 1.
+
+## Creating a matrix in R
+
+In R, each data object has various **attributes** that describe its characteristics and structure. For example, matrices are created using the `dim` (dimension) attribute, which facilitates matrix algebra operations.
+
+::: content-box-purple
+**Matrix**
+
+A matrix is a **two-dimensional** atomic vector used to represent data organized into rows and columns, where all elements are of the \textbf{same type}, such as numeric, character, or logical.
+:::
+
+ 
+
+Adding a dimension attribute of 2 to an atomic vector allows it to be reshaped into a two-dimensional matrix. For example:
+
+```{r}
+X1 <- c(4, 3, 2, 0, 1, 0, 2, 4, 1, 1, 2, 3)
+
+dim(X1) <- c(3, 4)
+
+X1
+```
+
+The **`dim()`** is an in-built R function that either **sets** or **returns** the dimension of the matrix, array, or data frame. Here, the **`dim()`** function sets the dimension for the `X1` object.
+
+Most often we create a matrix using the **`matrix()`** function. In this case, we need to specify the number of rows and columns in the function.
+
+***Example:*** *numeric matrix*
+
+```{r}
+x_numeric <- c(4, 3, 2, 0, 1, 0, 2, 4, 1, 1, 2, 3)
+
+X2 <- matrix(x_numeric, nrow = 3, ncol = 4)
+X2
+```
+
+The matrix is filled by columns (default column-wise), so entries can be thought of starting in the "upper left" corner and running down the columns. If we want the matrix to be filled by rows we must add the extra argument `byrow = TRUE` in the **`matrix()`** function, as follows:
+
+```{r}
+X3 <- matrix(x_numeric, nrow = 3, ncol = 4, byrow = TRUE)
+X3
+```
+
+The `type` of data, the `class` and the `dimension` of the `X3` object are:
+
+```{r}
+typeof(X3)
+class(X3)
+```
+
+Note that the **`typeof()`** function returns the data type contained within an object (i.e., double), while the **`class()`** function returns the structural type (i.e., matrix) of the object.
+
+```{r}
+dim(X3)
+```
+
+In this example, the **`dim()`** function takes the R object `X3` as an argument and returns its dimension.
+
+ 
+
+***Example:*** *logical matrix*
+
+```{r}
+x_logical <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)
+X4 <- matrix(x_logical, nrow = 2, ncol = 3)
+X4
+```
+
+The data type of the `X4` object is:
+
+```{r}
+typeof(X4)
+```
+
+ 
+
+***Example:*** *character matrix*
+
+```{r}
+x_char <- c("a", "b", "c", "d", "e", "f")
+X5 <- matrix(x_char, nrow = 2, ncol = 3)
+X5
+```
+
+The data type of the `X5` object is:
+
+```{r}
+typeof(X5)
+```
+
+## Using matrix subscripts
+
+In R, we can access rows, columns, or individual elements of a matrix using subscripts within brackets. Specifically, `X[i, ]` refers to the $i^{th}$ row of matrix $\mathbf{X}$, `X[ , j]` refers to $j^{th}$ column, and `X[i, j]` refers to the $ij$-element, as shown in the following examples.
+
+```{r}
+# create a 2x5 numeric matrix filled by column
+X <- matrix(1:10, nrow=2)  
+X
+
+X[2, ]   # select the 2nd row
+X[, 2]  # select the 2nd column
+X[1, 4]  # select the element in the 1st row, 4th column
+```
+
+Furthermore, we can use numeric vectors within the brackets to select multiple rows and/or columns, as shown in the example below:
+
+```{r}
+X[1, c(4, 5)]  # select the elements in the 1st row, 4th and 5th column 
+```
+
+ 
+
+::: content-box-white
+**INFO**
+
+Similar to atomic vectors, square brackets \[ \] are used to select individual or multiple elements from a matrix. Since matrices have two dimensions, both the row(s) and column(s) must be specified, separated by a \textbf{comma} in the format \[row(s), column(s)\].
+:::
+
+ 
+
+## Special types of matrices
+
+### The square matrix
+
+A square matrix is a matrix that has an equal number of rows and columns.
+
+***Example***
+
+$$
+M = 
+  \begin{bmatrix}
+    5 & 1 & 0\\
+    3 & -1 & 2\\
+    4 & 0 & -1
+  \end{bmatrix}_{3\times 3}
+$$
+
+In R:
+
+```{r}
+M <- matrix( c(5, 3, 4, 1, -1, 0, 0, 2, -1), nrow = 3)
+M
+```
+
+The main diagonal consists of the numbers 5, -1, and -1. In R, we can extract the diagonal elements of a matrix using the **`diag()`** function, as follows:
+
+```{r}
+diag(M)
+```
+
+The trace of a square matrix is the **sum** of its main diagonal elements. In the example above, the trace is $Tr = 5 + (- 1) + (- 1) = 5 - 2 = 3$, which can be calculated in R using the following code:
+
+```{r}
+sum(diag(M))
+```
+
+ 
+
+### The diagonal matrix
+
+A diagonal matrix is a special type of square matrix where all the elements outside the main diagonal are zero.
+
+***Example***
+
+$$
+D = 
+  \begin{bmatrix}
+    4 & 0 & 0\\
+    0 & -1 & 0\\
+    0 & 0 & -5
+  \end{bmatrix}_{3\times 3}
+$$
+
+In R, we can create a diagonal matrix of size 3 using the **`diag()`** function as follows:
+
+```{r}
+elements <- c(4, -1, -5)
+D <- diag(elements)
+D
+```
+
+ 
+
+### The identity matrix
+
+An identity matrix, often denoted as $\mathbf{I}$, is a square matrix with **ones** on the main diagonal and **zeros** elsewhere. It is a special case of a diagonal matrix, where all diagonal elements equal 1.
+
+***Example***
+
+$$
+I = 
+  \begin{bmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+  \end{bmatrix}_{3\times 3}
+$$
+
+In R, we can create the identity matrix of size 3 by using the **`diag()`** function:
+
+```{r}
+I <- diag(3)
+I
+```
+
+ 
+
+### Symmetric matrix
+
+A symmetric matrix is a square matrix that remains unchanged when we transpose it (*see also section 8.5.1*), which means we swap its rows and columns.
+
+***Example***
+
+$$
+S = 
+  \begin{bmatrix}
+    13 & -4 & 2\\
+    -4 & 11 & -2\\
+    2 & -2 & 8
+  \end{bmatrix}_{3\times 3}
+$$ In R:
+
+```{r}
+S <- matrix(c(13, -4, 2, -4, 11, -2, 2, -2, 8), nrow = 3)
+S
+```
+
+In $\mathbf{S}$ matrix, the elements at positions (1,2) and (2,1) are both -4, the elements at positions (1,3) and (3,1) are both 2, and the elements at positions (2,3) and (3,2) are both -2. This reflects the symmetry property.
+
+## Basic matrix algebra
+
+### The transpose of a matrix
+
+The transpose operation swaps the rows and columns of an $n \times p$ matrix, resulting in a new matrix with dimensions $p \times n$.
+
+***Example***
+
+Given the matrix $\mathbf{A}$:
+
+$$
+  A = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3}
+$$
+
+The transpose of $\mathbf{A}$, denoted as $\mathbf{A^\intercal}$, is obtained by interchanging the rows and columns, so that the first column of $\mathbf{A}$ becomes the first row of $\mathbf{A^\intercal}$, the second column becomes the second row, and so forth.
+
+$$
+  A^\intercal = 
+  \begin{bmatrix}
+    4  &  0 \\
+    -1 & 1\\
+    5  & -2
+  \end{bmatrix}_{3\times 2}
+$$
+
+In R:
+
+We define the matrix $\mathbf{A}$:
+
+```{r}
+A <- matrix(c(4, 0, -1, 1, -5, -2), nrow = 2)
+A
+```
+
+To compute the transpose of matrix $\mathbf{A}$, we can use the **`t()`** function:
+
+```{r}
+t(A)
+```
+
+ 
+
+### Matrix addition
+
+Matrix addition is an operation performed on two matrices with the same dimensions. It involves adding the corresponding elements of the matrices (element-wise addition) to create a new matrix of the same dimension.
+
+***Example***
+
+Consider the following matrices $\mathbf{A}$ and $\mathbf{B}$:
+
+$$
+  A = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3}
+$$
+
+$$
+  B = 
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix}_{2\times 3}
+$$
+
+To add $\mathbf{A}$ and $\mathbf{B}$, we perform element-wise addition by summing the corresponding elements, as shown below:
+
+$$
+  A + B= 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3} +
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix}_{2\times 3} = 
+  \begin{bmatrix}
+  7 & 0 & -10 \\
+  0 & 3 & -4
+  \end{bmatrix}_{2\times 3}
+$$
+
+In the resulting matrix, the element in the first row and first column is $4 + 3 = 7$, the element in the first row and second column is $-1 + 1 = 0$, the element in the first row and third column is $-5 + (- 5) = -10$. The elements in the second row are calculated similarly.
+
+In R:
+
+```{r}
+A
+
+B <-matrix(c(3, 0, 1, 2, -5, -2), nrow = 2)
+B
+```
+
+To perform the addition of matrices $\mathbf{A}$ and $\mathbf{B}$, we simply use the `+` operator:
+
+```{r}
+A + B
+```
+
+ 
+
+### Scalar multiplication of matrices
+
+In **scalar** multiplication, each element of a matrix is multiplied by a given scalar (a constant number). For example:
+
+***Example***
+
+Consider the scalar multiplication of matrix $\mathbf{A}$ by -3:
+
+$$
+ -3 \cdot A = -3 \cdot
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3} = 
+  \begin{bmatrix}
+    -12 & 3 & 15 \\
+    0 & -3 & 6
+  \end{bmatrix}_{2\times 3}
+$$
+
+In the resulting matrix, the element in the first row and first column is $-3 \cdot 4 = -12$, the element in the first row and second column is $-3 \cdot (-1) = 3$, the element in the first row and third column is $-3 \cdot (- 5) = 15$, and so on.
+
+In R:
+
+```{r}
+A
+-3 * A
+```
+
+ 
+
+### Hadamard product
+
+The Hadamard product is the **element-wise** multiplication of two matrices, $\mathbf{A}$ and $\mathbf{B}$, that have the **same** dimensions. It is denoted by the $\odot$ operator and involves multiplying corresponding elements of the two matrices to produce a new matrix with the same dimensions.
+
+***Example***
+
+$$
+  A \odot B= 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3} \odot
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix}_{2\times 3} = 
+  \begin{bmatrix}
+  12 & -1 & 25 \\
+  0 & 2 & 4
+  \end{bmatrix}_{2\times 3}
+$$
+
+In the resulting matrix, the element in the first row and first column is $4 \cdot 3 = 12$, the element in the first row and second column is $-1 \cdot 1 = -1$, the element in the first row and third column is $-5 \cdot (- 5) = 25$. The second row elements are computed similarly.
+
+In R:
+
+```{r}
+A
+B
+```
+
+The output will be a new matrix with the same dimensions as the original matrices:
+
+```{r}
+A * B
+```
+
+ 
+
+### Matrix product
+
+Suppose $\mathbf{A}$ is a $n \times k$ matrix and $\mathbf{C}$ is a $k \times p$ matrix, where the number of columns in the first matrix is equal to the number of rows in the second matrix (i.e., **compatible matrices**). The matrix product of $\mathbf{A}$ and $\mathbf{C}$ is denoted as $\mathbf{A C}$, representing the standard matrix multiplication. Each element of the matrix $\mathbf{AC}$ is formed by taking the **dot product** of a row of $\mathbf{A}$ with a column of $\mathbf{C}$ (i.e., row-by-column multiplication). Let's illustrate this procedure with examples.
+
+::: content-box-purple
+**IMPORTANT**
+
+Before multiplying two matrices, we must ensure that their **dimensions** are compatible. The number of columns in the first matrix must equal the number of rows in the second matrix.
+:::
+
+ 
+
+***Example:*** *compatible matrices*
+
+Suppose we have the following matrices $\mathbf{A}$ and $\mathbf{C}$:
+
+$$
+  A = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3}
+$$
+
+$$
+  C = 
+  \begin{bmatrix}
+    -5 & 5 \\
+    2 & 1 \\
+    -2 & 0 \\
+  \end{bmatrix}_{3\times 2}
+$$
+
+The row-by-column multiplication of these two matrices results in a new matrix:
+
+$$
+  AC= 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3} \cdot
+  \begin{bmatrix}
+    -5 & 5 \\
+    2 & 1 \\
+    -2 & 0 \\
+  \end{bmatrix}_{3\times 2} = 
+  \begin{bmatrix}
+  -12 & 19  \\
+  6 & 1 
+  \end{bmatrix}_{2\times 2}
+$$
+
+We observe that the resulting matrix has dimensions $2 \times 2$. Now, let's explain the process of this type of multiplication:
+
+-   the element in the first row and first column of the new matrix is the result of the dot product between the first row of $\mathbf{A}$ and the first column of $\mathbf{C}$: $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix} \cdot \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 4 \cdot (-5) + (-1) \cdot 2 + (-5) \cdot (-2) = -20 -2 + 10 = -12$
+
+-   the element in the first row and second column of the new matrix is the result of the dot product between the first row of $\mathbf{A}$ and the second column of $\mathbf{C}$: $\begin{bmatrix} 4 & -1 & -5 \end{bmatrix} \cdot \begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix} = 4 \cdot 5 + (-1) \cdot 1 + (-5) \cdot 0 = 20 - 1 + 0 = 19$
+
+-   the element in the second row and first column of the new matrix is the result of the dot product between the second row of $\mathbf{A}$ and the first column of $\mathbf{C}$: $\begin{bmatrix} 0 & 1 & -2 \end{bmatrix} \cdot \begin{bmatrix} -5 \\ 2 \\ -2 \end{bmatrix} = 0 \cdot (-5) + 1 \cdot 2 + (-2) \cdot (-2) = 0 + 2 + 4 = 6$
+
+-   the element in the second row and second column of the new matrix is the result of the dot product between the second row of $\mathbf{A}$ and the second column of $\mathbf{C}$: $\begin{bmatrix} 0 & 1 & -2 \end{bmatrix} \cdot \begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix} = 0 \cdot 5 + 1 \cdot 1 + (-2) \cdot 0 = 1$
+
+\vspace{10pt}
+
+Matrix multiplication can be achieved using the dot product operator `%*%`.
+
+```{r}
+A
+C <- matrix(c(-5, 2, -2, 5, 1, 0), nrow = 3)
+C
+
+A %*% C
+```
+
+ 
+
+***Example:*** *multiplication after transposition*
+
+Consider the matrices
+
+$$
+  A = 
+  \begin{bmatrix}
+    4 & -1 & -5 \\
+    0 & 1 & -2
+  \end{bmatrix}_{2\times 3}
+$$
+
+and
+
+$$
+  B = 
+  \begin{bmatrix}
+    3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix}_{2\times 3}
+$$
+
+These matrices are not compatible for multiplication because the number of columns in $\mathbf{A}$ does not match the number of rows in $\mathbf{B}$. However, if we transpose matrix $\mathbf{A}$, we obtain a $3 \times 2$ matrix:
+
+$$
+  A^\intercal = 
+  \begin{bmatrix}
+    4 & 0 \\
+    -1 & 1 \\
+    -5 & -2
+  \end{bmatrix}_{3\times 2}
+$$
+
+Now, the $\mathbf{A^\intercal}$ and $\mathbf{B}$ matrices are compatible, their matrix product is well defined, and we can proceed with the multiplication:
+
+$$
+  A^\intercal B= 
+  \begin{bmatrix}
+    4 & 0 \\
+    -1 & 1 \\
+    -5 & -2
+  \end{bmatrix}_{3\times 2} \cdot
+  \begin{bmatrix}
+   3 & 1 & -5 \\
+    0 & 2 & -2
+  \end{bmatrix}_{2\times 3} = 
+  \begin{bmatrix}
+  12 & 4 & -20  \\
+  -3 & 1 & 3 \\
+  -15 & -9 & 29
+  \end{bmatrix}_{3\times 3}
+$$
+
+In R:
+
+```{r}
+t(A)
+B
+t(A) %*% B
+```
+
+However, it is more efficient and faster using the **`crossprod()`** function:
+
+```{r}
+crossprod(A, B)
+```
+
+ 
+
+### The inverse of a matrix
+
+Given a square matrix $\mathbf{E}$, its inverse is another square matrix of the same dimensions, denoted as $\mathbf{E^{-1}}$, such that when the two matrices are multiplied together, they yield the **identity matrix** $\mathbf{I}$.
+
+$$
+E_{k \times k} \cdot E^{-1}_{k \times k} = I_{k \times k}
+$$
+
+\vspace{10pt}
+
+***Example***
+
+Let's consider a 3x3 matrix $\mathbf{E}$:
+
+$$
+E = \begin{bmatrix}
+     1 & -1 & 1\\ 
+     2 & 0 & 1\\
+     1 & 1 & 2
+\end{bmatrix}_{2 \times 2} 
+$$
+
+In R, we can use the generic built-in **`solve()`** function to find the inverse of the matrix $\mathbf{E}$:
+
+```{r}
+# create the matrix E
+E <- matrix( c(1, 2, 1, -1, 0, 1, 1, 1, 2), nrow = 3)
+
+# the solve() function takes a matrix as input and returns the matrix's inverse
+E_inv <- solve(E)
+E_inv
+```
+
+Therefore, we can verify that if we multiply the matrix $\mathbf{E}$ by its inverse $\mathbf{E^{-1}}$, we get back the identity matrix:
+
+```{r}
+ E %*% E_inv
+```
+
+ 
+
+## Arrays
+
+### Creating an array
+
+An array is similar to matrix but can have **more than two dimensions**. Conceptually, it can be thought of as a stack of matrices, where each matrix has a specific number of rows and columns. These layers are stacked on top of each other, forming the multidimensional structure of the array.
+
+Let's create an example of an array using the **`array()`** function from base R:
+
+```{r}
+# build an 2x3x4 array
+my_array <- array(1:24, dim = c(2, 3, 4))
+my_array
+```
+
+This example demonstrates how arrays extend matrices by providing greater flexibility in data representation. Each layer is a `2x3` matrix, and four such layers are stacked to form the array. Like matrices, arrays contain elements of a single data type (e.g., numeric). We can check the array’s `type`, `class` and the `dimensions` as follows:
+
+```{r}
+typeof(my_array)
+class(my_array)
+dim(my_array)
+```
+
+The output confirms a 3-dimensional array of integers with dimensions 2, 3, and 4.
+
+### Indexing in an array
+
+To access a specific matrix within the array, for example, the 3rd matrix, we type:
+
+```{r}
+# access the 3rd matrix of the array
+my_array[, , 3]
+```
+
+<br>
+
+To access the 2nd row of the 3rd matrix:
+
+```{r}
+# access the 2nd row of the 3rd matrix of the array.
+my_array[2, , 3]
+```
+
+<br>
+
+To access the element in the 1st row and 3rd column of the 3rd matrix:
+
+```{r}
+# access the element in the 1st row and 3rd column of the 3rd matrix
+my_array[1, 3, 3]
+```
+
+
+## Operations with arrays
+
+Arrays in R support element-wise arithmetic operations, such as addition, subtraction, multiplication, and division, allowing users to perform computations on corresponding elements across arrays.
+
+### Addition of arrays
+
+Let's consider the addition of two arrays, `arr1` and `arr2`, each with dimensions 2×3×2:
+
+```{r}
+
+arr1 <- array(1:12, dim = c(2, 3, 2))
+arr1
+
+```
+
+<br>
+
+```{r}
+arr2 <- array(13:24, dim = c(2, 3, 2))
+arr2
+```
+
+<br>
+
+```{r}
+# Element-wise addition of two arrays
+array_addition <- arr1 + arr2
+array_addition
+```
+
+In R, the addition operation for arrays is performed element-wise, where corresponding elements at the same indices in `arr1` and `arr2` are summed to produce the elements in `array_addition`.
+
+
+### Multiplication of arrays
+
+Similarly, we can perform element-wise multiplication between two arrays:
+
+```{r}
+# Element-wise multiplication of two arrays
+array_multiplication <- arr1 * arr2
+array_multiplication
+```

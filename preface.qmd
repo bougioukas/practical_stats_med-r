@@ -1,0 +1,67 @@
+# Preface {.unnumbered}
+
+Welcome to "*Practical Statistics in Medicine with R: Understanding Fundamental Concepts through Examples*"! In the rapidly evolving field of medicine, the ability to understand, analyze and interpret data is more important than ever. From designing robust clinical trials to understanding patterns in public health data and informing evidence-based medicine, statistics plays a crucial role. A solid understanding of fundamental statistical concepts—such as probability distributions, confidence intervals, and hypothesis testing—is essential for making informed decisions, advancing research, and delivering optimal patient outcomes.
+
+ 
+
+## Who this textbook is for
+
+This introductory textbook is based on lectures and practical sessions conducted over several years at Aristotle University of Thessaloniki, Greece. It is designed to complement hands-on labs, with a primary focus on introducing students to the core concepts of medical statistics through practical examples using R. The textbook also serves as a resource for self-directed learning, helping students and researchers in the biomedical field analyze data effectively. Additionally, bridging the gap between statistical theory and practice, it may be useful for (under)graduate students with a background in science (such as engineering or mathematics) who wish to transition into biomedical sciences, as well as for students in the quantitative social and behavioral sciences looking to enhance their data analysis skills and learn essential R techniques.
+
+ 
+
+## Structure of the textbook
+
+The content of the textbook is organized into two main parts. In the first eleven chapters, readers are introduced to the fundamentals of base R, along with practical methods for data import, manipulation, and transformation using functions from standard R packages, such as ***base*** and ***stats***, and/or pipe-friendly functions from the ***tidyverse*** collection of packages. It also provides step-by-step guidance on visualizing data using the ***ggplot2*** package and its extensions. The remaining chapters (Chapters 12-31) cover the most common statistical tests (e.g., t-test, one-way ANOVA, chi-square test, and non-parametric tests) and introduce more specialized analyses (e.g., simple linear regression, survival analysis, reliability of measurement analysis, diagnostic test accuracy and ROC analysis) with examples from biomedical field. Basic mathematical equations for these tests are provided to enhance understanding. Statistical functions from Base R, and the ***rstatix*** add-on package are often presented side-by-side, fostering engagement and enriching the reader's coding experience. (Note: Multivariable modeling and advanced statistical techniques are beyond the scope of this introductory textbook.)
+
+This textbook is intended to be self-contained and does not require any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If the reader wishes to learn more about this programming language and statistics, the following sources are suggested:
+
+-   [R for Data Science (2nd Edition)](https://r4ds.hadley.nz/)
+-   [ggplot2: Elegant Graphics for Data Analysis (3rd edition)](https://ggplot2-book.org/)
+-   [Practical Statistics for Medical Research](https://www.routledge.com/Practical-Statistics-for-Medical-Research/Altman/p/book/9780412276309)
+
+ 
+
+## Datasets used in this textbook
+
+We will work with datasets throughout the textbook, all of which are freely accessible on the [Open Science Framework](https://osf.io/3amrb/files/osfstorage) platform and on the book’s website: [www.routledge.com/9781032600581](https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581).
+
+ 
+
+## Conventions
+
+-   Package names are styled in bold italics text (e.g., ***rstatix***), function names are followed by parentheses (e.g., **`t_test()`**), and code chunks are formatted in a typewriter font such as:
+
+```{r, eval=FALSE}
+t_test(HDRS ~ intervention, var.equal = TRUE, data = depression)   
+```
+
+ 
+
+-   Key points are highlighted within a distinctive colored box, as shown below:
+
+::: content-box-purple
+**IMPORTANT**
+
+This is an important point.
+:::
+
+ 
+
+-   Additional information is enclosed in a bordered box, as shown below:
+
+::: content-box-white
+**INFO**
+
+This is additional information.
+:::
+
+ 
+
+-   Ιn this textbook, we use the left assignment operator (`<-`) and the native forward pipe operator (`|>`) instead of the pipe operator from the ***magrittr*** package (`%>%`).
+
+ 
+
+## Acknowledgments
+
+I would like to express my sincere gratitude to the many colleagues and students whose positive feedback on my lecture notes motivated me to compile them into this textbook.
