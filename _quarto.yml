@@ -8,8 +8,8 @@ book:
     - name: "Konstantinos I. Bougioukas, PhD"
       orcid: "0000-0002-6533-1391"
   date: today
-  cover-image: images/cover.jpg
-  favicon: images/cover.jpg
+  cover-image: images/cover.png
+  favicon: images/cover.png
   #sidebar:
     #logo: "images/lollipop2.png"
   chapters:
