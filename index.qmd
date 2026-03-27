@@ -1,6 +1,6 @@
 # Welcome! {.unnumbered}
 
-Welcome to the online version of the 1st edition of "*Practical Statistics in Medicine with R: Understanding Fundamental Concepts through Examples*". Whether you're new to statistical analysis or looking to enhance your analytical skills with the R programming language, this introductory textbook provides comprehensive and practical guidance for understanding fundamental statistical concepts through healthcare examples in R. 
+Welcome to the online version of the 1st edition of "*Practical Statistics in Medicine with R: Understanding Fundamental Concepts through Examples*". Whether you're new to statistical analysis or looking to enhance your analytical skills with the R programming language, this introductory textbook provides comprehensive and practical guidance for understanding fundamental statistical concepts through healthcare examples in R.
 
 **This is a work-in-progress draft.**
 
@@ -13,9 +13,3 @@ If you'd like a physical copy of the book or an eBook, you can wait until 2026 f
 This website is and will always be free, licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. ![](images/license.png){width="120" height="40"}.
 
 {{< qrcode https://practical-stats-med-r.netlify.app width=100 height=100 colorDark='#0011bb' >}}
-
-
-
-
-
-

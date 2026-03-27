@@ -8,8 +8,8 @@ book:
     - name: "Konstantinos I. Bougioukas, PhD"
       orcid: "0000-0002-6533-1391"
   date: today
-  cover-image: images/cover.png
-  favicon: images/cover.png
+  cover-image: images/cover.jpg
+  favicon: images/cover.jpg
   #sidebar:
     #logo: "images/lollipop2.png"
   chapters:
@@ -29,6 +29,7 @@ book:
     - ggplot2.qmd
     - intro.qmd
     - probability.qmd
+    - distributions.qmd
     - references.qmd
     
   page-footer: 

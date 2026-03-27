@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Preface – Practical Statistics in Medicine with R</title>
+<title>14&nbsp; Probability distributions – Practical Statistics in Medicine with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,41 +17,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -61,8 +26,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./author.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./probability.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -101,7 +66,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -110,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preface.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./distributions.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability distributions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link active">
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -229,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="./distributions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></a>
   </div>
 </li>
@@ -247,16 +237,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#who-this-textbook-is-for" id="toc-who-this-textbook-is-for" class="nav-link active" data-scroll-target="#who-this-textbook-is-for">Who this textbook is for</a></li>
-  <li><a href="#structure-of-the-textbook" id="toc-structure-of-the-textbook" class="nav-link" data-scroll-target="#structure-of-the-textbook">Structure of the textbook</a></li>
-  <li><a href="#datasets-used-in-this-textbook" id="toc-datasets-used-in-this-textbook" class="nav-link" data-scroll-target="#datasets-used-in-this-textbook">Datasets used in this textbook</a></li>
-  <li><a href="#conventions" id="toc-conventions" class="nav-link" data-scroll-target="#conventions">Conventions</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+<li><a href="#random-variables-and-probability-distributions" id="toc-random-variables-and-probability-distributions" class="nav-link active" data-scroll-target="#random-variables-and-probability-distributions"><span class="header-section-number">14.1</span> Random variables and probability distributions</a></li>
+  <li>
+<a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">14.2</span> Discrete probability distributions</a>
+  <ul class="collapse">
+<li><a href="#discrete-uniform-distribution" id="toc-discrete-uniform-distribution" class="nav-link" data-scroll-target="#discrete-uniform-distribution"><span class="header-section-number">14.2.1</span> Discrete uniform distribution</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Preface</h1>
+<h1 class="title"><span id="sec-distributions" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></h1>
 </div>
 
 
@@ -270,56 +262,233 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Welcome to “<em>Practical Statistics in Medicine with R: Understanding Fundamental Concepts through Examples</em>”! In the rapidly evolving field of medicine, the ability to understand, analyze and interpret data is more important than ever. From designing robust clinical trials to understanding patterns in public health data and informing evidence-based medicine, statistics plays a crucial role. A solid understanding of fundamental statistical concepts—such as probability distributions, confidence intervals, and hypothesis testing—is essential for making informed decisions, advancing research, and delivering optimal patient outcomes.</p>
+</header><p>In this chapter, we explore random variables, which assign numerical values to outcomes of random events, with a particular emphasis on the different types of probability distributions. These distributions are broadly classified into two main categories: discrete distributions, such as the binomial and Poisson distributions, in which random variables take on a countable set of values; and continuous distributions, such as the normal and chi-square distributions, in which random variables can assume any value within a continuous range of real numbers.</p>
 <p>&nbsp;</p>
-<section id="who-this-textbook-is-for" class="level2"><h2 class="anchored" data-anchor-id="who-this-textbook-is-for">Who this textbook is for</h2>
-<p>This introductory textbook is based on lectures and practical sessions conducted over several years at Aristotle University of Thessaloniki, Greece. It is designed to complement hands-on labs, with a primary focus on introducing students to the core concepts of medical statistics through practical examples using R. The textbook also serves as a resource for self-directed learning, helping students and researchers in the biomedical field analyze data effectively. Additionally, bridging the gap between statistical theory and practice, it may be useful for (under)graduate students with a background in science (such as engineering or mathematics) who wish to transition into biomedical sciences, as well as for students in the quantitative social and behavioral sciences looking to enhance their data analysis skills and learn essential R techniques.</p>
-<p>&nbsp;</p>
-</section><section id="structure-of-the-textbook" class="level2"><h2 class="anchored" data-anchor-id="structure-of-the-textbook">Structure of the textbook</h2>
-<p>The content of the textbook is organized into two main parts. In the first eleven chapters, readers are introduced to the fundamentals of base R, along with practical methods for data import, manipulation, and transformation using functions from standard R packages, such as <strong><em>base</em></strong> and <strong><em>stats</em></strong>, and/or pipe-friendly functions from the <strong><em>tidyverse</em></strong> collection of packages. It also provides step-by-step guidance on visualizing data using the <strong><em>ggplot2</em></strong> package and its extensions. The remaining chapters (Chapters 12-31) cover the most common statistical tests (e.g., t-test, one-way ANOVA, chi-square test, and non-parametric tests) and introduce more specialized analyses (e.g., simple linear regression, survival analysis, reliability of measurement analysis, diagnostic test accuracy and ROC analysis) with examples from biomedical field. Basic mathematical equations for these tests are provided to enhance understanding. Statistical functions from Base R, and the <strong><em>rstatix</em></strong> add-on package are often presented side-by-side, fostering engagement and enriching the reader’s coding experience. (Note: Multivariable modeling and advanced statistical techniques are beyond the scope of this introductory textbook.)</p>
-<p>This textbook is intended to be self-contained and does not require any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If the reader wishes to learn more about this programming language and statistics, the following sources are suggested:</p>
+<section id="random-variables-and-probability-distributions" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="random-variables-and-probability-distributions">
+<span class="header-section-number">14.1</span> Random variables and probability distributions</h2>
+<p>A random variable assigns a numerical quantity to every possible outcome of a random phenomenon and may be:</p>
 <ul>
-<li><a href="https://r4ds.hadley.nz/">R for Data Science (2nd Edition)</a></li>
-<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis (3rd edition)</a></li>
-<li><a href="https://www.routledge.com/Practical-Statistics-for-Medical-Research/Altman/p/book/9780412276309">Practical Statistics for Medical Research</a></li>
+<li>
+<strong>Discrete</strong> if it takes either a finite number or an infinite sequence of possible values.</li>
+<li>
+<strong>Continuous</strong> if it takes any value in some interval <span class="math inline">\((\alpha , \beta)\)</span>, <span class="math inline">\(-\infty \leq \alpha &lt; \beta \leq \infty\)</span>.</li>
 </ul>
-<p>&nbsp;</p>
-</section><section id="datasets-used-in-this-textbook" class="level2"><h2 class="anchored" data-anchor-id="datasets-used-in-this-textbook">Datasets used in this textbook</h2>
-<p>We will work with datasets throughout the textbook, all of which are freely accessible on the <a href="https://osf.io/3amrb/files/osfstorage">Open Science Framework</a> platform and on the book’s website: <a href="https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581">www.routledge.com/9781032600581</a>.</p>
-<p>&nbsp;</p>
-</section><section id="conventions" class="level2"><h2 class="anchored" data-anchor-id="conventions">Conventions</h2>
-<ul>
-<li>Package names are styled in bold italics text (e.g., <strong><em>rstatix</em></strong>), function names are followed by parentheses (e.g., <strong><code>t_test()</code></strong>), and code chunks are formatted in a typewriter font such as:</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">t_test</span><span class="op">(</span><span class="va">HDRS</span> <span class="op">~</span> <span class="va">intervention</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span>, data <span class="op">=</span> <span class="va">depression</span><span class="op">)</span>   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For instance, a random variable representing the ABO blood system (A, B, AB, or O blood type) would be discrete, while a random variable representing the height of a person in centimeters would be continuous.</p>
+<p><strong><em>Example</em></strong></p>
+<p>Let the random variable X represent blood type in population, with the following probabilities: P(A) = 0.41, P(B) = 0.10, P(AB) = 0.04, and P(O) = 0.45.</p>
+<p>We assign numerical values to each of the four possible outcomes for the discrete variable X: X = 1 if the person has blood type A, X = 2 for blood type B, X = 3 for blood type AB, and X = 4 for blood type O.</p>
+<p><span class="math display">\[X={\begin{cases}1, &amp;for\ blood\ type\ A\\2, &amp;for\ blood\ type\ B\\3, &amp;for\ blood\ type\ AB\\4, &amp;for\ blood\ type\ O\end{cases}}\]</span></p>
+<p>Thus, the <strong>probability distribution</strong> that describes the probability of different possible outcomes of random variable X is:</p>
+<p><span class="math display">\[P(X=x)={\begin{cases}0.41,&amp;for\ x=1\\0.10,&amp;for\ x=2\\0.04,&amp;for\ x=3\\0.45,&amp;for\ x=4\end{cases}}\]</span></p>
+<p>Here, x denotes a specific value (i.e., 1, 2, 3, or 4) of the random variable X. Then, instead of saying P(A) = 0.41, i.e., the blood type is A with probability 0.41, we can say that P(X = 1) = 0.41, i.e., X is equal to 1 with probability of 0.41. Probability distributions are often presented using probability tables, such as <a href="#tbl-abo" class="quarto-xref">TABLE&nbsp;<span>14.1</span></a>.</p>
+<div class="columns">
+<div class="column" style="width:20%;">
+
+</div><div class="column" style="width:60%;">
+<div id="tbl-abo" class="latex-table quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-abo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;14.1 Probability table of ABO system.
+</figcaption><div aria-describedby="tbl-abo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="latex-table caption-top table"><tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Blood type</strong></td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">AB</td>
+<td style="text-align: center;">O</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>X</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>P(X)</strong></td>
+<td style="text-align: center;">0.41</td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">0.04</td>
+<td style="text-align: center;">0.45</td>
+</tr>
+</tbody></table>
 </div>
-<p>&nbsp;</p>
+</figure>
+</div>
+</div><div class="column" style="width:20%;">
+
+</div>
+</div>
+<p>Note that the probability axioms and properties that we discussed earlier are also applied to random variables. For example, the total probability for all possible outcomes of a random variable X is equal to one: P(X=1) + P(X=2) + P(X=3) + P(X=4) = 0.41 + 0.10 + 0.04 + 0.45 = 1.</p>
+<p>The probability distribution allows us to answer questions like: What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?</p>
+<div id="fig-bloodtypes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bloodtypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/abo.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bloodtypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;14.1 Blood types matching for a safe transfusion.
+</figcaption></figure>
+</div>
+<p>It is known that individuals with blood type B or O are eligible to donate to recipients with blood type B (<a href="#fig-bloodtypes" class="quarto-xref">FIGURE&nbsp;<span>14.1</span></a>). Therefore, we need to find the probability P(blood type B OR blood type O). Since having blood type B and blood type O are mutually exclusive events, we can apply the addition rule for mutually exclusive events as follows:</p>
+<p><span class="math display">\[ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 0.55}\]</span></p>
+<p>Hence, there is a 55% probability that a randomly selected individual from our population can donate blood to someone with blood type B.</p>
+<p>We will explore different types of probability distributions, broadly categorized into two main groups: <strong>discrete</strong> and <strong>continuous</strong> probability distributions. In R, each distribution has four associated built-in functions. The function prefix indicates its type (d for “density”, p for “probability”, q for “quantile”, and r for “random”), while the suffix specifies the distribution. For example, in the case of <strong>binomial</strong> distribution, these functions are: <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">pbinom()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">qbinom()</a></code></strong>, and <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code></strong>. Similarly, for the normal distribution, they are: <strong><code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code></strong>, and <strong><code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code></strong>.</p>
+</section><section id="discrete-probability-distributions" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="discrete-probability-distributions">
+<span class="header-section-number">14.2</span> Discrete probability distributions</h2>
+<p>The probability distribution of a discrete random variable X is defined by the <strong>probability mass function</strong> (pmf) as:</p>
+<p><span id="eq-pdfdiscrete"><span class="math display">\[
+P(X = x) = P(x)
+\tag{14.1}\]</span></span></p>
+<p>where:</p>
+<p><span class="math inline">\(P(X = x)\)</span> is the probability that the random variable X takes the value x and</p>
+<p><span class="math inline">\(P(x)\)</span> is the probability of the specific outcome x occurring.</p>
+<p>The pmf has two properties:</p>
 <ul>
-<li>Key points are highlighted within a distinctive colored box, as shown below:</li>
+<li><span class="math inline">\(P(x) \geq 0\)</span></li>
+<li>
+<span class="math inline">\(\sum_{x} P(x) = 1\)</span>, where x runs through all possible values of the random variable X.</li>
 </ul>
+<p>Additionally, the <strong>cumulative distribution function</strong> (cdf) gives the probability that the random variable X is less than or equal to x and is usually denoted as F(x):</p>
+<p><span id="eq-cdfdiscrete"><span class="math display">\[
+F(x) = P(X \le x)= \sum_{x_i\le x} P(x_i)
+\tag{14.2}\]</span></span></p>
+<p>where the sum takes place for all the values <span class="math inline">\(x_1, x_2, \ldots, x_i\)</span>, which are <span class="math inline">\(x_i\le x\)</span>.</p>
+<p>When dealing with a random variable, it is common to estimate three key summary measures: the <strong>expected value</strong>, <strong>variance</strong> and <strong>standard deviation</strong>.</p>
 <div class="content-box-purple">
-<p><strong>IMPORTANT</strong></p>
-<p>This is an important point.</p>
+<p><strong>Expected Value</strong></p>
+<p>The expected value, or mean, denoted as <strong>E(X)</strong>, is defined as the weighted average of the values that X can take. Each possible value <span class="math inline">\(x_i\)</span> is weighted by its corresponding probability <span class="math inline">\(P(x_i)\)</span>.</p>
+<p><span id="eq-expdiscrete"><span class="math display">\[
+\mu = E(X)= \sum\limits_x x_i \cdot P(x_i)
+\tag{14.3}\]</span></span></p>
 </div>
 <p>&nbsp;</p>
-<ul>
-<li>Additional information is enclosed in a bordered box, as shown below:</li>
-</ul>
-<div class="content-box-white">
-<p><strong>INFO</strong></p>
-<p>This is additional information.</p>
+<div class="content-box-purple">
+<p><strong>Variance</strong></p>
+<p>We can also define the variance, denoted as <span class="math inline">\(\sigma^2\)</span>, which is a measure of the variability of the X.</p>
+<p><span id="eq-vardiscrete"><span class="math display">\[
+\sigma^2=\text{Var}(X)= E[X - E(X)]^2 = E[(X - \mu)^2] = \sum\limits_x\ (x_i-\mu)^2 P(x_i)
+\tag{14.4}\]</span></span></p>
+<p>There is an easier form of this formula.</p>
+<p><span id="eq-vardiscrete2"><span class="math display">\[
+\sigma^2=\text{Var}(X)= E(X^2) - E(X)^2=\sum\limits_x x_i^2 P(x_i)-\mu^2
+\tag{14.5}\]</span></span></p>
 </div>
 <p>&nbsp;</p>
-<ul>
-<li>Ιn this textbook, we use the left assignment operator (<code>&lt;-</code>) and the native forward pipe operator (<code>|&gt;</code>) instead of the pipe operator from the <strong><em>magrittr</em></strong> package (<code>%&gt;%</code>).</li>
-</ul>
+<div class="content-box-purple">
+<p><strong>Standard Deviation</strong></p>
+<p>The standard deviation is the square root of the variance.</p>
+<p><span id="eq-sddiscrete"><span class="math display">\[
+\sigma=\sqrt{\text{Var(X)}}=\sqrt{\sigma^2}
+\tag{14.6}\]</span></span></p>
+</div>
 <p>&nbsp;</p>
-</section><section id="acknowledgments" class="level2"><h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
-<p>I would like to express my sincere gratitude to the many colleagues and students whose positive feedback on my lecture notes motivated me to compile them into this textbook.</p>
+<section id="discrete-uniform-distribution" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="discrete-uniform-distribution">
+<span class="header-section-number">14.2.1</span> Discrete uniform distribution</h3>
+<p>Let X be a discrete random variable that takes integer values within the interval (a, b), where <span class="math inline">\(a \leq b\)</span>, and each integer in this interval is equally likely to occur. The distribution of the variable X follows a discrete uniform distribution, denoted as: <span class="math inline">\(X \sim \text{Uniform}(a, b)\)</span>.</p>
+<ul>
+<li>The probability mass function (pmf) of X is given by:</li>
+</ul>
+<p><span id="eq-pmfuni12"><span class="math display">\[
+P(X = x) = \frac{1}{b-a+1} \quad \text{where} \quad x \in \left\lbrace a, a+1, \ldots, b-1, b \right\rbrace
+\tag{14.7}\]</span></span></p>
+<p><br></p>
+<ul>
+<li>The cumulative distribution function (cdf) of X is given by:</li>
+</ul>
+<p><span id="eq-cdfuni12"><span class="math display">\[
+F(x) = P(X \le x)= \left\{
+\begin{array}{rl}
+0 \; , &amp; \text{for} \; x &lt; a \\
+\frac{x - a + 1}{b - a + 1} \; , &amp; \text{for} \; a \leq x \leq b \\
+1 \; , &amp; \text{for} \; x &gt; b \;
+\end{array}
+\right.
+\tag{14.8}\]</span></span></p>
+<p><br></p>
+<p>The <strong>expected value</strong> of random variable, X, with <span class="math inline">\(\text{Uniform}(a, b)\)</span> distribution is:</p>
+<p><span id="eq-meanuni12"><span class="math display">\[
+\mu= E(X) =\dfrac{a+b}{2}
+\tag{14.9}\]</span></span></p>
+<p>The <strong>variance</strong> is:</p>
+<p><span id="eq-varuni12"><span class="math display">\[
+\sigma^2=Var(X) = \frac{(b-a+1)^2 -1}{12}
+\tag{14.10}\]</span></span></p>
+<p>and the standard deviation is:</p>
+<p><span id="eq-sigma12"><span class="math display">\[
+\sigma= \sqrt{Var(X)} = \sqrt{\frac{(b-a+1)^2 -1}{12}}
+\tag{14.11}\]</span></span></p>
+<p><br></p>
+<p><strong><em>Example</em></strong></p>
+<p>A postgraduate program in medicine intends to randomly select one student from a group of five excellent students to receive a scholarship. Given that each student has an equal probability of being chosen, the selection process follows a discrete uniform distribution.</p>
+<ul>
+<li>The pmf for this distribution is (a=1, b=5):</li>
+</ul>
+<p><span class="math display">\[P(X = x) = \frac{1}{5-1+1} = \frac{1}{5} = 0.2 \quad \text{where} \quad x \in \left\lbrace 1, 2, 3, 4, 5 \right\rbrace\]</span></p>
+<p>The probability table (<a href="#tbl-tbuniform" class="quarto-xref">TABLE&nbsp;<span>14.2</span></a>) and the distribution visualization (<a href="#fig-unipmf1234" class="quarto-xref">FIGURE&nbsp;<span>14.2</span></a>) are shown below:</p>
+<div class="columns">
+<div class="column" style="width:20%;">
+
+</div><div class="column" style="width:60%;">
+<div id="tbl-tbuniform" class="latex-table quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbuniform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;14.2 Probability table of X.
+</figcaption><div aria-describedby="tbl-tbuniform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="latex-table caption-top table"><tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>X</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>P(X)</strong></td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.2</td>
+</tr>
+</tbody></table>
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:20%;">
+
+</div>
+</div>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-unipmf1234" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-unipmf1234-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="distributions_files/figure-html/fig-unipmf1234-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unipmf1234-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;14.2 Plot of the pmf for the Uniform(1, 5) distribution.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<ul>
+<li>The cdf for this distribution is:</li>
+</ul>
+<p><span class="math display">\[F(x) = P(X \le x)={\begin{cases}0,&amp;for\ x &lt;1\\\frac{x}{5},&amp;for\ 1\leq x \leq 5\\1,&amp;for\ x &gt; 5 \end{cases}}\]</span></p>
+<p>The corresponding plot is shown in <a href="#fig-unicdf1234" class="quarto-xref">FIGURE&nbsp;<span>14.3</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-unicdf1234" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-unicdf1234-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="distributions_files/figure-html/fig-unicdf1234-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unicdf1234-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;14.3 Plot of the cdf for the Uniform(1, 5) distribution.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>The mean is <span class="math inline">\(\mu= \dfrac{a+b}{2} = \dfrac{5+1}{2}=3\)</span> and the variance is <span class="math inline">\(\sigma^2 = \dfrac{(b-a+1)^2 -1}{12} = \dfrac{25-1}{12} = 2\)</span>.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -637,13 +806,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Welcome!">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome!</span>
+      <a href="./probability.html" class="pagination-link" aria-label="Basic concepts of probability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic concepts of probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./author.html" class="pagination-link" aria-label="About the Author">
-        <span class="nav-page-text">About the Author</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

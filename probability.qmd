@@ -397,8 +397,7 @@ $$P(A|B) = \frac{P(A ∩ B)}{P(B)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1
 
 Therefore, the "knowledge" that the sum of two dice is 8 has **updated** the probability of A from P(A) = 1/6 = 0.167 to P(A\|B) = 1/5 = 0.2.
 
-
-
+ 
 
 ### Bayes' theorem
 
@@ -427,6 +426,7 @@ Using the Bayes' theorem we have:
 
 $$ \textrm{P(Cancer|Smoker) = }\frac{\textrm{P(Smoker|Cancer)· P(Cancer)}}{\textrm{P(Smoker)}} = \frac{0.6 \times 0.08}{0.3}= \frac{0.048}{0.3}= 0.16$$
 
+ 
 
 ### Independence of events
 
@@ -448,13 +448,13 @@ This is a special case of the multiplication rule of probability, derived from @
 
 Determine the probability of obtaining two 3s when rolling two six-sided fair dice. 
 
-\vspace{15pt}
+
 
 -   Let A represent the event of getting a 3 on the first die: **A** = {die 1 shows ![](images/three.png){width="13" height="13"} }. The probability of event A is:
 
 $$P(A) = \frac{1}{6}$$
 
-\vspace{15pt}
+
 
 -   Let B represent the event of getting a 3 on the second die: **B** = {die 2 shows ![](images/three.png){width="13" height="13"} }. The probability of event B is:
 
@@ -464,11 +464,11 @@ Since the outcome of one die does not affect the other (i.e., the rolls of the d
 
 $$P(A \cap B) = P(A)·P(B) = \frac{1}{6}·\frac{1}{6} = \frac{1}{36}$$
 
-\vspace{10pt}
+
 
 This result can be verified by directly counting all possible outcomes when rolling two dice. As shown below, out of the 36 possible outcomes, only one combination results in both dice showing 3s.
 
-\vspace{10pt}
+
 
 ```{r, out.width='55%', fig.align = 'center', echo=FALSE}
 

@@ -6,10 +6,9 @@ options(width=85)
 knitr::opts_chunk$set(fig.pos = 'H')
 ```
 
-
 In this chapter, we explore the two types of generic vectors in R: lists and data frames. Lists offer a flexible way to store various data types, while data frames provide a structured format that is especially useful for working with tabular data.
 
-All the required add-on packages for this chapter are part of the core set of packages within the **_tidyverse_** ecosystem. As such, we have the option to either load them collectively using the **_tidyverse_** meta-package or load them individually. For demonstration purposes, we choose the latter.
+All the required add-on packages for this chapter are part of the core set of packages within the ***tidyverse*** ecosystem. As such, we have the option to either load them collectively using the ***tidyverse*** meta-package or load them individually. For demonstration purposes, we choose the latter.
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -32,14 +31,13 @@ my_list <- list(1:5, c("apple", "carrot"), c(TRUE, TRUE, FALSE))
 my_list
 ```
 
-
 The `my_list` consists of three elements, which we refer to as "list items" or simply "items". Specifically, these items are:
 
-- A sequence of numbers from 1 to 5.
+-   A sequence of numbers from 1 to 5.
 
-- A character vector containing the strings "apple" and "carrot".
+-   A character vector containing the strings "apple" and "carrot".
 
-- A logical vector with the values `TRUE`, `TRUE`, and `FALSE`. 
+-   A logical vector with the values `TRUE`, `TRUE`, and `FALSE`.
 
 Therefore, each list item is an atomic vector of a different data type: numeric, character, and logical.
 
@@ -56,8 +54,8 @@ my_list
 
 Now, `my_list` is a named list containing three items: `num`, `fruits`, and `TF`.
 
-
 We verify that the object’s class is `list`:
+
 ```{r}
 class(my_list)
 ```
@@ -70,7 +68,7 @@ class(my_list)
 
 We can use the subsetting operator `[ ]` to select one or more list items while preserving the output in list format. Let's use the the previously created list as an example to demonstrate different methods of item selection.
 
-- We can select the second list item by indexing its position:
+-   We can select the second list item by indexing its position:
 
 ```{r}
 
@@ -81,8 +79,7 @@ class(my_list[2])
 
 The selected item is "fruits", and it is returned as a list.
 
-
-- Alternatively, we can select the second list item by specifying its name within the square brackets:
+-   Alternatively, we can select the second list item by specifying its name within the square brackets:
 
 ```{r}
 
@@ -90,8 +87,7 @@ The selected item is "fruits", and it is returned as a list.
 my_list["fruits"]   
 ```
 
-
-- Finally, we can select the second list item using Boolean indices (`TRUE`/`FALSE`):
+-   Finally, we can select the second list item using Boolean indices (`TRUE`/`FALSE`):
 
 ```{r}
 
@@ -101,14 +97,11 @@ my_list[c(FALSE, TRUE, FALSE)]
 
 Since `TRUE` is at the second position, the `[ ]` operator selects the second item in the list, and the output is preserved as a list.
 
-
-
 ### Subsetting a list and simplifying the output
 
 We can use double square brackets `[[ ]]` to select one or more items from a list while simplifying the output:
 
-
-- Select the second list item by indexing its position (simplifying the output):
+-   Select the second list item by indexing its position (simplifying the output):
 
 ```{r}
 
@@ -120,16 +113,14 @@ class(my_list[[2]])
 
 When using double square brackets `[[ ]]`, R returns the actual data structure of the selected item, rather than preserving the list structure. Therefore, `my_list[[2]]` returns the character vector `c("apple", "carrot")`, not a list containing this vector.
 
-
-- Similarly, specifying the name "fruits" within the double square brackets allows us to select this list item while simplifying the output:
+-   Similarly, specifying the name "fruits" within the double square brackets allows us to select this list item while simplifying the output:
 
 ```{r}
 # same as above, but using the item's name
 my_list[["fruits"]]   
 ```
 
-
-- Another common method to select list items and simplify the output is by typing the name of the list (`my_list`), followed by a dollar sign (`$`), and then the name of the item within the list (e.g., "fruits").
+-   Another common method to select list items and simplify the output is by typing the name of the list (`my_list`), followed by a dollar sign (`$`), and then the name of the item within the list (e.g., "fruits").
 
 ```{r}
 
@@ -142,7 +133,7 @@ my_list$fruits
 ::: content-box-purple
 **IMPORTANT**
 
--   One key difference between the [[ ]] operator and the \$ is that the [[ ]] can be used with both indices and names, while the \$ can only be used with names.
+-   One key difference between the \[\[ \]\] operator and the \$ is that the \[\[ \]\] can be used with both indices and names, while the \$ can only be used with names.
 
 -   It is important to understand the distinction between simplifying and preserving when subsetting. Simplifying returns the simplest possible data structure that can represent the output, while preserving maintains the structure of the output the same as the input.
 :::
@@ -151,25 +142,22 @@ my_list$fruits
 
 ### Selecting individual elements from a list item
 
-By combining the `[[ ]]` or `$` operator with the `[ ]` operator, we can select individual elements from a specific list item. For example, to select the second element, "carrot", from the "fruits" item, we can use several approaches. 
+By combining the `[[ ]]` or `$` operator with the `[ ]` operator, we can select individual elements from a specific list item. For example, to select the second element, "carrot", from the "fruits" item, we can use several approaches.
 
-- Select by indexing position:
+-   Select by indexing position:
 
 ```{r}
 my_list[[2]][2] 
 ```
 
-
-
-- Select by referencing the item name:
+-   Select by referencing the item name:
 
 ```{r}
 my_list[["fruits"]][2]
 ```
 
+-   Select using `$` notation:
 
-
-- Select using `$` notation:
 ```{r}
 my_list$fruits[2]
 ```
@@ -208,7 +196,7 @@ In this example, `item2` is a nested list, as it is the second item of `my_super
 
 To select items from a nested list, we can combine the `[[ ]]` (or \$) operator and the `[ ]` operator.
 
-- Select the `item2a_num` and preserve the output as a list:
+-   Select the `item2a_num` and preserve the output as a list:
 
 ```{r}
 # preserve the output as a list
@@ -216,18 +204,14 @@ my_super_list[[2]][1]
 class(my_super_list[[2]][1])
 ```
 
-
-
-- Select the `item2a_num` and simplify it as a vector:
+-   Select the `item2a_num` and simplify it as a vector:
 
 ```{r}
 my_super_list[[2]][[1]]
 class(my_super_list[[2]][[1]])
 ```
 
-
-
-- Select using names (simplify output):
+-   Select using names (simplify output):
 
 ```{r}
 # same as above with names
@@ -251,9 +235,6 @@ my_super_list[[2]][[2]][3]
 class(my_super_list[[2]][[2]][3])
 ```
 
-
-
-
 Alternatively, we can use the `$` notation:
 
 ```{r}
@@ -267,7 +248,6 @@ my_super_list$item2$item2b_char[3]
 A **data frame** is the most common way to store and organize rectangular data in R, and it is generally the preferred data structure for data analysis tasks. A data frame consists of **rows** and **columns**. While all elements within a column must have the same data type (e.g., numeric, character, or logical), different columns can have different data types. Therefore, a data frame is a special type of list with **equal-length** atomic vectors as its elements.
 
 Various disciplines have different terms for the rows and columns in a data frame. In this textbook, we will consistently use the terms **"observations"** and **"variables"**, respectively.
-
 
 ### Creating a data frame
 
@@ -283,12 +263,9 @@ We will create a small example data frame with eight observations (rows) and six
 
 -   **occupation:** occupation of the patient. *Values = {Journalist, Chef, Doctor, Teacher, Lawyer, Musician, Pharmacist, Nurse}*.
 
--   **adm\_date:** admission date to the hospital. *Values = {10-09-2023, 10-12-2023, 10-18-2023, 10-27-2023, 11-04-2023, 11-09-2023, 11-22-2023, 12-02-2023}*.
+-   **adm_date:** admission date to the hospital. *Values = {10-09-2023, 10-12-2023, 10-18-2023, 10-27-2023, 11-04-2023, 11-09-2023, 11-22-2023, 12-02-2023}*.
 
-
-
-The data frame can be created using the **`data.frame()`** function in base R, the **`tibble()`** function in the **_tibble_** package, the [`data.table()`](https://rdatatable.gitlab.io/data.table/reference/data.table.html) function in the **_data.table_** package, or the [`tidytable()`](https://markfairbanks.github.io/tidytable/) function in the **_tidytable_** package. Let's try the **`tibble()`** :
-
+The data frame can be created using the **`data.frame()`** function in base R, the **`tibble()`** function in the ***tibble*** package, the [`data.table()`](https://rdatatable.gitlab.io/data.table/reference/data.table.html) function in the ***data.table*** package, or the [`tidytable()`](https://markfairbanks.github.io/tidytable/) function in the ***tidytable*** package. Let's try the **`tibble()`** :
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -303,8 +280,6 @@ dat <- tibble(age = c(30, 65, 35, 25, 45, 55, 40, 20),
 dat
 ```
 
-
-
 We can find the **type**, **class** and **dimensions** for the created object `dat`:
 
 ```{r, results='hold'}
@@ -315,7 +290,6 @@ dim(dat)
 ```
 
 The type is a *list* but the class is a `tbl` *(tibble)* object which is a "tidy" data frame (tibbles work better in the tidyverse). The dimensions are 8x6.
-
 
 ### Accessing variables in a data frame
 
@@ -333,13 +307,11 @@ or by using the **dollar sign (`$`)** :
 dat$age
 ```
 
-
 We can also select individual elements of a specific variable as follows:
 
 ```{r}
 dat$age[2:5]
 ```
-
 
 ### Converting columns to the appropriate data type
 
@@ -349,21 +321,20 @@ It is important to inspect the data types of columns and convert them to the app
 glimpse(dat)
 ```
 
-
 We observe a series of three-letter abbreviations in angle brackets (`<dbl>`, `<chr>`), which represent the data type of each column in a tibble. A list of these abbreviations is provided in @tbl-datatypes:
 
 <br>
 
-| **Type of Data**  | **Description**                                                                       | **Abbreviation** |
+| **Type of Data** | **Description** | **Abbreviation** |
 |:----------------:|:-----------------------------------|:----------------:|
-|   character    | strings: letters, numbers, symbols, and spaces                                        |     `<chr>`      |
-|    integer     | numerical values: integer numbers                                                     |     `<int>`      |
-|     double     | numerical values: real numbers                                                        |     `<dbl>`      |
-|    logical     | logical data, typically representing `TRUE` or `FALSE`                                |     `<lgl>`      |
-|      date      | date (e.g, 2020-10-09)                                                                |     `<date>`     |
-|   date+time    | date plus time (e.g., 2020-10-09 10:03:25 UTC)                                        |     `<dttm>`     |
-|     factor     | categorical variables with fixed and known set of possible values (e.g., male/female) |     `<fct>`      |
-| ordered factor | categorical variable with ordered fixed and known set of possible values              |     `<ord>`      |
+| character | strings: letters, numbers, symbols, and spaces | `<chr>` |
+| integer | numerical values: integer numbers | `<int>` |
+| double | numerical values: real numbers | `<dbl>` |
+| logical | logical data, typically representing `TRUE` or `FALSE` | `<lgl>` |
+| date | date (e.g, 2020-10-09) | `<date>` |
+| date+time | date plus time (e.g., 2020-10-09 10:03:25 UTC) | `<dttm>` |
+| factor | categorical variables with fixed and known set of possible values (e.g., male/female) | `<fct>` |
+| ordered factor | categorical variable with ordered fixed and known set of possible values | `<ord>` |
 
 : Tibble abbreviations that describe the type of data in columns of a data frame. {#tbl-datatypes .latex-table}
 
@@ -371,10 +342,9 @@ We observe a series of three-letter abbreviations in angle brackets (`<dbl>`, `<
 
 We can convert the categorical variables `smoking`, `ABO`, and `bmi` from `<dbl>`, `<chr>`, `<dbl>` types, respectively, to factors `<fct>` since they have fixed and known values.
 
-
 -   **Variable: smoking** (numeric coded values → factor)
 
-We will use the **`factor()`** function to convert the existing numeric coded (0/1) variable `smoking` to a factor\index{factor} with levels "non-smoker" and "smoker". 
+We will use the **`factor()`** function to convert the existing numeric coded (0/1) variable `smoking` to a factor\index{factor} with levels "non-smoker" and "smoker".
 
 ```{r}
 dat$smoking <- factor(dat$smoking, levels = c(0, 1), 
@@ -382,9 +352,7 @@ dat$smoking <- factor(dat$smoking, levels = c(0, 1),
 levels(dat$smoking)
 ```
 
-
 <br>
-
 
 -   **Variable: ABO** (chr → factor)
 
@@ -410,8 +378,7 @@ levels(dat$ABO)
 table(dat$ABO)
 ```
 
-We observe that the count table includes the blood type "AB" even though it doesn't exist in the original data. 
-
+We observe that the count table includes the blood type "AB" even though it doesn't exist in the original data.
 
 <br>
 
@@ -443,16 +410,13 @@ Suppose we want to categorize patients into broader BMI categories. For example,
 
 ```{r}
 # create a new variable bm2 with recoded values
-dat$bmi2 <- case_match(dat$bmi, 
+dat$bmi2 <- recode_values(dat$bmi, 
                       1 ~ "underweight",
                       2 ~ "healthy",
                       c(3, 4) ~ "overweight")
 ```
 
-
-In the code above, the **`case_match()`** function from the **_dplyr_** package matches the values on the left side of the tilde (~) against the input vector `dat$bmi`. For example, if the values 3 or 4 are found in the `bmi` column, they are recoded as "overweight" in the new variable.
-
-
+In the code above, the **`recode_values()`** function from the ***dplyr*** package matches the values on the left side of the tilde (\~) against the input vector `dat$bmi`. For example, if the values 3 or 4 are found in the `bmi` column, they are recoded as "overweight" in the new variable.
 
 Additionally, we can explicitly define the order of the levels for the `bmi2` variable:
 
@@ -467,14 +431,13 @@ dat$bmi2
 dat
 ```
 
-
 <br>
 
 -   **Variable: adm_date** (chr → date)
 
-The standard date format in R is `YYYY-MM-DD`. If the original data represents dates in a different format, we need to convert them to the standard format. 
+The standard date format in R is `YYYY-MM-DD`. If the original data represents dates in a different format, we need to convert them to the standard format.
 
-The **_lubridate_** package provides functions for formatting dates by specifying the order of day (`d`), month (`m`), and year (`y`). For example, if a dataset contains dates in the format `MM-DD-YYYY` (i.e., month-day-year), the **`mdy()`** function converts them into date objects. Likewise, if the dates are in the format `DD-MM-YYYY` (i.e., day-month-year), the **`dmy()`** function performs the conversion. In our example, the dates are in the `MM-DD-YYYY` format, so we must convert them accordingly.
+The ***lubridate*** package provides functions for formatting dates by specifying the order of day (`d`), month (`m`), and year (`y`). For example, if a dataset contains dates in the format `MM-DD-YYYY` (i.e., month-day-year), the **`mdy()`** function converts them into date objects. Likewise, if the dates are in the format `DD-MM-YYYY` (i.e., day-month-year), the **`dmy()`** function performs the conversion. In our example, the dates are in the `MM-DD-YYYY` format, so we must convert them accordingly.
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -483,6 +446,4 @@ dat
 class(dat$adm_date)
 ```
 
-
-In the code above, the **`mdy()`** function from the **_lubridate_** package parses dates in the "month-day-year" format and convert them into R's standard date format (`YYYY-MM-DD`).
-
+In the code above, the **`mdy()`** function from the ***lubridate*** package parses dates in the "month-day-year" format and convert them into R's standard date format (`YYYY-MM-DD`).
