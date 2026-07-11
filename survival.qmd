@@ -395,7 +395,7 @@ Only events cause the survival probability to drop. Censoring leads to a larger 
 
 ### Kaplan–Meier Table of Event Times
 
-In Kaplan-Meier approach, the cumulative survival probability is calculated at each event time $t_j$ and represents the proportion of patients who have managed to survive beyond that point in time. The @tab-tb2 presents, at each time $t_j$ when an event occurred, the total number of patients at risk ($r_j$) just before the $t_j$, the number of events at that time ($d_j$), the conditional probability, and the cumulative probability of survival. It also includes the standard error (according to @eq-segreenwood; the default of ***survival*** package) and 95% confidence interval of the survival point estimate (lower 95% CI, upper 95% CI; according to @eq-backcilog; the default of ***survival*** package).
+In Kaplan-Meier approach, the cumulative survival probability is calculated at each event time $t_j$ and represents the proportion of patients who have managed to survive beyond that point in time. The @tbl-tb2 presents, at each time $t_j$ when an event occurred, the total number of patients at risk ($r_j$) just before the $t_j$, the number of events at that time ($d_j$), the conditional probability, and the cumulative probability of survival. It also includes the standard error (according to @eq-segreenwood; the default of ***survival*** package) and 95% confidence interval of the survival point estimate (lower 95% CI, upper 95% CI; according to @eq-backcilog; the default of ***survival*** package).
 
 ```{r}
 #| echo: false
