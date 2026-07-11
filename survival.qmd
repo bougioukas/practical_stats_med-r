@@ -42,23 +42,19 @@ Statistical techniques have been developed for survival data to account for cens
 
 It is important to note that in clinical trials, differences in censoring between control and experimental groups may introduce systematic bias at various study time points, potentially influencing the study's conclusions [@templeton2015; @lesan2024].
 
-
 ### Basic Functions of Survival Analysis
 
 #### *Survival Function*
 
 Let $T$ be a non-negative random variable, representing the time until the event of interest (e.g., death, disease recurrence). The survival function\index{survival function}, denoted as $S(t)$, also known as cumulative survival probability (often with the term "cumulative" omitted), is defined as the probability that $T$ is greater than $t$:
 
-
 $$ 
 S(t) = P(T > t)
 $$ {#eq-survt}
 
-
 When the event is death, the survival function estimates the probability that a patient survives beyond time $t$.
 
 Additionally, the cumulative distribution function, $F(t) =P(T \leq t ) = 1 - S(t)$, represents the probability of the event occurs at or before time $t$.
-
 
 #### *Hazard Function*
 
@@ -82,22 +78,17 @@ $$
 H(t) = -\ln(S(t))
 $$ {#eq-hazsurv2}
 
-
 Additionally, the survival function can be expressed as the exponential of the negative cumulative hazard function:
 
 $$
 S(t) = e^{-H(t)}
 $$ {#eq-hazsurv3}
 
-
-
 ## Research Question
 
 In a randomized controlled trial designed to find out the efficacy of a new therapy for leukemia, the patients were randomly assigned into two groups (new therapy versus standard therapy). The researchers want to (i) estimate the survival time of patients receiving the new therapy, and (ii) compare the survival curves of the patients receiving the new therapy and patients receiving the standard therapy.
 
 In a clinical trial setting, the patients are monitored for the occurrence of a particular event or outcome. Survival times are typically not normally distributed and often follow skewed distributions, requiring specialized statistical methods for analysis. One approach to estimate the the survival over time is the **Kaplan-Meier** procedure, which is a non-parametric method, meaning it doesn't rely on assumptions about the underlying distribution of the data.
-
-
 
 ## Preparing the Data
 
@@ -148,7 +139,6 @@ dat_A <- dat |>
   filter(intervention == "therapy A (new)")
 ```
 
-
 @fig-patientime presents patient times from this subset, where each patient is shown as starting at time zero. We observe 9 `X`’s representing deaths and 12 open circles indicating censoring events.
 
 The ***survival*** package has a construct called a **`Surv()`** object-a function that converts the data to a specialized format capable of handling censored observations. We need to specify two arguments in this function, *time* and *status* of the patients. The resulting survival object combines information from these two variables. Hence, we obtain the following patient times (in months) for patients undergoing the new therapy A:
@@ -156,7 +146,6 @@ The ***survival*** package has a construct called a **`Surv()`** object-a functi
 ```{r}
 Surv(dat_A$time, dat_A$status)
 ```
-
 
 ```{r patientime}
 #| echo: false
@@ -191,8 +180,6 @@ ggplot(dat_patientime, aes(patient, time)) +
 
 ```
 
-
-
 We can also sort the survival data:
 
 ```{r}
@@ -203,7 +190,6 @@ sort(Surv(dat_A$time, dat_A$status))
 
 Censoring times are indicated by the $\textbf{+}$ symbol. For instance, in the above data, patients receiving the new therapy were censored at months: 6+, 9+, 10+, 11+, 17+, 19+, 20+, 25+, 32+, 32+, 34+, 35+.
 
-
 ## The Kaplan--Meier Estimator of the Survival Function
 
 Kaplan--Meier estimator, also known as Product--Limit estimator, is typically used to estimate the survival function. Suppose that the events (deaths) are observed during the follow-up period at $k$ distinct times, $t_{1} < t_{2} < t_{3} < \ ...\ < t_{k}$. The **conditional probability** of surviving is defined as the probability of surviving beyond time $t_j$, given that the patient has survived up to time $t_j$. This conditional probability represents the proportion of patients who are at risk at time $t_j$ but who do not die at this time point, as follows:
@@ -212,19 +198,17 @@ $$
 P(survive \ beyond \ {t_j} \ | \ sarvived \ up \ to \ {t_j})=1-\frac{d_j}{r_j}, \ \ \ \ for \ j=1,2,..,k.
 $$ {#eq-condprob}
 
-
 where
 
 -   $t_j$ is the time when at least one event (i.e., death) happened
 -   $r_j$ is the number of individuals at risk of dying just before the time $t_j$
 -   $d_j$ the number of events (i.e., deaths) that happened at time $t_j$.
 
-
 The **Kaplan--Meier estimator** [@kaplan1958] is defined as the **product** of the conditional probabilities of surviving beyond time $t_j$:
 
 $$ 
 \hat S(t) = P(T>t)  =  \prod_{j:t_j≤t}(1-\frac{d_{j}}{r_{j}})
-$$  {#eq-cumsurv1}
+$$ {#eq-cumsurv1}
 
 with the convention that $\hat S(t) = 1$ for $t<t_1$.
 
@@ -234,7 +218,7 @@ Therefore, the cumulative probability of surviving beyond $t_j$ can be unfolded 
 
 $$
 \hat S(t_j) = (1-\frac{d_{j}}{r_{j}}) \times \underbrace{(1-\frac{d_{j-1}}{r_{j-1}})   \times \ ... \times\ (1-\frac{d_{2}}{r_{2}}) \times (1-\frac{d_{1}}{r_{1}})}_{\hat S(t_{j-1})}
-$$  {#eq-cumsurv2}
+$$ {#eq-cumsurv2}
 
 where the $\times$ symbol denotes multiplication.
 
@@ -242,9 +226,7 @@ This implies that:
 
 $$
 \hat S(t_j) =  (1-\frac{d_{j}}{r_{j}}) \times \hat S(t_{j-1})
-$$  {#eq-cumsurv3}
-
-
+$$ {#eq-cumsurv3}
 
 ## Pointwise Confidence Interval of K-M Survial Function
 
@@ -256,7 +238,7 @@ Based on the "delta" method [@hosmer2008], we obtain the Greenwood's formula for
 
 $$ 
 \hat{Var} \big(\hat{S}(t) \big) \cong \big(\hat{S}(t)\big)^2 \sum_{j:t_j≤t} \frac{d_{j}}{r_{j}(r_{j} - d_{j})}
-$$  {#eq-vargreenwood}
+$$ {#eq-vargreenwood}
 
 The estimated standard error of $\hat S(t)$ is the positive square root of \@eq-vargreenwood:
 
@@ -271,8 +253,6 @@ $$
 $$ {#eq-cigreenwood}
 
 This approach, however, can lead to confidence intervals outside the valid range (less than zero or greater than one), and assumes normality which might not hold for small samples. To address these problems, `log` transformation, and complementary `log-log` transformation have been proposed.
-
-
 
 ### Log Transformation of Survival Function
 
@@ -293,8 +273,6 @@ We convert each of these values back to the original scale using the formula:
 $$ 
 \hat{S}(t)exp\{ \pm 1.96 \cdot \hat{SE}\big({log\hat{S}(t)}\big)\}
 $$ {#eq-backcilog}
-
-
 
 ### Log-Log Transformation of Survival Function
 
@@ -318,8 +296,6 @@ $$
 \hat S(t)^{exp\{\pm 1.96 \ \cdot \hat{SE}(log(-log\hat{S}(t)))\}}
 $$ {#eq-backciloglog}
 
-
-
 ## Kaplan-Meier Tables for the New Therapy A
 
 In Kaplan-Meier analysis, the first step typically involves creating tables with the Kaplan-Meier estimates of the survival function.
@@ -339,7 +315,6 @@ fit_A <- survfit2(Surv(time, status) ~ 1, data = dat_A)
 names(fit_A)
 ```
 
-
 As we can see, the function **`survfit2()`** returns a list of items, including the number of participants at risk (`n.risk`), censored (`n.censor`), those who experienced the event (`n.event`), and the cumulative probability of surviving over time (`surv`) for the new therapy. For example, we can access the K-M estimates by selecting the list item `surv` as follows:
 
 ```{r}
@@ -355,7 +330,6 @@ surv_summary(fit_A, data = dat_A) |>
   select(1:5)
 ```
 
-
 However, the above functions do not compute the conditional probability of survival over time. Therefore, we will calculate it in R using the @eq-condprob:
 
 ```{r}
@@ -366,7 +340,6 @@ However, the above functions do not compute the conditional probability of survi
 prob_A <- round(1-(fit_A$n.event/fit_A$n.risk), 3)
 prob_A
 ```
-
 
 Now, we are ready to include all the information in the @tbl-tb1:
 
@@ -412,9 +385,7 @@ kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 11) |>
   row_spec(0, bold = T)
 ```
 
-
 Note that we start the table with $time=0$ and $\hat S(t) = 1$, where everyone is at risk (no events or censoring yet). Furthermore, when there are only censored observations at a particular time such as at month 9, the conditional probability $\hat P(t)$ of surviving equals 1 and the cumulative probability $\hat S(t)$ does not changed, $\hat S(9) = \hat S(7) = 0.807$. However, we observe that at the next time $t = 10$ months, the number of patients at risk is reduced by the number of censored data at t = 9 months ($n.risk = 16 - 1 = 15$). The conditional probability for this time point equals $\hat P(10) = 1-(1/15) = 1-0.067 = 0.933$ because one patient died. Thus, the cumulative probability of surviving beyond 10 months becomes $\hat S(10) = \hat P(10) \times \hat S(9) = 0.933 \times 0.807 = 0.753$.
-
 
 ::: content-box-gray
 **IMPORTANT**
@@ -422,12 +393,9 @@ Note that we start the table with $time=0$ and $\hat S(t) = 1$, where everyone i
 Only events cause the survival probability to drop. Censoring leads to a larger drop for the next event because it reduces the number of patients at risk when that next event occurs.
 :::
 
-
-
 ### Kaplan–Meier Table of Event Times
 
-In Kaplan-Meier approach, the cumulative survival probability is calculated at each event time $t_j$ and represents the proportion of patients who have managed to survive beyond that point in time. The Table \@ref(tab:tb2) presents, at each time $t_j$ when an event occurred, the total number of patients at risk ($r_j$) just before the $t_j$, the number of events at that time ($d_j$), the conditional probability, and the cumulative probability of survival. It also includes the standard error (according to @eq-segreenwood; the default of ***survival*** package) and 95% confidence interval of the survival point estimate (lower 95% CI, upper 95% CI; according to @eq-backcilog; the default of ***survival*** package).
-
+In Kaplan-Meier approach, the cumulative survival probability is calculated at each event time $t_j$ and represents the proportion of patients who have managed to survive beyond that point in time. The @tab-tb2 presents, at each time $t_j$ when an event occurred, the total number of patients at risk ($r_j$) just before the $t_j$, the number of events at that time ($d_j$), the conditional probability, and the cumulative probability of survival. It also includes the standard error (according to @eq-segreenwood; the default of ***survival*** package) and 95% confidence interval of the survival point estimate (lower 95% CI, upper 95% CI; according to @eq-backcilog; the default of ***survival*** package).
 
 ```{r}
 #| echo: false
@@ -483,13 +451,11 @@ The **`summary()`** function applied to the `fit_A` object provides the K-M esti
 summary(fit_A)
 ```
 
-
 Moreover, we can add in **`summary()`** an optional argument called `times` to specify certain times at which we want to see the survival details. For instance, we can get survival estimates every 5 months from 0 to 35 months.
 
 ```{r}
 summary(fit_A, times = seq(0, 35, 5))
 ```
-
 
 Finally, if we wish to obtain the end points of confident interval according to @eq-backciloglog, we specify the `conf.type = "log-log"` in the **`survfit2()`**, as follows:
 
@@ -498,8 +464,6 @@ fit_A2 <- survfit2(Surv(time, status) ~ 1, conf.type = "log-log",
                    data = dat_A)
 summary(fit_A2)
 ```
-
-
 
 ## The Kaplan--Meier Curve for the New Therapy A
 
@@ -530,8 +494,7 @@ fit_A |>
        x = "Months since Randomization", y = "Survival Probability")
 ```
 
-
-The K-M curve is a stepped line, rather than a smooth curve, as it remains horizontal when there are no events and drops only at times when at least one death occurs. With a small sample the 95% confidence interval of the $S(t)$ is wide (shaded light blue area). Furthermore, we observe in @fig-kaplan1 that as the number of individuals at risk decreases over time, the uncertainty of the Kaplan-Meier estimate increases, resulting in **wider** confidence intervals at later times. 
+The K-M curve is a stepped line, rather than a smooth curve, as it remains horizontal when there are no events and drops only at times when at least one death occurs. With a small sample the 95% confidence interval of the $S(t)$ is wide (shaded light blue area). Furthermore, we observe in @fig-kaplan1 that as the number of individuals at risk decreases over time, the uncertainty of the Kaplan-Meier estimate increases, resulting in **wider** confidence intervals at later times.
 
 Beyond the standard Kaplan-Meier curve, we can enhance the visualization of survival data by incorporating additional information [@morris2019; @rosen2020]. At the bottom of the graph, a table presents the number of participants at risk, the **cumulative** number of censored observations, and the **cumulative** number of patients who have experienced an event at specific time points (0, 5, 10, 15, 20, 25, 30 and 35 months).
 
@@ -543,20 +506,17 @@ fit_A
 
 The lower endpoint of the 95% confidence interval for the median survival time is 16 months (red dashed line), whereas the upper endpoint is undefined (`NA`). This becomes clear when examining the @fig-kaplan1, where the upper limit of the 95% confidence interval is always above the gray, dashed horizontal line.
 
-
 ::: content-box-gray
 **Key points regarding Kaplan-Meier survival curve**
 
--   At the beginning of the study (time=0), we typically assume all participants are alive and haven't experienced the event of interest.  So, the initial probability of survival is S(0) = 1.
+-   At the beginning of the study (time=0), we typically assume all participants are alive and haven't experienced the event of interest. So, the initial probability of survival is S(0) = 1.
 
 -   The survival curve always decreases or remains constant over time, but never reduces to zero if the largest observation is a censored one.
 
 -   The Kaplan-Meier estimator is a step function with drops at event times. The size of the drops depends on the number of events and the number of individuals at risk at the corresponding times.
-   
--   The survival curve is defined only up to the longest observation time. If the curve doesn't drop to 0.50 or below during the study period, the median survival time cannot be estimated. 
 
+-   The survival curve is defined only up to the longest observation time. If the curve doesn't drop to 0.50 or below during the study period, the median survival time cannot be estimated.
 :::
-
 
 ## The Median Follow-up Time for the New Therapy
 
@@ -587,7 +547,6 @@ reverse_fit_A <- survfit2(Surv(time, recoded_status) ~ 1,
 surv_median(reverse_fit_A)
 ```
 
-
 ```{r}
 #| eval: false
 
@@ -596,16 +555,13 @@ reverse_fit_A <- survfit2(Surv(time, status == 0) ~ 1, data = dat_A)
 surv_median(reverse_fit_A)
 ```
 
-
 According to the reverse Kaplan-Meier method, the median follow-up time of participants who received the new therapy A is 25 months. In contrast, the simple and censored median follow-up times are only 16 and 19.5 months, respectively.
-
 
 We can also obtain the above result using the **`prolim()`** function inside the **`quantile()`**, and specify the `reverse` argument as `TRUE`:
 
 ```{r}
 quantile(prodlim(Surv(time, status) ~ 1, data = dat_A, reverse = TRUE))
 ```
-
 
 ## The Nelson--Aalen Estimator of the Cumulative Hazard Function
 
@@ -685,7 +641,6 @@ kable_styling(latex_options = c("striped", "HOLD_position"),
   row_spec(0, bold = T)
 ```
 
-
 It is important to note that the **`ggsurvfit()`** function produces a cumulative hazard function plot based on the Product--Limit estimator, $\hat H(t) = -log\hat S(t)$ (blue solid line), which approximates the estimates from the Nelson--Aalen estimator (black dashed line), as shown in @fig-nelson1 for the new therapy A.
 
 ```{r}
@@ -718,13 +673,11 @@ fit_A |> ggsurvfit(type = "cumhaz", linewidth=0.6, color="#077E97") +
   theme_classic()
 ```
 
-
 ## Comparing Groups in Survival Analysis
 
 ### K-M Survival Probability Curves
 
 The survival of two or more groups of patients can be compared graphically. In our example, we are interested in comparing the survival curves between the new therapy and the standard therapy. First, in the **`survfit2()`** function, we need to replace $\sim 1$ in the model formula with the `intervention` variable (i.e Surv $\sim$ intervention) and include all the patients in the survival analysis using `data = dat`. Then, we use the **`ggsurvfit()`** function to dispaly a Kaplan-Meier curve for each therapy, as shown in @fig-kaplan2:
-
 
 ```{r}
 #| label: fig-kaplan2
@@ -754,7 +707,6 @@ fit_AB |> ggsurvfit(linewidth = 0.6) +
   theme_classic() + theme(legend.position = c(0.85, 0.92)) 
 ```
 
-
 K-M plot reveals that patients receiving the new therapy have higher probability of surviving through the whole time period. Particularly, the median survival time for each group can be estimated calling the object `fit_AB`:
 
 ```{r}
@@ -765,7 +717,7 @@ fit_AB
 
 The median survival of patients in the new therapy (23 months) is higher than in standard therapy (9 months).
 
-It is important to note that we cannot assess the significance of survival differences between the two groups by simply examining the overlap of individual 95% confidence intervals in @fig-kaplan2. It is necessary to calculate the 95% confidence interval of their survival differences. 
+It is important to note that we cannot assess the significance of survival differences between the two groups by simply examining the overlap of individual 95% confidence intervals in @fig-kaplan2. It is necessary to calculate the 95% confidence interval of their survival differences.
 
 With the **`survplotp()`** function from the ***rms*** package, we can create an interactive Plotly visualization (@fig-survbands) with a gray shaded area corresponding to a half-width confidence band (i.e., the midpoint of the survival estimates of the two groups ± the half-width of the 95% confidence interval for the difference in each group’s Kaplan-Meier probability estimates). Where the survival curves intersect this band, it indicates that there is no significant difference [@msaouel2024].
 
@@ -781,8 +733,6 @@ With the **`survplotp()`** function from the ***rms*** package, we can create an
 f <- npsurv(Surv(time, status) ~ intervention, data = dat)
 survplotp(f, time.inc = 5)
 ```
-
-
 
 ### Cumulative Incidence
 
@@ -815,15 +765,11 @@ fit_AB |>
   theme_classic() + theme(legend.position = c(0.85, 0.92)) 
 ```
 
-
 In standard survival analysis (without competing risks), the formula $F(t) = 1 - S(t)$ can be used to estimate the probability of a participant experiencing the event (death) by a specific time point [@clark2003]. As shown in @fig-cumincidence, at 10 months, this probability is approximately 0.25 for patients receiving the new therapy A and around 0.52 for those on the standard therapy B. Note that the curve for the standard therapy starts at 0 and increases to a maximum of 1.
-
-
 
 ### The Log-Rank Test
 
 Comparing survival curves involves using statistical tests to determine if there are significant differences in survival times between two or more independent groups. One common method is the log-rank test which compares survival curves among groups across the entire duration of the study [@statisti1959a; @peto1972]. It is considered a non-parametric approach because it does not require the survival times to follow any particular statistical distribution. It is important to note that Harrington and Fleming [@harrington1982] proposed a family of tests that are similar to the log-rank test, providing alternative methods for comparing survival curves.
-
 
 ::: content-box-gray
 **Null hypothesis and alternative hypothesis of log-rank test**
@@ -831,7 +777,6 @@ Comparing survival curves involves using statistical tests to determine if there
 -   Ho: There is no overall difference between the survival curves of the two groups.
 -   H1: There is an overall difference between the two survival curves.
 :::
-
 
 #### The Log-Rank Statistic
 
@@ -843,13 +788,11 @@ $$ {#eq-logranktest1}
 
 where $V_j$ represents the estimated variance of the difference between observed and expected events at each event time. This statistics follows an approximately chi-square distribution with 1 degree of freedom ($Z_{log-rank}^2 \sim \chi_1^2$) under the null hypothesis. It is important to note that the results are the same regardless of which group is used in the @eq-logranktest1.
 
-
  
 
 **In R:**
 
 The **`survdiff()`** function is used to compare survival curves between two or more groups. The optional parameter `rho` allows for weighting of event times. When `rho = 0` (default), it executes the log-rank test, while `rho = 1` corresponds to the Peto & Peto [@peto1972] modification of the Gehan-Wilcoxon test [@gehan1965], which is more sensitive to early differences in survival times.
-
 
 ```{r}
 # Run log-Rank test to compare the curves A Vs B
@@ -858,9 +801,7 @@ SurvDiff <- survdiff(Surv(time, status) ~ intervention,
 SurvDiff
 ```
 
-
 The $(O-E)^2/V$ column corresponds to the value of log-rank test statistic, which in this case is 13.3. This value is equivalent to a chi-square value, as it is based on a similar statistical framework. The resulting p-value is 0.0003 \<0.05. Therefore, we reject the null hypothesis ($H_o$) and conclude that the survival curves are significantly different.
-
 
 ::: content-box-gray
 **IMPORTANT**
@@ -868,12 +809,9 @@ The $(O-E)^2/V$ column corresponds to the value of log-rank test statistic, whic
 The power of the log-rank test is heavily influenced by the number of events. Consequently, ensuring a sufficient number of observed events is essential for achieving adequate power in survival studies.
 :::
 
-
-
 ### The Hazard Ratio (HR)
 
 The hazard ratio (HR) is an estimate of the ratio of the hazard rate in the new therapy versus the standard therapy. It is often interpreted as a risk ratio or odds ratio, although they are not technically the same.
-
 
 ::: content-box-gray
 **IMPORTANT**
@@ -881,16 +819,13 @@ The hazard ratio (HR) is an estimate of the ratio of the hazard rate in the new 
 The calculation of Hazard ratio (HR) differs from relative risks (RR) and odds ratio (OR) in that RR and OR are cumulative over an entire study, using a defined endpoint, while HRs represent instantaneous risk over the study time period.
 :::
 
-
 After computing the number of observed events (deaths) in each group ($O_A$ for observed number of events in group A and $O_B$ for observed number of events in group B), and the expected number of events assuming a null hypothesis of no difference in survival ($E_A$ for expected number of events in group A and $E_B$ for expected number of events in group B) using the log-rank approach, we can calculate the hazard ratio:
 
 $$ Hazard \ Ratio = HR = \frac{\frac{O_A}{E_A}}{\frac{O_B}{E_B}} = \frac{\frac{9}{17.65}}{\frac{18}{9.35}} =\frac{0.51}{1.94} = 0.26$$
 
-
 We can also compute the 95% confidence interval for the HR. First, we compute the standard error of the natural logarithm of the hazard ratio:
 
 $$SE_{lnHR} = \sqrt{\frac{1}{E_A} + \frac{1}{E_B}} = \sqrt{\frac{1}{17.65} + \frac{1}{9.35}} = \sqrt{0.057 + 0.107} = \sqrt{0.164} = 0.404$$
-
 
 Second, we calculate the 95% CI of the natural logarithm of the hazard ratio. The lower limit is:
 
@@ -906,9 +841,7 @@ $$LL_{HR} = exp(LL_{lnHR}) = exp(- 2.12) = 0.12$$ and
 
 $$UL_{HR} = exp(UL_{lnHR}) = exp(-0.54) = 0.58$$
 
-
 The hazard ratio is interpreted similarly to the risk or odds ratio. Values above one indicate an increased hazard, values below one indicate a decreased hazard, and values equal to one suggest no change in the hazard. Thus, in our example, the hazard of dying is 74% lower (1 - 0.26 = 0.74) with the new treatment compared to the standard treatment (HR=0.26; 95% CI: 0.12, 0.58). Note that the 95% CI of the hazard ratio does not include 1.
-
 
  
 
@@ -925,16 +858,12 @@ HR <- (O_A/E_A)/(O_B/E_B)
 HR
 ```
 
-
-
 The standard error of the logarithm of HR is:
 
 ```{r}
 SE_lnHR = sqrt(1/E_A + 1/E_B)
 SE_lnHR
 ```
-
-
 
 The lower and upper limits of the logarithm of HR are:
 
@@ -945,8 +874,6 @@ UL_lnHR <- log(HR) + 1.96*SE_lnHR
 UL_lnHR
 ```
 
-
-
 Finally, we convert the limits back into the original hazard ratio scale:
 
 ```{r}
@@ -956,7 +883,6 @@ UL_HR <- exp(UL_lnHR)
 CI95 <- c(LL_HR = LL_HR, UL_HR = UL_HR)
 CI95
 ```
-
 
 ### Τhe Proportionality of Hazards
 
@@ -976,12 +902,9 @@ where $c$ is a constant number.
 
 In our example, according to @eq-prophazardseq2, if therapy A has 0.26 times the risk of a fatal event compared to therapy B at 5 months, this relative risk remains 0.26 at 15 months and at any other time point.
 
-
 We can assess whether the ratio of hazards between groups remains constant over time using graphical methods and statistical tests. First, we observe whether the curves in @fig-kaplan2 intersect. In our example, they do not. However, if they were to intersect, it would suggest that the effect of one group on survival relative to the other changes over time. For instance, therapy A might initially have a higher survival probability than therapy B, but later, therapy B could overtake therapy A. This would indicate a violation of the constant hazard ratio.
 
-
 Second, we can assess the proportionality of hazards by plotting the `log-log` Kaplan--Meier survival estimates `(log(-log(S(t))))` on the y-axis against the logarithmic scale of time on the x-axis (@fig-loglog)). By examining whether the curves are approximately parallel, we can determine if the assumption holds.
-
 
 ```{r}
 #| label: fig-loglog
@@ -1000,16 +923,13 @@ ggsurvplot(fit_AB, fun = "cloglog", size = 0.7,
 
 ```
 
-
 We observe that the proportionality of hazards holds in our case, as the two curves are parallel.
-
 
 ::: content-box-white
 **INFO**
 
 The log-rank test achieves optimal power when proportionality of hazards holds and there is homogeneity of survival distributions within each group ([Statistical Thinking by Frank Harrell](https://www.fharrell.com/post/logrank/)).
 :::
-
 
 ### Reporting the Results
 
@@ -1026,8 +946,6 @@ quantile(prodlim(Surv(time, status) ~ 1, data = dat, reverse = TRUE))
 
 A total of 21 patients were assigned to the new therapy and 21 to the standard therapy. The median follow-up time was 25 months (IQR: 17 to 32). The median survival of patients in the new therapy (23 months) was longer than in standard therapy (9 months). The hazard of dying was $74\%$ lower with the new treatment compared to the standard treatment $(HR = 0.26; 95\% \ CI: 0.12 \ to \ 0.58; \ p < 0.001)$.
 :::
-
-
 
 ## Cox Proportional Hazards (CPH) Model
 
@@ -1047,17 +965,15 @@ $$
 ln \ h(t) =  ln \ h_o(t) + \beta \cdot x
 $$ {#eq-logcox}
 
-
 ::: content-box-white
 **INFO**
 
-According to @eq-logcox, the Cox proportional hazards model is considered a semi-parametric model because it includes both parametric and nonparametric components. 
+According to @eq-logcox, the Cox proportional hazards model is considered a semi-parametric model because it includes both parametric and nonparametric components.
 
--   The parametric component is represented by the term $\beta \cdot x$, which is modeled through linear regression on the log-hazard. For every 1-unit increase in $x$, the log hazard changes on average by $\beta$ (for every time $t$ in the follow-up period). 
+-   The parametric component is represented by the term $\beta \cdot x$, which is modeled through linear regression on the log-hazard. For every 1-unit increase in $x$, the log hazard changes on average by $\beta$ (for every time $t$ in the follow-up period).
 
 -   The nonparametric component is the baseline hazard $h_o(t)$ on log scale, which is an unspecified function.
 :::
-
 
 Let X be a binary random variable of therapy type, where:
 
@@ -1072,7 +988,6 @@ HR = \frac{h_A(t)}{h_B(t)} = \frac{h_o(t) \cdot e^{\beta \cdot 1}}{h_o(t)\cdot e
 $$ {#eq-hrcox}
 
 The ratio is independent of time, i.e. proportional hazards over time. It is important to note that we have chosen the standard therapy B as the reference group, which is used in the denominator when calculating the hazard ratio.
-
 
 Furthermore, on the log-scale we have:
 
@@ -1094,7 +1009,6 @@ dat <- dat |>
            fct_relevel("therapy B (standard)"))
 ```
 
-
 We then fit a simple Cox proportional hazards regression model using the **`coxph()`** function, with `intervention` as the grouping variable.
 
 ```{r}
@@ -1105,13 +1019,11 @@ summary(cox_model)
 
 Among the 42 participants in the clinical trial, 27 events (deaths) were observed. The hazard ratio, presented under `exp(coef)`, is 0.24 (95% CI: 0.10-0.54). Notably, the results estimated by the Cox model closely align with those of the log-rank test.
 
-
 ::: content-box-gray
 **IMPORTANT**
 
 The log-rank test and the Cox proportional hazards model evaluate the survival curves as a whole for the entire follow-up period.
 :::
-
 
 -   **CPH model using proportional_hazards() function (tidymodels approach)**
 
@@ -1123,11 +1035,7 @@ cox_tidy_model <- proportional_hazards() |>
 cox_tidy_model
 ```
 
-
-The code defines a Cox proportional hazards model using the **`proportional_hazards()`** function. The **`set_engine()`** function then specifies the use of **_survival_** package as the computational engine for fitting the model. Finally, the **`fit()`** function defines the survival object and applies the model to the survival data.
-
-
-
+The code defines a Cox proportional hazards model using the **`proportional_hazards()`** function. The **`set_engine()`** function then specifies the use of ***survival*** package as the computational engine for fitting the model. Finally, the **`fit()`** function defines the survival object and applies the model to the survival data.
 
 ### The Proportional Hazards Assumption
 
@@ -1140,9 +1048,7 @@ test_ph
 
 A non-significant p-value (p = 0.8), as in this example, indicates that the proportional hazards assumption holds.
 
-
 Finally, we plot the scaled Schoenfeld residual against K-M transformed time (@fig-schoenfeld1).
-
 
 ```{r}
 #| label: fig-schoenfeld1
@@ -1163,13 +1069,11 @@ legend("bottomright", legend = c("Reference line for null effect",
        lty=c(3,3,1), col=c(2,3,1), lwd=c(2, 2, 1), cex = 0.7)
 ```
 
-
 In @fig-schoenfeld1, if the smoothed solid black line is approximately horizontal and close to the red dashed reference line at zero, the proportional hazards assumption is considered satisfied. It is important to note that, for small sample sizes with few events, minor fluctuations in the residual plot may be expected.
 
 In this example, although the solid black line shows some fluctuations, these variations stay close to the green average hazard line, which remains within the confidence intervals (represented by the dashed black lines).
 
-We obtain a similar graph using the **`ggcoxzph()`** function from the **_survminer_** package.
-
+We obtain a similar graph using the **`ggcoxzph()`** function from the ***survminer*** package.
 
 ```{r}
 #| eval: false
@@ -1185,4 +1089,3 @@ We obtain a similar graph using the **`ggcoxzph()`** function from the **_survmi
 ggcoxzph(test_ph, font.main = 12, 
          ggtheme = theme_minimal(base_size = 12))
 ```
-
