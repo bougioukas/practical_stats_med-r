@@ -280,6 +280,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./survival.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -367,7 +373,7 @@ window.Quarto = {
 <li>Each value has its own cell.</li>
 <li>Missing values are represented as empty cells.</li>
 </ul>
-<p>For example, <a href="#fig-excel" class="quarto-xref">FIGURE&nbsp;<span>10.1</span></a> shows a screenshot of data from a single sheet of an Excel file. The dataset, named <code>shock_index</code>, contains information about the characteristics of 30 adult patients suspected of having a pulmonary embolism. The following variables were recorded:</p>
+<p>For example, <a href="#fig-excel" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> shows a screenshot of data from a single sheet of an Excel file. The dataset, named <code>shock_index</code>, contains information about the characteristics of 30 adult patients suspected of having a pulmonary embolism. The following variables were recorded:</p>
 <ul>
 <li>
 <strong>sex:</strong> F for females and M for males</li>
@@ -387,7 +393,7 @@ window.Quarto = {
 </div>
 <section id="importing-data-from-excel-using-the-rstudio-interface" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="importing-data-from-excel-using-the-rstudio-interface">
 <span class="header-section-number">10.1.1</span> Importing data from Excel using the RStudio Interface</h3>
-<p>To import data using the RStudio interface, we navigate to the Environment pane, where we’ll find the “Import Dataset” button. Clicking this button will prompt a dropdown menu with options to import data from various file formats such as CSV, Excel, or other common formats. We select “From Excel…” (<a href="#fig-import" class="quarto-xref">FIGURE&nbsp;<span>10.2</span></a>).</p>
+<p>To import data using the RStudio interface, we navigate to the Environment pane, where we’ll find the “Import Dataset” button. Clicking this button will prompt a dropdown menu with options to import data from various file formats such as CSV, Excel, or other common formats. We select “From Excel…” (<a href="#fig-import" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>).</p>
 <div id="fig-import" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/import.png" class="img-fluid figure-img" style="width:70.0%">
@@ -395,7 +401,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;10.2 Importing data using the RStudio interface.
 </figcaption></figure>
 </div>
-<p>A dialog box then appears, enabling us to navigate our file system and specify the desired dataset (<a href="#fig-wizard" class="quarto-xref">FIGURE&nbsp;<span>10.3</span></a>). Once selected, we confirm the import by clicking “Open”. Finally, we proceed by clicking the “Import” button, which imports the selected dataset into our RStudio session.”</p>
+<p>A dialog box then appears, enabling us to navigate our file system and specify the desired dataset (<a href="#fig-wizard" class="quarto-xref">Figure&nbsp;<span>10.3</span></a>). Once selected, we confirm the import by clicking “Open”. Finally, we proceed by clicking the “Import” button, which imports the selected dataset into our RStudio session.”</p>
 <div id="fig-wizard" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wizard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/wizard.png" class="img-fluid figure-img" style="width:95.0%">
@@ -1113,7 +1119,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We observe that the “long” format consists of one column for the row ID, one for the week of measurement, and another for the total cholesterol values.</p>
-<p>To better understand the dataset transformation from a “wide” to a “long” format, it’s helpful to break down the code and use data from the first two individuals (<a href="#fig-reshape00" class="quarto-xref">FIGURE&nbsp;<span>10.4</span></a>).</p>
+<p>To better understand the dataset transformation from a “wide” to a “long” format, it’s helpful to break down the code and use data from the first two individuals (<a href="#fig-reshape00" class="quarto-xref">Figure&nbsp;<span>10.4</span></a>).</p>
 <div id="fig-reshape00" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape00-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape00.png" class="img-fluid figure-img" style="width:30.0%">
@@ -1121,7 +1127,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshape00-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;10.4 Data of the first two participants in the “wide” format.
 </figcaption></figure>
 </div>
-<p>Initially, the <code>cols = starts_with("week")</code> argument specifies which columns from the original data should be pivoted. In this case, it selects the columns that start with the prefix “week”, such as “week0”, “week6”, and “week12”. Additionally, the values in the identifier column (rowid) in the “wide” format are repeated in the “long” format as many times as the number of columns being pivoted, which in this case is three (<a href="#fig-reshape01" class="quarto-xref">FIGURE&nbsp;<span>10.5</span></a>).</p>
+<p>Initially, the <code>cols = starts_with("week")</code> argument specifies which columns from the original data should be pivoted. In this case, it selects the columns that start with the prefix “week”, such as “week0”, “week6”, and “week12”. Additionally, the values in the identifier column (rowid) in the “wide” format are repeated in the “long” format as many times as the number of columns being pivoted, which in this case is three (<a href="#fig-reshape01" class="quarto-xref">Figure&nbsp;<span>10.5</span></a>).</p>
 <div id="fig-reshape01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape01.png" class="img-fluid figure-img" style="width:75.0%">
@@ -1130,7 +1136,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p><br></p>
-<p>Next, by using the <code>names_to = "week"</code> argument, the column names being pivoted (i.e., week0, week6, and week12) become values within a newly defined variable, <code>week</code>, in the “long” format. These values are repeated as many times as the number of rows in the “wide” format, in this case two, while considering the <code>rowid</code> (<a href="#fig-reshape02" class="quarto-xref">FIGURE&nbsp;<span>10.6</span></a>).</p>
+<p>Next, by using the <code>names_to = "week"</code> argument, the column names being pivoted (i.e., week0, week6, and week12) become values within a newly defined variable, <code>week</code>, in the “long” format. These values are repeated as many times as the number of rows in the “wide” format, in this case two, while considering the <code>rowid</code> (<a href="#fig-reshape02" class="quarto-xref">Figure&nbsp;<span>10.6</span></a>).</p>
 <div id="fig-reshape02" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape02.png" class="img-fluid figure-img" style="width:75.0%">
@@ -1139,7 +1145,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p><br></p>
-<p>Finally, by using the <code>values_to = "total_cholesterol"</code> argument, the cell values from the pivoted variables are placed into a newly defined variable in the “long” format with the name <code>total_cholesterol</code>, with the <code>rowid</code> and <code>week</code> taken into account (<a href="#fig-reshape03" class="quarto-xref">FIGURE&nbsp;<span>10.7</span></a>).</p>
+<p>Finally, by using the <code>values_to = "total_cholesterol"</code> argument, the cell values from the pivoted variables are placed into a newly defined variable in the “long” format with the name <code>total_cholesterol</code>, with the <code>rowid</code> and <code>week</code> taken into account (<a href="#fig-reshape03" class="quarto-xref">Figure&nbsp;<span>10.7</span></a>).</p>
 <div id="fig-reshape03" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape03.png" class="img-fluid figure-img" style="width:75.0%">
@@ -1167,7 +1173,7 @@ window.Quarto = {
 4     4  4.8   4.27   4.15</code></pre>
 </div>
 </div>
-<p>To better understand the reshaping process of the <strong><code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code></strong> function, let’s consider the data of the first two individuals in the “long” format (<a href="#fig-reshape000" class="quarto-xref">FIGURE&nbsp;<span>10.8</span></a>):</p>
+<p>To better understand the reshaping process of the <strong><code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code></strong> function, let’s consider the data of the first two individuals in the “long” format (<a href="#fig-reshape000" class="quarto-xref">Figure&nbsp;<span>10.8</span></a>):</p>
 <div id="fig-reshape000" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape000.png" class="img-fluid figure-img" style="width:30.0%">
@@ -1175,7 +1181,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshape000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;10.8 Data of the first two participants in the “long” format.
 </figcaption></figure>
 </div>
-<p>First, in the “wide” format, the <code>rowid</code> column must contain unique values to ensure each row is uniquely identified within the dataset (<a href="#fig-reshape04" class="quarto-xref">FIGURE&nbsp;<span>10.9</span></a>). This is achieved by using the argument <code>id_cols = rowid</code>, which specifies that the unique values from the <code>rowid</code> column in the “long” format should be used as the identifier column in the “wide” format.</p>
+<p>First, in the “wide” format, the <code>rowid</code> column must contain unique values to ensure each row is uniquely identified within the dataset (<a href="#fig-reshape04" class="quarto-xref">Figure&nbsp;<span>10.9</span></a>). This is achieved by using the argument <code>id_cols = rowid</code>, which specifies that the unique values from the <code>rowid</code> column in the “long” format should be used as the identifier column in the “wide” format.</p>
 <div id="fig-reshape04" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape04.png" class="img-fluid figure-img" style="width:75.0%">
@@ -1184,7 +1190,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p><br></p>
-<p>Second, the <code>names_from = week</code> argument specifies that the distinct week values in the “long” format serve as the basis for generating new column names (“week0”, “week6”, and “week12”) in the “wide” format (<a href="#fig-reshape05" class="quarto-xref">FIGURE&nbsp;<span>10.10</span></a>).</p>
+<p>Second, the <code>names_from = week</code> argument specifies that the distinct week values in the “long” format serve as the basis for generating new column names (“week0”, “week6”, and “week12”) in the “wide” format (<a href="#fig-reshape05" class="quarto-xref">Figure&nbsp;<span>10.10</span></a>).</p>
 <div id="fig-reshape05" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape05.png" class="img-fluid figure-img" style="width:75.0%">
@@ -1193,7 +1199,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p><br></p>
-<p>Finally, the <code>values_from = total_cholesterol</code> argument specifies that the <code>total_cholesterol</code> values of the “long” format must be placed into the cells of the new columns in the “wide” format, considering the rowid and week values (<a href="#fig-reshape06" class="quarto-xref">FIGURE&nbsp;<span>10.11</span></a>).</p>
+<p>Finally, the <code>values_from = total_cholesterol</code> argument specifies that the <code>total_cholesterol</code> values of the “long” format must be placed into the cells of the new columns in the “wide” format, considering the rowid and week values (<a href="#fig-reshape06" class="quarto-xref">Figure&nbsp;<span>10.11</span></a>).</p>
 <div id="fig-reshape06" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-reshape06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/reshape06.png" class="img-fluid figure-img" style="width:75.0%">

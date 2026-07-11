@@ -225,6 +225,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./survival.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -275,7 +281,7 @@ window.Quarto = {
 </ul>
 <section id="creating-an-rstudio-project" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="creating-an-rstudio-project">
 <span class="header-section-number">2.1.1</span> Creating an RStudio Project</h3>
-<p>Let’s create our first RStudio Project to use for the rest of this textbook. From the RStudio menu bar (<a href="#fig-project0" class="quarto-xref">FIGURE&nbsp;<span>2.1</span></a>) we select:</p>
+<p>Let’s create our first RStudio Project to use for the rest of this textbook. From the RStudio menu bar (<a href="#fig-project0" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>) we select:</p>
 <p><code>File</code> <span class="math inline">\(\longrightarrow\)</span> <code>New Project...</code></p>
 <div id="fig-project0" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-project0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -285,7 +291,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>&nbsp;</p>
-<p>Alternatively, we can click the plus project icon <img src="images/project_icon.png" width="20" height="18"> in the main RStudio menu, or select <code>New Project...</code> from the top-right Project menu (<a href="#fig-project1" class="quarto-xref">FIGURE&nbsp;<span>2.2</span></a>):</p>
+<p>Alternatively, we can click the plus project icon <img src="images/project_icon.png" width="20" height="18"> in the main RStudio menu, or select <code>New Project...</code> from the top-right Project menu (<a href="#fig-project1" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>):</p>
 <div id="fig-project1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-project1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/project1.png" class="img-fluid figure-img" style="width:55.0%">
@@ -293,7 +299,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-project1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;2.2 Creating an RStudio Project using the RStudio’s Project menu.
 </figcaption></figure>
 </div>
-<p>Then, we follow the steps in <a href="#fig-step1" class="quarto-xref">FIGURE&nbsp;<span>2.3</span></a> - <a href="#fig-step3" class="quarto-xref">FIGURE&nbsp;<span>2.5</span></a>.</p>
+<p>Then, we follow the steps in <a href="#fig-step1" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> - <a href="#fig-step3" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>.</p>
 <div id="fig-step1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/step1.png" class="img-fluid figure-img" style="width:55.0%">
@@ -318,8 +324,8 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>&nbsp;</p>
-<p>In Step 3 (<a href="#fig-step3" class="quarto-xref">FIGURE&nbsp;<span>2.5</span></a>) the directory name that we type will be the project’s name. We call it whatever we want, for example “<em>my_first_project</em>”.</p>
-<p>Once we have completed this process, R session switches to the new RStudio Project with the name “<em>my_first_project</em>” (<a href="#fig-top_right_project_name" class="quarto-xref">FIGURE&nbsp;<span>2.6</span></a>).</p>
+<p>In Step 3 (<a href="#fig-step3" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>) the directory name that we type will be the project’s name. We call it whatever we want, for example “<em>my_first_project</em>”.</p>
+<p>Once we have completed this process, R session switches to the new RStudio Project with the name “<em>my_first_project</em>” (<a href="#fig-top_right_project_name" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>).</p>
 <div id="fig-top_right_project_name" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-top_right_project_name-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/top_right_project_name.png" class="img-fluid figure-img" style="width:55.0%">
@@ -334,7 +340,7 @@ window.Quarto = {
 <pre data-code-line-numbers=""><code>my_first_project/
 ├── data
 └── figures</code></pre>
-<p>Using the <img src="images/new_folder.png" width="70" height="20"> button in RStudio’s Files pane, we can easily create new subfolders within the main RStudio Project directory. <a href="#fig-folder_data" class="quarto-xref">FIGURE&nbsp;<span>2.7</span></a> demonstrates how to create the “data” subfolder.</p>
+<p>Using the <img src="images/new_folder.png" width="70" height="20"> button in RStudio’s Files pane, we can easily create new subfolders within the main RStudio Project directory. <a href="#fig-folder_data" class="quarto-xref">Figure&nbsp;<span>2.7</span></a> demonstrates how to create the “data” subfolder.</p>
 <div id="fig-folder_data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-folder_data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/folder_data.png" class="img-fluid figure-img" style="width:65.0%">
@@ -342,7 +348,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folder_data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;2.7 Creating a “data” subfolder within the main RStudio Project.
 </figcaption></figure>
 </div>
-<p>To add the “figures” subfolder, we simply repeat the same steps (<a href="#fig-folder_figures" class="quarto-xref">FIGURE&nbsp;<span>2.8</span></a>):</p>
+<p>To add the “figures” subfolder, we simply repeat the same steps (<a href="#fig-folder_figures" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>):</p>
 <div id="fig-folder_figures" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-folder_figures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/folder_figures.png" class="img-fluid figure-img" style="width:65.0%">
@@ -350,7 +356,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folder_figures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;2.8 Creating a “figure” subfolder within the main RStudio Project.
 </figcaption></figure>
 </div>
-<p>Therefore, we end up to the following RStudio Project folder structure (<a href="#fig-my_project_str" class="quarto-xref">FIGURE&nbsp;<span>2.9</span></a>):</p>
+<p>Therefore, we end up to the following RStudio Project folder structure (<a href="#fig-my_project_str" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>):</p>
 <div id="fig-my_project_str" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-my_project_str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/my_project_str.png" class="img-fluid figure-img" style="width:65.0%">
@@ -367,7 +373,7 @@ window.Quarto = {
 </section></section><section id="opening-a-new-r-script" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="opening-a-new-r-script">
 <span class="header-section-number">2.2</span> Opening a new R script</h2>
 <p>Typically, R code is written in script files denoted by the <code>.R</code> extension. An R script is a plain text file containing R code that can be executed in the R console. The use of R script files offers various benefits, including the ability to execute code in chunks rather than individual lines, which enhances code reuse and organization. Furthermore, R script files enable easy documentation through one-line comments prefixed with the hash symbol (<code>#</code>), and support efficient code sharing with others.</p>
-<p>To open an R script in RStudio (<a href="#fig-open_rscript" class="quarto-xref">FIGURE&nbsp;<span>2.10</span></a>), we navigate to the menu bar at the top of the RStudio window and follow these steps:</p>
+<p>To open an R script in RStudio (<a href="#fig-open_rscript" class="quarto-xref">Figure&nbsp;<span>2.10</span></a>), we navigate to the menu bar at the top of the RStudio window and follow these steps:</p>
 <p><code>File</code> <span class="math inline">\(\longrightarrow\)</span> <code>New File</code> <span class="math inline">\(\longrightarrow\)</span> <code>R Script</code></p>
 <p>&nbsp;</p>
 <div id="fig-open_rscript" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -379,7 +385,7 @@ window.Quarto = {
 </div>
 <p>Alternatively, we can use the plus icon <img src="images/plus1.png" width="22" height="18"> from RStudio toolbar or the keyboard shortcut <code>Ctrl+Shift+N</code> for Windows/Linux or <code>Cmd+Shift+N</code> for Mac.</p>
 <p>&nbsp;</p>
-<p>Another pane, the <em>“Source Editor”</em>, is opened on the left above the Console pane (<a href="#fig-RStudio_4panes" class="quarto-xref">FIGURE&nbsp;<span>2.11</span></a>). In the Source Editor, we can write a lengthy script with numerous code chunks and save the file for future use. By default, the first unsaved R script in an R session is named <em>“Untitled 1”</em>.</p>
+<p>Another pane, the <em>“Source Editor”</em>, is opened on the left above the Console pane (<a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>). In the Source Editor, we can write a lengthy script with numerous code chunks and save the file for future use. By default, the first unsaved R script in an R session is named <em>“Untitled 1”</em>.</p>
 <div id="fig-RStudio_4panes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-RStudio_4panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RStudio_4panes.png" class="img-fluid figure-img" style="width:100.0%">
@@ -387,7 +393,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RStudio_4panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;2.11 Screenshot of RStudio with four panes.
 </figcaption></figure>
 </div>
-<p>We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes. Additionally, the four panes can be arranged in a different order from that shown in <a href="#fig-RStudio_4panes" class="quarto-xref">FIGURE&nbsp;<span>2.11</span></a>. If desired, we can change where each pane appears within RStudio by adjusting the preferences (<a href="#fig-pane_layout" class="quarto-xref">FIGURE&nbsp;<span>2.12</span></a>). We select from RStudio menu:</p>
+<p>We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes. Additionally, the four panes can be arranged in a different order from that shown in <a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>. If desired, we can change where each pane appears within RStudio by adjusting the preferences (<a href="#fig-pane_layout" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>). We select from RStudio menu:</p>
 <p><code>Tools</code> <span class="math inline">\(\longrightarrow\)</span> <code>Global Options</code> <span class="math inline">\(\longrightarrow\)</span> <code>Pane layout</code></p>
 <div id="fig-pane_layout" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pane_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -397,7 +403,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>&nbsp;</p>
-<p>Now, let’s type <code>14 + 16</code> at a new R script in the Source Editor pane and press the <img src="images/run.png" width="40" height="18"> button located at the top of the Source Editor. The result is printed in the Console (<a href="#fig-rscript1" class="quarto-xref">FIGURE&nbsp;<span>2.13</span></a>):</p>
+<p>Now, let’s type <code>14 + 16</code> at a new R script in the Source Editor pane and press the <img src="images/run.png" width="40" height="18"> button located at the top of the Source Editor. The result is printed in the Console (<a href="#fig-rscript1" class="quarto-xref">Figure&nbsp;<span>2.13</span></a>):</p>
 <div id="fig-rscript1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rscript1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rscript1.png" class="img-fluid figure-img" style="width:70.0%">
@@ -413,7 +419,7 @@ window.Quarto = {
 <p>&nbsp;</p>
 </section><section id="adding-comments-and-saving-a-script" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="adding-comments-and-saving-a-script">
 <span class="header-section-number">2.3</span> Adding comments and saving a script</h2>
-<p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<a href="#fig-rscript2" class="quarto-xref">FIGURE&nbsp;<span>2.14</span></a>).</p>
+<p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<a href="#fig-rscript2" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>).</p>
 <div id="fig-rscript2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rscript2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rscript2.png" class="img-fluid figure-img" style="width:70.0%">
@@ -429,7 +435,7 @@ window.Quarto = {
 <p>Ctrl+Shift+C for Windows/Linux or Cmd+Shift+C for Mac .</p>
 </div>
 <p>&nbsp;</p>
-<p>Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon <img src="images/save_icon.png" width="20" height="22">, give a file name to the script such as <em>“my_script”</em> and then press the “save” button to store it in <em>“my_first_project”</em> folder (<a href="#fig-save_script" class="quarto-xref">FIGURE&nbsp;<span>2.15</span></a>).</p>
+<p>Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon <img src="images/save_icon.png" width="20" height="22">, give a file name to the script such as <em>“my_script”</em> and then press the “save” button to store it in <em>“my_first_project”</em> folder (<a href="#fig-save_script" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>).</p>
 <div id="fig-save_script" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-save_script-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/save_script.png" class="img-fluid figure-img" style="width:75.0%">
@@ -438,7 +444,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>&nbsp;</p>
-<p>Now, the folder structure of our RStudio Project should include the following items (<a href="#fig-final_folder_structure" class="quarto-xref">FIGURE&nbsp;<span>2.16</span></a>):</p>
+<p>Now, the folder structure of our RStudio Project should include the following items (<a href="#fig-final_folder_structure" class="quarto-xref">Figure&nbsp;<span>2.16</span></a>):</p>
 <div id="fig-final_folder_structure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-final_folder_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/final_folder_structure.png" class="img-fluid figure-img" style="width:50.0%">

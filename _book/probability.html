@@ -280,6 +280,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./survival.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -459,7 +465,7 @@ window.Quarto = {
 <p><span id="eq-theoreticalprobability"><span class="math display">\[
 P(A) = \frac{\textrm{Number of outcomes favourable to the event A}}{\textrm{Total number of possible outcomes}}
 \tag{13.1}\]</span></span></p>
-<p>Note that the <a href="#eq-theoreticalprobability" class="quarto-xref">Equation&nbsp;<span>13.1</span></a> only works for experiments that are considered <strong>“fair”</strong>; this means that there must be no bias involved so that all outcomes are <strong>equally likely</strong> to occur.</p>
+<p>Note that the <a href="#eq-theoreticalprobability" class="quarto-xref">Eq.&nbsp;<span>13.1</span></a> only works for experiments that are considered <strong>“fair”</strong>; this means that there must be no bias involved so that all outcomes are <strong>equally likely</strong> to occur.</p>
 <p><strong><em>Example 1</em></strong></p>
 <p>What is the theoretical probability of rolling <img src="images/five.png" width="13" height="13"> when we roll a six-sided fair die once?</p>
 <p>The theoretical probability is:</p>
@@ -482,7 +488,7 @@ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of 
 \tag{13.2}\]</span></span></p>
 <p>Yet, this definition seems less clear, as it does not specify the exact interpretation of “repetitions of the same experiment” <span class="citation" data-cites="finetti2008">(<a href="references.html#ref-finetti2008" role="doc-biblioref">Finetti et al. 2008</a>)</span>.</p>
 <p><strong><em>Example</em></strong></p>
-<p>We rolled a six-sided die 100 times and we recorded how often each outcome occurred (<a href="#fig-die100" class="quarto-xref">FIGURE&nbsp;<span>13.5</span></a>). What is the experimental probability of getting <img src="images/five.png" width="12" height="12"> ?</p>
+<p>We rolled a six-sided die 100 times and we recorded how often each outcome occurred (<a href="#fig-die100" class="quarto-xref">Figure&nbsp;<span>13.5</span></a>). What is the experimental probability of getting <img src="images/five.png" width="12" height="12"> ?</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">348</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/roll_dice.html">roll_dice</a></span><span class="op">(</span>times <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
@@ -494,7 +500,7 @@ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Outcome"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-die100" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
+<div id="fig-die100" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-die100-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="probability_files/figure-html/fig-die100-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" data-fig-pos="H">
 </div>
@@ -506,7 +512,7 @@ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of 
 <p>The experimental probability is:</p>
 <p><span class="math display">\[ P(\textrm{rolling a 5}) =\frac{\textrm{20 times the number “5” occured}}{\textrm{100 experiments}}=  \frac{20}{100} = 0.20\ or\ 20\%\]</span></p>
 <p>In 20% of the cases we got a <img src="images/five.png" width="13" height="13"> that is greater than the expected value of <span class="math inline">\(100/6 \approx 16.67\%\)</span>.</p>
-<p>However, if the die is rolled numerous times, for example 10000 times, the experimental probability should approximate the theoretical probability of that outcome (<strong>Law of Large Numbers</strong>), as shown in <a href="#fig-die1000" class="quarto-xref">FIGURE&nbsp;<span>13.6</span></a>:</p>
+<p>However, if the die is rolled numerous times, for example 10000 times, the experimental probability should approximate the theoretical probability of that outcome (<strong>Law of Large Numbers</strong>), as shown in <a href="#fig-die1000" class="quarto-xref">Figure&nbsp;<span>13.6</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">128</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tidydice/man/roll_dice.html">roll_dice</a></span><span class="op">(</span>times <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
@@ -518,7 +524,7 @@ P(A) \approx  \frac{\textrm{number of times A occured}}{\textrm{total number of 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Outcome"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-die1000" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
+<div id="fig-die1000" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-die1000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="probability_files/figure-html/fig-die1000-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" data-fig-pos="H">
 </div>
@@ -623,7 +629,7 @@ P(A ∩ B) = P(A|B)·P(B)
 <p>Thus, the joint probability (i.e., the probability of two events occurring together) is:</p>
 <p><span class="math display">\[P(A∩B) = \frac{1}{36}\]</span></p>
 <ul>
-<li>Finally, according to the definition of conditional probability <a href="#eq-conditional2" class="quarto-xref">Equation&nbsp;<span>13.5</span></a>, the probability of interest is calculated as follows:</li>
+<li>Finally, according to the definition of conditional probability <a href="#eq-conditional2" class="quarto-xref">Eq.&nbsp;<span>13.5</span></a>, the probability of interest is calculated as follows:</li>
 </ul>
 <p><span class="math display">\[P(A|B) = \frac{P(A ∩ B)}{P(B)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1}{5}\]</span></p>
 <p>Therefore, the “knowledge” that the sum of two dice is 8 has <strong>updated</strong> the probability of A from P(A) = 1/6 = 0.167 to P(A|B) = 1/5 = 0.2.</p>
@@ -631,8 +637,8 @@ P(A ∩ B) = P(A|B)·P(B)
 </section><section id="bayes-theorem" class="level3" data-number="13.2.7"><h3 data-number="13.2.7" class="anchored" data-anchor-id="bayes-theorem">
 <span class="header-section-number">13.2.7</span> Bayes’ theorem</h3>
 <p>Bayes’ theorem provides a way to express <span class="math inline">\(P(A|B)\)</span> in terms of <span class="math inline">\(P(B|A)\)</span>, while incorporating prior knowledge.</p>
-<p>The multiplication rule (<a href="#eq-conditional" class="quarto-xref">Equation&nbsp;<span>13.6</span></a>) states that <span class="math inline">\(P(A∩B) = P(A|B)·P(B)\)</span>. Since <span class="math inline">\(P(A∩B)\)</span> represents the probability of both events A and B occurring, we can also express it as <span class="math inline">\(P(A∩B) = P(Β∩Α) = P(B|A) · P(A)\)</span>.</p>
-<p>Now, substituting <span class="math inline">\(P(A∩B)\)</span> with <span class="math inline">\(P(B|A) · P(A)\)</span> in <a href="#eq-conditional2" class="quarto-xref">Equation&nbsp;<span>13.5</span></a>, we derive the <strong>Bayes’ theorem</strong>:</p>
+<p>The multiplication rule (<a href="#eq-conditional" class="quarto-xref">Eq.&nbsp;<span>13.6</span></a>) states that <span class="math inline">\(P(A∩B) = P(A|B)·P(B)\)</span>. Since <span class="math inline">\(P(A∩B)\)</span> represents the probability of both events A and B occurring, we can also express it as <span class="math inline">\(P(A∩B) = P(Β∩Α) = P(B|A) · P(A)\)</span>.</p>
+<p>Now, substituting <span class="math inline">\(P(A∩B)\)</span> with <span class="math inline">\(P(B|A) · P(A)\)</span> in <a href="#eq-conditional2" class="quarto-xref">Eq.&nbsp;<span>13.5</span></a>, we derive the <strong>Bayes’ theorem</strong>:</p>
 <p><span id="eq-bayes"><span class="math display">\[
 P(A|B) = \frac{P(B|A)·P(A)}{P(B)}
 \tag{13.7}\]</span></span></p>
@@ -651,7 +657,7 @@ P(A|B) = \frac{P(B|A)·P(A)}{P(B)}
 <p><span id="eq-independent"><span class="math display">\[
 P(A ∩ B) = P(A)·P(B)
 \tag{13.8}\]</span></span></p>
-<p>This is a special case of the multiplication rule of probability, derived from <a href="#eq-conditional" class="quarto-xref">Equation&nbsp;<span>13.6</span></a> when the events are independent.</p>
+<p>This is a special case of the multiplication rule of probability, derived from <a href="#eq-conditional" class="quarto-xref">Eq.&nbsp;<span>13.6</span></a> when the events are independent.</p>
 <p><strong><em>Example</em></strong></p>
 <p>Determine the probability of obtaining two 3s when rolling two six-sided fair dice.</p>
 <ul>
@@ -662,7 +668,7 @@ P(A ∩ B) = P(A)·P(B)
 <li>Let B represent the event of getting a 3 on the second die: <strong>B</strong> = {die 2 shows <img src="images/three.png" width="13" height="13"> }. The probability of event B is:</li>
 </ul>
 <p><span class="math display">\[P(B) = \frac{1}{6}\]</span></p>
-<p>Since the outcome of one die does not affect the other (i.e., the rolls of the dice are independent events), we can calculate the probability of both events occurring, <span class="math inline">\(P(A∩B)\)</span>, using the multiplication rule for independent events (<a href="#eq-independent" class="quarto-xref">Equation&nbsp;<span>13.8</span></a>):</p>
+<p>Since the outcome of one die does not affect the other (i.e., the rolls of the dice are independent events), we can calculate the probability of both events occurring, <span class="math inline">\(P(A∩B)\)</span>, using the multiplication rule for independent events (<a href="#eq-independent" class="quarto-xref">Eq.&nbsp;<span>13.8</span></a>):</p>
 <p><span class="math display">\[P(A \cap B) = P(A)·P(B) = \frac{1}{6}·\frac{1}{6} = \frac{1}{36}\]</span></p>
 <p>This result can be verified by directly counting all possible outcomes when rolling two dice. As shown below, out of the 36 possible outcomes, only one combination results in both dice showing 3s.</p>
 <div class="cell" data-layout-align="center">

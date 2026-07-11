@@ -30,6 +30,7 @@ book:
     - intro.qmd
     - probability.qmd
     - distributions.qmd
+    - survival.qmd
     - references.qmd
     
   page-footer: 
@@ -38,10 +39,11 @@ book:
 
 crossref:
   fig-title: "**FIGURE**"
-  fig-prefix: "FIGURE"
+  fig-prefix: "Figure"
   tbl-title: "**TABLE**"
-  tbl-prefix: "TABLE"
+  tbl-prefix: "Table"
   title-delim: ""
+  eq-prefix: "Eq."
   
 bibliography: references.bib
 reference-location: margin

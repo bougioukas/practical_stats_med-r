@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./survival.html" rel="next">
 <link href="./probability.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -225,6 +225,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./survival.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -280,7 +286,7 @@ window.Quarto = {
 <p><span class="math display">\[X={\begin{cases}1, &amp;for\ blood\ type\ A\\2, &amp;for\ blood\ type\ B\\3, &amp;for\ blood\ type\ AB\\4, &amp;for\ blood\ type\ O\end{cases}}\]</span></p>
 <p>Thus, the <strong>probability distribution</strong> that describes the probability of different possible outcomes of random variable X is:</p>
 <p><span class="math display">\[P(X=x)={\begin{cases}0.41,&amp;for\ x=1\\0.10,&amp;for\ x=2\\0.04,&amp;for\ x=3\\0.45,&amp;for\ x=4\end{cases}}\]</span></p>
-<p>Here, x denotes a specific value (i.e., 1, 2, 3, or 4) of the random variable X. Then, instead of saying P(A) = 0.41, i.e., the blood type is A with probability 0.41, we can say that P(X = 1) = 0.41, i.e., X is equal to 1 with probability of 0.41. Probability distributions are often presented using probability tables, such as <a href="#tbl-abo" class="quarto-xref">TABLE&nbsp;<span>14.1</span></a>.</p>
+<p>Here, x denotes a specific value (i.e., 1, 2, 3, or 4) of the random variable X. Then, instead of saying P(A) = 0.41, i.e., the blood type is A with probability 0.41, we can say that P(X = 1) = 0.41, i.e., X is equal to 1 with probability of 0.41. Probability distributions are often presented using probability tables, such as <a href="#tbl-abo" class="quarto-xref">Table&nbsp;<span>14.1</span></a>.</p>
 <div class="columns">
 <div class="column" style="width:20%;">
 
@@ -327,7 +333,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bloodtypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;14.1 Blood types matching for a safe transfusion.
 </figcaption></figure>
 </div>
-<p>It is known that individuals with blood type B or O are eligible to donate to recipients with blood type B (<a href="#fig-bloodtypes" class="quarto-xref">FIGURE&nbsp;<span>14.1</span></a>). Therefore, we need to find the probability P(blood type B OR blood type O). Since having blood type B and blood type O are mutually exclusive events, we can apply the addition rule for mutually exclusive events as follows:</p>
+<p>It is known that individuals with blood type B or O are eligible to donate to recipients with blood type B (<a href="#fig-bloodtypes" class="quarto-xref">Figure&nbsp;<span>14.1</span></a>). Therefore, we need to find the probability P(blood type B OR blood type O). Since having blood type B and blood type O are mutually exclusive events, we can apply the addition rule for mutually exclusive events as follows:</p>
 <p><span class="math display">\[ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 0.55}\]</span></p>
 <p>Hence, there is a 55% probability that a randomly selected individual from our population can donate blood to someone with blood type B.</p>
 <p>We will explore different types of probability distributions, broadly categorized into two main groups: <strong>discrete</strong> and <strong>continuous</strong> probability distributions. In R, each distribution has four associated built-in functions. The function prefix indicates its type (d for “density”, p for “probability”, q for “quantile”, and r for “random”), while the suffix specifies the distribution. For example, in the case of <strong>binomial</strong> distribution, these functions are: <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">pbinom()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">qbinom()</a></code></strong>, and <strong><code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code></strong>. Similarly, for the normal distribution, they are: <strong><code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code></strong>, <strong><code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code></strong>, and <strong><code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code></strong>.</p>
@@ -422,7 +428,7 @@ F(x) = P(X \le x)= \left\{
 <li>The pmf for this distribution is (a=1, b=5):</li>
 </ul>
 <p><span class="math display">\[P(X = x) = \frac{1}{5-1+1} = \frac{1}{5} = 0.2 \quad \text{where} \quad x \in \left\lbrace 1, 2, 3, 4, 5 \right\rbrace\]</span></p>
-<p>The probability table (<a href="#tbl-tbuniform" class="quarto-xref">TABLE&nbsp;<span>14.2</span></a>) and the distribution visualization (<a href="#fig-unipmf1234" class="quarto-xref">FIGURE&nbsp;<span>14.2</span></a>) are shown below:</p>
+<p>The probability table (<a href="#tbl-tbuniform" class="quarto-xref">Table&nbsp;<span>14.2</span></a>) and the distribution visualization (<a href="#fig-unipmf1234" class="quarto-xref">Figure&nbsp;<span>14.2</span></a>) are shown below:</p>
 <div class="columns">
 <div class="column" style="width:20%;">
 
@@ -458,7 +464,7 @@ F(x) = P(X \le x)= \left\{
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-unipmf1234" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
+<div id="fig-unipmf1234" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-unipmf1234-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="distributions_files/figure-html/fig-unipmf1234-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" data-fig-pos="H">
 </div>
@@ -472,10 +478,10 @@ F(x) = P(X \le x)= \left\{
 <li>The cdf for this distribution is:</li>
 </ul>
 <p><span class="math display">\[F(x) = P(X \le x)={\begin{cases}0,&amp;for\ x &lt;1\\\frac{x}{5},&amp;for\ 1\leq x \leq 5\\1,&amp;for\ x &gt; 5 \end{cases}}\]</span></p>
-<p>The corresponding plot is shown in <a href="#fig-unicdf1234" class="quarto-xref">FIGURE&nbsp;<span>14.3</span></a>.</p>
+<p>The corresponding plot is shown in <a href="#fig-unicdf1234" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-unicdf1234" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
+<div id="fig-unicdf1234" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-unicdf1234-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="distributions_files/figure-html/fig-unicdf1234-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" data-fig-pos="H">
 </div>
@@ -811,8 +817,8 @@ F(x) = P(X \le x)= \left\{
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./survival.html" class="pagination-link" aria-label="Survival Analysis">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
