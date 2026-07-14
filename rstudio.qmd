@@ -24,13 +24,12 @@ Therefore, throughout this textbook, we will use **R** via **RStudio IDE**, both
 
 Once R and RStudio are installed, clicking the RStudio icon ![](images/r_studio_icon.png){#fig-r_studio_icon width="3%"} will automatically launch R within RStudio environment. Each time we start an R session, three panes appear in the RStudio interface, as shown in [@fig-RStudio_panes].
 
-The three main RStudio panes that divide the screen are as follows:
-
-1.  The large **Console pane** on the left (also known as the command-line pane) runs R code immediately. When we start a new R session, the Console displays startup information including the R version, licensing details, and guidance on accessing help. The last line displays the **standard command prompt**, denoted by the ">" symbol, indicating that R is ready to execute commands.
-
-
 ![Screenshot of RStudio interface displaying three panes: the R console (left), the Environment/History tabs (top-right), and the Multifunctional pane (bottom-right).](images/RStudio_panes.png){#fig-RStudio_panes width="100%"}
 
+
+The three main RStudio panes that divide the screen are as follows:
+
+1.  The large **Console pane** on the left (also known as the command-line pane) runs R code immediately. When we start a new R session, the Console displays startup information including the R version, licensing details, and guidance on accessing help. The last line displays the **standard command prompt**, denoted by the "\>" symbol, indicating that R is ready to execute commands.
 
 2.  The **Environment pane**, which includes among others the Global Environment (Workspace) and History tabs, in the upper right.
 
@@ -76,7 +75,6 @@ hello
 We get the following error:\
 `r kableExtra::text_spec("Error: object ‘hello’ not found", color = "#8676F8")`
 
-
 R will show in the Console pane that something unusual is happening in three different situations:
 
 -   **Errors:** When there is an error, code execution halts immediately and relevant information about the failure is usually reported.
@@ -84,7 +82,6 @@ R will show in the Console pane that something unusual is happening in three dif
 -   **Warnings:** When there is a warning, the code continues to run, but there may be potential issues to be aware of.
 
 -   **Messages:** Messages are often displayed after code execution to provide useful information for the user.
-
 
 Now, let's type a syntactically incomplete mathematical expression into the Console and press `Enter`:
 
@@ -123,14 +120,13 @@ help(median)
 ?median
 ```
 
-
 Alternatively, RStudio has a search box in the upper-right corner of the "Help" tab, where we can type *median* and then press `Enter` to find relevant documentation ([@fig-median_help]).
 
 ![The search box within the "Help" tab allows users to easily search for specific terms, such as "median", in the standard R distribution.](images/median_help.png){#fig-median_help width="65%"}
 
  
 
--   The **`help.search()`** command or its shortcut, the double question mark operator  (**`??`**), can be used to search the R help system for documentation matching a phrase or term across all installed packages in the R library. For example, to search documentation for the *geometric median*, type:
+-   The **`help.search()`** command or its shortcut, the double question mark operator (**`??`**), can be used to search the R help system for documentation matching a phrase or term across all installed packages in the R library. For example, to search documentation for the *geometric median*, type:
 
 ```{r, eval=FALSE}
 
@@ -139,7 +135,6 @@ help.search("geometric median")
 ```
 
 Note that multi-word phrases must be enclosed in quotation marks (either single or double).
-
 
 Alternatively, we can type *geometric median* (without quotes) in the search bar within the "Help" tab and then press `Enter` ([@fig-help_search]).
 

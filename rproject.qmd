@@ -100,10 +100,9 @@ To open an R script in RStudio ([@fig-open_rscript]), we navigate to the menu ba
 
 Alternatively, we can use the plus icon ![](images/plus1.png){width="22" height="18"} from RStudio toolbar or the keyboard shortcut `Ctrl+Shift+N` for Windows/Linux or `Cmd+Shift+N` for Mac.
 
-Another pane, the *"Source Editor"*, is opened on the left above the Console pane ([@fig-RStudio_4panes]). In the Source Editor, we can write a lengthy script with numerous code chunks and save the file for future use. By default, the first unsaved R script in an R session is named *"Untitled 1"*. We can change the **size** of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes. 
+Another pane, the *"Source Editor"*, is opened on the left above the Console pane ([@fig-RStudio_4panes]). In the Source Editor, we can write a lengthy script with numerous code chunks and save the file for future use. By default, the first unsaved R script in an R session is named *"Untitled 1"*. We can change the **size** of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.
 
 ![Screenshot of RStudio with four panes.](images/RStudio_4panes.png){#fig-RStudio_4panes width="100%"}
-
 
 Additionally, the four panes can be arranged in a different order from that shown in [@fig-RStudio_4panes]. If desired, we can change where each pane appears within RStudio by adjusting the preferences ([@fig-pane_layout]). We select from RStudio menu:
 
@@ -125,19 +124,16 @@ Now, let's type `14 + 16` at a new R script in the Source Editor pane and press 
 In an R script, we can execute code line by line by placing the cursor on a line and pressing the Run button in the Source Editor. Alternatively, we can run a selected chunk of code by highlighting it and then clicking Run. The selected code can also be run using the keywboard shortcut Ctrl+Enter on Windows/Linux or Cmd+Enter on Mac.
 :::
 
-
-## Adding comments and saving a script
+## Adding Comments and Saving a Script
 
 Including **comments** in code is considered good practice when writing R scripts. Comments clarify the code's purpose and enhance its readability. In R, comments begin with the **hash symbol** (`#`); when the code runs, anything following `#` on the same line is ignored ([@fig-rscript2]). This feature can also be used to temporarily disable one or more lines of code, which is useful when testing alternative code versions.
 
 ![An R script pane with comments.](images/rscript2.png){#fig-rscript2 width="70%"}
 
-
 ::: content-box-white
 **INFO**
 
-The keyboard shortcut for commenting or uncommenting **multiple selected lines** of code at once in RStudio is:
-Ctrl+Shift+C for Windows/Linux or Cmd+Shift+C for Mac .
+The keyboard shortcut for commenting or uncommenting **multiple selected lines** of code at once in RStudio is: Ctrl+Shift+C for Windows/Linux or Cmd+Shift+C for Mac .
 :::
 
  
@@ -157,7 +153,7 @@ Now, the folder structure of our RStudio Project should include the following it
 ::: content-box-white
 **INFO**
 
-The $.Rhistory$ file, created automatically by RStudio, contains a history of the code that has been executed.
+The *.Rhistory* file, created automatically by RStudio, contains a history of the code that has been executed.
 :::
 
 If we close the pane containing the R script, we can reopen it by clicking on the *"my_script.R"* file in the "Files" tab.
