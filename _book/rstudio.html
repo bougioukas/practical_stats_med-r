@@ -300,7 +300,7 @@ window.Quarto = {
   
 
 
-</header><p>In this chapter, we explore the basic features of RStudio, the Integrated Development Environment (IDE) selected for running R throughout this textbook. We start by exploring RStudio’s layout and learning how to navigate and use each RStudio pane effectively. Next, we distinguish between errors, warnings, and messages in R. Finally, we discuss strategies and sources for finding help when needed.</p>
+</header><p>In this chapter, we explore the basic features of RStudio, the integrated development environment (IDE) selected for running R throughout this textbook. We start by exploring RStudio’s layout and learning how to navigate and use each RStudio pane effectively. Next, we distinguish between errors, warnings, and messages in R. Finally, we discuss strategies and sources for finding help when needed.</p>
 <p>&nbsp;</p>
 <section id="installing-r-and-rstudio" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="installing-r-and-rstudio">
 <span class="header-section-number">1.1</span> Installing R and RStudio</h2>
@@ -311,6 +311,10 @@ window.Quarto = {
 </section><section id="starting-r-rstudio" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="starting-r-rstudio">
 <span class="header-section-number">1.2</span> Starting R &amp; RStudio</h2>
 <p>Once R and RStudio are installed, clicking the RStudio icon <img src="images/r_studio_icon.png" id="fig-r_studio_icon" class="img-fluid" style="width:3.0%"> will automatically launch R within RStudio environment. Each time we start an R session, three panes appear in the RStudio interface, as shown in <a href="#fig-RStudio_panes" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>.</p>
+<p>The three main RStudio panes that divide the screen are as follows:</p>
+<ol type="1">
+<li>The large <strong>Console pane</strong> on the left (also known as the command-line pane) runs R code immediately. When we start a new R session, the Console displays startup information including the R version, licensing details, and guidance on accessing help. The last line displays the <strong>standard command prompt</strong>, denoted by the “&gt;” symbol, indicating that R is ready to execute commands.</li>
+</ol>
 <div id="fig-RStudio_panes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-RStudio_panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RStudio_panes.png" class="img-fluid figure-img" style="width:100.0%">
@@ -318,9 +322,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RStudio_panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;1.1 Screenshot of RStudio interface displaying three panes: the R console (left), the Environment/History tabs (top-right), and the Multifunctional pane (bottom-right).
 </figcaption></figure>
 </div>
-<p>The three main RStudio panes that divide the screen are as follows:</p>
-<ol type="1">
-<li><p>The large <strong>Console pane</strong> on the left runs R code immediately. It is also known as the command line pane.</p></li>
+<ol start="2" type="1">
 <li>
 <p>The <strong>Environment pane</strong>, which includes among others the Global Environment (Workspace) and History tabs, in the upper right.</p>
 <ul>
@@ -342,11 +344,6 @@ window.Quarto = {
 </ol>
 <p>Throughout this textbook, we will learn the purpose of each of these panes.</p>
 <p>&nbsp;</p>
-<div class="content-box-white">
-<p><strong>INFO</strong></p>
-<p>The Console pane starts with information about the version number, license and contributors, and provides some guidance on how to get help. The last line is a <strong>standard command prompt</strong>, denoted by the “&gt;” symbol, indicating that R is ready to execute commands.</p>
-</div>
-<p>&nbsp;</p>
 <p>Let’s type <code>14 + 16</code> in front of the R command prompt in the Console and press <code>Enter</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">14</span> <span class="op">+</span> <span class="fl">16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -362,14 +359,12 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hello</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We get the following error:<br><span style="     color: rgba(134, 118, 248, 255) !important;">Error: object ‘hello’ not found</span></p>
-<p>&nbsp;</p>
 <p>R will show in the Console pane that something unusual is happening in three different situations:</p>
 <ul>
 <li><p><strong>Errors:</strong> When there is an error, code execution halts immediately and relevant information about the failure is usually reported.</p></li>
 <li><p><strong>Warnings:</strong> When there is a warning, the code continues to run, but there may be potential issues to be aware of.</p></li>
 <li><p><strong>Messages:</strong> Messages are often displayed after code execution to provide useful information for the user.</p></li>
 </ul>
-<p>&nbsp;</p>
 <p>Now, let’s type a syntactically incomplete mathematical expression into the Console and press <code>Enter</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">+</span> <span class="dv">16</span> <span class="sc">-</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -379,7 +374,7 @@ window.Quarto = {
 <p><code>+</code></p>
 <p>This means that when an R command is not syntactically complete, the Console displays a plus sign (<code>+</code>), known as the continuation prompt, on the second and subsequent lines. This prompt signals that R is waiting for additional input. In this example, we can enter a number to complete the mathematical expression, or press the <code>Esc</code> key to cancel the command.</p>
 <p>&nbsp;</p>
-<div class="content-box-purple">
+<div class="content-box-gray">
 <p><strong>TIP</strong></p>
 <p>In the <strong>Console</strong>, use the up (<span class="math inline">\(\uparrow\)</span>) arrow key to scroll through previous commands and the down (<span class="math inline">\(\downarrow\)</span>) arrow key to move forward to more recent ones. To edit or correct a command, use the left (<span class="math inline">\(\leftarrow\)</span>) and right (<span class="math inline">\(\rightarrow\)</span>) arrow keys to navigate within the command.</p>
 </div>
@@ -394,8 +389,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">median</span><span class="op">)</span></span>
 <span><span class="op">?</span><span class="va">median</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>&nbsp;</p>
-<p>RStudio also provides a search box in the “Help” tab where we can type <em>median</em> and then press <code>Enter</code> (<a href="#fig-median_help" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>).</p>
+<p>Alternatively, RStudio has a search box in the upper-right corner of the “Help” tab, where we can type <em>median</em> and then press <code>Enter</code> to find relevant documentation (<a href="#fig-median_help" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>).</p>
 <div id="fig-median_help" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-median_help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/median_help.png" class="img-fluid figure-img" style="width:65.0%">
@@ -405,14 +399,14 @@ window.Quarto = {
 </div>
 <p>&nbsp;</p>
 <ul>
-<li>Two question marks (<strong><code>??</code></strong>) will search the help system for documentation matching a phrase or term in our <strong>R library</strong>; it serves as a shortcut to the <strong><code><a href="https://rdrr.io/r/utils/help.search.html">help.search()</a></code></strong> command. For example, let’s say we want to search documentation specifically for the <em>geometric median</em>. It’s important to note that if our phrase is a string, we must enclose it in either double or single quotation marks.</li>
+<li>The <strong><code><a href="https://rdrr.io/r/utils/help.search.html">help.search()</a></code></strong> command or its shortcut, the double question mark operator (<strong><code>??</code></strong>), can be used to search the R help system for documentation matching a phrase or term across all installed packages in the R library. For example, to search documentation for the <em>geometric median</em>, type:</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.search.html">help.search</a></span><span class="op">(</span><span class="st">"geometric median"</span><span class="op">)</span></span>
 <span><span class="op">?</span><span class="op">?</span><span class="st">"geometric median"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>&nbsp;</p>
-<p>In RStudio, we can also use the search bar within the “Help” tab to type <em>geometric median</em> (without quotes) and then press <code>Enter</code> (<a href="#fig-help_search" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>).</p>
+<p>Note that multi-word phrases must be enclosed in quotation marks (either single or double).</p>
+<p>Alternatively, we can type <em>geometric median</em> (without quotes) in the search bar within the “Help” tab and then press <code>Enter</code> (<a href="#fig-help_search" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>).</p>
 <div id="fig-help_search" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-help_search-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/help_search.png" class="img-fluid figure-img" style="width:65.0%">

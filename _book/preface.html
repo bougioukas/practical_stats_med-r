@@ -253,10 +253,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#who-this-textbook-is-for" id="toc-who-this-textbook-is-for" class="nav-link active" data-scroll-target="#who-this-textbook-is-for">Who this textbook is for</a></li>
-  <li><a href="#structure-of-the-textbook" id="toc-structure-of-the-textbook" class="nav-link" data-scroll-target="#structure-of-the-textbook">Structure of the textbook</a></li>
-  <li><a href="#datasets-used-in-this-textbook" id="toc-datasets-used-in-this-textbook" class="nav-link" data-scroll-target="#datasets-used-in-this-textbook">Datasets used in this textbook</a></li>
+<li><a href="#who-this-textbook-is-for" id="toc-who-this-textbook-is-for" class="nav-link active" data-scroll-target="#who-this-textbook-is-for">Who This Textbook Is For?</a></li>
+  <li><a href="#structure-of-the-textbook" id="toc-structure-of-the-textbook" class="nav-link" data-scroll-target="#structure-of-the-textbook">Structure of the Textbook</a></li>
   <li><a href="#conventions" id="toc-conventions" class="nav-link" data-scroll-target="#conventions">Conventions</a></li>
+  <li><a href="#datasets-used-in-this-textbook" id="toc-datasets-used-in-this-textbook" class="nav-link" data-scroll-target="#datasets-used-in-this-textbook">Datasets Used in This Textbook</a></li>
   <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
   </ul></nav>
     </div>
@@ -278,20 +278,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>Welcome to “<em>Practical Statistics in Medicine with R: Understanding Fundamental Concepts through Examples</em>”! In the rapidly evolving field of medicine, the ability to understand, analyze and interpret data is more important than ever. From designing robust clinical trials to understanding patterns in public health data and informing evidence-based medicine, statistics plays a crucial role. A solid understanding of fundamental statistical concepts—such as probability distributions, confidence intervals, and hypothesis testing—is essential for making informed decisions, advancing research, and delivering optimal patient outcomes.</p>
 <p>&nbsp;</p>
-<section id="who-this-textbook-is-for" class="level2"><h2 class="anchored" data-anchor-id="who-this-textbook-is-for">Who this textbook is for</h2>
+<section id="who-this-textbook-is-for" class="level2"><h2 class="anchored" data-anchor-id="who-this-textbook-is-for">Who This Textbook Is For?</h2>
 <p>This introductory textbook is based on lectures and practical sessions conducted over several years at Aristotle University of Thessaloniki, Greece. It is designed to complement hands-on labs, with a primary focus on introducing students to the core concepts of medical statistics through practical examples using R. The textbook also serves as a resource for self-directed learning, helping students and researchers in the biomedical field analyze data effectively. Additionally, bridging the gap between statistical theory and practice, it may be useful for (under)graduate students with a background in science (such as engineering or mathematics) who wish to transition into biomedical sciences, as well as for students in the quantitative social and behavioral sciences looking to enhance their data analysis skills and learn essential R techniques.</p>
 <p>&nbsp;</p>
-</section><section id="structure-of-the-textbook" class="level2"><h2 class="anchored" data-anchor-id="structure-of-the-textbook">Structure of the textbook</h2>
-<p>The content of the textbook is organized into two main parts. In the first eleven chapters, readers are introduced to the fundamentals of base R, along with practical methods for data import, manipulation, and transformation using functions from standard R packages, such as <strong><em>base</em></strong> and <strong><em>stats</em></strong>, and/or pipe-friendly functions from the <strong><em>tidyverse</em></strong> collection of packages. It also provides step-by-step guidance on visualizing data using the <strong><em>ggplot2</em></strong> package and its extensions. The remaining chapters (Chapters 12-31) cover the most common statistical tests (e.g., t-test, one-way ANOVA, chi-square test, and non-parametric tests) and introduce more specialized analyses (e.g., simple linear regression, survival analysis, reliability of measurement analysis, diagnostic test accuracy and ROC analysis) with examples from biomedical field. Basic mathematical equations for these tests are provided to enhance understanding. Statistical functions from Base R, and the <strong><em>rstatix</em></strong> add-on package are often presented side-by-side, fostering engagement and enriching the reader’s coding experience. (Note: Multivariable modeling and advanced statistical techniques are beyond the scope of this introductory textbook.)</p>
-<p>This textbook is intended to be self-contained and does not require any previous experience with the R programming language. However, it assumes that the reader has a basic knowledge of mathematics and introductory statistics. If the reader wishes to learn more about this programming language and statistics, the following sources are suggested:</p>
+</section><section id="structure-of-the-textbook" class="level2"><h2 class="anchored" data-anchor-id="structure-of-the-textbook">Structure of the Textbook</h2>
+<p>The content of the textbook is organized into two main parts. In the first 11 chapters, readers are introduced to the fundamentals of base R, along with practical methods for data import, preprocessing, and transformation using functions from standard R packages, such as <strong><em>base</em></strong> and <strong><em>stats</em></strong>, and/or pipe-friendly functions from the <strong><em>tidyverse</em></strong> collection of packages. It also provides step-by-step guidance on visualizing data using the <strong><em>ggplot2</em></strong> package and its extensions. The remaining chapters (Chapters 12-31) cover the most common statistical tests (e.g., t-test, one-way ANOVA, chi-square test, correlation, and non-parametric tests) and introduce more specialized analyses (e.g., linear regression, survival analysis, reliability of measurement analysis, diagnostic test accuracy, and ROC analysis) with examples from biomedical field. Basic mathematical equations for these tests are provided to enhance understanding. Statistical functions from Base R, and the <strong><em>rstatix</em></strong> add-on package are often presented side-by-side, fostering engagement and enriching the reader’s coding experience. (Note: Multivariable modeling and advanced statistical techniques are beyond the scope of this introductory textbook.)</p>
+<p>This textbook is intended to be self-contained and does not require any prior experience with the R programming language, though it assumes a basic understanding of mathematics. If the reader wishes to learn more about this programming language, the following sources are suggested:</p>
 <ul>
 <li><a href="https://r4ds.hadley.nz/">R for Data Science (2nd Edition)</a></li>
 <li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis (3rd edition)</a></li>
-<li><a href="https://www.routledge.com/Practical-Statistics-for-Medical-Research/Altman/p/book/9780412276309">Practical Statistics for Medical Research</a></li>
 </ul>
-<p>&nbsp;</p>
-</section><section id="datasets-used-in-this-textbook" class="level2"><h2 class="anchored" data-anchor-id="datasets-used-in-this-textbook">Datasets used in this textbook</h2>
-<p>We will work with datasets throughout the textbook, all of which are freely accessible on the <a href="https://osf.io/3amrb/files/osfstorage">Open Science Framework</a> platform and on the book’s website: <a href="https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581">www.routledge.com/9781032600581</a>.</p>
 <p>&nbsp;</p>
 </section><section id="conventions" class="level2"><h2 class="anchored" data-anchor-id="conventions">Conventions</h2>
 <ul>
@@ -321,8 +317,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Ιn this textbook, we use the left assignment operator (<code>&lt;-</code>) and the native forward pipe operator (<code>|&gt;</code>) instead of the pipe operator from the <strong><em>magrittr</em></strong> package (<code>%&gt;%</code>).</li>
 </ul>
 <p>&nbsp;</p>
+</section><section id="datasets-used-in-this-textbook" class="level2"><h2 class="anchored" data-anchor-id="datasets-used-in-this-textbook">Datasets Used in This Textbook</h2>
+<p>We will work with datasets throughout the textbook, all of which are freely accessible on the <a href="https://osf.io/3amrb/files/osfstorage">Open Science Framework</a> platform and on the book’s website: <a href="https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581">www.routledge.com/9781032600581</a>.</p>
+<p>&nbsp;</p>
 </section><section id="acknowledgments" class="level2"><h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
 <p>I would like to express my sincere gratitude to the many colleagues and students whose positive feedback on my lecture notes motivated me to compile them into this textbook.</p>
+<p>Additionally, I am deeply thankful to the professionals at Routledge &amp; CRC Press|Taylor &amp; Francis Group who were involved in the publication process. In particular, I am especially grateful to Lara Spieker, Editor for Statistics at Chapman &amp; Hall/CRC Press, for her interest in my work, as well as her expert guidance and continuous support.</p>
+<p>&nbsp;</p>
+<div style="text-align: right;">
+<p>Konstantinos I. Bougioukas<br>
+September 2025</p>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

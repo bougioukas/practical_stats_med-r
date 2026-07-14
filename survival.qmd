@@ -147,7 +147,7 @@ The ***survival*** package has a construct called a **`Surv()`** object-a functi
 Surv(dat_A$time, dat_A$status)
 ```
 
-```{r patientime}
+```{r}
 #| echo: false
 #| warning: false
 #| message: false

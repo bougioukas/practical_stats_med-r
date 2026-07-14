@@ -250,7 +250,7 @@ window.Quarto = {
   <li><a href="#organizing-an-rstudio-project-folder" id="toc-organizing-an-rstudio-project-folder" class="nav-link" data-scroll-target="#organizing-an-rstudio-project-folder"><span class="header-section-number">2.1.2</span> Organizing an RStudio Project folder</a></li>
   </ul>
 </li>
-  <li><a href="#opening-a-new-r-script" id="toc-opening-a-new-r-script" class="nav-link" data-scroll-target="#opening-a-new-r-script"><span class="header-section-number">2.2</span> Opening a new R script</a></li>
+  <li><a href="#opening-a-new-r-script" id="toc-opening-a-new-r-script" class="nav-link" data-scroll-target="#opening-a-new-r-script"><span class="header-section-number">2.2</span> Opening a New R Script</a></li>
   <li><a href="#adding-comments-and-saving-a-script" id="toc-adding-comments-and-saving-a-script" class="nav-link" data-scroll-target="#adding-comments-and-saving-a-script"><span class="header-section-number">2.3</span> Adding comments and saving a script</a></li>
   </ul></nav>
     </div>
@@ -371,7 +371,7 @@ window.Quarto = {
 </div>
 <p>&nbsp;</p>
 </section></section><section id="opening-a-new-r-script" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="opening-a-new-r-script">
-<span class="header-section-number">2.2</span> Opening a new R script</h2>
+<span class="header-section-number">2.2</span> Opening a New R Script</h2>
 <p>Typically, R code is written in script files denoted by the <code>.R</code> extension. An R script is a plain text file containing R code that can be executed in the R console. The use of R script files offers various benefits, including the ability to execute code in chunks rather than individual lines, which enhances code reuse and organization. Furthermore, R script files enable easy documentation through one-line comments prefixed with the hash symbol (<code>#</code>), and support efficient code sharing with others.</p>
 <p>To open an R script in RStudio (<a href="#fig-open_rscript" class="quarto-xref">Figure&nbsp;<span>2.10</span></a>), we navigate to the menu bar at the top of the RStudio window and follow these steps:</p>
 <p><code>File</code> <span class="math inline">\(\longrightarrow\)</span> <code>New File</code> <span class="math inline">\(\longrightarrow\)</span> <code>R Script</code></p>
@@ -384,8 +384,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>Alternatively, we can use the plus icon <img src="images/plus1.png" width="22" height="18"> from RStudio toolbar or the keyboard shortcut <code>Ctrl+Shift+N</code> for Windows/Linux or <code>Cmd+Shift+N</code> for Mac.</p>
-<p>&nbsp;</p>
-<p>Another pane, the <em>“Source Editor”</em>, is opened on the left above the Console pane (<a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>). In the Source Editor, we can write a lengthy script with numerous code chunks and save the file for future use. By default, the first unsaved R script in an R session is named <em>“Untitled 1”</em>.</p>
+<p>Another pane, the <em>“Source Editor”</em>, is opened on the left above the Console pane (<a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>). In the Source Editor, we can write a lengthy script with numerous code chunks and save the file for future use. By default, the first unsaved R script in an R session is named <em>“Untitled 1”</em>. We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes.</p>
 <div id="fig-RStudio_4panes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-RStudio_4panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RStudio_4panes.png" class="img-fluid figure-img" style="width:100.0%">
@@ -393,7 +392,7 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RStudio_4panes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;2.11 Screenshot of RStudio with four panes.
 </figcaption></figure>
 </div>
-<p>We can change the <strong>size</strong> of the panes by either clicking the minimize or maximize buttons on the top right of each pane, or by clicking and dragging the middle of the borders of the panes. Additionally, the four panes can be arranged in a different order from that shown in <a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>. If desired, we can change where each pane appears within RStudio by adjusting the preferences (<a href="#fig-pane_layout" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>). We select from RStudio menu:</p>
+<p>Additionally, the four panes can be arranged in a different order from that shown in <a href="#fig-RStudio_4panes" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>. If desired, we can change where each pane appears within RStudio by adjusting the preferences (<a href="#fig-pane_layout" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>). We select from RStudio menu:</p>
 <p><code>Tools</code> <span class="math inline">\(\longrightarrow\)</span> <code>Global Options</code> <span class="math inline">\(\longrightarrow\)</span> <code>Pane layout</code></p>
 <div id="fig-pane_layout" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pane_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -416,10 +415,9 @@ window.Quarto = {
 <p><strong>INFO</strong></p>
 <p>In an R script, we can execute code line by line by placing the cursor on a line and pressing the Run button in the Source Editor. Alternatively, we can run a selected chunk of code by highlighting it and then clicking Run. The selected code can also be run using the keywboard shortcut Ctrl+Enter on Windows/Linux or Cmd+Enter on Mac.</p>
 </div>
-<p>&nbsp;</p>
 </section><section id="adding-comments-and-saving-a-script" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="adding-comments-and-saving-a-script">
 <span class="header-section-number">2.3</span> Adding comments and saving a script</h2>
-<p><strong>Comments</strong> can also be used to explain R code, and to make the script more readable. They can also be used to prevent execution when testing alternative code (<a href="#fig-rscript2" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>).</p>
+<p>Including <strong>comments</strong> in code is considered good practice when writing R scripts. Comments clarify the code’s purpose and enhance its readability. In R, comments begin with the <strong>hash symbol</strong> (<code>#</code>); when the code runs, anything following <code>#</code> on the same line is ignored (<a href="#fig-rscript2" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>). This feature can also be used to temporarily disable one or more lines of code, which is useful when testing alternative code versions.</p>
 <div id="fig-rscript2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rscript2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rscript2.png" class="img-fluid figure-img" style="width:70.0%">
@@ -427,12 +425,9 @@ window.Quarto = {
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;2.14 An R script pane with comments.
 </figcaption></figure>
 </div>
-<p>In R, comments begin with the <strong>hash symbol</strong> (<code>#</code>). When the code is executed, anything following the <code>#</code> is ignored by R. Including comments in code when writing R scripts is considered good practice.</p>
-<p>&nbsp;</p>
 <div class="content-box-white">
 <p><strong>INFO</strong></p>
-<p>Keyboard Shortcut for commenting in/out at a time:</p>
-<p>Ctrl+Shift+C for Windows/Linux or Cmd+Shift+C for Mac .</p>
+<p>The keyboard shortcut for commenting or uncommenting <strong>multiple selected lines</strong> of code at once in RStudio is: Ctrl+Shift+C for Windows/Linux or Cmd+Shift+C for Mac .</p>
 </div>
 <p>&nbsp;</p>
 <p>Finally, we can save our R script in the RStudio Project folder. The simplest way is to click on the save icon <img src="images/save_icon.png" width="20" height="22">, give a file name to the script such as <em>“my_script”</em> and then press the “save” button to store it in <em>“my_first_project”</em> folder (<a href="#fig-save_script" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>).</p>
@@ -455,7 +450,7 @@ window.Quarto = {
 <p>&nbsp;</p>
 <div class="content-box-white">
 <p><strong>INFO</strong></p>
-<p>The .Rhistory file, created automatically by RStudio, contains a history of the code that has been executed.</p>
+<p>The <span class="math inline">\(.Rhistory\)</span> file, created automatically by RStudio, contains a history of the code that has been executed.</p>
 </div>
 <p>If we close the pane containing the R script, we can reopen it by clicking on the <em>“my_script.R”</em> file in the “Files” tab.</p>
 
