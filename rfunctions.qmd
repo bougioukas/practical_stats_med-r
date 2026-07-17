@@ -1,4 +1,4 @@
-# R functions {#sec-rfunctions}
+# R Functions {#sec-rfunctions}
 
 ```{r setup_rfunctions, include=FALSE}
 
@@ -6,11 +6,9 @@ options(width=85)
 knitr::opts_chunk$set(fig.pos = 'H')
 ```
 
-
-One of R's greatest strengths is its functional programming capabilities. In this chapter, we describe the main characteristics of functions in R, demonstrating them with a variety of examples. We explore mathematical functions, such as logarithmic and trigonometric functions, as well as other useful functions like **`round()`** and **`ifelse()`**.
+One of R's greatest strengths is its functional programming capabilities. In this chapter, we describe the main characteristics of functions in R, demonstrating them with a variety of examples. We explore built-in mathematical functions, such as logarithmic and trigonometric functions, as well as other useful functions like **`round()`** and **`ifelse()`**. Additionally, we demonstrate the essential components needed to construct a user-defined function.
 
  
-
 
 ## Characteristics of R Functions
 
@@ -18,8 +16,7 @@ Most computations in R involve the use of functions. An R function is a set of c
 
 In R, a function is called by typing its **name** followed by **parentheses**. The values provided inside the parentheses, separated by commas, are referred to as the **function's arguments**.
 
-
-### Name and argumnets of a function
+### Name and Argumnets of a Function
 
 Let's have look at an example:
 
@@ -27,9 +24,7 @@ Let's have look at an example:
 seq(from = 5, to = 8, by = 0.5)
 ```
 
-
 The function name is `seq`, and we pass three named arguments `from = 5`, `to = 8` and `by = 0.5`. The arguments `from = 5` and `to = 8` specify the starting and ending values of the sequence we want to create, while `by = 0.5` defines the increment between each value in the sequence.
-
 
 The above result can also be obtained without naming the arguments, as shown below:
 
@@ -37,11 +32,10 @@ The above result can also be obtained without naming the arguments, as shown bel
 seq(5, 8, 0.5)
 ```
 
-
 ::: content-box-white
 **INFO**
 
-We don’t need to specify the names of the arguments; instead, we can simply pass the values in the correct order, and R will match each value to its corresponding argument based on their position—this is known as positional matching.  
+We don’t need to specify the names of the arguments; instead, we can simply pass the values in the correct order, and R will match each value to its corresponding argument based on their position—this is known as positional matching.
 :::
 
  
@@ -50,15 +44,15 @@ Additionally, the **`seq()`** function provides several other arguments, which a
 
 `seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, along.with = NULL, ...)`
 
-
-For example, instead of specifying `by = 0.5`, we can use the argument `length.out = 26`  to create a sequence of 26 numbers as follows:
+For example, instead of specifying `by = 0.5`, we can use the argument `length.out = 26` to create a sequence of 26 numbers as follows:
 
 ```{r}
+#| R.options: {width: 70}
+
 seq(5, 8, length.out = 26)  # 26 numbers in the sequence
 ```
 
-
-Note that when R prints a long sequence of values, it automatically splits the output across multiple lines for readability. The numbers in square brackets indicate the index of the first value on each line within the full sequence. In this example, `[1]` indicates the position of `5.00`, which appears first on the first line, while `[17]` indicates the position of `6.92`, which appears first on the second line. (*These indices may differ in your console, as the number of values displayed per line depends on the available console width.*)
+Note that when R prints a long sequence of values, it automatically splits the output across multiple lines for readability. The numbers in square brackets indicate the index of the first value on each line within the full sequence. In this example, `[1]` indicates the position of `5.00`, which appears first on the first line, while `[14]` indicates the position of `6.56`, which appears first on the second line. (*These indices may differ in your console, as the number of values displayed per line depends on the available console width.*)
 
  
 
@@ -70,9 +64,7 @@ seq(5, 8)
 
 This generates a sequence running **from** 5 **to** 8. Since no step size is specified, the default increment step is calculated as **by**=((to - from)/(length.out - 1)) = (8-5)/(4-1) = 1, which is then passed to the `seq()` function.
 
-
-
-### Required and optional arguments in functions
+### Required and Optional Arguments in Functions
 
 Let's explore another example. The **`log()`** is a mathematical function that calculates logarithms. To display its argument names along with their default values, we can use the **`args()`** function, as shown below:
 
@@ -98,7 +90,6 @@ log(base = 10)
 log(15)      # in R, the default base for the log function is e (i.e., exp(1))
 ```
 
-
 However, if we provide the argument `base = 10`, the **`log()`** function will calculate the base-10 logarithm:
 
 ```{r}
@@ -107,7 +98,7 @@ log(15, base = 10)      # the log function uses the specified base 10
 
  
 
-::: content-box-purple
+::: content-box-gray
 **IMPORTANT**
 
 In R functions, some arguments are **required** and must be provided, while others are **optional** because they have default values specified in the function definition.
@@ -115,13 +106,11 @@ In R functions, some arguments are **required** and must be provided, while othe
 
  
 
-
 Next, let's calculate the **natural logarithm of 3** (base = $e$):
 
 ```{r}
 log(3)
 ```
-
 
 All of the following expressions are equivalent:
 
@@ -135,13 +124,11 @@ log(base=exp(1), 3)
 log(base=exp(1), x=3)
 ```
 
-
 However, the following expression is not equivalent:
 
 ```{r}
 log(exp(1), 3)
 ```
-
 
  
 
@@ -153,15 +140,13 @@ date()
 
 The **`date()`** function in R returns the current date and time as a character string.
 
-
-## Mathematical functions
+## Mathematical Functions
 
 R has many built-in mathematical functions such as the `log(x)` that we have already seen.
 
+### Logarithmic and Exponential Functions
 
-### Logarithmic and Exponential functions
-
-**_Logarithms_**
+***Logarithms***
 
 ```{r}
 log(5)     # natural logarithm (or base-e logarithm)
@@ -176,7 +161,7 @@ log10(5)   # base-10 logarithm
 
  
 
-**_Exponents_**
+***Exponents***
 
 ```{r}
 exp(5)     # Calculates Euler's number (e ≈ 2.718) raised to the power of 5
@@ -184,7 +169,7 @@ exp(5)     # Calculates Euler's number (e ≈ 2.718) raised to the power of 5
 
  
 
-### Trigonometric functions
+### Trigonometric Functions
 
 Trigonometric functions describe the associations between the sides and angles of a right-angled triangle. They also allow us to use angle measurements, either in radians or degrees, to determine the coordinates of any point on a circle, such as the unit circle. In R, trigonometric functions operate on angles measured in radians by default.
 
@@ -192,11 +177,9 @@ Trigonometric functions describe the associations between the sides and angles o
 sin(pi/2)    # sine of pi/2   (pi approximately equals to 3.14)
 ```
 
-
 ```{r}
 cos(pi)      # cosine of pi
 ```
-
 
 ```{r}
 tan(pi/3)    # tangent of pi/3
@@ -204,31 +187,25 @@ tan(pi/3)    # tangent of pi/3
 
  
 
-### Other mathematical functions
+### Other Mathematical Functions
 
 ```{r}
 sqrt(9)       # returns the squared root of a number
 ```
 
-
 ```{r}
 abs(-9)       # returns absolute value of a number
 ```
-
 
 ```{r}
 sign(-9)      # returns the sign of a number (-1 if negative, 0 if zero, 1 if positive)
 ```
 
-
 ```{r}
 factorial(3)  # factorial (e.g., 3! = 1x2x3)
 ```
 
-
-
-## Other useful functions
-
+## Other Useful Functions
 
 ### The `round()` function
 
@@ -244,8 +221,7 @@ To control the precision of the result, we can use the `digits` argument to spec
 round(7 / 3, digits = 2)  # rounding 7/3 to two decimal places
 ```
 
-
-When the first digit to be dropped is exactly 5, the **`round()`** function follows a  commonly used rule in programming: it rounds to the nearest **even** number. For example:
+When the first digit to be dropped is exactly 5, the **`round()`** function follows a commonly used rule in programming: it rounds to the nearest **even** number. For example:
 
 ```{r}
 round(1.5)  # it rounds 1.5 to the nearest even number, which is 2
@@ -260,11 +236,9 @@ There are a couple of additional functions that can be useful for rounding numbe
 ceiling(16.2)       # round up to the nearest integer
 ```
 
-
 ```{r}
 floor(16.2)         # round down to the nearest integer
 ```
-
 
 ```{r}
 trunc(125.2395)     #  truncates the decimal places, removing any fractional part
@@ -274,41 +248,41 @@ trunc(125.2395)     #  truncates the decimal places, removing any fractional par
 
 ### The `ifelse()` function
 
-In R, the **`ifelse()`** function evaluates a logical condition and returns one of two specified values depending on whether the condition is `TRUE` or `FALSE`. The syntax is straightforward: `ifelse(condition, value_when_true, value_when_false)`. 
+In R, the **`ifelse()`** function evaluates a logical condition and returns one of two specified values depending on whether the condition is `TRUE` or `FALSE`. Its syntax is: `ifelse(condition, value_when_true, value_when_false)`. 
 
+Let's demonstrate its usage with simple examples for both `TRUE` and `FALSE` conditions.
 
-Let's demonstrate its usage with basic examples:
+- Case where the condition is `TRUE`:
 
 ```{r}
 ifelse(0.7 > 0.5, 1, 0)
 ```
 
-In this example, **`ifelse()`** checks if 0.7 is greater than 0.5. Since the condition is `TRUE`, the function returns 1.
-
+In this example, **`ifelse()`** checks whether 0.7 > 0.5. Since the condition is `TRUE`, the function returns 1.
 
  
+
+- Case where the condition is `FALSE`:
 
 ```{r}
 ifelse(0.3 > 0.5, 1, 0)
 ```
 
-
-Here, the condition is `FALSE` because 0.3 is not greater than 0.5, so the function returns 0.
+Here, **`ifelse()`** checks whether 0.3 > 0.5. The condition is `FALSE`, so the function returns 0.
 
  
 
-## User-defined functions
+## User-Defined Functions
 
 We can create our own functions using **`function()`**, which provides a powerful way to extend R's capabilities and reuse code efficiently.
 
-
 **The essential parts of a function are:**
 
-1. The function’s name
+1.  The function’s name
 
-2. The arguments (or parameters) of the function
+2.  The arguments (or parameters) of the function
 
-3. The function's body (the code statements)
+3.  The function's body (the code statements)
 
 \vspace{10pt}
 
@@ -323,6 +297,4 @@ log(x, base = 7)
 log7(5)
 ```
 
-
-In this example, the function is defined by assigning the **`function(x)`** object to the name `log7` using the assignment operator (`<-`). (A detailed discussion of objects and assignment operators is presented in Chapter \@ref(robjects)). The `x` argument within the parentheses of **`function()`** serves as the input, while the code within the curly braces `{}` forms the function body—the code block that is executed when the function is called.
-
+In this example, the function is defined by assigning the **`function(x)`** object to the name `log7` using the assignment operator (`<-`). (A detailed discussion of objects and assignment operators is presented in @sec-robjects. The `x` argument within the parentheses of **`function()`** serves as the input, while the code within the curly braces `{}` forms the function body—the code block that is executed when the function is called.

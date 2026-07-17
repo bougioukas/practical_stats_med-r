@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>4&nbsp; R functions – Practical Statistics in Medicine with R</title>
+<title>4&nbsp; R Functions – Practical Statistics in Medicine with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,7 +135,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rfunctions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rfunctions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Functions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,13 +189,13 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rcalculator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as Calculator</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rfunctions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,31 +281,31 @@ window.Quarto = {
 <li>
 <a href="#characteristics-of-r-functions" id="toc-characteristics-of-r-functions" class="nav-link active" data-scroll-target="#characteristics-of-r-functions"><span class="header-section-number">4.1</span> Characteristics of R Functions</a>
   <ul class="collapse">
-<li><a href="#name-and-argumnets-of-a-function" id="toc-name-and-argumnets-of-a-function" class="nav-link" data-scroll-target="#name-and-argumnets-of-a-function"><span class="header-section-number">4.1.1</span> Name and argumnets of a function</a></li>
-  <li><a href="#required-and-optional-arguments-in-functions" id="toc-required-and-optional-arguments-in-functions" class="nav-link" data-scroll-target="#required-and-optional-arguments-in-functions"><span class="header-section-number">4.1.2</span> Required and optional arguments in functions</a></li>
+<li><a href="#name-and-argumnets-of-a-function" id="toc-name-and-argumnets-of-a-function" class="nav-link" data-scroll-target="#name-and-argumnets-of-a-function"><span class="header-section-number">4.1.1</span> Name and Argumnets of a Function</a></li>
+  <li><a href="#required-and-optional-arguments-in-functions" id="toc-required-and-optional-arguments-in-functions" class="nav-link" data-scroll-target="#required-and-optional-arguments-in-functions"><span class="header-section-number">4.1.2</span> Required and Optional Arguments in Functions</a></li>
   </ul>
 </li>
   <li>
-<a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="header-section-number">4.2</span> Mathematical functions</a>
+<a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="header-section-number">4.2</span> Mathematical Functions</a>
   <ul class="collapse">
-<li><a href="#logarithmic-and-exponential-functions" id="toc-logarithmic-and-exponential-functions" class="nav-link" data-scroll-target="#logarithmic-and-exponential-functions"><span class="header-section-number">4.2.1</span> Logarithmic and Exponential functions</a></li>
-  <li><a href="#trigonometric-functions" id="toc-trigonometric-functions" class="nav-link" data-scroll-target="#trigonometric-functions"><span class="header-section-number">4.2.2</span> Trigonometric functions</a></li>
-  <li><a href="#other-mathematical-functions" id="toc-other-mathematical-functions" class="nav-link" data-scroll-target="#other-mathematical-functions"><span class="header-section-number">4.2.3</span> Other mathematical functions</a></li>
+<li><a href="#logarithmic-and-exponential-functions" id="toc-logarithmic-and-exponential-functions" class="nav-link" data-scroll-target="#logarithmic-and-exponential-functions"><span class="header-section-number">4.2.1</span> Logarithmic and Exponential Functions</a></li>
+  <li><a href="#trigonometric-functions" id="toc-trigonometric-functions" class="nav-link" data-scroll-target="#trigonometric-functions"><span class="header-section-number">4.2.2</span> Trigonometric Functions</a></li>
+  <li><a href="#other-mathematical-functions" id="toc-other-mathematical-functions" class="nav-link" data-scroll-target="#other-mathematical-functions"><span class="header-section-number">4.2.3</span> Other Mathematical Functions</a></li>
   </ul>
 </li>
   <li>
-<a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions"><span class="header-section-number">4.3</span> Other useful functions</a>
+<a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions"><span class="header-section-number">4.3</span> Other Useful Functions</a>
   <ul class="collapse">
 <li><a href="#the-round-function" id="toc-the-round-function" class="nav-link" data-scroll-target="#the-round-function"><span class="header-section-number">4.3.1</span> The <code>round()</code> function</a></li>
   <li><a href="#the-ifelse-function" id="toc-the-ifelse-function" class="nav-link" data-scroll-target="#the-ifelse-function"><span class="header-section-number">4.3.2</span> The <code>ifelse()</code> function</a></li>
   </ul>
 </li>
-  <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">4.4</span> User-defined functions</a></li>
+  <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">4.4</span> User-Defined Functions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-rfunctions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span></h1>
+<h1 class="title"><span id="sec-rfunctions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Functions</span></span></h1>
 </div>
 
 
@@ -319,14 +319,14 @@ window.Quarto = {
   
 
 
-</header><p>One of R’s greatest strengths is its functional programming capabilities. In this chapter, we describe the main characteristics of functions in R, demonstrating them with a variety of examples. We explore mathematical functions, such as logarithmic and trigonometric functions, as well as other useful functions like <strong><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></strong> and <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong>.</p>
+</header><p>One of R’s greatest strengths is its functional programming capabilities. In this chapter, we describe the main characteristics of functions in R, demonstrating them with a variety of examples. We explore built-in mathematical functions, such as logarithmic and trigonometric functions, as well as other useful functions like <strong><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></strong> and <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong>. Additionally, we demonstrate the essential components needed to construct a user-defined function.</p>
 <p>&nbsp;</p>
 <section id="characteristics-of-r-functions" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="characteristics-of-r-functions">
 <span class="header-section-number">4.1</span> Characteristics of R Functions</h2>
 <p>Most computations in R involve the use of functions. An R function is a set of commands that are executed each time the function is called, performing a specific task. The standard version of R includes a number of built-in functions, and many others can be added or created by users (known as user-defined functions). We have already used some R functions to search for help, such as <strong><code><a href="https://rdrr.io/r/utils/help.html">help()</a></code></strong> and <strong><code><a href="https://rdrr.io/r/utils/example.html">example()</a></code></strong>.</p>
 <p>In R, a function is called by typing its <strong>name</strong> followed by <strong>parentheses</strong>. The values provided inside the parentheses, separated by commas, are referred to as the <strong>function’s arguments</strong>.</p>
 <section id="name-and-argumnets-of-a-function" class="level3" data-number="4.1.1"><h3 data-number="4.1.1" class="anchored" data-anchor-id="name-and-argumnets-of-a-function">
-<span class="header-section-number">4.1.1</span> Name and argumnets of a function</h3>
+<span class="header-section-number">4.1.1</span> Name and Argumnets of a Function</h3>
 <p>Let’s have look at an example:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">5</span>, to <span class="op">=</span> <span class="fl">8</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -353,11 +353,11 @@ window.Quarto = {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">8</span>, length.out <span class="op">=</span> <span class="fl">26</span><span class="op">)</span>  <span class="co"># 26 numbers in the sequence</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code> [1] 5.00 5.12 5.24 5.36 5.48 5.60 5.72 5.84 5.96 6.08 6.20 6.32 6.44 6.56 6.68 6.80
-[17] 6.92 7.04 7.16 7.28 7.40 7.52 7.64 7.76 7.88 8.00</code></pre>
+<pre data-code-line-numbers=""><code> [1] 5.00 5.12 5.24 5.36 5.48 5.60 5.72 5.84 5.96 6.08 6.20 6.32 6.44
+[14] 6.56 6.68 6.80 6.92 7.04 7.16 7.28 7.40 7.52 7.64 7.76 7.88 8.00</code></pre>
 </div>
 </div>
-<p>Note that when R prints a long sequence of values, it automatically splits the output across multiple lines for readability. The numbers in square brackets indicate the index of the first value on each line within the full sequence. In this example, <code>[1]</code> indicates the position of <code>5.00</code>, which appears first on the first line, while <code>[17]</code> indicates the position of <code>6.92</code>, which appears first on the second line. (<em>These indices may differ in your console, as the number of values displayed per line depends on the available console width.</em>)</p>
+<p>Note that when R prints a long sequence of values, it automatically splits the output across multiple lines for readability. The numbers in square brackets indicate the index of the first value on each line within the full sequence. In this example, <code>[1]</code> indicates the position of <code>5.00</code>, which appears first on the first line, while <code>[14]</code> indicates the position of <code>6.56</code>, which appears first on the second line. (<em>These indices may differ in your console, as the number of values displayed per line depends on the available console width.</em>)</p>
 <p>&nbsp;</p>
 <p>Now, consider this command:</p>
 <div class="cell">
@@ -368,7 +368,7 @@ window.Quarto = {
 </div>
 <p>This generates a sequence running <strong>from</strong> 5 <strong>to</strong> 8. Since no step size is specified, the default increment step is calculated as <strong>by</strong>=((to - from)/(length.out - 1)) = (8-5)/(4-1) = 1, which is then passed to the <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> function.</p>
 </section><section id="required-and-optional-arguments-in-functions" class="level3" data-number="4.1.2"><h3 data-number="4.1.2" class="anchored" data-anchor-id="required-and-optional-arguments-in-functions">
-<span class="header-section-number">4.1.2</span> Required and optional arguments in functions</h3>
+<span class="header-section-number">4.1.2</span> Required and Optional Arguments in Functions</h3>
 <p>Let’s explore another example. The <strong><code><a href="https://rdrr.io/r/base/Log.html">log()</a></code></strong> is a mathematical function that calculates logarithms. To display its argument names along with their default values, we can use the <strong><code><a href="https://rdrr.io/r/base/args.html">args()</a></code></strong> function, as shown below:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -405,7 +405,7 @@ NULL</code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
-<div class="content-box-purple">
+<div class="content-box-gray">
 <p><strong>IMPORTANT</strong></p>
 <p>In R functions, some arguments are <strong>required</strong> and must be provided, while others are <strong>optional</strong> because they have default values specified in the function definition.</p>
 </div>
@@ -439,15 +439,15 @@ NULL</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers=""><code>[1] "Tue Jul 14 12:32:39 2026"</code></pre>
+<pre data-code-line-numbers=""><code>[1] "Fri Jul 17 12:35:15 2026"</code></pre>
 </div>
 </div>
 <p>The <strong><code><a href="https://rdrr.io/r/base/date.html">date()</a></code></strong> function in R returns the current date and time as a character string.</p>
 </section></section><section id="mathematical-functions" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="mathematical-functions">
-<span class="header-section-number">4.2</span> Mathematical functions</h2>
+<span class="header-section-number">4.2</span> Mathematical Functions</h2>
 <p>R has many built-in mathematical functions such as the <code>log(x)</code> that we have already seen.</p>
 <section id="logarithmic-and-exponential-functions" class="level3" data-number="4.2.1"><h3 data-number="4.2.1" class="anchored" data-anchor-id="logarithmic-and-exponential-functions">
-<span class="header-section-number">4.2.1</span> Logarithmic and Exponential functions</h3>
+<span class="header-section-number">4.2.1</span> Logarithmic and Exponential Functions</h3>
 <p><strong><em>Logarithms</em></strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>     <span class="co"># natural logarithm (or base-e logarithm)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -476,7 +476,7 @@ NULL</code></pre>
 </div>
 <p>&nbsp;</p>
 </section><section id="trigonometric-functions" class="level3" data-number="4.2.2"><h3 data-number="4.2.2" class="anchored" data-anchor-id="trigonometric-functions">
-<span class="header-section-number">4.2.2</span> Trigonometric functions</h3>
+<span class="header-section-number">4.2.2</span> Trigonometric Functions</h3>
 <p>Trigonometric functions describe the associations between the sides and angles of a right-angled triangle. They also allow us to use angle measurements, either in radians or degrees, to determine the coordinates of any point on a circle, such as the unit circle. In R, trigonometric functions operate on angles measured in radians by default.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">pi</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>    <span class="co"># sine of pi/2   (pi approximately equals to 3.14)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -498,7 +498,7 @@ NULL</code></pre>
 </div>
 <p>&nbsp;</p>
 </section><section id="other-mathematical-functions" class="level3" data-number="4.2.3"><h3 data-number="4.2.3" class="anchored" data-anchor-id="other-mathematical-functions">
-<span class="header-section-number">4.2.3</span> Other mathematical functions</h3>
+<span class="header-section-number">4.2.3</span> Other Mathematical Functions</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>       <span class="co"># returns the squared root of a number</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -524,7 +524,7 @@ NULL</code></pre>
 </div>
 </div>
 </section></section><section id="other-useful-functions" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="other-useful-functions">
-<span class="header-section-number">4.3</span> Other useful functions</h2>
+<span class="header-section-number">4.3</span> Other Useful Functions</h2>
 <section id="the-round-function" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="the-round-function">
 <span class="header-section-number">4.3.1</span> The <code>round()</code> function</h3>
 <p>The <strong><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></strong> function, which follows the <strong>rounding principle</strong>, is commonly used for rounding numbers. By default, it returns the nearest integer. For example:</p>
@@ -575,26 +575,32 @@ NULL</code></pre>
 <p>&nbsp;</p>
 </section><section id="the-ifelse-function" class="level3" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="the-ifelse-function">
 <span class="header-section-number">4.3.2</span> The <code>ifelse()</code> function</h3>
-<p>In R, the <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong> function evaluates a logical condition and returns one of two specified values depending on whether the condition is <code>TRUE</code> or <code>FALSE</code>. The syntax is straightforward: <code>ifelse(condition, value_when_true, value_when_false)</code>.</p>
-<p>Let’s demonstrate its usage with basic examples:</p>
+<p>In R, the <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong> function evaluates a logical condition and returns one of two specified values depending on whether the condition is <code>TRUE</code> or <code>FALSE</code>. Its syntax is: <code>ifelse(condition, value_when_true, value_when_false)</code>.</p>
+<p>Let’s demonstrate its usage with simple examples for both <code>TRUE</code> and <code>FALSE</code> conditions.</p>
+<ul>
+<li>Case where the condition is <code>TRUE</code>:</li>
+</ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fl">0.7</span> <span class="op">&gt;</span> <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 1</code></pre>
 </div>
 </div>
-<p>In this example, <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong> checks if 0.7 is greater than 0.5. Since the condition is <code>TRUE</code>, the function returns 1.</p>
+<p>In this example, <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong> checks whether 0.7 &gt; 0.5. Since the condition is <code>TRUE</code>, the function returns 1.</p>
 <p>&nbsp;</p>
+<ul>
+<li>Case where the condition is <code>FALSE</code>:</li>
+</ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fl">0.3</span> <span class="op">&gt;</span> <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 0</code></pre>
 </div>
 </div>
-<p>Here, the condition is <code>FALSE</code> because 0.3 is not greater than 0.5, so the function returns 0.</p>
+<p>Here, <strong><code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code></strong> checks whether 0.3 &gt; 0.5. The condition is <code>FALSE</code>, so the function returns 0.</p>
 <p>&nbsp;</p>
 </section></section><section id="user-defined-functions" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="user-defined-functions">
-<span class="header-section-number">4.4</span> User-defined functions</h2>
+<span class="header-section-number">4.4</span> User-Defined Functions</h2>
 <p>We can create our own functions using <strong><code>function()</code></strong>, which provides a powerful way to extend R’s capabilities and reuse code efficiently.</p>
 <p><strong>The essential parts of a function are:</strong></p>
 <ol type="1">
@@ -614,7 +620,7 @@ NULL</code></pre>
 <pre data-code-line-numbers=""><code>[1] 0.8270875</code></pre>
 </div>
 </div>
-<p>In this example, the function is defined by assigning the <strong><code>function(x)</code></strong> object to the name <code>log7</code> using the assignment operator (<code>&lt;-</code>). (A detailed discussion of objects and assignment operators is presented in Chapter @ref(robjects)). The <code>x</code> argument within the parentheses of <strong><code>function()</code></strong> serves as the input, while the code within the curly braces <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> forms the function body—the code block that is executed when the function is called.</p>
+<p>In this example, the function is defined by assigning the <strong><code>function(x)</code></strong> object to the name <code>log7</code> using the assignment operator (<code>&lt;-</code>). (A detailed discussion of objects and assignment operators is presented in <a href="robjects.html" class="quarto-xref"><span>Chapter 6</span></a>. The <code>x</code> argument within the parentheses of <strong><code>function()</code></strong> serves as the input, while the code within the curly braces <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> forms the function body—the code block that is executed when the function is called.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -935,8 +941,8 @@ NULL</code></pre>
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./rcalculator.html" class="pagination-link" aria-label="R as calculator">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span>
+      <a href="./rcalculator.html" class="pagination-link" aria-label="R as Calculator">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as Calculator</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

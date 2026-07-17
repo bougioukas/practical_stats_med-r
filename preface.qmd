@@ -21,8 +21,6 @@ This textbook is intended to be self-contained and does not require any prior ex
 
  
 
-
-
 ## Conventions
 
 -   Package names are styled in bold italics text (e.g., ***rstatix***), function names are followed by parentheses (e.g., **`t_test()`**), and code chunks are formatted in a typewriter font such as:
@@ -35,7 +33,7 @@ t_test(HDRS ~ intervention, var.equal = TRUE, data = depression)
 
 -   Key points are highlighted within a distinctive colored box, as shown below:
 
-::: content-box-purple
+::: content-box-gray
 **IMPORTANT**
 
 This is an important point.
@@ -57,24 +55,21 @@ This is additional information.
 
  
 
-
 ## Datasets Used in This Textbook
 
 We will work with datasets throughout the textbook, all of which are freely accessible on the [Open Science Framework](https://osf.io/3amrb/files/osfstorage) platform and on the book’s website: [www.routledge.com/9781032600581](https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581).
 
  
 
-
 ## Acknowledgments
 
 I would like to express my sincere gratitude to the many colleagues and students whose positive feedback on my lecture notes motivated me to compile them into this textbook.
 
-Additionally, I am deeply thankful to the professionals at Routledge & CRC Press|Taylor & Francis Group who were involved in the publication process. In particular, I am especially grateful to Lara Spieker, Editor for Statistics at Chapman & Hall/CRC Press, for her interest
-in my work, as well as her expert guidance and continuous support.
+Additionally, I am deeply thankful to the professionals at Routledge & CRC Press\|Taylor & Francis Group who were involved in the publication process. In particular, I am especially grateful to Lara Spieker, Editor for Statistics at Chapman & Hall/CRC Press, for her interest in my work, as well as her expert guidance and continuous support.
 
  
 
 ::: {style="text-align: right;"}
-Konstantinos I. Bougioukas \
+Konstantinos I. Bougioukas\
 September 2025
 :::

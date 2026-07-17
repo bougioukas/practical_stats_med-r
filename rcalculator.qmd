@@ -1,4 +1,4 @@
-# R as calculator {#sec-rcalculator}
+# R as Calculator {#sec-rcalculator}
 
 ```{r setup_rcalculator, include=FALSE}
 
@@ -6,12 +6,11 @@ options(width=85)
 knitr::opts_chunk$set(fig.pos = 'H')
 ```
 
-
 R is a powerful tool for statistical computing and data analysis, but it can also serve as a basic calculator. In this chapter, we explore various arithmetic operations, simple comparisons with numbers, and the use of scientific notation (i.e., *e*-notation in R) for very small or large numbers. We also discuss how special values such as `NA`, `NaN`, and `Inf` behave in calculations.
 
  
 
-## Arithmetic operators in R
+## Arithmetic Operators in R
 
 One of the simplest tasks in R is performing basic arithmetic operations with numbers. For example:
 
@@ -22,30 +21,27 @@ One of the simplest tasks in R is performing basic arithmetic operations with nu
 
 Here, the `+` operator performs addition. The result is displayed with a preceding `[1]`, indicating the index of the output. @tbl-arithmeticoperators provides a list of the arithmetic operators available in R.
 
-
-:::: {.columns}
+:::::: columns
 ::: {.column width="20%"}
 :::
+
 ::: {.column width="60%"}
+| Operator     | Description        |
+|:-------------|:-------------------|
+| \+           | addition           |
+| \-           | subtraction        |
+| \*           | multiplication     |
+| /            | division           |
+| \^  or  \*\* | exponent           |
+| %/%          | integer division   |
+| %%           | modulo (remainder) |
 
-
-| Operator      | Description        |
-|:---------------|:--------------------|
-| \+            | addition           |
-| \-            | subtraction        |
-| \*            | multiplication     |
-| /             | division           |
-| \^ \ or \ **  | exponent           |
-| %/%           | integer division   |
-| %%            | modulo (remainder) |
-
-
-: Basic arithmetic operators in R. {#tbl-arithmeticoperators .latex-table} 
-
+: Basic arithmetic operators in R. {#tbl-arithmeticoperators .latex-table}
 :::
+
 ::: {.column width="20%"}
 :::
-::::
+::::::
 
  
 
@@ -53,9 +49,8 @@ When using R as a calculator, it's important to note that the order of operation
 
 -   Parentheses: `( )`
 -   Exponents: `^` or `**`
--   Multiplication, division, integer division, modulo: `*`, `/`, %/%, %% 
+-   Multiplication, division, integer division, modulo: `*`, `/`, %/%, %%
 -   Addition, subtraction: `+`, `-`
-
 
 For example:
 
@@ -76,13 +71,12 @@ When multiple operators have the **same precedence**, they are evaluated in the 
 ::: content-box-white
 **INFO**
 
-For more detailed information on how R prioritizes operators, we can refer to the R help section using the following command: 
+For more detailed information on how R prioritizes operators, we can refer to the R help section using the following command:
 
 **?Syntax**
 :::
 
  
-
 
 **Parentheses**
 
@@ -91,8 +85,6 @@ Parentheses are used to group operations, either to enforce a specific order of 
 ```{r}
 (3 + 5) * 2
 ```
-
- 
 
 Although it may sometimes seem redundant, using parentheses can clarify our intentions, which is particularly helpful when others review our code later.
 
@@ -103,33 +95,30 @@ Although it may sometimes seem redundant, using parentheses can clarify our inte
 3 + 5 * (2 ^ 2)     # if we forget some rules, this might help
 ```
 
-
-
-## Comparison operators in R
+## Comparison Operators in R
 
 **Comparison (or relational) operators** are used to compare values. In R, comparisons return `TRUE` or `FALSE`, which can be abbreviated as `T` and `F` (though this is not recommended). Below is a list of comparison operators available in R (@tbl-relationaloperators).
 
-
-:::: {.columns}
+:::::: columns
 ::: {.column width="20%"}
 :::
+
 ::: {.column width="60%"}
-
 | **Operator** | **Read as**              |
-|:------------|:-------------------------|
-| \<         | less than                |
-| \>         | greater than             |
-| ==         | equal to                 |
-| \<=        | less than or equal to    |
-| \>=        | greater than or equal to |
-| !=         | not equal to             |
+|:-------------|:-------------------------|
+| \<           | less than                |
+| \>           | greater than             |
+| ==           | equal to                 |
+| \<=          | less than or equal to    |
+| \>=          | greater than or equal to |
+| !=           | not equal to             |
 
-: Comparison (relational) operators in R. {#tbl-relationaloperators .latex-table} 
-
+: Comparison (relational) operators in R. {#tbl-relationaloperators .latex-table}
 :::
+
 ::: {.column width="20%"}
 :::
-::::
+::::::
 
  
 
@@ -159,8 +148,7 @@ Some simple comparisons with integer numbers follow:
 1 != 2  # not equal to (inequality)
 ```
 
-
-## Scientific notation and *e*-notation
+## Scientific Notation and *e*-notation
 
 Scientific notation is a method of expressing numbers that are very small or very large in a more compact and readable form. It typically follows the format $m \times 10^n$, where $m$ is a decimal number between 1 and 10, and $n$ is the exponent. In R, this is represented using **e**-notation (also called exponential notation), where **e** denotes exponentiation with base 10.
 
@@ -171,12 +159,10 @@ Scientific notation is a method of expressing numbers that are very small or ver
 -   **Scientific notation:** 0.000000015 = 1.5 × 0.00000001 = 1.5 × $10^{-8}$\
 -   **e-notation:** 1.5e-08
 
-
 ```{r}
 # type in Console and press Enter
 0.000000015
 ```
-
 
  
 
@@ -184,7 +170,6 @@ Scientific notation is a method of expressing numbers that are very small or ver
 
 -   **Scientific notation:** 150000000 = 1.5 × 100000000 = 1.5 × $10^{8}$\
 -   **e-notation:** 1.5e+08
-
 
 ```{r}
 # type in Console and press Enter
@@ -195,22 +180,19 @@ Scientific notation is a method of expressing numbers that are very small or ver
 
 To globally disable **e**-notation in R, we can set **`options(scipen = 999)`** at the beginning of our script. To restore the default behavior, simply reset `scipen` to 0, which will allow R to use **e**-notation when appropriate.
 
-
-
-::: content-box-purple
+::: content-box-gray
 **CAUTION!**
 
-The **e**-notation in this context is not related to Euler's number ($e \approx 2.718$). 
+The **e**-notation in this context is not related to Euler's number ($e \approx 2.718$).
 :::
 
  
 
-
-## Special values in R
+## Special Values in R
 
 There are a few special values that are used in R.
 
-### Missing values (NA)
+### Missing Values (NA)
 
 In the real world, missing data may occur when recording medical information (e.g., patients lost to follow-up, incomplete medical records). In R, the special numeric value `NA` stands for "Not Available" and represents a missing value. Arithmetic and comparison operations involving `NA` will return `NA`:
 
@@ -221,7 +203,6 @@ In the real world, missing data may occur when recording medical information (e.
 ```{r}
 (3 + 5) / NA
 ```
-
 
 ```{r}
 3 > NA
@@ -247,7 +228,6 @@ Inf + 1000
 
  
 
-
 ### Not a Number (NaN)
 
 The value `NaN` (stands for "Not a Number") represents an undefined or invalid value, typically resulting from certain arithmetic operations. For example:
@@ -264,9 +244,8 @@ Inf / Inf
 -Inf + Inf
 ```
 
-
  
 
 ### NULL
 
-In R, `NULL`  is distinct from both `NA` and `NaN`. It represents the **null value** and is typically used in functions to indicate that an optional argument has not been assigned a value or that a function does not produce a meaningful result (see Chapter @sec-XX for more on functions). 
+In R, `NULL` is distinct from both `NA` and `NaN`. It represents the **null value** and is typically used in functions to indicate that an optional argument has not been assigned a value or that a function does not produce a meaningful result (see @sec-rfunctions for more on functions).

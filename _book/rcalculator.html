@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>3&nbsp; R as calculator – Practical Statistics in Medicine with R</title>
+<title>3&nbsp; R as Calculator – Practical Statistics in Medicine with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,7 +135,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rcalculator.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rcalculator.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as Calculator</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,13 +189,13 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rcalculator.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as Calculator</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rfunctions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -278,13 +278,13 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#arithmetic-operators-in-r" id="toc-arithmetic-operators-in-r" class="nav-link active" data-scroll-target="#arithmetic-operators-in-r"><span class="header-section-number">3.1</span> Arithmetic operators in R</a></li>
-  <li><a href="#comparison-operators-in-r" id="toc-comparison-operators-in-r" class="nav-link" data-scroll-target="#comparison-operators-in-r"><span class="header-section-number">3.2</span> Comparison operators in R</a></li>
-  <li><a href="#scientific-notation-and-e-notation" id="toc-scientific-notation-and-e-notation" class="nav-link" data-scroll-target="#scientific-notation-and-e-notation"><span class="header-section-number">3.3</span> Scientific notation and <em>e</em>-notation</a></li>
+<li><a href="#arithmetic-operators-in-r" id="toc-arithmetic-operators-in-r" class="nav-link active" data-scroll-target="#arithmetic-operators-in-r"><span class="header-section-number">3.1</span> Arithmetic Operators in R</a></li>
+  <li><a href="#comparison-operators-in-r" id="toc-comparison-operators-in-r" class="nav-link" data-scroll-target="#comparison-operators-in-r"><span class="header-section-number">3.2</span> Comparison Operators in R</a></li>
+  <li><a href="#scientific-notation-and-e-notation" id="toc-scientific-notation-and-e-notation" class="nav-link" data-scroll-target="#scientific-notation-and-e-notation"><span class="header-section-number">3.3</span> Scientific Notation and <em>e</em>-notation</a></li>
   <li>
-<a href="#special-values-in-r" id="toc-special-values-in-r" class="nav-link" data-scroll-target="#special-values-in-r"><span class="header-section-number">3.4</span> Special values in R</a>
+<a href="#special-values-in-r" id="toc-special-values-in-r" class="nav-link" data-scroll-target="#special-values-in-r"><span class="header-section-number">3.4</span> Special Values in R</a>
   <ul class="collapse">
-<li><a href="#missing-values-na" id="toc-missing-values-na" class="nav-link" data-scroll-target="#missing-values-na"><span class="header-section-number">3.4.1</span> Missing values (NA)</a></li>
+<li><a href="#missing-values-na" id="toc-missing-values-na" class="nav-link" data-scroll-target="#missing-values-na"><span class="header-section-number">3.4.1</span> Missing Values (NA)</a></li>
   <li><a href="#infinitive--inf-or-inf" id="toc-infinitive--inf-or-inf" class="nav-link" data-scroll-target="#infinitive--inf-or-inf"><span class="header-section-number">3.4.2</span> Infinitive: -Inf or Inf</a></li>
   <li><a href="#not-a-number-nan" id="toc-not-a-number-nan" class="nav-link" data-scroll-target="#not-a-number-nan"><span class="header-section-number">3.4.3</span> Not a Number (NaN)</a></li>
   <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null"><span class="header-section-number">3.4.4</span> NULL</a></li>
@@ -294,7 +294,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-rcalculator" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as calculator</span></span></h1>
+<h1 class="title"><span id="sec-rcalculator" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as Calculator</span></span></h1>
 </div>
 
 
@@ -311,7 +311,7 @@ window.Quarto = {
 </header><p>R is a powerful tool for statistical computing and data analysis, but it can also serve as a basic calculator. In this chapter, we explore various arithmetic operations, simple comparisons with numbers, and the use of scientific notation (i.e., <em>e</em>-notation in R) for very small or large numbers. We also discuss how special values such as <code>NA</code>, <code>NaN</code>, and <code>Inf</code> behave in calculations.</p>
 <p>&nbsp;</p>
 <section id="arithmetic-operators-in-r" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="arithmetic-operators-in-r">
-<span class="header-section-number">3.1</span> Arithmetic operators in R</h2>
+<span class="header-section-number">3.1</span> Arithmetic Operators in R</h2>
 <p>One of the simplest tasks in R is performing basic arithmetic operations with numbers. For example:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">100</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -411,7 +411,6 @@ window.Quarto = {
 <pre data-code-line-numbers=""><code>[1] 16</code></pre>
 </div>
 </div>
-<p>&nbsp;</p>
 <p>Although it may sometimes seem redundant, using parentheses can clarify our intentions, which is particularly helpful when others review our code later.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="op">(</span><span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># hard to read</span></span>
@@ -419,7 +418,7 @@ window.Quarto = {
 <span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span>     <span class="co"># if we forget some rules, this might help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="comparison-operators-in-r" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="comparison-operators-in-r">
-<span class="header-section-number">3.2</span> Comparison operators in R</h2>
+<span class="header-section-number">3.2</span> Comparison Operators in R</h2>
 <p><strong>Comparison (or relational) operators</strong> are used to compare values. In R, comparisons return <code>TRUE</code> or <code>FALSE</code>, which can be abbreviated as <code>T</code> and <code>F</code> (though this is not recommended). Below is a list of comparison operators available in R (<a href="#tbl-relationaloperators" class="quarto-xref">Table&nbsp;<span>3.2</span></a>).</p>
 <div class="columns">
 <div class="column" style="width:20%;">
@@ -506,7 +505,7 @@ window.Quarto = {
 </div>
 </div>
 </section><section id="scientific-notation-and-e-notation" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="scientific-notation-and-e-notation">
-<span class="header-section-number">3.3</span> Scientific notation and <em>e</em>-notation</h2>
+<span class="header-section-number">3.3</span> Scientific Notation and <em>e</em>-notation</h2>
 <p>Scientific notation is a method of expressing numbers that are very small or very large in a more compact and readable form. It typically follows the format <span class="math inline">\(m \times 10^n\)</span>, where <span class="math inline">\(m\)</span> is a decimal number between 1 and 10, and <span class="math inline">\(n\)</span> is the exponent. In R, this is represented using <strong>e</strong>-notation (also called exponential notation), where <strong>e</strong> denotes exponentiation with base 10.</p>
 <p>&nbsp;</p>
 <p><strong>Example (small number):</strong> 0.000000015</p>
@@ -542,16 +541,16 @@ window.Quarto = {
 </div>
 <p>&nbsp;</p>
 <p>To globally disable <strong>e</strong>-notation in R, we can set <strong><code>options(scipen = 999)</code></strong> at the beginning of our script. To restore the default behavior, simply reset <code>scipen</code> to 0, which will allow R to use <strong>e</strong>-notation when appropriate.</p>
-<div class="content-box-purple">
+<div class="content-box-gray">
 <p><strong>CAUTION!</strong></p>
 <p>The <strong>e</strong>-notation in this context is not related to Euler’s number (<span class="math inline">\(e \approx 2.718\)</span>).</p>
 </div>
 <p>&nbsp;</p>
 </section><section id="special-values-in-r" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="special-values-in-r">
-<span class="header-section-number">3.4</span> Special values in R</h2>
+<span class="header-section-number">3.4</span> Special Values in R</h2>
 <p>There are a few special values that are used in R.</p>
 <section id="missing-values-na" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="missing-values-na">
-<span class="header-section-number">3.4.1</span> Missing values (NA)</h3>
+<span class="header-section-number">3.4.1</span> Missing Values (NA)</h3>
 <p>In the real world, missing data may occur when recording medical information (e.g., patients lost to follow-up, incomplete medical records). In R, the special numeric value <code>NA</code> stands for “Not Available” and represents a missing value. Arithmetic and comparison operations involving <code>NA</code> will return <code>NA</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -614,7 +613,7 @@ window.Quarto = {
 <p>&nbsp;</p>
 </section><section id="null" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="null">
 <span class="header-section-number">3.4.4</span> NULL</h3>
-<p>In R, <code>NULL</code> is distinct from both <code>NA</code> and <code>NaN</code>. It represents the <strong>null value</strong> and is typically used in functions to indicate that an optional argument has not been assigned a value or that a function does not produce a meaningful result (see Chapter <span class="quarto-unresolved-ref">?sec-XX</span> for more on functions).</p>
+<p>In R, <code>NULL</code> is distinct from both <code>NA</code> and <code>NaN</code>. It represents the <strong>null value</strong> and is typically used in functions to indicate that an optional argument has not been assigned a value or that a function does not produce a meaningful result (see <a href="rfunctions.html" class="quarto-xref"><span>Chapter 4</span></a> for more on functions).</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -940,8 +939,8 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rfunctions.html" class="pagination-link" aria-label="R functions">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rfunctions.html" class="pagination-link" aria-label="R Functions">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
