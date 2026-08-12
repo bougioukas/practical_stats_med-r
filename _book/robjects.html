@@ -253,16 +253,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#what-are-the-objects-in-r" id="toc-what-are-the-objects-in-r" class="nav-link active" data-scroll-target="#what-are-the-objects-in-r"><span class="header-section-number">6.1</span> What are the objects in R?</a></li>
+<li><a href="#what-are-the-objects-in-r" id="toc-what-are-the-objects-in-r" class="nav-link active" data-scroll-target="#what-are-the-objects-in-r"><span class="header-section-number">6.1</span> What Are the Objects in R?</a></li>
   <li>
-<a href="#named-storage-of-objects" id="toc-named-storage-of-objects" class="nav-link" data-scroll-target="#named-storage-of-objects"><span class="header-section-number">6.2</span> Named storage of objects</a>
+<a href="#named-storage-of-objects" id="toc-named-storage-of-objects" class="nav-link" data-scroll-target="#named-storage-of-objects"><span class="header-section-number">6.2</span> Named Storage of Objects</a>
   <ul class="collapse">
-<li><a href="#assignment-operator--" id="toc-assignment-operator--" class="nav-link" data-scroll-target="#assignment-operator--"><span class="header-section-number">6.2.1</span> Assignment operator (<code>&lt;-</code>)</a></li>
-  <li><a href="#other-types-of-assignment-operators" id="toc-other-types-of-assignment-operators" class="nav-link" data-scroll-target="#other-types-of-assignment-operators"><span class="header-section-number">6.2.2</span> Other types of assignment operators</a></li>
+<li><a href="#assignment-operator--" id="toc-assignment-operator--" class="nav-link" data-scroll-target="#assignment-operator--"><span class="header-section-number">6.2.1</span> Assignment Operator (<code>&lt;-</code>)</a></li>
+  <li><a href="#other-types-of-assignment-operators" id="toc-other-types-of-assignment-operators" class="nav-link" data-scroll-target="#other-types-of-assignment-operators"><span class="header-section-number">6.2.2</span> Other Types of Assignment Operators</a></li>
   </ul>
 </li>
-  <li><a href="#valid-object-names" id="toc-valid-object-names" class="nav-link" data-scroll-target="#valid-object-names"><span class="header-section-number">6.3</span> Valid object names</a></li>
-  <li><a href="#diverse-storage-in-objects" id="toc-diverse-storage-in-objects" class="nav-link" data-scroll-target="#diverse-storage-in-objects"><span class="header-section-number">6.4</span> Diverse storage in objects</a></li>
+  <li><a href="#valid-object-names" id="toc-valid-object-names" class="nav-link" data-scroll-target="#valid-object-names"><span class="header-section-number">6.3</span> Valid Object Names</a></li>
+  <li><a href="#diverse-storage-in-objects" id="toc-diverse-storage-in-objects" class="nav-link" data-scroll-target="#diverse-storage-in-objects"><span class="header-section-number">6.4</span> Diverse Storage in Objects</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>In this chapter, we introduce the concept of objects in R, which is fundamental to working effectively with the language. Objects can take many forms, and R manages all of them, both pre-defined and user-created, in a central workspace called the global environment. Assigning valid and meaningful names to objects using the assignment operator (<code>&lt;-</code>) is essential for writing clear, organized, and shareable code.</p>
 <p>&nbsp;</p>
 <section id="what-are-the-objects-in-r" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-are-the-objects-in-r">
-<span class="header-section-number">6.1</span> What are the objects in R?</h2>
+<span class="header-section-number">6.1</span> What Are the Objects in R?</h2>
 <p>R works with <strong>objects</strong>, which include everything we interact with or encounter in R, including numbers, data structures, functions, and outputs such as plots. Objects can either come from R packages or be created by the user. User-created objects are assigned names specified by the user. R stores these objects in the global environment, enabling easy access and manipulation throughout the R session.</p>
 <p>In R, objects typically have several properties, known as <strong>attributes</strong>, which define their structure and guide how R interprets them. We can access an object’s attributes using the <strong><code><a href="https://rdrr.io/r/base/attributes.html">attributes()</a></code></strong> function. However, not all R objects have attributes; in such cases, <strong><code><a href="https://rdrr.io/r/base/attributes.html">attributes()</a></code></strong> returns <code>NULL</code>.</p>
 <p>For example, the well-known <code>anscombe</code> dataset, which contains 11 rows and 8 columns, has three key attributes. These include <code>names</code> (the column names), <code>class</code> (which is <code>data.frame</code>), and <code>row.names</code> (which represent the row identifiers).</p>
@@ -315,9 +315,9 @@ $row.names
 </div>
 <p>Note that the <strong><code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code></strong> function is particularly useful because dimensions are not stored as an explicit attribute; instead, they are derived from the lengths of <code>row.names</code> and <code>names</code>.</p>
 </section><section id="named-storage-of-objects" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="named-storage-of-objects">
-<span class="header-section-number">6.2</span> Named storage of objects</h2>
+<span class="header-section-number">6.2</span> Named Storage of Objects</h2>
 <section id="assignment-operator--" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="assignment-operator--">
-<span class="header-section-number">6.2.1</span> Assignment operator (<code>&lt;-</code>)</h3>
+<span class="header-section-number">6.2.1</span> Assignment Operator (<code>&lt;-</code>)</h3>
 <p>In R, the recommended way to assign a value to an object is by using the left-arrow assignment operator (<code>&lt;-</code>), which combines the less-than sign (<code>&lt;</code>) and the hyphen (<code>-</code>) (keyboard shortcut: <span style=" font-weight: bold;    color: rgba(134, 118, 248, 255) !important;">Alt</span> + <span style=" font-weight: bold;    color: rgba(134, 118, 248, 255) !important;">-</span> for Windows/Linux and <span style=" font-weight: bold;    color: rgba(134, 118, 248, 255) !important;">Option</span> + <span style=" font-weight: bold;    color: rgba(134, 118, 248, 255) !important;">-</span> for Mac).</p>
 <p>For example, to store the value <code>1/40</code> in an object named <code>x</code>, we assign it as follows:</p>
 <div class="cell">
@@ -382,7 +382,7 @@ $row.names
 <p>In this expression, <code>x</code> on the right-hand side refers to the current value of <code>x</code> (1/50), and the expression adds 1 to it <strong>before</strong> assigning the result back to <code>x</code>.</p>
 <p>&nbsp;</p>
 </section><section id="other-types-of-assignment-operators" class="level3" data-number="6.2.2"><h3 data-number="6.2.2" class="anchored" data-anchor-id="other-types-of-assignment-operators">
-<span class="header-section-number">6.2.2</span> Other types of assignment operators</h3>
+<span class="header-section-number">6.2.2</span> Other Types of Assignment Operators</h3>
 <p>It is also possible to use the equal sign (<code>=</code>) for assignment or the right-arrow assignment operator (<code>-&gt;</code>) for rightwards assignment, though these are less commonly preferred by R users.</p>
 <p>For example:</p>
 <div class="cell">
@@ -402,7 +402,7 @@ $row.names
 </div>
 <p>It’s advisable to <strong>be consistent</strong> with the assignment operator we use.</p>
 </section></section><section id="valid-object-names" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="valid-object-names">
-<span class="header-section-number">6.3</span> Valid object names</h2>
+<span class="header-section-number">6.3</span> Valid Object Names</h2>
 <p>Valid object names must adhere to specific rules: they must start with a letter and <strong>may</strong> include letters, numbers, underscores ( <code>_</code> ), and periods (<code>.</code>). However, they <strong>cannot</strong> contain spaces, or use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">Reserved words</a> such as <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>, as these have special meanings in R. When naming an object with multiple words, various naming conventions can be used. Common styles include periods.between.words, underscores_between_words, and camelCaseToSeparateWords.</p>
 <p>The choice of what we use is up to us, but it’s crucial to maintain consistency. If assistance is needed, we can refer to:</p>
 <div class="cell">
@@ -423,10 +423,10 @@ $row.names
 </div>
 <p><span style="     color: rgba(134, 118, 248, 255) !important;">Error: object ‘y’ not found</span></p>
 </section><section id="diverse-storage-in-objects" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="diverse-storage-in-objects">
-<span class="header-section-number">6.4</span> Diverse storage in objects</h2>
+<span class="header-section-number">6.4</span> Diverse Storage in Objects</h2>
 <p>Objects can store more than just numbers, including strings of characters, which must be enclosed in quotes. For example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentence</span> <span class="op">&lt;-</span> <span class="st">"the Fellowship of the Ring consisted of Frodo plus eight others"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentence</span> <span class="op">&lt;-</span> <span class="st">"the Fellowship of the Ring consisted of Frodo plus 8 others"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The data type stored in an object determines which operations can be performed on it. For instance, if a number is stored as a character string instead of a numeric type, arithmetic operations won’t work. Consider this example:</p>
 <div class="cell">
@@ -435,8 +435,7 @@ $row.names
 </div>
 <p>Since eight is a character string here, R cannot perform addition, resulting in this error:</p>
 <p><span style="     color: rgba(134, 118, 248, 255) !important;">Error in eight + 1: non-numeric argument to binary operator</span></p>
-<p>&nbsp;</p>
-<p>To apply arithmetic operations, the object must contain a numeric value. We can convert the character “8” to numeric with <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> function before adding (see Chapter @ref(rvectors) for the concept of “explicit coercion”).</p>
+<p>To apply arithmetic operations, the object must contain a numeric value. We can convert the character “8” to numeric with <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> function before adding (see <a href="rvectors.html" class="quarto-xref"><span>Chapter 7</span></a>) for the concept of “explicit coercion”).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eight</span> <span class="op">&lt;-</span> <span class="st">"8"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">eight</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -447,7 +446,7 @@ $row.names
 <p>&nbsp;</p>
 <p>Notice that R commands are typically written on separate lines, but they can also be combined on a single line by separating them with a semicolon (<code>;</code>). For example, the previous two commands could be written on one line like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eight</span> <span class="op">&lt;-</span> <span class="st">"8"</span>; <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">eight</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>    <span class="co"># R commands can be separated by a semicolon</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eight</span> <span class="op">&lt;-</span> <span class="st">"8"</span>; <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">eight</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[1] 9</code></pre>
 </div>

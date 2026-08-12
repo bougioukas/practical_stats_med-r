@@ -57,7 +57,8 @@ This is additional information.
 
 ## Datasets Used in This Textbook
 
-We will work with datasets throughout the textbook, all of which are freely accessible on the [Open Science Framework](https://osf.io/3amrb/files/osfstorage) platform and on the book’s website: [www.routledge.com/9781032600581](https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581).
+We will work with datasets throughout the textbook, all of which are freely accessible on the [Open Science Framework](https://osf.io/3amrb/files/osfstorage) platform and on the book’s website: [www.routledge.com/9781032600581](https://www.routledge.com/Practical-Statistics-in-Medicine-with-R/Bougioukas/p/book/9781032600581).^[Also available by [Zenodo](https://zenodo.org/records/21908494) platform.]
+
 
  
 

@@ -10,7 +10,7 @@ In R, vectors are fundamental data structures that play a central role in organi
 
  
 
-## Introduction to vectors in R
+## Introduction to Vectors in R
 
 One of the most central concepts in R are the **vectors**. Vectors are broadly categorized into two types: **atomic vectors** and **generic vectors (lists)** ([@fig-str]).
 
@@ -22,14 +22,14 @@ Atomic vectors must consist of elements of the same basic data type (e.g., numer
 
 The R language supports various data structures for organizing and storing information. In the following chapters, we will explore more complex structures, such as **matrices, arrays, and data frames**. Each of these structures serves a specific purpose and can differ in the type of data it holds and its level of complexity. These data structures are schematically illustrated in [@fig-str].
 
-## Atomic vectors in R
+## Atomic Vectors in R
 
 The most fundamental **data structure** in R is the atomic vector atomic vector, which consists of a single sequence of elements of the same data type. Each element within the vector is uniquely identified by its position within this sequence.
 
-::: content-box-purple
+::: content-box-gray
 **Types of atomic vectors**
 
-There are four primary types of atomic vectors (also known as \`\`atomic" classes):
+There are four primary types of atomic vectors (also known as "atomic" classes):
 
 -   logical
 
@@ -42,15 +42,13 @@ There are four primary types of atomic vectors (also known as \`\`atomic" classe
 Integer and double vectors are collectively known as **numeric** vectors. There are also two rare types, complex and raw, which we will not cover in this textbook.
 :::
 
- 
-
 Let's begin by understanding one-element vectors, the simplest form of atomic vectors in R. After that, we will explore longer atomic vectors to gain insight into their properties and practical applications.
 
-### One-element atomic vectors
+### One-Element Atomic vectors
 
 Individual logical values, numbers (also known as scalars), or characters are atomic vectors of length one. Therefore, **a one-element vector (oev)** represents a single value that can be used as the building block to construct more complex objects (longer vectors). The following examples demonstrate one-element vectors for each of the four primary data types, arranged from the most specific to the most general.
 
-#### *Logical one-element vector*
+#### *Logical One-Element Vector*
 
 Logical values, also known as Boolean values, are represented as `TRUE` or `FALSE`. While they can be abbreviated to `T` or `F`, this practice is generally not recommended. Examples of logical one-element vectors (oev) are as follows:
 
@@ -62,7 +60,7 @@ oev_b <- FALSE    # assign the logical FALSE to an object named oev_b
 oev_b             # call the object with its name
 ```
 
-#### *Integer one-element vector*
+#### *Integer One-Element Vector*
 
 Although numbers such as 1 or 2 may appear in the console, R may internally store them as 1.00 or 2.00. To explicitly specify integer values in R, we must append an "L" suffix, as demonstrated in the following examples:
 
@@ -86,15 +84,15 @@ oev_scientific <- 1.7e-05
 oev_scientific              
 ```
 
-#### *Character one-element vector*
+#### *Character One-Element Vector*
 
 One-element vectors can also be character values—that is, single characters or entire strings of text. In R, characters can be defined using either single `''` or double `""` quotation marks. Internally, however, R stores all strings using double quotes, even if they were originally created with single quotes.
 
 ```{r}
 
-oev_e <- "a"      # a character enclosed in double quotation marks
+oev_e <- 'R'               # a character enclosed in single quotation marks
 oev_e
-oev_f <- 'I love data analysis' # a string of text enclosed in single quotation marks
+oev_f <- "R is awesome"    # a string enclosed in double quotation marks
 oev_f
 ```
 
@@ -113,11 +111,11 @@ The error message indicates that we are attempting to apply numeric operations t
 
 Single values (one-element vectors) are rarely the focus of an R session. Next, we are going to discuss about "longer" atomic vectors.
 
-### Longer atomic vectors
+### Longer Atomic Vectors
 
 Atomic vectors typically contain more than one element. **The elements of a vector are ordered and must all be of the same data type**. Common examples of "long" atomic vectors include numeric (whole numbers and fractions), logical (e.g., TRUE or FALSE), and character (e.g., letters or words). Let's explore how to create "long" atomic vectors and highlight key properties through examples.
 
-#### *The colon operator `:`*
+#### *The Colon Operator `:`*
 
 The colon operator **`:`** generates a sequence of consecutive numbers increasing or decreasing by 1. For example:
 
@@ -151,6 +149,8 @@ The elements of the `x_seq` vector are integers. To find the number of elements 
 length(x_seq)
 ```
 
+ 
+
 ***Other examples:***
 
 ```{r}
@@ -159,15 +159,15 @@ length(x_seq)
 -3:4      # sequence from negative to positive integer numbers
 ```
 
-#### *The function `seq()`*
+#### *The Function `seq()`*
 
-We have already explored the **`seq()`** function in Chapter \@ref(rfunctions), where "seq" stands for sequence. By default, it generates vectors of consecutive numeric values. For example:
+We have already explored the **`seq()`** function in @sec-rfunctions, where "seq" stands for sequence. By default, it generates vectors of consecutive numeric values. For example:
 
 ```{r}
 seq(1, 5)   # generates a sequence from 1 to 5 with a default step of 1
 ```
 
-#### *The `c()` function*
+#### *The `c()` Function*
 
 We can create atomic vectors manually using the **`c()`** function (short for concatenate), which *combines* values into a single vector and is one of the most commonly used functions in R. For example, to create a numeric vector with the values `2`, `4.5`, and `-1`, we type:
 
@@ -194,7 +194,7 @@ y_seq <- 3:7
 c(y_seq, 2, 4.5, -1)  # y_seq object is an element of a vector
 ```
 
-#### *Repeating vectors*
+#### *Repeating Vectors*
 
 The **`rep()`** function in R provides a convenient way to repeat either an entire vector or individual elements within it. Below are some examples:
 
@@ -207,7 +207,7 @@ rep(c(0, 4, 7), times = 3)        # repeat the entire vector 3 times
 rep(c("a", "b", "c"), times = 2)  # repeat the entire vector 2 times
 ```
 
-\vspace{15pt}
+ 
 
 *B. Repeating each element of the vector*
 
@@ -219,7 +219,7 @@ rep(c("a", "b", "c"), each = 2)  # repeat each element 2 times
 
 ```
 
-#### *Default vectors*
+#### *Default Vectors*
 
 R includes a set of built-in vectors that provide useful data for various tasks:
 
@@ -241,9 +241,9 @@ month.abb
 
 We will use some of these built-in vectors in the examples that follow.
 
-## Mixing things in a vector - Coercion
+## Mixing Things in a Vector - Coercion
 
-### Implicit coercion
+### Implicit Coercion
 
 Implicit coercion \index{implicit coercion} in R refers to the automatic conversion of data from one type to another when required for an operation or function. This feature enables R to handle mixed data types flexibly.
 
@@ -294,7 +294,7 @@ typeof(d)
 
 When a numeric value is added to a logical vector, R automatically coerces all the elements in the vector to numeric (double) values. Logical values are converted to numbers as follows: **FALSE becomes 0** and **TRUE becomes 1**.
 
-### Explicit coercion
+### Explicit Coercion
 
 Explicit coercion explicit coercion refers to the process of intentionally converting data from one type to another using specific conversion functions provided by R. For instance, we can convert numeric values into characters using the **`as.character()`** function. Let's create a numeric vector `f`, containing the numbers 1 through 5, and then convert it into a character vector `g`:
 
@@ -330,13 +330,13 @@ x_abcde <- c("a", "b", "c", "d", "e")
 as.numeric(x_abcde)
 ```
 
-## Operators applied between two vectors
+## Operators Applied between Two Vectors
 
 ### Arithmetic Operators
 
 R supports basic arithmetic operations between vectors using standard operators such as `+`, `-`, `*`, `/`, `^`.
 
-#### *Arithmetic operations between a scalar and a long vector*
+#### *Arithmetic Operations between a Scalar and a Long Vector*
 
 When a scalar (a single numeric value) interacts with a vector, the operation is applied between the scalar and each element of the vector, a process known as vectorization[^rvectors-1].
 
@@ -356,7 +356,7 @@ Similarly, when a vector is multiplied by a scalar, each element of the vector i
 3 * v
 ```
 
-#### *Arithmetic operations between two long vectors*
+#### *Arithmetic Operations between Two Long Vectors*
 
 Arithmetic operations in R can be performed element-wise between corresponding elements of two vectors. This means that each element in one vector interacts with the corresponding element in the other vector. Consider two vectors, denoted as `v` and `t`, each containing a series of numerical values. Now, let's apply some arithmetic operators to these vectors.
 
@@ -388,11 +388,11 @@ We can also round the results using the **`round()`** function by setting `digit
 round(sqrt(z_seq), digits = 2)
 ```
 
-### Dot product operator
+### Dot Product Operator
 
 The dot product[^rvectors-2] is a mathematical operation between two numeric vectors, $\nu$ and $t$, that results in a scalar quantity. This operation is commonly represented with a dot placed between the vectors: $\nu \cdot t$.
 
-[^rvectors-2]: The dot product of two vectors is an important operation in multiplication of matrices (see Chapter \@ref(rmatrices)).
+[^rvectors-2]: The dot product of two vectors is an important operation in multiplication of matrices (see @sec-rmatrices).
 
 It is computed by multiplying corresponding elements of the vectors and summing the results. Given two vectors, $\nu= (\nu_1, \nu_2, ..., \nu_n)$ and $t = (t_1, t_2, ..., t_n)$, we have: $$\nu \cdot t = \nu_1 \cdot t_1 + \nu_2 \cdot t_2 + ... + \nu_n \cdot t_n = \sum_{i=1}^n \nu_i \cdot t_i$$
 
@@ -406,15 +406,15 @@ In R, the dot product operator is denoted as `%*%`, so we obtain:
 v %*% t
 ```
 
-### Comparison (relational) operators
+### Comparison (Relational) Operators
 
 Let’s go through some examples of basic comparison operators (\>, \<, ==, \<=, \>=, !=) applied between two vectors.
 
-#### *Comparison between a long vector and a scalar*
+#### *Comparison between a Long Vector and a Scalar*
 
 When comparison operators are applied between a long vector and a scalar, each element of the vector is compared to the scalar. The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
 
-***Examples***
+##### *Examples*
 
 ```{r}
 m <- c(4, 2, 3, 8)
@@ -431,7 +431,7 @@ m != 3
 
 In the case of two long vectors, each element of the first vector is compared with the corresponding element of the second vector, a process known as element-wise (or element-by-element) comparison. The result of each comparison is a **Boolean** value (**`TRUE`** or **`FALSE`**).
 
-***Examples***
+##### *Examples*
 
 ```{r}
 w <- c(2, 5.5, 6, 9)
@@ -446,7 +446,7 @@ w >= z
 w != z
 ```
 
-### Logical operators applied to vectors
+### Logical Operators Applied to Vectors
 
 The logical (Boolean) operators are:
 
@@ -506,7 +506,7 @@ s && u
 
 `r kableExtra::text_spec("Error in s && u : ‘length = 7’ in coercion to ‘logical(1)’", color = "#8676F8")`
 
-#### *OR operators* (`|`, `||`)
+#### *OR Operators* (`|`, `||`)
 
 The `|` operator performs an element-wise comparison, evaluating each pair of elements from the first and second vectors. It returns `TRUE` if **at least one element of the pair** is `TRUE`; otherwise, it returns `FALSE`.
 
@@ -530,7 +530,7 @@ s || u
 
 `r kableExtra::text_spec("Error in s || u : ‘length = 7’ in coercion to ‘logical(1)’", color = "#8676F8")`
 
-#### *NOT operator (`!`)*
+#### *NOT Operator (`!`)*
 
 The `!` operator inverts each element of the vector, returning the opposite logical value. This is known as the negation operation.
 
@@ -539,7 +539,7 @@ The `!` operator inverts each element of the vector, returning the opposite logi
 ! u
 ```
 
-## Statistical functions applied to vectors
+## Statistical Functions Applied to Vectors
 
 Statistical functions in R, such as **`sum()`** and **`mean()`**, take the elements of a numeric vector as input and return a single numeric value:
 
@@ -579,7 +579,7 @@ This demonstrates that if a numeric vector contains missing values, the mean can
 mean(v_seq2, na.rm = TRUE)
 ```
 
-## Subsetting vectors
+## Subsetting Vectors
 
 We can select elements from a vector using the subsetting operator, denoted by single square brackets `[ ]`, which is also known as the extraction operator. The index within these brackets can be specified as a numeric vector, a logical vector, or a character vector, providing flexibility in element selection.
 
@@ -589,9 +589,9 @@ In the following examples, we demonstrate this concept using the built-in `month
 month.name
 ```
 
-### Selecting elements by indexing position
+### Selecting Elements by Index (Position)
 
-#### *Select specific elements of a vector*
+#### *Select Specific Elements of a Vector*
 
 We can select specific elements or subsets from a vector using square brackets `[ ]` and specifying the indices of the desired elements. For example:
 
@@ -622,9 +622,9 @@ month.name[10:15]
 
 When selecting elements from indices 10 to 15, R returns `NA`s for any indices that are beyond the length of the vector (e.g., for indices 13 to 15, since there are no corresponding months).
 
-#### *Skip specific elements of vectors*
+#### *Skip Specific Elements of Vectors*
 
-A negative index skip the element at the specified index position. For example:
+A negative index skip the element at the specified index. For example:
 
 ```{r}
 month.name[-3]             # skip the 3rd month
@@ -663,7 +663,7 @@ One way to resolve this issue is by wrapping the sequence in parentheses, to ens
 month.name[-(1:5)]            # skip the 1st to 5th element
 ```
 
-### Selecting elements using boolean indices (TRUE/FALSE)
+### Selecting Elements Using Boolean Indices (TRUE/FALSE)
 
 We can also use a *logical vector* with the `[ ]` operator, where `TRUE` or `T` selects the corresponding elements, and `FALSE` or `F` excludes them. For example, let's say that we want to select only the first four months of the year:
 
@@ -679,25 +679,25 @@ Similarly, to exclude "March" from the `fourmonths` vector, we use the following
 fourmonths[c(TRUE, TRUE, FALSE, TRUE)]
 ```
 
-### Selecting elements by indexing names
+### Selecting Elements by Name
 
-In R, a **named vector** is a vector where each element is associated with a name or label. This allows us to access elements using their names instead of numeric indices. Here's an example:
+In R, a **named vector** is a vector in which each element is assigned a unique name, allowing access by name rather than by numeric index. Here's an example:
 
 ```{r}
-# Define a vector of month names
-nm <- c("month_1", "month_2", "month_3", "month_4")
+# Define a vector of four unique names
+fournames <- c("month_1", "month_2", "month_3", "month_4")
 
-# Assign names to the elements of the 'fourmonths' vector using setNames()
-fourmonths2 <- setNames(fourmonths, nm)
+# Assign these names to the elements of 'fourmonths'
+fourmonths2 <- setNames(fourmonths, fournames)
 
 # Select elements with names "month_1", "month_2", and "month_4"
 fourmonths2[c("month_1", "month_2", "month_4")]
-
 ```
 
-In the code above, we first create a vector `nm` containing labels such as "month_1", "month_2", "month_3", and "month_4". Next, the **`setNames()`** function is used to assign these names to the elements of the `fourmonths` vector, resulting in a named vector called `fourmonths2`. Finally, we select specific elements from `fourmonths2` by referencing their names.
+In the code above, we first create a vector `fournames` containing four unique names: "month_1", "month_2", "month_3", and "month_4". Using the **`setNames()`** function, these names are assigned to the elements of the `fourmonths` vector, producing a named vector called `fourmonths2`. Finally, specific elements of `fourmonths2` are selected by referencing their names.
 
-## Vector recycling
+
+## Vector Recycling
 
 What happens if we supply a logical vector that is shorter than the vector we're selecting the elements from? For example:
 
@@ -729,9 +729,8 @@ The sum of the two vectors is:
 c(3, 2, 7) + c(6, 4, 0, 5, 8, 6)
 ```
 
-***Explanation***
-
-When we sum these two vectors, R automatically "recycles" the shorter vector, repeating it until it matches the length of the longer vector. This process is shown below:
+The explanation is that when we add these two vectors, R automatically “recycles” the shorter vector, repeating it until it matches the length of the longer vector. This process is
+shown below:
 
 ```{r, eval=FALSE}
 
@@ -766,9 +765,9 @@ x[3] <- 7
 x
 ```
 
-In this case, we observe that the value at index position 3 (which was originally 0) is modified to 7.
+Here, the value at index position 3 (originally 0) is changed to 7.
 
-We can also modify multiple values at once, as demonstrated in the following example:
+Multiple values can also be modified at once, as shown below:
 
 ```{r}
 # create a character vector
