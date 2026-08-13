@@ -31,6 +31,7 @@ book:
     - probability.qmd
     - distributions.qmd
     - survival.qmd
+    - diagnostic.qmd
     - references.qmd
     
   page-footer: 
