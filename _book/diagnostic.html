@@ -365,13 +365,18 @@ window.Quarto = {
 <tr class="even">
 <td></td>
 <td></td>
-<td>
-<span class="math inline">\(Outcome+\)</span> (Disease present)</td>
-<td>
-<span class="math inline">\(Outcome-\)</span> (Disease absent)</td>
-<td>Totals</td>
+<td><span class="math inline">\(Outcome+\)</span></td>
+<td><span class="math inline">\(Outcome-\)</span></td>
+<td></td>
 </tr>
 <tr class="odd">
+<td></td>
+<td></td>
+<td>(Disease present)</td>
+<td>(Disease absent)</td>
+<td>Totals</td>
+</tr>
+<tr class="even">
 <td><strong>Index Test result</strong></td>
 <td>
 <p><span class="math inline">\(Test+\)</span></p>
@@ -421,7 +426,7 @@ Test     Outcome + Outcome -
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/mosaicplot.html">mosaicplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">tb1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray90"</span>, <span class="st">"gray30"</span><span class="op">)</span>, </span>
 <span>           cex.axis <span class="op">=</span> <span class="fl">1.1</span>, main<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-mosaic01" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
+<div id="fig-mosaic01" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mosaic01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="diagnostic_files/figure-html/fig-mosaic01-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="624">
 </div>

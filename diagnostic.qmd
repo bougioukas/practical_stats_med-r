@@ -36,8 +36,9 @@ When the index test provides a dichotomous result for each participant in a stud
 +-------------------+---------+-----------------------------------------+----------------+
 |                   |         | **According to the reference standard** |                |
 +-------------------+---------+--------------------+--------------------+----------------+
-|                   |         | $Outcome+$         | $Outcome-$         | Totals         |
-|                   |         | (Disease present)  | (Disease absent)   |                |
+|                   |         | $Outcome+$         | $Outcome-$         |                |
++-------------------+---------+--------------------+--------------------+----------------+
+|                   |         | (Disease present)  | (Disease absent)   | Totals         |
 +-------------------+---------+--------------------+--------------------+----------------+
 | **Index Test      | $Test+$ | **TP**=890         | **FP**=110         | TP+FP=1000     |
 | result**          |         |                    |                    |                |
