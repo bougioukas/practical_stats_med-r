@@ -67,7 +67,7 @@ format:
     toc-title: "On this page"
     link-external-newwindow: true
     code-link: true
-    number-depth: 4
+    number-depth: 5
     code-overflow: scroll
     html-math-method: mathjax
 
