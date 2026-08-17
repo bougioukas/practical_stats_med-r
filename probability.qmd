@@ -290,7 +290,7 @@ $$ {#eq-conditional}
 
 This is known as the **multiplication rule of probability**.
 
-##### Example
+#### Example
 
 Suppose we roll two fair six-sided dice. What is the probability that the first die is a 3, given that the sum of two dice is 8?
 
@@ -357,7 +357,7 @@ $$ {#eq-bayes}
 
 where $P(B)\neq 0$.
 
-##### Example
+#### Example
 
 We are interested in calculating the probability of developing lung cancer if a person smokes tobacco for a long time, P(Cancer\|Smoker).
 
@@ -383,7 +383,7 @@ $$ {#eq-independent}
 
 This is a special case of the multiplication rule of probability, derived from @eq-conditional when the events are independent.
 
-##### Example
+#### Example
 
 Determine the probability of obtaining two 3s when rolling two six-sided fair dice.
 
