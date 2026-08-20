@@ -941,7 +941,7 @@ $$
 \hat{ex.kurt} = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^{n}\left(\frac{x_i - \bar{x}}{s}\right)^4 - \frac{3(n-1)^2}{(n-2)(n-3)}
 $$ {#eq-excurt2}
 
-where $s$ is the sample standard deviation (Eq.\@ref(eq:vsdquation)).
+where $s$ is the sample standard deviation (@eq-vsdquation).
 
 \vspace{5pt}
 
