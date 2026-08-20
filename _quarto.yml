@@ -30,6 +30,7 @@ book:
     - intro.qmd
     - probability.qmd
     - distributions.qmd
+    - descriptive.qmd
     - survival.qmd
     - diagnostic.qmd
     - references.qmd

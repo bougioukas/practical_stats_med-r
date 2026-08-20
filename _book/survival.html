@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>15&nbsp; Survival Analysis – Practical Statistics in Medicine with R</title>
+<title>16&nbsp; Survival Analysis – Practical Statistics in Medicine with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./diagnostic.html" rel="next">
-<link href="./distributions.html" rel="prev">
+<link href="./descriptive.html" rel="prev">
 <link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -159,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survival.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survival.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Survival Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -284,14 +284,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./survival.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./diagnostic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -309,56 +315,56 @@ window.Quarto = {
    
   <ul>
 <li>
-<a href="#introduction-to-survival-analysis" id="toc-introduction-to-survival-analysis" class="nav-link active" data-scroll-target="#introduction-to-survival-analysis"><span class="header-section-number">15.1</span> Introduction to Survival Analysis</a>
+<a href="#introduction-to-survival-analysis" id="toc-introduction-to-survival-analysis" class="nav-link active" data-scroll-target="#introduction-to-survival-analysis"><span class="header-section-number">16.1</span> Introduction to Survival Analysis</a>
   <ul class="collapse">
-<li><a href="#key-characteristics-of-survival-data" id="toc-key-characteristics-of-survival-data" class="nav-link" data-scroll-target="#key-characteristics-of-survival-data"><span class="header-section-number">15.1.1</span> Key Characteristics of Survival Data</a></li>
-  <li><a href="#basic-functions-of-survival-analysis" id="toc-basic-functions-of-survival-analysis" class="nav-link" data-scroll-target="#basic-functions-of-survival-analysis"><span class="header-section-number">15.1.2</span> Basic Functions of Survival Analysis</a></li>
+<li><a href="#key-characteristics-of-survival-data" id="toc-key-characteristics-of-survival-data" class="nav-link" data-scroll-target="#key-characteristics-of-survival-data"><span class="header-section-number">16.1.1</span> Key Characteristics of Survival Data</a></li>
+  <li><a href="#basic-functions-of-survival-analysis" id="toc-basic-functions-of-survival-analysis" class="nav-link" data-scroll-target="#basic-functions-of-survival-analysis"><span class="header-section-number">16.1.2</span> Basic Functions of Survival Analysis</a></li>
   </ul>
 </li>
-  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">15.2</span> Research Question</a></li>
-  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">15.3</span> Preparing the Data</a></li>
-  <li><a href="#the-kaplanmeier-estimator-of-the-survival-function" id="toc-the-kaplanmeier-estimator-of-the-survival-function" class="nav-link" data-scroll-target="#the-kaplanmeier-estimator-of-the-survival-function"><span class="header-section-number">15.4</span> The Kaplan–Meier Estimator of the Survival Function</a></li>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">16.2</span> Research Question</a></li>
+  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"><span class="header-section-number">16.3</span> Preparing the Data</a></li>
+  <li><a href="#the-kaplanmeier-estimator-of-the-survival-function" id="toc-the-kaplanmeier-estimator-of-the-survival-function" class="nav-link" data-scroll-target="#the-kaplanmeier-estimator-of-the-survival-function"><span class="header-section-number">16.4</span> The Kaplan–Meier Estimator of the Survival Function</a></li>
   <li>
-<a href="#pointwise-confidence-interval-of-k-m-survial-function" id="toc-pointwise-confidence-interval-of-k-m-survial-function" class="nav-link" data-scroll-target="#pointwise-confidence-interval-of-k-m-survial-function"><span class="header-section-number">15.5</span> Pointwise Confidence Interval of K-M Survial Function</a>
+<a href="#pointwise-confidence-interval-of-k-m-survial-function" id="toc-pointwise-confidence-interval-of-k-m-survial-function" class="nav-link" data-scroll-target="#pointwise-confidence-interval-of-k-m-survial-function"><span class="header-section-number">16.5</span> Pointwise Confidence Interval of K-M Survial Function</a>
   <ul class="collapse">
-<li><a href="#greenwoods-method" id="toc-greenwoods-method" class="nav-link" data-scroll-target="#greenwoods-method"><span class="header-section-number">15.5.1</span> Greenwood’s Method</a></li>
-  <li><a href="#log-transformation-of-survival-function" id="toc-log-transformation-of-survival-function" class="nav-link" data-scroll-target="#log-transformation-of-survival-function"><span class="header-section-number">15.5.2</span> Log Transformation of Survival Function</a></li>
-  <li><a href="#log-log-transformation-of-survival-function" id="toc-log-log-transformation-of-survival-function" class="nav-link" data-scroll-target="#log-log-transformation-of-survival-function"><span class="header-section-number">15.5.3</span> Log-Log Transformation of Survival Function</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#kaplan-meier-tables-for-the-new-therapy-a" id="toc-kaplan-meier-tables-for-the-new-therapy-a" class="nav-link" data-scroll-target="#kaplan-meier-tables-for-the-new-therapy-a"><span class="header-section-number">15.6</span> Kaplan-Meier Tables for the New Therapy A</a>
-  <ul class="collapse">
-<li><a href="#kaplanmeier-table-with-both-event-times-and-censored-data" id="toc-kaplanmeier-table-with-both-event-times-and-censored-data" class="nav-link" data-scroll-target="#kaplanmeier-table-with-both-event-times-and-censored-data"><span class="header-section-number">15.6.1</span> Kaplan–Meier Table with Both Event Times and Censored Data</a></li>
-  <li><a href="#kaplanmeier-table-of-event-times" id="toc-kaplanmeier-table-of-event-times" class="nav-link" data-scroll-target="#kaplanmeier-table-of-event-times"><span class="header-section-number">15.6.2</span> Kaplan–Meier Table of Event Times</a></li>
-  </ul>
-</li>
-  <li><a href="#the-kaplanmeier-curve-for-the-new-therapy-a" id="toc-the-kaplanmeier-curve-for-the-new-therapy-a" class="nav-link" data-scroll-target="#the-kaplanmeier-curve-for-the-new-therapy-a"><span class="header-section-number">15.7</span> The Kaplan–Meier Curve for the New Therapy A</a></li>
-  <li><a href="#the-median-follow-up-time-for-the-new-therapy" id="toc-the-median-follow-up-time-for-the-new-therapy" class="nav-link" data-scroll-target="#the-median-follow-up-time-for-the-new-therapy"><span class="header-section-number">15.8</span> The Median Follow-up Time for the New Therapy</a></li>
-  <li><a href="#the-nelsonaalen-estimator-of-the-cumulative-hazard-function" id="toc-the-nelsonaalen-estimator-of-the-cumulative-hazard-function" class="nav-link" data-scroll-target="#the-nelsonaalen-estimator-of-the-cumulative-hazard-function"><span class="header-section-number">15.9</span> The Nelson–Aalen Estimator of the Cumulative Hazard Function</a></li>
-  <li>
-<a href="#comparing-groups-in-survival-analysis" id="toc-comparing-groups-in-survival-analysis" class="nav-link" data-scroll-target="#comparing-groups-in-survival-analysis"><span class="header-section-number">15.10</span> Comparing Groups in Survival Analysis</a>
-  <ul class="collapse">
-<li><a href="#k-m-survival-probability-curves" id="toc-k-m-survival-probability-curves" class="nav-link" data-scroll-target="#k-m-survival-probability-curves"><span class="header-section-number">15.10.1</span> K-M Survival Probability Curves</a></li>
-  <li><a href="#cumulative-incidence" id="toc-cumulative-incidence" class="nav-link" data-scroll-target="#cumulative-incidence"><span class="header-section-number">15.10.2</span> Cumulative Incidence</a></li>
-  <li><a href="#the-log-rank-test" id="toc-the-log-rank-test" class="nav-link" data-scroll-target="#the-log-rank-test"><span class="header-section-number">15.10.3</span> The Log-Rank Test</a></li>
-  <li><a href="#the-hazard-ratio-hr" id="toc-the-hazard-ratio-hr" class="nav-link" data-scroll-target="#the-hazard-ratio-hr"><span class="header-section-number">15.10.4</span> The Hazard Ratio (HR)</a></li>
-  <li><a href="#%CF%84he-proportionality-of-hazards" id="toc-τhe-proportionality-of-hazards" class="nav-link" data-scroll-target="#%CF%84he-proportionality-of-hazards"><span class="header-section-number">15.10.5</span> Τhe Proportionality of Hazards</a></li>
-  <li><a href="#reporting-the-results" id="toc-reporting-the-results" class="nav-link" data-scroll-target="#reporting-the-results"><span class="header-section-number">15.10.6</span> Reporting the Results</a></li>
+<li><a href="#greenwoods-method" id="toc-greenwoods-method" class="nav-link" data-scroll-target="#greenwoods-method"><span class="header-section-number">16.5.1</span> Greenwood’s Method</a></li>
+  <li><a href="#log-transformation-of-survival-function" id="toc-log-transformation-of-survival-function" class="nav-link" data-scroll-target="#log-transformation-of-survival-function"><span class="header-section-number">16.5.2</span> Log Transformation of Survival Function</a></li>
+  <li><a href="#log-log-transformation-of-survival-function" id="toc-log-log-transformation-of-survival-function" class="nav-link" data-scroll-target="#log-log-transformation-of-survival-function"><span class="header-section-number">16.5.3</span> Log-Log Transformation of Survival Function</a></li>
   </ul>
 </li>
   <li>
-<a href="#cox-proportional-hazards-cph-model" id="toc-cox-proportional-hazards-cph-model" class="nav-link" data-scroll-target="#cox-proportional-hazards-cph-model"><span class="header-section-number">15.11</span> Cox Proportional Hazards (CPH) Model</a>
+<a href="#kaplan-meier-tables-for-the-new-therapy-a" id="toc-kaplan-meier-tables-for-the-new-therapy-a" class="nav-link" data-scroll-target="#kaplan-meier-tables-for-the-new-therapy-a"><span class="header-section-number">16.6</span> Kaplan-Meier Tables for the New Therapy A</a>
   <ul class="collapse">
-<li><a href="#basics-of-the-cph-model" id="toc-basics-of-the-cph-model" class="nav-link" data-scroll-target="#basics-of-the-cph-model"><span class="header-section-number">15.11.1</span> Basics of the CPH Model</a></li>
-  <li><a href="#the-proportional-hazards-assumption" id="toc-the-proportional-hazards-assumption" class="nav-link" data-scroll-target="#the-proportional-hazards-assumption"><span class="header-section-number">15.11.2</span> The Proportional Hazards Assumption</a></li>
+<li><a href="#kaplanmeier-table-with-both-event-times-and-censored-data" id="toc-kaplanmeier-table-with-both-event-times-and-censored-data" class="nav-link" data-scroll-target="#kaplanmeier-table-with-both-event-times-and-censored-data"><span class="header-section-number">16.6.1</span> Kaplan–Meier Table with Both Event Times and Censored Data</a></li>
+  <li><a href="#kaplanmeier-table-of-event-times" id="toc-kaplanmeier-table-of-event-times" class="nav-link" data-scroll-target="#kaplanmeier-table-of-event-times"><span class="header-section-number">16.6.2</span> Kaplan–Meier Table of Event Times</a></li>
+  </ul>
+</li>
+  <li><a href="#the-kaplanmeier-curve-for-the-new-therapy-a" id="toc-the-kaplanmeier-curve-for-the-new-therapy-a" class="nav-link" data-scroll-target="#the-kaplanmeier-curve-for-the-new-therapy-a"><span class="header-section-number">16.7</span> The Kaplan–Meier Curve for the New Therapy A</a></li>
+  <li><a href="#the-median-follow-up-time-for-the-new-therapy" id="toc-the-median-follow-up-time-for-the-new-therapy" class="nav-link" data-scroll-target="#the-median-follow-up-time-for-the-new-therapy"><span class="header-section-number">16.8</span> The Median Follow-up Time for the New Therapy</a></li>
+  <li><a href="#the-nelsonaalen-estimator-of-the-cumulative-hazard-function" id="toc-the-nelsonaalen-estimator-of-the-cumulative-hazard-function" class="nav-link" data-scroll-target="#the-nelsonaalen-estimator-of-the-cumulative-hazard-function"><span class="header-section-number">16.9</span> The Nelson–Aalen Estimator of the Cumulative Hazard Function</a></li>
+  <li>
+<a href="#comparing-groups-in-survival-analysis" id="toc-comparing-groups-in-survival-analysis" class="nav-link" data-scroll-target="#comparing-groups-in-survival-analysis"><span class="header-section-number">16.10</span> Comparing Groups in Survival Analysis</a>
+  <ul class="collapse">
+<li><a href="#k-m-survival-probability-curves" id="toc-k-m-survival-probability-curves" class="nav-link" data-scroll-target="#k-m-survival-probability-curves"><span class="header-section-number">16.10.1</span> K-M Survival Probability Curves</a></li>
+  <li><a href="#cumulative-incidence" id="toc-cumulative-incidence" class="nav-link" data-scroll-target="#cumulative-incidence"><span class="header-section-number">16.10.2</span> Cumulative Incidence</a></li>
+  <li><a href="#the-log-rank-test" id="toc-the-log-rank-test" class="nav-link" data-scroll-target="#the-log-rank-test"><span class="header-section-number">16.10.3</span> The Log-Rank Test</a></li>
+  <li><a href="#the-hazard-ratio-hr" id="toc-the-hazard-ratio-hr" class="nav-link" data-scroll-target="#the-hazard-ratio-hr"><span class="header-section-number">16.10.4</span> The Hazard Ratio (HR)</a></li>
+  <li><a href="#%CF%84he-proportionality-of-hazards" id="toc-τhe-proportionality-of-hazards" class="nav-link" data-scroll-target="#%CF%84he-proportionality-of-hazards"><span class="header-section-number">16.10.5</span> Τhe Proportionality of Hazards</a></li>
+  <li><a href="#reporting-the-results" id="toc-reporting-the-results" class="nav-link" data-scroll-target="#reporting-the-results"><span class="header-section-number">16.10.6</span> Reporting the Results</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#cox-proportional-hazards-cph-model" id="toc-cox-proportional-hazards-cph-model" class="nav-link" data-scroll-target="#cox-proportional-hazards-cph-model"><span class="header-section-number">16.11</span> Cox Proportional Hazards (CPH) Model</a>
+  <ul class="collapse">
+<li><a href="#basics-of-the-cph-model" id="toc-basics-of-the-cph-model" class="nav-link" data-scroll-target="#basics-of-the-cph-model"><span class="header-section-number">16.11.1</span> Basics of the CPH Model</a></li>
+  <li><a href="#the-proportional-hazards-assumption" id="toc-the-proportional-hazards-assumption" class="nav-link" data-scroll-target="#the-proportional-hazards-assumption"><span class="header-section-number">16.11.2</span> The Proportional Hazards Assumption</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-survival" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></h1>
+<h1 class="title"><span id="sec-survival" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></h1>
 </div>
 
 
@@ -387,10 +393,10 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>&nbsp;</p>
-<section id="introduction-to-survival-analysis" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="introduction-to-survival-analysis">
-<span class="header-section-number">15.1</span> Introduction to Survival Analysis</h2>
-<section id="key-characteristics-of-survival-data" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="key-characteristics-of-survival-data">
-<span class="header-section-number">15.1.1</span> Key Characteristics of Survival Data</h3>
+<section id="introduction-to-survival-analysis" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="introduction-to-survival-analysis">
+<span class="header-section-number">16.1</span> Introduction to Survival Analysis</h2>
+<section id="key-characteristics-of-survival-data" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="key-characteristics-of-survival-data">
+<span class="header-section-number">16.1.1</span> Key Characteristics of Survival Data</h3>
 <p>In field of health sciences, we frequently encounter data that represent the <strong>time until an event occurs</strong>. Therefore, in survival analysis, we are not only interested in whether a patient experiences the outcome of interest but also in how long it takes for that outcome to occur—referred to as time-to-event. In a clinical trial setting, the primary outcome may be the time from onset of therapy to a well-defined critical event, such as death from cardiovascular disease, cancer recurrence, or the first occurrence of a specific adverse event. One of the challenges associated with survival data is the presence of censored data, where the survival times remain unknown for some patients due to various reasons, including:</p>
 <ul>
 <li>Lost to follow-up during the study period.</li>
@@ -400,43 +406,43 @@ window.Quarto = {
 <p>These data are commonly referred to as <strong>right-censored</strong> because, on a timeline, the actual lifetimes of the patients extend beyond their observed censor times.</p>
 <p>Statistical techniques have been developed for survival data to account for censored observations. In survival analysis, it is typically assumed that censoring is <strong>non-informative</strong>, meaning the reason for censoring is unrelated to the outcome being studied (e.g., a patient in a clinical trial might move away from the research center). In this case, the censored patients are assumed to be no different from those who are followed, implying they are not more likely to experience the event.</p>
 <p>It is important to note that in clinical trials, differences in censoring between control and experimental groups may introduce systematic bias at various study time points, potentially influencing the study’s conclusions <span class="citation" data-cites="templeton2015 lesan2024">(<a href="references.html#ref-templeton2015" role="doc-biblioref">Templeton et al. 2015</a>; <a href="references.html#ref-lesan2024" role="doc-biblioref">Lesan, Olivier, and Prasad 2024</a>)</span>.</p>
-</section><section id="basic-functions-of-survival-analysis" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="basic-functions-of-survival-analysis">
-<span class="header-section-number">15.1.2</span> Basic Functions of Survival Analysis</h3>
-<section id="survival-function" class="level4" data-number="15.1.2.1"><h4 data-number="15.1.2.1" class="anchored" data-anchor-id="survival-function">
-<span class="header-section-number">15.1.2.1</span> <em>Survival Function</em>
+</section><section id="basic-functions-of-survival-analysis" class="level3" data-number="16.1.2"><h3 data-number="16.1.2" class="anchored" data-anchor-id="basic-functions-of-survival-analysis">
+<span class="header-section-number">16.1.2</span> Basic Functions of Survival Analysis</h3>
+<section id="survival-function" class="level4" data-number="16.1.2.1"><h4 data-number="16.1.2.1" class="anchored" data-anchor-id="survival-function">
+<span class="header-section-number">16.1.2.1</span> <em>Survival Function</em>
 </h4>
 <p>Let <span class="math inline">\(T\)</span> be a non-negative random variable, representing the time until the event of interest (e.g., death, disease recurrence). The survival function, denoted as <span class="math inline">\(S(t)\)</span>, also known as cumulative survival probability (often with the term “cumulative” omitted), is defined as the probability that <span class="math inline">\(T\)</span> is greater than <span class="math inline">\(t\)</span>:</p>
 <p><span id="eq-survt"><span class="math display">\[
 S(t) = P(T &gt; t)
-\tag{15.1}\]</span></span></p>
+\tag{16.1}\]</span></span></p>
 <p>When the event is death, the survival function estimates the probability that a patient survives beyond time <span class="math inline">\(t\)</span>.</p>
 <p>Additionally, the cumulative distribution function, <span class="math inline">\(F(t) =P(T \leq t ) = 1 - S(t)\)</span>, represents the probability of the event occurs at or before time <span class="math inline">\(t\)</span>.</p>
-</section><section id="hazard-function" class="level4" data-number="15.1.2.2"><h4 data-number="15.1.2.2" class="anchored" data-anchor-id="hazard-function">
-<span class="header-section-number">15.1.2.2</span> <em>Hazard Function</em>
+</section><section id="hazard-function" class="level4" data-number="16.1.2.2"><h4 data-number="16.1.2.2" class="anchored" data-anchor-id="hazard-function">
+<span class="header-section-number">16.1.2.2</span> <em>Hazard Function</em>
 </h4>
 <p>The hazard is the instantaneous risk at a given time <span class="math inline">\(t\)</span> of experiencing the outcome of interest. The way the hazard changes over time is referred to as the hazard function or hazard rate, denoted as <span class="math inline">\(h(t)\)</span>.</p>
 <p>Mathematically, the hazard function <span class="math inline">\(h(t)\)</span> is defined as the limit of the probability that an event occurs in the interval <span class="math inline">\([t, t + \Delta t)\)</span>, given that the individual has survived up to time <span class="math inline">\(t\)</span>, divided by the length of the interval <span class="math inline">\(\Delta t\)</span>, as <span class="math inline">\(\Delta t\)</span> approaches zero:</p>
 <p><span id="eq-hazardt"><span class="math display">\[
 h(t) = \lim_{\Delta t \to 0} \frac{P(t \le T &lt; t + \Delta t \mid T \ge t)}{\Delta t}
-\tag{15.2}\]</span></span></p>
+\tag{16.2}\]</span></span></p>
 <p>It can be proven that the hazard function is equal to the negative derivative of the natural logarithm of the survival function:</p>
 <p><span id="eq-hazsurv"><span class="math display">\[
 h(t) = - \frac{d[lnS(t)]}{dt}
-\tag{15.3}\]</span></span></p>
-<p>If both sides of <a href="#eq-hazsurv" class="quarto-xref">Eq.&nbsp;<span>15.3</span></a> are integrated, we obtain the cumulative hazard function, denoted as <span class="math inline">\(H(t)\)</span>, as the negative natural logarithm of the survival function:</p>
+\tag{16.3}\]</span></span></p>
+<p>If both sides of <a href="#eq-hazsurv" class="quarto-xref">Eq.&nbsp;<span>16.3</span></a> are integrated, we obtain the cumulative hazard function, denoted as <span class="math inline">\(H(t)\)</span>, as the negative natural logarithm of the survival function:</p>
 <p><span id="eq-hazsurv2"><span class="math display">\[
 H(t) = -\ln(S(t))
-\tag{15.4}\]</span></span></p>
+\tag{16.4}\]</span></span></p>
 <p>Additionally, the survival function can be expressed as the exponential of the negative cumulative hazard function:</p>
 <p><span id="eq-hazsurv3"><span class="math display">\[
 S(t) = e^{-H(t)}
-\tag{15.5}\]</span></span></p>
-</section></section></section><section id="research-question" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">15.2</span> Research Question</h2>
+\tag{16.5}\]</span></span></p>
+</section></section></section><section id="research-question" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="research-question">
+<span class="header-section-number">16.2</span> Research Question</h2>
 <p>In a randomized controlled trial designed to find out the efficacy of a new therapy for leukemia, the patients were randomly assigned into two groups (new therapy versus standard therapy). The researchers want to (i) estimate the survival time of patients receiving the new therapy, and (ii) compare the survival curves of the patients receiving the new therapy and patients receiving the standard therapy.</p>
 <p>In a clinical trial setting, the patients are monitored for the occurrence of a particular event or outcome. Survival times are typically not normally distributed and often follow skewed distributions, requiring specialized statistical methods for analysis. One approach to estimate the the survival over time is the <strong>Kaplan-Meier</strong> procedure, which is a non-parametric method, meaning it doesn’t rely on assumptions about the underlying distribution of the data.</p>
-</section><section id="preparing-the-data" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="preparing-the-data">
-<span class="header-section-number">15.3</span> Preparing the Data</h2>
+</section><section id="preparing-the-data" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">16.3</span> Preparing the Data</h2>
 <p>In preparing Kaplan-Meier survival analysis that compares different treatments, three variables should be recorded for each patient: (a) the <strong>time</strong> that is the duration between the beginning of the treatment and the end-point (event of interest or censoring), (b) the <strong>status</strong> at the end of the survival time (event occurrence or censored data), and (c) the <strong>study group</strong> such as treatment versus control intervention.</p>
 <p>We will begin by loading a small data set named <em>“leukemia”</em>.</p>
 <div class="cell">
@@ -499,7 +505,7 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_A</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">intervention</span> <span class="op">==</span> <span class="st">"therapy A (new)"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="#fig-patientime" class="quarto-xref">Figure&nbsp;<span>15.1</span></a> presents patient times from this subset, where each patient is shown as starting at time zero. We observe 9 <code>X</code>’s representing deaths and 12 open circles indicating censoring events.</p>
+<p><a href="#fig-patientime" class="quarto-xref">Figure&nbsp;<span>16.1</span></a> presents patient times from this subset, where each patient is shown as starting at time zero. We observe 9 <code>X</code>’s representing deaths and 12 open circles indicating censoring events.</p>
 <p>The <strong><em>survival</em></strong> package has a construct called a <strong><code><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv()</a></code></strong> object-a function that converts the data to a specialized format capable of handling censored observations. We need to specify two arguments in this function, <em>time</em> and <em>status</em> of the patients. The resulting survival object combines information from these two variables. Hence, we obtain the following patient times (in months) for patients undergoing the new therapy A:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">dat_A</span><span class="op">$</span><span class="va">time</span>, <span class="va">dat_A</span><span class="op">$</span><span class="va">status</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -510,11 +516,11 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-patientime" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-patientime" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-patientime-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-patientime-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="384">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-patientime-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.1 Patient time data for 21 participants receiving the new therapy A.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-patientime-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.1 Patient time data for 21 participants receiving the new therapy A.
 </figcaption></figure>
 </div>
 </div>
@@ -529,12 +535,12 @@ $ intervention &lt;chr&gt; "therapy A (new)", "therapy A (new)", "therapy A (new
 </div>
 </div>
 <p>Censoring times are indicated by the <span class="math inline">\(\textbf{+}\)</span> symbol. For instance, in the above data, patients receiving the new therapy were censored at months: 6+, 9+, 10+, 11+, 17+, 19+, 20+, 25+, 32+, 32+, 34+, 35+.</p>
-</section><section id="the-kaplanmeier-estimator-of-the-survival-function" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="the-kaplanmeier-estimator-of-the-survival-function">
-<span class="header-section-number">15.4</span> The Kaplan–Meier Estimator of the Survival Function</h2>
+</section><section id="the-kaplanmeier-estimator-of-the-survival-function" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="the-kaplanmeier-estimator-of-the-survival-function">
+<span class="header-section-number">16.4</span> The Kaplan–Meier Estimator of the Survival Function</h2>
 <p>Kaplan–Meier estimator, also known as Product–Limit estimator, is typically used to estimate the survival function. Suppose that the events (deaths) are observed during the follow-up period at <span class="math inline">\(k\)</span> distinct times, <span class="math inline">\(t_{1} &lt; t_{2} &lt; t_{3} &lt; \ ...\ &lt; t_{k}\)</span>. The <strong>conditional probability</strong> of surviving is defined as the probability of surviving beyond time <span class="math inline">\(t_j\)</span>, given that the patient has survived up to time <span class="math inline">\(t_j\)</span>. This conditional probability represents the proportion of patients who are at risk at time <span class="math inline">\(t_j\)</span> but who do not die at this time point, as follows:</p>
 <p><span id="eq-condprob"><span class="math display">\[
 P(survive \ beyond \ {t_j} \ | \ sarvived \ up \ to \ {t_j})=1-\frac{d_j}{r_j}, \ \ \ \ for \ j=1,2,..,k.
-\tag{15.6}\]</span></span></p>
+\tag{16.6}\]</span></span></p>
 <p>where</p>
 <ul>
 <li>
@@ -548,70 +554,70 @@ P(survive \ beyond \ {t_j} \ | \ sarvived \ up \ to \ {t_j})=1-\frac{d_j}{r_j}, 
 <p>The <strong>Kaplan–Meier estimator</strong> <span class="citation" data-cites="kaplan1958">(<a href="references.html#ref-kaplan1958" role="doc-biblioref">Kaplan and Meier 1958</a>)</span> is defined as the <strong>product</strong> of the conditional probabilities of surviving beyond time <span class="math inline">\(t_j\)</span>:</p>
 <p><span id="eq-cumsurv1"><span class="math display">\[
 \hat S(t) = P(T&gt;t)  =  \prod_{j:t_j≤t}(1-\frac{d_{j}}{r_{j}})
-\tag{15.7}\]</span></span></p>
+\tag{16.7}\]</span></span></p>
 <p>with the convention that <span class="math inline">\(\hat S(t) = 1\)</span> for <span class="math inline">\(t&lt;t_1\)</span>.</p>
 <p>&nbsp;</p>
 <p>Therefore, the cumulative probability of surviving beyond <span class="math inline">\(t_j\)</span> can be unfolded as follows:</p>
 <p><span id="eq-cumsurv2"><span class="math display">\[
 \hat S(t_j) = (1-\frac{d_{j}}{r_{j}}) \times \underbrace{(1-\frac{d_{j-1}}{r_{j-1}})   \times \ ... \times\ (1-\frac{d_{2}}{r_{2}}) \times (1-\frac{d_{1}}{r_{1}})}_{\hat S(t_{j-1})}
-\tag{15.8}\]</span></span></p>
+\tag{16.8}\]</span></span></p>
 <p>where the <span class="math inline">\(\times\)</span> symbol denotes multiplication.</p>
 <p>This implies that:</p>
 <p><span id="eq-cumsurv3"><span class="math display">\[
 \hat S(t_j) =  (1-\frac{d_{j}}{r_{j}}) \times \hat S(t_{j-1})
-\tag{15.9}\]</span></span></p>
-</section><section id="pointwise-confidence-interval-of-k-m-survial-function" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="pointwise-confidence-interval-of-k-m-survial-function">
-<span class="header-section-number">15.5</span> Pointwise Confidence Interval of K-M Survial Function</h2>
+\tag{16.9}\]</span></span></p>
+</section><section id="pointwise-confidence-interval-of-k-m-survial-function" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="pointwise-confidence-interval-of-k-m-survial-function">
+<span class="header-section-number">16.5</span> Pointwise Confidence Interval of K-M Survial Function</h2>
 <p>Several different approaches can be used to derive the variance of the K-M estimator and construct pointwise confidence intervals.</p>
-<section id="greenwoods-method" class="level3" data-number="15.5.1"><h3 data-number="15.5.1" class="anchored" data-anchor-id="greenwoods-method">
-<span class="header-section-number">15.5.1</span> Greenwood’s Method</h3>
+<section id="greenwoods-method" class="level3" data-number="16.5.1"><h3 data-number="16.5.1" class="anchored" data-anchor-id="greenwoods-method">
+<span class="header-section-number">16.5.1</span> Greenwood’s Method</h3>
 <p>Based on the “delta” method <span class="citation" data-cites="hosmer2008">(<a href="references.html#ref-hosmer2008" role="doc-biblioref">Hosmer, Lemeshow, and May 2008</a>)</span>, we obtain the Greenwood’s formula for the variance of <span class="math inline">\(\hat{S}(t)\)</span> <span class="citation" data-cites="greenwood1926">(<a href="references.html#ref-greenwood1926" role="doc-biblioref">Greenwood 1926</a>)</span>:</p>
 <p><span id="eq-vargreenwood"><span class="math display">\[
 \hat{Var} \big(\hat{S}(t) \big) \cong \big(\hat{S}(t)\big)^2 \sum_{j:t_j≤t} \frac{d_{j}}{r_{j}(r_{j} - d_{j})}
-\tag{15.10}\]</span></span></p>
+\tag{16.10}\]</span></span></p>
 <p>The estimated standard error of <span class="math inline">\(\hat S(t)\)</span> is the positive square root of @eq-vargreenwood:</p>
 <p><span id="eq-segreenwood"><span class="math display">\[
 \hat{SE}\big({\hat{S}(t)}\big) = [\hat{Var} \big(\hat{S}(t) \big)]^{1/2}
-\tag{15.11}\]</span></span></p>
+\tag{16.11}\]</span></span></p>
 <p>The simplest estimation of confidence interval for the survival probability at a given time <span class="math inline">\(t\)</span> is given by:</p>
 <p><span id="eq-cigreenwood"><span class="math display">\[
 \hat{S}(t)\pm 1.96 \cdot SE\big({\hat{S}(t)}\big)
-\tag{15.12}\]</span></span></p>
+\tag{16.12}\]</span></span></p>
 <p>This approach, however, can lead to confidence intervals outside the valid range (less than zero or greater than one), and assumes normality which might not hold for small samples. To address these problems, <code>log</code> transformation, and complementary <code>log-log</code> transformation have been proposed.</p>
-</section><section id="log-transformation-of-survival-function" class="level3" data-number="15.5.2"><h3 data-number="15.5.2" class="anchored" data-anchor-id="log-transformation-of-survival-function">
-<span class="header-section-number">15.5.2</span> Log Transformation of Survival Function</h3>
+</section><section id="log-transformation-of-survival-function" class="level3" data-number="16.5.2"><h3 data-number="16.5.2" class="anchored" data-anchor-id="log-transformation-of-survival-function">
+<span class="header-section-number">16.5.2</span> Log Transformation of Survival Function</h3>
 <p>The approximate variance of <span class="math inline">\(log\hat{S}(t)\)</span> is:</p>
 <p><span id="eq-varlog"><span class="math display">\[
 \hat{Var} \big(log\hat{S}(t) \big) \cong \sum_{j:t_j≤t} \frac{d_{j}}{r_{j}(r_{j} - d_{j})}
-\tag{15.13}\]</span></span></p>
+\tag{16.13}\]</span></span></p>
 <p>The standard error of the log K-M estimator is approximately equal to <span class="math inline">\([\hat{Var} \big(log\hat{S}(t) \big)]^{1/2}\)</span>. Thus, the endpoints of a 95% confidence interval for the <span class="math inline">\(log\hat{S}(t)\)</span> are given by the expression:</p>
 <p><span id="eq-cilog"><span class="math display">\[
 log\hat{S}(t)\pm 1.96 \cdot \hat{SE}\big(log\hat{S}(t)\big)
-\tag{15.14}\]</span></span></p>
+\tag{16.14}\]</span></span></p>
 <p>We convert each of these values back to the original scale using the formula:</p>
 <p><span id="eq-backcilog"><span class="math display">\[
 \hat{S}(t)exp\{ \pm 1.96 \cdot \hat{SE}\big({log\hat{S}(t)}\big)\}
-\tag{15.15}\]</span></span></p>
-</section><section id="log-log-transformation-of-survival-function" class="level3" data-number="15.5.3"><h3 data-number="15.5.3" class="anchored" data-anchor-id="log-log-transformation-of-survival-function">
-<span class="header-section-number">15.5.3</span> Log-Log Transformation of Survival Function</h3>
+\tag{16.15}\]</span></span></p>
+</section><section id="log-log-transformation-of-survival-function" class="level3" data-number="16.5.3"><h3 data-number="16.5.3" class="anchored" data-anchor-id="log-log-transformation-of-survival-function">
+<span class="header-section-number">16.5.3</span> Log-Log Transformation of Survival Function</h3>
 <p>The approximate variance of the <code>log-log</code> transformation is:</p>
 <p><span id="eq-varloglog"><span class="math display">\[
 \hat {Var} \big(log(-log\hat{S}(t)) \big) \cong \frac{1}{\big(log\hat{S}(t)\big)^2} \sum_{j:t_j≤t} \frac{d_{j}}{r_{j}(r_{j} - d_{j})}
-\tag{15.16}\]</span></span></p>
+\tag{16.16}\]</span></span></p>
 <p>The standard error of the log-log K-M estimator is approximately equal to <span class="math inline">\([\hat{Var} \big(log(-log\hat{S}(t)) \big)]^{1/2}\)</span>.</p>
 <p>Now, we can construct a 95% confidence interval for the <span class="math inline">\(log(-log\hat{S}(t))\)</span>, as follows:</p>
 <p><span id="eq-ciloglog"><span class="math display">\[
 log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
-\tag{15.17}\]</span></span></p>
+\tag{16.17}\]</span></span></p>
 <p>Finally, we convert the endpoints of the confidence interval back to the original scale using the expression:</p>
 <p><span id="eq-backciloglog"><span class="math display">\[
 \hat S(t)^{exp\{\pm 1.96 \ \cdot \hat{SE}(log(-log\hat{S}(t)))\}}
-\tag{15.18}\]</span></span></p>
-</section></section><section id="kaplan-meier-tables-for-the-new-therapy-a" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="kaplan-meier-tables-for-the-new-therapy-a">
-<span class="header-section-number">15.6</span> Kaplan-Meier Tables for the New Therapy A</h2>
+\tag{16.18}\]</span></span></p>
+</section></section><section id="kaplan-meier-tables-for-the-new-therapy-a" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="kaplan-meier-tables-for-the-new-therapy-a">
+<span class="header-section-number">16.6</span> Kaplan-Meier Tables for the New Therapy A</h2>
 <p>In Kaplan-Meier analysis, the first step typically involves creating tables with the Kaplan-Meier estimates of the survival function.</p>
-<section id="kaplanmeier-table-with-both-event-times-and-censored-data" class="level3" data-number="15.6.1"><h3 data-number="15.6.1" class="anchored" data-anchor-id="kaplanmeier-table-with-both-event-times-and-censored-data">
-<span class="header-section-number">15.6.1</span> Kaplan–Meier Table with Both Event Times and Censored Data</h3>
+<section id="kaplanmeier-table-with-both-event-times-and-censored-data" class="level3" data-number="16.6.1"><h3 data-number="16.6.1" class="anchored" data-anchor-id="kaplanmeier-table-with-both-event-times-and-censored-data">
+<span class="header-section-number">16.6.1</span> Kaplan–Meier Table with Both Event Times and Censored Data</h3>
 <p>An initial table includes both observed event times and censored data points, providing a clear understanding of how the survival probability changes over time. This can be achieved in R using either the <strong><code><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit()</a></code></strong> function from the <strong><em>survival</em></strong> package or the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2()</a></code></strong> function from the <strong><em>ggsurvfit</em></strong> package. The latter offers the advantage of generating time-to-event figures using <strong><em>ggplot2</em></strong> for visualization. Both functions model the survival probability using the formula <code>Surv ~ 1</code>, where 1 indicates the absence of any grouping variable. Let’s apply this to therapy A data.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create an object with the K-M estimates for the new therapy A</span></span>
@@ -659,7 +665,7 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
 16   35      1       0        1 0.4481793</code></pre>
 </div>
 </div>
-<p>However, the above functions do not compute the conditional probability of survival over time. Therefore, we will calculate it in R using the <a href="#eq-condprob" class="quarto-xref">Eq.&nbsp;<span>15.6</span></a>:</p>
+<p>However, the above functions do not compute the conditional probability of survival over time. Therefore, we will calculate it in R using the <a href="#eq-condprob" class="quarto-xref">Eq.&nbsp;<span>16.6</span></a>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># compute the conditional probability of "surviving" over time</span></span>
 <span><span class="va">prob_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="va">fit_A</span><span class="op">$</span><span class="va">n.event</span><span class="op">/</span><span class="va">fit_A</span><span class="op">$</span><span class="va">n.risk</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span>
@@ -669,10 +675,10 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
 [14] 1.000 1.000 1.000</code></pre>
 </div>
 </div>
-<p>Now, we are ready to include all the information in the <a href="#tbl-tb1" class="quarto-xref">Table&nbsp;<span>15.1</span></a>:</p>
+<p>Now, we are ready to include all the information in the <a href="#tbl-tb1" class="quarto-xref">Table&nbsp;<span>16.1</span></a>:</p>
 <div class="cell">
 <div id="tbl-tb1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tb1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;15.1 Summary table used to calculate the Kaplan–Meier estimates of the survival function for data of the new therapy A.
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tb1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;16.1 Summary table used to calculate the Kaplan–Meier estimates of the survival function for data of the new therapy A.
 </figcaption><div aria-describedby="tbl-tb1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="table do-not-create-environment cell caption-top table-sm table-striped small">
@@ -833,12 +839,12 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
 <p><strong>IMPORTANT</strong></p>
 <p>Only events cause the survival probability to drop. Censoring leads to a larger drop for the next event because it reduces the number of patients at risk when that next event occurs.</p>
 </div>
-</section><section id="kaplanmeier-table-of-event-times" class="level3" data-number="15.6.2"><h3 data-number="15.6.2" class="anchored" data-anchor-id="kaplanmeier-table-of-event-times">
-<span class="header-section-number">15.6.2</span> Kaplan–Meier Table of Event Times</h3>
-<p>In Kaplan-Meier approach, the cumulative survival probability is calculated at each event time <span class="math inline">\(t_j\)</span> and represents the proportion of patients who have managed to survive beyond that point in time. The <a href="#tbl-tb2" class="quarto-xref">Table&nbsp;<span>15.2</span></a> presents, at each time <span class="math inline">\(t_j\)</span> when an event occurred, the total number of patients at risk (<span class="math inline">\(r_j\)</span>) just before the <span class="math inline">\(t_j\)</span>, the number of events at that time (<span class="math inline">\(d_j\)</span>), the conditional probability, and the cumulative probability of survival. It also includes the standard error (according to <a href="#eq-segreenwood" class="quarto-xref">Eq.&nbsp;<span>15.11</span></a>; the default of <strong><em>survival</em></strong> package) and 95% confidence interval of the survival point estimate (lower 95% CI, upper 95% CI; according to <a href="#eq-backcilog" class="quarto-xref">Eq.&nbsp;<span>15.15</span></a>; the default of <strong><em>survival</em></strong> package).</p>
+</section><section id="kaplanmeier-table-of-event-times" class="level3" data-number="16.6.2"><h3 data-number="16.6.2" class="anchored" data-anchor-id="kaplanmeier-table-of-event-times">
+<span class="header-section-number">16.6.2</span> Kaplan–Meier Table of Event Times</h3>
+<p>In Kaplan-Meier approach, the cumulative survival probability is calculated at each event time <span class="math inline">\(t_j\)</span> and represents the proportion of patients who have managed to survive beyond that point in time. The <a href="#tbl-tb2" class="quarto-xref">Table&nbsp;<span>16.2</span></a> presents, at each time <span class="math inline">\(t_j\)</span> when an event occurred, the total number of patients at risk (<span class="math inline">\(r_j\)</span>) just before the <span class="math inline">\(t_j\)</span>, the number of events at that time (<span class="math inline">\(d_j\)</span>), the conditional probability, and the cumulative probability of survival. It also includes the standard error (according to <a href="#eq-segreenwood" class="quarto-xref">Eq.&nbsp;<span>16.11</span></a>; the default of <strong><em>survival</em></strong> package) and 95% confidence interval of the survival point estimate (lower 95% CI, upper 95% CI; according to <a href="#eq-backcilog" class="quarto-xref">Eq.&nbsp;<span>16.15</span></a>; the default of <strong><em>survival</em></strong> package).</p>
 <div class="cell">
 <div id="tbl-tb2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tb2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;15.2 Kaplan–Meier estimates of the survival function, standard error, and 95% confidence intervals for the new treatment A.
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tb2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;16.2 Kaplan–Meier estimates of the survival function, standard error, and 95% confidence intervals for the new treatment A.
 </figcaption><div aria-describedby="tbl-tb2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="table do-not-create-environment cell caption-top table-sm table-striped small">
@@ -952,7 +958,7 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
    35      1       0    0.448  0.1346        0.249        0.807</code></pre>
 </div>
 </div>
-<p>Finally, if we wish to obtain the end points of confident interval according to <a href="#eq-backciloglog" class="quarto-xref">Eq.&nbsp;<span>15.18</span></a>, we specify the <code>conf.type = "log-log"</code> in the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2()</a></code></strong>, as follows:</p>
+<p>Finally, if we wish to obtain the end points of confident interval according to <a href="#eq-backciloglog" class="quarto-xref">Eq.&nbsp;<span>16.18</span></a>, we specify the <code>conf.type = "log-log"</code> in the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2()</a></code></strong>, as follows:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>, conf.type <span class="op">=</span> <span class="st">"log-log"</span>, </span>
 <span>                   data <span class="op">=</span> <span class="va">dat_A</span><span class="op">)</span></span>
@@ -970,9 +976,9 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
    23      6       1    0.448  0.1346        0.188        0.680</code></pre>
 </div>
 </div>
-</section></section><section id="the-kaplanmeier-curve-for-the-new-therapy-a" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="the-kaplanmeier-curve-for-the-new-therapy-a">
-<span class="header-section-number">15.7</span> The Kaplan–Meier Curve for the New Therapy A</h2>
-<p>Kaplan–Meier analysis is typically presented as a survival curve in addition to tabular form. The K-M curve of the estimated cumulative probability of survival, along with the 95% confidence interval (lower 95% CI, upper 95% CI), is depicted in <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>. The time post randomization in months is represented on the x-axis, and the cumulative survival probability is plotted on the y-axis.</p>
+</section></section><section id="the-kaplanmeier-curve-for-the-new-therapy-a" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="the-kaplanmeier-curve-for-the-new-therapy-a">
+<span class="header-section-number">16.7</span> The Kaplan–Meier Curve for the New Therapy A</h2>
+<p>Kaplan–Meier analysis is typically presented as a survival curve in addition to tabular form. The K-M curve of the estimated cumulative probability of survival, along with the 95% confidence interval (lower 95% CI, upper 95% CI), is depicted in <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>16.2</span></a>. The time post randomization in months is represented on the x-axis, and the cumulative survival probability is plotted on the y-axis.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_A</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/ggsurvfit.html">ggsurvfit</a></span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">0.6</span>, color <span class="op">=</span> <span class="st">"#077E97"</span> <span class="op">)</span> <span class="op">+</span></span>
@@ -988,18 +994,18 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"K-M curve for the new therapy A"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Months since Randomization"</span>, y <span class="op">=</span> <span class="st">"Survival Probability"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-kaplan1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-kaplan1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kaplan1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-kaplan1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="652">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kaplan1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.2 Kaplan–Meier estimates of the survival function for the new therapy A.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kaplan1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.2 Kaplan–Meier estimates of the survival function for the new therapy A.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>The K-M curve is a stepped line, rather than a smooth curve, as it remains horizontal when there are no events and drops only at times when at least one death occurs. With a small sample the 95% confidence interval of the <span class="math inline">\(S(t)\)</span> is wide (shaded light blue area). Furthermore, we observe in <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>15.2</span></a> that as the number of individuals at risk decreases over time, the uncertainty of the Kaplan-Meier estimate increases, resulting in <strong>wider</strong> confidence intervals at later times.</p>
+<p>The K-M curve is a stepped line, rather than a smooth curve, as it remains horizontal when there are no events and drops only at times when at least one death occurs. With a small sample the 95% confidence interval of the <span class="math inline">\(S(t)\)</span> is wide (shaded light blue area). Furthermore, we observe in <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>16.2</span></a> that as the number of individuals at risk decreases over time, the uncertainty of the Kaplan-Meier estimate increases, resulting in <strong>wider</strong> confidence intervals at later times.</p>
 <p>Beyond the standard Kaplan-Meier curve, we can enhance the visualization of survival data by incorporating additional information <span class="citation" data-cites="morris2019 rosen2020">(<a href="references.html#ref-morris2019" role="doc-biblioref">Morris et al. 2019</a>; <a href="references.html#ref-rosen2020" role="doc-biblioref">Rosen, Prasad, and Chen 2020</a>)</span>. At the bottom of the graph, a table presents the number of participants at risk, the <strong>cumulative</strong> number of censored observations, and the <strong>cumulative</strong> number of patients who have experienced an event at specific time points (0, 5, 10, 15, 20, 25, 30 and 35 months).</p>
-<p>We can also find the <strong>median survival time</strong>—the time point at which half of the patients have survived—graphically. Starting from the mid-point of the survival axis (y = 0.50) in <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>, we move horizontally until the curve is crossed, then drop vertically to the time axis (x-axis) to find the corresponding time (gray dashed line). In our example, the <strong>median</strong> survival time for patients receiving the new therapy A is around 23 months. To confirm this result, we simply call the <code>fit_A</code> survival object that we previously created.</p>
+<p>We can also find the <strong>median survival time</strong>—the time point at which half of the patients have survived—graphically. Starting from the mid-point of the survival axis (y = 0.50) in <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>16.2</span></a>, we move horizontally until the curve is crossed, then drop vertically to the time axis (x-axis) to find the corresponding time (gray dashed line). In our example, the <strong>median</strong> survival time for patients receiving the new therapy A is around 23 months. To confirm this result, we simply call the <code>fit_A</code> survival object that we previously created.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1009,7 +1015,7 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
 [1,] 21      9     23      16      NA</code></pre>
 </div>
 </div>
-<p>The lower endpoint of the 95% confidence interval for the median survival time is 16 months (red dashed line), whereas the upper endpoint is undefined (<code>NA</code>). This becomes clear when examining the <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>, where the upper limit of the 95% confidence interval is always above the gray, dashed horizontal line.</p>
+<p>The lower endpoint of the 95% confidence interval for the median survival time is 16 months (red dashed line), whereas the upper endpoint is undefined (<code>NA</code>). This becomes clear when examining the <a href="#fig-kaplan1" class="quarto-xref">Figure&nbsp;<span>16.2</span></a>, where the upper limit of the 95% confidence interval is always above the gray, dashed horizontal line.</p>
 <div class="content-box-gray">
 <p><strong>Key points regarding Kaplan-Meier survival curve</strong></p>
 <ul>
@@ -1019,8 +1025,8 @@ log(-log\hat{S}(t))\pm 1.96 \cdot \hat{SE}\big(log(-log\hat{S}(t))\big)
 <li><p>The survival curve is defined only up to the longest observation time. If the curve doesn’t drop to 0.50 or below during the study period, the median survival time cannot be estimated.</p></li>
 </ul>
 </div>
-</section><section id="the-median-follow-up-time-for-the-new-therapy" class="level2" data-number="15.8"><h2 data-number="15.8" class="anchored" data-anchor-id="the-median-follow-up-time-for-the-new-therapy">
-<span class="header-section-number">15.8</span> The Median Follow-up Time for the New Therapy</h2>
+</section><section id="the-median-follow-up-time-for-the-new-therapy" class="level2" data-number="16.8"><h2 data-number="16.8" class="anchored" data-anchor-id="the-median-follow-up-time-for-the-new-therapy">
+<span class="header-section-number">16.8</span> The Median Follow-up Time for the New Therapy</h2>
 <p>Another important aspect of time-to-event data is the follow-up time of the participants. Reporting a summary measure on how long participants were typically followed is important because the duration of follow-up can significantly impact the interpretation of findings in survival analysis <span class="citation" data-cites="korn1986 betensky2015">(<a href="references.html#ref-korn1986" role="doc-biblioref">Korn 1986</a>; <a href="references.html#ref-betensky2015" role="doc-biblioref">Betensky 2015</a>)</span>.</p>
 <p>Calculating the <strong>median follow-up time</strong> provides a measure of the length of follow-up of participants in a study. While a simple approach might use the follow-up time of events and censored data, this underestimates the follow-up duration because of early events. Focusing solely on participants with censored data seems like an improvement <span class="citation" data-cites="korn1986">(<a href="references.html#ref-korn1986" role="doc-biblioref">Korn 1986</a>)</span>, but it can still underestimate the actual follow-up. Schemper and Smith <span class="citation" data-cites="schemper1996">(<a href="references.html#ref-schemper1996" role="doc-biblioref">Schemper and Smith 1996</a>)</span> explored various methodologies and proposed the <strong>reverse Kaplan-Meier</strong> approach, where censoring and events are reversed. This method offers a straightforward solution and yields a meaningful interpretation of follow-up duration.</p>
 <p>Let’s calculate the median follow-up time for the new therapy A group using these methods.</p>
@@ -1080,28 +1086,28 @@ Median with interquartile range (IQR):
 1: 25.00 (17.00;32.00)</code></pre>
 </div>
 </div>
-</section><section id="the-nelsonaalen-estimator-of-the-cumulative-hazard-function" class="level2" data-number="15.9"><h2 data-number="15.9" class="anchored" data-anchor-id="the-nelsonaalen-estimator-of-the-cumulative-hazard-function">
-<span class="header-section-number">15.9</span> The Nelson–Aalen Estimator of the Cumulative Hazard Function</h2>
-<p>In survival analysis, the Nelson–Aalen estimator is often used to estimate the cumulative hazard function <span class="math inline">\(H(t)\)</span> (<a href="#tbl-tbna" class="quarto-xref">Table&nbsp;<span>15.3</span></a>), which represents the cumulative risk of experiencing the event of interest up to time <span class="math inline">\(t\)</span>:</p>
+</section><section id="the-nelsonaalen-estimator-of-the-cumulative-hazard-function" class="level2" data-number="16.9"><h2 data-number="16.9" class="anchored" data-anchor-id="the-nelsonaalen-estimator-of-the-cumulative-hazard-function">
+<span class="header-section-number">16.9</span> The Nelson–Aalen Estimator of the Cumulative Hazard Function</h2>
+<p>In survival analysis, the Nelson–Aalen estimator is often used to estimate the cumulative hazard function <span class="math inline">\(H(t)\)</span> (<a href="#tbl-tbna" class="quarto-xref">Table&nbsp;<span>16.3</span></a>), which represents the cumulative risk of experiencing the event of interest up to time <span class="math inline">\(t\)</span>:</p>
 <p><span id="eq-hazard"><span class="math display">\[
 \hat H(t) = \sum_{j: t_j \leq t} \frac{d_j}{n_j}, \ \ \ for\ j=1,2,..,k.
-\tag{15.19}\]</span></span></p>
+\tag{16.19}\]</span></span></p>
 <p>The estimated variance of the Nelson–Aalen estimator is given by:</p>
 <p><span id="eq-varcumhazard"><span class="math display">\[
 \hat{Var} \big(\hat{H}(t_j) \big) \cong \sum_{j:t_j≤t} \frac{d_{j}}{r_{j}^2}, \ \ \ for\ j=1,2,..,k.
-\tag{15.20}\]</span></span></p>
-<p>The estimated standard error of <span class="math inline">\(\hat H(t)\)</span> is the positive square root of <a href="#eq-varcumhazard" class="quarto-xref">Eq.&nbsp;<span>15.20</span></a>:</p>
+\tag{16.20}\]</span></span></p>
+<p>The estimated standard error of <span class="math inline">\(\hat H(t)\)</span> is the positive square root of <a href="#eq-varcumhazard" class="quarto-xref">Eq.&nbsp;<span>16.20</span></a>:</p>
 <p><span id="eq-secumhazard"><span class="math display">\[
 \hat{SE}\big({\hat{H}(t)}\big) = [\hat{Var} \big(\hat{H}(t) \big)]^{1/2}
-\tag{15.21}\]</span></span></p>
+\tag{16.21}\]</span></span></p>
 <p>The estimation of 95% confidence interval for the cumulative hazard function at a given time <span class="math inline">\(t\)</span> is given by:</p>
 <p><span id="eq-cicumhazard"><span class="math display">\[
 \hat{H}(t)\pm 1.96 \cdot \hat{SE}\big({\hat{H}(t)}\big)
-\tag{15.22}\]</span></span></p>
+\tag{16.22}\]</span></span></p>
 <p>&nbsp;</p>
 <div class="cell">
 <div id="tbl-tbna" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;15.3 Nelson–Aalen estimates of the cumulative hazard function, standard error, and 95% confidence intervals for the new therapy A.
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>TABLE</strong>&nbsp;16.3 Nelson–Aalen estimates of the cumulative hazard function, standard error, and 95% confidence intervals for the new therapy A.
 </figcaption><div aria-describedby="tbl-tbna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="table do-not-create-environment cell caption-top table-sm table-striped small">
@@ -1201,7 +1207,7 @@ Median with interquartile range (IQR):
 </figure>
 </div>
 </div>
-<p>It is important to note that the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/ggsurvfit.html">ggsurvfit()</a></code></strong> function produces a cumulative hazard function plot based on the Product–Limit estimator, <span class="math inline">\(\hat H(t) = -log\hat S(t)\)</span> (blue solid line), which approximates the estimates from the Nelson–Aalen estimator (black dashed line), as shown in <a href="#fig-nelson1" class="quarto-xref">Figure&nbsp;<span>15.3</span></a> for the new therapy A.</p>
+<p>It is important to note that the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/ggsurvfit.html">ggsurvfit()</a></code></strong> function produces a cumulative hazard function plot based on the Product–Limit estimator, <span class="math inline">\(\hat H(t) = -log\hat S(t)\)</span> (blue solid line), which approximates the estimates from the Nelson–Aalen estimator (black dashed line), as shown in <a href="#fig-nelson1" class="quarto-xref">Figure&nbsp;<span>16.3</span></a> for the new therapy A.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># extract Nelson–Aalen estimates manually</span></span>
 <span><span class="va">na_haz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>time <span class="op">=</span> <span class="va">fit_A</span><span class="op">$</span><span class="va">time</span>, </span>
@@ -1222,20 +1228,20 @@ Median with interquartile range (IQR):
 <span>  x <span class="op">=</span> <span class="st">"Months since Randomization"</span>, y<span class="op">=</span><span class="st">"Cumulative hazard function"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-nelson1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-nelson1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nelson1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-nelson1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="652">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nelson1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.3 Product–Limit estimates (blue solid line) and Nelson–Aalen estimates (black dashed line) of the cumulative hazard function for the new therapy A.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nelson1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.3 Product–Limit estimates (blue solid line) and Nelson–Aalen estimates (black dashed line) of the cumulative hazard function for the new therapy A.
 </figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="comparing-groups-in-survival-analysis" class="level2" data-number="15.10"><h2 data-number="15.10" class="anchored" data-anchor-id="comparing-groups-in-survival-analysis">
-<span class="header-section-number">15.10</span> Comparing Groups in Survival Analysis</h2>
-<section id="k-m-survival-probability-curves" class="level3" data-number="15.10.1"><h3 data-number="15.10.1" class="anchored" data-anchor-id="k-m-survival-probability-curves">
-<span class="header-section-number">15.10.1</span> K-M Survival Probability Curves</h3>
-<p>The survival of two or more groups of patients can be compared graphically. In our example, we are interested in comparing the survival curves between the new therapy and the standard therapy. First, in the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2()</a></code></strong> function, we need to replace <span class="math inline">\(\sim 1\)</span> in the model formula with the <code>intervention</code> variable (i.e Surv <span class="math inline">\(\sim\)</span> intervention) and include all the patients in the survival analysis using <code>data = dat</code>. Then, we use the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/ggsurvfit.html">ggsurvfit()</a></code></strong> function to dispaly a Kaplan-Meier curve for each therapy, as shown in <a href="#fig-kaplan2" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>:</p>
+</section><section id="comparing-groups-in-survival-analysis" class="level2" data-number="16.10"><h2 data-number="16.10" class="anchored" data-anchor-id="comparing-groups-in-survival-analysis">
+<span class="header-section-number">16.10</span> Comparing Groups in Survival Analysis</h2>
+<section id="k-m-survival-probability-curves" class="level3" data-number="16.10.1"><h3 data-number="16.10.1" class="anchored" data-anchor-id="k-m-survival-probability-curves">
+<span class="header-section-number">16.10.1</span> K-M Survival Probability Curves</h3>
+<p>The survival of two or more groups of patients can be compared graphically. In our example, we are interested in comparing the survival curves between the new therapy and the standard therapy. First, in the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2()</a></code></strong> function, we need to replace <span class="math inline">\(\sim 1\)</span> in the model formula with the <code>intervention</code> variable (i.e Surv <span class="math inline">\(\sim\)</span> intervention) and include all the patients in the survival analysis using <code>data = dat</code>. Then, we use the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/ggsurvfit.html">ggsurvfit()</a></code></strong> function to dispaly a Kaplan-Meier curve for each therapy, as shown in <a href="#fig-kaplan2" class="quarto-xref">Figure&nbsp;<span>16.4</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/survfit2.html">survfit2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">intervention</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span></span>
@@ -1254,11 +1260,11 @@ Median with interquartile range (IQR):
 <span>       x <span class="op">=</span> <span class="st">"Months since Randomization"</span>, y<span class="op">=</span><span class="st">"Survival Probability"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.92</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-kaplan2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-kaplan2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kaplan2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-kaplan2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="652">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kaplan2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.4 Kaplan–Meier estimates of the survival function for the new and standard therapy.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kaplan2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.4 Kaplan–Meier estimates of the survival function for the new and standard therapy.
 </figcaption></figure>
 </div>
 </div>
@@ -1277,22 +1283,22 @@ intervention=therapy B (standard) 21     18      9       5      15</code></pre>
 </div>
 </div>
 <p>The median survival of patients in the new therapy (23 months) is higher than in standard therapy (9 months).</p>
-<p>It is important to note that we cannot assess the significance of survival differences between the two groups by simply examining the overlap of individual 95% confidence intervals in <a href="#fig-kaplan2" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>. It is necessary to calculate the 95% confidence interval of their survival differences.</p>
-<p>With the <strong><code><a href="https://rdrr.io/pkg/rms/man/survplot.html">survplotp()</a></code></strong> function from the <strong><em>rms</em></strong> package, we can create an interactive Plotly visualization (<a href="#fig-survbands" class="quarto-xref">Figure&nbsp;<span>15.5</span></a>) with a gray shaded area corresponding to a half-width confidence band (i.e., the midpoint of the survival estimates of the two groups ± the half-width of the 95% confidence interval for the difference in each group’s Kaplan-Meier probability estimates). Where the survival curves intersect this band, it indicates that there is no significant difference <span class="citation" data-cites="msaouel2024">(<a href="references.html#ref-msaouel2024" role="doc-biblioref">Msaouel 2024</a>)</span>.</p>
+<p>It is important to note that we cannot assess the significance of survival differences between the two groups by simply examining the overlap of individual 95% confidence intervals in <a href="#fig-kaplan2" class="quarto-xref">Figure&nbsp;<span>16.4</span></a>. It is necessary to calculate the 95% confidence interval of their survival differences.</p>
+<p>With the <strong><code><a href="https://rdrr.io/pkg/rms/man/survplot.html">survplotp()</a></code></strong> function from the <strong><em>rms</em></strong> package, we can create an interactive Plotly visualization (<a href="#fig-survbands" class="quarto-xref">Figure&nbsp;<span>16.5</span></a>) with a gray shaded area corresponding to a half-width confidence band (i.e., the midpoint of the survival estimates of the two groups ± the half-width of the 95% confidence interval for the difference in each group’s Kaplan-Meier probability estimates). Where the survival curves intersect this band, it indicates that there is no significant difference <span class="citation" data-cites="msaouel2024">(<a href="references.html#ref-msaouel2024" role="doc-biblioref">Msaouel 2024</a>)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rms/man/npsurv.html">npsurv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">intervention</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/rms/man/survplot.html">survplotp</a></span><span class="op">(</span><span class="va">f</span>, time.inc <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-survbands" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-survbands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-288c65f1eb0f9ee9e2d8" style="width:100%;height:477px;"></div>
-<script type="application/json" data-for="htmlwidget-288c65f1eb0f9ee9e2d8">{"x":{"visdat":{"2a1c642e12b8":["function () ","plotlyVisDat"],"2a1c263b3fc":["function () ","data"],"2a1cc86b69":["function () ","data"],"2a1c5eed26d9":["function () ","data"],"2a1c71974c05":["function () ","data"],"2a1c66354eea":["function () ","data"],"2a1c13ed18ae":["function () ","data"],"2a1c5b807a75":["function () ","data"],"2a1c17443fd":["function () ","data"],"2a1c23d443fb":["function () ","data"]},"cur_data":"2a1c23d443fb","attrs":{"2a1c263b3fc":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#E495A5"},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy A (new)","showlegend":true,"inherit":true},"2a1cc86b69":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#E495A5","width":0},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CL","showlegend":true,"inherit":true},"2a1c5eed26d9":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#E495A5","width":0},"fillcolor":"rgba(228,149,165,0.2)","fill":"tonexty","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CLupper","showlegend":false,"inherit":true},"2a1c71974c05":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#39BEB1"},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy B (standard)","showlegend":true,"inherit":true},"2a1c66354eea":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#39BEB1","width":0},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CL","showlegend":true,"inherit":true},"2a1c13ed18ae":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#39BEB1","width":0},"fillcolor":"rgba(57,190,177,0.2)","fill":"tonexty","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CLupper","showlegend":false,"inherit":true},"2a1c5b807a75":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","hoverinfo":"none","line":{"shape":"hv","color":"rgba(190,190,190,1)","width":0},"fillcolor":"rgba(190,190,190,0.2)","fill":"none","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CL","showlegend":true,"inherit":true},"2a1c17443fd":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","hoverinfo":"none","line":{"shape":"hv","color":"rgba(190,190,190,1)","width":0},"fillcolor":"rgba(190,190,190,0.2)","fill":"tonexty","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CLdiff upper","showlegend":false,"inherit":true},"2a1c23d443fb":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","marker":{"symbol":"asterisk"},"name":"therapy A (new): 9 events<br>therapy B (standard): 18 events","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"range":[0,35],"title":"Follow-up Time","tickvals":[0,5,10,15,20,25,30,35]},"yaxis":{"domain":[0,1],"automargin":true,"range":[0,1],"title":"Survival Probability"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,6,7,9,10,11,13,16,17,19,20,22,23,25,32,34,35],"y":[1,0.8571428571428571,0.80672268907563016,0.80672268907563016,0.75294117647058811,0.75294117647058811,0.69019607843137243,0.62745098039215674,0.62745098039215674,0.62745098039215674,0.62745098039215674,0.53781512605042003,0.44817927170868338,0.44817927170868338,0.44817927170868338,0.44817927170868338,0.44817927170868338],"type":"scatter","mode":"lines","text":["t= 0<br>Probability=1.000<br>At risk:21<br>(Also for t=5)","t= 6<br>Probability=0.857<br>At risk:21","t= 7<br>Probability=0.807<br>At risk:17","t= 9<br>Probability=0.807<br>At risk:16","t=10<br>Probability=0.753<br>At risk:15","t=11<br>Probability=0.753<br>At risk:13","t=13<br>Probability=0.690<br>At risk:12<br>(Also for t=15)","t=16<br>Probability=0.627<br>At risk:11","t=17<br>Probability=0.627<br>At risk:10","t=19<br>Probability=0.627<br>At risk:9","t=20<br>Probability=0.627<br>At risk:8","t=22<br>Probability=0.538<br>At risk:7","t=23<br>Probability=0.448<br>At risk:6","t=25<br>Probability=0.448<br>At risk:5<br>(Also for t=30)","t=32<br>Probability=0.448<br>At risk:4","t=34<br>Probability=0.448<br>At risk:2","t=35<br>Probability=0.448<br>At risk:1"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#E495A5","shape":"hv"},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy A (new)","showlegend":true,"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0,6,7,9,10,11,13,16,17,19,20,22,23,25,32,34,35],"y":[1,1,0.71981708391627042,0.65312421846217106,0.65312421846217106,0.58591898202969417,0.58591898202969417,0.50961309910178021,0.43939392496876695,0.43939392496876695,0.43939392496876695,0.43939392496876695,0.33703661615768471,0.24878822681765961,0.24878822681765961,0.24878822681765961,0.24878822681765961,0.24878822681765961],"type":"scatter","mode":"lines","text":["t= 0<br>Lower:1.000","t= 0<br>Lower:1.000","t= 6<br>Lower:0.720","t= 7<br>Lower:0.653","t= 9<br>Lower:0.653","t=10<br>Lower:0.586","t=11<br>Lower:0.586","t=13<br>Lower:0.510","t=16<br>Lower:0.439","t=17<br>Lower:0.439","t=19<br>Lower:0.439","t=20<br>Lower:0.439","t=22<br>Lower:0.337","t=23<br>Lower:0.249","t=25<br>Lower:0.249","t=32<br>Lower:0.249","t=34<br>Lower:0.249","t=35<br>Lower:0.249"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#E495A5","shape":"hv","width":0},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CL","showlegend":true,"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(228,149,165,0.2)","x":[0,0,6,7,9,10,11,13,16,17,19,20,22,23,25,32,34,35],"y":[1,1,1,0.99644367590865912,0.99644367590865912,0.96757475455229747,0.96757475455229747,0.93476919553613003,0.89599493853508172,0.89599493853508172,0.89599493853508172,0.89599493853508172,0.85820084804466479,0.80737204552907704,0.80737204552907704,0.80737204552907704,0.80737204552907704,0.80737204552907704],"type":"scatter","mode":"lines","text":["t= 0<br>Upper:1.000","t= 0<br>Upper:1.000","t= 6<br>Upper:1.000","t= 7<br>Upper:0.996","t= 9<br>Upper:0.996","t=10<br>Upper:0.968","t=11<br>Upper:0.968","t=13<br>Upper:0.935","t=16<br>Upper:0.896","t=17<br>Upper:0.896","t=19<br>Upper:0.896","t=20<br>Upper:0.896","t=22<br>Upper:0.858","t=23<br>Upper:0.807","t=25<br>Upper:0.807","t=32<br>Upper:0.807","t=34<br>Upper:0.807","t=35<br>Upper:0.807"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#E495A5","shape":"hv","width":0},"fill":"tonexty","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CLupper","showlegend":false,"marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,1,2,3,4,5,8,9,11,12,15,17,22,23],"y":[1,0.95238095238095233,0.85213032581453629,0.80200501253132828,0.70175438596491224,0.65162907268170422,0.54302422723475352,0.48268820198644757,0.36201615148983568,0.24134410099322379,0.18100807574491784,0.12067205049661189,0.060336025248305947,0],"type":"scatter","mode":"lines","text":["t= 0<br>Probability=1.000<br>At risk:21","t= 1<br>Probability=0.952<br>At risk:21","t= 2<br>Probability=0.852<br>At risk:19","t= 3<br>Probability=0.802<br>At risk:17","t= 4<br>Probability=0.702<br>At risk:16","t= 5<br>Probability=0.652<br>At risk:14","t= 8<br>Probability=0.543<br>At risk:12","t= 9<br>Probability=0.483<br>At risk:9<br>(Also for t=10)","t=11<br>Probability=0.362<br>At risk:8","t=12<br>Probability=0.241<br>At risk:6","t=15<br>Probability=0.181<br>At risk:4","t=17<br>Probability=0.121<br>At risk:3<br>(Also for t=20)","t=22<br>Probability=0.060<br>At risk:2","t=23<br>Probability=0.000<br>At risk:1<br>(Also for t=25)<br>(Also for t=30)<br>(Also for t=35)"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#39BEB1","shape":"hv"},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy B (standard)","showlegend":true,"marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0,1,2,3,4,5,8,9,11,12,15,17,22],"y":[1,1,0.8655184270563866,0.71071142115223662,0.64560776496728811,0.52760974084751433,0.47313464410945355,0.36109015744751005,0.30202232929216427,0.19545471118044322,0.10453802870473841,0.065925174946018156,0.033265367647130055,0.0090933721233394365],"type":"scatter","mode":"lines","text":["t= 0<br>Lower:1.000","t= 0<br>Lower:1.000","t= 1<br>Lower:0.866","t= 2<br>Lower:0.711","t= 3<br>Lower:0.646","t= 4<br>Lower:0.528","t= 5<br>Lower:0.473","t= 8<br>Lower:0.361","t= 9<br>Lower:0.302","t=11<br>Lower:0.195","t=12<br>Lower:0.105","t=15<br>Lower:0.066","t=17<br>Lower:0.033","t=22<br>Lower:0.009"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#39BEB1","shape":"hv","width":0},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CL","showlegend":true,"marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(57,190,177,0.2)","x":[0,0,1,2,3,4,5,8,9,11,12,15,17,22],"y":[1,1,1,1,0.99628919450491193,0.93337779819974498,0.89746217836837872,0.8166251704237214,0.77142607595588231,0.67051693534530077,0.55718455576336356,0.4969865231560805,0.43774486202959967,0.40033948829835236],"type":"scatter","mode":"lines","text":["t= 0<br>Upper:1.000","t= 0<br>Upper:1.000","t= 1<br>Upper:1.000","t= 2<br>Upper:1.000","t= 3<br>Upper:0.996","t= 4<br>Upper:0.933","t= 5<br>Upper:0.897","t= 8<br>Upper:0.817","t= 9<br>Upper:0.771","t=11<br>Upper:0.671","t=12<br>Upper:0.557","t=15<br>Upper:0.497","t=17<br>Upper:0.438","t=22<br>Upper:0.400"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#39BEB1","shape":"hv","width":0},"fill":"tonexty","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CLupper","showlegend":false,"marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,19,20,22],"y":[1,0.93064930963121106,0.84874583546071602,0.8140159544934118,0.75079769051678324,0.72152277422184796,0.62602488886058372,0.59450976765370345,0.53511902564626812,0.50306100053709435,0.47043670766204404,0.41132012184106065,0.35890789983443627,0.32033728885361656,0.29663035706003466,0.25983884837220272,0.23791003294351715,0.23791003294351715,0.23791003294351715,0.16104897735814996],"type":"scatter","mode":"lines","hoverinfo":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"],"line":{"color":"rgba(190,190,190,1)","shape":"hv","width":0},"fillcolor":"rgba(190,190,190,0.2)","fill":"none","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CL","showlegend":true,"marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(190,190,190,0.2)","x":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,19,20,22],"y":[1,1,1,0.98798905803791648,0.950956695448129,0.93010629845985626,0.88274704096397749,0.86384199410363105,0.81462789066411556,0.78634989052498327,0.76519267079499176,0.70363720611936298,0.63537737762937563,0.61120289057097965,0.57457379711625567,0.54862020776487186,0.51021299794525143,0.51021299794525143,0.51021299794525143,0.43710217394057604],"type":"scatter","mode":"lines","hoverinfo":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"],"line":{"color":"rgba(190,190,190,1)","shape":"hv","width":0},"fill":"tonexty","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CLdiff upper","showlegend":false,"marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0],"y":[0],"type":"scatter","mode":"markers","marker":{"color":"rgba(188,189,34,1)","symbol":"asterisk","line":{"color":"rgba(188,189,34,1)"}},"name":"therapy A (new): 9 events<br>therapy B (standard): 18 events","error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"line":{"color":"rgba(188,189,34,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-6bf72402c3eee8d16e96" style="width:100%;height:477px;"></div>
+<script type="application/json" data-for="htmlwidget-6bf72402c3eee8d16e96">{"x":{"visdat":{"7ae07415540d":["function () ","plotlyVisDat"],"7ae0590f693a":["function () ","data"],"7ae071592c89":["function () ","data"],"7ae047fe777f":["function () ","data"],"7ae0688e471c":["function () ","data"],"7ae044f032ef":["function () ","data"],"7ae056b075a1":["function () ","data"],"7ae03fdf5ae6":["function () ","data"],"7ae0fb845ff":["function () ","data"],"7ae031a65d29":["function () ","data"]},"cur_data":"7ae031a65d29","attrs":{"7ae0590f693a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#E495A5"},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy A (new)","showlegend":true,"inherit":true},"7ae071592c89":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#E495A5","width":0},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CL","showlegend":true,"inherit":true},"7ae047fe777f":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#E495A5","width":0},"fillcolor":"rgba(228,149,165,0.2)","fill":"tonexty","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CLupper","showlegend":false,"inherit":true},"7ae0688e471c":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#39BEB1"},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy B (standard)","showlegend":true,"inherit":true},"7ae044f032ef":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#39BEB1","width":0},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CL","showlegend":true,"inherit":true},"7ae056b075a1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","line":{"shape":"hv","color":"#39BEB1","width":0},"fillcolor":"rgba(57,190,177,0.2)","fill":"tonexty","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CLupper","showlegend":false,"inherit":true},"7ae03fdf5ae6":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","hoverinfo":"none","line":{"shape":"hv","color":"rgba(190,190,190,1)","width":0},"fillcolor":"rgba(190,190,190,0.2)","fill":"none","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CL","showlegend":true,"inherit":true},"7ae0fb845ff":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","hoverinfo":"none","line":{"shape":"hv","color":"rgba(190,190,190,1)","width":0},"fillcolor":"rgba(190,190,190,0.2)","fill":"tonexty","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CLdiff upper","showlegend":false,"inherit":true},"7ae031a65d29":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","marker":{"symbol":"asterisk"},"name":"therapy A (new): 9 events<br>therapy B (standard): 18 events","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"range":[0,35],"title":"Follow-up Time","tickvals":[0,5,10,15,20,25,30,35]},"yaxis":{"domain":[0,1],"automargin":true,"range":[0,1],"title":"Survival Probability"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,6,7,9,10,11,13,16,17,19,20,22,23,25,32,34,35],"y":[1,0.8571428571428571,0.80672268907563016,0.80672268907563016,0.75294117647058811,0.75294117647058811,0.69019607843137243,0.62745098039215674,0.62745098039215674,0.62745098039215674,0.62745098039215674,0.53781512605042003,0.44817927170868338,0.44817927170868338,0.44817927170868338,0.44817927170868338,0.44817927170868338],"type":"scatter","mode":"lines","text":["t= 0<br>Probability=1.000<br>At risk:21<br>(Also for t=5)","t= 6<br>Probability=0.857<br>At risk:21","t= 7<br>Probability=0.807<br>At risk:17","t= 9<br>Probability=0.807<br>At risk:16","t=10<br>Probability=0.753<br>At risk:15","t=11<br>Probability=0.753<br>At risk:13","t=13<br>Probability=0.690<br>At risk:12<br>(Also for t=15)","t=16<br>Probability=0.627<br>At risk:11","t=17<br>Probability=0.627<br>At risk:10","t=19<br>Probability=0.627<br>At risk:9","t=20<br>Probability=0.627<br>At risk:8","t=22<br>Probability=0.538<br>At risk:7","t=23<br>Probability=0.448<br>At risk:6","t=25<br>Probability=0.448<br>At risk:5<br>(Also for t=30)","t=32<br>Probability=0.448<br>At risk:4","t=34<br>Probability=0.448<br>At risk:2","t=35<br>Probability=0.448<br>At risk:1"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#E495A5","shape":"hv"},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy A (new)","showlegend":true,"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0,6,7,9,10,11,13,16,17,19,20,22,23,25,32,34,35],"y":[1,1,0.71981708391627042,0.65312421846217106,0.65312421846217106,0.58591898202969417,0.58591898202969417,0.50961309910178021,0.43939392496876695,0.43939392496876695,0.43939392496876695,0.43939392496876695,0.33703661615768471,0.24878822681765961,0.24878822681765961,0.24878822681765961,0.24878822681765961,0.24878822681765961],"type":"scatter","mode":"lines","text":["t= 0<br>Lower:1.000","t= 0<br>Lower:1.000","t= 6<br>Lower:0.720","t= 7<br>Lower:0.653","t= 9<br>Lower:0.653","t=10<br>Lower:0.586","t=11<br>Lower:0.586","t=13<br>Lower:0.510","t=16<br>Lower:0.439","t=17<br>Lower:0.439","t=19<br>Lower:0.439","t=20<br>Lower:0.439","t=22<br>Lower:0.337","t=23<br>Lower:0.249","t=25<br>Lower:0.249","t=32<br>Lower:0.249","t=34<br>Lower:0.249","t=35<br>Lower:0.249"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#E495A5","shape":"hv","width":0},"fillcolor":"rgba(228,149,165,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CL","showlegend":true,"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(228,149,165,0.2)","x":[0,0,6,7,9,10,11,13,16,17,19,20,22,23,25,32,34,35],"y":[1,1,1,0.99644367590865912,0.99644367590865912,0.96757475455229747,0.96757475455229747,0.93476919553613003,0.89599493853508172,0.89599493853508172,0.89599493853508172,0.89599493853508172,0.85820084804466479,0.80737204552907704,0.80737204552907704,0.80737204552907704,0.80737204552907704,0.80737204552907704],"type":"scatter","mode":"lines","text":["t= 0<br>Upper:1.000","t= 0<br>Upper:1.000","t= 6<br>Upper:1.000","t= 7<br>Upper:0.996","t= 9<br>Upper:0.996","t=10<br>Upper:0.968","t=11<br>Upper:0.968","t=13<br>Upper:0.935","t=16<br>Upper:0.896","t=17<br>Upper:0.896","t=19<br>Upper:0.896","t=20<br>Upper:0.896","t=22<br>Upper:0.858","t=23<br>Upper:0.807","t=25<br>Upper:0.807","t=32<br>Upper:0.807","t=34<br>Upper:0.807","t=35<br>Upper:0.807"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#E495A5","shape":"hv","width":0},"fill":"tonexty","visible":"legendonly","legendgroup":"therapy A (new) CL","name":"therapy A (new) 0.95 CLupper","showlegend":false,"marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,1,2,3,4,5,8,9,11,12,15,17,22,23],"y":[1,0.95238095238095233,0.85213032581453629,0.80200501253132828,0.70175438596491224,0.65162907268170422,0.54302422723475352,0.48268820198644757,0.36201615148983568,0.24134410099322379,0.18100807574491784,0.12067205049661189,0.060336025248305947,0],"type":"scatter","mode":"lines","text":["t= 0<br>Probability=1.000<br>At risk:21","t= 1<br>Probability=0.952<br>At risk:21","t= 2<br>Probability=0.852<br>At risk:19","t= 3<br>Probability=0.802<br>At risk:17","t= 4<br>Probability=0.702<br>At risk:16","t= 5<br>Probability=0.652<br>At risk:14","t= 8<br>Probability=0.543<br>At risk:12","t= 9<br>Probability=0.483<br>At risk:9<br>(Also for t=10)","t=11<br>Probability=0.362<br>At risk:8","t=12<br>Probability=0.241<br>At risk:6","t=15<br>Probability=0.181<br>At risk:4","t=17<br>Probability=0.121<br>At risk:3<br>(Also for t=20)","t=22<br>Probability=0.060<br>At risk:2","t=23<br>Probability=0.000<br>At risk:1<br>(Also for t=25)<br>(Also for t=30)<br>(Also for t=35)"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#39BEB1","shape":"hv"},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":true,"legendgroup":"Estimates","name":"therapy B (standard)","showlegend":true,"marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0,1,2,3,4,5,8,9,11,12,15,17,22],"y":[1,1,0.8655184270563866,0.71071142115223662,0.64560776496728811,0.52760974084751433,0.47313464410945355,0.36109015744751005,0.30202232929216427,0.19545471118044322,0.10453802870473841,0.065925174946018156,0.033265367647130055,0.0090933721233394365],"type":"scatter","mode":"lines","text":["t= 0<br>Lower:1.000","t= 0<br>Lower:1.000","t= 1<br>Lower:0.866","t= 2<br>Lower:0.711","t= 3<br>Lower:0.646","t= 4<br>Lower:0.528","t= 5<br>Lower:0.473","t= 8<br>Lower:0.361","t= 9<br>Lower:0.302","t=11<br>Lower:0.195","t=12<br>Lower:0.105","t=15<br>Lower:0.066","t=17<br>Lower:0.033","t=22<br>Lower:0.009"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#39BEB1","shape":"hv","width":0},"fillcolor":"rgba(57,190,177,0.2)","fill":"none","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CL","showlegend":true,"marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(57,190,177,0.2)","x":[0,0,1,2,3,4,5,8,9,11,12,15,17,22],"y":[1,1,1,1,0.99628919450491193,0.93337779819974498,0.89746217836837872,0.8166251704237214,0.77142607595588231,0.67051693534530077,0.55718455576336356,0.4969865231560805,0.43774486202959967,0.40033948829835236],"type":"scatter","mode":"lines","text":["t= 0<br>Upper:1.000","t= 0<br>Upper:1.000","t= 1<br>Upper:1.000","t= 2<br>Upper:1.000","t= 3<br>Upper:0.996","t= 4<br>Upper:0.933","t= 5<br>Upper:0.897","t= 8<br>Upper:0.817","t= 9<br>Upper:0.771","t=11<br>Upper:0.671","t=12<br>Upper:0.557","t=15<br>Upper:0.497","t=17<br>Upper:0.438","t=22<br>Upper:0.400"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"#39BEB1","shape":"hv","width":0},"fill":"tonexty","visible":"legendonly","legendgroup":"therapy B (standard) CL","name":"therapy B (standard) 0.95 CLupper","showlegend":false,"marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,19,20,22],"y":[1,0.93064930963121106,0.84874583546071602,0.8140159544934118,0.75079769051678324,0.72152277422184796,0.62602488886058372,0.59450976765370345,0.53511902564626812,0.50306100053709435,0.47043670766204404,0.41132012184106065,0.35890789983443627,0.32033728885361656,0.29663035706003466,0.25983884837220272,0.23791003294351715,0.23791003294351715,0.23791003294351715,0.16104897735814996],"type":"scatter","mode":"lines","hoverinfo":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"],"line":{"color":"rgba(190,190,190,1)","shape":"hv","width":0},"fillcolor":"rgba(190,190,190,0.2)","fill":"none","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CL","showlegend":true,"marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(190,190,190,0.2)","x":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,19,20,22],"y":[1,1,1,0.98798905803791648,0.950956695448129,0.93010629845985626,0.88274704096397749,0.86384199410363105,0.81462789066411556,0.78634989052498327,0.76519267079499176,0.70363720611936298,0.63537737762937563,0.61120289057097965,0.57457379711625567,0.54862020776487186,0.51021299794525143,0.51021299794525143,0.51021299794525143,0.43710217394057604],"type":"scatter","mode":"lines","hoverinfo":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"],"line":{"color":"rgba(190,190,190,1)","shape":"hv","width":0},"fill":"tonexty","visible":true,"legendgroup":"Difference","name":"Difference<br>½ 0.95 CLdiff upper","showlegend":false,"marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0],"y":[0],"type":"scatter","mode":"markers","marker":{"color":"rgba(188,189,34,1)","symbol":"asterisk","line":{"color":"rgba(188,189,34,1)"}},"name":"therapy A (new): 9 events<br>therapy B (standard): 18 events","error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"line":{"color":"rgba(188,189,34,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-survbands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.5 Plotly graphic with the Kaplan–Meier estimates of the survival function for the two groups. Survival differences are represented by the half-width confidence bands (shaded gray polygon).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-survbands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.5 Plotly graphic with the Kaplan–Meier estimates of the survival function for the two groups. Survival differences are represented by the half-width confidence bands (shaded gray polygon).
 </figcaption></figure>
 </div>
 </div>
-</section><section id="cumulative-incidence" class="level3" data-number="15.10.2"><h3 data-number="15.10.2" class="anchored" data-anchor-id="cumulative-incidence">
-<span class="header-section-number">15.10.2</span> Cumulative Incidence</h3>
+</section><section id="cumulative-incidence" class="level3" data-number="16.10.2"><h3 data-number="16.10.2" class="anchored" data-anchor-id="cumulative-incidence">
+<span class="header-section-number">16.10.2</span> Cumulative Incidence</h3>
 <p>Sometimes, it is useful to plot the “cumulative incidence”, also known as “cumulative events”. This can be achieved by setting the argument <code>type</code> to “<code>risk</code>” in the <strong><code><a href="http://www.danieldsjoberg.com/ggsurvfit/reference/ggsurvfit.html">ggsurvfit()</a></code></strong> function.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_AB</span> <span class="op">|&gt;</span> </span>
@@ -1311,18 +1317,18 @@ intervention=therapy B (standard) 21     18      9       5      15</code></pre>
 <span>       x <span class="op">=</span> <span class="st">"Months since Randomization"</span>, y <span class="op">=</span> <span class="st">"Cumulative Incidence"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.92</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-cumincidence" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-cumincidence" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cumincidence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-cumincidence-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="652">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cumincidence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.6 Cumulative incidence for the new and standard therapy.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cumincidence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.6 Cumulative incidence for the new and standard therapy.
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>In standard survival analysis (without competing risks), the formula <span class="math inline">\(F(t) = 1 - S(t)\)</span> can be used to estimate the probability of a participant experiencing the event (death) by a specific time point <span class="citation" data-cites="clark2003">(<a href="references.html#ref-clark2003" role="doc-biblioref">Clark et al. 2003</a>)</span>. As shown in <a href="#fig-cumincidence" class="quarto-xref">Figure&nbsp;<span>15.6</span></a>, at 10 months, this probability is approximately 0.25 for patients receiving the new therapy A and around 0.52 for those on the standard therapy B. Note that the curve for the standard therapy starts at 0 and increases to a maximum of 1.</p>
-</section><section id="the-log-rank-test" class="level3" data-number="15.10.3"><h3 data-number="15.10.3" class="anchored" data-anchor-id="the-log-rank-test">
-<span class="header-section-number">15.10.3</span> The Log-Rank Test</h3>
+<p>In standard survival analysis (without competing risks), the formula <span class="math inline">\(F(t) = 1 - S(t)\)</span> can be used to estimate the probability of a participant experiencing the event (death) by a specific time point <span class="citation" data-cites="clark2003">(<a href="references.html#ref-clark2003" role="doc-biblioref">Clark et al. 2003</a>)</span>. As shown in <a href="#fig-cumincidence" class="quarto-xref">Figure&nbsp;<span>16.6</span></a>, at 10 months, this probability is approximately 0.25 for patients receiving the new therapy A and around 0.52 for those on the standard therapy B. Note that the curve for the standard therapy starts at 0 and increases to a maximum of 1.</p>
+</section><section id="the-log-rank-test" class="level3" data-number="16.10.3"><h3 data-number="16.10.3" class="anchored" data-anchor-id="the-log-rank-test">
+<span class="header-section-number">16.10.3</span> The Log-Rank Test</h3>
 <p>Comparing survival curves involves using statistical tests to determine if there are significant differences in survival times between two or more independent groups. One common method is the log-rank test which compares survival curves among groups across the entire duration of the study <span class="citation" data-cites="statisti1959a peto1972">(<a href="references.html#ref-statisti1959a" role="doc-biblioref">Mantel and Haenszel 1959</a>; <a href="references.html#ref-peto1972" role="doc-biblioref">Peto and Peto 1972</a>)</span>. It is considered a non-parametric approach because it does not require the survival times to follow any particular statistical distribution. It is important to note that Harrington and Fleming <span class="citation" data-cites="harrington1982">(<a href="references.html#ref-harrington1982" role="doc-biblioref">Harrington and Fleming 1982</a>)</span> proposed a family of tests that are similar to the log-rank test, providing alternative methods for comparing survival curves.</p>
 <div class="content-box-gray">
 <p><strong>Null hypothesis and alternative hypothesis of log-rank test</strong></p>
@@ -1331,13 +1337,13 @@ intervention=therapy B (standard) 21     18      9       5      15</code></pre>
 <li>H1: There is an overall difference between the two survival curves.</li>
 </ul>
 </div>
-<section id="the-log-rank-statistic" class="level4" data-number="15.10.3.1"><h4 data-number="15.10.3.1" class="anchored" data-anchor-id="the-log-rank-statistic">
-<span class="header-section-number">15.10.3.1</span> The Log-Rank Statistic</h4>
+<section id="the-log-rank-statistic" class="level4" data-number="16.10.3.1"><h4 data-number="16.10.3.1" class="anchored" data-anchor-id="the-log-rank-statistic">
+<span class="header-section-number">16.10.3.1</span> The Log-Rank Statistic</h4>
 <p>The log-rank test compares the <strong>observed</strong> number of deaths (O) with the <strong>expected</strong> number of deaths (E) at all distinct event times, <span class="math inline">\(t_{1} &lt; t_{2} &lt; t_{3} &lt; \ ...\ &lt; t_{k}\)</span>. Under the null hypothesis, the log-rank statistic for the two-group case is calculated for one of the two groups as follows <span class="citation" data-cites="mantel1963">(<a href="references.html#ref-mantel1963" role="doc-biblioref">Mantel 1963</a>)</span>:</p>
 <p><span id="eq-logranktest1"><span class="math display">\[
 Z_{log-rank}^2 = \frac{\Bigl(\sum_{j=1}^k (O_{j}-E_{j})\Bigr)^2}{\sum_{j=1}^k V_{j}}
-\tag{15.23}\]</span></span></p>
-<p>where <span class="math inline">\(V_j\)</span> represents the estimated variance of the difference between observed and expected events at each event time. This statistics follows an approximately chi-square distribution with 1 degree of freedom (<span class="math inline">\(Z_{log-rank}^2 \sim \chi_1^2\)</span>) under the null hypothesis. It is important to note that the results are the same regardless of which group is used in the <a href="#eq-logranktest1" class="quarto-xref">Eq.&nbsp;<span>15.23</span></a>.</p>
+\tag{16.23}\]</span></span></p>
+<p>where <span class="math inline">\(V_j\)</span> represents the estimated variance of the difference between observed and expected events at each event time. This statistics follows an approximately chi-square distribution with 1 degree of freedom (<span class="math inline">\(Z_{log-rank}^2 \sim \chi_1^2\)</span>) under the null hypothesis. It is important to note that the results are the same regardless of which group is used in the <a href="#eq-logranktest1" class="quarto-xref">Eq.&nbsp;<span>16.23</span></a>.</p>
 <p>&nbsp;</p>
 <p><strong>In R:</strong></p>
 <p>The <strong><code><a href="https://rdrr.io/pkg/survival/man/survdiff.html">survdiff()</a></code></strong> function is used to compare survival curves between two or more groups. The optional parameter <code>rho</code> allows for weighting of event times. When <code>rho = 0</code> (default), it executes the log-rank test, while <code>rho = 1</code> corresponds to the Peto &amp; Peto <span class="citation" data-cites="peto1972">(<a href="references.html#ref-peto1972" role="doc-biblioref">Peto and Peto 1972</a>)</span> modification of the Gehan-Wilcoxon test <span class="citation" data-cites="gehan1965">(<a href="references.html#ref-gehan1965" role="doc-biblioref">Gehan 1965</a>)</span>, which is more sensitive to early differences in survival times.</p>
@@ -1363,8 +1369,8 @@ intervention=therapy B (standard) 21       18     9.35      8.00      13.3
 <p><strong>IMPORTANT</strong></p>
 <p>The power of the log-rank test is heavily influenced by the number of events. Consequently, ensuring a sufficient number of observed events is essential for achieving adequate power in survival studies.</p>
 </div>
-</section></section><section id="the-hazard-ratio-hr" class="level3" data-number="15.10.4"><h3 data-number="15.10.4" class="anchored" data-anchor-id="the-hazard-ratio-hr">
-<span class="header-section-number">15.10.4</span> The Hazard Ratio (HR)</h3>
+</section></section><section id="the-hazard-ratio-hr" class="level3" data-number="16.10.4"><h3 data-number="16.10.4" class="anchored" data-anchor-id="the-hazard-ratio-hr">
+<span class="header-section-number">16.10.4</span> The Hazard Ratio (HR)</h3>
 <p>The hazard ratio (HR) is an estimate of the ratio of the hazard rate in the new therapy versus the standard therapy. It is often interpreted as a risk ratio or odds ratio, although they are not technically the same.</p>
 <div class="content-box-gray">
 <p><strong>IMPORTANT</strong></p>
@@ -1428,31 +1434,31 @@ intervention=therapy B (standard) 21       18     9.35      8.00      13.3
 0.1199276 0.5854496 </code></pre>
 </div>
 </div>
-</section><section id="τhe-proportionality-of-hazards" class="level3" data-number="15.10.5"><h3 data-number="15.10.5" class="anchored" data-anchor-id="τhe-proportionality-of-hazards">
-<span class="header-section-number">15.10.5</span> Τhe Proportionality of Hazards</h3>
+</section><section id="τhe-proportionality-of-hazards" class="level3" data-number="16.10.5"><h3 data-number="16.10.5" class="anchored" data-anchor-id="τhe-proportionality-of-hazards">
+<span class="header-section-number">16.10.5</span> Τhe Proportionality of Hazards</h3>
 <p>In our previous analysis, we calculated the ratio of the hazard function in group A to that in the group B as <span class="math inline">\(HR=0.26\)</span>. This implies that we assumed the hazard ratio remains constant across all time points (it does not depend on the time), known as proportionality of hazards:</p>
 <p><span id="eq-prophazardseq"><span class="math display">\[
 HR = \frac{h_A(t)}{h_B(t)} = constant
-\tag{15.24}\]</span></span></p>
+\tag{16.24}\]</span></span></p>
 <p>Another way to express proportionality of hazards mathematically is to state that the hazard function for an individual in group A is <span class="math inline">\(c\)</span> times the hazard function for an individual in group B:</p>
 <p><span id="eq-prophazardseq2"><span class="math display">\[
 h_A(t) = c \cdot h_B(t)
-\tag{15.25}\]</span></span></p>
+\tag{16.25}\]</span></span></p>
 <p>where <span class="math inline">\(c\)</span> is a constant number.</p>
-<p>In our example, according to <a href="#eq-prophazardseq2" class="quarto-xref">Eq.&nbsp;<span>15.25</span></a>, if therapy A has 0.26 times the risk of a fatal event compared to therapy B at 5 months, this relative risk remains 0.26 at 15 months and at any other time point.</p>
-<p>We can assess whether the ratio of hazards between groups remains constant over time using graphical methods and statistical tests. First, we observe whether the curves in <a href="#fig-kaplan2" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> intersect. In our example, they do not. However, if they were to intersect, it would suggest that the effect of one group on survival relative to the other changes over time. For instance, therapy A might initially have a higher survival probability than therapy B, but later, therapy B could overtake therapy A. This would indicate a violation of the constant hazard ratio.</p>
-<p>Second, we can assess the proportionality of hazards by plotting the <code>log-log</code> Kaplan–Meier survival estimates <code>(log(-log(S(t))))</code> on the y-axis against the logarithmic scale of time on the x-axis (<a href="#fig-loglog" class="quarto-xref">Figure&nbsp;<span>15.7</span></a>)). By examining whether the curves are approximately parallel, we can determine if the assumption holds.</p>
+<p>In our example, according to <a href="#eq-prophazardseq2" class="quarto-xref">Eq.&nbsp;<span>16.25</span></a>, if therapy A has 0.26 times the risk of a fatal event compared to therapy B at 5 months, this relative risk remains 0.26 at 15 months and at any other time point.</p>
+<p>We can assess whether the ratio of hazards between groups remains constant over time using graphical methods and statistical tests. First, we observe whether the curves in <a href="#fig-kaplan2" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> intersect. In our example, they do not. However, if they were to intersect, it would suggest that the effect of one group on survival relative to the other changes over time. For instance, therapy A might initially have a higher survival probability than therapy B, but later, therapy B could overtake therapy A. This would indicate a violation of the constant hazard ratio.</p>
+<p>Second, we can assess the proportionality of hazards by plotting the <code>log-log</code> Kaplan–Meier survival estimates <code>(log(-log(S(t))))</code> on the y-axis against the logarithmic scale of time on the x-axis (<a href="#fig-loglog" class="quarto-xref">Figure&nbsp;<span>16.7</span></a>)). By examining whether the curves are approximately parallel, we can determine if the assumption holds.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot log-log survival curves</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span><span class="va">fit_AB</span>, fun <span class="op">=</span> <span class="st">"cloglog"</span>, size <span class="op">=</span> <span class="fl">0.7</span>, </span>
 <span>           palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#800080"</span>, <span class="st">"#077E97"</span><span class="op">)</span>, </span>
 <span>           ggtheme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-loglog" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-loglog" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-loglog-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="441">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.7 Plot of the log-log Kaplan-Meier estimates against time on a logarithmic scale.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.7 Plot of the log-log Kaplan-Meier estimates against time on a logarithmic scale.
 </figcaption></figure>
 </div>
 </div>
@@ -1462,8 +1468,8 @@ h_A(t) = c \cdot h_B(t)
 <p><strong>INFO</strong></p>
 <p>The log-rank test achieves optimal power when proportionality of hazards holds and there is homogeneity of survival distributions within each group (<a href="https://www.fharrell.com/post/logrank/">Statistical Thinking by Frank Harrell</a>).</p>
 </div>
-</section><section id="reporting-the-results" class="level3" data-number="15.10.6"><h3 data-number="15.10.6" class="anchored" data-anchor-id="reporting-the-results">
-<span class="header-section-number">15.10.6</span> Reporting the Results</h3>
+</section><section id="reporting-the-results" class="level3" data-number="16.10.6"><h3 data-number="16.10.6" class="anchored" data-anchor-id="reporting-the-results">
+<span class="header-section-number">16.10.6</span> Reporting the Results</h3>
 <p>The median follow-up time of the study, which represents the point at which 50% of patients have been observed for at least that duration, is calculated as follows:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/prodlim/man/prodlim.html">prodlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">dat</span>, reverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1492,22 +1498,22 @@ Median with interquartile range (IQR):
 <p><strong>REPORT</strong></p>
 <p>A total of 21 patients were assigned to the new therapy and 21 to the standard therapy. The median follow-up time was 25 months (IQR: 17 to 32). The median survival of patients in the new therapy (23 months) was longer than in standard therapy (9 months). The hazard of dying was <span class="math inline">\(74\%\)</span> lower with the new treatment compared to the standard treatment <span class="math inline">\((HR = 0.26; 95\% \ CI: 0.12 \ to \ 0.58; \ p &lt; 0.001)\)</span>.</p>
 </div>
-</section></section><section id="cox-proportional-hazards-cph-model" class="level2" data-number="15.11"><h2 data-number="15.11" class="anchored" data-anchor-id="cox-proportional-hazards-cph-model">
-<span class="header-section-number">15.11</span> Cox Proportional Hazards (CPH) Model</h2>
-<section id="basics-of-the-cph-model" class="level3" data-number="15.11.1"><h3 data-number="15.11.1" class="anchored" data-anchor-id="basics-of-the-cph-model">
-<span class="header-section-number">15.11.1</span> Basics of the CPH Model</h3>
+</section></section><section id="cox-proportional-hazards-cph-model" class="level2" data-number="16.11"><h2 data-number="16.11" class="anchored" data-anchor-id="cox-proportional-hazards-cph-model">
+<span class="header-section-number">16.11</span> Cox Proportional Hazards (CPH) Model</h2>
+<section id="basics-of-the-cph-model" class="level3" data-number="16.11.1"><h3 data-number="16.11.1" class="anchored" data-anchor-id="basics-of-the-cph-model">
+<span class="header-section-number">16.11.1</span> Basics of the CPH Model</h3>
 <p>Under the proportionality assumption, we can model the survival analysis using the Cox proportional hazards model, defined as follows:</p>
 <p><span id="eq-cox"><span class="math display">\[
 h(t) = h_o(t) \cdot  e^{\beta \cdot x}  \ \ \ for \ \ \  every \ \ \  t \geq 0
-\tag{15.26}\]</span></span></p>
+\tag{16.26}\]</span></span></p>
 <p>where <span class="math inline">\(h_o(t)\)</span> is the baseline hazard which is a function of <span class="math inline">\(t\)</span> and can take any form, and <span class="math inline">\(X\)</span> is time-independent.</p>
 <p>Equivalently, this can be written in log scale as:</p>
 <p><span id="eq-logcox"><span class="math display">\[
 ln \ h(t) =  ln \ h_o(t) + \beta \cdot x
-\tag{15.27}\]</span></span></p>
+\tag{16.27}\]</span></span></p>
 <div class="content-box-white">
 <p><strong>INFO</strong></p>
-<p>According to <a href="#eq-logcox" class="quarto-xref">Eq.&nbsp;<span>15.27</span></a>, the Cox proportional hazards model is considered a semi-parametric model because it includes both parametric and nonparametric components.</p>
+<p>According to <a href="#eq-logcox" class="quarto-xref">Eq.&nbsp;<span>16.27</span></a>, the Cox proportional hazards model is considered a semi-parametric model because it includes both parametric and nonparametric components.</p>
 <ul>
 <li><p>The parametric component is represented by the term <span class="math inline">\(\beta \cdot x\)</span>, which is modeled through linear regression on the log-hazard. For every 1-unit increase in <span class="math inline">\(x\)</span>, the log hazard changes on average by <span class="math inline">\(\beta\)</span> (for every time <span class="math inline">\(t\)</span> in the follow-up period).</p></li>
 <li><p>The nonparametric component is the baseline hazard <span class="math inline">\(h_o(t)\)</span> on log scale, which is an unspecified function.</p></li>
@@ -1516,16 +1522,16 @@ ln \ h(t) =  ln \ h_o(t) + \beta \cdot x
 <p>Let X be a binary random variable of therapy type, where:</p>
 <p><span id="eq-xtherapytype"><span class="math display">\[
 X={\begin{cases}1,&amp; for\ therapy \ A\\0,&amp;for\ therapy \ B \ (ref.)\end{cases}}
-\tag{15.28}\]</span></span></p>
-<p>Applying the <a href="#eq-cox" class="quarto-xref">Eq.&nbsp;<span>15.26</span></a>, the hazard ratio between two individuals receiving therapy A and therapy B is:</p>
+\tag{16.28}\]</span></span></p>
+<p>Applying the <a href="#eq-cox" class="quarto-xref">Eq.&nbsp;<span>16.26</span></a>, the hazard ratio between two individuals receiving therapy A and therapy B is:</p>
 <p><span id="eq-hrcox"><span class="math display">\[
 HR = \frac{h_A(t)}{h_B(t)} = \frac{h_o(t) \cdot e^{\beta \cdot 1}}{h_o(t)\cdot e^{\beta \cdot 0}} = e^{\beta}
-\tag{15.29}\]</span></span></p>
+\tag{16.29}\]</span></span></p>
 <p>The ratio is independent of time, i.e.&nbsp;proportional hazards over time. It is important to note that we have chosen the standard therapy B as the reference group, which is used in the denominator when calculating the hazard ratio.</p>
 <p>Furthermore, on the log-scale we have:</p>
 <p><span id="eq-loghrcox"><span class="math display">\[
 ln \ h_A(t) - ln \ h_B(t) = \beta
-\tag{15.30}\]</span></span></p>
+\tag{16.30}\]</span></span></p>
 <p>Thus, the difference between the log-hazards of groups A and B is constant across all time points and is represented by the coefficient <span class="math inline">\(\beta\)</span>.</p>
 <p>&nbsp;</p>
 <ul>
@@ -1590,8 +1596,8 @@ n= 42, number of events= 27 </code></pre>
 </div>
 </div>
 <p>The code defines a Cox proportional hazards model using the <strong><code><a href="https://parsnip.tidymodels.org/reference/proportional_hazards.html">proportional_hazards()</a></code></strong> function. The <strong><code><a href="https://parsnip.tidymodels.org/reference/set_engine.html">set_engine()</a></code></strong> function then specifies the use of <strong><em>survival</em></strong> package as the computational engine for fitting the model. Finally, the <strong><code><a href="https://generics.r-lib.org/reference/fit.html">fit()</a></code></strong> function defines the survival object and applies the model to the survival data.</p>
-</section><section id="the-proportional-hazards-assumption" class="level3" data-number="15.11.2"><h3 data-number="15.11.2" class="anchored" data-anchor-id="the-proportional-hazards-assumption">
-<span class="header-section-number">15.11.2</span> The Proportional Hazards Assumption</h3>
+</section><section id="the-proportional-hazards-assumption" class="level3" data-number="16.11.2"><h3 data-number="16.11.2" class="anchored" data-anchor-id="the-proportional-hazards-assumption">
+<span class="header-section-number">16.11.2</span> The Proportional Hazards Assumption</h3>
 <p>We have already examined the proportional hazards assumption. Next, we present a statistical test and a relative plot specifically designed to assess this assumption in a Cox model <span class="citation" data-cites="schoenfeld1982 grambsch1994">(<a href="references.html#ref-schoenfeld1982" role="doc-biblioref">Schoenfeld 1982</a>; <a href="references.html#ref-grambsch1994" role="doc-biblioref">Grambsch 1994</a>)</span>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_ph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/cox.zph.html">cox.zph</a></span><span class="op">(</span><span class="va">cox_model</span>, transform <span class="op">=</span> <span class="st">"km"</span><span class="op">)</span></span>
@@ -1603,7 +1609,7 @@ GLOBAL       0.0621  1 0.8</code></pre>
 </div>
 </div>
 <p>A non-significant p-value (p = 0.8), as in this example, indicates that the proportional hazards assumption holds.</p>
-<p>Finally, we plot the scaled Schoenfeld residual against K-M transformed time (<a href="#fig-schoenfeld1" class="quarto-xref">Figure&nbsp;<span>15.8</span></a>).</p>
+<p>Finally, we plot the scaled Schoenfeld residual against K-M transformed time (<a href="#fig-schoenfeld1" class="quarto-xref">Figure&nbsp;<span>16.8</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot with base R</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">test_ph</span><span class="op">)</span></span>
@@ -1613,16 +1619,16 @@ GLOBAL       0.0621  1 0.8</code></pre>
 <span>                <span class="st">"Average hazard over time"</span>, <span class="st">"Time-varying hazard"</span><span class="op">)</span>,</span>
 <span>       lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, lwd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-schoenfeld1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-schoenfeld1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-schoenfeld1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="survival_files/figure-html/fig-schoenfeld1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H" width="624">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schoenfeld1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;15.8 The scaled Schoenfeld residual against transformed time. The solid black line is a smoothing spline fit to the plot, with the dashed lines representing a ±2 standard-error band around the fit. The dashed red line represents the reference line at zero (null hypothesis value) and the dashed green line the average hazard over time (b = -1.4).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schoenfeld1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca"><strong>FIGURE</strong>&nbsp;16.8 The scaled Schoenfeld residual against transformed time. The solid black line is a smoothing spline fit to the plot, with the dashed lines representing a ±2 standard-error band around the fit. The dashed red line represents the reference line at zero (null hypothesis value) and the dashed green line the average hazard over time (b = -1.4).
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-schoenfeld1" class="quarto-xref">Figure&nbsp;<span>15.8</span></a>, if the smoothed solid black line is approximately horizontal and close to the red dashed reference line at zero, the proportional hazards assumption is considered satisfied. It is important to note that, for small sample sizes with few events, minor fluctuations in the residual plot may be expected.</p>
+<p>In <a href="#fig-schoenfeld1" class="quarto-xref">Figure&nbsp;<span>16.8</span></a>, if the smoothed solid black line is approximately horizontal and close to the red dashed reference line at zero, the proportional hazards assumption is considered satisfied. It is important to note that, for small sample sizes with few events, minor fluctuations in the residual plot may be expected.</p>
 <p>In this example, although the solid black line shows some fluctuations, these variations stay close to the green average hazard line, which remains within the confidence intervals (represented by the dashed black lines).</p>
 <p>We obtain a similar graph using the <strong><code><a href="https://rdrr.io/pkg/survminer/man/ggcoxzph.html">ggcoxzph()</a></code></strong> function from the <strong><em>survminer</em></strong> package.</p>
 <div class="cell" data-layout-align="center">
@@ -2009,13 +2015,13 @@ Templeton, Arnoud J., Olga Ace, Eitan Amir, Francisco Vera-Badillo, Alberto Ocan
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./distributions.html" class="pagination-link" aria-label="Probability distributions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probability distributions</span></span>
+      <a href="./descriptive.html" class="pagination-link" aria-label="Descriptive Statistics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./diagnostic.html" class="pagination-link" aria-label="Measures of diagnostic test accuracy">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Measures of diagnostic test accuracy</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

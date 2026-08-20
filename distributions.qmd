@@ -7,7 +7,6 @@ library(tidyverse)
 knitr::opts_chunk$set(fig.pos = 'H')
 ```
 
-
 In this chapter, we explore random variables, which assign numerical values to outcomes of random events, with a particular emphasis on the different types of probability distributions. These distributions are broadly classified into two main categories: discrete distributions, such as the binomial and Poisson distributions, in which random variables take on a countable set of values; and continuous distributions, such as the normal and chi-square distributions, in which random variables can assume any value within a continuous range of real numbers.
 
  
@@ -20,7 +19,6 @@ A random variable\index{random variable} assigns a numerical quantity to every p
 -   **Continuous** if it takes any value in some interval $(\alpha , \beta)$, $-\infty \leq \alpha < \beta \leq \infty$.
 
 For instance, a random variable representing the ABO blood system (A, B, AB, or O blood type) would be discrete, while a random variable representing the height of a person in centimeters would be continuous.
-
 
 ***Example***
 
@@ -43,29 +41,24 @@ Here, x denotes a specific value (i.e., 1, 2, 3, or 4) of the random variable X.
 :::
 
 ::: {.column width="60%"}
-
 |                |      |      |      |      |
-|:----------------|:----:|:----:|:----:|:----:|
+|:---------------|:----:|:----:|:----:|:----:|
 | **Blood type** |  A   |  B   |  AB  |  O   |
 | **X**          |  1   |  2   |  3   |  4   |
 | **P(X)**       | 0.41 | 0.10 | 0.04 | 0.45 |
 
-: Probability table of ABO system. {#tbl-abo .latex-table} 
-
+: Probability table of ABO system. {#tbl-abo .latex-table}
 :::
 
 ::: {.column width="20%"}
 :::
 ::::::
 
-
 Note that the probability axioms and properties that we discussed earlier are also applied to random variables. For example, the total probability for all possible outcomes of a random variable X is equal to one: P(X=1) + P(X=2) + P(X=3) + P(X=4) = 0.41 + 0.10 + 0.04 + 0.45 = 1.
-
 
 The probability distribution allows us to answer questions like: What is the probability that a randomly selected person from the population can donate blood to someone with type B blood?
 
 ![Blood types matching for a safe transfusion.](images/abo.png){#fig-bloodtypes width="50%"}
-
 
 It is known that individuals with blood type B or O are eligible to donate to recipients with blood type B (@fig-bloodtypes). Therefore, we need to find the probability P(blood type B OR blood type O). Since having blood type B and blood type O are mutually exclusive events, we can apply the addition rule for mutually exclusive events as follows:
 
@@ -73,9 +66,7 @@ $$ \textrm{P(blood type B OR blood type O)= P(X = 2) + P(X = 4) = 0.10 + 0.45 = 
 
 Hence, there is a 55% probability that a randomly selected individual from our population can donate blood to someone with blood type B.
 
-
-We will explore different types of probability distributions, broadly categorized into two main groups: **discrete** and **continuous** probability distributions. In R, each distribution has four associated built-in functions. The function prefix indicates its type (d for "density", p for "probability", q for "quantile", and r for "random"), while the suffix specifies the distribution. For example, in the case of **binomial** distribution, these functions are: **`dbinom()`**, **`pbinom()`**, **`qbinom()`**,  and **`rbinom()`**. Similarly, for the normal distribution, they are: **`dnorm()`**, **`pnorm()`**, **`qnorm()`**,  and **`rnorm()`**.
-
+We will explore different types of probability distributions, broadly categorized into two main groups: **discrete** and **continuous** probability distributions. In R, each distribution has four associated built-in functions. The function prefix indicates its type (d for "density", p for "probability", q for "quantile", and r for "random"), while the suffix specifies the distribution. For example, in the case of **binomial** distribution, these functions are: **`dbinom()`**, **`pbinom()`**, **`qbinom()`**, and **`rbinom()`**. Similarly, for the normal distribution, they are: **`dnorm()`**, **`pnorm()`**, **`qnorm()`**, and **`rnorm()`**.
 
 ## Discrete probability distributions
 
@@ -85,19 +76,16 @@ $$
  P(X = x) = P(x)
 $$ {#eq-pdfdiscrete}
 
-
 where:
 
 $P(X = x)$ is the probability that the random variable X takes the value x and
 
 $P(x)$ is the probability of the specific outcome x occurring.
 
-
 The pmf has two properties:
 
 -   $P(x) \geq 0$
 -   $\sum_{x} P(x) = 1$, where x runs through all possible values of the random variable X.
-
 
 Additionally, the **cumulative distribution function** (cdf) gives the probability that the random variable X is less than or equal to x and is usually denoted as F(x):
 
@@ -105,13 +93,9 @@ $$
 F(x) = P(X \le x)= \sum_{x_i\le x} P(x_i)
 $$ {#eq-cdfdiscrete}
 
-
 where the sum takes place for all the values $x_1, x_2, \ldots, x_i$, which are $x_i\le x$.
 
-
 When dealing with a random variable, it is common to estimate three key summary measures: the **expected value**, **variance** and **standard deviation**.
-
-
 
 ::: content-box-purple
 **Expected Value**
@@ -121,7 +105,6 @@ The expected value, or mean, denoted as **E(X)**, is defined as the weighted ave
 $$
 \mu = E(X)= \sum\limits_x x_i \cdot P(x_i)
 $$ {#eq-expdiscrete}
-
 :::
 
  
@@ -135,14 +118,11 @@ $$
  \sigma^2=\text{Var}(X)= E[X - E(X)]^2 = E[(X - \mu)^2] = \sum\limits_x\ (x_i-\mu)^2 P(x_i)
 $$ {#eq-vardiscrete}
 
-
-
 There is an easier form of this formula.
 
 $$
 \sigma^2=\text{Var}(X)= E(X^2) - E(X)^2=\sum\limits_x x_i^2 P(x_i)-\mu^2
 $$ {#eq-vardiscrete2}
-
 :::
 
  
@@ -162,7 +142,6 @@ $$ {#eq-sddiscrete}
 ### Discrete uniform distribution
 
 Let X be a discrete random variable that takes integer values within the interval (a, b), where $a \leq b$, and each integer in this interval is equally likely to occur. The distribution of the variable X follows a discrete uniform distribution, denoted as: $X \sim \text{Uniform}(a, b)$.
-
 
 -   The probability mass function (pmf) of X is given by:
 
@@ -184,7 +163,6 @@ F(x) = P(X \le x)= \left\{
 \right.
 $$ {#eq-cdfuni12}
 
-
 <br>
 
 The **expected value** of random variable, X, with $\text{Uniform}(a, b)$ distribution is:
@@ -193,13 +171,11 @@ $$
 \mu= E(X) =\dfrac{a+b}{2}
 $$ {#eq-meanuni12}
 
-
 The **variance** is:
 
 $$
 \sigma^2=Var(X) = \frac{(b-a+1)^2 -1}{12}
 $$ {#eq-varuni12}
-
 
 and the standard deviation is:
 
@@ -213,29 +189,23 @@ $$ {#eq-sigma12}
 
 A postgraduate program in medicine intends to randomly select one student from a group of five excellent students to receive a scholarship. Given that each student has an equal probability of being chosen, the selection process follows a discrete uniform distribution.
 
-
 -   The pmf for this distribution is (a=1, b=5):
 
 $$P(X = x) = \frac{1}{5-1+1} = \frac{1}{5} = 0.2 \quad \text{where} \quad x \in \left\lbrace 1, 2, 3, 4, 5 \right\rbrace$$
 
-
-
 The probability table (@tbl-tbuniform) and the distribution visualization (@fig-unipmf1234) are shown below:
-
 
 :::::: columns
 ::: {.column width="20%"}
 :::
 
 ::: {.column width="60%"}
-
 |          |     |     |     |     |     |
-|:----------|:---:|:---:|:---:|:---:|:---:|
-| **X**    |  1  |  2  |  3  |   4 |   5 |
-| **P(X)** | 0.2 | 0.2 | 0.2 |  0.2| 0.2 |
+|:---------|:---:|:---:|:---:|:---:|:---:|
+| **X**    |  1  |  2  |  3  |  4  |  5  |
+| **P(X)** | 0.2 | 0.2 | 0.2 | 0.2 | 0.2 |
 
-: Probability table of X. {#tbl-tbuniform .latex-table} 
-
+: Probability table of X. {#tbl-tbuniform .latex-table}
 :::
 
 ::: {.column width="20%"}
@@ -276,7 +246,6 @@ ggplot(dat01, aes(x = x, y = y)) +
 
 $$F(x) = P(X \le x)={\begin{cases}0,&for\ x <1\\\frac{x}{5},&for\ 1\leq x \leq 5\\1,&for\ x > 5 \end{cases}}$$
 
-
 The corresponding plot is shown in @fig-unicdf1234.
 
 ```{r}
@@ -310,6 +279,4 @@ theme_classic(base_size = 10) +
 
 <br>
 
-The mean is $\mu= \dfrac{a+b}{2} = \dfrac{5+1}{2}=3$ and the variance is $\sigma^2 = \dfrac{(b-a+1)^2 -1}{12} = \dfrac{25-1}{12} = 2$.
-
-
+The mean is $\mu= \dfrac{a+b}{2} = \dfrac{1+5}{2}=3$ and the variance is $\sigma^2 = \dfrac{(b-a+1)^2 -1}{12} = \dfrac{25-1}{12} = 2$.
